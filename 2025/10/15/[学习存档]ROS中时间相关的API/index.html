@@ -9,7 +9,7 @@
     
     <title>
         
-            如果你下午四点钟来，那我在三点钟就会开始感到幸福。 |
+            [学习存档]ROS中时间相关的API |
         
         这里小宇宙包罗着万象
     </title>
@@ -212,7 +212,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        如果你下午四点钟来，那我在三点钟就会开始感到幸福。
+                        [学习存档]ROS中时间相关的API
                     </div>
                 
 
@@ -238,7 +238,7 @@
         
             <span class="meta-info-item post-create-date">
                 <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2025-10-06 02:42:30</span>
+                <span class="datetime">2025-10-15 16:05:20</span>
             </span>
 
             
@@ -255,7 +255,7 @@
             <span class="post-tag meta-info-item border-box">
                 <ul class="post-tag-ul">
                     
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROS/">ROS</a></li>
                         
                     
                 </ul>
@@ -284,8 +284,24 @@
                     
 
                     
-                         <p>该怎么去阐述演唱会的意义呢。我想于真正的歌迷而言，或者至少于我而言，演唱会从来都不只是两三个小时的大型乌托邦，是开票前请各种朋友帮忙的倾尽全力，是抢到票后提前一个月就时不时在内心彩排的预演快乐，是越逼近约定兑现之时越幸福的期待。<br>这大概就是有所望的力量。<br>我还记得2025年9月28日的武汉有多热——赶到场馆已是大汗淋漓。为了应援购入的联名卫衣外套没法穿，拥挤的内场想要拍照记录貌似也不如看台方便。或许我就是这么贪婪的。抢到票前总想着能进场就行，真的坐在内场了，总期待自己能比之前在看台离偶像更近一点，这次能不能看见人呢？答案是还是很远。于是便暗暗下定决心下次一定要买到2000的票。<br>我之前一直对“人总是在接近幸福时最幸福”的说法表示不解，因为我总在幸福时依旧幸福。但这次坐在内场，看着我熟悉的流程一个一个进行下去，熟悉的常驻曲目响起，我确实感到自己并没有开场前幸福了。是太躁热吗？原因在爱你没差响起时明晰了。<br>比较真的是偷走幸福的小偷。<br>抢到票的我与没抢到票的我相比是幸福的，坐在内场后排被无数部举起的手机挡住视线的我与内场前排的观众相比是不幸福的，但听到了爱你没差现场版的我与之前的我相比，又确确实实是无比幸福的。<br>校园里的桂花开了，走在路上很香。让我想起了小时候总喜欢拾落在地上的桂花，或装在盒子里或制成香囊。<br>思绪回到过去，就好奇，到底是什么时候开始不止是听众，而是粉丝的呢？<br>或许真的没有一个特定的日子。只想起初三时，mojito发行，住校的我是靠打电话收听新歌的，是真的很期待。也记得那天校园广播放了mojito，旋律响起时全班人都看向我。<br>在初中同学的回忆里，我大概始终与喜欢周杰伦绑定在一起。<br>谢谢你成为了我的几分之几。</p>
+                         <h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><h4 id="1-时刻"><a href="#1-时刻" class="headerlink" title="1.时刻"></a>1.时刻</h4><p>获取时刻，或是设置指定时刻:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 获取当前时刻</span><br><span class="line">right_now = rospy.Time.now()</span><br><span class="line">rospy.loginfo(&quot;当前时刻:%.2f&quot;,right_now.to_sec())</span><br><span class="line">rospy.loginfo(&quot;当前时刻:%.2f&quot;,right_now.to_nsec())</span><br><span class="line"></span><br><span class="line"># 自定义时刻</span><br><span class="line">some_time1 = rospy.Time(1234.567891011)</span><br><span class="line">some_time2 = rospy.Time(1234,567891011)</span><br><span class="line">rospy.loginfo(&quot;设置时刻1:%.2f&quot;,some_time1.to_sec())</span><br><span class="line">rospy.loginfo(&quot;设置时刻2:%.2f&quot;,some_time2.to_sec())</span><br><span class="line"></span><br><span class="line"># 从时间创建对象</span><br><span class="line"># some_time3 = rospy.Time.from_seconds(543.21)</span><br><span class="line">some_time3 = rospy.Time.from_sec(543.21) # from_sec 替换了 from_seconds</span><br><span class="line">rospy.loginfo(&quot;设置时刻3:%.2f&quot;,some_time3.to_sec())</span><br></pre></td></tr></table></figure>
 
+<h4 id="2-持续时间"><a href="#2-持续时间" class="headerlink" title="2.持续时间"></a>2.持续时间</h4><p>设置一个时间区间(间隔):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 持续时间相关API</span><br><span class="line">rospy.loginfo(&quot;持续时间测试开始.....&quot;)</span><br><span class="line">du = rospy.Duration(3.3)</span><br><span class="line">rospy.loginfo(&quot;du1 持续时间:%.2f&quot;,du.to_sec())</span><br><span class="line">rospy.sleep(du) #休眠函数</span><br><span class="line">rospy.loginfo(&quot;持续时间测试结束.....&quot;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-持续时间与时刻运算"><a href="#3-持续时间与时刻运算" class="headerlink" title="3.持续时间与时刻运算"></a>3.持续时间与时刻运算</h4><p>为了方便使用，ROS中提供了时间与时刻的运算:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rospy.loginfo(&quot;时间运算&quot;)</span><br><span class="line">now = rospy.Time.now()</span><br><span class="line">du1 = rospy.Duration(10)</span><br><span class="line">du2 = rospy.Duration(20)</span><br><span class="line">rospy.loginfo(&quot;当前时刻:%.2f&quot;,now.to_sec())</span><br><span class="line">before_now = now - du1</span><br><span class="line">after_now = now + du1</span><br><span class="line">dd = du1 + du2</span><br><span class="line"># now = now + now #非法</span><br><span class="line">rospy.loginfo(&quot;之前时刻:%.2f&quot;,before_now.to_sec())</span><br><span class="line">rospy.loginfo(&quot;之后时刻:%.2f&quot;,after_now.to_sec())</span><br><span class="line">rospy.loginfo(&quot;持续时间相加:%.2f&quot;,dd.to_sec())</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-设置运行频率"><a href="#4-设置运行频率" class="headerlink" title="4.设置运行频率"></a>4.设置运行频率</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置执行频率</span><br><span class="line">rate = rospy.Rate(0.5)</span><br><span class="line">while not rospy.is_shutdown():</span><br><span class="line">    rate.sleep() #休眠</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-定时器"><a href="#5-定时器" class="headerlink" title="5.定时器"></a>5.定时器</h4><p>ROS 中内置了专门的定时器，可以实现与 ros::Rate 类似的效果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 定时器设置</span><br><span class="line"># @type  callback: function taking rospy.TimerEvent</span><br><span class="line"># @param oneshot: 设置为True，就只执行一次，否则循环执行</span><br><span class="line"># @type  oneshot: bool</span><br><span class="line"># @param reset: if True, timer is reset when rostime moved backward. [default: False]</span><br><span class="line"># @type  reset: bool</span><br><span class="line"></span><br><span class="line">rospy.Timer(rospy.Duration(1),doMsg)</span><br><span class="line"># rospy.Timer(rospy.Duration(1),doMsg,True) # 只执行一次</span><br><span class="line">rospy.spin()</span><br></pre></td></tr></table></figure>
+
+<p>回调函数:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def doMsg(event):</span><br><span class="line">  rospy.loginfo(&quot;当前时刻:%s&quot;,str(event.current_real))</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-定时器构造函数说明"><a href="#6-定时器构造函数说明" class="headerlink" title="6.定时器构造函数说明"></a>6.定时器构造函数说明</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def __init__(self, period, callback, oneshot=False, reset=False):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Constructor.</span><br><span class="line">    @param period: 回调函数的时间间隔</span><br><span class="line">    @type  period: rospy.Duration</span><br><span class="line">    </span><br><span class="line">    @param callback: 回调函数</span><br><span class="line">    @type  callback: function taking rospy.TimerEvent</span><br><span class="line">    </span><br><span class="line">    @param oneshot: 设置为True，就只执行一次，否则循环执行</span><br><span class="line">    @type  oneshot: bool</span><br><span class="line">    </span><br><span class="line">    @param reset: if True, timer is reset when rostime moved backward. [default: False]</span><br><span class="line">    @type  reset: bool</span><br><span class="line">    &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
                     
                 </div>
 
@@ -297,7 +313,7 @@
                             <ul class="post-tags-box border-box">
                                 
                                     <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ROS/">ROS</a>
                                     </li>
                                 
                             </ul>
@@ -339,19 +355,35 @@
                             <div class="prev-post">
                                 <a class="prev"
                                    rel="prev"
-                                   href="/2025/10/15/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DROS%E4%B8%AD%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84API/"
-                                   title="[学习存档]ROS中时间相关的API"
+                                   href="/2025/10/15/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DROS%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/"
+                                   title="[学习存档]ROS通信机制"
                                 >
                                     <span class="left arrow-icon flex-center">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">[学习存档]ROS中时间相关的API</span>
+                                        <span class="post-nav-title-item text-ellipsis">[学习存档]ROS通信机制</span>
                                         <span class="post-nav-item">Prev posts</span>
                                     </span>
                                 </a>
                             </div>
                         
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/10/06/%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%9C%A8%E4%B8%8B%E5%8D%88%E5%9B%9B%E7%82%B9%E9%92%9F%E6%9D%A5%EF%BC%8C%E9%82%A3%E6%88%91%E5%9C%A8%E4%B8%89%E7%82%B9%E9%92%9F%E5%B0%B1%E4%BC%9A%E5%BC%80%E5%A7%8B%E6%84%9F%E5%88%B0%E5%B9%B8%E7%A6%8F%E3%80%82/"
+                                   title="如果你下午四点钟来，那我在三点钟就会开始感到幸福。"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">如果你下午四点钟来，那我在三点钟就会开始感到幸福。</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
                         
                     </div>
                 
@@ -372,7 +404,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4"><span class="nav-text">时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%97%B6%E5%88%BB"><span class="nav-text">1.时刻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="nav-text">2.持续时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4%E4%B8%8E%E6%97%B6%E5%88%BB%E8%BF%90%E7%AE%97"><span class="nav-text">3.持续时间与时刻运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%AE%BE%E7%BD%AE%E8%BF%90%E8%A1%8C%E9%A2%91%E7%8E%87"><span class="nav-text">4.设置运行频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">5.定时器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-text">6.定时器构造函数说明</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 
@@ -550,7 +582,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4"><span class="nav-text">时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%97%B6%E5%88%BB"><span class="nav-text">1.时刻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4"><span class="nav-text">2.持续时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4%E4%B8%8E%E6%97%B6%E5%88%BB%E8%BF%90%E7%AE%97"><span class="nav-text">3.持续时间与时刻运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%AE%BE%E7%BD%AE%E8%BF%90%E8%A1%8C%E9%A2%91%E7%8E%87"><span class="nav-text">4.设置运行频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">5.定时器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AE%9A%E6%97%B6%E5%99%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-text">6.定时器构造函数说明</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 

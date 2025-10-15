@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="eXperienceJouRney">
+    
+    <title>
+        
+            [学习存档]ROS通信机制 |
+        
+        这里小宇宙包罗着万象
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#99CCCC","title":"这里小宇宙包罗着万象","author":"eXperienceJouRney","avatar":"/images/logo.jpg","logo":"/images/logo2.jpg","favicon":"/images/logo.jpg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","me":"/me"},"first_screen":{"enable":true,"background_img":null,"background_img_dark":null,"description":"在129600年后 所有事情都会重演||这也就是说 我们将会再次相遇于此","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/eXperienceJouRney","weixin":"img | /images/vx.jpg","qq":"img | /images/qq.jpg","tiktok":"img | /images/dy.png"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":false},"home":{"announcement":null,"category":true,"tag":true,"post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2025,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null],"js":["/js/custom-1.js"]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo2.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               这里小宇宙包罗着万象
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/me">
+                                
+                                ME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/me">
+                            
+                            ME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [学习存档]ROS通信机制
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/logo.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">eXperienceJouRney</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-15 16:11:28</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Oct 15 2025 16:31:39 GMT+0800">2025-10-15 16:31:39</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROS/">ROS</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="话题通信"><a href="#话题通信" class="headerlink" title="话题通信"></a>话题通信</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>流程：</p>
+<ol>
+<li>编写发布方实现；</li>
+<li>编写订阅方实现；</li>
+<li>(为python文件添加可执行权限；)</li>
+<li>编辑配置文件；</li>
+<li>编译并执行。</li>
+</ol>
+<p>&#x2F;&#x2F;循环发布消息：HelloWorld 后缀数字编号</p>
+<h4 id="C-实现代码"><a href="#C-实现代码" class="headerlink" title="C++实现代码"></a>C++实现代码</h4><h5 id="1-发布方-Hello-pub-cpp"><a href="#1-发布方-Hello-pub-cpp" class="headerlink" title="1.发布方 Hello_pub.cpp"></a>1.发布方 Hello_pub.cpp</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//1.包含头文件</span><br><span class="line">#include &quot;ros/ros.h&quot;  //ROS C++ 客户端库</span><br><span class="line">#include &quot;std_msgs/String.h&quot;  //普通文本类型的消息</span><br><span class="line">#include &lt;sstream&gt;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])&#123;</span><br><span class="line"></span><br><span class="line">	setlocale(LC_ALL,&quot;&quot;);  //设置本地化编码防止出现乱码</span><br><span class="line">	</span><br><span class="line">	//2.初始化ROS节点</span><br><span class="line">	//参数3为节点名称</span><br><span class="line">	ros::init(argc,argv,&quot;talker&quot;);  </span><br><span class="line">	</span><br><span class="line">	//3.实例化ROS句柄</span><br><span class="line">	ros::NodeHandle nh;</span><br><span class="line">	</span><br><span class="line">	//4.实例化**发布者**对象</span><br><span class="line">	//参数1为要发布到的话题</span><br><span class="line">	//参数2:为队列中最大保存的消息数，超出此阀值时，先进的先销毁</span><br><span class="line">	ros::Publisher pub = nh.advertise&lt;std_msgs::String&gt;(&quot;chatter&quot;,10);  </span><br><span class="line">	</span><br><span class="line">	//5.组织被发布的数据，并编写逻辑发布数据</span><br><span class="line">	std_msgs::String msg;  //创建了一个空的字符串消息容器</span><br><span class="line">	std::string msg_front = &quot;HelloWorld&quot;;  //定义消息的固定前缀部分</span><br><span class="line">	int count = 0;  //定义计数器</span><br><span class="line">	</span><br><span class="line">	ros::Rate r(1);  //定义频率为1Hz=1秒1次</span><br><span class="line">	</span><br><span class="line">	while (ros::ok())&#123;</span><br><span class="line">		std::stringstream ss;</span><br><span class="line">		//使用 stringstream 拼接字符串与编号</span><br><span class="line">		ss &lt;&lt; msg_front &lt;&lt; count;  </span><br><span class="line">		</span><br><span class="line">		msg.data = ss.str(); </span><br><span class="line">		 </span><br><span class="line">		//不使用 stringstream，直接拼接</span><br><span class="line">		//msg.data = msg_front + std::to_string(count);</span><br><span class="line">		</span><br><span class="line">		//使用格式化库</span><br><span class="line">		//#include &lt;format&gt;</span><br><span class="line">		//msg.data = std::format(&quot;&#123;&#125;&#123;&#125;&quot;,msg_front,count);</span><br><span class="line">		</span><br><span class="line">		pub.publish(msg);  //发布消息</span><br><span class="line">		</span><br><span class="line">        ROS_INFO(&quot;发送的消息:%s&quot;,msg.data.c_str());  //调试日志</span><br><span class="line">		</span><br><span class="line">		//调试打印发送的消息</span><br><span class="line">        ROS_INFO(&quot;发送的消息:%s&quot;,msg.data.c_str());  //兼容C</span><br><span class="line">        //根据频率自动休眠 休眠时间 = 1/频率；</span><br><span class="line">        r.sleep();</span><br><span class="line">        </span><br><span class="line">        count++;</span><br><span class="line">        </span><br><span class="line">        ros::spinOnce();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-订阅方-Hello-sub-cpp"><a href="#2-订阅方-Hello-sub-cpp" class="headerlink" title="2.订阅方 Hello_sub.cpp"></a>2.订阅方 Hello_sub.cpp</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 1.包含头文件 </span><br><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line">#include &quot;std_msgs/String.h&quot;</span><br><span class="line"></span><br><span class="line">//传递智能指针而不是字符串 保证性能</span><br><span class="line">void doMsg(const std_mags::String::ConstPtr&amp; msg_p)&#123;</span><br><span class="line">	ROS_INFO(&quot;我听见:%s&quot;,msg_p -&gt; data.c_str());</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	//2.初始化ROS节点</span><br><span class="line">	ros::init(argc,argv,&quot;listener&quot;);</span><br><span class="line">	//3.实例化ROS句柄</span><br><span class="line">	ros::NodeHandle nh;</span><br><span class="line">	</span><br><span class="line">	//4.实例化**订阅者**对象	</span><br><span class="line">	ros::Subscriber sub = nh.subscribe&lt;std_msgs::String&gt;(&quot;chatter&quot;,10,doMsg);</span><br><span class="line">	</span><br><span class="line">	//5.处理订阅的消息（回调函数）</span><br><span class="line">	//void doMsg(const std_mags::String::ConstPtr&amp; msg_p)&#123;</span><br><span class="line">	//ROS_INFO(&quot;我听见:%s&quot;,msg_p -&gt; data.c_str());</span><br><span class="line">//&#125; </span><br><span class="line"></span><br><span class="line">	//6.设置循环调用回调函数</span><br><span class="line">	ros::spin();</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-配置-CMakeLists-txt"><a href="#3-配置-CMakeLists-txt" class="headerlink" title="3.配置 CMakeLists.txt"></a>3.配置 CMakeLists.txt</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">add_executable(Hello_pub</span><br><span class="line">  src/Hello_pub.cpp</span><br><span class="line">)</span><br><span class="line">add_executable(Hello_sub</span><br><span class="line">  src/Hello_sub.cpp</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">//链接库文件</span><br><span class="line">target_link_libraries(Hello_pub</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br><span class="line">target_link_libraries(Hello_sub</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Python实现代码"><a href="#Python实现代码" class="headerlink" title="Python实现代码"></a>Python实现代码</h4><h5 id="1-发布方-Hello-pub-py"><a href="#1-发布方-Hello-pub-py" class="headerlink" title="1.发布方 Hello_pub.py"></a>1.发布方 Hello_pub.py</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">from std_msgs.msg import String</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">	# 2.初始化ROS节点</span><br><span class="line">	rospy.init_node(&quot;talker_p&quot;) </span><br><span class="line">	</span><br><span class="line">	# 3.实例化**发布者**对象</span><br><span class="line">	pub = rospy.Publisher(&quot;chatter&quot;,String.queue_size=10) </span><br><span class="line">	</span><br><span class="line">	# 4.组织被发布的数据，并编写逻辑发布数据</span><br><span class="line">	msg = String()  # 创建mag对象</span><br><span class="line">	msg_front = &quot;HelloWorld&quot; #定义消息的固定前缀部分</span><br><span class="line">	count = 0 #定义计数器</span><br><span class="line">	</span><br><span class="line">	rate = rospy.Rate(1)  #定义频率为1Hz=1秒1次</span><br><span class="line">	</span><br><span class="line">	while not rospy.is_shutdown():</span><br><span class="line">		msg.data = msg_front + str(count) </span><br><span class="line">		</span><br><span class="line">		pub.publish(msg);  #发布消息</span><br><span class="line">		</span><br><span class="line">        #根据频率自动休眠 休眠时间 = 1/频率；</span><br><span class="line">        rate.sleep()</span><br><span class="line">        </span><br><span class="line">        rospy.loginfo(&quot;写出的数据:%s&quot;,msg.data)</span><br><span class="line">        </span><br><span class="line">        count += 1</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<h5 id="2-订阅方-Hello-sub-py"><a href="#2-订阅方-Hello-sub-py" class="headerlink" title="2.订阅方 Hello_sub.py"></a>2.订阅方 Hello_sub.py</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#1.导包 </span><br><span class="line">import rospy</span><br><span class="line">from std_msgs.msg import String</span><br><span class="line"></span><br><span class="line">def doMsg(msg):</span><br><span class="line">    rospy.loginfo(&quot;我听见:%s&quot;,msg.data)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    #2.初始化 ROS 节点:命名(唯一)</span><br><span class="line">    rospy.init_node(&quot;listener_p&quot;)</span><br><span class="line">    </span><br><span class="line">    #3.实例化 订阅者 对象</span><br><span class="line">    sub = rospy.Subscriber(&quot;chatter&quot;,String,doMsg,queue_size=10)</span><br><span class="line">    </span><br><span class="line">    #4.处理订阅的消息(回调函数)</span><br><span class="line">    </span><br><span class="line">    #5.设置循环调用回调函数</span><br><span class="line">    rospy.spin()</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-权限设置"><a href="#3-权限设置" class="headerlink" title="3.权限设置"></a>3.权限设置</h5><p>终端下进入 scripts 执行:<code>chmod +x *.py</code></p>
+<h5 id="4-配置-CMakeLists-txt"><a href="#4-配置-CMakeLists-txt" class="headerlink" title="4.配置 CMakeLists.txt"></a>4.配置 CMakeLists.txt</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">catkin_install_python(PROGRAMS</span><br><span class="line">  scripts/Hello_pub.py</span><br><span class="line">  scripts/Hello_sub.py</span><br><span class="line">  DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><p>1.启动 roscore</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure>
+
+<p>2.启动发布节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//进入工作空间目录</span><br><span class="line">cd ~/catkin_ws</span><br><span class="line"></span><br><span class="line">//source环境</span><br><span class="line">source devel/setup.bash</span><br><span class="line"></span><br><span class="line">//运行发布节点</span><br><span class="line">rosrun Hello Hello_pub</span><br></pre></td></tr></table></figure>
+
+<p>3.启动订阅节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//进入工作空间目录</span><br><span class="line">cd ~/catkin_ws</span><br><span class="line"></span><br><span class="line">//source环境</span><br><span class="line">source devel/setup.bash</span><br><span class="line"></span><br><span class="line">//运行订阅节点</span><br><span class="line">rosrun Hello</span><br><span class="line"> Hello_sub</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>1.查看运行的节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosnode list</span><br></pre></td></tr></table></figure>
+
+<p>2.查看话题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure>
+
+<p>3.查看话题内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic echo /topic_name</span><br></pre></td></tr></table></figure>
+
+<p>4.查看节点信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosnode info /node_name</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义msg"><a href="#自定义msg" class="headerlink" title="自定义msg"></a>自定义msg</h3><p><strong>流程:</strong></p>
+<ol>
+<li>按照固定格式创建 msg 文件</li>
+<li>编辑配置文件</li>
+<li>编译生成可以被 Python 或 C++ 调用的中间文件</li>
+</ol>
+<p>&#x2F;&#x2F;需求:创建自定义消息，该消息包含人的信息:姓名、身高、年龄等。</p>
+<h4 id="1-定义msg文件"><a href="#1-定义msg文件" class="headerlink" title="1.定义msg文件"></a>1.定义msg文件</h4><p>功能包下新建 msg 目录，添加文件 Person.msg</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string name</span><br><span class="line">uint16 age</span><br><span class="line">float64 height</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-编辑配置文件"><a href="#2-编辑配置文件" class="headerlink" title="2.编辑配置文件"></a>2.编辑配置文件</h4><p>package.xml中添加编译依赖与执行依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;build_depend&gt;message_generation&lt;/build_depend&gt;</span><br><span class="line">&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</span><br></pre></td></tr></table></figure>
+
+<p>CMakeLists.txt编辑 msg 相关配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find_package(catkin REQUIRED COMPONENTS</span><br><span class="line">  roscpp</span><br><span class="line">  rospy</span><br><span class="line">  std_msgs</span><br><span class="line">  message_generation</span><br><span class="line">)</span><br><span class="line">//需要加入 message_generation,必须有 std_msgs</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//配置 msg 源文件</span><br><span class="line">add_message_files(</span><br><span class="line">  FILES</span><br><span class="line">  Person.msg</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//生成消息时依赖于 std_msgs</span><br><span class="line">generate_messages(</span><br><span class="line">  DEPENDENCIES</span><br><span class="line">  std_msgs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">catkin_package(</span><br><span class="line">  INCLUDE_DIRS include //指定头文件目录</span><br><span class="line">  LIBRARIES demo02_talker_listener //指定库文件</span><br><span class="line">  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime //执行时依赖</span><br><span class="line">  DEPENDS system_lib  //声明非ROS的系统依赖</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-调用"><a href="#3-调用" class="headerlink" title="3.调用"></a>3.调用</h4><h5 id="0-vscode-配置"><a href="#0-vscode-配置" class="headerlink" title="0.vscode 配置"></a>0.vscode 配置</h5><p>为了方便代码提示以及避免误抛异常，需要先将前面生成的文件路径配置:</p>
+<p>C++：将前面生成的头文件路径配置进 c_cpp_properties.json 的 includepath属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;browse&quot;: &#123;</span><br><span class="line">                &quot;databaseFilename&quot;: &quot;&quot;,</span><br><span class="line">                &quot;limitSymbolsToIncludedHeaders&quot;: true</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;includePath&quot;: [</span><br><span class="line">                &quot;/opt/ros/noetic/include/**&quot;,</span><br><span class="line">                &quot;/usr/include/**&quot;,</span><br><span class="line">                &quot;/xxx/yyy工作空间/devel/include/**&quot; //配置 head 文件的路径 </span><br><span class="line">            ],</span><br><span class="line">            &quot;name&quot;: &quot;ROS&quot;,</span><br><span class="line">            &quot;intelliSenseMode&quot;: &quot;gcc-x64&quot;,</span><br><span class="line">            &quot;compilerPath&quot;: &quot;/usr/bin/gcc&quot;,</span><br><span class="line">            &quot;cStandard&quot;: &quot;c11&quot;,</span><br><span class="line">            &quot;cppStandard&quot;: &quot;c++17&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;version&quot;: 4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.Python：将前面生成的 python 文件路径配置进 settings.json</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;python.autoComplete.extraPaths&quot;: [</span><br><span class="line">        &quot;/opt/ros/noetic/lib/python3/dist-packages&quot;,</span><br><span class="line">        &quot;/xxx/yyy工作空间/devel/lib/python3/dist-packages&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-发布方"><a href="#1-发布方" class="headerlink" title="1.发布方"></a>1.发布方</h5><p>C++</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;demo_talker_listener/Person.h&quot;</span><br><span class="line"></span><br><span class="line">demo_talker_listener::Person p;</span><br><span class="line">p.name = &quot;XJR&quot;;</span><br><span class="line">p.age = 2000;</span><br><span class="line">p.height = 1.6;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Python:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from demo_talker_listener.msg import Person</span><br><span class="line"></span><br><span class="line">p = Person()</span><br><span class="line">p.name = &quot;XJR&quot;</span><br><span class="line">p.age = 18</span><br><span class="line">p.height = 2.8</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-订阅方"><a href="#2-订阅方" class="headerlink" title="2.订阅方"></a>2.订阅方</h5><p>C++</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;demo_talker_listener/Person.h&quot;</span><br><span class="line"></span><br><span class="line">void doPerson(const demo_talker_listener::Person::ConstPtr&amp; person_p)&#123;</span><br><span class="line">    ROS_INFO(&quot;订阅的人信息:%s, %d, %.2f&quot;, person_p-&gt;name.c_str(), person_p-&gt;age, person_p-&gt;height);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ros::Subscriber sub = nh.subscribe&lt;demo_talker_listener::Person&gt;(&quot;chatter_person&quot;,10,doPerson);</span><br></pre></td></tr></table></figure>
+
+<p>Python:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from demo_talker_listener.msg import Person</span><br><span class="line"></span><br><span class="line">def doPerson(p):</span><br><span class="line">    rospy.loginfo(&quot;订阅的人的信息:%s, %d, %.2f&quot;,p.name, p.age, p.height)</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务通信"><a href="#服务通信" class="headerlink" title="服务通信"></a>服务通信</h2><p><strong>需求:</strong></p>
+<blockquote>
+<p>服务通信中，客户端提交两个整数至服务端，服务端求和并响应结果到客户端，请创建服务器与客户端通信的数据载体。</p>
+</blockquote>
+<p><strong>流程:</strong></p>
+<p>srv 文件内的可用数据类型与 msg 文件一致，且定义 srv 实现流程与自定义 msg 实现流程类似:</p>
+<ol>
+<li><p>按照固定格式创建srv文件</p>
+</li>
+<li><p>编辑配置文件</p>
+</li>
+<li><p>编译生成中间文件</p>
+</li>
+</ol>
+<h3 id="1-自定义srv"><a href="#1-自定义srv" class="headerlink" title="1.自定义srv"></a>1.自定义srv</h3><p>服务通信中，数据分成两部分，请求与响应，在 srv 文件中请求和响应使用<code>---</code>分割，具体实现如下：</p>
+<p>功能包下新建 srv 目录，添加 xxx.srv 文件，内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 客户端请求时发送的两个数字</span><br><span class="line">int32 num1</span><br><span class="line">int32 num2</span><br><span class="line">---</span><br><span class="line"># 服务器响应发送的数据</span><br><span class="line">int32 sum</span><br></pre></td></tr></table></figure>
+
+<p><strong>package.xml</strong>中添加编译依赖与执行依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;build_depend&gt;message_generation&lt;/build_depend&gt;</span><br><span class="line">&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>CMakeLists.txt</strong> 编辑 srv 相关配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">find_package(catkin REQUIRED COMPONENTS</span><br><span class="line">  roscpp</span><br><span class="line">  rospy</span><br><span class="line">  std_msgs</span><br><span class="line">  message_generation</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">add_service_files(</span><br><span class="line">  FILES</span><br><span class="line">  AddInts.srv</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">generate_messages(</span><br><span class="line">  DEPENDENCIES</span><br><span class="line">  std_msgs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>编译后的中间文件查看:</p>
+<p>C++ 需要调用的中间文件(…&#x2F;工作空间&#x2F;devel&#x2F;include&#x2F;包名&#x2F;xxx.h)</p>
+<p>Python 需要调用的中间文件(…&#x2F;工作空间&#x2F;devel&#x2F;lib&#x2F;python3&#x2F;dist-packages&#x2F;包名&#x2F;srv)</p>
+<h3 id="2-C-实现调用"><a href="#2-C-实现调用" class="headerlink" title="2.C++实现调用"></a>2.C++实现调用</h3><p><strong>流程:</strong></p>
+<ol>
+<li>编写服务端实现；</li>
+<li>编写客户端实现；</li>
+<li>编辑配置文件；</li>
+<li>编译并执行。</li>
+</ol>
+<h4 id="0-vscode配置"><a href="#0-vscode配置" class="headerlink" title="0.vscode配置"></a>0.vscode配置</h4><p>需要像之前自定义 msg 实现一样配置c_cpp_properies.json 文件，如果以前已经配置且没有变更工作空间，可以忽略，如果需要配置，配置方式与之前相同。</p>
+<h4 id="1-服务端"><a href="#1-服务端" class="headerlink" title="1.服务端"></a>1.服务端</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line">#include &quot;demo_server_client/AddInts.h&quot;</span><br><span class="line"></span><br><span class="line">// bool 返回值由于标志是否处理成功</span><br><span class="line">bool doReq(demo_server_client::AddInts::Request&amp; req,</span><br><span class="line">          demo_server_client::AddInts::Response&amp; resp)&#123;</span><br><span class="line">    int num1 = req.num1;</span><br><span class="line">    int num2 = req.num2;</span><br><span class="line"></span><br><span class="line">    ROS_INFO(&quot;服务器接收到的请求数据为:num1 = %d, num2 = %d&quot;,num1, num2);</span><br><span class="line"></span><br><span class="line">    //逻辑处理</span><br><span class="line">    if (num1 &lt; 0 || num2 &lt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        ROS_ERROR(&quot;提交的数据异常:数据不可以为负数&quot;);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //如果没有异常，那么相加并将结果赋值给 resp</span><br><span class="line">    resp.sum = num1 + num2;</span><br><span class="line">    </span><br><span class="line">    return true;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line">    </span><br><span class="line">    // 2.初始化 ROS 节点</span><br><span class="line">    ros::init(argc,argv,&quot;AddInts_Server&quot;);</span><br><span class="line">    </span><br><span class="line">    // 3.创建 ROS 句柄</span><br><span class="line">    ros::NodeHandle nh;</span><br><span class="line">    </span><br><span class="line">    // 4.创建 服务 对象</span><br><span class="line">    ros::ServiceServer server = nh.advertiseService(&quot;AddInts&quot;,doReq);</span><br><span class="line">    </span><br><span class="line">    ROS_INFO(&quot;服务已经启动....&quot;);</span><br><span class="line">    </span><br><span class="line">    // 5.回调函数处理请求并产生响应</span><br><span class="line">    </span><br><span class="line">    // 6.由于请求有多个，需要调用 ros::spin()</span><br><span class="line">    ros::spin();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-客户端"><a href="#2-客户端" class="headerlink" title="2.客户端"></a>2.客户端</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">// 1.包含头文件</span><br><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line">#include &quot;demo_server_client/AddInts.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line"></span><br><span class="line">    if (argc != 3)</span><br><span class="line">    // 直接命令行运行并传参 (1节点名称 2传入的参数 3传入的参数)</span><br><span class="line">    </span><br><span class="line">    // if (argc != 5)</span><br><span class="line">    //launch 传参(0-文件路径 1传入的参数 2传入的参数 3节点名称 4日志路径)</span><br><span class="line">    &#123;</span><br><span class="line">        ROS_ERROR(&quot;请提交两个整数&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 2.初始化 ROS 节点</span><br><span class="line">    ros::init(argc,argv,&quot;AddInts_Client&quot;);</span><br><span class="line">    </span><br><span class="line">    // 3.创建 ROS 句柄</span><br><span class="line">    ros::NodeHandle nh;</span><br><span class="line">    </span><br><span class="line">    // 4.创建 客户端 对象</span><br><span class="line">    ros::ServiceClient client = nh.serviceClient&lt;demo_server_client::AddInts&gt;(&quot;AddInts&quot;);</span><br><span class="line">    </span><br><span class="line">    //等待服务启动成功</span><br><span class="line">    </span><br><span class="line">    //方式1</span><br><span class="line">    ros::service::waitForService(&quot;AddInts&quot;);</span><br><span class="line">    </span><br><span class="line">    //方式2</span><br><span class="line">    // client.waitForExistence();</span><br><span class="line">    </span><br><span class="line">    // 5.组织请求数据</span><br><span class="line">    demo_server_client::AddInts si;</span><br><span class="line">    </span><br><span class="line">    int64_t num1 = std::stoll(argv[1]);</span><br><span class="line">    int64_t num2 = std::stoll(argv[2]);</span><br><span class="line"></span><br><span class="line">    si.request.num1 = num1;</span><br><span class="line">    si.request.num2 = num2;</span><br><span class="line"></span><br><span class="line">    ROS_INFO(&quot;准备发送请求: num1=%ld, num2=%ld&quot;, num1, num2);</span><br><span class="line"></span><br><span class="line">    // 6.发送请求,返回 bool 值，标记是否成功</span><br><span class="line">    bool flag = client.call(si);</span><br><span class="line">    </span><br><span class="line">    // 7.处理响应</span><br><span class="line">    if (flag)</span><br><span class="line">    &#123;</span><br><span class="line">        ROS_INFO(&quot;请求正常处理,响应结果:%d&quot;,si.response.sum);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        ROS_ERROR(&quot;请求处理失败....&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-配置-CMakeLists-txt-1"><a href="#3-配置-CMakeLists-txt-1" class="headerlink" title="3.配置 CMakeLists.txt"></a>3.配置 CMakeLists.txt</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">add_executable(AddInts_Server src/AddInts_Server.cpp)</span><br><span class="line">add_executable(AddInts_Client src/AddInts_Client.cpp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_dependencies(AddInts_Server $&#123;PROJECT_NAME&#125;_gencpp)</span><br><span class="line">add_dependencies(AddInts_Client $&#123;PROJECT_NAME&#125;_gencpp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">target_link_libraries(AddInts_Server</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br><span class="line">target_link_libraries(AddInts_Client</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-Python实现调用"><a href="#3-Python实现调用" class="headerlink" title="3.Python实现调用"></a>3.Python实现调用</h3><p><strong>流程:</strong></p>
+<ol>
+<li>编写服务端实现；</li>
+<li>编写客户端实现；</li>
+<li>为python文件添加可执行权限；</li>
+<li>编辑配置文件；</li>
+<li>编译并执行。</li>
+</ol>
+<h4 id="0-vscode配置-1"><a href="#0-vscode配置-1" class="headerlink" title="0.vscode配置"></a>0.vscode配置</h4><p>需要像之前自定义 msg 实现一样配置settings.json 文件，如果以前已经配置且没有变更工作空间，可以忽略，如果需要配置，配置方式与之前相同.</p>
+<h4 id="1-服务端-1"><a href="#1-服务端-1" class="headerlink" title="1.服务端"></a>1.服务端</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 1.导包</span><br><span class="line">import rospy</span><br><span class="line">from demo_server_client.srv import AddInts,AddIntsRequest,AddIntsResponse</span><br><span class="line"># 回调函数的参数是请求对象，返回值是响应对象</span><br><span class="line"></span><br><span class="line">def doReq(req):</span><br><span class="line">    # 解析提交的数据</span><br><span class="line">    sum = req.num1 + req.num2</span><br><span class="line">    rospy.loginfo(&quot;提交的数据:num1 = %d, num2 = %d, sum = %d&quot;,req.num1, req.num2, sum)</span><br><span class="line"></span><br><span class="line">    # 创建响应对象，赋值并返回</span><br><span class="line">    # resp = AddIntsResponse()</span><br><span class="line">    # resp.sum = sum</span><br><span class="line">    resp = AddIntsResponse(sum)</span><br><span class="line">    return resp</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    # 2.初始化 ROS 节点</span><br><span class="line">    rospy.init_node(&quot;addints_server_p&quot;)</span><br><span class="line">    </span><br><span class="line">    # 3.创建服务对象</span><br><span class="line">    server = rospy.Service(&quot;AddInts&quot;,AddInts,doReq)</span><br><span class="line">    </span><br><span class="line">    # 4.回调函数处理请求并产生响应</span><br><span class="line">    </span><br><span class="line">    # 5.spin 函数</span><br><span class="line">    rospy.spin()</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-客户端-1"><a href="#2-客户端-1" class="headerlink" title="2.客户端"></a>2.客户端</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#1.导包</span><br><span class="line">import rospy</span><br><span class="line">from demo_server_client.srv import *</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    #优化实现</span><br><span class="line">    if len(sys.argv) != 3:</span><br><span class="line">        rospy.logerr(&quot;请正确提交参数&quot;)</span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # 2.初始化 ROS 节点</span><br><span class="line">    rospy.init_node(&quot;AddInts_Client_p&quot;)</span><br><span class="line">    </span><br><span class="line">    # 3.创建请求对象</span><br><span class="line">    client = rospy.ServiceProxy(&quot;AddInts&quot;,AddInts)</span><br><span class="line">    </span><br><span class="line">    # 请求前，等待服务已经就绪</span><br><span class="line">    </span><br><span class="line">    # 方式1:</span><br><span class="line">    # rospy.wait_for_service(&quot;AddInts&quot;)</span><br><span class="line">    </span><br><span class="line">    # 方式2</span><br><span class="line">    client.wait_for_service()</span><br><span class="line">    </span><br><span class="line">    # 4.发送请求,接收并处理响应</span><br><span class="line">    </span><br><span class="line">    # 方式1</span><br><span class="line">    # resp = client(3,4)</span><br><span class="line">    </span><br><span class="line">    # 方式2</span><br><span class="line">    # resp = client(AddIntsRequest(1,5))</span><br><span class="line">    </span><br><span class="line">    # 方式3</span><br><span class="line">    req = AddIntsRequest()</span><br><span class="line">    # req.num1 = 100</span><br><span class="line">    # req.num2 = 200 </span><br><span class="line"></span><br><span class="line">    #优化</span><br><span class="line">    req.num1 = int(sys.argv[1])</span><br><span class="line">    req.num2 = int(sys.argv[2]) </span><br><span class="line"></span><br><span class="line">    resp = client.call(req)</span><br><span class="line">    </span><br><span class="line">    rospy.loginfo(&quot;响应结果:%d&quot;,resp.sum)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-设置权限"><a href="#3-设置权限" class="headerlink" title="3.设置权限"></a>3.设置权限</h4><p>终端下进入 scripts 执行:<code>chmod +x *.py</code></p>
+<h4 id="4-配置-CMakeLists-txt-1"><a href="#4-配置-CMakeLists-txt-1" class="headerlink" title="4.配置 CMakeLists.txt"></a>4.配置 CMakeLists.txt</h4><p><strong>CMakeLists.txt</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">catkin_install_python(PROGRAMS</span><br><span class="line">  scripts/AddInts_Server_p.py </span><br><span class="line">  scripts/AddInts_Client_p.py</span><br><span class="line">  DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-执行"><a href="#4-执行" class="headerlink" title="4.执行"></a>4.执行</h3><p><strong>流程:</strong></p>
+<ul>
+<li><p>需要先启动服务:<code>rosrun 包名 服务</code></p>
+</li>
+<li><p>然后再调用客户端 :<code>rosrun 包名 客户端 参数1 参数2</code></p>
+</li>
+</ul>
+<p><strong>结果:</strong></p>
+<p>会根据提交的数据响应相加后的结果。</p>
+<h2 id="参数服务器"><a href="#参数服务器" class="headerlink" title="参数服务器"></a>参数服务器</h2><h3 id="1-理论模型"><a href="#1-理论模型" class="headerlink" title="1.理论模型"></a>1.理论模型</h3><h4 id="1-Talker-设置参数"><a href="#1-Talker-设置参数" class="headerlink" title="1.Talker 设置参数"></a>1.Talker 设置参数</h4><p>Talker 通过 RPC 向参数服务器发送参数(包括参数名与参数值)，ROS Master 将参数保存到参数列表中。</p>
+<h4 id="2-Listener-获取参数"><a href="#2-Listener-获取参数" class="headerlink" title="2.Listener 获取参数"></a>2.Listener 获取参数</h4><p>Listener 通过 RPC 向参数服务器发送参数查找请求，请求中包含要查找的参数名。</p>
+<h4 id="3-ROS-Master-向-Listener-发送参数值"><a href="#3-ROS-Master-向-Listener-发送参数值" class="headerlink" title="3.ROS Master 向 Listener 发送参数值"></a>3.ROS Master 向 Listener 发送参数值</h4><p>ROS Master 根据步骤2请求提供的参数名查找参数值，并将查询结果通过 RPC 发送给 Listener。</p>
+<h3 id="2-C-参数操作"><a href="#2-C-参数操作" class="headerlink" title="2.C++参数操作"></a>2.C++参数操作</h3><p>**需求:**实现参数服务器参数的增删改查操作。</p>
+<p>在 C++ 中实现参数服务器数据的增删改查，可以通过两套 API 实现:</p>
+<ul>
+<li><p>ros::NodeHandle</p>
+</li>
+<li><p>ros::param</p>
+</li>
+</ul>
+<h4 id="1-参数服务器新增-修改-参数"><a href="#1-参数服务器新增-修改-参数" class="headerlink" title="1.参数服务器新增(修改)参数"></a>1.参数服务器新增(修改)参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    ros::init(argc,argv,&quot;set_update_param&quot;);</span><br><span class="line"></span><br><span class="line">    std::vector&lt;std::string&gt; stus;</span><br><span class="line">    stus.push_back(&quot;no&quot;);</span><br><span class="line">    stus.push_back(&quot;one&quot;);</span><br><span class="line">    stus.push_back(&quot;but&quot;);</span><br><span class="line">    stus.push_back(&quot;you&quot;);</span><br><span class="line"></span><br><span class="line">    std::map&lt;std::string,std::string&gt; friends;</span><br><span class="line">    friends[&quot;chiikawa&quot;] = &quot;usagi&quot;;</span><br><span class="line">    friends[&quot;hachiware&quot;] = &quot;chiikawa&quot;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//NodeHandle</span><br><span class="line">ros::NodeHandle nh;</span><br><span class="line">nh.setParam(&quot;nh_int&quot;,10); //整型</span><br><span class="line">nh.setParam(&quot;nh_double&quot;,3.14); //浮点型</span><br><span class="line">nh.setParam(&quot;nh_bool&quot;,true); //bool</span><br><span class="line">nh.setParam(&quot;nh_string&quot;,&quot;hello NodeHandle&quot;); //字符串</span><br><span class="line">nh.setParam(&quot;nh_vector&quot;,stus); // vector</span><br><span class="line">nh.setParam(&quot;nh_map&quot;,friends); // map</span><br><span class="line"></span><br><span class="line">//修改演示(相同的键，不同的值)</span><br><span class="line">nh.setParam(&quot;nh_int&quot;,10000);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//param</span><br><span class="line">ros::param::set(&quot;param_int&quot;,20);</span><br><span class="line">ros::param::set(&quot;param_double&quot;,3.14);</span><br><span class="line">ros::param::set(&quot;param_string&quot;,&quot;Hello Param&quot;);</span><br><span class="line">ros::param::set(&quot;param_bool&quot;,false);</span><br><span class="line">ros::param::set(&quot;param_vector&quot;,stus);</span><br><span class="line">ros::param::set(&quot;param_map&quot;,friends);</span><br><span class="line"></span><br><span class="line">//修改演示(相同的键，不同的值)</span><br><span class="line">ros::param::set(&quot;param_int&quot;,20000);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-参数服务器获取参数"><a href="#2-参数服务器获取参数" class="headerlink" title="2.参数服务器获取参数"></a>2.参数服务器获取参数</h4><p>参数服务器操作之查询_C++实现:<br>        param(键,默认值)<br>            存在，返回对应结果，否则返回默认值</p>
+<pre><code>    getParam(键,存储结果的变量)
+        存在,返回 true,且将值赋值给参数2
+        若键不存在，那么返回值为 false，且不为参数2赋值
+
+    getParamCached(键,存储结果的变量)--提高变量获取效率
+        存在,返回 true,且将值赋值给参数2
+        若键不存在，那么返回值为 false，且不为参数2赋值
+
+    getParamNames(std::vector&lt;std::string&gt;)
+        获取所有的键,并存储在参数 vector 中 
+
+    hasParam(键)
+        是否包含某个键，存在返回 true，否则返回 false
+
+    searchParam(参数1，参数2)
+        搜索键，参数1是被搜索的键，参数2存储搜索结果的变量
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line">    ros::init(argc,argv,&quot;get_param&quot;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">//NodeHandle</span><br><span class="line">ros::NodeHandle nh;</span><br><span class="line">// param 函数</span><br><span class="line">int res1 = nh.param(&quot;nh_int&quot;,100); // 键存在</span><br><span class="line">int res2 = nh.param(&quot;nh_int2&quot;,100); // 键不存在</span><br><span class="line">ROS_INFO(&quot;param获取结果:%d,%d&quot;,res1,res2);</span><br><span class="line"></span><br><span class="line">// getParam 函数</span><br><span class="line">int nh_int_value;</span><br><span class="line">double nh_double_value;</span><br><span class="line">bool nh_bool_value;</span><br><span class="line">std::string nh_string_value;</span><br><span class="line">std::vector&lt;std::string&gt; stus;</span><br><span class="line">std::map&lt;std::string, std::string&gt; friends;</span><br><span class="line"></span><br><span class="line">nh.getParam(&quot;nh_int&quot;,nh_int_value);</span><br><span class="line">nh.getParam(&quot;nh_double&quot;,nh_double_value);</span><br><span class="line">nh.getParam(&quot;nh_bool&quot;,nh_bool_value);</span><br><span class="line">nh.getParam(&quot;nh_string&quot;,nh_string_value);</span><br><span class="line">nh.getParam(&quot;nh_vector&quot;,stus);</span><br><span class="line">nh.getParam(&quot;nh_map&quot;,friends);</span><br><span class="line"></span><br><span class="line">ROS_INFO(&quot;getParam获取的结果:%d,%.2f,%s,%d&quot;,</span><br><span class="line">        nh_int_value,</span><br><span class="line">        nh_double_value,</span><br><span class="line">        nh_string_value.c_str(),</span><br><span class="line">        nh_bool_value</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">for (auto &amp;&amp;stu : stus)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;stus 元素:%s&quot;,stu.c_str());        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (auto &amp;&amp;f : friends)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;map 元素:%s = %s&quot;,f.first.c_str(), f.second.c_str());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// getParamCached()</span><br><span class="line">nh.getParamCached(&quot;nh_int&quot;,nh_int_value);</span><br><span class="line">ROS_INFO(&quot;通过缓存获取数据:%d&quot;,nh_int_value);</span><br><span class="line"></span><br><span class="line">//getParamNames()</span><br><span class="line">std::vector&lt;std::string&gt; param_names1;</span><br><span class="line">nh.getParamNames(param_names1);</span><br><span class="line">for (auto &amp;&amp;name : param_names1)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;名称解析name = %s&quot;,name.c_str());        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ROS_INFO(&quot;存在 nh_int 吗? %d&quot;,nh.hasParam(&quot;nh_int&quot;));</span><br><span class="line">ROS_INFO(&quot;存在 nh_intttt 吗? %d&quot;,nh.hasParam(&quot;nh_intttt&quot;));</span><br><span class="line"></span><br><span class="line">std::string key;</span><br><span class="line">nh.searchParam(&quot;nh_int&quot;,key);</span><br><span class="line">ROS_INFO(&quot;搜索键:%s&quot;,key.c_str());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">//param</span><br><span class="line">int res3 = ros::param::param(&quot;param_int&quot;,20); //存在</span><br><span class="line">int res4 = ros::param::param(&quot;param_int2&quot;,20); // 不存在返回默认</span><br><span class="line">ROS_INFO(&quot;param获取结果:%d,%d&quot;,res3,res4);</span><br><span class="line"></span><br><span class="line">// getParam 函数</span><br><span class="line">int param_int_value;</span><br><span class="line">double param_double_value;</span><br><span class="line">bool param_bool_value;</span><br><span class="line">std::string param_string_value;</span><br><span class="line">std::vector&lt;std::string&gt; param_stus;</span><br><span class="line">std::map&lt;std::string, std::string&gt; param_friends;</span><br><span class="line"></span><br><span class="line">ros::param::get(&quot;param_int&quot;,param_int_value);</span><br><span class="line">ros::param::get(&quot;param_double&quot;,param_double_value);</span><br><span class="line">ros::param::get(&quot;param_bool&quot;,param_bool_value);</span><br><span class="line">ros::param::get(&quot;param_string&quot;,param_string_value);</span><br><span class="line">ros::param::get(&quot;param_vector&quot;,param_stus);</span><br><span class="line">ros::param::get(&quot;param_map&quot;,param_friends);</span><br><span class="line"></span><br><span class="line">ROS_INFO(&quot;getParam获取的结果:%d,%.2f,%s,%d&quot;,</span><br><span class="line">        param_int_value,</span><br><span class="line">        param_double_value,</span><br><span class="line">        param_string_value.c_str(),</span><br><span class="line">        param_bool_value</span><br><span class="line">        );</span><br><span class="line">for (auto &amp;&amp;stu : param_stus)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;stus 元素:%s&quot;,stu.c_str());        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for (auto &amp;&amp;f : param_friends)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;map 元素:%s = %s&quot;,f.first.c_str(), f.second.c_str());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// getParamCached()</span><br><span class="line">ros::param::getCached(&quot;param_int&quot;,param_int_value);</span><br><span class="line">ROS_INFO(&quot;通过缓存获取数据:%d&quot;,param_int_value);</span><br><span class="line"></span><br><span class="line">//getParamNames()</span><br><span class="line">std::vector&lt;std::string&gt; param_names2;</span><br><span class="line">ros::param::getParamNames(param_names2);</span><br><span class="line">for (auto &amp;&amp;name : param_names2)</span><br><span class="line">&#123;</span><br><span class="line">    ROS_INFO(&quot;名称解析name = %s&quot;,name.c_str());        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ROS_INFO(&quot;存在 param_int 吗? %d&quot;,ros::param::has(&quot;param_int&quot;));</span><br><span class="line">ROS_INFO(&quot;存在 param_intttt 吗? %d&quot;,ros::param::has(&quot;param_intttt&quot;));</span><br><span class="line"></span><br><span class="line">std::string key;</span><br><span class="line">ros::param::search(&quot;param_int&quot;,key);</span><br><span class="line">ROS_INFO(&quot;搜索键:%s&quot;,key.c_str());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-参数服务器删除参数"><a href="#3-参数服务器删除参数" class="headerlink" title="3.参数服务器删除参数"></a>3.参数服务器删除参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;   </span><br><span class="line">    setlocale(LC_ALL,&quot;&quot;);</span><br><span class="line">    ros::init(argc,argv,&quot;delete_param&quot;);</span><br><span class="line"></span><br><span class="line">    ros::NodeHandle nh;</span><br><span class="line">    bool r1 = nh.deleteParam(&quot;nh_int&quot;);</span><br><span class="line">    ROS_INFO(&quot;nh 删除结果:%d&quot;,r1);</span><br><span class="line"></span><br><span class="line">    bool r2 = ros::param::del(&quot;param_int&quot;);</span><br><span class="line">    ROS_INFO(&quot;param 删除结果:%d&quot;,r2);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Python参数操作"><a href="#3-Python参数操作" class="headerlink" title="3.Python参数操作"></a>3.Python参数操作</h3><h4 id="1-参数服务器新增-修改-参数-1"><a href="#1-参数服务器新增-修改-参数-1" class="headerlink" title="1.参数服务器新增(修改)参数"></a>1.参数服务器新增(修改)参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import rospy</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    rospy.init_node(&quot;set_update_paramter_p&quot;)</span><br><span class="line"></span><br><span class="line">    # 设置各种类型参数</span><br><span class="line">    rospy.set_param(&quot;p_int&quot;,10)</span><br><span class="line">    rospy.set_param(&quot;p_double&quot;,3.14)</span><br><span class="line">    rospy.set_param(&quot;p_bool&quot;,True)</span><br><span class="line">    rospy.set_param(&quot;p_string&quot;,&quot;hello python&quot;)</span><br><span class="line">    rospy.set_param(&quot;p_list&quot;,[&quot;hello&quot;,&quot;haha&quot;,&quot;xixi&quot;])</span><br><span class="line">    rospy.set_param(&quot;p_dict&quot;,&#123;&quot;name&quot;:&quot;Jay&quot;,&quot;age&quot;:8&#125;)</span><br><span class="line"></span><br><span class="line">    # 修改</span><br><span class="line">    rospy.set_param(&quot;p_int&quot;,100)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-参数服务器获取参数-1"><a href="#2-参数服务器获取参数-1" class="headerlink" title="2.参数服务器获取参数"></a>2.参数服务器获取参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import rospy</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    rospy.init_node(&quot;get_param_p&quot;)</span><br><span class="line"></span><br><span class="line">    #获取参数</span><br><span class="line">    int_value = rospy.get_param(&quot;p_int&quot;,10000)</span><br><span class="line">    double_value = rospy.get_param(&quot;p_double&quot;)</span><br><span class="line">    bool_value = rospy.get_param(&quot;p_bool&quot;)</span><br><span class="line">    string_value = rospy.get_param(&quot;p_string&quot;)</span><br><span class="line">    p_list = rospy.get_param(&quot;p_list&quot;)</span><br><span class="line">    p_dict = rospy.get_param(&quot;p_dict&quot;)</span><br><span class="line"></span><br><span class="line">    rospy.loginfo(&quot;获取的数据:%d,%.2f,%d,%s&quot;,</span><br><span class="line">                int_value,</span><br><span class="line">                double_value,</span><br><span class="line">                bool_value,</span><br><span class="line">                string_value)</span><br><span class="line">                </span><br><span class="line">    for ele in p_list:</span><br><span class="line">        rospy.loginfo(&quot;ele = %s&quot;, ele)</span><br><span class="line"></span><br><span class="line">    rospy.loginfo(&quot;name = %s, age = %d&quot;,p_dict[&quot;name&quot;],p_dict[&quot;age&quot;])</span><br><span class="line"></span><br><span class="line">    # get_param_cached</span><br><span class="line">    int_cached = rospy.get_param_cached(&quot;p_int&quot;)</span><br><span class="line">    rospy.loginfo(&quot;缓存数据:%d&quot;,int_cached)</span><br><span class="line"></span><br><span class="line">    # get_param_names</span><br><span class="line">    names = rospy.get_param_names()</span><br><span class="line">    for name in names:</span><br><span class="line">        rospy.loginfo(&quot;name = %s&quot;,name)</span><br><span class="line"></span><br><span class="line">    # has_param</span><br><span class="line">    flag = rospy.has_param(&quot;p_int&quot;)</span><br><span class="line">    rospy.loginfo(&quot;包含p_int吗？%d&quot;,flag)</span><br><span class="line"></span><br><span class="line">    # search_param</span><br><span class="line">    key = rospy.search_param(&quot;p_int&quot;)</span><br><span class="line">    rospy.loginfo(&quot;搜索的键 = %s&quot;,key)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-参数服务器删除参数-1"><a href="#3-参数服务器删除参数-1" class="headerlink" title="3.参数服务器删除参数"></a>3.参数服务器删除参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import rospy</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    rospy.init_node(&quot;delete_param_p&quot;)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        rospy.delete_param(&quot;p_int&quot;)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        rospy.loginfo(&quot;删除失败&quot;)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def init_node(name, argv=None, anonymous=False, log_level=None, disable_rostime=False, disable_rosout=False, disable_signals=False, xmlrpc_port=0, tcpros_port=0):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    在ROS master中注册节点</span><br><span class="line"></span><br><span class="line">    @param name: 节点名称，必须保证节点名称唯一，节点名称中不能使用命名空间(不能包含 &#x27;/&#x27;)</span><br><span class="line">    @type  name: str</span><br><span class="line"></span><br><span class="line">    @param argv: 命令行参数列表，通常传入sys.argv，用于处理启动参数</span><br><span class="line">    @type  argv: list</span><br><span class="line"></span><br><span class="line">    @param anonymous: 取值为 true 时，为节点名称后缀随机编号，允许多个同名节点同时运行</span><br><span class="line">    @type  anonymous: bool</span><br><span class="line"></span><br><span class="line">    @param log_level: 日志级别，可选值：rospy.DEBUG, rospy.INFO, rospy.WARN, rospy.ERROR, rospy.FATAL</span><br><span class="line">    @type  log_level: int</span><br><span class="line"></span><br><span class="line">    @param disable_rostime: 如果为 true，禁用ROS时间系统，使用系统时间而不是ROS时间</span><br><span class="line">    @type  disable_rostime: bool</span><br><span class="line"></span><br><span class="line">    @param disable_rosout: 如果为 true，禁用rosout日志系统，减少日志输出</span><br><span class="line">    @type  disable_rosout: bool</span><br><span class="line"></span><br><span class="line">    @param disable_signals: 如果为 true，禁用ROS信号处理，需要手动处理信号</span><br><span class="line">    @type  disable_signals: bool</span><br><span class="line"></span><br><span class="line">    @param xmlrpc_port: XML-RPC通信端口，0表示自动分配，用于与ROS master通信</span><br><span class="line">    @type  xmlrpc_port: int</span><br><span class="line"></span><br><span class="line">    @param tcpros_port: TCP-ROS通信端口，0表示自动分配，用于节点间通信</span><br><span class="line">    @type  tcpros_port: int</span><br><span class="line"></span><br><span class="line">    @raise ROSException: 如果节点初始化失败</span><br><span class="line">    @raise ROSNodeException: 如果节点名称无效或已存在</span><br><span class="line">    &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="话题与服务相关对象"><a href="#话题与服务相关对象" class="headerlink" title="话题与服务相关对象"></a>话题与服务相关对象</h2><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><h5 id="1-发布对象"><a href="#1-发布对象" class="headerlink" title="1.发布对象"></a>1.发布对象</h5><h6 id="对象获取"><a href="#对象获取" class="headerlink" title="对象获取:"></a>对象获取:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Publisher(Topic):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    在ROS master注册为相关话题的发布方</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, name, data_class, subscriber_listener=None, tcp_nodelay=False, latch=False, headers=None, queue_size=None):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        Constructor</span><br><span class="line">        @param name: 话题名称，指定要发布的话题名称，不能为空</span><br><span class="line">        @type  name: str</span><br><span class="line">        </span><br><span class="line">        @param data_class: 消息类型，指定要发布的消息类型，必须是ROS消息类</span><br><span class="line">        @type  data_class: 消息类</span><br><span class="line"></span><br><span class="line">        @param subscriber_listener: 订阅者监听器，用于监听订阅者的连接和断开事件</span><br><span class="line">        @type  subscriber_listener: SubscriberListener</span><br><span class="line"></span><br><span class="line">        @param tcp_nodelay: 如果为 true，启用TCP_NODELAY选项，减少网络延迟但可能增加网络负载</span><br><span class="line">        @type  tcp_nodelay: bool</span><br><span class="line"></span><br><span class="line">        @param latch: 如果为 true,该话题发布的最后一条消息将被保存，并且后期当有订阅者连接时会将该消息发送给订阅者</span><br><span class="line">        @type  latch: bool</span><br><span class="line"></span><br><span class="line">        @param headers: 消息头部信息，为消息添加默认的头部信息</span><br><span class="line">        @type  headers: dict</span><br><span class="line"></span><br><span class="line">        @param queue_size: 等待发送给订阅者的最大消息数量，控制内存使用和消息丢失</span><br><span class="line">        @type  queue_size: int</span><br><span class="line"></span><br><span class="line">        @raise ROSException: 如果发布者创建失败</span><br><span class="line">        @raise ROSNodeException: 如果节点未初始化</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h6 id="消息发布函数"><a href="#消息发布函数" class="headerlink" title="消息发布函数:"></a>消息发布函数:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def publish(self, *args, **kwds):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        发布消息</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-订阅对象"><a href="#2-订阅对象" class="headerlink" title="2.订阅对象"></a>2.订阅对象</h5><h6 id="对象获取-1"><a href="#对象获取-1" class="headerlink" title="对象获取:"></a>对象获取:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Subscriber(Topic):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    类注册为指定主题的订阅者，其中消息是给定类型的。</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    def __init__(self, name, data_class, callback=None, callback_args=None,</span><br><span class="line">                 queue_size=None, buff_size=DEFAULT_BUFF_SIZE, tcp_nodelay=False):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        Constructor.</span><br><span class="line"></span><br><span class="line">        @param name: 话题名称，指定要订阅的话题名称，不能为空</span><br><span class="line">        @type  name: str</span><br><span class="line">        </span><br><span class="line">        @param data_class: 消息类型，指定要订阅的消息类型，必须是ROS消息类</span><br><span class="line">        @type  data_class: L&#123;Message&#125; class</span><br><span class="line">        </span><br><span class="line">        @param callback: 处理订阅到的消息的回调函数，当收到消息时自动调用</span><br><span class="line">        @type  callback: fn(msg, cb_args)</span><br><span class="line"></span><br><span class="line">        @param callback_args: 传递给回调函数的额外参数，用于向回调函数传递自定义数据</span><br><span class="line">        @type  callback_args: any</span><br><span class="line"></span><br><span class="line">        @param queue_size: 消息队列长度，超出长度时，头部的消息将被弃用，控制消息缓存大小</span><br><span class="line">        @type  queue_size: int</span><br><span class="line"></span><br><span class="line">        @param buff_size: 缓冲区大小，用于网络传输的缓冲区大小，影响网络性能</span><br><span class="line">        @type  buff_size: int</span><br><span class="line"></span><br><span class="line">        @param tcp_nodelay: 如果为 true，启用TCP_NODELAY选项，减少网络延迟但可能增加网络负载</span><br><span class="line">        @type  tcp_nodelay: bool</span><br><span class="line"></span><br><span class="line">        @raise ROSException: 如果订阅者创建失败</span><br><span class="line">        @raise ROSNodeException: 如果节点未初始化</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-服务对象"><a href="#3-服务对象" class="headerlink" title="3.服务对象"></a>3.服务对象</h5><h6 id="对象获取-2"><a href="#对象获取-2" class="headerlink" title="对象获取:"></a>对象获取:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Service(ServiceImpl):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">     声明一个ROS服务</span><br><span class="line"></span><br><span class="line">    使用示例::</span><br><span class="line">      s = Service(&#x27;getmapservice&#x27;, GetMap, get_map_handler)</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, name, service_class, handler,</span><br><span class="line">                 buff_size=DEFAULT_BUFF_SIZE, error_handler=None):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        Constructor</span><br><span class="line"></span><br><span class="line">        @param name: 服务主题名称，指定要创建的服务名称，不能为空</span><br><span class="line">        @type  name: str</span><br><span class="line">        </span><br><span class="line">        @param service_class: 服务消息类型，指定服务的请求和响应消息类型</span><br><span class="line">        @type  service_class: L&#123;Service&#125; class</span><br><span class="line"></span><br><span class="line">        @param handler: 回调函数，处理请求数据，并返回响应数据，当收到服务请求时自动调用</span><br><span class="line">        @type  handler: fn(req)-&gt;resp</span><br><span class="line"></span><br><span class="line">        @param buff_size: 缓冲区大小，用于网络传输的缓冲区大小，影响网络性能</span><br><span class="line">        @type  buff_size: int</span><br><span class="line"></span><br><span class="line">        @param error_handler: 错误处理函数，当服务处理过程中发生错误时调用</span><br><span class="line">        @type  error_handler: fn(exception)-&gt;None</span><br><span class="line"></span><br><span class="line">        @raise ROSException: 如果服务创建失败</span><br><span class="line">        @raise ROSNodeException: 如果节点未初始化</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-客户端对象"><a href="#4-客户端对象" class="headerlink" title="4.客户端对象"></a>4.客户端对象</h5><h6 id="对象获取-3"><a href="#对象获取-3" class="headerlink" title="对象获取:"></a>对象获取:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class ServiceProxy(_Service):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">   创建一个ROS服务的句柄</span><br><span class="line"></span><br><span class="line">    示例用法::</span><br><span class="line">      add_two_ints = ServiceProxy(&#x27;add_two_ints&#x27;, AddTwoInts)</span><br><span class="line">      resp = add_two_ints(1, 2)</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(self, name, service_class, persistent=False, headers=None):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        ctor.</span><br><span class="line">        @param name: 服务主题名称，指定要调用的服务名称，不能为空</span><br><span class="line">        @type  name: str</span><br><span class="line">        @param service_class: 服务消息类型，指定服务的请求和响应消息类型</span><br><span class="line">        @type  service_class: Service class</span><br><span class="line">        @param persistent: 如果为 true，保持连接，避免重复建立连接的开销</span><br><span class="line">        @type  persistent: bool</span><br><span class="line">        @param headers: 消息头部信息，为服务请求添加默认的头部信息</span><br><span class="line">        @type  headers: dict</span><br><span class="line"></span><br><span class="line">        @raise ROSException: 如果服务代理创建失败</span><br><span class="line">        @raise ROSNodeException: 如果节点未初始化</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h6 id="请求发送函数"><a href="#请求发送函数" class="headerlink" title="请求发送函数:"></a>请求发送函数:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def call(self, *args, **kwds):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        发送请求，返回值为响应数据</span><br><span class="line"></span><br><span class="line">		@param *args: 位置参数，按顺序传递服务请求的字段值</span><br><span class="line"></span><br><span class="line">        @type  *args: tuple</span><br><span class="line"></span><br><span class="line">        @param **kwds: 关键字参数，通过字段名传递服务请求的值</span><br><span class="line"></span><br><span class="line">        @type  **kwds: dict</span><br><span class="line"></span><br><span class="line">        @return: 服务响应对象，包含服务处理结果</span><br><span class="line"></span><br><span class="line">        @rtype: 响应消息类型</span><br><span class="line"></span><br><span class="line">        @raise ROSException: 如果服务调用失败</span><br><span class="line"></span><br><span class="line">        @raise ROSServiceException: 如果服务不存在或调用超时</span><br><span class="line">        &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h6 id="等待服务函数"><a href="#等待服务函数" class="headerlink" title="等待服务函数:"></a>等待服务函数:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def wait_for_service(service, timeout=None):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    调用该函数时，程序会处于阻塞状态直到服务可用</span><br><span class="line">    </span><br><span class="line">    @param service: 被等待的服务话题名称</span><br><span class="line">    @type  service: str</span><br><span class="line">   </span><br><span class="line">	@param timeout: 超时时间</span><br><span class="line">    @type  timeout: double|rospy.Duration</span><br><span class="line">    &quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ROS/">ROS</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/10/15/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DROS%E4%B8%AD%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84API/"
+                                   title="[学习存档]ROS中时间相关的API"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[学习存档]ROS中时间相关的API</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%9D%E9%A2%98%E9%80%9A%E4%BF%A1"><span class="nav-text">话题通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-text">C++实现代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9-Hello-pub-cpp"><span class="nav-text">1.发布方 Hello_pub.cpp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9-Hello-sub-cpp"><span class="nav-text">2.订阅方 Hello_sub.cpp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-CMakeLists-txt"><span class="nav-text">3.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-text">Python实现代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9-Hello-pub-py"><span class="nav-text">1.发布方 Hello_pub.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9-Hello-sub-py"><span class="nav-text">2.订阅方 Hello_sub.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="nav-text">3.权限设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE-CMakeLists-txt"><span class="nav-text">4.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C"><span class="nav-text">执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89msg"><span class="nav-text">自定义msg</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89msg%E6%96%87%E4%BB%B6"><span class="nav-text">1.定义msg文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">2.编辑配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B0%83%E7%94%A8"><span class="nav-text">3.调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-vscode-%E9%85%8D%E7%BD%AE"><span class="nav-text">0.vscode 配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9"><span class="nav-text">1.发布方</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9"><span class="nav-text">2.订阅方</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1"><span class="nav-text">服务通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%87%AA%E5%AE%9A%E4%B9%89srv"><span class="nav-text">1.自定义srv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-C-%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8"><span class="nav-text">2.C++实现调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-vscode%E9%85%8D%E7%BD%AE"><span class="nav-text">0.vscode配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">1.服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">2.客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-CMakeLists-txt-1"><span class="nav-text">3.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Python%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8"><span class="nav-text">3.Python实现调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-vscode%E9%85%8D%E7%BD%AE-1"><span class="nav-text">0.vscode配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF-1"><span class="nav-text">1.服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF-1"><span class="nav-text">2.客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-text">3.设置权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE-CMakeLists-txt-1"><span class="nav-text">4.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%89%A7%E8%A1%8C"><span class="nav-text">4.执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">参数服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.理论模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Talker-%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">1.Talker 设置参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Listener-%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">2.Listener 获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ROS-Master-%E5%90%91-Listener-%E5%8F%91%E9%80%81%E5%8F%82%E6%95%B0%E5%80%BC"><span class="nav-text">3.ROS Master 向 Listener 发送参数值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-C-%E5%8F%82%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="nav-text">2.C++参数操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9-%E5%8F%82%E6%95%B0"><span class="nav-text">1.参数服务器新增(修改)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">2.参数服务器获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%A0%E9%99%A4%E5%8F%82%E6%95%B0"><span class="nav-text">3.参数服务器删除参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Python%E5%8F%82%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="nav-text">3.Python参数操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9-%E5%8F%82%E6%95%B0-1"><span class="nav-text">1.参数服务器新增(修改)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0-1"><span class="nav-text">2.参数服务器获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%A0%E9%99%A4%E5%8F%82%E6%95%B0-1"><span class="nav-text">3.参数服务器删除参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%9D%E9%A2%98%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3%E5%AF%B9%E8%B1%A1"><span class="nav-text">话题与服务相关对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1"><span class="nav-text">1.发布对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96"><span class="nav-text">对象获取:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%8F%91%E5%B8%83%E5%87%BD%E6%95%B0"><span class="nav-text">消息发布函数:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.订阅对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-1"><span class="nav-text">对象获取:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%AF%B9%E8%B1%A1"><span class="nav-text">3.服务对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-2"><span class="nav-text">对象获取:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AF%B9%E8%B1%A1"><span class="nav-text">4.客户端对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-3"><span class="nav-text">对象获取:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E5%87%BD%E6%95%B0"><span class="nav-text">请求发送函数:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%89%E5%BE%85%E6%9C%8D%E5%8A%A1%E5%87%BD%E6%95%B0"><span class="nav-text">等待服务函数:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">eXperienceJouRney</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%9D%E9%A2%98%E9%80%9A%E4%BF%A1"><span class="nav-text">话题通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-text">C++实现代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9-Hello-pub-cpp"><span class="nav-text">1.发布方 Hello_pub.cpp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9-Hello-sub-cpp"><span class="nav-text">2.订阅方 Hello_sub.cpp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-CMakeLists-txt"><span class="nav-text">3.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="nav-text">Python实现代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9-Hello-pub-py"><span class="nav-text">1.发布方 Hello_pub.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9-Hello-sub-py"><span class="nav-text">2.订阅方 Hello_sub.py</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE"><span class="nav-text">3.权限设置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE-CMakeLists-txt"><span class="nav-text">4.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C"><span class="nav-text">执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89msg"><span class="nav-text">自定义msg</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89msg%E6%96%87%E4%BB%B6"><span class="nav-text">1.定义msg文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">2.编辑配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B0%83%E7%94%A8"><span class="nav-text">3.调用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0-vscode-%E9%85%8D%E7%BD%AE"><span class="nav-text">0.vscode 配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E6%96%B9"><span class="nav-text">1.发布方</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E6%96%B9"><span class="nav-text">2.订阅方</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1"><span class="nav-text">服务通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%87%AA%E5%AE%9A%E4%B9%89srv"><span class="nav-text">1.自定义srv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-C-%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8"><span class="nav-text">2.C++实现调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-vscode%E9%85%8D%E7%BD%AE"><span class="nav-text">0.vscode配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">1.服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-text">2.客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%85%8D%E7%BD%AE-CMakeLists-txt-1"><span class="nav-text">3.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Python%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8"><span class="nav-text">3.Python实现调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-vscode%E9%85%8D%E7%BD%AE-1"><span class="nav-text">0.vscode配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF-1"><span class="nav-text">1.服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF-1"><span class="nav-text">2.客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-text">3.设置权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE-CMakeLists-txt-1"><span class="nav-text">4.配置 CMakeLists.txt</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%89%A7%E8%A1%8C"><span class="nav-text">4.执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">参数服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.理论模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Talker-%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="nav-text">1.Talker 设置参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Listener-%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">2.Listener 获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ROS-Master-%E5%90%91-Listener-%E5%8F%91%E9%80%81%E5%8F%82%E6%95%B0%E5%80%BC"><span class="nav-text">3.ROS Master 向 Listener 发送参数值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-C-%E5%8F%82%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="nav-text">2.C++参数操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9-%E5%8F%82%E6%95%B0"><span class="nav-text">1.参数服务器新增(修改)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0"><span class="nav-text">2.参数服务器获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%A0%E9%99%A4%E5%8F%82%E6%95%B0"><span class="nav-text">3.参数服务器删除参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Python%E5%8F%82%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="nav-text">3.Python参数操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9-%E5%8F%82%E6%95%B0-1"><span class="nav-text">1.参数服务器新增(修改)参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0-1"><span class="nav-text">2.参数服务器获取参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%82%E6%95%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%A0%E9%99%A4%E5%8F%82%E6%95%B0-1"><span class="nav-text">3.参数服务器删除参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%9D%E9%A2%98%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3%E5%AF%B9%E8%B1%A1"><span class="nav-text">话题与服务相关对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python"><span class="nav-text">Python</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1"><span class="nav-text">1.发布对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96"><span class="nav-text">对象获取:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%8F%91%E5%B8%83%E5%87%BD%E6%95%B0"><span class="nav-text">消息发布函数:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AE%A2%E9%98%85%E5%AF%B9%E8%B1%A1"><span class="nav-text">2.订阅对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-1"><span class="nav-text">对象获取:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9C%8D%E5%8A%A1%E5%AF%B9%E8%B1%A1"><span class="nav-text">3.服务对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-2"><span class="nav-text">对象获取:</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AF%B9%E8%B1%A1"><span class="nav-text">4.客户端对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%8E%B7%E5%8F%96-3"><span class="nav-text">对象获取:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E5%87%BD%E6%95%B0"><span class="nav-text">请求发送函数:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AD%89%E5%BE%85%E6%9C%8D%E5%8A%A1%E5%87%BD%E6%95%B0"><span class="nav-text">等待服务函数:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/share.min.js"></script>
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+            
+<script class="custom-inject-js" src="/js/custom-1.js" data-pjax></script>
+
+        
+    
+
+</body>
+</html>
