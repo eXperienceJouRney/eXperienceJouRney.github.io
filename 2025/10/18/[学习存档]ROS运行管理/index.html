@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="eXperienceJouRney">
+    
+    <title>
+        
+            [学习存档]ROS运行管理 |
+        
+        这里小宇宙包罗着万象
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#99CCCC","title":"这里小宇宙包罗着万象","author":"eXperienceJouRney","avatar":"/images/logo.jpg","logo":"/images/logo2.jpg","favicon":"/images/logo.jpg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","me":"/me"},"first_screen":{"enable":true,"background_img":null,"background_img_dark":null,"description":"在129600年后 所有事情都会重演||这也就是说 我们将会再次相遇于此","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/eXperienceJouRney","weixin":"img | /images/vx.jpg","qq":"img | /images/qq.jpg","tiktok":"img | /images/dy.png"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":false},"home":{"announcement":null,"category":true,"tag":true,"post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2025,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null],"js":["/js/custom-1.js"]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo2.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               这里小宇宙包罗着万象
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/me">
+                                
+                                ME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/me">
+                            
+                            ME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [学习存档]ROS运行管理
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/logo.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">eXperienceJouRney</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-18 22:39:10</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Oct 22 2025 09:52:02 GMT+0800">2025-10-22 09:52:02</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROS/">ROS</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="1-元功能包-Metapackage"><a href="#1-元功能包-Metapackage" class="headerlink" title="1. 元功能包 Metapackage"></a>1. 元功能包 Metapackage</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><p>一个 metapackage 本身不包含任何实际的软件、文件或代码。它只是一个空的或几乎空的软件包，其唯一目的是定义一组依赖关系。<br>当你安装一个 metapackage 时，你的包管理器（如 apt 或 dnf）会读取这个包的依赖列表，然后自动下载并安装它所依赖的所有其他软件包。</p>
+<h3 id="1-2-作用"><a href="#1-2-作用" class="headerlink" title="1.2 作用"></a>1.2 作用</h3><p>方便用户的安装。</p>
+<h3 id="1-3-实现"><a href="#1-3-实现" class="headerlink" title="1.3 实现"></a>1.3 实现</h3><ul>
+<li>新建一个功能包</li>
+<li>修改<strong>package.xml</strong>，内容如下:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">exec_depend</span>&gt;</span>被集成的功能包<span class="tag">&lt;/<span class="name">exec_depend</span>&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">export</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">metapackage</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">export</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 CMakeLists.txt，内容如下:</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>.<span class="number">2</span>)</span><br><span class="line"><span class="keyword">project</span>(demo)</span><br><span class="line"><span class="keyword">find_package</span>(catkin REQUIRED)</span><br><span class="line">catkin_metapackage()</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>: CMakeLists.txt 中不可以有换行。</p>
+<h2 id="2-节点运行管理-launch文件"><a href="#2-节点运行管理-launch文件" class="headerlink" title="2. 节点运行管理 launch文件"></a>2. 节点运行管理 launch文件</h2><h3 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h3><p>launch 文件是一个 XML 格式的文件，可以启动本地和远程的多个节点，还可以在参数服务器中设置参数。</p>
+<h3 id="2-2-作用"><a href="#2-2-作用" class="headerlink" title="2.2 作用"></a>2.2 作用</h3><p>简化节点的配置与启动，提高ROS程序的启动效率。</p>
+<h3 id="2-3-使用"><a href="#2-3-使用" class="headerlink" title="2.3 使用"></a>2.3 使用</h3><p>以 turtlesim 为例演示。</p>
+<h4 id="2-3-1-新建launch文件"><a href="#2-3-1-新建launch文件" class="headerlink" title="2.3.1 新建launch文件"></a>2.3.1 新建launch文件</h4><p>在功能包下添加 launch 目录，目录下新建 xxxx.launch 文件，编辑 launch 文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;turtlesim&quot;</span> <span class="attr">type</span>=<span class="string">&quot;turtlesim_node&quot;</span>     <span class="attr">name</span>=<span class="string">&quot;myTurtle&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;turtlesim&quot;</span> <span class="attr">type</span>=<span class="string">&quot;turtle_teleop_key&quot;</span>  <span class="attr">name</span>=<span class="string">&quot;myTurtleContro&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-2-调用-launch-文件"><a href="#2-3-2-调用-launch-文件" class="headerlink" title="2.3.2 调用 launch 文件"></a>2.3.2 调用 launch 文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch 包名 xxx.launch</span><br></pre></td></tr></table></figure>
+
+<p>当执行 roslaunch 时，它会自动检查当前系统是否已经运行了 roscore：</p>
+<ul>
+<li>如果 roscore 已经运行：roslaunch 会直接使用现有的 Master，不会重复启动。</li>
+<li>如果 roscore 未运行：roslaunch 会自动启动一个新的 roscore，然后再启动 Launch 文件中定义的节点。</li>
+</ul>
+<p>这一行为是隐式的，用户无需手动干预。</p>
+<p><strong>目的</strong>：</p>
+<ul>
+<li><p><strong>避免重复启动</strong>：</p>
+<ul>
+<li>ROS 1 的架构要求同一台机器上只能有一个 roscore 在运行。如果多个 roscore 同时存在，会导致节点通信混乱。</li>
+<li>roslaunch 的自动检测机制避免了用户手动管理 roscore 的启动和关闭。</li>
+</ul>
+</li>
+<li><p><strong>简化用户体验</strong>：</p>
+<ul>
+<li>用户无需关心 roscore 是否已启动，直接运行 roslaunch 即可保证 ROS 系统正常工作。</li>
+<li>尤其对新手友好，降低了入门门槛。</li>
+</ul>
+</li>
+<li><p><strong>保证节点通信一致性</strong>：</p>
+<ul>
+<li>所有通过 roslaunch 启动的节点会连接到同一个 roscore，确保它们能互相发现并通信。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-标签"><a href="#2-4-标签" class="headerlink" title="2.4 标签"></a>2.4 标签</h3><h4 id="2-4-1"><a href="#2-4-1" class="headerlink" title="2.4.1 &lt;launch&gt;"></a>2.4.1 <code>&lt;launch&gt;</code></h4><p><code>&lt;launch&gt;</code>标签是所有 launch 文件的根标签，充当其他标签的容器。</p>
+<ul>
+<li><code>deprecated = &quot;弃用声明&quot;</code>：告知用户当前 launch 文件已经弃用</li>
+</ul>
+<h4 id="2-4-2"><a href="#2-4-2" class="headerlink" title="2.4.2 &lt;node&gt;"></a>2.4.2 <code>&lt;node&gt;</code></h4><p><code>&lt;node&gt;</code>标签用于指定 ROS 节点，是最常见的标签。需要注意：roslaunch 命令不能保证按照 node 的声明顺序来启动节点，节点的启动是多进程的。</p>
+<ul>
+<li><code>pkg=&quot;包名&quot;</code>：节点所属的包</li>
+<li><code>type=&quot;nodeType&quot;</code>：节点类型(与之相同名称的可执行文件)</li>
+<li><code>name=&quot;nodeName&quot;</code>：节点名称(在 ROS 网络拓扑中节点的名称)</li>
+<li><code>args=&quot;xxx xxx xxx&quot;</code> (可选)：将参数传递给节点</li>
+<li><code>machine=&quot;机器名&quot;</code>：在指定机器上启动节点</li>
+<li><code>respawn=&quot;true | false&quot;</code> (可选)：如果节点退出，是否自动重启</li>
+<li><code>respawn_delay=&quot;N&quot;</code> (可选)：如果 respawn 为 true，那么延迟 N 秒后启动节点</li>
+<li><code>required=&quot;true | false&quot;</code> (可选)：该节点是否必须，如果为 true，那么如果该节点退出，将杀死整个 roslaunch</li>
+<li><code>ns=&quot;xxx&quot;</code> (可选)：在指定命名空间 xxx 中启动节点</li>
+<li><code>clear_params=&quot;true | false&quot;</code> (可选)：在启动前，删除节点的私有空间的所有参数</li>
+<li><code>output=&quot;log | screen&quot;</code> (可选)：日志发送目标，可以设置为 log 日志文件，或 screen 屏幕，默认是 log</li>
+</ul>
+<h4 id="2-4-3"><a href="#2-4-3" class="headerlink" title="2.4.3 &lt;include&gt;"></a>2.4.3 <code>&lt;include&gt;</code></h4><p><code>include</code>标签用于将另一个 xml 格式的 launch 文件导入到当前文件。</p>
+<ul>
+<li><code>file=&quot;$(find 包名)/xxx/xxx.launch&quot;</code>：要包含的文件路径</li>
+<li><code>ns=&quot;xxx&quot;</code> (可选)：在指定命名空间导入文件</li>
+</ul>
+<h4 id="2-4-4"><a href="#2-4-4" class="headerlink" title="2.4.4 &lt;remap&gt;"></a>2.4.4 <code>&lt;remap&gt;</code></h4><p>用于话题重命名。</p>
+<ul>
+<li><code>from=&quot;xxx&quot;</code>：原始话题名称</li>
+<li><code>to=&quot;yyy&quot;</code>：目标名称</li>
+</ul>
+<h4 id="2-4-5"><a href="#2-4-5" class="headerlink" title="2.4.5 &lt;param&gt;"></a>2.4.5 <code>&lt;param&gt;</code></h4><p><code>&lt;param&gt;</code>标签主要用于在参数服务器上设置参数，参数源可以在标签中通过 value 指定，也可以通过外部文件加载，在<code>&lt;node&gt;</code>标签中时，相当于私有命名空间。</p>
+<ul>
+<li><code>name=&quot;命名空间/参数名&quot;</code>：参数名称，可以包含命名空间</li>
+<li><code>value=&quot;xxx&quot;</code> (可选)：定义参数值，如果此处省略，必须指定外部文件作为参数源</li>
+<li><code>type=&quot;str | int | double | bool | yaml&quot;</code> (可选)：指定参数类型，如果未指定，roslaunch 会尝试确定参数类型，规则如下：<ul>
+<li>包含 ‘.’ 的数字解析为浮点型，否则为整型</li>
+<li>“true” 和 “false” 是 bool 值(不区分大小写)</li>
+<li>其他是字符串</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-6"><a href="#2-4-6" class="headerlink" title="2.4.6 &lt;rosparam&gt;"></a>2.4.6 <code>&lt;rosparam&gt;</code></h4><p><code>&lt;rosparam&gt;</code>标签可以从 YAML 文件导入参数，或将参数导出到 YAML 文件，也可以用来删除参数，<code>&lt;rosparam&gt;</code>标签在<code>&lt;node&gt;</code>标签中时被视为私有。</p>
+<ul>
+<li><code>command=&quot;load | dump | delete&quot;</code> (可选，默认 load)：加载、导出或删除参数</li>
+<li><code>file=&quot;$(find xxxxx)/xxx/yyy....&quot;</code>：加载或导出到的 yaml 文件</li>
+<li><code>param=&quot;参数名称&quot;</code></li>
+<li><code>ns=&quot;命名空间&quot;</code> (可选)</li>
+</ul>
+<h4 id="2-4-7"><a href="#2-4-7" class="headerlink" title="2.4.7 &lt;group&gt;"></a>2.4.7 <code>&lt;group&gt;</code></h4><p><code>&lt;group&gt;</code>标签可以对节点分组，具有 ns 属性，可以让节点归属某个命名空间。</p>
+<ul>
+<li><code>ns=&quot;名称空间&quot;</code> (可选)</li>
+<li><code>clear_params=&quot;true | false&quot;</code> (可选)：启动前，是否删除组名称空间的所有参数(慎用)</li>
+</ul>
+<h4 id="2-4-8"><a href="#2-4-8" class="headerlink" title="2.4.8 &lt;arg&gt;"></a>2.4.8 <code>&lt;arg&gt;</code></h4><p><code>&lt;arg&gt;</code>标签是用于动态传参，类似于函数的参数，可以增强launch文件的灵活性。</p>
+<ul>
+<li><code>name=&quot;参数名称&quot;</code></li>
+<li><code>default=&quot;默认值&quot;</code> (可选)</li>
+<li><code>value=&quot;数值&quot;</code> (可选)：不可以与 default 并存</li>
+<li><code>doc=&quot;描述&quot;</code></li>
+</ul>
+<p><strong>launch文件传参示例</strong>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;xxx&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;param&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg xxx)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>命令行调用launch传参</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch hello.launch xxx:=值</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-工作空间覆盖"><a href="#3-工作空间覆盖" class="headerlink" title="3. 工作空间覆盖"></a>3. 工作空间覆盖</h2><p>所谓工作空间覆盖，是指不同工作空间中，存在重名的功能包的情形。</p>
+<h3 id="3-1-实现"><a href="#3-1-实现" class="headerlink" title="3.1 实现"></a>3.1 实现</h3><ol>
+<li><p>新建工作空间A与工作空间B，两个工作空间中都创建功能包: turtlesim。</p>
+</li>
+<li><p>在 ~&#x2F;.bashrc 文件下<strong>追加</strong>当前工作空间的 bash 格式如下:</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /home/用户/路径/工作空间A/devel/setup.bash</span><br><span class="line"><span class="built_in">source</span> /home/用户/路径/工作空间B/devel/setup.bash</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>新开命令行: <code>source .bashrc</code> 加载环境变量</p>
+</li>
+<li><p>查看ROS环境环境变量 <code>echo $ROS_PACKAGE_PATH</code></p>
+</li>
+</ol>
+<p>结果: 自定义工作空间B:自定义空间A:系统内置空间</p>
+<ol start="5">
+<li>调用命令: <code>roscd turtlesim</code> 会进入自定义工作空间B</li>
+</ol>
+<h3 id="3-2-原因"><a href="#3-2-原因" class="headerlink" title="3.2 原因"></a>3.2 原因</h3><p>ROS 会解析 .bashrc 文件，并生成 ROS_PACKAGE_PATH ROS包路径，该变量中按照 .bashrc 中配置设置工作空间优先级，在设置时需要遵循一定的原则：</p>
+<p>ROS_PACKAGE_PATH 中的值，和 .bashrc 的配置顺序相反 —&gt; 后配置的优先级更高。<br>如果更改自定义空间A与自定义空间B的source顺序，那么调用时，将进入工作空间A。</p>
+<h3 id="3-3-结论"><a href="#3-3-结论" class="headerlink" title="3.3 结论"></a>3.3 结论</h3><p>功能包重名时，会按照 ROS_PACKAGE_PATH 查找，配置在前的会优先执行。</p>
+<hr>
+<p><strong>BUG 说明</strong>: </p>
+<blockquote>
+<p>当在 .bashrc 文件中 source 多个工作空间后，可能出现在 ROS PACKAGE PATH 中只包含两个工作空间的情况，可以删除自定义工作空间的 build 与 devel 目录，重新 catkin_make，然后重新载入 .bashrc 文件，问题解决。</p>
+</blockquote>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ROS/">ROS</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/10/15/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DROS%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/"
+                                   title="[学习存档]ROS通信机制"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[学习存档]ROS通信机制</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%83%E5%8A%9F%E8%83%BD%E5%8C%85-Metapackage"><span class="nav-text">1. 元功能包 Metapackage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BD%9C%E7%94%A8"><span class="nav-text">1.2 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3 实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%8A%82%E7%82%B9%E8%BF%90%E8%A1%8C%E7%AE%A1%E7%90%86-launch%E6%96%87%E4%BB%B6"><span class="nav-text">2. 节点运行管理 launch文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BD%9C%E7%94%A8"><span class="nav-text">2.2 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BD%BF%E7%94%A8"><span class="nav-text">2.3 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E6%96%B0%E5%BB%BAlaunch%E6%96%87%E4%BB%B6"><span class="nav-text">2.3.1 新建launch文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E8%B0%83%E7%94%A8-launch-%E6%96%87%E4%BB%B6"><span class="nav-text">2.3.2 调用 launch 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%A0%87%E7%AD%BE"><span class="nav-text">2.4 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1"><span class="nav-text">2.4.1 &lt;launch&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2"><span class="nav-text">2.4.2 &lt;node&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3"><span class="nav-text">2.4.3 &lt;include&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4"><span class="nav-text">2.4.4 &lt;remap&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5"><span class="nav-text">2.4.5 &lt;param&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-6"><span class="nav-text">2.4.6 &lt;rosparam&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-7"><span class="nav-text">2.4.7 &lt;group&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-8"><span class="nav-text">2.4.8 &lt;arg&gt;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E8%A6%86%E7%9B%96"><span class="nav-text">3. 工作空间覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.1 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%8E%9F%E5%9B%A0"><span class="nav-text">3.2 原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BB%93%E8%AE%BA"><span class="nav-text">3.3 结论</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">eXperienceJouRney</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">Total words</span>
+                    <span class="item-value border-box word">9.2k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%83%E5%8A%9F%E8%83%BD%E5%8C%85-Metapackage"><span class="nav-text">1. 元功能包 Metapackage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%BD%9C%E7%94%A8"><span class="nav-text">1.2 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%AE%9E%E7%8E%B0"><span class="nav-text">1.3 实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%8A%82%E7%82%B9%E8%BF%90%E8%A1%8C%E7%AE%A1%E7%90%86-launch%E6%96%87%E4%BB%B6"><span class="nav-text">2. 节点运行管理 launch文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%A6%82%E5%BF%B5"><span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BD%9C%E7%94%A8"><span class="nav-text">2.2 作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BD%BF%E7%94%A8"><span class="nav-text">2.3 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-%E6%96%B0%E5%BB%BAlaunch%E6%96%87%E4%BB%B6"><span class="nav-text">2.3.1 新建launch文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-%E8%B0%83%E7%94%A8-launch-%E6%96%87%E4%BB%B6"><span class="nav-text">2.3.2 调用 launch 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%A0%87%E7%AD%BE"><span class="nav-text">2.4 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1"><span class="nav-text">2.4.1 &lt;launch&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2"><span class="nav-text">2.4.2 &lt;node&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3"><span class="nav-text">2.4.3 &lt;include&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-4"><span class="nav-text">2.4.4 &lt;remap&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-5"><span class="nav-text">2.4.5 &lt;param&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-6"><span class="nav-text">2.4.6 &lt;rosparam&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-7"><span class="nav-text">2.4.7 &lt;group&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-8"><span class="nav-text">2.4.8 &lt;arg&gt;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E8%A6%86%E7%9B%96"><span class="nav-text">3. 工作空间覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%9E%E7%8E%B0"><span class="nav-text">3.1 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%8E%9F%E5%9B%A0"><span class="nav-text">3.2 原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E7%BB%93%E8%AE%BA"><span class="nav-text">3.3 结论</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/share.min.js"></script>
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+            
+<script class="custom-inject-js" src="/js/custom-1.js" data-pjax></script>
+
+        
+    
+
+</body>
+</html>
