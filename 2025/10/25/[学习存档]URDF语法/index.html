@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="eXperienceJouRney">
+    
+    <title>
+        
+            [学习存档]URDF用法 |
+        
+        这里小宇宙包罗着万象
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#99CCCC","title":"这里小宇宙包罗着万象","author":"eXperienceJouRney","avatar":"/images/logo.jpg","logo":"/images/logo2.jpg","favicon":"/images/logo.jpg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","me":"/me"},"first_screen":{"enable":true,"background_img":null,"background_img_dark":null,"description":"在129600年后 所有事情都会重演||这也就是说 我们将会再次相遇于此","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/eXperienceJouRney","weixin":"img | /images/vx.jpg","qq":"img | /images/qq.jpg","tiktok":"img | /images/dy.png"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":false},"home":{"announcement":null,"category":true,"tag":true,"post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2025,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null],"js":["/js/custom-1.js"]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo2.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               这里小宇宙包罗着万象
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/me">
+                                
+                                ME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/me">
+                            
+                            ME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        [学习存档]URDF用法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/logo.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">eXperienceJouRney</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-25 19:42:21</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Wed Oct 22 2025 16:54:26 GMT+0800">2025-10-22 16:54:26</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROS/">ROS</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.2k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="robot"><a href="#robot" class="headerlink" title="robot"></a><code>robot</code></h1><p>属性</p>
+<ul>
+<li><p><code>name = &quot;名称&quot;</code></p>
+<p>  指定机器人模型的名称</p>
+</li>
+</ul>
+<h2 id="link"><a href="#link" class="headerlink" title="link"></a><code>link</code></h2><p>用于描述机器人某个部件(也即刚体部分)的外观和物理属性，机器人底座、轮子、激光雷达、摄像头等每一个部件都对应一个 link, 在 link 标签内，可以设计该部件的形状、尺寸、颜色、惯性矩阵、碰撞参数等一系列属性.</p>
+<p>属性</p>
+<ul>
+<li><p><code>name = &quot;名称&quot;</code></p>
+<p>  指定连杆的名称</p>
+</li>
+</ul>
+<h3 id="origin"><a href="#origin" class="headerlink" title="origin"></a><code>origin</code></h3><p>属性</p>
+<ul>
+<li><p><code>xyz=&quot;x y z&quot;</code></p>
+<p>  定义该 <code>link</code> 的位置，相对于其父 <code>link</code> 或全局坐标系</p>
+</li>
+<li><p><code>rpy=&quot;roll pitch yaw&quot;</code></p>
+<p>  定义该 <code>link</code> 的旋转，使用滚动（roll）、俯仰（pitch）和偏航（yaw）角</p>
+</li>
+</ul>
+<h3 id="inertial"><a href="#inertial" class="headerlink" title="inertial"></a><code>inertial</code></h3><ul>
+<li>定义该 <code>link</code> 的惯性属性，用于物理模拟。</li>
+</ul>
+<p>标签</p>
+<ul>
+<li><p><code>&lt;mass value = &quot;mass_value&quot;&gt;</code></p>
+<p>  定义该 <code>link</code> 的质量</p>
+</li>
+<li><p><code>&lt;inertia ixx=&quot;ixx&quot; ixy=&quot;ixy&quot; ixz=&quot;ixz&quot; iyy=&quot;iyy&quot; iyz=&quot;iyz&quot; izz=&quot;izz&quot;&gt;</code></p>
+<p>  定义该 <code>link</code> 的惯性矩，包括六个分量：<code>ixx</code>, <code>ixy</code>, <code>ixz</code>, <code>iyy</code>, <code>iyz</code>, <code>izz</code>。</p>
+</li>
+</ul>
+<h3 id="visual"><a href="#visual" class="headerlink" title="visual"></a><code>visual</code></h3><ul>
+<li>定义该 <code>link</code> 的视觉属性，用于渲染。</li>
+<li><code>&lt;origin&gt;</code>：定义视觉几何形状的位置和旋转。</li>
+<li><code>&lt;geometry&gt;</code>：定义视觉几何形状，可以是 <code>box</code>（盒子）、<code>cylinder</code>（圆柱）、<code>sphere</code>（球体）或 <code>mesh</code>（网格）。</li>
+<li><code>&lt;material&gt;</code>：定义视觉材质，可以引用预定义的材质。</li>
+</ul>
+<h4 id="geometry"><a href="#geometry" class="headerlink" title="geometry"></a><code>geometry</code></h4><p>标签</p>
+<ul>
+<li><p><code>&lt;box size=&quot;x y z&quot;&gt;</code></p>
+<p>  属性:size&#x3D;长(x) 宽(y) 高(z)</p>
+</li>
+<li><p><code>&lt;cylinder radius=&quot;radius&quot; length=&quot;length&quot;&gt;</code></p>
+<p>  属性:radius&#x3D;半径 length&#x3D;高度</p>
+</li>
+<li><p><code>&lt;sphere radius=&quot;radius&quot;&gt;</code></p>
+<p>  属性:radius&#x3D;半径</p>
+</li>
+<li><p><code>&lt;mesh filename=&quot;filename&quot; scale=&quot;x y z&quot;&gt;</code></p>
+<p>  属性:filename&#x3D;文件路径 scale&#x3D;范围</p>
+</li>
+</ul>
+<h4 id="origin-1"><a href="#origin-1" class="headerlink" title="origin"></a><code>origin</code></h4><p>属性</p>
+<ul>
+<li><p><code>origin xyz=&quot;x y z&quot; rpy=&quot;roll pitch yaw&quot;</code></p>
+<p>  属性1: xyz&#x3D;偏移 偏移 偏移</p>
+<p>  属性2: rpy&#x3D;翻滚 俯仰 偏航 (单位是弧度)</p>
+</li>
+</ul>
+<h4 id="metrial"><a href="#metrial" class="headerlink" title="metrial"></a><code>metrial</code></h4><p>属性</p>
+<ul>
+<li><p><code>name = &quot;名称&quot;</code></p>
+<p>  指定材料的名称</p>
+</li>
+</ul>
+<p>标签</p>
+<ul>
+<li><p><code>&lt;color rgba = &quot;r g b a&quot;&gt; </code></p>
+<p>  属性: rgba&#x3D;红绿蓝权重值与透明度 (每个权重值以及透明度取值[0,1])</p>
+</li>
+</ul>
+<h3 id="collision"><a href="#collision" class="headerlink" title="collision"></a><code>collision</code></h3><ul>
+<li>定义该 <code>link</code> 的碰撞属性，用于物理模拟中的碰撞检测。</li>
+<li><code>&lt;origin&gt;</code>：定义碰撞几何形状的位置和旋转。</li>
+<li><code>&lt;geometry&gt;</code>：定义碰撞几何形状，可以是 <code>box</code>（盒子）、<code>cylinder</code>（圆柱）、<code>sphere</code>（球体）或 <code>mesh</code>（网格）。</li>
+</ul>
+<h2 id="joint"><a href="#joint" class="headerlink" title="joint"></a><code>joint</code></h2><p>在 URDF（Unified Robot Description Format）中，<code>joint</code> 元素是<strong>机器人结构的连接单元</strong>，它定义两个 <code>link</code> 元素之间的连接方式和运动学&#x2F;动力学属性。通过 <code>joint</code> 可以描述机器人关节的<strong>类型、运动范围、惯性参数等</strong>，是实现机器人运动模拟和控制的关键。</p>
+<p>属性</p>
+<ul>
+<li><p><code>name = &quot;名称&quot;</code></p>
+<p>  指定关节的名称</p>
+</li>
+<li><p><code>type=&quot;形式&quot;</code></p>
+<p>  <strong>这是 <code>joint</code> 元素最关键的属性</strong>，不同类型需要不同的子元素。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>适用子元素</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>fixed</code></td>
+<td>固定关节（不允许运动）</td>
+<td>无额外元素</td>
+<td>用于连接静态部件（如机器人底座、外壳等）</td>
+</tr>
+<tr>
+<td><code>revolute</code></td>
+<td>旋转关节（绕一个轴旋转）</td>
+<td><code>&lt;axis&gt;</code>, <code>&lt;limit&gt;</code></td>
+<td>最常用的旋转关节（如机械臂关节、轮轴）</td>
+</tr>
+<tr>
+<td><code>continuous</code></td>
+<td>连续旋转关节（无限旋转，类似 <code>revolute</code> 但无限制）</td>
+<td><code>&lt;axis&gt;</code></td>
+<td>用于需要无限旋转的结构（如电机驱动轴、雷达平台）</td>
+</tr>
+<tr>
+<td><code>prismatic</code></td>
+<td>滑动关节（沿一个轴滑动）</td>
+<td><code>&lt;axis&gt;</code>, <code>&lt;limit&gt;</code></td>
+<td>用于线性滑动结构（如伸缩臂、升降机构、电梯导轨）</td>
+</tr>
+<tr>
+<td><code>planar</code></td>
+<td>平面关节（在 XY 平面上自由平移和旋转）</td>
+<td><code>&lt;axis&gt;</code>（通常不使用）</td>
+<td>用于平面移动平台或二维滑行机构（如移动滑台）</td>
+</tr>
+<tr>
+<td><code>floating</code></td>
+<td>浮动关节（6 DOF，完全自由）</td>
+<td>无额外元素</td>
+<td>用于基座自由运动（如无人机、潜艇或自由浮动基座）</td>
+</tr>
+<tr>
+<td><code>ball</code></td>
+<td>球关节（3 DOF，类似人体肩膀或髋关节）</td>
+<td><code>&lt;axis&gt;</code>（通常不使用）</td>
+<td>用于需要球面旋转的连接（如仿人肩关节、球窝接头）</td>
+</tr>
+</tbody></table>
+<p>标签</p>
+<ul>
+<li><p><code>&lt;parent&gt;base_link&lt;/parent&gt;</code></p>
+<p>  定义关节的父连接（必须有）</p>
+</li>
+<li><p><code>&lt;child&gt;arm_link&lt;/child&gt;</code></p>
+<p>  定义关节的子连接（必须有）</p>
+</li>
+<li><p><code>&lt;origin xyz=&quot;x y z&quot; rpy=&quot;roll pitch yaw&quot; /&gt;</code></p>
+<ul>
+<li><code>xyz</code>：关节相对于父链接的<strong>平移向量</strong>（米）</li>
+<li><code>rpy</code>：关节相对于父链接的<strong>旋转欧拉角</strong>（弧度）</li>
+</ul>
+</li>
+<li><p><code>&lt;axis xyz=&quot;x y z&quot;</code></p>
+<p>  表示关节的运动轴（单位向量）</p>
+</li>
+<li><p><code>&lt;axis xyz=&quot;x y z&quot;</code></p>
+<p>  表示关节的运动轴（单位向量）</p>
+</li>
+<li><p><code>&lt;limit lower=&quot;l&quot; upper=&quot;u&quot; effort=&quot;e&quot; velocity=&quot;v&quot; /&gt;</code></p>
+<ul>
+<li><strong>描述</strong>：定义关节的<strong>运动范围、速度和力矩限制</strong>。主要用于 <code>revolute</code> 和 <code>prismatic</code> 关节。</li>
+<li><strong>参数</strong>：</li>
+<li><code>lower</code>：最小角度（<code>revolute</code>）或最小滑动距离（<code>prismatic</code>）。</li>
+<li><code>upper</code>：最大角度或最大滑动距离。</li>
+<li><code>velocity</code>：最大速度（弧度&#x2F;秒或米&#x2F;秒）。</li>
+<li><code>effort</code>：最大力矩（牛顿米）或推力（牛顿）。</li>
+</ul>
+</li>
+<li><p><code>&lt;dynamics damping=&quot;d&quot; friction=&quot;f&quot; /&gt;</code></p>
+<ul>
+<li><strong>描述</strong>：定义关节的<strong>阻尼和摩擦系数</strong>，用于物理模拟（如 Gazebo）。</li>
+<li><strong>参数</strong>：</li>
+<li><code>damping</code>：阻尼系数。</li>
+<li><code>friction</code>：摩擦系数。</li>
+</ul>
+</li>
+<li><p><code>&lt;safety k_gain=&quot;100&quot; k_velocity=&quot;1.0&quot; k_position=&quot;1.0&quot; /&gt;</code></p>
+<ul>
+<li><strong>描述</strong>：定义关节的<strong>安全控制参数</strong>，用于控制器（如 <code>ros_control</code>）防止过载。</li>
+<li><strong>参数</strong>：</li>
+<li><code>k_gain</code>：安全增益。</li>
+<li><code>k_velocity</code>：速度安全系数。</li>
+<li><code>k_position</code>：位置安全系数。</li>
+</ul>
+</li>
+</ul>
+<h1 id="示例与优化"><a href="#示例与优化" class="headerlink" title="示例与优化"></a>示例与优化</h1><p>需求:创建机器人模型，底盘为长方体，在长方体的前面添加一摄像头，摄像头可以沿着 Z 轴 360 度旋转。</p>
+<h2 id="URDF文件示例"><a href="#URDF文件示例" class="headerlink" title="URDF文件示例"></a>URDF文件示例</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">robot</span> <span class="attr">name</span>=<span class="string">&quot;mycar&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 底盘 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">&quot;base_link&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">box</span> <span class="attr">size</span>=<span class="string">&quot;0.5 0.2 0.1&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 0&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">material</span> <span class="attr">name</span>=<span class="string">&quot;blue&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">color</span> <span class="attr">rgba</span>=<span class="string">&quot;0 0 1.0 0.5&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 摄像头 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">&quot;camera&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">box</span> <span class="attr">size</span>=<span class="string">&quot;0.02 0.05 0.05&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 0&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">material</span> <span class="attr">name</span>=<span class="string">&quot;red&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">color</span> <span class="attr">rgba</span>=<span class="string">&quot;1 0 0 0.5&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 关节 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">joint</span> <span class="attr">name</span>=<span class="string">&quot;camera2baselink&quot;</span> <span class="attr">type</span>=<span class="string">&quot;continuous&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">parent</span> <span class="attr">link</span>=<span class="string">&quot;base_link&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">link</span>=<span class="string">&quot;camera&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 需要计算两个 link 的物理中心之间的偏移量 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0.2 0 0.075&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">axis</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">joint</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="launch文件示例"><a href="#launch文件示例" class="headerlink" title="launch文件示例"></a>launch文件示例</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;robot_description&quot;</span> <span class="attr">textfile</span>=<span class="string">&quot;$(find urdf_rviz_demo)/urdf/urdf/urdf03_joint.urdf&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">type</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">name</span>=<span class="string">&quot;rviz&quot;</span> <span class="attr">args</span>=<span class="string">&quot;-d $(find urdf_rviz_demo)/config/helloworld.rviz&quot;</span> /&gt;</span> </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 添加关节状态发布节点 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">name</span>=<span class="string">&quot;joint_state_publisher&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加机器人状态发布节点 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">name</span>=<span class="string">&quot;robot_state_publisher&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 可选:用于控制关节运动的节点(可选) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">&quot;joint_state_publisher_gui&quot;</span> <span class="attr">type</span>=<span class="string">&quot;joint_state_publisher_gui&quot;</span> <span class="attr">name</span>=<span class="string">&quot;joint_state_publisher_gui&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="base-footprint优化"><a href="#base-footprint优化" class="headerlink" title="base_footprint优化"></a>base_footprint优化</h2><p>前面实现的机器人模型是半沉到地下的，因为默认情况下底盘的中心点位于地图原点上。<br>可以使用的优化策略：将初始 link 设置为一个尺寸极小的 link(比如半径为 0.001m 的球体，或边长为 0.001m 的立方体)，然后再在初始 link 上添加底盘等刚体，这样实现，虽然仍然存在初始link半沉的现象，但是基本可以忽略了。<br>这个初始 link 一般称之为 base_footprint。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    使用 base_footprint 优化</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">robot</span> <span class="attr">name</span>=<span class="string">&quot;mycar&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 设置一个原点(机器人中心点的投影) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">&quot;base_footprint&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">sphere</span> <span class="attr">radius</span>=<span class="string">&quot;0.001&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 添加底盘 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">&quot;base_link&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">box</span> <span class="attr">size</span>=<span class="string">&quot;0.5 0.2 0.1&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 0&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">material</span> <span class="attr">name</span>=<span class="string">&quot;blue&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">color</span> <span class="attr">rgba</span>=<span class="string">&quot;0 0 1.0 0.5&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 底盘与原点连接的关节 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">joint</span> <span class="attr">name</span>=<span class="string">&quot;base_link2base_footprint&quot;</span> <span class="attr">type</span>=<span class="string">&quot;fixed&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">parent</span> <span class="attr">link</span>=<span class="string">&quot;base_footprint&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">link</span>=<span class="string">&quot;base_link&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 0.05&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">joint</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 添加摄像头 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">name</span>=<span class="string">&quot;camera&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">visual</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">geometry</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">box</span> <span class="attr">size</span>=<span class="string">&quot;0.02 0.05 0.05&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">geometry</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 0&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">material</span> <span class="attr">name</span>=<span class="string">&quot;red&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">color</span> <span class="attr">rgba</span>=<span class="string">&quot;1 0 0 0.5&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">material</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">visual</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">link</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 关节 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">joint</span> <span class="attr">name</span>=<span class="string">&quot;camera2baselink&quot;</span> <span class="attr">type</span>=<span class="string">&quot;continuous&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">parent</span> <span class="attr">link</span>=<span class="string">&quot;base_link&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">link</span>=<span class="string">&quot;camera&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">origin</span> <span class="attr">xyz</span>=<span class="string">&quot;0.2 0 0.075&quot;</span> <span class="attr">rpy</span>=<span class="string">&quot;0 0 0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">axis</span> <span class="attr">xyz</span>=<span class="string">&quot;0 0 1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">joint</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">robot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ROS/">ROS</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/10/15/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DROS%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/"
+                                   title="[学习存档]ROS通信机制"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[学习存档]ROS通信机制</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#robot"><span class="nav-text">robot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#link"><span class="nav-text">link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#origin"><span class="nav-text">origin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inertial"><span class="nav-text">inertial</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visual"><span class="nav-text">visual</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#geometry"><span class="nav-text">geometry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#origin-1"><span class="nav-text">origin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metrial"><span class="nav-text">metrial</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#collision"><span class="nav-text">collision</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joint"><span class="nav-text">joint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BC%98%E5%8C%96"><span class="nav-text">示例与优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#URDF%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">URDF文件示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">launch文件示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base-footprint%E4%BC%98%E5%8C%96"><span class="nav-text">base_footprint优化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">eXperienceJouRney</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">Total words</span>
+                    <span class="item-value border-box word">9.4k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#robot"><span class="nav-text">robot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#link"><span class="nav-text">link</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#origin"><span class="nav-text">origin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inertial"><span class="nav-text">inertial</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visual"><span class="nav-text">visual</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#geometry"><span class="nav-text">geometry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#origin-1"><span class="nav-text">origin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metrial"><span class="nav-text">metrial</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#collision"><span class="nav-text">collision</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#joint"><span class="nav-text">joint</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%B8%8E%E4%BC%98%E5%8C%96"><span class="nav-text">示例与优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#URDF%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">URDF文件示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launch%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">launch文件示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base-footprint%E4%BC%98%E5%8C%96"><span class="nav-text">base_footprint优化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/share.min.js"></script>
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+            
+<script class="custom-inject-js" src="/js/custom-1.js" data-pjax></script>
+
+        
+    
+
+</body>
+</html>
