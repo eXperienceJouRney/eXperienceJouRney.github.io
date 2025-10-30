@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="eXperienceJouRney">
+    
+    <title>
+        
+            如何用TurtleBot 构建世界地图并实现红球定位 |
+        
+        这里小宇宙包罗着万象
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+        
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#99CCCC","title":"这里小宇宙包罗着万象","author":"eXperienceJouRney","avatar":"/images/logo.jpg","logo":"/images/logo2.jpg","favicon":"/images/logo.jpg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","me":"/me"},"first_screen":{"enable":true,"background_img":null,"background_img_dark":null,"description":"在129600年后 所有事情都会重演||这也就是说 我们将会再次相遇于此","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/eXperienceJouRney","weixin":"img | /images/vx.jpg","qq":"img | /images/qq.jpg","tiktok":"img | /images/dy.png"}},"scroll":{"progress_bar":true,"percent":true,"hide_header":false},"home":{"announcement":null,"category":true,"tag":true,"post_datetime_format":"YYYY-MM-DD HH:mm:ss"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"giscus","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2025,"word_count":true,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":true,"css":[null],"js":["/js/custom-1.js"]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo2.jpg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               这里小宇宙包罗着万象
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/me">
+                                
+                                ME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/me">
+                            
+                            ME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        如何用TurtleBot 构建世界地图并实现红球定位
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/logo.jpg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">eXperienceJouRney</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-30 23:46:48</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Thu Oct 30 2025 23:52:45 GMT+0800">2025-10-30 23:52:45</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/ROS/">ROS</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/CV/">CV</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.6k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="整体工作流程"><a href="#整体工作流程" class="headerlink" title="整体工作流程"></a>整体工作流程</h2><ol>
+<li><strong>构建世界地图</strong>（使用SLAM）</li>
+<li><strong>红球视觉识别</strong>（OpenCV识别红色目标）</li>
+<li><strong>坐标转换</strong>（将像素坐标转换为世界坐标）</li>
+<li><strong>获取自身位置</strong>（从 <code>/odometry/turtlebot</code> 话题）</li>
+<li><strong>输出结果</strong></li>
+</ol>
+<h2 id="一、构建世界地图（SLAM）"><a href="#一、构建世界地图（SLAM）" class="headerlink" title="一、构建世界地图（SLAM）"></a>一、构建世界地图（SLAM）</h2><h3 id="步骤1：启动TurtleBot"><a href="#步骤1：启动TurtleBot" class="headerlink" title="步骤1：启动TurtleBot"></a>步骤1：启动TurtleBot</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动TurtleBot基础节点</span></span><br><span class="line">roslaunch turtletbot_bringup minimal_demo.launch</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤2：运行SLAM（GMapping）"><a href="#步骤2：运行SLAM（GMapping）" class="headerlink" title="步骤2：运行SLAM（GMapping）"></a>步骤2：运行SLAM（GMapping）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动GMapping节点（生成2D地图）</span></span><br><span class="line">rosrun gmapping roslaunch gmapping_demo demo.launch</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤3：在RViz中构建地图"><a href="#步骤3：在RViz中构建地图" class="headerlink" title="步骤3：在RViz中构建地图"></a>步骤3：在RViz中构建地图</h3><ol>
+<li>启动RViz：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rviz rviz</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p><strong>RViz设置</strong>（添加以下显示项）：</p>
+<ul>
+<li><strong>Maps</strong> → 选择<code>/map</code></li>
+<li><strong>TF</strong> → 选择<code>/tf</code></li>
+<li><strong>Robot Model</strong> → 设置<code>Fixed Frame: map</code>，<code>Robot Namespace: /turtletbot</code></li>
+<li><strong>Interactive Marker</strong> → 启用（用于控制机器人）</li>
+</ul>
+</li>
+<li><p><strong>移动TurtleBot</strong><br> 用键盘控制TurtleBot移动，让它覆盖整个环境。SLAM会实时生成地图。</p>
+</li>
+<li><p><strong>保存地图</strong>（可选，但推荐）<br> 在RViz中点击 <strong>Save Map</strong>，保存为<code>.pgm</code>和<code>.yaml</code>文件（后续可加载）。</p>
+</li>
+</ol>
+<h2 id="二、红球视觉识别与定位"><a href="#二、红球视觉识别与定位" class="headerlink" title="二、红球视觉识别与定位"></a>二、红球视觉识别与定位</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ol>
+<li><strong>识别红球</strong><br> 使用OpenCV在RGB图像中识别红色目标（HSV颜色空间）。</li>
+<li><strong>获取深度值</strong><br> 通过深度相机（Kinect）获取红球在3D空间中的距离。</li>
+<li><strong>坐标转换</strong><ul>
+<li>将像素坐标 → <strong>相机坐标系</strong></li>
+<li>通过TF <strong>转换到世界坐标系（map）</strong></li>
+</ul>
+</li>
+</ol>
+<h3 id="步骤1：创建ROS节点（Python）"><a href="#步骤1：创建ROS节点（Python）" class="headerlink" title="步骤1：创建ROS节点（Python）"></a>步骤1：创建ROS节点（Python）</h3><p>创建文件 <code>red_ball_detector.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rospy</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> cv_bridge <span class="keyword">import</span> CvBridge</span><br><span class="line"><span class="keyword">from</span> sensor_msgs.msg <span class="keyword">import</span> Image, CameraInfo</span><br><span class="line"><span class="keyword">from</span> geometry_msgs.msg <span class="keyword">import</span> PointStamped, PoseStamped</span><br><span class="line"><span class="keyword">from</span> nav_msgs.msg <span class="keyword">import</span> Odometry</span><br><span class="line"><span class="keyword">from</span> tf <span class="keyword">import</span> TransformListener</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RedBallDetector</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        rospy.init_node(<span class="string">&#x27;red_ball_detector&#x27;</span>, anonymous=<span class="literal">True</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 初始化工具</span></span><br><span class="line">        <span class="variable language_">self</span>.bridge = CvBridge()</span><br><span class="line">        <span class="variable language_">self</span>.tf = TransformListener()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 参数设置</span></span><br><span class="line">        <span class="variable language_">self</span>.camera_info = <span class="literal">None</span></span><br><span class="line">        <span class="variable language_">self</span>.robot_odom = <span class="literal">None</span>  <span class="comment"># 存储最新位姿</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 订阅话题</span></span><br><span class="line">        <span class="variable language_">self</span>.sub_image = rospy.Subscriber(<span class="string">&#x27;/camera/rgb/image_raw&#x27;</span>, Image, <span class="variable language_">self</span>.image_callback)</span><br><span class="line">        <span class="variable language_">self</span>.sub_depth = rospy.Subscriber(<span class="string">&#x27;/camera/depth/image_raw&#x27;</span>, Image, <span class="variable language_">self</span>.depth_callback)</span><br><span class="line">        <span class="variable language_">self</span>.sub_camera_info = rospy.Subscriber(<span class="string">&#x27;/camera/rgb/camera_info&#x27;</span>, CameraInfo, <span class="variable language_">self</span>.camera_info_callback)</span><br><span class="line">        <span class="variable language_">self</span>.sub_odom = rospy.Subscriber(<span class="string">&#x27;/odometry/turtlebot&#x27;</span>, Odometry, <span class="variable language_">self</span>.odom_callback)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 发布话题</span></span><br><span class="line">        <span class="variable language_">self</span>.pub_ball_pose = rospy.Publisher(<span class="string">&#x27;/red_ball_pose&#x27;</span>, PointStamped, queue_size=<span class="number">10</span>)</span><br><span class="line">        <span class="variable language_">self</span>.pub_self_pose = rospy.Publisher(<span class="string">&#x27;/self_pose&#x27;</span>, PoseStamped, queue_size=<span class="number">10</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 等待相机内参</span></span><br><span class="line">        rospy.loginfo(<span class="string">&quot;Waiting for camera info...&quot;</span>)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">not</span> rospy.is_shutdown() <span class="keyword">and</span> <span class="variable language_">self</span>.camera_info <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            rospy.sleep(<span class="number">0.1</span>)</span><br><span class="line">        rospy.loginfo(<span class="string">&quot;Camera info received!&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 发布自身位置（每2秒发布一次）</span></span><br><span class="line">        <span class="variable language_">self</span>.pub_self_timer = rospy.Timer(rospy.Duration(<span class="number">2.0</span>), <span class="variable language_">self</span>.publish_self_pose)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">camera_info_callback</span>(<span class="params">self, msg</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取相机内参（K矩阵）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.camera_info = msg</span><br><span class="line">        <span class="variable language_">self</span>.K = np.array([</span><br><span class="line">            [msg.k[<span class="number">0</span>], msg.k[<span class="number">1</span>], msg.k[<span class="number">2</span>]],</span><br><span class="line">            [msg.k[<span class="number">3</span>], msg.k[<span class="number">4</span>], msg.k[<span class="number">5</span>]],</span><br><span class="line">            [msg.k[<span class="number">6</span>], msg.k[<span class="number">7</span>], msg.k[<span class="number">8</span>]]</span><br><span class="line">        ])</span><br><span class="line">        <span class="variable language_">self</span>.cx = msg.k[<span class="number">2</span>]   <span class="comment"># 主点x</span></span><br><span class="line">        <span class="variable language_">self</span>.cy = msg.k[<span class="number">5</span>]   <span class="comment"># 主点y</span></span><br><span class="line">        <span class="variable language_">self</span>.fx = msg.k[<span class="number">0</span>]   <span class="comment"># 焦距x</span></span><br><span class="line">        <span class="variable language_">self</span>.fy = msg.k[<span class="number">4</span>]   <span class="comment"># 焦距y</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">odom_callback</span>(<span class="params">self, msg</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取机器人当前位姿&quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.robot_odom = msg</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">publish_self_pose</span>(<span class="params">self, event</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;发布机器人当前位置（用于测试）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.robot_odom:</span><br><span class="line">            pose_stamped = PoseStamped()</span><br><span class="line">            pose_stamped.header = <span class="variable language_">self</span>.robot_odom.header</span><br><span class="line">            pose_stamped.pose = <span class="variable language_">self</span>.robot_odom.pose.pose</span><br><span class="line">            <span class="variable language_">self</span>.pub_self_pose.publish(pose_stamped)</span><br><span class="line">            <span class="variable language_">self</span>.log_pose(pose_stamped)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">log_pose</span>(<span class="params">self, pose</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;输出机器人位置&quot;&quot;&quot;</span></span><br><span class="line">        x = pose.pose.position.x</span><br><span class="line">        y = pose.pose.position.y</span><br><span class="line">        z = pose.pose.position.z</span><br><span class="line">        rospy.loginfo(<span class="string">f&quot;Self Position (Map Frame): x=<span class="subst">&#123;x:<span class="number">.2</span>f&#125;</span>, y=<span class="subst">&#123;y:<span class="number">.2</span>f&#125;</span>, z=<span class="subst">&#123;z:<span class="number">.2</span>f&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">image_callback</span>(<span class="params">self, msg</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;处理RGB图像（识别红球）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            cv_image = <span class="variable language_">self</span>.bridge.imgmsg_to_cv2(msg, <span class="string">&quot;bgr8&quot;</span>)</span><br><span class="line">            <span class="comment"># 识别红球，返回像素坐标和半径</span></span><br><span class="line">            center, radius = <span class="variable language_">self</span>.find_red_ball(cv_image)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> center <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> radius &gt; <span class="number">10</span>:  <span class="comment"># 过滤小目标</span></span><br><span class="line">                u, v = center</span><br><span class="line">                rospy.loginfo(<span class="string">f&quot;Red ball detected at pixel: (<span class="subst">&#123;u&#125;</span>, <span class="subst">&#123;v&#125;</span>), radius=<span class="subst">&#123;radius&#125;</span>&quot;</span>)</span><br><span class="line">                </span><br><span class="line">                <span class="comment"># 获取深度值</span></span><br><span class="line">                depth = <span class="variable language_">self</span>.get_depth(u, v, msg.header)</span><br><span class="line">                <span class="keyword">if</span> depth &gt; <span class="number">0</span>:</span><br><span class="line">                    <span class="comment"># 将像素坐标转换为世界坐标</span></span><br><span class="line">                    point_map = <span class="variable language_">self</span>.pixel_to_map(u, v, depth, msg.header)</span><br><span class="line">                    <span class="keyword">if</span> point_map:</span><br><span class="line">                        <span class="variable language_">self</span>.pub_ball_pose.publish(point_map)</span><br><span class="line">                        <span class="variable language_">self</span>.log_ball_pose(point_map)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                rospy.loginfo_throttle(<span class="number">5</span>, <span class="string">&quot;No red ball detected or too small&quot;</span>)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            rospy.logerr(<span class="string">&quot;Error in image callback: %s&quot;</span> % e)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_depth</span>(<span class="params">self, u, v, header</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取深度图像中的深度值（单位：米）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 深度图像话题：/camera/depth/image_raw（16位灰度图，单位mm）</span></span><br><span class="line">        <span class="comment"># 注意：深度图像和RGB图像需对齐（TurtleBot已做对齐）</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            depth_msg = rospy.wait_for_message(<span class="string">&#x27;/camera/depth/image_raw&#x27;</span>, Image, timeout=<span class="number">0.1</span>)</span><br><span class="line">            depth_cv = np.frombuffer(depth_msg.data, dtype=np.uint16).reshape(</span><br><span class="line">                depth_msg.height, depth_msg.width</span><br><span class="line">            )</span><br><span class="line">            depth_cv = depth_cv.astype(np.float32) / <span class="number">1000.0</span>  <span class="comment"># 转换为米</span></span><br><span class="line">            depth = depth_cv[v, u]  <span class="comment"># 注意：深度图像中[row, col] = [v, u]</span></span><br><span class="line">            <span class="keyword">return</span> depth</span><br><span class="line">        <span class="keyword">except</span> rospy.ROSException:</span><br><span class="line">            rospy.logwarn(<span class="string">&quot;Depth image not received!&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0.0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">find_red_ball</span>(<span class="params">self, image</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        识别红色球体，返回圆心像素坐标和半径</span></span><br><span class="line"><span class="string">        返回：( (u, v), radius ) 或 (None, None)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 转换为HSV颜色空间</span></span><br><span class="line">        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定义红色范围（注意：红色在HSV中分为两段）</span></span><br><span class="line">        lower_red1 = np.array([<span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>])    <span class="comment"># 红色下限1</span></span><br><span class="line">        upper_red1 = np.array([<span class="number">10</span>, <span class="number">255</span>, <span class="number">255</span>])  <span class="comment"># 红色上限1</span></span><br><span class="line">        lower_red2 = np.array([<span class="number">160</span>, <span class="number">50</span>, <span class="number">50</span>])   <span class="comment"># 红色下限2</span></span><br><span class="line">        upper_red2 = np.array([<span class="number">180</span>, <span class="number">255</span>, <span class="number">255</span>]) <span class="comment"># 红色上限2</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 创建掩码</span></span><br><span class="line">        mask1 = cv2.inRange(hsv, lower_red1, upper_red1)</span><br><span class="line">        mask2 = cv2.inRange(hsv, lower_red2, upper_red2)</span><br><span class="line">        mask = cv2.bitwise_or(mask1, mask2)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 平滑掩码（去噪声）</span></span><br><span class="line">        mask = cv2.GaussianBlur(mask, (<span class="number">5</span>, <span class="number">5</span>), <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找轮廓</span></span><br><span class="line">        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> contours:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找最大的轮廓</span></span><br><span class="line">        largest_contour = <span class="built_in">max</span>(contours, key=cv2.contourArea)</span><br><span class="line">        (x, y), radius = cv2.minEnclosingCircle(largest_contour)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 过滤过小的目标</span></span><br><span class="line">        <span class="keyword">if</span> radius &lt; <span class="number">10</span>:  <span class="comment"># 半径小于10像素则忽略</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (<span class="built_in">int</span>(x), <span class="built_in">int</span>(y)), <span class="built_in">int</span>(radius)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pixel_to_map</span>(<span class="params">self, u, v, depth, header</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        将像素坐标转换为世界坐标系（map）</span></span><br><span class="line"><span class="string">        步骤：</span></span><br><span class="line"><span class="string">        1. 像素坐标 → 相机坐标系</span></span><br><span class="line"><span class="string">        2. 相机坐标系 → 世界坐标系（通过TF转换）</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 1. 像素坐标 → 相机坐标系（单位：米）</span></span><br><span class="line">            <span class="comment"># 相机坐标系：Z轴指向前方，X轴右，Y轴下</span></span><br><span class="line">            X = (u - <span class="variable language_">self</span>.cx) * depth / <span class="variable language_">self</span>.fx</span><br><span class="line">            Y = (v - <span class="variable language_">self</span>.cy) * depth / <span class="variable language_">self</span>.fy</span><br><span class="line">            Z = depth</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 创建点消息（在相机光学坐标系中）</span></span><br><span class="line">            point_cam = PointStamped()</span><br><span class="line">            point_cam.header = header</span><br><span class="line">            point_cam.point = geometry_msgs.msg.Point(X, Y, Z)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 2. 通过TF转换到世界坐标系（map）</span></span><br><span class="line">            point_map = <span class="variable language_">self</span>.tf.transformPoint(<span class="string">&quot;map&quot;</span>, point_cam)</span><br><span class="line">            <span class="keyword">return</span> point_map</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">except</span> (tf.LookupException, tf.ConnectivityException) <span class="keyword">as</span> e:</span><br><span class="line">            rospy.logerr(<span class="string">&quot;TF转换错误: %s&quot;</span> % e)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    detector = RedBallDetector()</span><br><span class="line">    rospy.spin()</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="步骤2：运行节点"><a href="#步骤2：运行节点" class="headerlink" title="步骤2：运行节点"></a>步骤2：运行节点</h3><p>在新终端中运行红球检测节点：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosrun your_package red_ball_detector.py</span><br><span class="line"><span class="comment"># 如果没有打包，可以直接运行：</span></span><br><span class="line">python /path/to/red_ball_detector.py</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="三、查看结果"><a href="#三、查看结果" class="headerlink" title="三、查看结果"></a>三、查看结果</h2><h3 id="1-输出到终端"><a href="#1-输出到终端" class="headerlink" title="1. 输出到终端"></a>1. 输出到终端</h3><p>运行节点后，你会在终端看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Self Position (Map Frame): x=2.45, y=1.80, z=0.00</span><br><span class="line">Red ball detected at pixel: (320, 240), radius=45</span><br><span class="line">Red Ball Position (Map Frame): x=3.12, y=2.05, z=0.25</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>Self Position</code></strong>：TurtleBot当前位置（世界坐标系）</li>
+<li><strong><code>Red ball detected</code></strong>：红球在图像中的像素位置</li>
+<li><strong><code>Red Ball Position</code></strong>：红球在世界坐标系中的位置</li>
+</ul>
+<h3 id="2-在RViz中可视化"><a href="#2-在RViz中可视化" class="headerlink" title="2. 在RViz中可视化"></a>2. 在RViz中可视化</h3><ol>
+<li><p><strong>添加显示项</strong>：</p>
+<ul>
+<li><strong>Published Topic</strong> → 添加 <code>/red_ball_pose</code>（类型：<code>PointStamped</code>）</li>
+<li><strong>Published Topic</strong> → 添加 <code>/self_pose</code>（类型：<code>PoseStamped</code>）</li>
+</ul>
+</li>
+<li><p><strong>设置框架</strong></p>
+<ul>
+<li>所有话题的 <strong>Fixed Frame</strong> 设置为 <code>map</code></li>
+</ul>
+</li>
+<li><p><strong>效果</strong></p>
+<ul>
+<li>红球位置会以<strong>红色点</strong>显示在地图上</li>
+<li>TurtleBot位置会以<strong>绿色三角形</strong>显示</li>
+</ul>
+</li>
+</ol>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/ROS/">ROS</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/CV/">CV</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/10/27/%5B%E5%AD%A6%E4%B9%A0%E5%AD%98%E6%A1%A3%5DXacro%EF%BC%9A%E9%80%9A%E8%BF%87%E5%8F%98%E9%87%8F%E7%BB%93%E5%90%88%E5%87%BD%E6%95%B0%E4%BC%98%E5%8C%96URDF/"
+                                   title="[学习存档]Xacro：通过变量结合函数优化URDF"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">[学习存档]Xacro：通过变量结合函数优化URDF</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">整体工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9E%84%E5%BB%BA%E4%B8%96%E7%95%8C%E5%9C%B0%E5%9B%BE%EF%BC%88SLAM%EF%BC%89"><span class="nav-text">一、构建世界地图（SLAM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%90%AF%E5%8A%A8TurtleBot"><span class="nav-text">步骤1：启动TurtleBot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E8%BF%90%E8%A1%8CSLAM%EF%BC%88GMapping%EF%BC%89"><span class="nav-text">步骤2：运行SLAM（GMapping）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A%E5%9C%A8RViz%E4%B8%AD%E6%9E%84%E5%BB%BA%E5%9C%B0%E5%9B%BE"><span class="nav-text">步骤3：在RViz中构建地图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BA%A2%E7%90%83%E8%A7%86%E8%A7%89%E8%AF%86%E5%88%AB%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="nav-text">二、红球视觉识别与定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%88%9B%E5%BB%BAROS%E8%8A%82%E7%82%B9%EF%BC%88Python%EF%BC%89"><span class="nav-text">步骤1：创建ROS节点（Python）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E8%BF%90%E8%A1%8C%E8%8A%82%E7%82%B9"><span class="nav-text">步骤2：运行节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C"><span class="nav-text">三、查看结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BE%93%E5%87%BA%E5%88%B0%E7%BB%88%E7%AB%AF"><span class="nav-text">1. 输出到终端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8RViz%E4%B8%AD%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-text">2. 在RViz中可视化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">eXperienceJouRney</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+                <span class="count-item border-box word">
+                    <span class="item-type border-box">Total words</span>
+                    <span class="item-value border-box word">11.8k</span>
+                </span>
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">整体工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9E%84%E5%BB%BA%E4%B8%96%E7%95%8C%E5%9C%B0%E5%9B%BE%EF%BC%88SLAM%EF%BC%89"><span class="nav-text">一、构建世界地图（SLAM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%90%AF%E5%8A%A8TurtleBot"><span class="nav-text">步骤1：启动TurtleBot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E8%BF%90%E8%A1%8CSLAM%EF%BC%88GMapping%EF%BC%89"><span class="nav-text">步骤2：运行SLAM（GMapping）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A%E5%9C%A8RViz%E4%B8%AD%E6%9E%84%E5%BB%BA%E5%9C%B0%E5%9B%BE"><span class="nav-text">步骤3：在RViz中构建地图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BA%A2%E7%90%83%E8%A7%86%E8%A7%89%E8%AF%86%E5%88%AB%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="nav-text">二、红球视觉识别与定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%88%9B%E5%BB%BAROS%E8%8A%82%E7%82%B9%EF%BC%88Python%EF%BC%89"><span class="nav-text">步骤1：创建ROS节点（Python）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E8%BF%90%E8%A1%8C%E8%8A%82%E7%82%B9"><span class="nav-text">步骤2：运行节点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BB%93%E6%9E%9C"><span class="nav-text">三、查看结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BE%93%E5%87%BA%E5%88%B0%E7%BB%88%E7%AB%AF"><span class="nav-text">1. 输出到终端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8RViz%E4%B8%AD%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-text">2. 在RViz中可视化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/share.min.js"></script>
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+            
+<script class="custom-inject-js" src="/js/custom-1.js" data-pjax></script>
+
+        
+    
+
+</body>
+</html>
