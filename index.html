@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>eXperience JouRney</title>
+<meta name="description" content="个人主页">
+<!-- 图标：favicon.ico 是给"只认根目录 /favicon.ico"的浏览器兜底用的。
+     改了图标以后，把下面 favicon.svg?v=4 的 4 加一，否则浏览器还会用缓存里的旧图标。 -->
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="assets/theme.css?v=5">
+<link rel="stylesheet" href="assets/site.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="works.html">作品</a>
+      <a href="notes.html">笔记</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero wrap">
+    <h1 class="reveal">eXperience JouRney</h1>
+    <p class="links reveal">
+      <a href="works.html">查看作品 ›</a>
+      <a href="notes.html">读笔记 ›</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="assets/site.js?v=1"></script>
+</body>
+</html>

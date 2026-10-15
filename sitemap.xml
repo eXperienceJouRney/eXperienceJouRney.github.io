@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 换自定义域名后，把下面的 experiencejourney.github.io 一并替换 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://experiencejourney.github.io/</loc><priority>1.0</priority></url>
+  <url><loc>https://experiencejourney.github.io/works.html</loc><priority>0.8</priority></url>
+  <url><loc>https://experiencejourney.github.io/notes.html</loc><priority>0.8</priority></url>
+  <url><loc>https://experiencejourney.github.io/works/editor/</loc><priority>0.6</priority></url>
+</urlset>

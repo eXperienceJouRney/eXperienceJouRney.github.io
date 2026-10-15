@@ -1,0 +1,214 @@
+/* ═══════════════════════════════════════════════════════════════
+   个人主页样式 · site.css
+   颜色令牌全部来自 assets/theme.css（唯一的调色板定义处）。
+   这里只定义：字体、尺寸、布局、组件。改完把引用处的 ?v=N 加一。
+
+   风格要点：巨大居中标题、扁平大圆角瓦片、极薄半透明导航、
+            12px 页脚、蓝色文字链接，几乎没有边框和阴影。
+
+   两件容易忘的事：
+   1) 顶栏在每个页面里各有一份，改导航要全部同步：
+      grep -rl '站点导航' --include='*.html' .
+   2) 图标也是：改了 assets/favicon.svg 就把各页的 ?v=N 加一。
+      浏览器对图标缓存极顽固，光刷新常不生效，要关掉标签页重开。
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC",
+         "Hiragino Sans GB","Microsoft YaHei",system-ui,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --wrap:1040px;       /* 文字内容宽度 */
+  --wrap-wide:1440px;  /* 瓦片几乎通栏 */
+  --gap:12px;          /* 瓦片间距：缝留得很小 */
+  --r:20px;            /* 瓦片大圆角 */
+  --r-sm:12px;
+  --bar-h:48px;        /* 顶栏很薄 */
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--bar-h) + 16px);
+  -webkit-text-size-adjust:100%;
+}
+body{
+  margin:0;min-height:100vh;display:flex;flex-direction:column;
+  background:var(--bg);color:var(--fg);
+  font:400 17px/1.47 var(--sans);
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-weight:600;line-height:1.1;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--accent-ink);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+img{max-width:100%;height:auto}
+code{font-family:var(--mono);font-size:.88em;background:var(--panel);border-radius:6px;padding:.1em .4em}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:6px}
+
+/* ── 骨架 ─────────────────────────────────────────────── */
+.wrap{width:min(var(--wrap),100% - 40px);margin-inline:auto}
+.wrap-wide{width:min(var(--wrap-wide),100% - 24px);margin-inline:auto}
+main{flex:1 0 auto}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:99;
+  background:var(--accent);color:var(--on-accent);
+  padding:10px 16px;border-radius:0 0 var(--r-sm) 0;
+}
+.skip:focus{left:0}
+
+/* ── 顶栏：薄、半透明、居中 ───────────────────────────── */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--bar-bg);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:6px 34px;flex-wrap:wrap;min-height:var(--bar-h);
+}
+.brand{
+  display:flex;align-items:center;flex:0 0 auto;
+  color:var(--fg);font-size:14px;font-weight:600;letter-spacing:-.01em;
+}
+.brand:hover{text-decoration:none;color:var(--accent-ink)}
+.nav{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.nav a{color:var(--fg);font-size:12px;opacity:.86}
+.nav a:hover{color:var(--accent-ink);opacity:1;text-decoration:none}
+.icon-btn{
+  flex:0 0 auto;width:24px;height:24px;display:grid;place-items:center;
+  font-size:12px;line-height:1;cursor:pointer;padding:0;
+  color:var(--muted);background:transparent;border:0;
+}
+.icon-btn:hover{color:var(--fg)}
+
+/* ── 首屏：占满一屏，垂直居中 ─────────────────────────── */
+.hero{
+  min-height:min(74vh,660px);
+  display:grid;align-content:center;justify-items:center;
+  text-align:center;padding:0;
+}
+.hero h1{
+  font-size:clamp(44px,8.4vw,88px);
+  letter-spacing:-.03em;line-height:1.04;
+}
+.hero .sub{
+  margin-top:20px;
+  font-size:clamp(19px,2.2vw,24px);color:var(--muted);letter-spacing:-.01em;
+}
+.hero .links{margin-top:28px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap;font-size:19px}
+
+/* ── 内页页头 ─────────────────────────────────────────── */
+.page-head{padding:96px 0 52px;text-align:center}
+.page-head h1{font-size:clamp(32px,4.6vw,48px);letter-spacing:-.025em}
+.page-head .sub{margin-top:16px;font-size:19px;color:var(--muted);letter-spacing:-.01em}
+
+/* ── 瓦片（大色块格子） ─────────────────────────────── */
+.tiles{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:var(--gap);padding-bottom:var(--gap);
+}
+.tiles.three{grid-template-columns:repeat(3,1fr)}
+.tiles .wide{grid-column:1 / -1}
+.tile{
+  display:flex;flex-direction:column;justify-content:space-between;gap:36px;
+  min-height:400px;padding:44px 40px;border-radius:var(--r);
+  background:var(--panel);color:var(--fg);
+  transition:background .2s ease;
+}
+.tile:hover{background:var(--tile-hover)}
+.tile .top{display:grid;gap:10px}
+.tile h2{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.02em}
+.tile h2 a{color:inherit}
+.tile h2 a:hover{text-decoration:none}
+.tile p{font-size:17px;color:var(--muted);max-width:36ch;letter-spacing:-.005em}
+.tile .more{font-size:17px}
+.tile .date{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tile .year{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tile.sm{min-height:248px;padding:34px 32px;gap:22px}
+.tile.sm .top{gap:8px}
+.tile.sm h2{font-size:22px}
+
+/* ── 文章（笔记正文） ─────────────────────────────────── */
+.article{max-width:680px;margin-inline:auto;padding:88px 0 104px}
+.article header{text-align:center;margin-bottom:52px}
+.article h1{font-size:clamp(30px,4.2vw,44px);letter-spacing:-.025em}
+.article .meta{margin-top:16px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.prose{font-size:17px;line-height:1.8}
+.prose p{margin:0 0 1.15em}
+.prose h2{font-size:24px;margin:44px 0 14px;letter-spacing:-.015em}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.2em}
+.prose li{margin:.32em 0}
+.prose blockquote{
+  margin:26px 0;padding:2px 0 2px 20px;
+  border-left:2px solid var(--line);color:var(--muted);
+}
+.prose pre{
+  background:var(--panel);border-radius:var(--r-sm);
+  padding:18px 20px;overflow:auto;font-size:14px;line-height:1.7;
+}
+.prose pre code{background:none;padding:0}
+.prose img{border-radius:var(--r-sm)}
+.meta.back{margin-top:48px}
+
+/* ── 页脚：浅灰、12px，只留一行版权 ───────────────────── */
+.footer{margin-top:auto;background:var(--panel);font-size:12px;color:var(--muted)}
+.foot-inner{padding:26px 0 30px}
+
+/* ── 回到顶部 ─────────────────────────────────────────── */
+.backtop{
+  position:fixed;right:20px;bottom:20px;z-index:60;
+  width:36px;height:36px;display:grid;place-items:center;
+  font-size:14px;cursor:pointer;padding:0;
+  color:var(--fg);background:var(--glass);
+  border:1px solid var(--line);border-radius:50%;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.backtop:hover{color:var(--accent-ink)}
+.backtop[hidden]{display:none}
+
+/* ── 404 ──────────────────────────────────────────────── */
+.center-page{flex:1 0 auto;display:grid;place-content:center;gap:14px;text-align:center;padding:120px 0}
+.center-page .big{font-size:clamp(52px,12vw,84px);font-weight:600;color:var(--fg);line-height:1;letter-spacing:-.04em}
+
+/* ── 入场动画（仅 JS 可用时启用，无 JS 时内容照常可见） ── */
+.js .reveal{opacity:0;transform:translateY(12px)}
+.js .reveal.in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+  *{transition-duration:.001ms !important;animation-duration:.001ms !important}
+}
+
+/* ── 窄屏 ─────────────────────────────────────────────── */
+@media (max-width:1068px){
+  .tiles.three{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .hero{min-height:min(66vh,560px)}
+  .page-head{padding:72px 0 40px}
+  .tile{min-height:340px;padding:36px 32px}
+}
+@media (max-width:700px){
+  .tiles,.tiles.three{grid-template-columns:1fr}
+  .tile{min-height:280px}
+  .tile.sm{min-height:200px}
+  .bar{gap:4px 18px;padding:8px 0}
+  .nav{gap:18px}
+  .wrap{width:min(var(--wrap),100% - 32px)}
+}
+@media (max-width:420px){
+  .hero h1{font-size:clamp(38px,11vw,44px)}
+  .hero .links{gap:20px;font-size:17px}
+}
+
+@media print{
+  .topbar,.backtop,.footer{display:none}
+  .article{padding-top:0;max-width:none}
+  .tile{background:none;padding:0;min-height:0}
+}

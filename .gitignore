@@ -1,0 +1,6 @@
+# macOS 的目录索引文件，不需要进版本库
+.DS_Store
+
+# 本地临时文件
+*.log
+__pycache__/

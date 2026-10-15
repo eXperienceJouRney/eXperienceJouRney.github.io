@@ -1,0 +1,115 @@
+/* ─────────────────────────────────────────────────────────────
+   主题令牌 · 白 / 浅灰 / 黑 + 一个蓝
+   编辑器与个人主页共用这一份。改这里的值，两边一起变。
+   用法：先引本文件，再引各页面自己的样式。
+
+   换主色：只改 --accent 那一组（备用色号写在注释里）。
+   主题切换：默认跟随系统；<html data-theme="dark|light"> 可强制。
+   注意：暗色令牌出现两次（跟随系统 / 手动强制），改动必须同步。
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  color-scheme: light;
+
+  /* ── 主色：清透蓝 ── */
+  --accent:      #0071e3;                 /* 实心按钮底 */
+  --accent-ink:  #0066cc;                 /* 文字链接 */
+  --accent-soft: rgba(0,113,227,.08);
+  --accent-glow: rgba(0,113,227,.06);
+  --on-accent:   #ffffff;
+  /* 备选：青绿 #00857a · 品红 #c4006b · 石墨 #3d4653 · 蜜橙 #d2691e */
+
+  /* ── 中性色 ── */
+  --bg:     #ffffff;
+  --card:   #ffffff;                      /* 实底，给需要不透明的地方 */
+  --glass:  rgba(255,255,255,.72);
+  --panel:  #f5f5f7;                      /* 瓦片、页脚底色 */
+  --tile-hover:#ececf0;                   /* 瓦片悬停 */
+  --soft:   #fafafc;
+  --line:   rgba(0,0,0,.10);
+  --fg:     #1d1d1f;
+  --muted:  #6e6e73;
+  --bar-bg: rgba(255,255,255,.72);
+
+  /* 备用（当前未使用） */
+  --wash-1: rgba(0,113,227,.05);
+  --wash-2: rgba(0,113,227,.04);
+
+  /* ── 语义色 ── */
+  --danger:      #d70015;
+  --danger-soft: rgba(215,0,21,.08);
+  --ok:          #008009;
+
+  --shadow:    0 2px 10px rgba(0,0,0,.05);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.08);
+
+  /* 高亮笔（编辑器标注用） */
+  --mark-bg: #fff2b8;
+  --mark-fg: #4a3a08;
+}
+
+/* ── 暗色：跟随系统（未手动指定 light 时生效） ────────────── */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+
+    --accent:      #0071e3;
+    --accent-ink:  #2997ff;               /* 暗底上的链接用更亮的蓝 */
+    --accent-soft: rgba(41,151,255,.12);
+    --accent-glow: rgba(41,151,255,.08);
+    --on-accent:   #ffffff;
+
+    --bg:     #000000;
+    --card:   #1d1d1f;
+    --glass:  rgba(29,29,31,.72);
+    --panel:  #1d1d1f;
+    --tile-hover:#252527;
+    --soft:   #161617;
+    --line:   rgba(255,255,255,.16);
+    --fg:     #f5f5f7;
+    --muted:  #86868b;
+    --bar-bg: rgba(0,0,0,.72);
+
+    --wash-1: rgba(41,151,255,.05);
+    --wash-2: rgba(41,151,255,.04);
+
+    --danger:      #ff6961;
+    --danger-soft: rgba(255,105,97,.14);
+    --ok:          #30d158;
+
+    --shadow:    0 2px 10px rgba(0,0,0,.5);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,.6);
+  }
+}
+
+/* ── 暗色：手动强制（值必须与上面完全一致） ──────────────── */
+:root[data-theme="dark"]{
+  color-scheme: dark;
+
+  --accent:      #0071e3;
+  --accent-ink:  #2997ff;
+  --accent-soft: rgba(41,151,255,.12);
+  --accent-glow: rgba(41,151,255,.08);
+  --on-accent:   #ffffff;
+
+  --bg:     #000000;
+  --card:   #1d1d1f;
+  --glass:  rgba(29,29,31,.72);
+  --panel:  #1d1d1f;
+  --tile-hover:#252527;
+  --soft:   #161617;
+  --line:   rgba(255,255,255,.16);
+  --fg:     #f5f5f7;
+  --muted:  #86868b;
+  --bar-bg: rgba(0,0,0,.72);
+
+  --wash-1: rgba(41,151,255,.05);
+  --wash-2: rgba(41,151,255,.04);
+
+  --danger:      #ff6961;
+  --danger-soft: rgba(255,105,97,.14);
+  --ok:          #30d158;
+
+  --shadow:    0 2px 10px rgba(0,0,0,.5);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,.6);
+}

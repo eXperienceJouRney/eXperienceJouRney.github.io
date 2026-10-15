@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>作品 · eXperience JouRney</title>
+<meta name="description" content="做过的东西">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="assets/theme.css?v=5">
+<link rel="stylesheet" href="assets/site.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="works.html" aria-current="page">作品</a>
+      <a href="notes.html">笔记</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="page-head wrap">
+    <h1 class="reveal">作品</h1>
+  </div>
+
+  <section class="wrap-wide">
+    <div class="tiles">
+      <div class="tile wide reveal">
+        <div class="top">
+          <h2><a href="works/editor/index.html">HTML 编辑器</a></h2>
+          <p>把重排好的 HTML 目录拖进来，就能像读文档一样划线、加粗、写批注，也可以直接改错字；改完导出干净的 HTML，外加一份改动与批注记录（含 fixes.txt 格式）。全程在浏览器本地完成，不上传任何内容。</p>
+        </div>
+        <a class="more" href="works/editor/index.html">打开 ›</a>
+      </div>
+    </div>
+
+    <!--
+      加一个作品：复制上面整段 <div class="tile wide reveal"> 改内容即可。
+      想一行并排三张，就把 .tiles 改成 <div class="tiles three">，
+      再把每张的 class 从 "tile wide" 换成 "tile sm"。
+      没有链接的作品：去掉 h2 里的 <a>，并删掉 .more 那一行。
+    -->
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="assets/site.js?v=1"></script>
+</body>
+</html>
