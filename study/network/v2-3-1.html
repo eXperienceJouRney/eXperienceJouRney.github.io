@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1 网络服务概述 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 3 章 网络服务及应用 3.1 网络服务概述：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html" aria-current="page"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 3 章 网络服务及应用</p>
+      <h1>3.1 网络服务概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">网络的价值来自它上面运行的应用。本节先看常见的网络应用和网络应用程序是什么，再讨论应用之间通信的三种体系架构，然后对照应用对传输服务的要求与网络提供的 TCP、UDP 两种服务，最后讲运输层的多路复用、多路分解，以及端口和套接字。</p>
+
+<h2>1. 常见的网络应用</h2>
+<p>课件把常见的网络应用摆成四类：获取信息——浏览新闻，用百度、Google、Bing 等搜索引擎检索网页，浏览器有 IE、Chrome、FireFox、360 浏览器、QQ 浏览器、Maxthon 等；交流——和熟悉或陌生的朋友聊天（微信、QQ、阿里旺旺、MSN Messenger、Skype、UC），或者打网络电话（如 Net2Phone）；娱乐——网络游戏对战（联众、CS、魔兽世界、王者荣耀、绝地逃生）与在线视频（爱奇艺、优酷、腾讯视频、暴风影音、PPLive、VOD 点播）；资源共享与文件传送——迅雷、电驴、BT、FTP 等。</p>
+<p>这些应用功能各异，在网络这一侧做的事却是同一件：把数据交给网络，请网络送到对面的某个进程。要研究的正是它们共同的问题——谁来提供服务、谁主动发起通信、应用对网络提出什么要求、网络能提供什么服务。</p>
+
+<h2>2. 什么是网络应用程序</h2>
+<p>课件的说法很朴素：能够<strong>从网络接收数据</strong>、<strong>对数据进行处理</strong>、再<strong>向网络发送数据</strong>的程序，就是网络应用程序——数据的来源和去向都在网络上，这是它与单机程序的分界。课件还打趣说，它要把数据友好地展现在界面上，让你知道它在做什么，有时还弹出小窗口提醒你别太辛勤工作。界面只是外壳，真正决定应用好用与否的，是它向网络提出的要求。</p>
+
+<h2>3. 网络应用之间通信所采用的体系架构</h2>
+<p>网络应用总要和对端交换数据，于是就有「谁提供服务、谁请求服务」的问题。课件把应用之间通信采用的体系架构分为三类：客户机/服务器体系架构、P2P 体系架构和混合体系架构。</p>
+<h3>（1）客户机/服务器体系架构（C/S）</h3>
+<p>C/S 体系架构（Client/Server）有两个特征：存在一个能够向客户机提供服务的<strong>服务器</strong>，以及一个或多个主动连接服务器、试图从服务器获取所需服务的<strong>客户机</strong>。课件举的例子是客户机一侧的 Edge 浏览器与服务器一侧的 WEB 服务器：浏览器主动连接、请求网页，服务器把网页送回去。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0013.webp" alt="图 1　客户机/服务器体系架构：若干客户机 C 与服务器 S 之间的服务关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　客户机/服务器体系架构：一批客户机 C 需要服务，服务器 S 一侧可以由多台服务器共同承担，即服务器集群（原课件第 13 张）</figcaption>
+</figure>
+<p>这种分工带来一条要特别注意的结论：<strong>客户机之间不能互相通信</strong>——两者之间没有直接通道，要交换数据只能各自与服务器通信，由服务器居中转达。另一处要留心的是服务器的处理能力：客户机可能很多，一台服务器扛不住所有请求，通常采用<strong>服务器集群（Server Farm）</strong>，由多台服务器协同工作。</p>
+<h3>（2）P2P 体系架构</h3>
+<p>P2P 体系架构（Peer-to-Peer，对等）把服务提供者与请求者的界限抹掉了：<strong>任何一方既提供服务又享受服务</strong>，结点之间可以直接通信；结点的地址以及它们之间的连接可能随时发生变化。课件举的例子是迅雷、PPLive 这类文件分发与流媒体软件。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0014.webp" alt="图 2　P2P 体系架构：各结点既提供服务又享受服务，彼此直接通信" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　P2P 体系架构：对等方之间直接通信，结点既提供服务又享受服务，地址与连接关系都可能随时变化（原课件第 14 张）</figcaption>
+</figure>
+<p>课件对它的评价是<strong>非常容易扩展，但也特别难管理</strong>：加入新结点几乎不需要批准，参与的人越多可用的资源越多；代价是没有统一的中心，谁在线、谁手里有什么内容随时在变。这一矛盾是 3.8 节 P2P 文件分发要继续讨论的问题。</p>
+<h3>（3）混合体系架构</h3>
+<p>两种架构各有短长，于是有了第三种：<strong>混合体系架构是 C/S 体系架构和 P2P 体系架构的混合体</strong>。一般做法是让中心服务器承担登录、检索一类需要掌握全局信息的功能，数据分发则交给对等方之间直接完成。</p>
+
+<h2>4. 应用需要网络提供什么样的服务</h2>
+<p>把数据交给网络以后，应用仍然有所关心。课件把这些要求归结为四点：<strong>传输和反馈的实时性</strong>——数据要按时送到，迟到就没有意义；<strong>安全性</strong>；<strong>带宽的自动控制</strong>——带宽能随网络状况自动适应；<strong>数据的可靠传输</strong>——不丢失、不出错。它们并非每个应用都同等需要：下载文件可以慢慢传，却不能丢一个字节；实时语音丢一点还能忍受，延迟大了就无法交谈。</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「常见应用程序对传输服务的要求」整理。带宽一栏的「弹性」指应用能适应带宽的变化，多与少都能用，只是快慢不同。</caption>
+  <thead>
+    <tr><th>应用程序</th><th>数据丢失</th><th>带宽</th><th>实时性</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>文件传输</td><td>不丢失</td><td>弹性</td><td>无</td></tr>
+    <tr><td>e-mail</td><td>不丢失</td><td>弹性</td><td>无</td></tr>
+    <tr><td>Web 网页</td><td>不丢失</td><td>弹性</td><td>无</td></tr>
+    <tr><td>实时音频/视频</td><td>允许丢失</td><td>音频 5 Kb–1 Mb；视频 10 Kb–5 Mb</td><td>100 msec</td></tr>
+    <tr><td>存储音频/视频</td><td>允许丢失</td><td>同上</td><td>few secs</td></tr>
+    <tr><td>交互式游戏</td><td>允许丢失</td><td>几 Kb/s 以上</td><td>100 msec</td></tr>
+    <tr><td>金融应用</td><td>不丢失</td><td>弹性</td><td>yes and no</td></tr>
+  </tbody>
+</table></div>
+<p>表中能看出两条规律。一是文件传输、e-mail、Web 网页和金融应用要求数据不丢失，其余三类允许丢失——丢一点声音或画面只是瞬间的瑕疵，为此重传反而带来更大的延迟。二是前四种应用的带宽是弹性的，也没有硬性的时延指标；实时音频/视频和交互式游戏要求 100 msec 量级的时延，存储音频/视频可放宽到几秒。</p>
+
+<h2>5. 网络实际提供的传输服务：TCP 与 UDP</h2>
+<p>需求是一回事，网络实际能拿出什么又是另一回事。因特网的运输层提供两种传输服务。TCP（Transmission Control Protocol，传输控制协议）提供：<strong>面向连接</strong>——在客户端和服务器进程之间需要建立连接；<strong>可靠传输</strong>；<strong>流量控制</strong>——发送数据的速度决不超过接收的速度；<strong>拥塞控制</strong>——当网络超负荷时，束紧发送端，减缓发送速度。TCP 不提供实时性和最小带宽承诺：它不能保证数据在规定时间内一定送到，也不能承诺留出多少带宽。</p>
+<p>UDP（User Datagram Protocol，用户数据报协议）正好相反：它在客户端和服务器进程之间实现「不可靠的」数据传输，不提供连接建立、可靠性保证、流量控制、拥塞控制和实时性，也不提供最小带宽承诺，只把应用交给它的数据打上端口号发出去。两者的差别不是好与坏，而是取舍。3.2 节要讲的 UDP 与 3.3 节要讲的 TCP 会分别展开，第一版讲义 5.3 UDP和TCP的对比给出了更系统的逐项对照。</p>
+
+<h2>6. 常用应用采用的传输协议</h2>
+<p>不同的应用按自己的需要挑协议，课件给出的对应关系如下：</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「常用应用采用的传输协议」整理。方括号内是该应用协议对应的 RFC 文档编号。</caption>
+  <thead>
+    <tr><th>应用</th><th>应用协议</th><th>所依赖的传输协议</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>e-mail</td><td>SMTP [RFC 821]</td><td>TCP</td></tr>
+    <tr><td>远程终端访问</td><td>Telnet [RFC 854]</td><td>TCP</td></tr>
+    <tr><td>Web</td><td>HTTP [RFC 2068]</td><td>TCP</td></tr>
+    <tr><td>文件传输</td><td>FTP [RFC 959]</td><td>TCP</td></tr>
+    <tr><td>流媒体</td><td>专有协议（如 RealNetworks）</td><td>TCP 或 UDP</td></tr>
+    <tr><td>远程文件服务器</td><td>NFS</td><td>TCP 或 UDP</td></tr>
+    <tr><td>IP 电话</td><td>专有协议（如 Vocaltec）</td><td>通常用 UDP</td></tr>
+  </tbody>
+</table></div>
+<p>表中有两条线索：e-mail、远程终端访问、Web 和文件传输这些传统应用都要求数据不丢失，所以选择 TCP；流媒体和远程文件服务器两种协议都可能用上，要看具体实现；IP 电话则通常用 UDP——实时语音宁可偶尔丢一点，也不愿等待重传。表中还出现了「专有协议」，说明有些应用没有公开的标准应用层协议，各家用自己的实现（如 RealNetworks、Vocaltec）。</p>
+
+<h2>7. 因特网体系架构与 TCP/IP 体系架构</h2>
+<p>应用「提要求」与网络「给服务」的关系，放到分层结构里最清楚。课件给出的因特网体系架构自下而上分五层：</p>
+<ul>
+  <li>物理层：传送比特流（bit）；</li>
+  <li>数据链路层：提供局域网内的数据传输服务；</li>
+  <li>网络层：提供主机到主机的传输服务；</li>
+  <li>运输层：提供进程到进程的传输服务；</li>
+  <li>应用层：定义应用进程之间交互的规程。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0022.webp" alt="图 3　因特网体系架构的五层及各层提供的服务" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　因特网体系架构的五层：物理层传送比特流，数据链路层提供局域网内的数据传输，网络层提供主机到主机的传输，运输层提供进程到进程的传输，应用层定义应用进程之间交互的规程（原课件第 22 张）</figcaption>
+</figure>
+<p>与网络应用关系最直接的是上面两层：应用层的协议规定应用进程之间怎样交互，运输层负责把数据从一个进程送到另一个进程，前面讲的 TCP 与 UDP 都属于运输层。TCP/IP 体系架构则分四层：应用层、运输层、网际层和网络接口层。课件图中，应用层里列着 HTTP、SMTP、DNS、RTP 等协议，运输层是 TCP 和 UDP，网际层是 IP，网络接口层则对应网络接口 1、2、3……各种具体的网络接口，可见它把因特网五层中的物理层和数据链路层合在一起；而应用层里那些字母缩写，正是本章后面各节要展开的协议。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0023.webp" alt="图 4　TCP/IP 体系架构的四层及各层中的协议" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　TCP/IP 体系架构的四层：应用层有 HTTP、SMTP、DNS、RTP 等协议，运输层有 TCP 和 UDP，网际层是 IP，网络接口层对应网络接口 1、2、3 等（原课件第 23 张）</figcaption>
+</figure>
+
+<h2>8. 多路复用与多路分解</h2>
+<p>一台主机上同时跑着很多应用进程，它们的数据都要经过同一个运输层、同一个网络层送出去。发送方一侧，应用层的多个进程（或线程）各自通过端口把数据向下交付给运输层，运输层把它们分别封装成 TCP 报文段或者 UDP 用户数据报，再交给网络层封装成 IP 数据报，送往同一条链路。<strong>多路复用（multiplexing）</strong>就是这种把多个来源的数据汇合起来、共用一条信道发送的过程。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0024.webp" alt="图 5　发送方的多路复用与接收方的多路分解：端口标识应用层进程" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　多路复用与多路分解：应用层的各进程用端口标识，数据向下复用成 TCP 报文段、UDP 用户数据报和 IP 数据报，接收方再据端口分解给相应的进程（原课件第 24 张）</figcaption>
+</figure>
+<p>接收方一侧正好相反：网络层收到 IP 数据报后把数据上交给运输层，运输层根据首部中的<strong>端口号</strong>判断它属于哪个应用进程（或者线程）再交付上去，这一过程称为<strong>多路分解（demultiplexing）</strong>。课件把两层的复用与分用都画了出来：运输层在 TCP 报文段与 UDP 用户数据报之间复用、分用，网络层在 IP 数据报之间复用、分用，用来区分来源的标志就是端口。</p>
+<p>课件还用一个例子说明端口与套接字的对应关系：服务器端 <code>serverSocket = new DatagramSocket(6428)</code>，两个客户端是 <code>new DatagramSocket(5775)</code> 和 <code>new DatagramSocket(9157)</code>。服务器在 6428 端口等待，客户数据报的目的端口就是 6428；回送的数据报以 6428 为源端口、以对方进程的端口为目的端口。课件这一页还把两对端口的取值留成「？」，供课堂上现场填写。</p>
+
+<h2>9. 端口</h2>
+<p>端口值得单独一说，因为它是应用层与运输层之间的接口：<strong>端口的作用就是让应用层各种应用进程都能把数据通过端口向下交付给运输层，也让运输层知道应当把报文段中的数据向上通过端口交付给应用层相应的进程（或者线程）</strong>。也就是说，端口是应用进程在运输层的门牌号——进程把数据送到自己的端口，运输层就知道收到的报文段该交给哪一个进程。</p>
+<p>从这个意义上讲，端口用来标志应用层的进程（或者线程），并且<strong>用一个 16 bit 的端口号进行标志</strong>，即共有 65536 个取值。要留意这里的层次：端口号标识的是主机内部的进程而不是主机；要在因特网上找到通信的另一端，还必须把主机也标识出来——这就是下一节的套接字。</p>
+
+<h2>10. 套接字</h2>
+<p>主机靠 <strong>IP 地址</strong>标识：IP 地址在互联网上唯一标识一台主机；进程靠<strong>端口号</strong>标识：端口号在一台主机上唯一标识一个应用进程。把两者结合起来，就可以在互联网上唯一地标识通信双方的一个端点，也就是一个应用进程，这个组合称为<strong>套接字（socket）</strong>，写法上就是把 IP 地址和端口号写在一起，例如 131.6.23.13, 1500。</p>
+<p>有了套接字，通信的每一端都可以用「IP 地址 + 端口号」来指名。反过来，只给端口号只能在一台主机内部定位进程，只给 IP 地址只能找到主机、找不到进程，二者缺一不可。第一版讲义 5.2 运输层端口号、复用与分用的概念对此有更细致的讨论。</p>
+
+<h2>11. 面向连接的复用和分用</h2>
+<p>UDP 的复用和分用只看端口号就够了：数据报送到哪台主机、哪个端口，运输层就把它交给绑定在该端口上的进程。TCP 因为面向连接，规则要复杂一些。课件给出的结论是：<strong>TCP 套接字由一个四元组来标识</strong>，即（源 IP 地址，源端口号，目的 IP 地址，目的端口号）；接收方主机根据这四个值将报文段定向到相应的套接字；Web 服务器为每一个客户连接都产生不同的套接字；服务器主机同时支持多个并发的 TCP 套接字，每一个套接字都由其四元组来标识。</p>
+<p>为什么必须用四元组？因为服务器只有一个 80 端口，却要同时为很多客户服务。课件里的例子是：服务器 B 的 80 端口同时收到三个报文段，目的 IP 地址都是 B、目的端口都是 80，来源却不同——分别来自主机 A 的 9157 端口、主机 C 的 5775 端口和主机 C 的 9157 端口。只看目的端口无从区分，把源 IP 地址和源端口号一并看进去，它们才落到服务器上的三个不同套接字，各自对应一个客户连接。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-1/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-1/p0029.webp" alt="图 6　面向连接的复用和分用：三个目的端口都是 80 的报文段按四元组分用到不同套接字" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　面向连接的复用和分用：服务器 B 的 80 端口同时收到三个报文段，接收方按（源 IP 地址，源端口号，目的 IP 地址，目的端口号）四元组把它们交付给不同的套接字（原课件第 29 张）</figcaption>
+</figure>
+<p>反过来，服务器发往客户的报文段源端口同样是 80，客户主机靠目的端口号（9157 或 5775）把它交给自己的进程。可见「面向连接」在运输层的落实方式，就是为一对通信端点建立并维护一个由四元组确定的套接字。这与 3.2 节要讲的 UDP 恰成对照：UDP 的套接字只需目的 IP 地址和目的端口号，凡送到本机某个端口的数据报都交给同一个进程。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>常见的网络应用可分为获取信息、交流、娱乐和资源共享几类，它们共同的问题是：谁来提供服务、谁主动发起，以及应用对网络提出什么要求；</li>
+  <li>应用之间通信有三种体系架构：C/S（服务器提供服务、客户机主动连接，客户机之间不能互相通信，常用服务器集群提高处理能力）、P2P（结点直接通信、既服务又享受服务，地址与连接随时变化，易扩展但难管理）以及两者的混合体；</li>
+  <li>应用对传输服务的要求是实时性、安全性、带宽的自动控制和可靠传输：文件传输、e-mail、Web、金融应用要求数据不丢失且带宽弹性，实时音频/视频与交互式游戏允许丢失但要求 100 msec 量级的时延；</li>
+  <li>因特网实际提供两种传输服务：TCP 面向连接、可靠传输、有流量控制和拥塞控制，不提供实时性和最小带宽承诺；UDP 则把连接建立、可靠性保证、流量与拥塞控制一概省略；</li>
+  <li>因特网体系架构分五层（物理层、数据链路层、网络层、运输层、应用层），TCP/IP 体系架构分四层（应用层、运输层、网际层、网络接口层）；运输层用 16 bit 的端口号标志应用层的进程（或线程）；</li>
+  <li>IP 地址标识主机、端口号标识进程，两者合成套接字；无连接时按目的端口分用，面向连接时 TCP 套接字由（源 IP 地址，源端口号，目的 IP 地址，目的端口号）四元组标识，服务器因此能用一个端口同时支持多个客户连接。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-2-5.html">‹ 2.5 数据可靠传输模型的性能优化</a>
+      <a class="next" href="v2-3-2.html">3.2 面向无连接的不可靠服务—UDP协议 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

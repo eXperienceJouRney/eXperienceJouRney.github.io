@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2 因特网概述 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 1 章 1.2 因特网概述：网络、互联网与因特网，发展三阶段，ISP 与三层结构，标准化工作，因特网的组成。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html" aria-current="page"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 1 章 概述</p>
+      <h1>1.2 因特网概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">本节是整门课的起点。我们要研究的对象是计算机网络，而当今规模最大、最有代表性的计算机网络就是因特网。先分清「网络—互联网—因特网」三个层层递进的概念，再看因特网走过的三个阶段、它如何制定标准、由谁运营、整体上由什么组成，为后面各章搭好舞台。</p>
+<h2>1. 网络、互联网与因特网</h2>
+<p>先从最小的概念说起。<strong>网络（Network）</strong>由若干<strong>结点（Node）</strong>和连接这些结点的<strong>链路（Link）</strong>组成。结点可以是计算机、集线器、交换机、路由器等联网设备，链路则是有线或无线的传输介质。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-2/p0002.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-2/p0002.webp" alt="图 1　网络的构成：结点与链路" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　网络的构成：若干结点与连接结点的链路（原讲义第 2 页）</figcaption>
+</figure>
+<p>多个网络还可以通过路由器互连起来，构成一个覆盖范围更大的网络，这就是<strong>互联网（互连网，internet）</strong>。因此，互联网是「网络的网络（Network of Networks）」。</p>
+<p>而<strong>因特网（Internet）</strong>是世界上最大的互连网络：用户数以亿计，互连的网络数以百万计，全球的主机（host）都连接其上。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-2/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-2/p0005.webp" alt="图 2　互联网与因特网：多个网络互连、主机接入" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　多个网络互连构成互联网，因特网是其中规模最大的一个（原讲义第 5 页）</figcaption>
+</figure>
+<p>请注意 internet 与 Internet 的区别，这是一对容易混淆的写法：</p>
+<ul>
+  <li><strong>internet（小写 i）</strong>是<strong>通用名词</strong>，泛指由多个计算机网络互连而成的网络，在这些网络之间使用的通信协议可以是任意的；</li>
+  <li><strong>Internet（大写 I）</strong>是<strong>专用名词</strong>，指当前全球最大的、开放的、由众多网络相互连接而成的特定计算机网络。它采用 TCP/IP 协议族作为通信规则，其前身是美国的 ARPANET。</li>
+</ul>
+<h2>2. 因特网发展的三个阶段</h2>
+<p>因特网不是一天建成的。沿着时间线，它的发展可以分为三个阶段，每个阶段的「主角」都不一样：</p>
+<figure class="fig">
+  <a href="../../assets/course/1-2/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-2/p0007.webp" alt="图 3　因特网发展的三个阶段" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　因特网发展的三个阶段：从单个网络到三级结构，再到多层次 ISP 结构（原讲义第 7 页）</figcaption>
+</figure>
+<p><strong>第一阶段：从单个网络 ARPANET 向互联网发展（1969 年起）。</strong></p>
+<ul>
+  <li>1969 年，第一个分组交换网 ARPANET 诞生；</li>
+  <li>70 年代中期，人们开始研究多种网络之间的互连；</li>
+  <li><strong>1983 年，TCP/IP 协议成为 ARPANET 的标准协议</strong>——通常把这一年视为因特网的诞生时间；</li>
+  <li>1990 年，ARPANET 任务完成，正式关闭。</li>
+</ul>
+<p><strong>第二阶段：逐步建成三级结构的因特网（1985 年起）。</strong></p>
+<ul>
+  <li>1985 年，美国国家科学基金会 NSF 围绕六个大型计算机中心建设 NSFNET，形成主干网、地区网和校园网的三级结构；</li>
+  <li>1991 年，美国政府将因特网主干网交给私人公司经营，并开始对接入因特网的单位收费。</li>
+</ul>
+<p><strong>第三阶段：逐步形成多层次 ISP 结构的因特网（1993 年起）。</strong></p>
+<ul>
+  <li>1993 年，NSFNET 逐渐被若干个商用因特网主干网替代：政府机构不再负责因特网运营，改由各种因特网服务提供者 ISP 来运营；</li>
+  <li>1994 年，万维网 WWW 技术促使因特网迅猛发展；</li>
+  <li>1995 年，NSFNET 停止运作，因特网彻底商业化。</li>
+</ul>
+<h2>3. 因特网服务提供者 ISP</h2>
+<p>普通用户并不「直接接入」因特网，而是通过<strong>因特网服务提供者 ISP（Internet Service Provider）</strong>接入。ISP 拥有通信线路、路由器等联网设备，向用户提供接入服务。我国常见的 ISP 有中国电信、中国联通、中国移动等。</p>
+<p>商业化之后的因特网是在分层的 ISP 架构上运转的（图 4）：</p>
+<ul>
+  <li><strong>第一层 ISP</strong>：即主干网，覆盖国际性区域，彼此互联，服务对象主要是第二层 ISP 和大公司；</li>
+  <li><strong>第二层 ISP</strong>：区域性或国家性覆盖规模，向第一层 ISP 购买服务，同时向本地 ISP 提供服务；</li>
+  <li><strong>本地 ISP</strong>：覆盖本地范围，直接面向校园网、企业网和个人用户。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/1-2/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-2/p0010.webp" alt="图 4　基于 ISP 的三层结构因特网" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　基于 ISP 的三层结构因特网：第一层（主干网）、第二层（区域）与本地 ISP（原讲义第 10 页）</figcaption>
+</figure>
+<p>一个国家接入因特网的「通道」有多宽，可以粗略地由国际出口带宽来衡量。下表是 CNNIC 第 43 次《中国互联网络发展状况统计报告》（2019 年 2 月）给出的我国主要网络国际出口带宽数：</p>
+<table>
+  <caption>数据来源：第 43 次《中国互联网络发展状况统计报告》，中国互联网络信息中心 CNNIC，2019 年 2 月。</caption>
+  <thead>
+    <tr><th>网络</th><th>国际出口带宽数（Mbps）</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>中国电信</td><td>4,537,680</td></tr>
+    <tr><td>中国联通</td><td>2,234,738</td></tr>
+    <tr><td>中国移动</td><td>1,997,000</td></tr>
+    <tr><td>中国科技网</td><td>115,712</td></tr>
+    <tr><td>中国教育和科研计算机网</td><td>61,440</td></tr>
+    <tr><td><strong>合计</strong></td><td><strong>8,946,570</strong></td></tr>
+  </tbody>
+</table>
+<h2>4. 因特网的标准化工作</h2>
+<p>因特网能从一个研究性网络成长为全球基础设施，与它开放的标准制定方式密不可分。因特网在制定标准上的一个很大特点是<strong>面向公众</strong>：</p>
+<ul>
+  <li>所有 RFC（Request For Comments，征求意见文档）技术文档都可以从因特网上免费下载（www.ietf.org/rfc.html）；</li>
+  <li>任何人都可以随时用电子邮件对某个文档发表意见或建议。</li>
+</ul>
+<p>因特网的标准制定由一套分工明确的组织承担：</p>
+<ul>
+  <li><strong>因特网协会 ISOC</strong>（Internet Society）：国际性组织，负责对因特网进行全面管理，并在世界范围内促进其发展和使用；</li>
+  <li><strong>因特网体系结构委员会 IAB</strong>（Internet Architecture Board）：负责管理因特网有关协议的开发；</li>
+  <li><strong>因特网工程部 IETF</strong>（Internet Engineering Task Force）：负责研究中短期工程问题，主要针对协议的开发和标准化；</li>
+  <li><strong>因特网研究部 IRTF</strong>（Internet Research Task Force）：从事理论方面的研究，开发一些需要长期考虑的问题。</li>
+</ul>
+<p>制订因特网正式标准，要经过以下 4 个阶段：</p>
+<ul>
+  <li>（1）因特网草案（在这个阶段还不是 RFC 文档）；</li>
+  <li>（2）建议标准（从这个阶段开始成为 RFC 文档）；</li>
+  <li>（3）草案标准；</li>
+  <li>（4）因特网标准。</li>
+</ul>
+<p>顺带一提：2011 年发布的 RFC 6410 已将「草案标准」阶段取消，现在的标准过程精简为「建议标准 → 因特网标准」两步。不少教材（包括本讲义）仍沿用四阶段的表述，了解其演变即可。</p>
+<h2>5. 因特网的组成</h2>
+<p>从工作方式上看，因特网可以划分为两大块（图 5）：</p>
+<ul>
+  <li><strong>边缘部分</strong>：由所有连接在因特网上的主机（又称端系统）组成。这部分是用户直接使用的，用来进行通信（传送数据、音频或视频）和资源共享；</li>
+  <li><strong>核心部分</strong>：由大量网络和连接这些网络的路由器组成。这部分是为边缘部分提供服务的，提供连通性和交换。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/1-2/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-2/p0012.webp" alt="图 5　因特网的组成：边缘部分与核心部分" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　因特网的组成：边缘部分（主机）与核心部分（网络与路由器）（原讲义第 12 页）</figcaption>
+</figure>
+<p>后续章节正是沿着这两块展开的：核心部分的网络如何传送数据，就从下一节的三种交换方式讲起；边缘部分两种通信方式——客户—服务器方式和对等方式，将在 6.2 节专门讨论。</p>
+<h2>本节小结</h2>
+<ul>
+  <li>三个递进的概念：网络（结点＋链路）→ 互联网（网络的网络）→ 因特网（全球最大的互连网络，采用 TCP/IP 协议族）；internet 是通用名词，Internet 是专用名词；</li>
+  <li>发展三阶段：单个网络 ARPANET（1983 年 TCP/IP 成为标准协议，因特网诞生）→ 三级结构 NSFNET → 多层次 ISP 结构（1995 年彻底商业化）；</li>
+  <li>现代因特网由分层 ISP 支撑：第一层（主干网）→ 第二层（区域）→ 本地 ISP（面向用户）；</li>
+  <li>标准化面向公众：RFC 免费公开、任何人可提意见；组织上 ISOC — IAB — IETF / IRTF 分工；正式标准经历因特网草案 → 建议标准 →（草案标准）→ 因特网标准；</li>
+  <li>组成上分两块：边缘部分（端系统，通信与资源共享）＋ 核心部分（网络与路由器，提供连通性和交换）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <span></span>
+      <a class="next" href="1-3.html">1.3 三种交换方式 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

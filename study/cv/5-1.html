@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.1 人工神经元与激活函数 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 5 章 前馈神经网络 5.1 人工神经元与激活函数：以「5-前馈神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html" aria-current="page"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 5 章 前馈神经网络</p>
+      <h1>5.1 人工神经元与激活函数</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">神经网络的最小单元是神经元。这一节先把生物神经元的工作方式抽象成一个数学式子，再说清楚式子里每一项——权重、偏置、激活函数——各自管什么，最后把常见的激活函数逐个过一遍，讲清它们各自的形状、优点和「杀死梯度」这类毛病。后面所有网络结构，说到底都只是把这些神经元按不同方式接起来。</p>
+
+<h2>1. 生物神经元</h2>
+<p>人工神经网络的出发点是人脑。一个生物神经元通常具有多个树突和一条轴突：<strong>树突用来接受信息，轴突用来发送信息</strong>。轴突尾端有许多末梢，可以与其他多个神经元的树突产生连接，这个连接部位称为突触，信息在突触上以电脉冲的形式传递。</p>
+<p>单个神经细胞只有两种状态：<strong>兴奋</strong>和<strong>抑制</strong>。当神经元所获得的输入信号的积累超过某个阈值时，它就处于兴奋状态，产生电脉冲；否则处于抑制状态。这里的关键词是「积累」：一个神经元同时接收成百上千个输入，它把这些输入叠加起来，再拿总量去和阈值比较，而不是对某一个输入单独作判断。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0004.webp" alt="图 1　生物神经元的结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　生物神经元：树突接受信息，轴突发送信息，轴突末梢与其他神经元的树突形成突触（原课件第 4 张）</figcaption>
+</figure>
+
+<h2>2. 从生物神经元到人工神经元</h2>
+<p>把上面三件事——多个输入、加权积累、超过阈值才兴奋——翻译成数学语言，就得到了人工神经元。图 2 是课件给出的对应关系，逐条看：</p>
+<ul>
+  <li>X₁, X₂, …, X<sub>d</sub> 对应神经元 d 个树突接收到的信号，一起构成输入向量；</li>
+  <li>ω₁X₁ 表示 X₁ 通过树突到达细胞体之后的信号，ω 是这条连接的<strong>权重</strong>，代表连接强度；</li>
+  <li>d 个信号的加权和 Σ ω<sub>i</sub>X<sub>i</sub> 模拟输入信号的积累过程；</li>
+  <li>a 对应神经元轴突的输出信号，它可以继续传输给其他神经元；</li>
+  <li><strong>激活函数</strong>判断细胞积累是否超过某个阈值，模拟神经元的兴奋状态，产生电脉冲输出。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0005.webp" alt="图 2　人工神经元与生物神经元的对应关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　人工神经元：输入加权求和后送进激活函数，得到输出 a，并与生物神经元的树突、细胞体、轴突一一对应（原课件第 5 张）</figcaption>
+</figure>
+<p>合起来，一个神经元的计算就是 a = f(Σ<sub>i</sub> ω<sub>i</sub>X<sub>i</sub> + b)。输入经过加权求和、再加上偏置 b，最后由激活函数 f 决定输出多少。权重决定「每个输入有多重要」，偏置决定「这根神经元的门槛在哪里」，激活函数决定「门槛怎么卡」。</p>
+
+<h2>3. 为什么需要偏置 b</h2>
+<p>课件专门用两页提出并回答这个问题。<strong>如果没有偏置项，决策边界（W·X）就被限制在必须通过坐标原点</strong>，而现实问题并非都是能够经过原点线性可分的；这种限制会导致模型精度差，无法很好地拟合数据。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0006.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0006.webp" alt="图 3　带偏置 b 的神经元结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　课件以「为什么需要偏置 b？」提问，给出的正是含偏置的神经元结构（原课件第 6 张）</figcaption>
+</figure>
+<p>换个说法更容易理解：权重负责<strong>旋转</strong>这根决策边界的方向，偏置负责把它<strong>平移</strong>。只有权重没有偏置，这条线（或这个超平面）就被钉死在原点上，无论怎么训练都动不了位置。加上偏置以后，同一个权重对应的边界可以在空间中自由平移，模型才可能拟合那些「分界线不过原点」的数据。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0007.webp" alt="图 4　没有偏置时决策边界被限制在过原点" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　没有偏置项时，决策边界必须过坐标原点，现实数据未必这样线性可分（原课件第 7 张）</figcaption>
+</figure>
+
+<h2>4. 激活函数应当具备的性质</h2>
+<p>激活函数不是随便挑一个非线性函数就行。课件给出了四条要求，每一条都有明确的工程理由：</p>
+<ul>
+  <li><strong>连续并可导</strong>（允许少数点上不可导）的非线性函数。非线性是根本：如果激活函数是线性的，多层网络叠起来仍然等价于一次线性变换，深度就白加了（这一点在 5.5 节会用一个具体例子算给大家看）；可导则是为了让梯度下降能算下去。</li>
+  <li><strong>可导的激活函数可以直接利用数值优化的方法来学习网络参数</strong>。反向传播算的就是激活函数的导数，不可导就无从求梯度。</li>
+  <li><strong>激活函数及其导函数要尽可能简单</strong>，有利于提高网络计算效率。激活函数在网络里要被调用亿万次，多一次指数运算就是实打实的开销。</li>
+  <li><strong>导函数的值域要在一个合适的区间内</strong>，不能太大也不能太小，否则会影响训练的效率和稳定性。导数太小，误差在逐层反传时会衰减到 0（梯度消失）；导数太大，又会逐层放大（梯度爆炸）。</li>
+</ul>
+
+<h2>5. 常见激活函数</h2>
+
+<h3>（1）Sigmoid 函数</h3>
+<p>Sigmoid 函数也叫 Logistic 函数，形式是 σ(x) = 1 / (1 + e<sup>−x</sup>)，导数有一个很漂亮的形式：σ′(x) = σ(x)(1 − σ(x))。它把整个实数轴压进 (0, 1) 区间，因此非常适合作为「输出是一个概率」的模型的最后一层。</p>
+<p>优点：函数单调连续可微；输出值限定在 0 到 1 之间，相当于对每个神经元的输出做了归一化；可用于最终输出是概率值的模型，因为概率的取值范围也是 0 到 1。</p>
+<p>缺点有三条：</p>
+<ul>
+  <li><strong>非零中心化</strong>：输出恒大于 0，会使得其后一层的神经元的输入发生偏置偏移（bias shift），使梯度下降的收敛速度变慢；</li>
+  <li><strong>计算复杂</strong>：求值涉及 e<sup>x</sup>；</li>
+  <li><strong>梯度消失</strong>（这也是很多激活函数的通病）：输出接近 0 或 1 的神经元其梯度接近于 0，这些饱和神经元的权重不会再更新，而且与此类神经元相连接的神经元权重更新也会受影响。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0009.webp" alt="图 5　Sigmoid 函数曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Sigmoid（Logistic）函数曲线：两端饱和、中间近似线性，输出落在 0 到 1（原课件第 9 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0010.webp" alt="图 6　Sigmoid 函数的缺点" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Sigmoid 的缺点：非零中心化带来偏置偏移，计算涉及指数，饱和区梯度趋近于 0（原课件第 10 张）</figcaption>
+</figure>
+
+<h3>（2）Tanh 函数</h3>
+<p>双曲正切函数 tanh(x) = (e<sup>x</sup> − e<sup>−x</sup>) / (e<sup>x</sup> + e<sup>−x</sup>)，可以看作放大并平移的 Sigmoid 函数：形状一样是 S 形，但输出范围从 (0, 1) 变成 (−1, 1)。</p>
+<ul>
+  <li><strong>零中心化</strong>：输出关于原点对称，不会发生偏置偏移——这正是它相对 Sigmoid 的最大改进；</li>
+  <li><strong>梯度消失</strong>：在 x 很大或很小时，函数同样饱和，也会「杀死」梯度。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0011.webp" alt="图 7　Tanh 函数曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　Tanh 函数：相当于放大并平移的 Sigmoid，输出范围 (−1, 1)，零中心化（原课件第 11 张）</figcaption>
+</figure>
+
+<h3>（3）ReLU 函数</h3>
+<p>修正线性单元（Rectified Linear Unit，ReLU）是今天最常用的激活函数，形式极简：ReLU(x) = max(0, x)，正数原样通过，负数一律置零。它的两个好处是：</p>
+<ul>
+  <li><strong>计算上更加高效</strong>：只有一次比较，没有指数运算；</li>
+  <li><strong>只有 50% 的神经元处于激活状态</strong>，会使神经网络具有稀疏性，与生物神经网络的特性吻合（生物神经元也大多处于抑制状态）。</li>
+</ul>
+<p>代价是<strong>死亡 ReLU 问题（Dying ReLU Problem）</strong>：某个神经元在所有的训练数据上都不能被激活（输入恒为负，输出恒为 0），那么这个神经元自身参数的梯度永远都会是 0，在以后的训练过程中永远不能被激活。解决方案是：在输入 x &lt; 0 时保持一个很小的梯度，让它还有机会被救回来——Leaky ReLU、PReLU 等变体都是这个思路。</p>
+
+<h3>（4）Swish 函数</h3>
+<p>Swish 函数写成 swish(x) = x · σ(βx)，其中 σ(·) 为 Logistic 函数，β 为可学习的参数或一个固定超参数。它是一种<strong>自控门激活函数</strong>：当 σ(βx) 接近于 1 时，门处于「开」的状态，激活函数的输出近似于 x 本身；当 σ(βx) 接近于 0 时，门的状态为「关」，输出被压小。也就是说，负半轴不像 ReLU 那样被硬性截断，而是平滑地衰减，所以它同样能缓解死亡 ReLU 的问题。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0013.webp" alt="图 8　Swish 函数曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　Swish 函数曲线：负半轴不是被直接截断，而是被「门」压小（原课件第 13 张）</figcaption>
+</figure>
+
+<h3>（5）GELU 函数</h3>
+<p>高斯误差线性单元（Gaussian Error Linear Unit，GELU）把「门」换成高斯分布的累积分布函数：GELU(x) = x · P(X ≤ x)，其中 P(X ≤ x) 是高斯分布 N(μ, σ²) 的累积分布函数，μ、σ 为超参数，一般设 μ = 0、σ = 1 即可。由于高斯分布的累积分布函数本身就是 S 型函数，因此 GELU 可以用 Tanh 函数或 Logistic 函数来近似。它在 Transformer 一类模型里被广泛使用。</p>
+
+<h2>6. 常见激活函数及其导数</h2>
+<p>把上面几个函数和它们的导数放在一起对比（图 9），可以看出各自的取舍：Sigmoid、Tanh 形状相近但导数在两端迅速趋零；ReLU 的导数在正半轴恒为 1，因此不衰减，却在负半轴恒为 0；Swish、GELU 则用一条平滑的「门」把 ReLU 的硬拐点磨圆。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-1/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-1/p0015.webp" alt="图 9　常见激活函数及其导数对照" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　常见激活函数及其导数：函数曲线与导函数曲线并排对照（原课件第 15 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>生物神经元用树突接受、轴突发送，只有兴奋与抑制两种状态，输入积累超过阈值才发放脉冲；人工神经元把这三件事抽象为「加权求和 → 加偏置 → 过激活函数」；</li>
+  <li>偏置 b 的作用是让决策边界可以平移；没有它，边界被限制为必须过原点，模型精度会明显变差；</li>
+  <li>激活函数要满足四条：非线性且（几乎处处）可导、可导才能用数值优化、函数与导数尽量简单、导数值域要适中（太大梯度爆炸、太小梯度消失）；</li>
+  <li>Sigmoid 输出 (0, 1)，适合概率输出，但非零中心化、计算复杂、两端饱和；Tanh 是它的零中心化版本，仍有梯度消失；</li>
+  <li>ReLU 计算高效、带来稀疏性，但有死亡 ReLU 问题；Swish 用可学习的「门」平滑地压小负半轴；GELU 用高斯累积分布函数做门，常用 Tanh 或 Logistic 近似；</li>
+  <li>激活函数的选择没有绝对最优：本质是在「计算代价」「是否零中心化」「梯度是否容易消失」三者之间取舍。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-6.html">‹ 4.6 快速检测：FAST 与 ORB</a>
+      <a class="next" href="5-2.html">5.2 神经网络的结构与发展历程 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

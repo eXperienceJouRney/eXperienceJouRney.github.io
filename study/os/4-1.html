@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1 进程的引入 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.1 进程的引入：课件第 3–24 张 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html" aria-current="page"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.1 进程的引入</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">从这一章开始进入本课程的核心：进程及进程管理。要讲清「进程」，得先讲清它为什么会出现——单道批处理系统里程序顺序执行，虽然结果可靠，但计算机的效率低得可怜；多道系统让程序并发执行，效率上去了，可靠性和可再现性却丢了。这一节就走这条线索：先看顺序执行的特点与代价，再看并发执行的由来、描述方法和代价，最后引出并发带来的三个新问题，为下一节「进程概念」作准备。</p>
+
+<h2>1. 程序、数据与计算</h2>
+<p>先明确三组基本概念。用来表示人们思维对象的抽象概念的物理表现叫做<strong>数据</strong>；数据处理的规则叫做<strong>操作</strong>（指令）；对某一有限数据的集合所施行的、目的在于解决某一问题的一组有限的操作的集合，称为一个<strong>计算</strong>。计算机就是用指令来处理数据。而<strong>程序是数据和指令的集合</strong>，即「数据结构＋算法」——一个程序的执行过程就是一次计算。</p>
+
+<h2>2. 程序的顺序执行及其特点</h2>
+<p>程序的执行有两种方式：顺序执行和并发执行。顺序执行是单道批处理系统的执行方式；现在的操作系统多为并发执行，具有许多新的特征，引入并发执行的目的是提高资源利用率。</p>
+<h3>（1）什么是程序的顺序执行</h3>
+<p>一个程序由若干个子程序段组成，每个程序段由若干条操作指令组成。顺序执行的含义有两条：<strong>子程序段的执行必须严格按照先后次序进行，子程序段中的指令也必须是顺序执行的</strong>。把视野放大到整个系统，则是各个程序一个一个按顺序运行，同时只能运行一个程序，一个程序运行完毕后才能运行下一个程序。</p>
+<p>以典型的「输入—计算—打印」流程为例，单用户系统中操作的先后次序是：I1、C1、P1，然后 I2、C2、P2，再 I3、C3、P3——每一步都必须等上一步结束：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0007.webp" alt="图 1　单用户系统中操作的先后次序" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　单用户系统中操作的先后次序：输入 I、计算 C、打印 P 必须依次进行，一个作业的打印结束后下一个作业才能开始输入（原课件第 7 张）</figcaption>
+</figure>
+<h3>（2）顺序程序的特点</h3>
+<p>顺序执行带来三个特点：</p>
+<ul>
+  <li><strong>顺序性</strong>——处理机的操作严格按照程序所规定的顺序执行；</li>
+  <li><strong>封闭性</strong>——程序一旦开始执行，其计算结果不受外界因素的影响；</li>
+  <li><strong>可再现性</strong>——程序执行的结果与它的执行速度无关（即与时间无关），而只与初始条件有关。</li>
+</ul>
+<p>这三条之间是有依赖关系的：<strong>时间无关性导致可再现性，而时间无关性的先决条件是程序的封闭性</strong>。正是有了封闭性，外界干扰进不来，程序跑快跑慢都不影响结果。</p>
+<p>代价是<strong>计算机系统效率不高</strong>。看下面这张时间图：输入、处理器、打印三台设备串行工作，处理器真正忙碌的时间只占整个周期的一小部分，处理器利用率只有 52/(78+52+20)≈35%——也就是说，处理器有近三分之二的时间在等待输入和打印。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0009.webp" alt="图 2　顺序执行时处理器的利用率" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　顺序执行时输入、处理器、打印的时间关系：处理器只在自己那一段忙碌，利用率约为 35%（原课件第 9 张）</figcaption>
+</figure>
+
+<h2>3. 并发执行</h2>
+<h3>（1）多道系统中作业的并发</h3>
+<p>既然效率低是因为设备与处理器互相等待，那就让多个作业同时在系统中推进。对 n 个用户作业，每道作业都有 I、C、P 三个程序段：作业 1 是 I1、C1、P1，作业 2 是 I2、C2、P2……作业 n 是 In、Cn、Pn。多道系统允许这些程序段交错执行，例如在作业 1 计算的同时让作业 2 输入，在作业 1 打印的同时让作业 2 计算。</p>
+<p>这时就要回答两个问题：<strong>哪些程序段的执行必须是顺序的？为什么？哪些程序段的执行可以是并行的？为什么？</strong>判断的依据在于程序段之间有没有数据依赖和使用同一资源——同一作业内 I→C→P 有先后依赖，必须顺序；不同作业的同类程序段之间没有依赖，可以并行。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0010.webp" alt="图 3　多道系统中操作的先后次序" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　多道系统中操作的先后次序：多个作业的输入、计算、打印程序段交错执行，I1、C1、P1 内部仍保持顺序（原课件第 10 张）</figcaption>
+</figure>
+<p>交错之后效率立刻不同：同样的输入、处理、打印时间，处理器的利用率从约 35% 提高到 52/78≈67%。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0011.webp" alt="图 4　并发执行时处理器的利用率" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　并发执行时输入、处理器、打印的时间关系：多个作业的程序段交叠，处理器利用率提高到约 67%（原课件第 11 张）</figcaption>
+</figure>
+<h3>（2）为什么程序可以并发执行</h3>
+<p>并发之所以可能，是由程序运行时需要占用的资源决定的：</p>
+<ul>
+  <li>一个资源本来就可以同时被多个程序使用（例如可重入的代码段）；</li>
+  <li>一个资源同时只能被一个程序使用，但是可以分时使用（例如处理器）；</li>
+  <li>一个程序在不同的时刻可能占用不同的资源，它释放的资源可以让其他程序使用；</li>
+  <li>存在多个同类资源（例如多台设备）。</li>
+</ul>
+<p>并发执行的优点也随之清楚：<strong>发挥硬件的并行能力，以提高资源利用率</strong>。</p>
+<h3>（3）什么是程序的并发执行</h3>
+<p>所谓并发执行，就是若干个程序段在时间上重叠地推进。下图给出三个并发进程 P、Q、R 的情形——它们在时间轴上相互交叠，但每一个内部的语句仍然按自己的顺序执行。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0013.webp" alt="图 5　三个并发进程" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　三个并发进程 P、Q、R：各自的执行区间在时间上重叠，内部仍保持顺序（原课件第 13 张）</figcaption>
+</figure>
+<h3>（4）并发程序的描述</h3>
+<p>要把一个程序设计成若干个可同时执行的程序模块，用下面这对语句表示这些程序段可以并发执行：</p>
+<pre><code>cobegin
+    S1; S2; ... ; Sn
+coend</code></pre>
+<p>它表示程序段（函数）S1、S2、…、Sn 可以并发执行。这里「可以」二字很关键：<strong>并发执行意味着各个程序段以不可预知的次序运行，甚至也可能是串行</strong>。一个完整的程序结构通常写成在前后两段顺序代码之间插入一块并发段：</p>
+<pre><code>S0;
+cobegin
+    S1; S2; ... ; Sn
+coend;
+Sn+1;</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0015.webp" alt="图 6　并发程序的描述示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　并发程序的描述示例：S0 之后用 cobegin/coend 划出可并发的 S1～Sn，之后再顺序执行 Sn+1（原课件第 15 张）</figcaption>
+</figure>
+
+<h2>4. 并发程序的例子：誊抄</h2>
+<p>「誊抄」是一个把并发的好处和风险同时展现出来的经典例子：用卡片输入机把一个文本复写到行式打印机。</p>
+<h3>（1）循环顺序执行</h3>
+<p>最直接的做法是一个循环里先读后印：</p>
+<pre><code>while (不空) {
+    INPUT;   // 卡片输入机读
+    OUTPUT;  // 打印机打印
+}</code></pre>
+<p>缺点是显而易见的：<strong>未能利用卡片输入机与行式打印机的并行操作能力，造成系统效率低</strong>——读的时候打印机闲着，打印的时候输入机闲着。</p>
+<h3>（2）基于一个缓冲区的并发誊抄方案</h3>
+<p>把读和印拆成两个程序，中间用一个缓冲区衔接：卡片输入机 → 缓冲区 → 行式打印机。</p>
+<pre><code>输入程序 I：                输出程序 O：
+while (不空) {              while (未结束) {
+    INPUT;                      RECEIVE;
+    SEND;                       OUTPUT;
+}                           }</code></pre>
+<p>输入程序反复地读入并发送，输出程序反复地接收并打印，两个程序并发执行，誊抄效率提高了。但问题也随之而来：<strong>可能出现结果不正确</strong>——当一个程序还在往缓冲区里放数据、另一个程序已经来取数据时，取的可能是残缺的内容；反过来，新数据也可能覆盖尚未打印的旧数据。</p>
+<h3>（3）引入第二个缓冲区的方案</h3>
+<p>解决办法是再加一个缓冲区，形成「卡片输入机 → 缓冲区 s → 缓冲区 t → 行式打印机」的接力：输入的内容先送入缓冲区 s，再由中间的复制环节送到缓冲区 t，最后从缓冲区 t 送往行式打印机。整个誊抄过程用 <code>cobegin ... coend</code> 描述，循环条件是「誊写未完成」：只要誊写没有结束，就继续并发地推进这几段。</p>
+<p>三个方案放在一起看，正好是并发程序设计的一般思路：<strong>先把串行流程拆成若干可并发的程序段，再用缓冲区一类的手段解决它们之间的速度差异和数据交接问题</strong>。</p>
+
+<h2>5. 并发程序的特点：与时间有关的错误</h2>
+<p>并发带来的最大麻烦是共享变量。设程序 A 中执行 <code>n := n+1;</code>，程序 B 中依次执行 <code>print(n);</code> 和 <code>n := 0;</code>，两个程序共享变量 n。程序 A 的那条语句究竟插在程序 B 两条语句的什么位置，会得到完全不同的结果：</p>
+<table>
+  <caption>表 1　程序 A 的 n:=n+1 与程序 B 两条语句的相对次序对结果的影响（据原课件整理）</caption>
+  <thead>
+    <tr><th>相对次序</th><th>n 的初值</th><th>打印的结果</th><th>n 的最终值</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>之前</td><td>10</td><td>11</td><td>0</td></tr>
+    <tr><td>之后</td><td>10</td><td>10</td><td>1</td></tr>
+    <tr><td>之间</td><td>10</td><td>10</td><td>0</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course-os/4-1/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-1/p0020.webp" alt="图 7　共享变量的两个程序" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　共享变量的两个程序：程序 A 执行 n:=n+1，程序 B 执行 print(n) 与 n:=0，两者交错次序不同则结果不同（原课件第 20 张）</figcaption>
+</figure>
+<p>同样的道理也出现在机票问题上。设共享变量 <code>X</code> 表示剩余的票数：</p>
+<pre><code>int X;  // 剩余的票数
+
+订票的函数()
+{
+    if (X &gt;= 1) {
+        X = X - 1;
+        输出一张票；
+    } else {
+        输出票已售完；
+    }
+}</code></pre>
+<p>如果两张票的订票请求并发到达，两边的判断都可能读到 <code>X=1</code> 而都认为有票，于是同一张票被卖出去两次。</p>
+<p>把现象提炼成结论：并发执行<strong>失去封闭性，从而导致失去可再现性</strong>——</p>
+<ul>
+  <li>即使输入相同的初始条件，也可能得到不同的结果；</li>
+  <li>结果不可再现、不可预测；</li>
+  <li>程序的执行结果与程序间的相对速度有关。</li>
+</ul>
+<p>这就是<strong>与时间有关的错误</strong>：程序并发执行时若共享了变量，其执行结果将与并发程序执行的相对速度有关，即使给定相同的初始条件，也可能会得到不同的结果。</p>
+<p>那么并发执行不能保证正确性，还有实用价值吗？答案是有的，关键在于分清两种情况：</p>
+<ul>
+  <li>并发程序之间<strong>没有共享变量</strong>时，它们之间还是封闭的，不会发生与时间有关的错误；</li>
+  <li>如果<strong>有共享变量</strong>，就必须慎重对待——要保证程序的正确性，办法是<strong>对共享变量的互斥访问</strong>。</li>
+</ul>
+
+<h2>6. 并发带来的新问题</h2>
+<p>把上面的分析收拢，程序并发执行给操作系统提出了三个新问题：</p>
+<ul>
+  <li><strong>与时间有关的错误</strong>：共享变量使结果依赖于执行速度，必须靠互斥访问来保证正确性；</li>
+  <li><strong>程序与计算不再一一对应</strong>：同一个程序段可能被多个作业同时执行，各自有各自的进度和数据，程序这个「静态的代码」已经不足以描述「动态的执行过程」；</li>
+  <li><strong>程序并发执行的相互制约</strong>：并发进程之间存在同步和互斥的约束——<strong>同步对应协作</strong>（例如誊抄中输入与输出必须一先一后地交接数据），<strong>互斥对应资源共享或公共变量</strong>（例如同一台打印机、同一个票数变量）。</li>
+</ul>
+<p>这三条正是下一节要引入的新概念——<strong>进程</strong>——所要解决的问题：只有把「程序的执行过程」本身作为描述对象，才能谈它的状态、它的同步与互斥。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>数据是思维对象的物理表现，操作（指令）是数据处理的规则，计算是一组有限操作的集合；程序＝数据＋指令＝数据结构＋算法，程序的执行过程就是一次计算。</li>
+  <li>顺序执行是单道批处理系统的方式，特点是顺序性、封闭性、可再现性，其中封闭性是时间无关性（进而可再现性）的先决条件；缺点是处理器利用率低（示例中仅约 35%）。</li>
+  <li>多道系统让多个作业的程序段交错执行，处理器利用率提高到约 67%；并发之所以可能，是因为资源可同时共享、可分时使用、可被不同程序在不同时刻占用、且同类资源有多个。</li>
+  <li>并发程序用 <code>cobegin ... coend</code> 描述可同时执行的程序段，各段的执行次序不可预知，也可能串行；誊抄的三个方案（循环顺序执行、单缓冲区并发、双缓冲区并发）说明并发要解决数据交接与速度差异。</li>
+  <li>并发执行失去封闭性、从而失去可再现性，会产生与时间有关的错误：共享变量时结果依赖各程序的相对速度；无共享变量时仍然封闭；有共享变量时必须以互斥访问保证正确。</li>
+  <li>并发还带来「程序与计算不再一一对应」和「并发进程间的相互制约」两个新问题——同步对应协作，互斥对应资源共享或公共变量，这些都要求引入进程这一概念来描述动态的执行过程。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-5.html">‹ 3.5 小结</a>
+      <a class="next" href="4-2.html">4.2 进程概念 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

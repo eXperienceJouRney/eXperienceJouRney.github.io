@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.6 损失函数 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 5 章 前馈神经网络 5.6 损失函数：以「5-前馈神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html" aria-current="page"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 5 章 前馈神经网络</p>
+      <h1>5.6 损失函数</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">训练网络需要一个判据：当前这组权重到底有多差？这个判据就是损失函数。这一节先给出损失函数的定位——它是一把从权重映射到「差多少」的尺子，然后分别讲回归任务常用的 MSE（L2 Loss）、MAE（L1 Loss），以及分类任务用的交叉熵：从信息量、信息熵、相对熵一路推过去，最后说明为什么网络输出要先过一遍 Softmax。</p>
+
+<h2>1. 损失函数是干什么的</h2>
+<p>训练过程就是调整权重矩阵 ω，让当前网络的预测值接近我们真正想要的目标值。不妨将网络的预测值与目标值的差距称为<strong>损失值</strong>，所以网络训练的最终目的就是调整权重矩阵 ω 让损失值 loss 尽可能小。</p>
+<p>那么如何知道哪些权重需要更改？是调高还是调低？我们需要一个度量任意某个权重 ω 好坏的方法：当发现 ω 不利于损失值下降时，将 ω 调小；当发现 ω 有利于损失值下降时将 ω 调高。也就是说，要找到一个从权重 ω 输入、输出损失值 loss 的评估函数，<strong>这个函数称为损失函数</strong>。</p>
+<p>课件按任务类型给出两套常用选择：分类任务中最常见的是<strong>交叉熵损失</strong>；回归任务中最常见的是 L1 Loss（绝对损失，Mean Absolute Error，MAE）和 L2 Loss（平方损失，Mean Squared Error，MSE）。</p>
+
+<h2>2. 回归任务的损失：均方误差 L2 Loss</h2>
+<p>均方误差（Mean Squared Error，MSE）是机器学习、深度学习回归任务中最常用的一种损失函数，也称为 L2 Loss，形式是各样本预测值与真实值之差的平方的平均：</p>
+<p><code>loss = (1/n) [ (pre₁ − y₁)² + (pre₂ − y₂)² + … + (pre_n − y_n)² ]</code></p>
+<ul>
+  <li>MSE 损失的最小值为 0（当预测等于真实值时），最大值为无穷大；</li>
+  <li>随着预测与真实值绝对误差 |pred − y| 的增加，MSE 损失呈<strong>平方增长</strong>；</li>
+  <li>因此 L2 loss <strong>对离群点更敏感</strong>——一个错得很离谱的样本会把损失拉得很大。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-6/p0051.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-6/p0051.webp" alt="图 1　均方误差 MSE 的曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　L2 Loss（MSE）：损失随绝对误差平方增长，最小值 0、最大值无穷大，对离群点敏感（原课件第 51 张）</figcaption>
+</figure>
+
+<h2>3. 回归任务的损失：绝对值损失 L1 Loss</h2>
+<p>绝对值损失（Mean Absolute Error，MAE）是另一类常用的损失函数，也称为 L1 Loss，取的是绝对误差的平均：</p>
+<p><code>loss = (1/n) [ |pre₁ − y₁| + |pre₂ − y₂| + … + |pre_n − y_n| ]</code></p>
+<ul>
+  <li>MAE 损失的最小值为 0（当预测等于真实值时），最大值为无穷大；</li>
+  <li>随着预测与真实值绝对误差 |pred − y| 的增加，MAE 损失<strong>线性增长</strong>，不像 MSE 那样平方增长，所以它离群点更稳健，代价是在 0 点附近不可导、梯度是常数，收敛有时更慢。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-6/p0052.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-6/p0052.webp" alt="图 2　绝对值损失 MAE 的曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　L1 Loss（MAE）：损失随绝对误差线性增长，最小值 0、最大值无穷大（原课件第 52 张）</figcaption>
+</figure>
+
+<h2>4. 分类任务的损失：交叉熵损失</h2>
+<p>交叉熵损失函数（Cross-Entropy Loss）度量的是<strong>两个概率分布之间的差异性</strong>。要理解它，得从「信息量」这个概念一步步搭上去。</p>
+
+<h3>（1）信息量与信息熵</h3>
+<p><strong>信息量</strong>衡量的是「信息消除不确定性的程度」。课件用了两个例子：</p>
+<ul>
+  <li>「太阳从东边升起」——几乎必然发生，信息量 = 0；</li>
+  <li>「学霸小明期末考试不及格」——很罕见，信息量很大。</li>
+</ul>
+<p>可见信息量大小与信息发生的概率成反比。设某一事件发生的概率为 P(x)，其信息量表示为 I(x) = −log P(x)：概率越接近 1，信息量越接近 0；概率越小，信息量越大。</p>
+<p><strong>信息熵</strong>则是所有信息量的期望：H(X) = −Σ<sub>i=1</sub><sup>n</sup> P(x<sub>i</sub>) log P(x<sub>i</sub>)，其中 X = {x₁, x₂, …, x<sub>n</sub>}。它描述的是一个随机变量（或一个分布）本身的不确定程度。</p>
+
+<h3>（2）相对熵（KL 散度）</h3>
+<p><strong>相对熵</strong>（又称 KL 散度）衡量同一随机变量 X 的两个单独的概率分布 P(X) 和 Q(X) 之间的差异：</p>
+<p><code>D_KL(p‖q) = Σ<sub>i=1</sub><sup>n</sup> p(x<sub>i</sub>) log ( p(x<sub>i</sub>) / q(x<sub>i</sub>) )</code></p>
+<p>它有一个很有用的分解：把对数里的商拆开，</p>
+<p><code>D_KL(p‖q) = Σ p(x<sub>i</sub>) log p(x<sub>i</sub>) − Σ p(x<sub>i</sub>) log q(x<sub>i</sub>)</code></p>
+<p>第一项就是 −H(p)（p 的负信息熵），第二项才是与模型 q 有关的部分。因为 H(p) 由真实分布决定、与网络参数无关，所以<strong>最小化 KL 散度等价于最小化第二项</strong>——这一项就是交叉熵。</p>
+
+<h3>（3）交叉熵</h3>
+<p>于是交叉熵损失写成：</p>
+<p><code>H(p, q) = −Σ<sub>i=1</sub><sup>n</sup> p(x<sub>i</sub>) log q(x<sub>i</sub>)</code></p>
+<p>它的含义很直白：p 是真实标签对应的分布（正确类别概率为 1，其余为 0），q 是网络预测的概率分布。真实类别被预测得越准，q(x<sub>i</sub>) 越接近 1，−log q(x<sub>i</sub>) 越接近 0，损失就越小；预测错了，损失就急剧增大。这就是分类任务偏爱交叉熵的原因：它对「自信地答错」惩罚极重。</p>
+
+<h2>5. Softmax：把网络输出变成概率分布</h2>
+<p>交叉熵的前提是 q 得是一个概率分布，而<strong>神经网络的输出不一定是概率分布</strong>：它可能取负数、也不一定加起来等于 1。所以课件给出的做法是：先用 <strong>Softmax 函数</strong>（归一化指数函数）将网络输出归一化成概率分布——归一化之后满足 ∀x, p(X = x) ∈ [0, 1] 且 Σ<sub>x</sub> p(X = x) = 1——再用交叉熵损失函数计算预测的概率分布与真实分布之间的差异。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-6/p0059.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-6/p0059.webp" alt="图 3　Softmax 把网络输出归一化成概率分布" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　Softmax 函数：先把网络输出归一化成概率分布（每项在 0 到 1 之间、总和为 1），再用交叉熵计算与真实分布的差异（原课件第 59 张）</figcaption>
+</figure>
+<p>在代码里这两步通常合成一个函数（如 <code>sparse_softmax_cross_entropy</code>），因为直接对未归一化的输出（logits）计算在数值上更稳定。</p>
+
+<h2>6. 两个任务的损失函数定义</h2>
+<p>回到 5.5 节的两个案例，它们的损失函数分别是均方误差与交叉熵损失：</p>
+<pre><code># 任务 A：一元回归模型的损失函数定义
+def loss(prediction, label):
+    loss = tf.reduce_mean(tf.square(prediction - label))   # 定义均方差误差
+    return loss
+
+# 任务 B：手写体数字识别模型的损失函数定义
+def loss(logits, label):
+    loss = tf.losses.sparse_softmax_cross_entropy(
+        labels=label, logits=logits)          # 定义交叉熵误差
+    return loss</code></pre>
+<p>任务 A 用 MSE 是因为要预测连续的总价；任务 B 用（带 Softmax 的）交叉熵是因为要预测十个类别上的概率分布。选损失函数的第一条原则就是<strong>看任务类型</strong>。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>损失函数是一个从权重（及数据）到「差多少」的评估函数，训练就是让它的值尽可能小；分类任务常用交叉熵，回归任务常用 L1/L2 Loss；</li>
+  <li>MSE（L2 Loss）= 平方误差的平均，随绝对误差平方增长，对离群点敏感；MAE（L1 Loss）= 绝对误差的平均，线性增长，对离群点更稳健；两者最小值都是 0、最大值都是无穷大；</li>
+  <li>信息量 I(x) = −log P(x)，与事件发生的概率成反比；信息熵 H(X) = −Σ p log p 是所有信息量的期望，描述分布本身的不确定性；</li>
+  <li>相对熵（KL 散度）D_KL(p‖q) = Σ p log(p/q)，衡量两个分布的差异；拆开后为「−H(p) + 交叉熵」，因 H(p) 与参数无关，最小化 KL 散度等价于最小化交叉熵 H(p, q) = −Σ p log q；</li>
+  <li>网络输出不一定是概率分布，所以分类任务先过 Softmax 归一化（非负、和为 1），再算交叉熵；工程实现中常把这两步合成一个函数以提升数值稳定性。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-5.html">‹ 5.5 神经网络的直观理解</a>
+      <a class="next" href="5-7.html">5.7 参数学习与模型训练 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

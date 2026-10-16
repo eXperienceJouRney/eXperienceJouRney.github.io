@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.4 编码与调制 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 2 章 2.4 编码与调制：讲义第 203–223 页 · 17 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html" aria-current="page"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 2 章 物理层</p>
+      <h1>2.4 编码与调制</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">信源产生的原始电信号叫基带信号，它往往不能直接在信道上传输：要么把它变换成适合在数字信道上传输的码形（编码），要么把它「装载」到模拟载波上（调制）。本节先把消息、数据、信号、码元这几个基本概念理清，再看四种常用编码和不归零编码的同步问题，最后讲调制方法，并引出能让一个码元携带多个比特的正交振幅调制 QAM。</p>
+
+<h2>1. 消息、数据、信号与码元</h2>
+<p>通信的目的是传送<strong>消息（message）</strong>，例如语音、文字、图像。消息要靠<strong>数据（data）</strong>这种「运送消息的实体」来表示，而数据又必须变成<strong>信号（signal）</strong>——也就是数据的电磁表现——才能在信道上传输。信源发出的、没有经过调制的原始电信号称为<strong>基带信号</strong>，它可以是数字基带信号（如计算机输出的方波），也可以是模拟基带信号（如话筒输出的音频波形）。</p>
+<p>在时间域的波形上表示数字信号时，代表不同离散数值的基本波形称为<strong>码元</strong>。例如用正电平表示比特 0、负电平表示比特 1，那么一段正电平就是一个码元。码元是数字信号的「度量单位」：一个码元可以只携带 1 个比特，也可以在更高阶的调制方式下携带多个比特。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0206.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0206.webp" alt="图 1　消息、数据、信号的关系与编码、调制的位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　从消息到数据、再到基带信号，经编码或调制后送上发送信道，由传输媒体传到接收端的接收信道（原讲义第 206 页）</figcaption>
+</figure>
+
+<h2>2. 编码与调制</h2>
+<p>基带信号要送上信道，取决于信道是数字信道还是模拟信道，需要做两种不同的变换：</p>
+<ul>
+  <li><strong>编码</strong>：把数字基带信号变换成适合在<strong>数字信道</strong>上传输的码形。例如传统以太网使用曼彻斯特编码，高速以太网使用 4B/5B、8B/10B 编码；话筒输出的音频信号用脉码调制 PCM 编码后，也可以送到数字信道上传输。</li>
+  <li><strong>调制</strong>：把基带信号「装载」到模拟的<strong>载波信号</strong>上，使其适合在<strong>模拟信道</strong>上传输。例如 WiFi 使用 CCK、DSSS、OFDM 等调制方式；语音数据加载到模拟载波信号中传输时，还可以用频分复用 FDM 技术把一路带宽划分给多个用户，充分利用带宽资源。</li>
+</ul>
+
+<h2>3. 常用编码</h2>
+<p>把比特流变成波形有很多种做法，它们在「能否自同步」和「编码效率」上各有取舍。</p>
+<h3>（1）不归零编码 NRZ</h3>
+<p>不归零编码用两种电平直接表示比特，例如正电平表示比特 1、负电平表示比特 0，在一个码元内电平保持不变、不回到零。它实现简单、编码效率高，但<strong>存在同步问题</strong>：如果连续传送多个相同的比特，接收端看到的是长长的一段相同电平，无法判断这究竟是几个码元。要解决同步，就得额外用一根传输线传送时钟信号——而对计算机网络来说，宁愿用这根线传输数据信号，也不愿用它传时钟。</p>
+<h3>（2）归零编码 RZ</h3>
+<p>归零编码要求每个码元传输结束后信号都要<strong>归零</strong>，于是接收方只要在信号归零之后进行采样即可，不需要单独的时钟信号。这实际上相当于把时钟信号用「归零」的方式编码在了数据之内，称为<strong>自同步</strong>信号。代价是大部分数据带宽都被用来传输「归零」这种并不携带信息的跳变，<strong>编码效率低</strong>。</p>
+<h3>（3）曼彻斯特编码</h3>
+<p>曼彻斯特编码把每个码元分成前后两半，<strong>码元中间时刻的跳变既表示时钟，又表示数据</strong>：跳变既让接收端能够提取时钟，又用跳变的方向区分比特 0 和 1。它因此具有自同步能力，被传统以太网（10 Mbit/s）采用。代价是每个码元中间必有一次跳变，信号频率是数据率的两倍，占用的频带更宽。</p>
+<h3>（4）差分曼彻斯特编码</h3>
+<p>差分曼彻斯特编码的规则是：①码元中间时刻的跳变<strong>仅表示时钟</strong>；②码元<strong>开始处电平是否发生变化</strong>表示数据（变化表示一种比特，不变化表示另一种比特）。由于中间跳变只负责同步，它的波形变化比曼彻斯特编码更少，更适合较高的传输速率。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0211.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0211.webp" alt="图 2　不归零编码、归零编码、曼彻斯特编码与差分曼彻斯特编码的波形对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　四种常用编码的波形对比：不归零编码存在同步问题，归零编码自同步但效率低，曼彻斯特编码中间跳变兼作时钟与数据，差分曼彻斯特编码用码元开始处是否跳变表示数据（原讲义第 211 页）</figcaption>
+</figure>
+<p>读曼彻斯特编码的波形有一个固定套路：先找准每个码元<strong>中间时刻</strong>的跳变，由此把波形一段段划分成码元；再约定正跳变表示 1、负跳变表示 0（或相反，只要收发双方约定一致即可）。原讲义用 10BaseT 网卡收到的一段信号波形演示过这个过程——10BaseT 以太网用的正是曼彻斯特编码，划分出码元后按跳变方向即可读出比特串。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0212.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0212.webp" alt="图 3　按曼彻斯特编码规则从波形中划分码元" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　从 10BaseT 网卡收到的信号波形中划分码元：每个码元在中间时刻跳变，据此确定码元边界，再由跳变方向读出比特（原讲义第 212 页）</figcaption>
+</figure>
+
+<h2>4. 基本调制方法</h2>
+<p>如果信道是模拟信道，就要用数字基带信号去控制载波信号的某个参量，这叫作基本调制方法，共有三种：</p>
+<ul>
+  <li><strong>调幅 AM</strong>：载波的<strong>振幅</strong>随数字基带信号变化，有载波输出表示一种比特，无载波输出表示另一种比特；</li>
+  <li><strong>调频 FM</strong>：载波的<strong>频率</strong>随数字基带信号变化，例如用频率 f1 表示一种比特、频率 f2 表示另一种比特；</li>
+  <li><strong>调相 PM</strong>：载波的<strong>初相位</strong>随数字基带信号变化，例如用初相位 0 度表示一种比特、180 度表示另一种比特。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0215.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0215.webp" alt="图 4　调幅、调频与调相三种基本调制方法" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　基本调制方法：调幅改变载波振幅，调频改变载波频率，调相改变载波初相位（原讲义第 215 页）</figcaption>
+</figure>
+<p>使用这些基本调制方法时，<strong>一个码元只能包含一个比特的信息</strong>。要想让一个码元携带更多比特，就必须把码元的「状态数」做得更多，这就需要混合调制。</p>
+
+<h2>5. 混合调制与正交振幅调制 QAM</h2>
+<p>能不能同时调制振幅、频率和相位呢？答案是不能任意组合：<strong>频率和相位是相关的</strong>，频率本来就是相位随时间的变化率，所以一次只能调制频率和相位两者中的一个。剩下可以自由组合的，就是<strong>振幅与相位</strong>——把相位和振幅结合起来一起调制，就得到<strong>正交振幅调制 QAM（Quadrature Amplitude Modulation）</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0216.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0216.webp" alt="图 5　混合调制：频率与相位相关，振幅与相位可以一起调制" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　混合调制的基本约束：频率与相位相关，一次只能调制其中之一，因此通常把相位与振幅结合起来调制（原讲义第 216 页）</figcaption>
+</figure>
+<p>以 <strong>QAM-16</strong> 为例：它采用 12 种相位，每种相位有 1 种或 2 种振幅可选，总共可以调制出 <strong>16 种码元（波形）</strong>，因此每种码元可以对应表示 <strong>4 个比特</strong>（因为 2⁴ = 16）。</p>
+<p>那么，16 种码元与 16 组 4 位比特的对应关系可以随便定义吗？不可以，工程上采用<strong>格雷码</strong>：让<strong>任意两个相邻码元只有 1 个比特不同</strong>。这样做的意义在于抗误码——接收端把某个码元判错时，往往只是判成了它在平面上相邻的那个码元，用格雷码映射，这种错误只会造成 1 位比特出错；如果对应关系随便定义，一次判错可能同时错 4 位。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-4/p0220.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-4/p0220.webp" alt="图 6　QAM-16 的 16 种码元与格雷码映射" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　QAM-16：12 种相位、每种相位 1 或 2 种振幅构成 16 种码元，每个码元对应 4 个比特，码元与比特的对应关系采用格雷码（原讲义第 220 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>消息要靠数据来运送，数据必须以信号的形式在信道上传输；信源发出的原始电信号是基带信号；时间域波形中代表不同离散数值的基本波形叫码元，一个码元可以携带 1 个或多个比特；</li>
+  <li>基带信号送数字信道要<strong>编码</strong>（以太网的曼彻斯特编码、4B/5B、8B/10B，音频的 PCM），送模拟信道要<strong>调制</strong>（WiFi 的 CCK/DSSS/OFDM，语音载波传输与 FDM）；</li>
+  <li>四种常用编码各有取舍：不归零编码存在同步问题；归零编码靠「归零」自同步但编码效率低；曼彻斯特编码用码元中间的跳变同时表示时钟和数据，用于 10 Mbit/s 传统以太网；差分曼彻斯特编码的中间跳变仅表示时钟、用码元开始处是否跳变表示数据，变化更少、适合更高速率；</li>
+  <li>基本调制方法有调幅 AM、调频 FM、调相 PM 三种，一个码元只能携带 1 个比特；</li>
+  <li>频率与相位相关，一次只能调制其中之一，因此通常把相位与振幅结合成正交振幅调制 QAM；QAM-16 以 12 种相位、每种 1 或 2 种振幅构成 16 种码元，每码元携带 4 个比特，并用格雷码保证相邻码元只差 1 位，从而把码元判错的影响限制在 1 个比特上。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-3.html">‹ 2.3 传输方式</a>
+      <a class="next" href="2-5.html">2.5 信道的极限容量 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

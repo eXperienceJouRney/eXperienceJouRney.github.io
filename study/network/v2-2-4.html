@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.4 数据可靠传输模型及传输协议的设计 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 2 章 网络中的数据通信 2.4 数据可靠传输模型及传输协议的设计：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html" aria-current="page"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 2 章 网络中的数据通信</p>
+      <h1>2.4 数据可靠传输模型及传输协议的设计</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">2.3 节提出了可靠传输的需求：数据可能出错、丢失、乱序、重复，而用户要求发出去的数据一定能正确、按序到达。本节把一个能兑现这些承诺的协议设计出来：先抽象成分层模型，再选定描述协议的工具，然后从最理想的信道出发，每解决一个麻烦就暴露出下一个，从可靠数据传输协议 Rdt（Reliable Data Transfer protocol）1.0 一路推到 2.0、2.1、2.2 和 3.0，最后交代收发两侧缓冲区的作用与大小规则。</p>
+
+<h2>1. 可靠传输要解决的是什么问题：一个分层模型</h2>
+<p>先把问题放回分层背景。N 层下方的 N-1 层提供的是<strong>不可靠信道</strong>，分组可能受伤、可能丢失；上方的 N+1 层期待的却是一项<strong>可靠数据传输服务</strong>。N 层的任务，就是用这条靠不住的下层信道向上层交出一份靠得住的承诺。模型为它留了四个接口：朝上的 rdt_send() 由上层（如应用层）调用以提交数据，deliver_data() 由接收方的协议调用以交付数据；朝下的 udt_send() 把分组经不可靠通道传给对端，rdt_rcv() 在分组到达接收方时被调用。</p>
+<p>难度可概括为一句话：<strong>不可靠信道的特性决定了可靠数据传输协议 Rdt 的复杂性</strong>。于是有了本节的线索——从最好的假设起步，一次只放一种麻烦进去，看协议添了什么部件，又被逼出什么新问题。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0067.webp" alt="图 1　可靠数据传输任务的建模：N 层用不可靠信道提供可靠服务" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　可靠数据传输任务的建模：（a）N+1 层期待可靠服务，N 层实际只能用 N-1 层的不可靠服务；（b）该服务由收发双方的可靠数据传输协议共同实现，两侧经 rdt_send()、deliver_data() 与上层交互，经 udt_send()、rdt_rcv() 使用下层（原课件第 67 张）</figcaption>
+</figure>
+
+<h2>2. 用什么把协议写下来：有限状态机</h2>
+<p>这里只考虑单向的数据传输，但控制信息是双向的：数据从发送方流向接收方，确认要流回来。发送方和接收方都用<strong>有限状态机 FSM（Finite State Machine）</strong>描述——协议实体在任一时刻只处在有限个状态之一，发生某个事件就按事先规定的方式迁移到另一个状态，并在迁移时执行某个动作。<strong>状态、事件、动作</strong>，就是读这类图的三把钥匙。</p>
+<p>课堂上的例子能把这套约定讲透：教师在「上课」状态遇到事件「下课铃响」，执行「停止讲课、学生起立」的动作，迁移到「下课」；在「下课」状态遇到事件「上课铃响」，则执行「学生入座、老师开始讲课」，迁回「上课」。</p>
+
+<h2>3. Rdt 1.0：假定信道完全可靠</h2>
+<p>从最简单的情形起步：假设底层信道完全可靠，既不会产生比特错误，也不会丢失分组。信道不出错、不丢东西，发送方交下去的数据一定原样到达，协议什么额外的事都不必做。这版协议称为<strong>可靠数据传输协议 1.0（Rdt 1.0）</strong>。</p>
+<p>发送方只有一个状态「等待来自上层的调用」：上层用 rdt_send(data) 送来数据，它装成分组（packet = make_pkt(data)）后交给下层（udt_send(packet)），再继续等。接收方也只有一个状态「等待来自下层的调用」：分组到达触发 rdt_rcv(packet)，它取出数据（extract）并用 deliver_data(data) 交付上层。整条路径就是一次搬运，没有序号、确认和重传。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0074.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0074.webp" alt="图 2　Rdt 1.0 的有限状态机：收发双方各只有一个状态" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　Rdt 1.0 的有限状态机：发送方装分组发往下层，接收方取数据交付上层，两侧都只有一个状态（原课件第 74 张）</figcaption>
+</figure>
+
+<h2>4. Rdt 2.0：比特可能出错，引入差错检测与 ACK/NAK</h2>
+<h3>（1）新的假设与要补上的三件事</h3>
+<p>第一种麻烦是比特受损：分组中的比特可能出错，但所有分组都会按序被接收、不会丢失。数据被打坏，接收方拿到的就是错误的内容，必须由协议自己发现并纠正。这就要求三件事：接收方能判断收到的分组是否受损，发送方能获知它发出的分组是否受损，受损之后系统还有办法补偿，确保接收方最终收到正确的分组。</p>
+<p>对应三样手段。判断受损靠<strong>差错检测</strong>，即让分组带上校验和之类的冗余信息（方法见 2.3 节）；让发送方知道结果靠反馈机制——接收方回送<strong>确认 ACK（Acknowledgment）</strong>表示收妥，回送<strong>否认 NAK（Negative Acknowledgment）</strong>表示分组已损坏。</p>
+<p>最后的补偿有<strong>检错重传</strong>与<strong>检错纠错</strong>两条路，这里采用检错重传：接收方发现受损就回 NAK，发送方据此重发原分组。这样设计出来的协议是<strong>可靠数据传输协议 2.0（Rdt 2.0）</strong>。</p>
+<h3>（2）Rdt 2.0 的状态机</h3>
+<p>发送方比 1.0 多一个状态：收到 rdt_send(data) 后先造出带校验和的分组（sndpkt = make_pkt(data, checksum)）发出去，再进入「等待 ACK 或 NAK」——收到受损分组或 NAK 就重发刚才那个分组并继续等，收到完好的 ACK 才回到「等待来自上层的调用」。接收方更简单：分组完好（not corrupt）就交付数据并回 ACK，受损（corrupt）就不交付、直接回 NAK；它不必记住任何东西，因为按假设分组不会丢失、也不会乱序。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0077.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0077.webp" alt="图 3　Rdt 2.0 的有限状态机：发送方等待 ACK 或 NAK，接收方以 ACK/NAK 反馈" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　Rdt 2.0 的有限状态机：发送方在等待上层调用与等待 ACK/NAK 之间往返，接收方按分组是否受损回送 ACK 或 NAK（原课件第 77 张）</figcaption>
+</figure>
+<h3>（3）重传逼出的新问题：缓冲区要开多大</h3>
+<p>「重传」一落实，问题就来了：发送方等反馈期间，刚发出去的分组随时可能要重发，所以必须用缓冲区缓存<strong>已发出但尚未收到反馈的报文段</strong>。开多大？在 Rdt 2.0 的假设下，收发双方各一个报文段大小就够了——发送方同一时刻只有一个分组未确认。</p>
+
+<h2>5. Rdt 2.1：反馈也会坏，给分组编号</h2>
+<p>Rdt 2.0 漏了一种情况：ACK 和 NAK 自己在回程上也可能受损。发送方收到一个分辨不出是 ACK 还是 NAK 的分组，该怎么办？两种想当然的做法都不成立：一律当成 ACK，接收方明明没拿到正确的数据，发送方却以为发妥，数据就此丢失；一律当成 NAK，则会在接收方本已收妥、只是回程的 ACK 被打坏时送去一个重复的分组，数据被重复交付。根子在反馈消息太简单——它只有「对」「错」两个取值，一个比特出错就认不出来。</p>
+<p>既然反馈不可靠，就得让数据分组「可以辨认」，办法是<strong>给分组编号</strong>：每个数据分组带上序号，只用 0 和 1 交替——第一、第二个分组分别编号 0 和 1，第三个又回到 0。这样发送方收到 ACK 或 NAK 时，结合它对应的序号就能分清「对端确认了新分组」还是「自己收到了一条重复的反馈」；编号也是对付乱序的依据，接收方看序号就知道它是不是自己期待的那一个。据此设计的协议是<strong>可靠数据传输协议 2.1（Rdt 2.1）</strong>。</p>
+<p>它的收发双方各有两个状态，分别对应序号 0 和 1，工作方式互为镜像。发送方在状态 0 里发出带序号 0 的分组（sndpkt = make_pkt(0, data, checksum)）并等待 ACK 或 NAK 0，收到受损反馈或 NAK 就重传，收到完好的 ACK 才迁到状态 1。接收方在期待 0 号分组时收到完好的 0 号分组，就交付数据并回 ACK，随后转而期待 1 号；收到受损分组回 NAK；若收到完好、序号却是 1 的分组，说明是重传造成的重复分组，必须丢弃、不重复交付，但要再回一个 ACK，让发送方知道这个分组早已收过。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0081.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0081.webp" alt="图 4　Rdt 2.1 接收方的有限状态机：用序号 0、1 分辨新分组与重复分组" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　Rdt 2.1 接收方的有限状态机：完好的 0 号分组被交付并回 ACK，受损分组回 NAK，序号为 1 的分组则判定为重复、重发 ACK 而不重复交付；交付后转入「等待来自下层的 1」（原课件第 81 张）</figcaption>
+</figure>
+<p>一个比特的序号同时解决三件事：反馈受损时发送方能判断它属于哪个分组，重复分组能被识别并丢弃，数据也不会因为一条被打坏的 ACK 被重复交付。</p>
+
+<h2>6. Rdt 2.2：取消 NAK，只用带序号的 ACK</h2>
+<p>Rdt 2.1 已经能工作，但真实的互联网中没有 NAK，只有 ACK。既然只用 ACK 也能把意思表达完整，NAK 就可以取消，处理手段有三条：ACK 中必须指出被确认分组的序号，以便表明正确收到的是哪一个分组；接收方不再发 NAK，改为对最后一个正确收到的分组发送 ACK，也就是收到受损分组时把上一条 ACK 重发一遍；发送方收到重复的 ACK，就按收到 NAK 来处理，重传当前分组。</p>
+<p>这样反馈里只剩一种 ACK，但每条都带序号，接收方用「重复的确认」表达了原来 NAK 的意思，发送方比对序号就能识别。得到的协议是<strong>可靠数据传输协议 2.2（Rdt 2.2）</strong>，其有限状态机与 Rdt 2.1 形状几乎一样，只是判断条件换成了序号：发送方等待 ACK0 时，只要收到受损分组或一个 ACK1（isACK(rcvpkt, 1)）就重传，只有收到完好的 ACK0 才迁到下一个状态。两者功能等价，Rdt 2.2 只是把「显式否认」换成了「重复确认」。</p>
+
+<h2>7. Rdt 3.0：还会丢包，加计时器超时重传</h2>
+<p>到此为止，协议仍假定分组不会丢失。真实信道不但可能出现比特差错，而且可能丢包。这条假设一放进来，前面所有设计都会撞上同一个尴尬局面：分组若在半路丢了，接收方根本不知道有人给它发过东西，自然不会回反馈，发送方等下去永远等不到 ACK。课件在这一页写下「耐心的等待」，可等待必须有个期限。</p>
+<p>办法是给发送方配一个计时器：每发出一个分组就启动计时器，时限内收到正确的 ACK 就停表、继续发下一个；一旦超时仍未收到 ACK，就断定分组（或者回程的 ACK）已丢失，把缓存中的分组重传一次并重新启动计时器。这一版称为<strong>可靠数据传输协议 3.0（Rdt 3.0）</strong>，它等于 Rdt 2.2 加上超时重传——序号解决重复，ACK 解决确认，计时器解决丢失。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0085.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0085.webp" alt="图 5　Rdt 3.0 发送方的有限状态机：发送分组时启动计时器，超时重传" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Rdt 3.0 发送方的有限状态机：发出分组的同时启动计时器（start_timer），收到正确的 ACK 就停表（stop_timer）并转入下一个序号的状态，超时（timeout）则重发缓存中的分组并重启计时器（原课件第 85 张）</figcaption>
+</figure>
+<p>课件用四组时序对照它的表现：无丢包时它和 Rdt 2.2 一样一问一答，双方按序号交替推进；分组丢失时接收方毫不知情，发送方超时重传，接收方收到后照常交付并回 ACK；ACK 丢失时发送方同样超时重传，这次接收方收到的是重复分组，它检测出冗余后重发 ACK，发送方终于拿到确认。</p>
+<p>最值得留意的是过早超时：时限设得太短，ACK 还在回程路上，发送方就以为丢了而重传；接收方把这第二个分组当作冗余分组，检测出来后再发一条 ACK；这条重复的 ACK 到达时，发送方已在等待下一个分组的确认，便对它什么也不做。协议依旧正确，代价只是链路上多跑了一个无用分组——计时时限不能随意取小，要与往返时延相称；Rdt 3.0 的性能代价与改进空间留到 2.5 节讨论。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0087.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0087.webp" alt="图 6　Rdt 3.0 举例：ACK 丢失与过早超时两种情形的收发时序" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Rdt 3.0 举例中的两种异常情形：（c）ACK 丢失时发送方超时重传，接收方识别出重复分组后重发 ACK；（d）过早超时时接收方把重传的分组当作冗余分组、再发一条 ACK，发送方对它什么也不做（原课件第 87 张）</figcaption>
+</figure>
+<p>对照第一版讲义 3.4.2 停止-等待协议 会发现，这一路推演出来的正是发送方每发一个分组就停下来等确认、靠超时重传来兜底的做法。</p>
+
+<h2>8. 发送缓冲区、接收缓冲区与大小的确定</h2>
+<p>协议跑通之后还要问数据存在哪里。前面几版收发各一个报文段大小的缓冲区就够用，因为一次只允许一个分组在路上；一旦允许多个分组同时未确认，缓冲区就要按窗口来组织，窗口两端必须用序号标出来。</p>
+<p><strong>发送缓存</strong>暂时存放两类数据：上层传送给本层、准备发送的数据，以及本层已经发出、但尚未收到确认的数据。已发出而未确认的这一段称为<strong>发送窗口</strong>，左端是「最后被确认的字节」，右端是「最后发送的字节」，随着确认回来朝序号增大的方向移动。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-4/p0088.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-4/p0088.webp" alt="图 7　发送缓存与发送窗口：从最后被确认的字节到最后发送的字节" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　发送缓存与发送窗口：已发出而未被确认的这一段就是发送窗口，左端为最后被确认的字节，右端为最后发送的字节，序号沿箭头方向增大（原课件第 88 张）</figcaption>
+</figure>
+<p><strong>接收缓存</strong>暂存的是另一类数据：按序到达、但还没被上层取走的数据，以及乱序到达的数据。接收窗口的两端同样是两个位置：「下一个读取的字节」是上层下次要取走的那一个，「下一个期望收到的字节」正是接收方在 ACK 中要填写的确认号——可见确认号本来就是接收窗口的边界。</p>
+<p>缓冲区该开多大？发送端缓冲区<strong>不小于链路的带宽–时延积</strong>：这个量是链路带宽与往返时延 RTT（Round-Trip Time）的乘积，等于一个来回里链路上最多能容纳的数据量，也就是管道的容量；发送端不小于它，才能在一个 RTT 内持续灌满管道，不至于因为等 ACK 而让链路空着。接收端缓冲区则<strong>至少等于带宽–时延积</strong>，开得过小则接收窗口也小，发送方把窗口用满后必须停发，吞吐量随之下降。前者保「发得满」，后者保「收得下」。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>可靠传输协议在不可靠的下层之上向上层兑现可靠服务的承诺：朝上用 rdt_send()、deliver_data()，朝下用 udt_send()、rdt_rcv()，不可靠信道的特性决定了协议的复杂性；</li>
+  <li>协议用有限状态机 FSM 描述，读图只抓状态、事件、动作：事件引起状态变迁，变迁中执行动作；</li>
+  <li>每一步推演都是「解决一个问题、冒出一个新问题」：Rdt 1.0 假定信道完全可靠，什么也不用做；Rdt 2.0 放进比特差错，用差错检测 + ACK/NAK 反馈 + 检错重传来补偿，代价是收发双方各要一个报文段大小的缓冲区；</li>
+  <li>Rdt 2.1 发现 ACK/NAK 本身也会受损，于是给数据分组编号（0、1 交替）：发送方据此分辨反馈属于哪个分组，接收方据此识别并丢弃重复分组、同时重发 ACK；Rdt 2.2 取消 NAK，让 ACK 带上序号，用重复的 ACK 代替 NAK，与 Rdt 2.1 功能等价；</li>
+  <li>Rdt 3.0 再放进丢包，用计时器超时重传兜底，过早超时只多跑一个无用分组；发送缓存存放待发送与已发送未确认的数据，接收缓存存放按序待取与乱序到达的数据，两侧缓冲区的大小都围绕带宽–时延积确定（Rdt 3.0 的性能改进见 2.5 节）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-2-3.html">‹ 2.3 数据可靠传输的基本需求</a>
+      <a class="next" href="v2-2-5.html">2.5 数据可靠传输模型的性能优化 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

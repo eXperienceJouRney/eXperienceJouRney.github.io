@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.6 卷积神经网络的应用 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 6 章 卷积神经网络 6.6 卷积神经网络的应用：以「6-卷积神经网络.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html" aria-current="page"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 6 章 卷积神经网络</p>
+      <h1>6.6 卷积神经网络的应用</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面五节把卷积神经网络讲成了一个「会看图」的模型，这一节看它在真实任务里被用在哪里。课件按任务难度排了一条线：找出目标在哪里（目标检测）、给每个像素分类（图像分割）、读出图中的文字（OCR）、把文字或图像生成出来（图像生成）、把一幅图的风格搬到另一幅图上（画风迁移），再到两个超出常规识别的例子——用 CNN 评估围棋棋局的 AlphaGo，以及把可视化玩成艺术的 Deep Dream。</p>
+
+<h2>1. 目标检测（Object Detection）</h2>
+<p>图像分类回答的是「这张图里是什么」，<strong>目标检测</strong>进一步回答「有什么、在哪里」——它要在图中找出一个个目标，给出它们的<strong>位置框</strong>和<strong>类别</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0102.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0102.webp" alt="图 1　目标检测" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　目标检测：在街景图中框出公交车、行人、自行车、卡车等目标，每个框都带类别标签与置信度（例如 bus 98.0%、bicycle 80.3%、person 77.1%）（原课件第 102 张）</figcaption>
+</figure>
+<p>注意图中每个框上的两个信息：类别（bus、person、bicycle、truck）和置信度。这里的置信度就是 6.2 节讲的 Softmax 输出——网络对「这个框里是公交车」这件事的把握有多大。目标检测的难点在于目标的数量不固定、大小不一、还会互相遮挡，因此它需要在分类网络的基础上再解决「找位置」的问题。</p>
+
+<h2>2. 图像分割</h2>
+<p>如果说目标检测输出的是一个<strong>框</strong>，那么<strong>图像分割</strong>输出的就是<strong>每个像素的类别</strong>——它要把属于同一个目标的像素精确地划分出来，得到物体的轮廓。课件用的配图来自 Mask R-CNN 的论文。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0103.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0103.webp" alt="图 2　图像分割" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　图像分割：课件配图为 Mask R-CNN 在 COCO 测试集上的结果——对图中的人、动物、车辆等分别给出像素级掩膜（原图注：使用 ResNet-101-FPN，5 fps，35.7 mask AP）（原课件第 103 张）</figcaption>
+</figure>
+<p>分割对网络提出了两个额外的要求。一是<strong>分辨率</strong>：输出要和输入图像逐像素对应，特征图不能一路缩小到底，所以需要 6.3 节的转置卷积这类上采样手段把特征图放大回去。二是<strong>上下文</strong>：判断一个像素属于什么，往往要看它周围更大范围的证据，这正是空洞卷积擅长的场景。这也解释了为什么 6.3 节要专门讲那两种「非常规」的卷积。</p>
+
+<h2>3. OCR 文字识别</h2>
+<p><strong>OCR 文字识别</strong>要从图像中把文字「读」出来：先定位文字所在的区域，再逐字识别成字符。它和前面两类任务一脉相承——定位靠检测，识别靠分类，只是识别的对象从整幅图变成了一个个字符。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0104.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0104.webp" alt="图 3　OCR 文字识别" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　OCR 文字识别：从图像中检测出文字区域，再逐字识别为文本（原课件第 104 张）</figcaption>
+</figure>
+<p>值得一提的是，本课程第 6 章之前讲的卷积与池化，正是 OCR 里那两个关键动作的基础：卷积负责提取笔画与结构特征，池化负责容忍字体的位置偏差与轻微形变。6.2 节里池化对汉字「一」的旋转不变性实验，讲的其实就是这件事。</p>
+
+<h2>4. 图像生成与画风迁移</h2>
+<p>卷积神经网络不只能「理解」图像，还能「生成」图像。<strong>图像生成</strong>要按给定的条件造出一幅新图——例如给定一个汉字，生成它的字形图像。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0105.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0105.webp" alt="图 4　图像生成" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　图像生成：按给定条件（如图中「在、中、不、了、上、有、大、为」等汉字，以及 on、to、country 等词）生成对应的图像（原课件第 105 张）</figcaption>
+</figure>
+<p><strong>画风迁移</strong>则更进一步：把一幅<strong>内容图</strong>和一幅<strong>风格图</strong>结合起来，让输出的图像保持内容图的构图、却带上风格图的笔触与色调——比如把自己的照片画成某位画家的风格。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0106.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0106.webp" alt="图 5　画风迁移" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　画风迁移：把一幅图的内容与另一幅图的风格融合，生成带有指定风格的新图像（原课件第 106 张）</figcaption>
+</figure>
+<p>这两类任务之所以能成立，靠的是卷积神经网络的一个关键性质：<strong>浅层学到的多是纹理、笔触一类的「风格」，深层学到的是物体与布局一类的「内容」</strong>。分开处理这两层的信息，风格与内容就可以被拆开来重新组合——这也正是 6.4 节结尾那套特征图可视化带给我们的认识。</p>
+
+<h2>5. AlphaGo：用 CNN 评估棋局</h2>
+<p>接下来两个例子超出了「识别图像」的范畴，说明卷积神经网络可以被当作通用的<strong>结构化数据处理器</strong>来用。</p>
+<p>AlphaGo 的做法是：<strong>使用 CNN 从 19 × 19 的棋盘图像得到当前棋盘上所有棋子位置的表征，从而评估当前棋局</strong>。这句话背后的建模思路很巧妙——把棋盘直接当成一幅 19 × 19 的「多通道图像」，用卷积网络去读它，输出的就是每个落子点的价值。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0107.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0107.webp" alt="图 6　AlphaGo 的策略网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　AlphaGo 的策略网络（policy network）：输入是 19 × 19 × 48 的图像栈，CONV1 用 192 个 5 × 5 卷积核、步长 1、补零 2，得到 19 × 19 × 192；CONV2 ∼ 12 各用 192 个 3 × 3 卷积核、步长 1、补零 1，保持 19 × 19 × 192；最后一层用 1 个 1 × 1 卷积核得到 19 × 19 的落子概率图，再经 Softmax 输出（原课件第 107 张）</figcaption>
+</figure>
+<p>课件把它的结构抄得很完整，值得逐项对照：输入是 <strong>19 × 19 × 48</strong> 的图像栈（由 48 个特征平面组成）；第一层先补零把输入扩到 23 × 23，再用 192 个 5 × 5、步长 1 的卷积核得到 19 × 19 × 192（补零 2 正好让 19 变回 19，与 6.1 节的等宽卷积完全一致）；第 2 到第 12 层每个都用 192 个 3 × 3、步长 1 的卷积核，补零 1 同样保持尺寸不变；最后一层只用 1 个 1 × 1 卷积核，得到一个 19 × 19 的<strong>落子概率图</strong>，也就是棋盘上每个位置「值得下」的概率。正式比赛版本用的 k = 192，论文另外还试过 k = 128、256、384。</p>
+<p>这个例子把 6.1 到 6.3 节的知识用了个遍：等宽卷积保持尺寸、1 × 1 卷积改变通道数、Softmax 输出概率分布。它说明卷积神经网络真正处理的是「局部相关、平移不变」的结构化数据，图像只是其中最常见的一种。</p>
+
+<h2>6. Deep Dream：从可视化到艺术</h2>
+<p>最后的例子回到了 6.4 节的特征图可视化。<strong>Deep Dream</strong> 是谷歌开发的算法，当初只是设计出来帮助研究人员了解<strong>每层神经网络在一个给定的图像中到底「看」到了什么</strong>。它的做法是反过来利用网络：不再拿网络去识别图像，而是让网络「告诉」我们它想看到什么，然后放大这些响应、迭代地修改图像。后来，这个算法演化成了一种迷幻抽象的艺术形式。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-6/p0108.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-6/p0108.webp" alt="图 7　Deep Dream" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　Deep Dream：放大网络某一层「看到」的模式并反复迭代，图像中便会浮现出大量重复的图案，最终演化为一种迷幻抽象的艺术风格；课件给出了在线体验地址 https://deepdreamgenerator.com/ （原课件第 108 张）</figcaption>
+</figure>
+<p>Deep Dream 与 ZFNet 的可视化、6.4 节那套特征图展示，本质上是同一件事的两个方向：前者是<strong>把网络内部的响应还原成图像</strong>，用来解释模型；后者是<strong>把网络内部的响应放大成图像</strong>，用来创造图像。这也从侧面说明，卷积神经网络学到的特征确实是「可读」的。</p>
+
+<h2>7. 配套编程练习</h2>
+<p>课件在这一章末尾给出了配套的编程练习：<a href="https://github.com/nndl/exercise/" target="_blank" rel="noopener">https://github.com/nndl/exercise/</a>，其中 <a href="https://github.com/nndl/exercise/tree/master/chap5_CNN" target="_blank" rel="noopener">chap5_CNN</a> 目录对应卷积神经网络与图像分类的练习（原课件第 109 张的「课后作业」页，对应幻灯片第 110 张）。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li><strong>目标检测</strong>在分类的基础上回答「在哪里」：给出目标的位置框、类别与置信度（置信度就是 Softmax 的输出）。</li>
+  <li><strong>图像分割</strong>把输出细化到<strong>每个像素的类别</strong>；它对分辨率与上下文的要求，正好用到 6.3 节的转置卷积（上采样）与空洞卷积（扩大感受野）。课件配图取自 Mask R-CNN 的论文结果。</li>
+  <li><strong>OCR 文字识别</strong>先定位文字区域、再逐字识别；卷积提取笔画结构，池化容忍位置与形变。</li>
+  <li><strong>图像生成</strong>按条件造出新图像；<strong>画风迁移</strong>把内容图与风格图融合。二者成立的前提是：浅层特征偏「风格」（纹理、笔触），深层特征偏「内容」（物体、布局）。</li>
+  <li><strong>AlphaGo</strong> 把 19 × 19 的棋盘当作图像，用 CNN 得到棋子位置表征来评估棋局：输入 19 × 19 × 48，CONV1 为 192 个 5 × 5、步长 1、补零 2，CONV2 ∼ 12 为 192 个 3 × 3、步长 1、补零 1，最后 1 个 1 × 1 卷积核输出 19 × 19 的落子概率图；比赛版本 k = 192（论文还试过 128、256、384）。</li>
+  <li><strong>Deep Dream</strong> 由谷歌开发，最初用来观察每层网络在一幅图中「看」到了什么，后来演化为迷幻抽象的艺术形式——它验证了卷积神经网络学到的特征是可读、可利用的。</li>
+  <li>这一章的配套编程练习在 <a href="https://github.com/nndl/exercise/" target="_blank" rel="noopener">nndl/exercise</a> 的 <a href="https://github.com/nndl/exercise/tree/master/chap5_CNN" target="_blank" rel="noopener">chap5_CNN</a> 目录，主题是图像分类。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-5.html">‹ 6.5 网络训练注意事项</a>
+      <a class="next" href="7-1.html">7.1 为什么需要循环神经网络 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

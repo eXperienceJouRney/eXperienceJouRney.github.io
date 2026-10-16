@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.5 银行家算法 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章 5.5 银行家算法：课件第 61–68 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html" aria-current="page"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 5 章 资源分配与调度</p>
+      <h1>5.5 银行家算法</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">有序资源分配法用「规定申请次序」来破坏环路条件，但它要求进程的实际使用顺序服从资源编号。还有一条更宽松的路：不规定次序，而是在每次分配之前先算一算「这笔资源给出去以后，系统还安不安全」，不安全就不给。这就是银行家算法——一种资源分配拒绝策略。</p>
+
+<h2>1. 从银行贷款说起</h2>
+<p>算法的名字来自一个比喻。银行家拥有一笔周转资金，客户要求分期贷款。这里有一个关键前提：<strong>如果客户能够得到所有各期贷款，就一定能够归还贷款；否则就一定不能归还贷款。</strong>于是银行家应当谨慎地贷款，保证每个客户都能肯定得到后面的所有各期贷款，防止出现坏帐。</p>
+<p>把角色一一对应过来，就是一个资源分配问题：</p>
+<ul>
+  <li><strong>操作系统</strong>——银行家；</li>
+  <li><strong>操作系统管理的资源</strong>——周转资金；</li>
+  <li><strong>进程</strong>——要求贷款的客户。</li>
+</ul>
+<p>银行家不能把资金借到「看起来不够还」的地步，操作系统同样不能把资源分到「将来可能转不动」的地步。用「先算后给」代替「先给再救」，这就是银行家算法避免死锁的基本思想。</p>
+
+<h2>2. 系统模型</h2>
+<p>把上面的比喻写成模型。设有 <strong>m 个不同类型的同类资源</strong>，用向量 w 表示在 t 时刻各类资源中未分配的资源数：</p>
+<pre><code>w(t) = { w1, w2, … wj, … wm }</code></pre>
+<p>设有 <strong>n 个进程</strong>，在 t 时刻对 m 个资源的最大需求量构成<strong>资源请求矩阵</strong> d(t)，在 t 时刻对 m 个资源的占用量构成<strong>资源分配矩阵</strong> a(t)：</p>
+<pre><code>d(t) = [ d11, d12, …, d1m
+         d21, d22, …, d2m
+         ...   …    …    …
+         dn1, dn2, …, dnm ]
+
+a(t) = [ a11, a12, …, a1m
+         a21, a22, …, a2m
+         ...   …    …    …
+         an1, an2, …, anm ]</code></pre>
+<p>系统对这三个量的操作有三种：</p>
+<ul>
+  <li><strong>申请资源</strong>：一个进程 pi 申请 n 个 j 类资源，要求 n ≤ wj(t)，即申请量不能超过系统中该类资源当前未分配的数量；</li>
+  <li><strong>分配资源</strong>：把 n 个 j 类资源分配给进程 pi，此时三条账同时变化——</li>
+</ul>
+<pre><code>aij(t) = aij(t) + n;      /* 占用增加 */
+dij(t) = dij(t) - n;      /* 还需申请量减少 */
+wj(t)  = wj(t)  - n;      /* 未分配资源减少 */</code></pre>
+<ul>
+  <li><strong>释放资源</strong>：一个进程 pi 释放 m 个 j 类资源，账目变化为——</li>
+</ul>
+<pre><code>aij(t) = aij(t) - m;      /* 占用减少 */
+wj(t)  = wj(t)  + m;      /* 未分配资源增加 */</code></pre>
+<p>还有两条前提与原则：</p>
+<ul>
+  <li>当新进程进入系统时，<strong>必须说明对各个资源的最大需求量 d(0)</strong>，并且不能超过系统中各资源的总数 w(0)；</li>
+  <li>当进程申请一类资源时，<strong>如果同意该申请后不会导致系统进入不安全状态，才同意该请求；否则不同意该请求，客户必须等待。</strong></li>
+</ul>
+
+<h2>3. 系统的安全状态</h2>
+<p>什么样的状态算「安全」？定义是这样考虑的：在最坏情况下，每个客户只有获得所有资源后才能归还所有资源。那么，目前系统中是否有足够的资源满足其中一个进程的最大需求资源？如果能够找到，就假定该进程运行完毕后归还它所占用的所有资源，然后再寻找下一个进程。如此反复下去，<strong>如果所有的进程都能运行完，所有的资源最终都被收回，则该状态是安全的</strong>。换句话说，安全状态就是<strong>存在一个资源分配序列，可以使得所有进程都运行直到结束（不会导致死锁）</strong>；这个序列称为安全序列。</p>
+<p>于是「同意还是拒绝」的判据就有了操作办法：<strong>假设把资源借出去，然后试着找一个安全序列；找得到就借，找不到就不借</strong>。也正因为要「试算」，银行家算法属于<strong>资源的分配拒绝策略</strong>——它靠拒绝某些请求来保持系统安全。</p>
+
+<h2>4. 一个例子</h2>
+<p>课件给出的小例子是：系统拥有某类资源 10 个，即 w(0) = 10，当前 w(t) = 2（已经分出去 8 个），三个进程的占用与需求如下表。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-5/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-5/p0067.webp" alt="图 1　银行家算法举例的进程占用与需求表" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　银行家算法举例：w(0) = 10、w(t) = 2，进程 P 已有 4 还要申请 4，Q 已有 2 还要申请 2，R 已有 2 还要申请 7（原课件第 67 张）</figcaption>
+</figure>
+<p>按上面「寻找安全序列」的办法检查这个状态，可以一步步推下去：当前未分配的 2 个资源只够满足 Q 追加的 2 个需求，于是假定先把资源给 Q，Q 得到全部所需后运行完毕，归还它占用的全部 4 个资源，未分配资源变为 4 个；这 4 个正好满足 P 还需的 4 个，P 运行完毕归还 8 个，未分配资源变为 8 个；8 个足以满足 R 还需的 7 个，R 也能运行完毕。三个进程都能跑完、资源全部收回，所以<strong>该状态是安全的，对应的安全序列为 Q → P → R</strong>。</p>
+<p>反之，如果某个状态无论如何都找不到这样的推进顺序，它就是<strong>不安全状态</strong>。需要强调的是：不安全状态只是「有可能」死锁，并不是一定死锁——它意味着系统已经失去了「保证不发生死锁」的能力。</p>
+
+<h2>5. 银行家算法的缺点</h2>
+<ul>
+  <li><strong>每个进程必须事先说明对各类资源的最大需求量</strong>。这是一个很强的要求：程序在运行前就要把一辈子要用的资源全报出来，实际中很难做到，而报得不准则整个算法失效；</li>
+  <li><strong>算法有些保守，总是考虑最坏情况</strong>。有时为了避免死锁，可能拒绝某一请求，即使这一请求实际上并不会导致死锁。过于谨慎和开销较大，是银行家算法的主要障碍——每次分配都要试算一遍安全序列，系统负担不轻。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>银行家算法用银行贷款作比喻：操作系统是银行家，资源是周转资金，进程是要求分期贷款的客户；只有确信客户能还清，才把钱借出去；</li>
+  <li>系统模型中有三个量：未分配资源向量 w(t)、资源请求矩阵 d(t)、资源分配矩阵 a(t)；申请、分配、释放三种操作都是在修改这三个量，申请量不能超过 wj(t)；</li>
+  <li>新进程进系统时必须声明各资源的最大需求量 d(0) 且不超过总数 w(0)；进程每次申请资源，只有在「同意后系统仍处于安全状态」时才被批准，否则必须等待；</li>
+  <li>安全状态＝存在一个安全序列使所有进程都能运行完；判断办法是「试算安全序列」，算得出来就分配，算不出来就拒绝，因此银行家算法又称资源分配拒绝策略；</li>
+  <li>不安全状态不等于已经死锁，只表示不再有「保证不死锁」的能力；</li>
+  <li>银行家算法的两大障碍：必须预先知道最大需求量，以及过于谨慎、开销较大。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-4.html">‹ 5.4 死锁的预防</a>
+      <a class="next" href="5-6.html">5.6 死锁的检测与解除 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

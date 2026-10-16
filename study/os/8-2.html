@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.2 缓冲技术 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 8 章 8.2 缓冲技术：缓冲的概念与作用、带缓冲的读/写过程、双缓冲与环形缓冲、UNIX 缓冲池的预先缓存与延迟发送、av 链与 b 链、getblk 与 brelse。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html" aria-current="page"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 8 章 设备管理</p>
+      <h1>8.2 缓冲技术</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">设备与 CPU 的速度差着好几个数量级，这是 8.1 节列出的头一条设备特性。缓冲技术就是抹平这条速度鸿沟的基本手段。这一节按「是什么—怎么用—为什么—有哪些—UNIX 怎么做」的顺序展开：先给出缓冲的概念与两种形态，再用读、写两个方向看清缓冲如何参与一次 I/O；接着解释引入缓冲的四条理由；然后依次介绍双缓冲、环形缓冲；最后落到 UNIX 系统用缓冲池管理磁盘数据的具体做法，包括缓冲首部、两条队列以及 getblk/brelse 两个核心操作。</p>
+
+<h2>1. 缓冲的概念</h2>
+<h3>（1）什么是缓冲</h3>
+<p><strong>缓冲</strong>是两种不同速度的设备之间传输信息时，平滑传输过程的常用手段。慢的一方把数据先放进一块中间存储区，快的一方从这块存储区取走，双方就不必互相等死。</p>
+<h3>（2）缓冲的两种形态</h3>
+<ul>
+  <li><strong>缓冲器</strong>（硬件方式）：用来暂时存放数据的一种存储装置，它容量较小、存取速度快。</li>
+  <li><strong>软件缓冲</strong>：在 I/O 操作期间用来临时存放 I/O 数据的一块存储区域。</li>
+</ul>
+<p>本节讲的主要是软件缓冲，也就是由操作系统在主存里安排、由设备管理程序管理的那块区域。</p>
+
+<h2>2. 用缓冲完成一次输入/输出</h2>
+<h3>（1）读操作：把物理记录变成逻辑记录</h3>
+<p>进程请求从输入设备读数据时，数据并不是直接从设备进到用户进程的存储区，中间要经过缓冲区。过程如下：</p>
+<ul>
+  <li>① 用户要求在某个设备上进行读操作时，首先从系统中获得一个<strong>空的缓冲区</strong>；</li>
+  <li>② 将一个<strong>物理记录</strong>送到缓冲区中；</li>
+  <li>③ 当用户请求这些数据时，系统依据<strong>逻辑记录</strong>特性从缓冲区中提取并发送到用户进程存储区中；</li>
+  <li>④ 当缓冲区空而进程又要从中取用数据时，该进程被迫等待。此时操作系统需要重新送数据填满缓冲区，进程才能从中取数据继续运行。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0020.webp" alt="图 1　利用缓冲进行读操作" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　利用缓冲进行读操作：① 取空缓冲区 ② 物理记录入缓冲区 ③ 按逻辑记录送用户存储区（原课件第 20 张）</figcaption>
+</figure>
+<p>这里的关键是<strong>操作②与操作③的同步关系</strong>：缓冲区没填满，用户取不到数据；用户没取走，缓冲区腾不出空。设备与进程就是靠这一对互相制约的动作配合起来的。</p>
+
+<h3>（2）写操作</h3>
+<p>进程请求从输出设备输出数据时，方向相反，但同样是「先入缓冲区、再送设备」：</p>
+<ul>
+  <li>① 用户要求进行写操作时，首先从系统中获得一个空的缓冲区；</li>
+  <li>② 将一个<strong>逻辑记录</strong>从进程存储区传送到缓冲区中；</li>
+  <li>③ 当缓冲区写满时，系统将缓冲区的内容作为<strong>物理记录</strong>文件写到设备上，使缓冲区再次为空；</li>
+  <li>④ 只有在系统还来不及腾空缓冲区之前，进程又企图输出信息时，它才需要等待。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0022.webp" alt="图 2　利用缓冲进行写操作" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　利用缓冲进行写操作：① 取空缓冲区 ② 逻辑记录入缓冲区 ③ 缓冲区满后作为物理记录写设备（原课件第 22 张）</figcaption>
+</figure>
+<p>对比读、写两个方向可以看到：读操作是「设备往里送、进程往外取」，写操作是「进程往里送、设备往外取」。缓冲区的角色就是一个交接点，把两侧的速度差吸收掉。</p>
+
+<h2>3. 为什么要引入缓冲</h2>
+<p>归纳起来，引入缓冲有四条理由。</p>
+<ul>
+  <li><strong>平滑传输，解决数据流的生产者与消费者之间的速度差异</strong>。例如从网络收到一个文件并保存到硬盘上：慢速调制解调器与高速网卡并存时，两侧的收发节奏并不匹配。</li>
+  <li><strong>协调传输数据大小不一致的设备</strong>。例如在计算机网络中用来处理消息的分段和重组——上层要发的是一个整块，下层一次只能传一个小片。</li>
+  <li><strong>用于数据中间拷贝的缓存，保证应用程序的拷贝语义</strong>。操作系统要保证 write 系统调用的正确语义：应用程序要写入磁盘的数据，就是 write 系统调用发生时的那份数据。做法是在系统调用返回前，把应用程序缓冲区的内容复制到内核缓冲区——这样即使应用程序随后立刻修改了自己的缓冲区，写到磁盘上的仍是调用时的那份。</li>
+  <li><strong>提高并行程度，提高效率</strong>。有了缓冲区，设备在填/取缓冲区的同时，CPU 可以去干别的活。</li>
+</ul>
+<p>缓冲把「生产者」和「消费者」耦合在一起，所以自然就会出现多个进程共享缓冲区、需要同步的问题。课件给出过这样一组合作进程：</p>
+<ul>
+  <li><strong>get</strong> 进程负责不断地把输入记录送入缓冲区 s；</li>
+  <li><strong>copy</strong> 进程负责从缓冲区 s 中取出记录，拷贝到缓冲区 t；</li>
+  <li><strong>put</strong> 进程负责把记录从缓冲区 t 中取出打印。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0025.webp" alt="图 3　共享缓冲区的合作进程" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　get、copy、put 三个进程通过缓冲区 s 和 t 串成一条流水线（原课件第 25 张）</figcaption>
+</figure>
+<p>课件在这里提出的问题是：试用 P、V 操作实现这三个进程之间的同步——这正是第 4 章 4.5 节进程同步机构与 4.6 节进程互斥与同步的实现的直接应用：get 与 copy 之间要有「s 非空 / s 非满」两个信号量，copy 与 put 之间要有「t 非空 / t 非满」两个信号量。</p>
+
+<h2>4. 双缓冲</h2>
+<h3>（1）双缓冲的用法</h3>
+<p>在双缓冲方案下，为输入或输出分配两个缓冲区 buf1、buf2。这两个缓冲可以有三种用法：</p>
+<ul>
+  <li>两个缓冲都用于输入数据；</li>
+  <li>两个缓冲都用于输出数据；</li>
+  <li>两个缓冲既用于输入、又用于输出数据。</li>
+</ul>
+<p>道理很直观：当一个缓冲区正在被设备填（或取）的时候，另一个缓冲区可以同时被进程取（或填），设备与 CPU 因此能够并行工作。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0027.webp" alt="图 4　双缓冲读入数据" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　利用双缓冲输入数据：输入设备装 BUF1 时进程从 BUF2 取数（原课件第 27 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0028.webp" alt="图 5　双缓冲输出数据" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　利用双缓冲输出数据：进程装 BUF1 时输出设备从 BUF2 取数（原课件第 28 张）</figcaption>
+</figure>
+<h3>（2）双缓冲同时用于输入和输出</h3>
+<p>两个缓冲区还可以一个服务于输入设备、一个服务于输出设备，让输入和输出同时进行。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0029.webp" alt="图 6　双缓冲同时用于输入/输出" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　双缓冲同时用于输入/输出数据的操作（原课件第 29 张）</figcaption>
+</figure>
+
+<h2>5. 环形缓冲</h2>
+<p>双缓冲只解决了「一边装、一边取」的两步并行。如果 CPU 与外设对信息的操作速度相差甚远，两个缓冲轮换仍然可能被填满或取空，于是把缓冲区的数量再增加，并把它们首尾相接地链接起来：在系统中设置若干缓冲区并把这些缓冲区链接起来，这样若干个缓冲区就形成了一个环，故称<strong>环形缓冲区</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0030.webp" alt="图 7　环形缓冲" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　若干缓冲区链接成环，构成环形缓冲区（原课件第 30 张）</figcaption>
+</figure>
+<h3>（1）三个指针：start、in、out</h3>
+<p>环形缓冲技术的使用，靠<strong>一个输入指针 in、一个输出指针 out 和一个缓冲区的开始指针 start</strong>：系统初始时 start = in = out。</p>
+<ul>
+  <li><strong>输入</strong>时，要判断 in 的下一个是否与 out 相等，若相等，则要等待（环满了）；否则把信息送入 in 指向的缓冲区，填满后把 in 的下一个缓冲区置为 in，如此类推。</li>
+  <li><strong>输出</strong>时，首先判断 out = in，若相等则等待（意味着系统中没有数据可取）；否则取出缓冲区中的信息，将 out 的下一个缓冲区置为 out。</li>
+</ul>
+<p>也就是说，<strong>in 指向第一个空缓冲区，out 指向第一个装满数据的缓冲区</strong>；in 追上 out 说明环满，out 追上 in 说明环空——这正是 8.1 节所说的「缓冲是设备与进程之间的交接点」在数量上的推广。</p>
+<h3>（2）一个生产者、一个消费者的实现</h3>
+<p>课件给出了一个生产者、一个消费者共用环形缓冲区的程序骨架（N 个缓冲区，信号量 S1 表示空缓冲区数、S2 表示满缓冲区数）：</p>
+<pre><code>环形缓冲区 start，in = out = 0;  S1 = N;  S2 = 0;
+
+producer()
+  while (没有结束) {
+    P(S1);
+    放入数据 --&gt; start[in];
+    if (++in == N) in = 0;
+    V(S2);
+  }
+
+consumer()
+  while (没有结束) {
+    P(S2);
+    取出数据 &lt;-- start[out];
+    if (++out == N) out = 0;
+    V(S1);
+  }</code></pre>
+<p>课件紧接着问了一句：<strong>什么情况下需要互斥锁？</strong>答案是当生产者和消费者多于一个（或者 in、out 指针的更新与其他操作不能被割裂）时，对缓冲区与指针的访问必须互斥——这和第 4 章讨论的「同步与互斥是两件事」是同一个道理。</p>
+
+<h2>6. UNIX 系统的缓冲区管理（缓冲池）</h2>
+<h3>（1）目的与思路</h3>
+<p>磁盘的传输速率比内存慢得多，UNIX 为此在主存中保留一批缓冲区，构成<strong>缓冲池</strong>。管理它的目的是：</p>
+<ul>
+  <li>加快系统响应、增强系统吞吐量；</li>
+  <li>减少对磁盘的 I/O 操作次数。</li>
+</ul>
+<p>思路是<strong>尽可能多地利用保存在缓冲中的数据</strong>，具体做法有两条：</p>
+<ul>
+  <li><strong>预先缓存</strong>：当进程需要从磁盘读数据时，核心首先看数据是否已经在高速缓冲中，如果在就不必启动磁盘 I/O，直接从高速缓冲中读。</li>
+  <li><strong>延迟发送</strong>：当进程需要往磁盘上写数据时，也先往高速缓冲中写，以便随后又试图读取它。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0034.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0034.webp" alt="图 8　预先缓存" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　预先缓存：读数据时先查高速缓冲，命中就不必启动磁盘 I/O（原课件第 34 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0035.webp" alt="图 9　延迟发送" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　延迟发送：写数据先写高速缓冲，随后若再读同一块就能直接命中（原课件第 35 张）</figcaption>
+</figure>
+
+<h3>（2）缓冲区的组成与缓冲首部</h3>
+<p>一个缓冲区由两部分组成：</p>
+<ul>
+  <li><strong>缓冲数组</strong>——含有磁盘上的数据；</li>
+  <li><strong>缓冲首部</strong>——管理和描述缓冲区的数据结构。</li>
+</ul>
+<p>缓冲首部与缓冲数组中的一个成员是一一对应关系，两者统称为一个缓冲区；一个缓冲区的数据与辅存上一个磁盘块中的数据对应。缓冲首部里记录了这块缓冲区当前属于谁、处于什么状态：</p>
+<table>
+  <caption>缓冲首部的主要字段（据原课件第 37 张整理）</caption>
+  <thead>
+    <tr><th>字段</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>设备号 dev</td><td>缓冲区所包含的信息所属设备的设备号</td></tr>
+    <tr><td>块号 blkno</td><td>该设备上的块号</td></tr>
+    <tr><td>状态 flag</td><td>描述缓冲区当前的状态，由下面若干标志位组成</td></tr>
+  </tbody>
+</table>
+<p>状态 flag 由这些标志位组成：</p>
+<ul>
+  <li><strong>忙标志 BUSY</strong>：缓冲区当前正「忙」；</li>
+  <li><strong>有效位 AVE</strong>：缓冲区包含的数据有效；</li>
+  <li><strong>延迟写 DELWR</strong>：核心在某缓冲区重新分配出去之前，必须把缓冲区内容写到磁盘上；</li>
+  <li><strong>写标志 WRITE</strong>：核心当前正把缓冲区的内容写到磁盘；</li>
+  <li><strong>读标志 READ</strong>：核心当前正从磁盘往缓冲区写信息；</li>
+  <li><strong>等待位 WAIT</strong>：一个进程当前正在等候该缓冲区变为空闲。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0037.webp" alt="图 10　缓冲首部结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　缓冲首部结构：设备号、块号以及由 BUSY、AVE、DELWR、WRITE、READ、WAIT 组成的状态（原课件第 37 张）</figcaption>
+</figure>
+
+<h3>（3）两条队列：av 链与 b 链</h3>
+<p>缓冲区由队列串起来管理，而且同时挂在两条队列上：</p>
+<ul>
+  <li>用 <code>av_forw</code>、<code>av_back</code> 把空闲缓冲区串成<strong>空闲缓冲区队列</strong>（av 链）；</li>
+  <li>用 <code>b_forw</code>、<code>b_back</code> 把同一个设备上的缓冲区串成<strong>设备缓冲区队列</strong>（b 链）。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0038.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0038.webp" alt="图 11　空闲缓冲区队列（av 链）" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　用 av_forw、av_back 链接起来的空闲缓冲区队列（原课件第 38 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/8-2/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/8-2/p0039.webp" alt="图 12　设备缓冲区队列（b 链）" loading="lazy" decoding="async"></a>
+  <figcaption>图 12　用 b_forw、b_back 链接起来的设备缓冲区队列（原课件第 39 张）</figcaption>
+</figure>
+<p>UNIX 的缓冲管理算法可以分三种情形来看：</p>
+<ul>
+  <li><strong>一个缓冲区被分配用于读/写某设备上的块时</strong>：置 BUSY = 1，进入该设备的缓冲区队列（b 链），不在空闲缓冲区队列（av 链）。用户读/写缓冲区结束时，置 BUSY = 0，并把它送入空闲缓冲区队尾（若是写缓冲区，还要设置 DELWR = 1）。这时缓冲区仍留在 b 链上——该缓冲区在两个队列同时存在，使缓冲区能充分得到利用：一方面，空闲缓冲区队列中的缓冲只要没有被重新分配，就保持其内容不变；另一方面，重新分配空闲缓冲区需要从两个队列中同时移出，再送入新的设备缓冲区队列，从而实现多进程对有限缓冲的共享利用。</li>
+  <li><strong>需要一个空闲缓冲区时</strong>：取空闲缓冲区的首元素；而一个被使用过的缓冲区释放时放在队尾，一个装有有效数据的缓冲区会向空闲缓冲区队列的头部移动——所以空闲缓冲区队列的首元素是<strong>最久未使用的</strong>，这就实现了精确的最久未使用淘汰算法（LRU，Least Recently Used）。</li>
+  <li><strong>一个标有延迟写的缓冲区移到空闲队列头时</strong>：不能立即对它重新分配，而是提出 I/O 请求，将内容写到对应设备的指定磁盘块上；它将从空闲队列中移出，但留在设备缓冲区队列，写操作完成后再进入空闲队列头，并仍留在设备缓冲区队列。</li>
+</ul>
+
+<h3>（4）两个核心操作：getblk 与 brelse</h3>
+<p><strong>获取缓冲区</strong> <code>getblk(设备号, 块号)</code> 返回一个已标识为忙的缓冲区，找不到就睡眠等待。课件的程序骨架如下（注释里的 1–5 对应课件标注的步骤）：</p>
+<pre><code>缓冲区 *getblk(设备号, 块号)
+while (还没找到缓冲区) {
+  if (块在设备缓冲区队列上) {
+    if (块忙) {                          /* 2 */
+      sleep(事件：等待缓冲区变空闲); continue;
+    }
+    缓冲区标识为忙;                       /* 1 */
+    从空闲队列上摘下此缓冲区;
+    return 缓冲区;
+  }
+  /* 块不在设备缓冲区队列上 */
+  if (空闲缓冲区队列为空) {               /* 5 */
+    sleep(事件：等待缓冲区有空闲); continue;
+  }
+  从空闲缓冲区队列摘下第一个缓冲区;
+  if (缓冲区有标记“延迟写”) {             /* 4 */
+    把缓冲异步写到磁盘; continue;
+  }
+  从原设备缓冲区队列摘下该缓冲区;          /* 3 */
+  把此缓冲区加入到新设备缓冲区队列;
+  return 缓冲区;
+}   /* end of while */</code></pre>
+<p><strong>释放缓冲区</strong> <code>brelse</code>（参数是一个忙的缓冲区）要做三件事：唤醒那些由于空闲缓冲区为空而睡眠的进程，唤醒那些等待该缓冲区变为空闲而睡眠的进程；然后根据缓冲区内容是否有效决定把它挂到空闲队列的队尾还是队头；最后把缓冲区设置为不忙。</p>
+<pre><code>brelse(一个忙的缓冲区)
+  唤醒因空闲缓冲区为空而 sleep 的进程;
+  唤醒等待该缓冲区变为空闲而 sleep 的进程;
+  if (缓冲区内容有效)
+    将缓冲区加入空闲缓冲区队列尾部;
+  else
+    将缓冲区加入空闲缓冲区队列头部;
+  缓冲区设置为不忙;</code></pre>
+
+<h3>（5）高速缓冲的优缺点</h3>
+<p>这种做法的<strong>优点</strong>是：提供了统一的磁盘读取方法；减少磁盘访问次数；确保文件系统完整性；简化用户程序。而它的<strong>缺点</strong>集中在一点——<strong>延迟写</strong>：数据在缓冲区里停留的这段时间，一旦系统崩溃，尚未写回磁盘的修改就会丢失。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>缓冲是两种不同速度的设备之间平滑传输过程的手段，硬件形态是容量小、速度快的缓冲器，软件形态是 I/O 期间临时存放数据的一块主存区域；</li>
+  <li>一次带缓冲的 I/O 就是「设备↔缓冲区↔进程」的两次交接：读操作是设备送、进程取，写操作是进程送、设备取；两次交接之间必须同步；</li>
+  <li>引入缓冲的四条理由：平滑生产者与消费者的速度差、协调传输数据大小不一致的设备、保证系统调用写入数据的拷贝语义、提高并行程度；</li>
+  <li>双缓冲用两个缓冲区让装与取并行，可分别用于输入、输出或同时兼顾；环形缓冲把若干缓冲区串成环，靠 start、in、out 三个指针与信号量 S1（空缓冲区数）、S2（满缓冲区数）实现生产者—消费者同步；</li>
+  <li>UNIX 用缓冲池管理磁盘数据：预先缓存 + 延迟发送，缓冲区＝缓冲数组 + 缓冲首部（dev、blkno、flag），同时挂在空闲队列（av 链）与设备队列（b 链）上；取空闲缓冲区时从队头取、释放时入队尾，从而得到精确的 LRU 淘汰；</li>
+  <li>getblk 负责获取并占用缓冲区（块忙则等待、空闲队列空则等待、遇延迟写先异步写盘），brelse 负责唤醒等待者并按内容是否有效挂回队列；代价是延迟写带来的崩溃丢失风险。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-1.html">‹ 8.1 设备管理概述</a>
+      <a class="next" href="8-3.html">8.3 设备分配 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

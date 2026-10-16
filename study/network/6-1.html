@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.1 应用层概述 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 6 章 6.1 应用层概述：讲义第 1437–1445 页 · 3 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html" aria-current="page"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 6 章 应用层</p>
+      <h1>6.1 应用层概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">应用层是计算机网络体系结构的最顶层，也是设计和建立计算机网络的最终目的——下面各层辛辛苦苦把数据从一台主机送到另一台主机，最终都是为了支撑某个具体的网络应用。本节先看清应用层在体系结构中的位置、它与运输层如何分工，再回顾应用层的发展脉络，最后交代因特网上几类最常见的应用，为本章后续各节画出轮廓。</p>
+
+<h2>1. 应用层在体系结构中的位置</h2>
+<p>计算机网络采用分层结构，每一层只解决一个特定问题。把各层的分工自上而下排开，一句话就能说清：</p>
+<table>
+  <caption>计算机网络体系结构各层各自解决的问题（依据原讲义第 1438 页整理）。</caption>
+  <thead>
+    <tr><th>层次</th><th>解决的问题</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>应用层</td><td>解决通过应用进程的交互来实现特定网络应用的问题</td></tr>
+    <tr><td>运输层</td><td>解决进程之间基于网络的通信问题</td></tr>
+    <tr><td>网络层</td><td>解决分组在多个网络上传输（路由）的问题</td></tr>
+    <tr><td>数据链路层</td><td>解决分组在一个网络（或一段链路）上传输的问题</td></tr>
+    <tr><td>物理层</td><td>解决使用何种信号来传输比特的问题</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course/6-1/p1438.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-1/p1438.webp" alt="图 1　体系结构的分层与各层解决的问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　计算机网络体系结构的分层与各层解决的问题：应用层位于最顶层，负责通过应用进程的交互实现特定的网络应用（原讲义第 1438 页）</figcaption>
+</figure>
+<p>自上而下读一遍，就能看出应用层的特殊之处：<strong>它是计算机网络体系结构的最顶层，是设计和建立计算机网络的最终目的，也是计算机网络中发展最快的部分。</strong>下面四层解决的是「怎样把数据从一台主机送到另一台主机」，几十年间相对稳定；应用层解决的是「拿这条通信通道去做什么」，所以新的应用层出不穷，演化速度远快于其他各层。</p>
+
+<h2>2. 应用层协议与运输层的分工</h2>
+<p>要理解应用层做什么，先要记住一个事实：在计算机网络中进行通信的真正实体，并不是主机本身，而是位于通信两端主机中的<strong>应用进程</strong>。第 5 章 5.1 节已经点明，为运行在不同主机上的应用进程提供直接的通信服务是运输层的任务，运输层协议因此又称为端到端协议。应用层就架在这条端到端的通道之上。</p>
+<h3>（1）应用层与运输层各管一段</h3>
+<p>两者的分工可以这样理解：运输层负责「把对端应用进程发出的数据交给本端的应用进程」，它向高层屏蔽了网络核心的细节（如网络拓扑、所采用的路由选择协议等），使应用进程看见的好像是在两个运输层实体之间有一条端到端的逻辑通信信道；对端的数据究竟交给哪个进程，则靠端口号来区分（见 5.2 节）。应用层负责「用这条通道完成什么」，即通过应用进程之间的交互来实现某个特定的网络应用。因特网的运输层为应用层提供了两种协议：面向连接的 TCP（Transmission Control Protocol，传输控制协议）和无连接的 UDP（User Datagram Protocol，用户数据报协议），选哪一种取决于应用对可靠性和实时性的要求（见 5.3 节）。</p>
+<h3>（2）应用层协议规定什么</h3>
+<p>同一类网络应用要能互通，通信两端就必须遵守共同的规则，这就是<strong>应用层协议</strong>。它规定的是应用进程交换报文时应遵守的约定：报文的类型（例如请求与响应之分）、每种报文的格式与字段含义、什么时机发送、收到之后如何响应。后面要学的超文本传送协议 HTTP（HyperText Transfer Protocol）、域名系统 DNS（Domain Name System）等，都是应用层协议。不同的网络应用对运输层的要求不同，因此有的应用层协议建立在 TCP 之上，有的建立在 UDP 之上——这正是应用层与运输层分工的体现。</p>
+
+<h2>3. 应用层的发展</h2>
+<p>应用层是计算机网络中发展最快的部分。回顾它的发展，可以看到一条清晰的脉络：</p>
+<ul>
+  <li><strong>早期基于文本的应用</strong>：电子邮件、远程登录、文件传输、新闻组；</li>
+  <li><strong>20 世纪 90 年代</strong>：万维网 WWW（World Wide Web）把因特网带入千家万户；</li>
+  <li><strong>当今</strong>：即时通信、P2P 文件共享以及各种音视频应用成为主流。</li>
+</ul>
+<p>推动这条脉络不断向前的，还有支撑环境的持续变化：计算设备的小型化和「无处不在」，宽带住宅接入和无线接入的日益普及与迅速发展，为未来更多的新型应用提供了广阔的舞台。也正因为应用层变得这么快，本章讲的重点不是某个具体的应用程序，而是网络应用的<strong>原理、协议和实现</strong>——掌握了这些，再遇到新应用也不会陌生。</p>
+
+<h2>4. 因特网上常见的网络应用</h2>
+<p>因特网上运行着成千上万种应用，不过支撑我们日常使用的主要是下面几类，它们也正是本章学习的对象：</p>
+<ul>
+  <li><strong>万维网 WWW（World Wide Web）</strong>：用浏览器访问网页，是 20 世纪 90 年代以来把因特网带入千家万户的应用。浏览器与服务器之间靠<strong>超文本传送协议 HTTP（HyperText Transfer Protocol）</strong>交换请求与响应；例如用浏览器打开一所大学的门户网站，就是一次再普通不过的 WWW 应用。</li>
+  <li><strong>域名系统 DNS（Domain Name System）</strong>：人习惯记域名（如 www.hnust.cn），而网络中的主机要靠 IP 地址定位（如 218.75.230.30），DNS 的任务就是把域名解析成与之对应的 IP 地址，让用户不必去记这些数字。</li>
+  <li><strong>动态主机配置协议 DHCP（Dynamic Host Configuration Protocol）</strong>：让接入网络的主机自动获得 IP 地址等配置信息，不必逐台手工设置。</li>
+  <li><strong>电子邮件</strong>：最典型的异步通信应用，也是早期基于文本的应用的代表。</li>
+  <li><strong>文件传送协议 FTP（File Transfer Protocol）</strong>：在主机之间传送文件；除此之外，还有 P2P（Peer-to-Peer，对等方式）文件共享。</li>
+  <li><strong>多媒体网络应用</strong>：音视频等对时延和带宽有特殊要求的应用，是当今网络应用的主流形态之一。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/6-1/p1443.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-1/p1443.webp" alt="图 2　网络应用的全景：万维网、电子邮件、域名系统、动态主机配置、文件传送与 P2P 文件共享、多媒体网络应用" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　网络应用的全景：万维网 WWW、电子邮件、域名系统 DNS、动态主机配置协议 DHCP、文件传送 FTP 与 P2P 文件共享、多媒体网络应用（原讲义第 1443 页）</figcaption>
+</figure>
+
+<h2>5. 第 6 章的展开顺序</h2>
+<p>本章以这些经典应用为例，按「先讲工作方式、再讲具体应用」的顺序展开：</p>
+<ul>
+  <li><strong>6.2 客户—服务器方式和对等方式</strong>：这是网络应用最基本的两种组织方式，后面每一类应用都要先明确自己属于哪一种，所以放在最前面；P2P 文件共享正是对等方式的典型代表。</li>
+  <li><strong>6.3 动态主机配置协议 DHCP</strong>：主机要能上网，首先得拿到 IP 地址等配置，DHCP 解决的正是这个问题。</li>
+  <li><strong>6.4 域名系统 DNS</strong>：有了地址，还要能按名字找到对方，DNS 负责域名与 IP 地址之间的转换。</li>
+  <li><strong>6.5 文件传送协议 FTP</strong>：最经典的应用之一，讲清它如何在运输层之上组织文件传送。</li>
+  <li><strong>6.6 电子邮件</strong>：结构比文件传送复杂，涉及发送、接收与邮件服务器的协同工作。</li>
+  <li><strong>6.7 万维网 WWW</strong>：当今使用最广泛的应用，涉及的知识点也最丰富，放在最后详细展开。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/6-1/p1445.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-1/p1445.webp" alt="图 3　第 6 章后续各节要展开的经典网络应用" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　第 6 章后续各节要展开的经典网络应用一览（原讲义第 1445 页）</figcaption>
+</figure>
+<p>上述应用类型与本章各节一一对应：P2P 文件共享作为对等方式的典型在 6.2 节讨论，DHCP、DNS、FTP、电子邮件、万维网 WWW 依次安排在 6.3 至 6.7 节；多媒体网络应用（音视频等）对时延和带宽的要求更高，是当今网络应用的重要形态。可以看出，这些应用全都建立在第 5 章运输层提供的端到端服务之上：应用层协议决定「交换什么报文、怎样交换」，运输层决定「这些报文如何可靠或高效地送达对端的应用进程」。抓住这条分工线索，本章各节的内容就串成了一条线。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>应用层是体系结构的<strong>最顶层</strong>，是设计和建立计算机网络的最终目的，也是发展最快的部分；它解决的是通过应用进程的交互来实现特定网络应用的问题。</li>
+  <li>各层分工自上而下依次是：应用层解决应用问题，运输层解决进程之间基于网络的通信，网络层解决分组在多个网络上传输（路由），数据链路层解决分组在一个网络（或一段链路）上的传输，物理层解决用何种信号传输比特。</li>
+  <li>应用进程之间的通信由运输层提供端到端服务（第 5 章），应用层协议则规定应用进程交换报文的类型、格式与规则，二者分工明确。</li>
+  <li>应用层的发展脉络：早期基于文本的应用（电子邮件、远程登录、文件传输、新闻组）→ 20 世纪 90 年代的万维网 WWW → 当今的即时通信、P2P 文件共享与各种音视频应用；设备的小型化、宽带与无线接入的普及为新型应用提供了舞台。</li>
+  <li>本章要学习的经典应用：万维网 WWW、域名系统 DNS、动态主机配置协议 DHCP、电子邮件、文件传送协议 FTP、P2P 文件共享、多媒体网络应用。</li>
+  <li>后续各节依次展开：6.2 客户—服务器方式和对等方式 → 6.3 DHCP → 6.4 DNS → 6.5 FTP → 6.6 电子邮件 → 6.7 万维网 WWW。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-9.html">‹ 5.9 TCP报文段的首部格式</a>
+      <a class="next" href="6-2.html">6.2 客户—服务器方式和对等方式 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

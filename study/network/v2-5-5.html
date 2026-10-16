@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.5 网络互联中的选路 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 5 章 网络互联 5.5 网络互联中的选路：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html" aria-current="page"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 5 章 网络互联</p>
+      <h1>5.5 网络互联中的选路</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">分组从源主机到目的主机要经过一连串路由器，路由器凭什么知道该把它交给哪个邻居？靠选路算法算出的转发表。本节先把选路问题抽象成带权图，交代静态路由与动态路由、自治系统与网关协议的分类；再用 Dijkstra 算法讲链路状态选路与 OSPF，用 Bellman-Ford 的思想讲距离向量选路与 RIP；最后讲自治系统之间的路由，看 BGP 怎样交换可达性信息、按什么规则作出选择。</p>
+
+<h2>1. 选路问题的提法：从「好的路径」到带权图</h2>
+<p>选路算法的目的：给定一组路由器以及连接这些路由器的链路，从中找到一条从源路由器到目的路由器「好的」路径。这里要分清三个角色：一台主机「直接」连接到的路由器是它的<strong>默认路由器</strong>，源主机的默认路由器叫源路由器，目标主机的默认路由器叫目的路由器。所谓「好的」路径通常指费用最低的路径，不过课件还给了一个必须记住的例外：A 和 B 之间的路径费用很低，可是这两个组织作出的路由策略不允许它通行——<strong>「最低费用」只是技术上的目标，能否采用还要看策略</strong>。</p>
+<p>要把「找路径」变成能计算的问题，得先把网络抽象成数学对象：形式化为一幅图 G = (N, E)，N 是路由器集，E 是链路集，课件给出的例子是六个节点与九条链路：</p>
+<pre><code>图：G = (N, E)
+N = 路由器集 = { u, v, w, x, y, z }
+E = 链路集 = { (u,v), (u,x), (v,x), (v,w), (x,w), (x,y), (w,y), (w,z), (y,z) }</code></pre>
+<p>网络中只考虑无向图，即假定链路上双向的费用一致；这套抽象图模型同样适用于对等网络 P2P（Peer-to-Peer），只不过那时 N 是节点的集合，E 是 TCP 连接的集合。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0145.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0145.webp" alt="图 1　选路问题的抽象图模型" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　把网络抽象成带权图：节点是路由器，边是链路，边上的数值是链路费用；图中还给出节点集 N、链路集 E 与图 G = (N, E) 的写法（原课件第 145 张）</figcaption>
+</figure>
+<p>有了图还要给「费用」下定义：c(x, x′) 是节点 x 和 x′ 之间边的费用，例如 c(w, z) = 5，两点之间没有直连链路时记为无穷大；费用可以是经济上的代价，也可能与链路的带宽以及拥塞状况有关。一条路径的费用是沿途各段费用之和：路径 (x1, x2, x3, …, xp) 的费用 = c(x1,x2) + c(x2,x3) + … + c(xp-1,xp)。于是选路问题就是：<strong>节点 u 和节点 z 之间的最低费用路径是什么</strong>。</p>
+<p>不过算法不能只算对一次。<strong>理想的路由算法</strong>应当具备高效、稳定、灵活等特性，以应对各种网络拓扑、流量变化以及网络故障：能选择最优路径、自动适应网络变化、均衡负载、降低延迟与丢包率并具备容错性，从而提升性能与可靠性、优化资源并减少维护成本。</p>
+
+<h2>2. 静态路由、动态路由与自治系统</h2>
+<p>按路由信息从哪儿来，路由分成两类：静态路由是管理员手动配置的固定路径，动态路由是路由器自动学习、维护的路径。两者的长短正好互补：</p>
+<div class="tbl-wrap"><table>
+  <caption>静态路由与动态路由的对比（依课件第 148 张整理）。</caption>
+  <thead>
+    <tr><th>类型</th><th>静态路由</th><th>动态路由</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>定义</td><td>管理员手动配置的固定路径</td><td>路由器自动学习、维护的路径</td></tr>
+    <tr><td>优点</td><td>简单、资源占用少、安全性高</td><td>自动适应网络变化，维护工作量小</td></tr>
+    <tr><td>缺点</td><td>无法自动适应网络变化，维护困难</td><td>占用资源较多，可能出现环路或错误</td></tr>
+    <tr><td>适用场景</td><td>小型、结构简单、变化少的网络</td><td>大型、结构复杂、变化频繁的网络</td></tr>
+  </tbody>
+</table></div>
+<p>静态路由的「安全」来自它的死板：路径由人写死，外部变化改不动它，但网络一有变动就得人工去改，规模一大就维护不动；动态路由相反，路由器之间交换信息、自动算出路径，省了人力，代价是占用资源，而且算法本身可能出错。实际网络常常两者并用，本节的 Dijkstra 算法和距离向量算法都是动态路由的基础。</p>
+<p>动态路由要面对的第一个难题是规模：若每个路由器都要知道全网拓扑并为每个目的网络精确选路，计算量和路由表都会大得无法承受。解决办法是分层，具体形式就是<strong>自治系统 AS（Autonomous System）</strong>——一个 AS 对外表现为使用统一路由策略的网络集合。每个 AS 有唯一的 AS 编号（ASN），内部使用内部网关协议 IGP（Interior Gateway Protocol），之间使用外部网关协议 EGP（Exterior Gateway Protocol）。</p>
+<div class="tbl-wrap"><table>
+  <caption>路由协议的分类：内部网关协议与外部网关协议（依课件第 150 张整理）。</caption>
+  <thead>
+    <tr><th>类别</th><th>IGP（内部网关协议）</th><th>EGP（外部网关协议）</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>定义</td><td>AS 内部使用的路由协议</td><td>AS 之间使用的路由协议</td></tr>
+    <tr><td>应用范围</td><td>单一自治系统内部</td><td>不同自治系统之间</td></tr>
+    <tr><td>代表协议</td><td>RIP、OSPF、IS-IS 等</td><td>BGP（边界网关协议）</td></tr>
+    <tr><td>设计目标</td><td>快速收敛、易配置</td><td>可扩展性强、策略控制能力强</td></tr>
+  </tbody>
+</table></div>
+<p>从设计目标可以看出分工：IGP 追求在本自治系统内部快速、简单地收敛，因为内部拓扑是「自己家的」，可以要求全网共享信息；EGP 追求可扩展性与策略控制能力，因为它面对成千上万个互相独立、彼此还有商业关系的自治系统。</p>
+
+<h2>3. 链路状态选路与 Dijkstra 算法</h2>
+<p>链路状态选路算法的前提非常明确：<strong>所有节点都知道网络拓扑和链路费用</strong>——通过链路状态广播获得信息，因而所有节点具有同一个完整的视图。在这个共同视图上，每个路由器独自计算从自己到网络中所有其他节点的最低费用路径，结果就是一张转发表。计算用 Dijkstra（迪克斯特拉）算法完成，特征是<strong>迭代</strong>：经过 K 次迭代后就知道到 K 个目的节点的最低费用路径。先认四个符号：</p>
+<pre><code>c(x,y)：从节点 x 到节点 y 的链路费用；如果 x 和 y 不是直连的，则 c(x,y) = ∞
+D(v)：随着算法进行本次迭代，从源节点到目的节点 v 的最低费用路径的费用
+p(v)：从源节点到 v 沿着当前最低费用路径的前一个节点
+N'：节点子集。v 在 N' 中，如果从源节点到 v 的最低费用路径已知</code></pre>
+
+<p>算法的思路是逐轮「认领」节点：每轮从不在 N′ 中的节点里挑出 D 值最小的加入 N′，表示到它的最低费用路径已经确定；再以它为中转修正尚未加入 N′ 的邻居，若经过它更便宜就更新 D 值，并把 p(v) 记成这个中转节点。课件中从 u 出发的例子如下表，p 一列写成「费用, 前一跳」：</p>
+<div class="tbl-wrap"><table>
+  <caption>从节点 u 出发运行 Dijkstra 算法的迭代过程（依课件第 153 张的演算表整理）。</caption>
+  <thead>
+    <tr><th>步骤</th><th>N′</th><th>D(v), p(v)</th><th>D(w), p(w)</th><th>D(x), p(x)</th><th>D(y), p(y)</th><th>D(z), p(z)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>u</td><td>2, u</td><td>5, u</td><td>1, u</td><td>∞</td><td>∞</td></tr>
+    <tr><td>1</td><td>ux</td><td>2, u</td><td>4, x</td><td>—</td><td>2, x</td><td>∞</td></tr>
+    <tr><td>2</td><td>uxy</td><td>2, u</td><td>3, y</td><td>—</td><td>—</td><td>4, y</td></tr>
+    <tr><td>3</td><td>uxyv</td><td>—</td><td>3, y</td><td>—</td><td>—</td><td>4, y</td></tr>
+    <tr><td>4</td><td>uxyvw</td><td>—</td><td>—</td><td>—</td><td>—</td><td>4, y</td></tr>
+    <tr><td>5</td><td>uxyvwz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p>第 0 步只把源节点 u 放进 N′，D 值就是 u 到各邻居的直连费用：v 是 2、x 是 1、w 是 5，不相邻的 y 和 z 仍是无穷大。第 1 步在 N′ 之外选出 D 值最小的 x（费用 1）加入，再用 x 修正邻居的 D 值：w 由 5, u 改成 4, x，y 由无穷大改成 2, x，这就是「经过 x 更便宜就更新」。第 2 步选出 y（费用 2），把 w 降为 3, y，并第一次算出 z 的费用 4, y；第 3、4 步加入 v 和 w，第 5 步把 z 加入 N′。</p>
+<p>还有一件事藏在 p(v) 里：沿着每个节点的前一跳回溯到源节点，就能恢复出整棵<strong>最短路径树</strong>；课件指出，通过跟踪前一跳节点可以构造最短路径树，再由这棵树读出 u 的转发表——去 v 走 (u, v)，去 x、y、w、z 都走 (u, x)。于是链路状态算法的完整链条是：<strong>前提是知道拓扑和链路费用，方法是迭代，目标是产生某节点的转发表</strong>。</p>
+<h3>（1）Dijkstra 算法的复杂性</h3>
+<p>第一次迭代需要搜索所有的 n 个节点，才能确定那个不在 N′ 中且具有最低费用的节点 w；把每轮搜索的节点数加起来，所有迭代中需要搜索的节点总数为 n(n+1)/2，所以链路状态算法在最差情况下的复杂性为 O(n²)。课件还指出，该算法若换用一种叫作<strong>堆</strong>的数据结构实现，计算复杂性可降为 O(m log n)，其中 m 是链路数。</p>
+
+<h2>4. 链路费用随流量变化引起的振荡及对策</h2>
+<p>链路状态算法有一个很实际的麻烦：链路费用可以与带宽以及拥塞状况有关，而拥塞又取决于流量走哪条路，算法和网络状态之间因此形成了反馈回路。课件示意图描绘的就是这种反复：各节点按当前费用算出路径，流量转移到「便宜」的链路上；这条链路一拥塞，费用升高，各节点重新计算路由，流量又涌回原来那条链路；路由在两套方案之间来回摆动，这就是<strong>振荡</strong>。</p>
+<p>课件的主要对策只有一条：<strong>强制链路费用不依赖于所承载的流量</strong>，费用成为拓扑的固有属性之后，算出的最优路径也就固定下来；但课件明确指出它无法解决高拥塞的问题，因此不可接受；辅助手段有两条：确保所有路由器不同时运行链路状态算法（因特网上的路由器能够自同步，各路由器周期性地广播链路状态，运行时刻会逐渐对齐），以及随机化路由器发送链路通告的时间。</p>
+
+<h2>5. 因特网中的链路状态选路：OSPF 协议</h2>
+<p>把 Dijkstra 算法真正用到因特网上的协议，是<strong>开放最短路径优先 OSPF（Open Shortest Path First）</strong>。课件先对名字做澄清：「Open（开放）」意味着 OSPF 不是受某一家厂商控制的，而是公开发表的；「SPF（最短路径优先）」意味着它使用 Dijkstra 算法——<strong>OSPF 只是最早使用最短路径算法的路由协议的名字，并不代表其他路由选择协议就不是最短路径优先</strong>。此外，OSPF 是分布式而不是集中式协议，每个路由器自己算自己的转发表。</p>
+<p>课件的第二个重点是 OSPF 的三个要点。交互范围与方法：OSPF 协议消息采用<strong>泛洪法</strong>发送，并且限于本自治系统域内。交互信息内容：消息里装的是与本路由器相邻的所有路由器的链路状态，而不是完整的路由表——这一点与后面要讲的 RIP 正好相反。交互时机：仅当链路状态发生变化时才采用泛洪法发送，平时没有周期性的整表交换。</p>
+<p>这三条要点合起来，保证了每个路由器最终都掌握同一份资料：路由器之间频繁地交换链路状态信息，因此所有的路由器最终都能建立一个<strong>链路状态数据库</strong>；这个数据库实际上就是全网的拓扑结构图，在全网范围内一致，并且能较快地更新，使各路由器及时更新路由表，<strong>收敛得快是 OSPF 的重要优点</strong>。课件也列出了代价：计算最小生成树耗时大，拓扑变化导致网络动荡，数据库的存储空间占用也比较大。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0162.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0162.webp" alt="图 2　OSPF 的洪泛法、消息内容、发送时机与链路状态数据库" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　OSPF 用洪泛法向本自治系统内所有路由器发送相邻路由器的链路状态，各路由器据此建立全网一致的链路状态数据库（原课件第 162 张）</figcaption>
+</figure>
+<p>课件对 OSPF 还有几点补充说明。第一，OSPF <strong>不强制如何设置链路权值的策略</strong>，但提供对给定链路权值集合确定最低费用路径的机制。第二，即使链路状态没有变化，也每 30 分钟广播一次链路状态。第三，链路状态以 OSPF 通告的形式封装在报文中，由 IP 分组承载，协议号为 89。第四，路由器之间的交换都经过鉴别（简单的、MD5 的），以确认通告的真实性、防止伪造和篡改，通告都带序列号以防重放攻击。第五，支持多条相同费用的路径，也支持多播选路、层次路由和负载均衡。</p>
+<h3>（1）层次 OSPF：把一个自治系统再划分成区域</h3>
+<p>自治系统本身也可能很大，于是 OSPF 又做了一层划分：它<strong>将一个自治系统再划分为若干个更小的范围，叫作区域</strong>，每个区域都有一个 32 bit 的区域标识符；区域也不能太大，一个区域内的路由器最好不超过 200 个。划分区域的好处是把洪泛法交换链路状态信息的范围局限于每一个区域而不是整个的自治系统，减少了全网通信量；区域内部的路由器只知道本区域的完整拓扑，不知道其他区域的拓扑。上层的区域叫作<strong>主干区域（backbone area）</strong>，标识符为 0.0.0.0，作用是连通其他在下层的区域。</p>
+
+<h2>6. 距离向量选路算法</h2>
+<p>与链路状态相对的另一条技术路线是<strong>距离向量（Distance Vector）选路算法</strong>，其思想来自 Bellman-Ford 方程：每个节点只和直接相连的邻居交换信息，交换的内容是自己的距离向量，即一张「目的、经由、开销」组成的表。节点收到邻居的通告后按下式更新自己到各目的节点的最低费用：</p>
+<pre><code>dx(y) = min_v { c(x,v) + dv(y) }</code></pre>
+<p>式子的意思是：x 到 y 的最低费用，等于取遍 x 的所有邻居 v，在「x 到 v 的费用 + v 到 y 的最低费用」中挑一个最小的；<strong>邻居之间交换各自的距离向量是距离向量算法唯一的通信形式</strong>，这决定了它的开销取决于邻居数而不是全网节点数。课件用同一个例子做了演算：</p>
+<pre><code>du(z) = min { c(u,v) + dv(z), c(u,x) + dx(z), c(u,w) + dw(z) }
+      = min { 2 + 5 , 1 + 3 , 5 + 3 }
+      = 4</code></pre>
+<p>其中 dv(z) = 5、dx(z) = 3、dw(z) = 3，都是邻居曾经通告给 u 的、各自到 z 的最低费用；三项分别算出 7、4、8，取最小得 4，于是 u 认定到 z 最省的走法是先把分组交给 x。u 只需相信邻居报来的数，这既是距离向量算法开销小的原因，也是它容易出问题的原因：邻居报来的数一旦不对，错误就会顺着邻居关系一路传下去。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0167.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0167.webp" alt="图 3　距离向量的计算：dx(y) = min{c(x,v) + dv(y)}" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　距离向量的计算：节点 u 把邻居通告来的 dv(z) = 5、dx(z) = 3、dw(z) = 3 与三段链路费用 2、1、5 相加，取最小值 4（原课件第 167 张）</figcaption>
+</figure>
+<p>把这套计算落到路由表上，就是课件的<strong>路由表更新算法</strong>。路由器 X 得到相邻路由器 Y 的路由表，从而得知 Y 到网络 Z 的最短距离为 N；如果 X 没有到 Z 的路由条目，则添加一条经由 Y 到 Z、距离为 N+1 的条目；如果 X 已有到 Z 的条目、其距离为 M，那么当 M &gt; N+1 时把它更新为经由 Y 到 Z、距离 N+1，否则不更新。那个「+1」就是 X 到邻居 Y 这一段链路的费用，在 RIP 里就是 1 跳。</p>
+
+<h2>7. 距离向量的软肋：坏消息传得慢与 RIP</h2>
+<p>距离向量算法的优点与缺点来自同一个事实：每个节点只看邻居。链路费用下降时是「<strong>好消息传得快</strong>」：t0 时刻 y 检测到链路费用变化，更新自己的距离向量并通知邻居；t1 时刻 z 收到更新报文，更新自己的距离向量表，算出到 x 的新的最低费用并向邻居发送新距离向量；t2 时刻 y 收到 z 的更新，发现最低费用没有变化，不再发送报文。</p>
+<p>链路费用由低变高或链路断开时则是「<strong>坏消息传得慢</strong>」。问题出在邻居之间互相「借道」：y 发现经 x 的路径变贵了就去问 z，而 z 此前的路径正是经 y 到达 x 的，于是 z 报给 y 的仍是过期的信息，y 据此以为可以绕经 z，把距离改成大一点的值再通告出去，z 收到后又把自己的距离加 1，如此往复。距离一步一步往上爬，直到超过协议允许的最大值才结束，这就是<strong>无穷计数</strong>，其间形成的互相依赖构成<strong>路由环路</strong>，分组来回兜圈子。</p>
+<p>课件给出的对策是<strong>毒性逆转</strong>：如果 z 通过 y 选路到达目的地 x，那么 z 就通告 y，它到 x 的距离是无穷大，这样 y 就不会通过 z 到达 x。但课件明确写了一句结论：<strong>毒性逆转并没有解决无穷计数问题</strong>，它只能破除两节点之间的直接环路，遇到更长的环路仍会缓慢地计数上去；工程上真正管用的是给距离设一个上限，超限即视为不可达，这正是 RIP 的做法。</p>
+<p>因特网上的距离向量协议是<strong>路由信息协议 RIP（Routing Information Protocol）</strong>，它是基于跳数的距离向量协议：相邻两点之间的链路费用为 1 跳，最大费用限制为 15，超过 15 跳的目的网络被认定为不可达。RIP 基于 UDP，端口为 520；选路更新通告周期为 30 秒；邻居离线判定周期为 180 秒，连续几个周期收不到某个邻居的消息才判定它已离线。用 UDP 承载、周期性把整张路由表发给邻居，使 RIP 简单易配，代价是收敛较慢、规模有限。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0172.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0172.webp" alt="图 4　链路状态算法与距离向量算法的比较" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　链路状态（LS）与距离向量（DV）在报文数量、收敛速度和健壮性三个方面的比较（原课件第 172 张）</figcaption>
+</figure>
+<p>课件最后把两类算法比了三个维度。<strong>报文数量</strong>：LS 在 n 个节点、E 条链路的网络里要把链路状态发给所有节点，开销为 O(nE)；DV 只在直连的邻居之间交换报文，开销取决于邻居数，在这一点上更省。<strong>收敛速度</strong>：LS 的复杂度为 O(n²) 并且可能震荡，DV 会出现路由环路和无穷计数，两者都不完美。<strong>健壮性</strong>：LS 中一个节点能向它连接的链路广播不正确的费用，但每个节点独立计算路由表，错误影响有限；DV 中一个节点可以向任意或所有目的节点通告其不正确的最低费用路径，而且每个节点的计算都会传递给它的邻居，错误会被传播。</p>
+
+<h2>8. 自治系统之间的路由与 BGP</h2>
+<p>课件第 173 张的结论是：转发表是由 AS 内部选路算法和 AS 间选路算法<strong>共同</strong>决定的——内部算法为内部目的地址设置转发表信息，而对于外部目的地址，则由内部算法把分组送到某个网关，由 AS 间算法告诉它该走哪个网关。于是问题来了：AS1 中的路由器收到一个目的地址在 AS1 之外的数据报，应该转发到哪一个网关路由器？这需要 AS1 知道通过 AS2、AS3 分别可以到达哪些目的地，并把这些可达性信息向 AS1 中的所有路由器传播。</p>
+<p>课件用两个场景把推理走了一遍。<strong>场景 1：从源到目标仅有一条路可选。</strong>假设 AS1 从 AS 间选路协议知道子网 x 经 AS3（网关 1c）可达，而通过 AS2 不可达，AS1 就把这条可达信息向它的所有路由器广播；路由器 1d 由此知道，自己的接口 I 在到路由器 1c 的最低费用路径上，于是把表项 (x, I) 放入转发表。这里的关键是分工：<strong>「经 AS3 可达」由 AS 间协议给出，「到 1c 走哪个接口」由 AS 内部协议给出</strong>。</p>
+<p><strong>场景 2：从源到目标有多条路可选。</strong>假设 AS1 知道子网 x 既可通过 AS3 到达，也可通过 AS2 到达，路由器 1d 就必须决定通过网关 1b 还是 1c 转发，这同样是 AS 间选路协议必须解决的问题。课件的推理链是：先从 AS 间协议知道经多个网关可达子网 x；再用 AS 内部协议的选路信息决定每个网关的最低费用路径的费用；然后采用<strong>热土豆选路</strong>，即选择具有最小的最低费用的那个网关；最后从转发表决定通向该网关的接口 I，即 (x, I) 表项。</p>
+<p>把这种做法用到整个因特网，就暴露出 AS 间路由的困境，课件列出的问题是：AS 间如何获取可达信息？AS 内部路由如何获取可达信息？AS 间的路由策略如何选择？「好」路由如何确定？以及在规模很大时 AS 间难以选择最佳路由。回答这些问题的是<strong>边界网关协议 BGP（Border Gateway Protocol）</strong>，课件介绍的是 <strong>BGP-4</strong>：从相邻 AS 获取子网可达性信息，向该 AS 内部传播这些信息，再基于可达性信息和 AS 策略决定到达子网的「好」路由。课件同时强调：<strong>BGP 只能力求寻找一条能够到达目的网络且比较好的路由（不能兜圈子），而并非要寻找一条最佳路由</strong>。</p>
+<p>BGP 的运作靠一个专门的角色：每一个 AS 要选择一个路由器作为该 AS 的「<strong>BGP 发言人</strong>」，两个 BGP 发言人通过一个共享网络连接在一起。这样，AS 之间的路由信息只需由少数边界上的路由器掌握和交换，内部路由器不必知道全世界的路由。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0179.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0179.webp" alt="图 5　BGP-4 与 BGP 发言人" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　每个 AS 选择一个路由器作为本 AS 的 BGP 发言人，相邻 AS 的发言人通过共享网络连接并交换路由信息（原课件第 179 张）</figcaption>
+</figure>
+<p>BGP 发言人之间交换的是<strong>路径向量（path vector）</strong>，通告的内容不是费用，而是一串自治系统编号。课件的层次化例子是：AS2 的 BGP 发言人通知主干网的 BGP 发言人「要到达网络 N1、N2、N3 和 N4 可经过 AS2」，主干网还可以发出通知「要到达网络 N5、N6 和 N7 可沿路径（AS1, AS3）」。这种「连同路径一起通告」的做法让接收方一眼就能看出这条路由经过了哪些 AS，既便于按策略取舍，也便于发现通告里是否出现了自己的 AS 编号——若有，说明会绕环，直接丢弃。</p>
+<p>再看通告本身。<strong>当路由器通告一个前缀时，它随着前缀包含一些 BGP 属性：前缀 + 属性 = 「路由」</strong>。课件强调两个重要属性：<strong>AS-PATH</strong> 包含前缀的通告已经通过的那些 AS，例如 AS 67、AS 17；<strong>NEXT-HOP</strong> 指明到下一跳 AS 的具体的路由器，因为从当前 AS 到下一跳 AS 之间可能存在多条链路。网关路由器收到通告时，用输入策略决定是否接收或过滤该路由。课件还有一个例子：AS2 把内部若干个前缀（如 192.168.1.0/24 与 192.168.244.0/22）聚合为一个，向 AS1 只通告单一前缀 192.168.0.0/16，并负责转发指向该前缀的数据报；聚合压小了全局路由表，代价是 AS2 要自己承担内部明细的转发。AS1 收到 AS2 和 AS3 的通告后把它们发布到 AS1 内部，内部路由器据此更新路由表，这分别对应 AS 之间的 eBGP 会话与 AS 内部的 iBGP 会话。</p>
+<p>BGP 消息里装的就是这些「路由」。课件的例子是：Prefix 为 138.16.64.0/22，AS-PATH 为 AS3、AS131，NEXT-HOP 为 201.44.13.125。路由器得知一个新前缀时，为该前缀在转发表中创建一个表项，而 <strong>NEXT-HOP 是 AS-PATH 起始的那台路由器接口的 IP 地址</strong>；课件把表项形式固定为：前缀 138.16.64.0/22、AS-PATH 为 AS1 与 AS2、NEXT-HOP 为 201.44.13.125。BGP 给出的不是「距离」，而是「到哪里、经过谁、先交给谁」三件事。</p>
+
+<h2>9. BGP 的路由选择与三种路由协议的对照</h2>
+<p>有了路径向量，接收方往往能在同一个前缀上拿到多条「路由」：对前缀 x（138.16.64.0/22），一个路由器可能同时收到「AS1 AS2 to 138.16.64.0/22」和「AS2 to 138.16.64.0/22」这样的通告，应该选择哪一个？如果经过筛选后有两条或更多条同样好的最佳域间路由，课件给出的办法是采用<strong>热土豆思想，选择距离 NEXT-HOP 最近的那条路由</strong>——对外的部分由别人负责，自己这一跳越省越好。</p>
+<p>选定之后，剩下的就是把结果写进转发表：先获取 NEXT-HOP 属性（例子中是 111.99.86.55），再获取最短路径（例子中是 1c—1b），然后确定端口（例子中是端口 4），最后加入转发表，一条 (138.16.64.0/22, port 4) 的表项就形成了。BGP 提供的 NEXT-HOP 最终要交给 AS 内部的选路算法落实成具体接口，这正是「转发表由两种算法共同决定」的落地。</p>
+<p>课件的<strong>路由选择规则</strong>是三条：第一，优选路由策略中优先级最高的路由；第二，优选 AS 路径（AS_Path）最短的路由；第三，热土豆选路。当以上全部相同时，这些路由称为「<strong>等价路由</strong>」，可以负载均衡。规则一说明策略优先于距离，规则二用 AS_Path 的长短避免绕远，规则三才是纯粹的「就近出手」，三条规则的顺序不能颠倒。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-5/p0191.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-5/p0191.webp" alt="图 6　RIP、OSPF 与 BGP 三种路由协议的对照" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　RIP、OSPF 与 BGP 在协议类型、信息表达格式、交换范围与内容、选路原则、传输协议与衡量标准上的对照（原课件第 191 张）</figcaption>
+</figure>
+<p>这张表把两条线索合到了一起：算法线索是链路状态与距离向量，结构线索是自治系统内部与之间。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>选路算法的任务是在带权图 G = (N, E) 上寻找从源路由器到目的路由器的最低费用路径，并且要受组织之间路由策略的约束；理想的路由算法应高效、稳定、灵活，兼顾最优路径、自动适应、负载均衡与容错。</li>
+  <li>静态路由简单、安全但不会自适应，动态路由自动学习但占用资源并可能出错；因特网按自治系统 AS 分层，每个 AS 有唯一的 ASN，内部用 IGP（RIP、OSPF、IS-IS），之间用 EGP（BGP）。</li>
+  <li>链路状态算法要求所有节点通过链路状态广播掌握同一份全网视图，再用 Dijkstra 算法迭代求出最低费用路径并产生转发表；搜索节点总数为 n(n+1)/2，最差复杂性 O(n²)，改用堆可实现 O(m log n)；费用若依赖所承载的流量会使算法振荡，对策是让费用与流量无关、错开运行时刻并随机化链路通告时间。</li>
+  <li>OSPF 是分布式的链路状态协议，用泛洪法把相邻路由器的链路状态限制在本自治系统内、仅在链路变化时发送，各路由器据此建立全网一致的链路状态数据库；它每 30 分钟重发一次、由 IP 承载（协议号 89）、经鉴别并带序列号，支持等价多路径，还可把 AS 再划分为区域，主干区域标识符为 0.0.0.0。</li>
+  <li>距离向量算法只与邻居交换距离向量，按 dx(y) = min{c(x,v) + dv(y)} 计算，更新规则是「M &gt; N+1 才改、没有条目则添加」；它好消息传得快、坏消息传得慢，会出现无穷计数与路由环路；RIP 基于跳数：UDP 端口 520，每 30 秒通告一次，180 秒判定邻居离线，最大 15 跳。</li>
+  <li>AS 之间的可达性由 BGP-4 提供：每个 AS 选一个 BGP 发言人，与相邻 AS 的发言人交换带 AS-PATH 与 NEXT-HOP 属性的路径向量；选择路由时依次考虑策略优先级、AS 路径最短、热土豆，全部相同则为等价路由，可负载均衡。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-5-4.html">‹ 5.4 因特网控制报文协议ICMP</a>
+      <a class="next" href="v2-6-1.html">6.1 网络中的拥塞现象分析 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

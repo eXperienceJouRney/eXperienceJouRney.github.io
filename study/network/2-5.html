@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.5 信道的极限容量 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 2 章 2.5 信道的极限容量：讲义第 224–239 页 · 5 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html" aria-current="page"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 2 章 物理层</p>
+      <h1>2.5 信道的极限容量</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">信号在信道上传输会发生失真，那么一条信道到底能传多快？本节给出两个经典结论：<strong>奈氏准则</strong>从带宽出发规定了码元传输速率的上限，<strong>香农公式</strong>进一步把信噪比考虑进来，给出信息传输速率的极限。弄清这两个公式的适用条件、量纲和换算，是本章最常考、也最容易算错的地方。</p>
+
+<h2>1. 什么在限制传输速率</h2>
+<p>接收端能不能正确识别收到的码元，取决于信号波形的失真程度。通信质量较好的信道，输出波形失真不严重，码元可以识别；通信质量很差的信道，输出波形失真严重，就无法识别了。造成失真的因素主要有四个：</p>
+<ul>
+  <li><strong>码元传输速率</strong>：码元传得越快，波形越挤，越容易互相干扰；</li>
+  <li><strong>信号传输距离</strong>：传得越远，衰减和畸变越大；</li>
+  <li><strong>噪声干扰</strong>：噪声叠加在信号上，会淹没较弱的信号；</li>
+  <li><strong>传输媒体质量</strong>：媒体本身的质量决定了信号的传输特性。</li>
+</ul>
+<p>既然码元传得太快会失真，那么「码元传输速率」就必然存在一个上限——这正是奈氏准则要回答的问题。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-5/p0225.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-5/p0225.webp" alt="图 1　信道质量对输出信号波形的影响" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　通信质量较好的信道输出波形失真不严重、可以识别；质量很差的信道失真严重、无法识别（原讲义第 225 页）</figcaption>
+</figure>
+
+<h2>2. 奈氏准则</h2>
+<p><strong>奈氏准则</strong>指出：在假定的理想条件下，为了避免<strong>码间串扰</strong>，码元的传输速率是有上限的。具体地：</p>
+<ul>
+  <li>理想低通信道的最高码元传输速率 = <strong>2W Baud</strong> = 2W 码元/秒；</li>
+  <li>理想带通信道的最高码元传输速率 = <strong>W Baud</strong> = W 码元/秒。</li>
+</ul>
+<p>其中 W 是<strong>信道带宽</strong>（单位 Hz），Baud 是<strong>波特</strong>，即「码元/秒」。可见在理想条件下，码元传输速率只取决于信道带宽，而与码元采用什么波形、携带多少比特无关。</p>
+<p>这里要分清两个速率。码元传输速率又称为<strong>波特率、调制速率、波形速率或符号速率</strong>，它描述的是每秒传送多少个码元；<strong>比特率</strong>描述的是每秒传送多少个比特。两者的关系是：</p>
+<ul>
+  <li>当 1 个码元只携带 1 比特的信息量时，波特率（码元/秒）与比特率（比特/秒）在数值上相等；</li>
+  <li>当 1 个码元携带 n 比特的信息量时，把波特率换算成比特率，数值要<strong>乘以 n</strong>。</li>
+</ul>
+<p>因此，要提高信息传输速率（比特率），在波特率受奈氏准则限制的前提下，就必须设法让<strong>每一个码元携带更多个比特</strong>的信息量——这需要采用<strong>多元制</strong>，也就是使用能调制出更多种码元的高阶调制方法（例如 2.4 节讲过的 QAM）。</p>
+<p>还有一点需要注意：奈氏准则给出的是<strong>理想条件</strong>下的上限，实际信道所能传输的最高码元速率要明显低于这个数值。</p>
+
+<h2>3. 香农公式</h2>
+<p>那么，只要不断改进调制方法、让每个码元携带更多比特，是不是就能无限制地提高信息传输速率？答案是否定的。因为信道的极限信息传输速率还要受限于实际信号在信道中传输时的<strong>信噪比</strong>。</p>
+<p>香农公式给出了<strong>带宽受限且有高斯白噪声干扰</strong>的信道的极限信息传输速率：</p>
+<p><strong>C = W × log₂(1 + S/N)</strong>（单位：bit/s）</p>
+<ul>
+  <li>C：信道的极限信息传输速率；</li>
+  <li>W：信道带宽（单位 Hz）；</li>
+  <li>S：信道内所传信号的平均功率；</li>
+  <li>N：信道内的高斯噪声功率；</li>
+  <li>S/N：信噪比，通常用分贝（dB）作度量单位。</li>
+</ul>
+<p>分贝与比值之间的换算关系是：<strong>信噪比 (dB) = 10 × log₁₀(S/N)</strong>。</p>
+<p>由公式可以直接得到两条结论：<strong>信道带宽越大，或信道中信噪比越大，信息的极限传输速率就越高</strong>。同时也要注意，在实际信道上能够达到的信息传输速率要比这个极限值低不少——因为实际信道中信号还会受到其他损伤，例如各种脉冲干扰、信号在传输中的衰减和失真等，这些因素都没有被香农公式考虑进去。此外，实际能够达到的速率还会明显低于奈氏准则给出的码元速率上限。</p>
+
+<h2>4. 两个结论一起用：怎样提高传输速率</h2>
+<p>在信道带宽一定的情况下，把奈氏准则和香农公式结合起来看，提高信息传输速率的途径只有两条：</p>
+<ul>
+  <li>采用<strong>多元制</strong>，即用更好的调制方法让每个码元携带更多比特（受奈氏准则约束）；</li>
+  <li>努力<strong>提高信道中的信噪比</strong>（受香农公式约束）。</li>
+</ul>
+<p>自从香农公式发表以后，各种新的信号处理和调制方法不断出现，其目的都是为了尽可能接近香农公式给出的传输速率极限。</p>
+
+<h2>5. 例题解析</h2>
+<p>下面几道题都来自原讲义，它们演示了奈氏准则与香农公式在解题中的分工：题目给出的调制技术无论多「牛」或多陌生都不影响解题，我们只需要关心它能调制出多少个不同的基本波形（码元）。</p>
+<h3>（1）2014 年题 35</h3>
+<p>下列因素中，不会影响信道数据传输速率的是：A. 信噪比　B. 频率带宽　C. 调制速度　D. 信号传播速度。</p>
+<p>解析：信噪比通过香农公式影响极限速率；频率带宽同时出现在奈氏准则和香农公式中；调制速度（波特率）由奈氏准则约束。而信号的<strong>传播速度</strong>只决定信号多久到达，不决定每秒能传多少比特——自由空间中约 3×10⁸ m/s，铜线中约 2.3×10⁸ m/s，光纤中约 2.0×10⁸ m/s。答案：<strong>D</strong>。</p>
+<h3>（2）2009 年题 34</h3>
+<p>在无噪声情况下，若某通信链路的带宽为 3 kHz，采用 4 个相位、每个相位具有 4 种振幅的 QAM 调制技术，则该通信链路的最大数据传输速率是多少？（A. 12 kbps　B. 24 kbps　C. 48 kbps　D. 96 kbps）</p>
+<p>解析：（1）无噪声，用奈氏准则。因为是低通信道，最高码元传输速率 = 2 × 3 k = 6 k Baud = 6 k 码元/秒。（2）4 个相位、每个相位 4 种振幅，可以调制出 4 × 4 = 16 个不同的基本波形（码元）；用二进制对这 16 个码元编码需要 4 个比特（log₂16 = 4），即每个码元携带 4 比特。（3）最大数据传输速率 = 6 k（码元/秒）× 4（比特/码元）= 24 k（比特/秒）= 24 kbps。答案：<strong>B</strong>。</p>
+<h3>（3）2011 年题 34</h3>
+<p>若某通信链路的数据传输速率为 2400 bps，采用 4 相位调制，则该链路的波特率是多少？（A. 600 波特　B. 1200 波特　C. 4800 波特　D. 9600 波特）</p>
+<p>解析：（1）4 相位调制可以调制出 4 种相位不同的基本波形（码元），用二进制编码需要 log₂4 = 2 个比特，即每个码元携带 2 比特。（2）数据传输速率 = 波特率（码元传输速率）× 每个码元所携带的信息量，即 2400（比特/秒）= 波特率 × 2（比特/码元），解得波特率 = 1200（码元/秒）= 1200 Baud = 1200 波特。答案：<strong>B</strong>。</p>
+<h3>（4）2016 年题 34</h3>
+<p>若连接 R2 和 R3 链路的频率带宽为 8 kHz、信噪比为 30 dB，该链路实际数据传输速率约为理论最大数据传输速率的 50%，则该链路实际数据传输速率约是多少？（A. 8 kbps　B. 20 kbps　C. 40 kbps　D. 80 kbps）</p>
+<p>解析：理论最大数据传输速率按香农公式 C = 8 k × log₂(1 + S/N)。由 30 (dB) = 10 × log₁₀(S/N) 解得 S/N = 1000，代入得 C = 8 k × log₂(1 + 1000) ≈ 80 kbps。实际速率约为 C × 50% = 40 kbps。答案：<strong>C</strong>。</p>
+<h3>（5）2017 年题 34</h3>
+<p>若信道在无噪声情况下的极限数据传输速率不小于信噪比为 30 dB 条件下的极限数据传输速率，则信号状态数至少是多少？（A. 4　B. 8　C. 16　D. 32）</p>
+<p>解析：设信号状态数（可调制出的不同基本波形或码元数量）为 X，则每个码元可携带的比特数量为 log₂X。</p>
+<ul>
+  <li>无噪声情况下的极限数据传输速率（用奈氏准则计算）= 2W（码元/秒）× log₂X（比特/码元）= 2W·log₂X（比特/秒）；</li>
+  <li>30 dB 信噪比条件下的极限数据传输速率（用香农公式计算）= W·log₂(1 + 1000)（比特/秒）。</li>
+</ul>
+<p>根据题意列出不等式 2W·log₂X ≥ W·log₂(1 + 1000)，解得 X ≥ 32。答案：<strong>D</strong>。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>失真的四个因素：码元传输速率、信号传输距离、噪声干扰、传输媒体质量；</li>
+  <li>奈氏准则：理想低通信道最高码元传输速率 = 2W Baud，理想带通信道 = W Baud（W 为信道带宽，单位 Hz；Baud 即码元/秒）；它只与带宽有关，实际信道的最高码元速率要明显低于该上限；</li>
+  <li>码元传输速率又称波特率、调制速率、波形速率、符号速率；一个码元携带 n 比特时，比特率 = 波特率 × n，所以提高比特率要靠多元制；</li>
+  <li>香农公式：C = W × log₂(1 + S/N)（bit/s），其中信噪比 (dB) = 10 × log₁₀(S/N)；带宽或信噪比越大，极限速率越高，实际信道因脉冲干扰、衰减和失真等原因达不到这个极限；</li>
+  <li>把两个公式合起来看，提高信息传输速率只有两条路：采用多元制（更好的调制方法）和提高信噪比——香农公式发表后各种新的信号处理与调制方法，目的都是逼近它给出的极限。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-4.html">‹ 2.4 编码与调制</a>
+      <a class="next" href="3-1.html">3.1 数据链路层概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.10 线程的互斥与同步 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.10 线程的互斥与同步：课件第 140–147 张 · 3 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html" aria-current="page"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.10 线程的互斥与同步</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节把并发的单位从进程缩小到线程，代价是同一进程内的多个线程天然共享内存，互斥与同步的问题变得更突出。这一节看 Linux 为线程提供了哪些互斥/同步手段，重点讲其中的<strong>条件变量</strong>——它怎样与一把锁配合，完成「条件不满足就等待、条件满足就唤醒」这类同步。</p>
+
+<h2>1. Linux 系统中的线程互斥/同步接口</h2>
+<p>在线程这一层，前面讲过的信号量 sem 仍然可以使用；除此之外，pthread 线程库还提供了一组更贴近线程的机构，按用途分成三类：</p>
+<pre><code>/* 自旋锁：不释放处理机，原地等待 */
+pthread_spin_init/destroy( )
+pthread_spin_lock/unlock( )
+
+/* 互斥锁：等待时让出处理机 */
+pthread_mutex_init/destroy( )
+pthread_mutex_lock/unlock( )
+
+/* 条件变量：等待某个条件成立 */
+pthread_cond_init/destroy( )
+pthread_cond_wait( )
+pthread_cond_signal/broadcast( )</code></pre>
+<p>自旋锁与互斥锁的区别，正是 4.5 节讲锁时提到的两种等待方式：自旋锁不释放处理机，反复测试锁位；互斥锁在等不到时把线程挂起、转入调度。用哪一种，取决于临界区有多长、等待会有多久。</p>
+
+<h2>2. 条件变量</h2>
+<p>光有锁还不够。互斥锁只能保证「同一时刻只有一个线程动共享数据」，却无法表达「数据还没准备好，我先等一等」——如果拿锁去做这件事，等待的线程会一直占着锁，别人就没法修改数据来满足条件了。为此引入<strong>条件变量</strong>（condition variable）：它<strong>经常和一个锁（pthread_mutex_t）配合使用</strong>，内部比较简单，就是一个初始状态为空的等待进程的队列。线程在条件不满足时进入该队列等待，并同时把锁放开；等到条件成立，另一个线程通过它把等待者唤醒。</p>
+<p>条件变量的初始化有两种写法：</p>
+<pre><code>/* 静态初始化 */
+pthread_cond_t c = PTHREAD_COND_INITIALIZER;
+
+/* 动态初始化 */
+pthread_cond_init(&amp;c, NULL);</code></pre>
+<h3>（1）等待：pthread_cond_wait</h3>
+<p>这个函数表示<strong>条件没有满足，等待</strong>。它的调用形式是 <code>pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex)</code>，执行过程可以分成几步：</p>
+<ol>
+  <li>入口进入函数，把当前线程放入该 cond 的等待队列，并置为「等待状态」；</li>
+  <li>执行 <code>pthread_mutex_unlock(mutex)</code>，把锁放开——这一点很关键，只有放开锁，别的线程才能进入临界区去改变条件；</li>
+  <li>转进程（线程）调度，处理机交给其他线程使用；</li>
+  <li>当被别的线程唤醒后，先执行 <code>pthread_mutex_lock(mutex)</code> 重新获得锁，然后才从函数返回。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-os/4-10/p0142.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-10/p0142.webp" alt="图 1　pthread_cond_wait 的执行流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　pthread_cond_wait 的流程：入 cond 等待队列置等待状态 → 释放 mutex → 转调度 → 被唤醒后重新加锁 → 返回（原课件第 142 张）</figcaption>
+</figure>
+<p>「等待前后各动一次锁」是条件变量最容易记错的地方：<strong>不是先加锁再等待、等待时一直持锁，而是等待期间必须把锁交出去</strong>。</p>
+<h3>（2）唤醒：pthread_cond_signal / broadcast</h3>
+<p>这两个函数的功能是<strong>唤醒该条件变量上等待的进程</strong>：</p>
+<ul>
+  <li>如果这时没有进程在等待，什么都不做；</li>
+  <li><strong>signal 唤醒等待队列中的第一个进程，broadcast 唤醒所有进程</strong>。</li>
+</ul>
+<p>什么时候用 signal、什么时候用 broadcast，取决于「条件成立后有几个等待者可以继续推进」：只有一个时用 signal，可能有多个时用 broadcast。</p>
+
+<h2>3. 两个例子</h2>
+<h3>（1）合作进程 pa、pb、pc 的执行次序</h3>
+<p>用条件变量重做 4.6 节那个「pa 先执行，pb、pc 才能开始」的例子。设一把互斥锁 m 和一个条件变量 c，整型变量 s 表示 pa 进程是否执行完，初值为 0。</p>
+<pre><code>pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  c = PTHREAD_COND_INITIALIZER;
+int s = 0;      /* 表示 pa 进程是否执行完 */
+
+main( )
+{   cobegin
+        pa( );  pb( );  pc( );
+    coend
+}
+
+pa( )
+{   ……
+    lock(m);
+    s = 1;
+    broadcast(c);
+    unlock(m);
+}
+
+pb( )
+{   lock(m);
+    if(s == 0)
+        wait(c, m);
+    unlock(m);
+    ……
+}
+
+pc( )
+{   lock(m);
+    if(s == 0)
+        wait(c, m);
+    unlock(m);
+    ……
+}</code></pre>
+<p>pa 在锁的保护下把 s 置 1，然后 broadcast(c) 把所有等待者一起唤醒——这正是这里用 broadcast 而不用 signal 的原因：等待者有两个。pb、pc 都在锁的保护下检查条件，条件不满足就 wait，而 wait 会在等待期间把锁放开，让 pa 能够顺利执行到置位那一步。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-10/p0143.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-10/p0143.webp" alt="图 2　用互斥锁和条件变量实现 pa、pb、pc 的同步" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　用互斥锁与条件变量实现执行次序同步：pa 置 s 并 broadcast，pb、pc 判断 s 后决定是否 wait（原课件第 143 张）</figcaption>
+</figure>
+<h3>（2）共享缓冲区的 cp 与 iop</h3>
+<p>再看共享缓冲区的例子：计算进程 cp 把结果送入缓冲区 buf，打印进程 iop 把 buf 中的数据取出打印。设整型变量 s 表示 buf 中有无信息，初值为 0。cp 在放入数据前要等到缓冲区为空（s == 0），放入后把 s 置 1 并唤醒对方；iop 则相反。</p>
+<pre><code>cp( )
+{   while(计算未完成) {
+        计算得到一个结果;
+        lock(m);
+        while(s == 1)
+            wait(c, m);
+        将数据送到缓冲区中;
+        s = 1;
+        signal(c);
+        unlock(m);
+    }
+}
+
+iop( )
+{   while(打印工作未完成) {
+        lock(m);
+        while(s == 0)
+            wait(c, m);
+        从缓冲区中取一数据;
+        s = 0;
+        signal(c);
+        unlock(m);
+        从打印机上输出数据;
+    }
+}</code></pre>
+<p>把两段代码对齐着读：一方「等待条件成立 → 修改共享数据 → 用 signal 通知对方 → 解锁」，另一方做的是对称的动作。这里两次都用 signal 而不是 broadcast，因为每一边至多只有一个等待者。另外要注意，判断条件用的是 <code>while</code> 而不是 <code>if</code>：被唤醒之后必须重新检查条件是否真的成立，因为从被唤醒到重新拿到锁之间，条件可能又被别人改回去了。</p>
+
+<h2>4. 生产者—消费者问题的一般解答</h2>
+<p>把上面的结构推广到一般情形：m 个生产者 p1…pm 与 k 个消费者 c1…ck 共享一个有界缓冲区，设整型变量 n 表示 buf 中的信息数目，最大为 N，仍然用一个互斥锁 m 和一个条件变量 c。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-10/p0146.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-10/p0146.webp" alt="图 3　生产者—消费者问题示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　用条件变量解答的生产者—消费者问题：m 个生产者与 k 个消费者共享有界缓冲区（原课件第 146 张）</figcaption>
+</figure>
+<pre><code>int n = 0;      /* buf 中产品数，最大 N */
+
+main( )
+{   cobegin
+        p1( );  p2( );  …  pm( );
+        c1( );  c2( );  …  ck( );
+    coend
+}
+
+pi( )
+{   while(生产未完成) {
+        生产一个产品;
+        lock(m);
+        while(n == N)
+            wait(c, m);
+        将一个产品放入缓冲区;
+        ++n;
+        unlock(m);
+    }
+}
+
+cj( )
+{   while(还要继续消费) {
+        lock(m);
+        while(n == 0)
+            wait(c, m);
+        从缓冲区取出一个产品;
+        --n;
+        unlock(m);
+        消费一个产品;
+    }
+}</code></pre>
+<p>与 4.6 节用信号灯写的版本比较一下：那里用 sa、sb 两个信号灯分别表示「满」和「空」的数目，这里换成了「一个计数器 n + 上下界判断（n == N、n == 0）+ 一个条件变量」。条件变量不保存状态，它只负责等待和唤醒，<strong>「现在能不能继续」这件事必须由共享变量 n 自己说清楚</strong>，这也是为什么每次被唤醒后都要重新判断条件。同时不要忘记：修改完 n 之后要用 signal(c)（或 broadcast）唤醒对方，否则等在队列里的线程永远不会被唤醒。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>线程可用的互斥/同步机构有三类：信号量 sem、自旋锁与互斥锁（pthread_spin_*、pthread_mutex_*）、条件变量（pthread_cond_*）；自旋锁不释放处理机，互斥锁会挂起等待者；</li>
+  <li>条件变量常与一把互斥锁配合使用，内部是一个初始为空的等待队列，静态初始化为 PTHREAD_COND_INITIALIZER；</li>
+  <li>pthread_cond_wait 的流程是「入等待队列并置等待状态 → 释放锁 → 转调度 → 被唤醒后重新加锁 → 返回」，等待期间必须把锁交出去；</li>
+  <li>pthread_cond_signal 唤醒等待队列中的第一个线程，broadcast 唤醒所有线程；没有等待者时什么都不做；</li>
+  <li>用条件变量做同步的固定套路是「加锁 → while(条件不满足) wait → 修改共享数据 → signal/broadcast → 解锁」，被唤醒后必须用 while 重新检查条件。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-9.html">‹ 4.9 线程概念及特点</a>
+      <a class="next" href="4-11.html">4.11 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

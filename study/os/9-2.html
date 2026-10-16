@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.2 文件的逻辑结构与存取方法 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.2 文件的逻辑结构与存取方法：课件第 16–21 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html" aria-current="page"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.2 文件的逻辑结构与存取方法</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节从两种视角看文件：逻辑结构对用户负责，物理结构对存储设备负责。这一节把「用户观点」这一半展开：用户眼里的文件长什么样，文件内部的记录怎么划分、怎么编号，以及用户按什么方式去取用文件里的数据。逻辑结构不只是形式问题——它直接决定了定位一条记录要花多少代价。</p>
+<h2>1. 文件的逻辑结构</h2>
+<p>文件的逻辑结构是从用户角度看到的文件面貌。按文件内部有没有结构，逻辑结构分成两大类：<strong>流式文件</strong>和<strong>记录式文件</strong>。</p>
+<h3>（1）流式文件</h3>
+<p>流式文件是相关的有序字符的集合，是无结构的。也就是说，文件在用户眼里就是一串首尾相接的字符（字节），系统不替它划分记录，也不解释这些字符的含义：从哪里断句、哪一段算一个「条目」，完全由用户自己决定。</p>
+<p>相应地，流式文件是按信息的个数或以特殊字符为界进行存取的：或者一次读入、写出若干个字符，或者以某个特殊字符（如换行符）作为一次读写的分界。因为文件本身没有记录边界，系统只能靠这两种线索来切分信息。</p>
+<p>流式文件有三个特点：</p>
+<ul>
+  <li>空间利用上比较节省，最简单、最方便——没有记录结构，也就没有维护记录边界和记录索引的额外开销；</li>
+  <li>顺序存放，连续的字符流形式很容易和物理设备上传输的数据对应——设备按字符流收发，文件也按字符流组织，中间几乎不需要转换；</li>
+  <li>用户可以灵活地组织其文件内部的逻辑结构——记录的划分由用户在自己的程序里定义，系统不作约束。</li>
+</ul>
+<h3>（2）记录式文件</h3>
+<p>记录式文件是一种有结构的文件：这种文件在逻辑上总是被看成一组连续顺序的记录的集合，文件中的记录按顺序编号为记录 0、记录 1、……、记录 n。系统知道文件是由一条条记录组成的，因此可以直接以记录为单位进行读写。</p>
+<p>由于「记录」这种划分方式正符合人们对数据的直观认识，逻辑记录的概念被应用于许多场合，特别是在数据库管理系统中已经是必不可少的了。</p>
+<p>记录又可分为<strong>定长记录</strong>与<strong>变长记录</strong>，这两类记录的文件在定位方式上差别很大。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-2/p0019.webp" alt="图 1　定长记录文件与变长记录文件的记录排列方式" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　定长记录文件与变长记录文件的对比：定长记录文件的记录长度相同，在文件中按固定的间隔依次排列；变长记录文件的记录长度不一，要靠指针 RPTR 逐一指向各记录，因此确定一条记录的逻辑位置比较麻烦（原课件第 19 张）</figcaption>
+</figure>
+<p>图 1 把两类记录文件的差别画在了一起。定长记录文件里每条记录占据的长度一样，记录在文件中按固定间隔排列，位置是整齐、可预期的；变长记录文件里每条记录的长度互不相同，只能借助指针（图中的 RPTR）一条条指出记录所在的位置，定位时要顺着指针去找，开销自然更大——课件也明确点出「变长记录文件中确定一个记录的逻辑位置比较麻烦」。可见，逻辑记录怎么划分，直接决定了存取一条记录要付出多少代价。</p>
+<h3>（3）两种文件的比较</h3>
+<p>用两个比喻就能看清它们的差别：流式文件就像给用户一张白纸，用户可以将他的信息任意地写到纸上，没有任何格式上的限制；记录式文件就像给用户一张表格，用户要按表格规定的格式填信息，格式是固定的，但填好之后系统处理起来也更方便。</p>
+<p>管理代价上的区别是：流式文件管理简单，记录式文件需要管理记录结构信息。系统要为记录式文件额外记录「一条记录多长、一共有几条、第几条在哪里」这类信息，这份开销换来的正是按记录存取的能力。</p>
+<h2>2. 文件的存取方法</h2>
+<p>逻辑结构说的是文件内部「长什么样」，存取方法说的是用户「怎么取数据」。常用的存取方法有两种。</p>
+<h3>（1）顺序存取</h3>
+<p>顺序存取的特点是：后一次存取总是在前一次存取的基础上进行的。正因为存取位置总是接着上一次往下走，顺序存取时不必给出具体的存取位置——系统顺着当前位置继续读即可。磁带上的文件是典型的顺序存取对象，要读到某一条记录，只能从前面一条条读过去。</p>
+<h3>（2）随机存取</h3>
+<p>随机存取则是用户以任意次序请求某个记录，不必从上一次的位置接着往下走。代价是必须自己给出位置：随机存取时要指出起始存取位置，例如记录号、字符序号。磁盘上的文件支持随机存取，所以「直接取第几条记录」是可行的。</p>
+<p>两种存取方法与前面的逻辑结构是配套的：记录式文件如果每条记录定长，给出记录号就能确定位置，最便于随机存取；变长记录因为定位麻烦，顺序存取更自然，随机存取则要借助额外的指针信息。这也是选择文件逻辑结构时的重要依据。</p>
+<h2>本节小结</h2>
+<ul>
+  <li>文件的逻辑结构是从用户角度看到的文件面貌，按有无结构分为流式文件与记录式文件两类；</li>
+  <li>流式文件是相关的有序字符的集合，按信息的个数或以特殊字符为界存取；它的优点是节省空间、简单方便、与设备上的字符流传输容易对应，且用户可灵活组织文件内部的逻辑结构；</li>
+  <li>记录式文件在逻辑上是一组连续顺序的记录的集合，记录按 0、1、……、n 编号，逻辑记录的概念在数据库管理系统等场合已必不可少；记录分定长记录与变长记录；</li>
+  <li>流式文件像白纸、记录式文件像表格：前者管理简单，后者需要额外管理记录结构信息，但换来按记录存取的能力；</li>
+  <li>定长记录文件的记录按固定间隔排列，变长记录文件中确定一个记录的逻辑位置比较麻烦；</li>
+  <li>存取方法分顺序存取（后一次基于前一次，不必给出存取位置）与随机存取（可以任意次序请求记录，但要指出起始存取位置，如记录号、字符序号）；存取方法与逻辑结构相互制约，定长记录最便于随机存取。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="9-1.html">‹ 9.1 文件系统的基本概念</a>
+      <a class="next" href="9-3.html">9.3 文件的物理结构 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.6 段式及段页式存储管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章 7.6 段式及段页式存储管理：课件第 113–120 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html" aria-current="page"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 7 章 主存管理</p>
+      <h1>7.6 段式及段页式存储管理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">段式存储管理把程序按逻辑意义划分成若干段，主存以段为单位分配；段页式存储管理则在分段的基础上再分页，兼取两者之长。这一节先讲清段式地址空间与地址变换，再把页式与段式放在一起比较，然后看段页式系统的结构和它在 x86 处理器上的实现，最后用课件里的一道习题把地址计算完整走一遍。</p>
+
+<h2>1. 段式地址空间：按程序的逻辑结构分段</h2>
+<h3>（1）什么是段</h3>
+<p>页式存储管理把用户程序按固定的大小机械地切成页，切分的单位与程序本身的逻辑结构没有关系。段式存储管理换了一条思路：按程序自身的逻辑结构来划分。<strong>分段</strong>就是程序中自然划分的一组逻辑意义完整的信息集合——它应当是一个完整的模块、一段完整的代码或者一组完整的数据，而不是被硬切下来的几个固定大小的区域。</p>
+<p>最常见的分段是代码分段、数据分段和栈段：主程序与各个子程序可以分别成段，数据成段，运行时的栈单独成段。这样划分的意义在于，把「按逻辑意义组织程序」这件事交给编译程序和程序员，操作系统只按这些分段去分配主存、做保护和共享。</p>
+<h3>（2）程序的段式地址空间</h3>
+<p>于是一个程序的地址空间由若干个逻辑分段组成：每个分段有自己的名字（通常也用段号表示），而对一个分段自身来说，它是一个连续地址区——段内从 0 开始依次编址；段与段之间则不要求连续，各段的长度也可以各不相同。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-6/p0114.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-6/p0114.webp" alt="图 1　具有段式地址结构的程序地址空间" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　具有段式地址结构的程序地址空间：代码分段、数据分段、栈段各自从 0 开始编址，长度分别为 4KB、3KB、2KB（原课件第 114 张）</figcaption>
+</figure>
+<p>图中代码分段、数据分段、栈段的名字各不相同，各自从 0 开始编址，长度依次是 4KB、3KB、2KB——段长是由段内内容的多少决定的。栈顶指针 stack_addr、数据地址 data_addr、代码地址 code_addr 都是指到某个具体分段内部的某个位置，因此要访问一个信息，必须先指明「哪一个段」，再给出「段内哪个位置」。段式地址空间对用户来说是二维的：一个分量是段名（段号），另一个分量是段内地址。</p>
+
+<h2>2. 段式地址结构与地址变换</h2>
+<h3>（1）段式地址结构</h3>
+<p>段式地址由两部分组成：<strong>段号 s</strong> 与<strong>段内位移 w</strong>。段号指明访问哪一个分段，段内位移指明相对于该段段首的偏移量。</p>
+<pre><code>[ 段号 s ][ 段内位移 w ]</code></pre>
+<p>系统为每个进程建立一张<strong>段表</strong>，进程的各分段装入主存后，它们在主存中的位置就登记在段表里。段表的每个表项记录三项信息：段号、该段的长度 L、该段在主存中的基址 B（即段的起始地址）。</p>
+<h3>（2）地址变换步骤</h3>
+<p>有了段表，从程序地址到主存地址的变换按四步进行：</p>
+<ul>
+  <li>（1）取出程序地址 (s, w)；</li>
+  <li>（2）用段号 s 检索段表，找到第 s 段对应的表项；</li>
+  <li>（3）若 w &lt; 0 或 w ≥ L，说明位移超出了该段的合法范围，属于主存越界，转越界中断处理；</li>
+  <li>（4）否则 (B + w) 即为所需的主存地址。</li>
+</ul>
+<p>四步之中，前两步负责找到段，第三步是保护检查，第四步是地址拼接：基址是段的起点，位移是段内的位置，两者相加就落到主存的真实地址上。越界判据有两条——位移不能为负，也不能达到或超过段长 L，只有落在 [0, L) 区间内的位移才是合法的。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-6/p0115.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-6/p0115.webp" alt="图 2　段式地址结构与段式地址变换" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　段式地址结构与段式地址变换：地址由段号 s 和段内位移 w 组成，用 s 检索段表得到长度 L 与基址 B，主存地址为 B + w（原课件第 115 张）</figcaption>
+</figure>
+<p>图中第 S 段的表项给出了段长 L 与基址 B，把段内位移 w 叠加到基址 B 上，就得到主存地址 B + w。由于段长 L 是一段一段分别登记在段表里的，同一进程内各段的越界边界可以互不相同，这也是段式保护比页式更「贴切」的地方。</p>
+
+<h2>3. 页式系统与段式系统的区别</h2>
+<h3>（1）用户地址空间：一维与二维</h3>
+<p>从用户（更准确地说是编译程序与地址生成机构）的角度看，两种管理方式给出的地址空间维数不同：页式系统中用户地址空间是<strong>一维地址空间</strong>，段式系统中用户地址空间是<strong>二维地址空间</strong>。</p>
+<p>页式系统的逻辑地址是一串线性地址，页号与页内位移按固定的页大小自动切开，用户既看不到也不需要参与，所以用户感知到的仍然是一个从 0 连续到末尾的一维空间。段式系统则不同：地址必须由「段名（段号）」和「段内位移」两部分共同给出，缺一不可，用户必须显式说明访问哪一个段，这就是二维的。</p>
+<h3>（2）分段与页面的区别</h3>
+<div class="table-scroll" style="overflow-x:auto">
+<table>
+<caption>分段与页面的区别（据课件原文整理）</caption>
+<thead><tr><th>比较项</th><th>分段</th><th>页面</th></tr></thead>
+<tbody>
+<tr><td>划分依据</td><td>信息的逻辑划分</td><td>信息的物理划分</td></tr>
+<tr><td>大小</td><td>段长是可变的</td><td>页的大小是固定的</td></tr>
+<tr><td>用户是否看得见</td><td>用户可见</td><td>用户不可见</td></tr>
+<tr><td>位移 w 字段溢出时</td><td>将产生越界中断</td><td>自动加入到页号中</td></tr>
+</tbody>
+</table>
+</div>
+<p>四点区别可以连起来理解：页面是为了便于主存分配而做的物理划分，大小固定，与程序的逻辑结构无关，所以用户不可见；分段是按信息的逻辑意义做的划分，段长随内容而定，用户看得见、也用得着。最见功夫的是最后一行——在段式中，段内位移 w 超过段长说明程序访问越过了本段的范围，这是错误，硬件要产生越界中断；在页式中，页内位移超过页大小只意味着这一页装不下、要访问下一页，于是进位被自动加到页号上，属于正常现象。</p>
+
+<h2>4. 段页式系统</h2>
+<p>分段便于按逻辑单位共享和保护，但段长可变，主存分配时容易留下碎片；分页便于主存分配，却把程序的逻辑结构切碎了。折中的办法是把两者结合起来：在段式存储管理中结合分页存储管理技术，在一个分段内划分页面，就形成了<strong>段页式存储管理</strong>。</p>
+<h3>（1）段页式地址结构的程序地址空间</h3>
+<p>段页式系统对用户仍然呈现段的二维地址空间——用户按段组织程序，段内仍然从 0 开始连续编址；不同的是系统在段内再按固定大小分页，主存以页为单位分配，段的长度不再是主存分配的粒度。因此段内地址被拆成「段内页号」与「页内位移」两部分，程序地址可以看成段号 s、段内页号 p、页内位移 d 三部分。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-6/p0117.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-6/p0117.webp" alt="图 3　段页式地址结构的程序地址空间" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　段页式地址结构的程序地址空间：代码分段、数据分段、栈段仍按逻辑划分，长度分别为 4KB、3KB、2KB，段内再划分页面（原课件第 117 张）</figcaption>
+</figure>
+<p>图中代码分段、数据分段、栈段仍然各有自己的名字、各自从 0 开始编址，长度依旧是 4KB、3KB、2KB；与单纯分段不同的是，每个分段内部又按页面大小切成了一页一页。</p>
+<h3>（2）段表、页表与主存的关系</h3>
+<p>段页式系统需要两张表：每个进程一张段表，每个分段一张页表。段表按段号索引，表项登记该段的页表长度和页表始址（页表在主存中的起始地址）；页表按段内页号索引，表项登记该虚页对应的主存块号。主存被划分成若干与页面等大的块，页表里的块号就是主存块的编号。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-6/p0118.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-6/p0118.webp" alt="图 4　段页式管理中的段表、页表与主存的关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　段页式管理中的段表、页表与主存的关系：段表登记段号、页表长度与页表始址，页表登记页号与主存块号（原课件第 118 张）</figcaption>
+</figure>
+<p>这张图把三者的关系画清楚了：段表的表项指向本段的页表，页表的表项指向主存中真正存放该页的块。于是查一个地址要经过两级表格——先由段号找到页表，再由页号找到主存块。</p>
+<h3>（3）地址变换过程</h3>
+<p>把上面的结构串起来，段页式地址变换的过程是：</p>
+<ul>
+  <li>（1）取出程序地址里的段号 s，用 s 检索段表，得到该段的页表始址与页表长度；</li>
+  <li>（2）把段内地址按页面大小拆成页号 p 和页内位移 d，并检查 p 是否超出页表长度，超出则越界；</li>
+  <li>（3）用页表始址加上 p 检索本段页表，得到该虚页对应的主存块号 b；</li>
+  <li>（4）主存块号乘页面大小、再加上页内位移 d，即得到物理地址。</li>
+</ul>
+<p>可以看到，页内位移 d 在整条变换链上原样保留，真正被替换的是它前面的部分：段号与页号合起来，最终换成主存块号。</p>
+
+<h2>5. 习题 7-32：段页式的地址计算</h2>
+<p>题目：虚拟地址长度为 24 位，其中第 23～22 两位表示段类型，01、10、11 分别代表代码段、数据段和栈，00 非法；主存块和页面大小为 2K。现在有一进程 P，代码段分别占用 4 个主存块 0xA、0x8、0x5、0xF，数据段分别占用 3 个主存块 0xB、0x7、0xD，栈分别占用两个主存块 0x1、0x6。求：</p>
+<ul>
+  <li>（1）进程的代码段空间以及整个虚拟地址空间最大是多少？</li>
+  <li>（2）画出进程 P 主存中段表、页表结构，其中段表包含段的起始虚拟地址、页表指针。</li>
+  <li>（3）计算进程 P 中逻辑地址 0x8006AD 的物理地址，给出计算过程。</li>
+</ul>
+<div class="table-scroll" style="overflow-x:auto">
+<table>
+<caption>进程 P 的段与所占主存块（据习题 7-32）</caption>
+<thead><tr><th>段类型</th><th>段类型编码</th><th>占用的主存块</th></tr></thead>
+<tbody>
+<tr><td>代码段</td><td>01</td><td>0xA、0x8、0x5、0xF</td></tr>
+<tr><td>数据段</td><td>10</td><td>0xB、0x7、0xD</td></tr>
+<tr><td>栈</td><td>11</td><td>0x1、0x6</td></tr>
+</tbody>
+</table>
+</div>
+<h3>（1）代码段空间与整个虚拟地址空间</h3>
+<p>24 位虚拟地址中，高 2 位（第 23～22 位）被用作段类型，剩下 22 位（第 21～0 位）是段内偏移，它同时承担两个角色：段内页号加页内位移。</p>
+<pre><code>[ 段类型 2 位 ][ 段内偏移 22 位 ]
+     23~22            21~0</code></pre>
+<p>于是代码段空间最大为 2^22 B，即 <strong>4 MB</strong>。整个虚拟地址空间由 24 位地址编码，最大为 2^24 B，即 <strong>16 MB</strong>；由于段类型 00 非法，真正可用的是代码段、数据段和栈这三段，各 4 MB，合计 12 MB。再看页面大小 2K = 2^11 B，所以 22 位的段内偏移又可以分为 11 位段内页号和 11 位页内位移，每段最多 2^11 = 2048 页。</p>
+<h3>（2）段表与页表结构</h3>
+<p>段类型位既是段号，也决定了该段的起始虚拟地址：01 后面跟 22 个 0，就是 0x400000；10 对应 0x800000；11 对应 0xC00000。各段占用的主存块按页号顺序登记到本段的页表中，于是进程 P 的段表与页表如下。</p>
+<div class="table-scroll" style="overflow-x:auto">
+<table>
+<caption>进程 P 的段表</caption>
+<thead><tr><th>段（段类型）</th><th>段的起始虚拟地址</th><th>页表指针</th><th>页表长度</th></tr></thead>
+<tbody>
+<tr><td>代码段（01）</td><td>0x400000</td><td>指向代码段页表首地址</td><td>4 页</td></tr>
+<tr><td>数据段（10）</td><td>0x800000</td><td>指向数据段页表首地址</td><td>3 页</td></tr>
+<tr><td>栈（11）</td><td>0xC00000</td><td>指向栈段页表首地址</td><td>2 页</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-scroll" style="overflow-x:auto">
+<table>
+<caption>进程 P 的页表（页号 → 主存块号）</caption>
+<thead><tr><th>所属段</th><th>页号</th><th>主存块号</th></tr></thead>
+<tbody>
+<tr><td>代码段</td><td>0</td><td>0xA</td></tr>
+<tr><td>代码段</td><td>1</td><td>0x8</td></tr>
+<tr><td>代码段</td><td>2</td><td>0x5</td></tr>
+<tr><td>代码段</td><td>3</td><td>0xF</td></tr>
+<tr><td>数据段</td><td>0</td><td>0xB</td></tr>
+<tr><td>数据段</td><td>1</td><td>0x7</td></tr>
+<tr><td>数据段</td><td>2</td><td>0xD</td></tr>
+<tr><td>栈</td><td>0</td><td>0x1</td></tr>
+<tr><td>栈</td><td>1</td><td>0x6</td></tr>
+</tbody>
+</table>
+</div>
+<p>题目没有给出页表在主存中的具体位置，所以段表里的「页表指针」用各段页表的首地址符号表示即可；关键在结构上：段表负责说明页表在哪里，页表才负责说明数据在哪里。</p>
+<h3>（3）逻辑地址 0x8006AD 的物理地址</h3>
+<p>先用段类型位判断它属于哪个段。把 0x8006AD 写成 24 位二进制：</p>
+<pre><code>0x8006AD = 1000 0000 0000 0110 1010 1101
+           高 2 位 = 10   → 数据段
+           段内偏移 = 0x06AD = 1709</code></pre>
+<p>计算过程分四步：</p>
+<ul>
+  <li>（1）高 2 位是 10，查段表可知这是数据段，应按数据段的页表变换；</li>
+  <li>（2）段内偏移 0x06AD = 1709，页面大小为 2K = 2048，所以页号 p = 1709 ÷ 2048 = 0，页内位移 d = 1709 = 0x6AD；</li>
+  <li>（3）查数据段页表的第 0 项，得到主存块号 b = 0xB；</li>
+  <li>（4）物理地址 = b × 页面大小 + d = 0xB × 2K + 0x6AD = 0x5800 + 0x6AD = 0x5EAD。</li>
+</ul>
+<p>页内位移只占 11 位，所以这一步在十六进制下做更直观：0x6AD 小于 0x800，说明它落在第 0 页之内；主存块 0xB 对应的块首地址是 0xB × 0x800 = 0x5800，加上页内位移 0x6AD，得物理地址 <strong>0x5EAD</strong>。</p>
+
+<h2>6. Linux 系统 x86 处理器下的段页式系统</h2>
+<p>x86 处理器采用的正是段页式方案：地址变换先分段、再分页，逻辑地址经段式变换得到线性地址，线性地址再经页式变换得到物理地址。</p>
+<p>逻辑地址（虚地址）由两部分组成：16 位的<strong>段选择符</strong>和 32 位的<strong>偏移值</strong>。段选择符中，高 13 位是段号，第 2 位 TI 用来选择查哪一张描述符表，最低 2 位 RPL 是请求特权级。系统用段选择符去检索<strong>段描述符表</strong>，取出该段的段基址，段基址与偏移值相加，得到 32 位的线性地址。</p>
+<pre><code>逻辑地址（虚地址）= 段选择符 16 位 + 偏移值 32 位
+  段选择符 = 段号（13 位）+ TI + RPL
+线性地址 = 段基址 + 偏移值
+  再划分成三段：页表目录索引 ｜ 页表索引 ｜ 页内偏移</code></pre>
+<p>线性地址接着按页式规则使用：先由页表目录索引查<strong>页表目录</strong>，找到对应的页表；再由页表索引查<strong>页表</strong>，得到页首地址；最后由页首地址加上页内偏移，得到物理地址（实地址）。（作为背景补充：x86 的 32 位分页把线性地址按页表目录索引 10 位、页表索引 10 位、页内偏移 12 位来划分。）</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-6/p0120.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-6/p0120.webp" alt="图 5　x86 处理器下的段页式地址变换" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　x86 处理器下的段页式地址变换：段选择符经段描述符表得到段基址，与偏移值合成线性地址，再由页表目录、页表两级查表得到页首地址，加上页内偏移即物理地址（原课件第 120 张）</figcaption>
+</figure>
+<p>图中把整条路径画得很清楚：左端是逻辑地址，段选择符经段描述符表变换后与偏移值合成线性地址，线性地址再经页表目录、页表两级查表得到页首地址，最后加上页内偏移拼出物理地址。这条链路上每一次查表都要访问主存，所以一次地址变换往往要多次访问主存才能完成。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>段式存储管理按程序的逻辑结构分段：分段是程序中自然划分的一组逻辑意义完整的信息集合，代码分段、数据分段、栈段是典型的例子；每个分段有自己的名字，段内连续、段间不要求连续，段长可变；</li>
+  <li>段式地址 = 段号 s + 段内位移 w；系统为每个进程建立段表，表项含段号、长度 L、基址 B；变换过程是「取地址 → 用 s 查段表 → 判 w &lt; 0 或 w ≥ L 则越界 → 得 B + w」；</li>
+  <li>页式与段式的区别：用户地址空间一维对二维；分段是信息的逻辑划分、段长可变、用户可见、位移溢出即越界中断，页面是信息的物理划分、大小固定、用户不可见、位移溢出自动进到页号中；</li>
+  <li>段页式在分段内再分页：段表登记页表长度与页表始址，页表登记虚页与主存块的对应，变换时由段号找到页表、由页号找到主存块，页内位移全程不变；</li>
+  <li>习题 7-32 的算法主线：24 位地址中 2 位段类型加 22 位段内偏移，单段最大 4 MB、地址空间上限 16 MB（可用三段共 12 MB）；逻辑地址 0x8006AD 的段类型是 10（数据段），段内偏移 0x6AD 落在第 0 页、对应主存块 0xB，物理地址为 0xB × 2K + 0x6AD = 0x5EAD；</li>
+  <li>x86 的段页式路径：段选择符（段号 13 位 + TI + RPL）加偏移值，经段描述符表查得段基址得到线性地址，再经页表目录、页表两级查表得到页首地址，加上页内偏移即为物理地址。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-5.html">‹ 7.5 页面置换算法</a>
+      <a class="next" href="7-7.html">7.7 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

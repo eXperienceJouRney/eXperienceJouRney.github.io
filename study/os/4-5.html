@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5 进程同步机构 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.5 进程同步机构：课件第 68–81 张 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html" aria-current="page"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.5 进程同步机构</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说清了进程之间为什么会有互斥和同步的约束，这一节回答「凭什么实现这些约束」。操作系统为此提供的措施和方法统称为<strong>同步机构</strong>，最基础的两件工具是<strong>锁</strong>和<strong>信号灯（信号量）</strong>。下面先看锁——从自旋锁到普通锁，包括它绕不开的硬件原子指令问题，再看 Dijkstra 提出的信号灯与 P、V 操作。</p>
+
+<h2>1. 什么是同步机构</h2>
+<p>操作系统提供的、实现进程之间协作关系（同步和互斥）的措施和方法，称为<strong>同步机构</strong>。本课程讲的同步机构有两类：</p>
+<ul>
+  <li><strong>锁</strong>；</li>
+  <li><strong>信号灯</strong>（信号量）。</li>
+</ul>
+<p>它们都要解决同一个问题：让若干进程在访问临界资源时能够互相等待，而这种等待又不能靠普通程序语句随随便便地实现——判断与修改锁变量这两步中间若被插入别的进程，互斥就失效了。</p>
+
+<h2>2. 锁和上锁、开锁操作</h2>
+<h3>（1）上锁与开锁的含义</h3>
+<p>锁用一个锁变量 w 表示，取值为 0 或 1。进入临界区之前要先执行上锁操作，它的过程是：</p>
+<ul>
+  <li>检测 w 的值（是 0 还是 1）；</li>
+  <li>如果 w 的值为 1，继续检测（也就是等待／自旋）；</li>
+  <li>如果 w 的值为 0，将锁位置 1（表示占用资源），进入临界区执行——此为上锁操作。</li>
+</ul>
+<p>临界资源使用完毕后，把锁位置 0——此为<strong>开锁操作</strong>。上锁与开锁必须成对出现，否则临界资源会被永久占用。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-5/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-5/p0069.webp" alt="图 1　锁、上锁与开锁操作" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　锁和上锁、开锁操作：w 为 1 时继续检测（等待），w 为 0 时置 1 进入临界区；使用完毕再置 0 开锁（原课件第 69 张）</figcaption>
+</figure>
+<h3>（2）上锁原语和开锁原语（spinlock 自旋锁）</h3>
+<p>自旋锁的上锁原语算法记作 lock，输入是锁变量 w，无输出。用高级语言写出来就是「忙等 + 置位」：</p>
+<pre><code>lock()
+{
+    while (w == 1) ;
+    w = 1;
+}</code></pre>
+<p>它也可以写成带标号的测试—转移形式：在 <code>test</code> 处判断 <code>w==1</code>，是则 <code>goto test</code>（不断测试锁位的值），否则执行 <code>w=1</code> 完成上锁。相应地，开锁原语就是把锁变量 w 置为 0；它与上锁原语一样，必须作为不可分割的原语执行。</p>
+<p>之所以叫<strong>自旋锁</strong>，是因为它在得不到锁时一直占着处理机反复测试——不释放 CPU，也不进等待队列。</p>
+
+<h2>3. 自旋锁绕不开的问题：锁变量 w 自身的互斥</h2>
+<p>自旋锁的锁变量 w 本身也是一个共享变量，怎么保证 w 自己的互斥访问？单纯的「判断 + 修改」两步在任何一台机器上都可能被打断，因此必须依靠<strong>硬件提供的原子操作</strong>。用汇编写出来是一段循环：</p>
+<pre><code>1:  mov %0, [w];     访问变量 w 的内存地址，取到寄存器
+    cmp %0, #1;      与立即数 1 比较
+    beq 1b;          已加锁则回到标号 1 自旋
+    mov [w], #1;     上锁</code></pre>
+<p>其中 <code>[w]</code> 表示访问变量 w 的内存地址，<code>%0</code> 表示某个寄存器，<code>#1</code> 表示立即数 1。硬件可以保证的原子操作有两条：</p>
+<ul>
+  <li>（1）单个硬件指令是原子操作，中断只会发生在指令边界；</li>
+  <li>（2）内存总线一次地址对齐的读或写操作（1 到 N 个字节）是原子操作。</li>
+</ul>
+<p>有了这两条，「读—比较—写」虽然跨越多条指令，也能通过下面的原子指令方案落到实处。</p>
+
+<h2>4. 用软件方法实现互斥：皮特森算法</h2>
+<p>不用特殊硬件指令、纯软件的办法也有，代表性的是<strong>皮特森算法</strong>（Peterson 算法），它可以解决两个进程的互斥问题。它使用两个全局变量：</p>
+<ul>
+  <li><code>flag[2]</code>：表示进程 0 和 1 是否尝试进入临界区，初始值为 FALSE；</li>
+  <li><code>turn</code>：表示最终能进入临界区的进程编号（0 或 1）。</li>
+</ul>
+<p>两个线程的代码完全对称：</p>
+<pre><code>线程 0：
+flag[0] = TRUE;                 // 自己请求进入临界区
+turn = 1;                       // 优先选择对方进入临界区
+while ((flag[1] == TRUE) &amp;&amp; (turn == 1)) ;
+......                          // 临界区代码
+flag[0] = FALSE;                // 退出临界区
+
+线程 1：
+flag[1] = TRUE;
+turn = 0;
+while ((flag[0] == TRUE) &amp;&amp; (turn == 0)) ;
+......                          // 临界区代码
+flag[1] = FALSE;                // 退出临界区</code></pre>
+<p>它的巧妙之处在于：每个进程先声称自己要进，再把优先权让给对方，于是两个进程同时伸手时一定有一个能进、另一个退让，不会互相僵持。</p>
+
+<h2>5. 用硬件交换指令实现互斥</h2>
+<p>如果硬件能够提供一条指令同时完成内存的读和写，互斥实现起来就很方便，这就是<strong>交换指令</strong>（ARM 上叫 <code>swp</code>，x86 上叫 <code>xchg</code>）。不过要注意：虽然一条指令完成了读写，但内存操作本身并不天然具有原子性，如果有多核 CPU 还是会被打断，因此<strong>必须要有 lock 锁住总线的功能</strong>。</p>
+<h3>（1）多核心处理器上的加锁与解锁</h3>
+<pre><code>加锁：
+cli + 禁止进程调度；
+1: mov %0, #1;
+   lock xchg %0, [w];
+   cmp %0, #1;     判断是否已经加锁
+   beq 1b;
+
+解锁：
+mov [w], #0;
+sti + 恢复进程调度；</code></pre>
+<p>加锁前先关中断并禁止进程调度，用 <code>lock xchg</code> 原子地交换，交换回来的旧值若为 1 说明锁已被别人持有，回到标号 1 自旋；解锁时把 w 置 0，再开中断并恢复进程调度。（单核心处理器上不需要总线 lock，实现更简单。）</p>
+<h3>（2）ARM v6 之后的新机制：ldrex／strex</h3>
+<p>交换指令违背了 ARM 精简指令集的宗旨，并且 lock 总线导致自旋时整个系统总线效率很低。因此在 ARM v6 指令级之后引入了新的机制——用独占访问标记代替锁总线：</p>
+<pre><code>加锁：
+1:  ldrex %0, [w];          标记该 cpu 核独占这个地址，并读 w 值到 %0
+    cmp %0, #1;             判断是否已经加锁
+    beq 1b;                 等于 1 表示已经加锁，自旋
+    mov %0, #1;
+    strex %1, %0, [w];      检查该 cpu 核是否仍然独占这个地址，
+                            是则存储 %0 到 w（即 w 为 1），
+                            同时赋值 0 到 %1 并清除独占标记；
+                            否则赋值 1 到 %1，不改变 w 值
+    cmp %1, #0;
+    bne 1b;                 存储失败则重新自旋
+
+解锁：
+mov %0, #0;
+store %0, [w];              将 w 清零</code></pre>
+<p>这里 <code>ldrex</code> 读的同时给地址打上独占标记，<code>strex</code> 只有在标记仍然有效时才写入并返回 0，否则返回 1 让程序重试——这样既保证了「读—改—写」的原子性，又不必锁住整条总线。</p>
+
+<h2>6. 第二种锁：mutex 普通锁</h2>
+<p>自旋锁在等不到锁时一直占用 CPU，效率不高。第二种锁是 <strong>mutex 普通锁</strong>，它的特点是<strong>不占用 CPU、不自旋</strong>——等不到锁时主动让出处理机，进入等待队列。</p>
+<h3>（1）上锁原语 lock</h3>
+<p>输入为锁变量 w，无输出：</p>
+<pre><code>{
+    while (w == 1)
+    {
+        保护当前进程的 cpu 现场；
+        设置当前进程的状态为等待，并插入到 w 的等待队列；
+        转进程调度；
+    }
+    w = 1;
+}</code></pre>
+<h3>（2）开锁原语 unlock</h3>
+<p>输入为锁变量 w，无输出：</p>
+<pre><code>{
+    if (w 的等待队列不为空)
+    {
+        移出等待队列首元素，插入到就绪队列；
+        置该进程为就绪状态；
+    }
+    w = 0;
+}</code></pre>
+<p>对照上一节的进程等待与唤醒原语可以看到，mutex 锁的等待与唤醒正是那两条原语的应用：<strong>上锁失败时把进程挂到 w 的等待队列上，开锁时唤醒队首进程并把它送回就绪队列</strong>。</p>
+
+<h2>7. 用上锁原语和开锁原语实现互斥</h2>
+<p>把上面的原语用到临界区上，互斥的实现就非常直观：进程 A 在进入临界区 <code>csa</code> 之前先执行「上锁原语 w」，出来时执行「开锁原语 w」；进程 B 对 <code>csb</code> 做同样的动作，两者共用同一个锁变量 w。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-5/p0077.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-5/p0077.webp" alt="图 2　用上锁原语和开锁原语实现互斥" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　用上锁原语和开锁原语实现互斥：进程 A 与进程 B 都以「上锁原语 w → 进入各自临界区 → 开锁原语 w」的方式访问同一临界资源（原课件第 77 张）</figcaption>
+</figure>
+<p>这正是后面所有同步手段的骨架：<strong>进入临界区前申请，离开临界区后释放</strong>。</p>
+
+<h2>8. 信号灯和 P、V 操作</h2>
+<p>1965 年，由荷兰学者 Dijkstra 提出信号灯机制（所以 P、V 分别是荷兰语 test（proberen）和 increment（verhogen）的首字母），它是一种卓有成效的进程同步机制。</p>
+<h3>（1）什么是信号灯</h3>
+<p>信号灯是一个确定的二元组 <strong>(s, q)</strong>：s 是一个具有非负初值的整型变量，q 是一个初始状态为空的队列。操作系统利用信号灯的状态对并发进程和共享资源进行控制和管理。</p>
+<ul>
+  <li>s 是整型变量，代表可用资源实体的数量；</li>
+  <li>s &gt; 0 时，表示有可用资源，进程执行（绿灯）；</li>
+  <li>s &lt;= 0 时，表示没有可用资源，进程停止执行（红灯）。</li>
+</ul>
+<p>注意：创建信号灯时，应准确说明信号灯 s 的意义和初值，而且<strong>这个初值绝不能为负值</strong>。</p>
+<h3>（2）P 操作</h3>
+<p>对信号灯 s 的 P 操作记为 <code>p(s)</code>。p(s) 是一个不可分割的原语操作，即取信号灯值<strong>减 1</strong>，若相减结果为负，则调用 p(s) 的进程被阻，并插入到该信号灯的等待队列中，否则可以继续执行。</p>
+<p>它的实现流程是：入口 → 执行 <code>S-1 → S</code> → 判断 <code>S ≥ 0 ?</code>：若成立则返回，进程继续执行；若不成立则置「等待状态」、入信号灯等待队列、转进程调度。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-5/p0080.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-5/p0080.webp" alt="图 3　P 操作原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　P 操作原语流程图：先做 S−1→S，结果为负则置等待状态、入该信号灯的等待队列并转进程调度，否则直接返回（原课件第 80 张）</figcaption>
+</figure>
+<h3>（3）V 操作</h3>
+<p>对信号灯 s 的 V 操作记为 <code>v(s)</code>。v(s) 是一个不可分割的原语操作，即取信号灯值<strong>加 1</strong>，若相加结果大于零，进程继续执行；否则，要帮助唤醒在信号灯等待队列上的一个进程。</p>
+<p>它的实现流程是：入口 → 执行 <code>S+1 → S</code> → 判断 <code>S ≤ 0 ?</code>：若不成立（即 S &gt; 0）则返回；若成立则从信号灯的等待队列中取出首元素、入就绪队列、置「就绪状态」，然后返回。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-5/p0081.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-5/p0081.webp" alt="图 4　V 操作原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　V 操作原语流程图：先做 S+1→S，结果仍不大于 0 说明有进程在等待，于是取出等待队列首元素、置就绪并入就绪队列，否则直接返回（原课件第 81 张）</figcaption>
+</figure>
+<p>P、V 两个操作的语义要合起来理解：<strong>P 是「申请一个资源，申请不到就等着」，V 是「释放一个资源，如果还有人在等就把其中一个唤醒」</strong>。因为两者都是原语，判断和修改信号灯值的过程中不会被插入其他进程，互斥与同步才得以正确实现——这也正是下一节要展开的内容。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>同步机构是操作系统提供的实现进程协作关系（同步和互斥）的措施和方法，主要有锁和信号灯（信号量）两类。</li>
+  <li>上锁操作：检测锁变量 w，为 1 则继续检测，为 0 则置 1 并进入临界区；使用完毕把 w 置 0 即开锁。上锁、开锁都必须成对并作为原语执行。</li>
+  <li>自旋锁（spinlock）的上锁原语写作 <code>while (w == 1) ; w = 1;</code>，得不到锁时一直占用 CPU 自旋。</li>
+  <li>锁变量 w 本身也是共享变量，其互斥要靠硬件原子操作：单个硬件指令是原子的、中断只发生在指令边界；地址对齐的读或写操作是原子的。</li>
+  <li>纯软件方法有皮特森算法：用 flag[2] 表示是否请求进入、turn 表示让给谁，两个进程对称地先请求再退让，可解决两个进程的互斥。</li>
+  <li>硬件交换指令（ARM 的 swp、x86 的 xchg）配合 lock 锁总线可实现原子交换；多核下加锁前要关中断并禁止进程调度；ARM v6 之后改用 ldrex／strex 的独占标记机制，避免锁总线导致的总线效率下降。</li>
+  <li>mutex 普通锁不占用 CPU、不自旋：上锁失败时保护现场、置等待状态并挂入 w 的等待队列后转调度，开锁时把等待队列首元素移入就绪队列再置 w 为 0。</li>
+  <li>信号灯是二元组 (s, q)，s 为非负初值的整型变量、代表可用资源数量，q 为初始为空的队列；s&gt;0 表示有资源（绿灯），s≤0 表示无资源（红灯），初值绝不可为负。</li>
+  <li>P 操作把 s 减 1，结果为负则阻塞并插入等待队列；V 操作把 s 加 1，结果不大于 0 则唤醒等待队列上的一个进程。P 申请资源、V 释放资源，都必须是不可分割的原语。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-4.html">‹ 4.4 进程之间的相互制约关系</a>
+      <a class="next" href="4-6.html">4.6 进程互斥与同步的实现 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

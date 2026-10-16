@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.1 操作系统虚拟机 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 2 章 2.1 操作系统虚拟机：课件第 3–7 张 · 2 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html" aria-current="page"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 2 章 结构与硬件支持</p>
+      <h1>2.1 操作系统虚拟机</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">第 2 章从「结构」和「硬件支持」两个角度继续解剖操作系统。这一节先给出全章的总纲——操作系统虚拟机：为什么需要这样一个概念、它到底是什么、以及它对外提供了哪两套指令。理解了「裸机之上多出来的一台机器」这个视角，后面讲组织结构、特权级和中断才有统一的目标。</p>
+
+<h2>1. 为什么引入虚拟机的概念</h2>
+<p>引入虚拟机概念的直接动因，来自多用户环境下的一组现实矛盾：</p>
+<ul>
+  <li><strong>共享与竞争</strong>：多个用户程序要共享和竞争计算机的软、硬资源，但每个用户程序都希望自己是独自使用整个计算机系统，不会去考虑其他用户进程的并行。用「虚拟」的概念，可以有效地实现资源共享——让每个用户都以为自己独占着一套资源；</li>
+  <li><strong>硬件千差万别</strong>：需要屏蔽不同硬件的差别，提供一致的用户操作接口；</li>
+  <li><strong>用户需求丰富</strong>：用户提出的要求是多方面的，需要的功能是丰富的，而很多复杂的功能都可以用软件来完成，从而扩充硬件的基本功能。</li>
+</ul>
+<p>三条合起来指向同一个结论：在裸机之上，需要有一层软件把有限的物理资源「变多、变好、变一致」，这层软件就是操作系统，而它给用户呈现出来的那台机器，就是操作系统虚拟机。</p>
+
+<h2>2. 什么是操作系统虚拟机</h2>
+<p><strong>硬件层（裸机）</strong>由 CPU、存储器和外部设备等组成，它们构成了所有软件运行的基本物质基础和环境。<strong>配置在裸机上的第一层软件是操作系统</strong>；在裸机上配置了操作系统之后，就构成了<strong>操作系统虚拟机</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-1/p0005.webp" alt="图 1　操作系统虚拟机在机器层次中的位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　操作系统虚拟机：最底层是裸机（CPU、存储器、外部设备），其上配置操作系统，经软件扩充构成扩充机器，即操作系统虚拟机，供用户程序使用（原课件第 5 张）</figcaption>
+</figure>
+<p>它的实现手段是「<strong>用数据结构和函数的形式，用软件扩展硬件资源</strong>」，目的是更好地实现资源的并发和共享，方便用户使用。也就是说，操作系统虚拟机的功能并不是靠增加硬件得来的，而是靠操作系统内部的数据结构和函数调用「造」出来的。</p>
+
+<h2>3. 操作系统虚拟机的指令系统</h2>
+<p>从程序的角度看，一台机器就是「一套可以使用的指令」。据此，操作系统虚拟机的指令系统分两部分：</p>
+<ul>
+  <li><strong>裸机原有的硬件指令系统</strong>：CPU 直接执行的那套机器指令，由硬件提供；</li>
+  <li><strong>操作系统虚拟机扩充的指令系统</strong>：在硬件指令之上由操作系统新增的一层，又分成两类接口——<strong>操作命令</strong>（又称命令接口）和<strong>系统功能调用</strong>（又称程序接口）。</li>
+</ul>
+<p>这两类接口的落脚点不同：</p>
+<ul>
+  <li><strong>操作命令（命令接口）</strong>面向使用计算机的人，包括键盘命令、作业控制语言（shell）和图形化用户界面（GUI）；</li>
+  <li><strong>系统功能调用（程序接口）</strong>面向程序，包括系统函数和系统调用——应用程序不再直接写机器指令，而是通过调用系统函数、发起系统调用来请求操作系统的服务。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/2-1/p0006.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-1/p0006.webp" alt="图 2　应用程序到硬件的调用层次" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　应用程序经函数调用使用系统库，系统库经系统调用进入操作系统内核，内核最终以机器指令驱动硬件——上下两层接口在此各就各位（原课件第 6 张）</figcaption>
+</figure>
+<p>图 2 正好把这两种接口串成一条链路：应用程序用<strong>函数调用</strong>使用系统库，系统库用<strong>系统调用</strong>进入操作系统内核，内核再以<strong>机器指令</strong>操作硬件。用户看到的「扩充指令」在最上层，硬件真正认识的机器指令在最下层，中间由操作系统衔接。第 3 章「用户接口」会详细展开这两类接口。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>引入虚拟机概念的目的是：让每个用户程序都以为自己独占整个计算机系统，从而有效地实现资源共享；屏蔽不同硬件的差别，提供一致的用户操作接口；用软件扩充硬件的基本功能，满足用户多方面、丰富的功能需求；</li>
+  <li>裸机（CPU、存储器、外部设备）构成软件运行的基本环境，配置在裸机上的第一层软件是操作系统，裸机加操作系统就构成操作系统虚拟机（也称扩充机器）；</li>
+  <li>操作系统虚拟机用数据结构和函数的形式，以软件扩展硬件资源，更好地实现资源的并发与共享；</li>
+  <li>虚拟机的指令系统包含裸机原有的硬件指令系统，以及操作系统扩充的两类指令：操作命令（命令接口：键盘命令、作业控制语言 shell、图形化用户界面 GUI）与系统功能调用（程序接口：系统函数与系统调用）；</li>
+  <li>从应用程序到硬件的调用链是：应用程序 →（函数调用）系统库 →（系统调用）操作系统内核 →（机器指令）硬件。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-8.html">‹ 1.8 小结</a>
+      <a class="next" href="2-2.html">2.2 操作系统的组织结构 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

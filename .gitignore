@@ -4,3 +4,10 @@
 # 本地临时文件
 *.log
 __pycache__/
+
+# QA 自检截图：tools/qa/screenshot.js 切图出来的产物，看完就丢，不需要进版本库
+.cv-qa/
+.os-qa/
+.v2-qa/
+tools/qa/*.png
+tools/qa/*.jpg

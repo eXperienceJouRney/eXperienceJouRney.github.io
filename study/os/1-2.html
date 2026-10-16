@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2 操作系统的形成与发展 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.2 操作系统的形成与发展：课件第 13–34 张 · 8 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html" aria-current="page"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.2 操作系统的形成与发展</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节讲操作系统的来路。它不是一个早上被设计出来的，而是被两股力量推着长出来的：一边是硬件元件工艺按「代」推进，机器越来越快；另一边是人对使用方式的要求越来越高——从排队上机到成批自动过渡，再到多道、分时。贯穿全节的线索只有一个：<strong>人机速度不匹配</strong>与<strong>资源利用率</strong>这对矛盾，以及人们用什么办法一次次化解它。</p>
+
+<h2>1. 计算机元件工艺的四代演进</h2>
+<p>操作系统的形态首先取决于它所依附的硬件。按所用元件的不同，计算机硬件的发展大致分成四代：</p>
+<ul>
+  <li><strong>电子管时代</strong>（1946—1958）；</li>
+  <li><strong>晶体管时代</strong>（1958—1964）；</li>
+  <li><strong>集成电路时代</strong>（1965—1970）；</li>
+  <li><strong>大规模集成电路时代</strong>（20 世纪 70 年代中期至今）。</li>
+</ul>
+<p>再往后，计算机沿着<strong>微型化、并行化、网络化、智能化</strong>几个方向继续发展。硬件越来越快、越来越便宜，才有了让多个程序同时驻留内存、让多个用户同时上机的物质基础；而硬件的每一次提速，也都会把人机之间原有的平衡重新打破一次——这正是下面几段要讲的。</p>
+
+<h2>2. 手工操作阶段（1946—1950）</h2>
+<p>最早的计算机没有操作系统，甚至没有管理软件。<strong>计算机系统的资源管理和控制完全由人工负责</strong>，一个用户要从头到尾亲自动手：</p>
+<ul>
+  <li>人工把程序用穿孔机穿制在卡片或纸带上；</li>
+  <li>把卡片或纸带装上输入机，把程序和数据输入计算机；</li>
+  <li>启动计算机运行，等待计算完毕；</li>
+  <li>计算结果从打印机或卡片机上输出。</li>
+</ul>
+
+<h3>（1）特点：无任何管理软件</h3>
+<ul>
+  <li><strong>人工干预多、手工操作多</strong>，浪费处理机时间，而且容易发生差错；</li>
+  <li><strong>独占性</strong>：用户上机就独占全机资源，资源利用率不高，系统效率低下；</li>
+  <li><strong>串行性</strong>：程序运行前的准备时间过长，准备、计算、输出必须依次进行。</li>
+</ul>
+
+<h3>（2）问题：人机矛盾</h3>
+<p>上面三点合起来，就是早期计算机使用中的核心问题——<strong>人机矛盾</strong>：机器的运算速度以每秒多少万次计，而人的操作以分钟计，两者相差几个数量级。CPU 越快，人工操作占用的时间相对于机器有效运行时间就越显眼：</p>
+<table>
+  <caption>表 1　机器速度、程序处理所需时间、人工操作时间，以及操作时间与机器有效运行时间之比（数据来源：原课件第 16 张）</caption>
+  <thead>
+    <tr><th>机器速度</th><th>程序处理<br>所需时间</th><th>人工操作<br>时间</th><th>时间之比</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1 万次/秒</td><td>1 小时</td><td>3 分钟</td><td>1 ： 20</td></tr>
+    <tr><td>60 万次/秒</td><td>1 分钟</td><td>3 分钟</td><td>3 ： 1</td></tr>
+  </tbody>
+</table>
+<p>读这张表要抓住的是趋势而不是具体数字：当机器速度提高 60 倍，程序本身只需 1 分钟就算完，而人工装卸纸带仍要 3 分钟，比值从 1 ： 20 翻转到 3 ： 1。也就是说，<strong>机器越快，人工操作拖的后腿越严重</strong>，靠人来「伺候」机器的路子走不通了。</p>
+
+<h2>3. 批处理阶段（50 年代末—60 年代中）</h2>
+<p>为了缓和人机速度严重不匹配的矛盾、提高资源利用率，思路很自然：<strong>去掉人工干预，实现作业的自动过渡</strong>。人们开始用软件代替操作员的一部分工作——编制一小段常驻内存的核心代码，称为<strong>监督程序</strong>（monitor），由它负责把一批作业依次自动送进机器运行。这个监督程序，就是<strong>操作系统的萌芽</strong>。</p>
+
+<h3>（1）联机批处理</h3>
+<p>最早的做法是联机批处理，工作流程是：操作员集中一批用户提交的作业，由监督程序把这批作业从纸带或卡片机输入到磁带上；输入完成后，监督程序自动把磁带上的第一个作业装入内存，并把控制权交给作业；作业执行完成后，监督程序打印输出结果，再从磁带上调入第二个作业到内存执行。如此循环，直到一批作业全部处理完。</p>
+<ul>
+  <li><strong>联机</strong>的含义是：CPU 直接操作输入/输出设备，主机自己管进出；</li>
+  <li><strong>问题</strong>：CPU 高速与 I/O 慢速的矛盾依然存在，输入输出期间 CPU 只能干等，整个过程是串行的；</li>
+  <li><strong>解决办法</strong>：把 I/O 工作交给一台专门的卫星机去做，主机专管计算——这就是「脱机」。</li>
+</ul>
+
+<h3>（2）脱机批处理</h3>
+<p>脱机批处理把分工划清楚：<strong>主机负责计算，卫星机负责 I/O 工作</strong>。一个作业的处理过程分三步：</p>
+<ul>
+  <li>作业先通过卫星机输入到磁带（输入带），再把磁带转移到主机；</li>
+  <li>主机从输入带上调入作业并执行，执行完毕后把结果记录到输出带上；</li>
+  <li>卫星机负责把输出带上的结果打印出来。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0019.webp" alt="图 1　脱机批处理的数据流" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　脱机批处理的数据流：输入机 → 输入带 →（卫星机搬运）主机 → 输出带 → 打印机，卫星机在两端承担 I/O，主机只做计算（原课件第 19 张）</figcaption>
+</figure>
+<p>当时的典型配置就是这样运转的：把成叠的卡片送到 1401 机读成磁带，再把磁带装到 7094 机上做计算，算完后把结果磁带拿到 1401 机上打印输出。两台机器各司其职，谁也不干等谁。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0020.webp" alt="图 2　早期脱机批处理系统的主机与卫星机分工" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　早期批处理系统的分工：IBM 1401 负责卡片输入与打印输出，IBM 7094 专职计算，磁带在两者之间搬运（原课件第 20 张）</figcaption>
+</figure>
+<p>脱机批处理的特点与遗留问题可以对照着看：</p>
+<ul>
+  <li><strong>特点</strong>：主机与卫星机并行操作，各部件不再互相干等；作业成批自动过渡，增强了保护能力；</li>
+  <li><strong>问题</strong>：调度仍不灵活，批与批之间还需要人工干预，保护问题也没有彻底解决；</li>
+  <li><strong>解决办法</strong>：转向硬件技术的发展——<strong>通道</strong>与<strong>中断</strong>。</li>
+</ul>
+
+<h3>（3）通道与中断：把 I/O 交给硬件</h3>
+<p>通道与中断相当于用硬件实现的「卫星机」，它们出现之后，脱机批处理里的卫星机就被省掉了。</p>
+<p><strong>通道</strong>是一种专用处理部件，作用类似于卫星机：它控制一台或多台外部设备，在外设和主存之间传输数据。通道受 CPU 控制，但一旦启动就能独立于 CPU 运行，和 CPU 并行工作。</p>
+<p><strong>中断</strong>指 CPU 收到外设完成的信号后，停止当前工作去处理这个信号，处理完毕再回到原来的工作点继续工作。有了中断，CPU 才知道「I/O 已经做完了」，不必反复去查询外设的状态。</p>
+
+<h2>4. 执行系统</h2>
+<p>借助于通道与中断技术，I/O 的控制权回到主机手里，由主机来控制 I/O 设备工作。原来的监督程序因此要挑两副担子：既负责调度作业自动运行，又提供 I/O 控制功能。这样常驻主存的监督程序，就升级为<strong>执行系统</strong>。</p>
+<p>执行系统的特点：</p>
+<ul>
+  <li>利用通道和中断技术，<strong>省去了卫星机</strong>，实现了主机和 I/O 设备的并行操作，解决了高速处理器与低速设备之间的矛盾；</li>
+  <li>系统统一负责用户的 I/O 传输工作，<strong>增强了对不合法 I/O 命令的保护能力</strong>。</li>
+</ul>
+<p>这里有一个值得留意的转折：操作系统从「安排作业顺序」的调度者，扩展成了「替用户管理设备」的资源管理者。后面要讲的资源管理功能，源头就在这一步。</p>
+
+<h2>5. 操作系统的形成（60 年代中至今）</h2>
+<p>执行系统解决的是主机与 I/O 设备之间的等待问题，但还没有解决<strong>CPU 与 I/O 之间</strong>的等待。真正的突破来自两项技术：多道程序设计技术和分时技术。</p>
+
+<h3>（1）从单道程序到多道程序</h3>
+<p>先看单道程序的工作情况。内存里只有一道用户程序，加上常驻的监督程序。用户程序需要输入数据时，它发出「请求输入」、启动 I/O；I/O 操作期间 CPU 无事可做，只能等；I/O 完成产生结束中断，用户程序才继续计算。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0023.webp" alt="图 3　单道程序的工作情况" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　单道程序工作示例：用户程序「计算 → 请求输入 → 等待 I/O → 继续计算」串行推进，I/O 期间 CPU 处于空闲等待（原课件第 23 张）</figcaption>
+</figure>
+<p>再看多道程序的工作情况。内存中同时放入程序 A 和程序 B，让它们相互穿插地使用 CPU 和外部设备：A 请求输入时，CPU 转去运行 B；B 请求输出时，CPU 再回来运行 A。这样从整体上看，CPU 和外部设备都在不停地工作。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0024.webp" alt="图 4　多道程序的工作情况" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　多道程序工作示例：程序 A、B 在中央处理机与外部设备之间交替推进，A 等 I/O 时 B 上处理机，B 等 I/O 时 A 回处理机，设备与处理机都不空转（原课件第 24 张）</figcaption>
+</figure>
+<p>对照两图，课件留下了两个问题，答案正是多道程序设计的要点：</p>
+<ul>
+  <li>两个程序同时运行时，CPU 有无空闲等待？——只要搭配得当，一个程序等 I/O 时另一个程序就能占用 CPU，CPU 基本不再空等；</li>
+  <li>程序多道运行的数量受什么条件约束？——最基本的是<strong>主存容量</strong>：几道程序就要在主存里同时放下几道程序的代码和数据；此外还受外设数量、系统开销等因素制约。</li>
+</ul>
+
+<h3>（2）什么是多道程序设计技术</h3>
+<p><strong>多道程序设计技术</strong>指在计算机主存中同时存放几道相互独立的程序，这些程序在管理程序控制之下相互穿插地运行；当某道程序因某种原因不能继续运行下去（如等待外部设备传输数据）时，管理程序便将另一道程序投入运行。</p>
+<p>多道运行有三个特征，其中后两条是理解「宏观」与「微观」的关键：</p>
+<ul>
+  <li><strong>多道</strong>：主存中同时存在几个相互独立的程序运行；</li>
+  <li><strong>宏观上并行</strong>：每个作业都已开始进入系统运行，可以在不同的部件上进行操作，都在向前推进，但都尚未完成；</li>
+  <li><strong>微观上串行</strong>：在任一时刻，单处理机上运行的作业只有一个。</li>
+</ul>
+<p>多道程序设计还顺带改变了用户使用计算机的方式。早期是<strong>脱机操作方式</strong>——这里的「脱机」说的是用户使用计算机的方式：程序运行过程中用户不能直接实施控制，必须一次性把程序和数据一起提交给系统，然后等着拿运行结果（打印输出）。人们自然希望反过来，采用<strong>联机操作方式</strong>：直接控制程序的运行，通过终端向计算机发出控制命令；系统运行时输出必要信息，用户根据这些信息决定下一步操作，用户和计算机之间可以「交互会话」。这种需求催生了分时技术。</p>
+
+<h3>（3）分时技术</h3>
+<p><strong>分时技术</strong>是把处理机时间划分成很短的时间片（如几百毫秒），轮流分配给各个用户程序使用；如果某个用户程序在分配的时间片用完之前计算还未完成，该程序就暂时中断，等待下一轮继续计算。由于轮转得足够快，每个用户都感觉自己「独占」着一台计算机。与之配套的分时处理方式是：一台计算机与许多终端设备连接，终端用户以联机方式使用计算机。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0027.webp" alt="图 5　一个分时系统示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　一个分时系统示例：一台主机连接终端 1、终端 2……终端 n，各终端用户以联机方式分时使用主机（原课件第 27 张）</figcaption>
+</figure>
+<p>分时技术有两条标志性的实践记录：1962 年出现的第一个分时系统 <strong>CTSS</strong>，运行在 IBM 7094 机上，支持 32 个交互式用户同时工作；1965 年在美国国防部支持下，MIT、BELL 和 GE 公司联合开发「公用计算服务系统」，支持波士顿地区的分时用户，这就是 <strong>MULTICS</strong>（MULTiplexed Information and Computing Service）。MULTICS 引入了许多现代操作系统概念的雏形——分时处理、远程联机、段页式虚拟存储器、文件系统、多级反馈调度、保护环安全机制、多 CPU 管理、多种程序设计环境等，对后来的操作系统设计影响极大。</p>
+<p>回过头看这一段的成果：<strong>分时操作系统和多道批处理操作系统的出现，标志着操作系统的初步形成</strong>。</p>
+
+<h3>（4）形成与发展的总体脉络</h3>
+<p>把前面几段串起来，操作系统从无到有的过程可以画成一条链：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0031.webp" alt="图 6　操作系统的形成与发展过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　操作系统的形成与发展过程：手工操作阶段 → 早期批处理（联机批处理、脱机批处理）→ 执行系统 → 多道程序系统（多道批处理系统、分时系统）→ 操作系统的形成；此后进入进一步发展期——个人计算机操作系统、网络操作系统、实时系统、分布式操作系统（原课件第 31 张）</figcaption>
+</figure>
+<p>这条链的前半段（手工操作 → 联机批处理 → 脱机批处理 → 执行系统 → 多道程序系统）讲的是「操作系统的形成」，后半段讲的是「操作系统的进一步发展」——也就是下一节要按类型逐一展开的内容。</p>
+
+<h2>6. 操作系统的进一步发展</h2>
+
+<h3>（1）个人计算机操作系统</h3>
+<p>随着微电子技术的发展，个人计算机（PC，Personal Computer）出现于 20 世纪 70 年代。机器从机房走向桌面，操作系统的服务对象也从「一批批提交作业的用户」变成了「一个人对着屏幕操作」，界面友好、响应及时、易于安装维护随之成为新的设计重心。</p>
+
+<h3>（2）网络操作系统</h3>
+<p>先看它赖以存在的基础。<strong>计算机网络</strong>是利用通讯线路将一些独立自治的计算机相互连接形成的一个集合体——「独立自治」是关键：各台计算机有自己的处理能力和资源，只是被连接起来以便交换信息、共享资源。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-2/p0033.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-2/p0033.webp" alt="图 7　计算机网络示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　计算机网络示意图：多台独立自治的计算机经通讯线路互连，构成一个可以互相通信、共享资源的集合体（原课件第 33 张）</figcaption>
+</figure>
+<p>运行在网络环境中的操作系统就是<strong>网络操作系统</strong>。它除了具备一般操作系统应有的功能模块（如系统核心、设备管理、存储管理、文件系统等）之外，还要<strong>增加一个网络通信模块</strong>，用于支持本机与其他计算机之间的通信和资源共享。上面图 6 中列出的实时系统、分布式操作系统等，也都是在这一时期分化出来的系统类型。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>硬件元件工艺经历电子管、晶体管、集成电路、大规模集成电路四代，并向微型化、并行化、网络化、智能化发展；硬件的每一次提速都会重新打破人机之间的平衡；</li>
+  <li>手工操作阶段（1946—1950）没有任何管理软件，人工干预多、独占、串行，核心问题是人机矛盾——机器越快，人工操作占用时间的相对比例越大（1 万次/秒时为 1 ： 20，60 万次/秒时变为 3 ： 1）；</li>
+  <li>批处理阶段的出路是去掉人工干预：监督程序常驻内存实现作业自动过渡，是操作系统的萌芽。联机批处理让 CPU 直接管 I/O，暴露了 CPU 与 I/O 的速度矛盾；脱机批处理改由卫星机负责 I/O，主机与卫星机并行，但调度不灵活、仍需人工、保护不足；</li>
+  <li>通道与中断把 I/O 交给硬件，省掉卫星机，监督程序升级为执行系统——它既调度作业又控制 I/O，操作系统从此承担起资源管理的职责；</li>
+  <li>多道程序设计技术让主存中同时存放几道程序、穿插运行，特征是多道、宏观上并行、微观上串行，道数主要受主存容量约束；分时技术把处理机时间切成时间片轮转给各终端用户，满足联机交互的需求（CTSS 1962、MULTICS 1965）；二者的出现标志着操作系统的初步形成；</li>
+  <li>此后进一步发展出个人计算机操作系统、网络操作系统（一般功能模块 + 网络通信模块）、实时系统、分布式操作系统等类型，下一节按基本类型逐一展开。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-1.html">‹ 1.1 操作系统在计算机系统中的地位</a>
+      <a class="next" href="1-3.html">1.3 操作系统的基本类型 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

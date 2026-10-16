@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.13 图像放大——插值方法 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.13 图像放大——插值方法：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html" aria-current="page"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.13 图像放大——插值方法</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讲的是把图像缩小，这一节换到相反的方向：把图像放大。放大的难处不在于「多出了一些像素」，而在于这些新增位置的灰度值原本并不存在——输入图像只在整数坐标上留下采样值，放大后的网格更密，落在采样点之间的位置只能靠周围的已知点估出来，这个过程就是<strong>插值</strong>（interpolation）。课件由易到难讲了三种方法：最近邻、双线性、双三次，并把双线性插值沿 X 方向的那一步推导完整写了出来。</p>
+
+<h2>1. 放大要解决什么问题</h2>
+<p>放大后的图像网格比原图更密，待求点 (x, y) 常常落在四个原始采样点的中间。这些位置没有被测量过，它的灰度值必须由邻域里已有的采样值推算。所以「图像放大」在算法层面就是一道估计题：<strong>用什么邻域、用什么函数把邻域里的值组合成新值</strong>。</p>
+<p>三种方法的差别恰好落在这两点上。最近邻只看离得最近的那 1 个采样点；双线性看 2×2 共 4 个点，在两个方向上各做一次线性插值；双三次看 4×4 共 16 个点，两个方向各用一个三次多项式。邻域从 1 个点扩到 16 个点，估计用到的信息越来越多，计算量也跟着上升。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-13/p0075.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-13/p0075.webp" alt="图 1　如何将图像放大" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　本节要回答的问题——如何将图像放大：新增像素的灰度值要靠插值推算（原课件第 75 张）</figcaption>
+</figure>
+
+<h2>2. 最近邻插值</h2>
+<p>最近邻（nearest neighbor）的算法基本思想是：<strong>令新增像素的灰度值等于距它最近的输入像素灰度值</strong>。换个角度看，就是每个输入像素把自己的灰度值让给离它最近的一片新像素，于是放大后的局部会出现一块块同灰度的方块。</p>
+<p>它胜在<strong>计算简单</strong>：判断远近只需要比较坐标，取的是现成的灰度值，不必做任何乘加运算。代价是<strong>不够精确</strong>，放大后的边缘会出现<strong>锯齿现象</strong>——本来连续的斜边被量化成一级级台阶。原因也很直白：它完全没有利用邻近像素之间的灰度关系，只是把最近的一个值搬了过来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-13/p0076.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-13/p0076.webp" alt="图 2　最近邻插值的算法基本思想" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　最近邻插值：新增像素的灰度值等于距它最近的输入像素灰度值（原课件第 76 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-13/p0077.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-13/p0077.webp" alt="图 3　最近邻插值放大后的锯齿现象" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　最近邻插值的两面：计算简单，但不够精确，放大后的结果有锯齿现象（原课件第 77 张）</figcaption>
+</figure>
+
+<h2>3. 双线性插值：把二维拆成两次一维</h2>
+<p>双线性（Bilinear）插值把邻域从 1 个点扩大到 4 个点，并且把二维插值拆成两次一维插值。课件给出的算法基本思想就是这个两步：</p>
+<ul>
+  <li>第一步，沿 X 方向线性插值：在 Q11 与 Q21 之间插入点 R1，在 Q12 与 Q22 之间插入点 R2；</li>
+  <li>第二步，沿 Y 方向线性插值：用第一步算出的 R1 和 R2，在 Y 方向插值计算出待求点 P。</li>
+</ul>
+<p>这四个已知点就是包住待求点的 2×2 网格的四个角：Q11、Q21 落在 y = y1 这条水平线上，Q12、Q22 落在 y = y2 这条水平线上，而待求点的横坐标 x 介于 x1 与 x2 之间。<strong>先横后纵</strong>的顺序是关键——第一步把两条水平线各自压缩成一个点，第二步再在这两个点之间插出最终结果，二维问题于是化成了两个一维问题。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-13/p0078.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-13/p0078.webp" alt="图 4　双线性插值的两步" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　双线性插值的两步：先沿 X 方向在 Q11 与 Q21、Q12 与 Q22 之间分别插入 R1、R2，再沿 Y 方向由 R1、R2 插出 P（原课件第 78 张）</figcaption>
+</figure>
+
+<h2>4. 双线性插值的推导</h2>
+<p>课件把沿 X 方向的这一步推导写全了（原课件第 79 张）。一维线性插值的依据是：两个已知点之间的函数值随坐标线性变化，也就是这一段上的<strong>斜率处处相等</strong>。R1 落在 Q11 与 Q21 之间，横坐标是 x、纵坐标仍是 y1，所以 f(R1) = f(x, y1)；把这个位置代入斜率相等的关系，再逐步解出 f(R1)，就是课件给出的推导：</p>
+<pre><code>f(R1) = f(x, y1)
+
+f(Q21) - f(Q11)     f(R1) - f(Q11)
+---------------  =  ---------------
+    x2 - x1              x - x1
+
+f(R1) - f(Q11) = (x - x1) · [f(Q21) - f(Q11)] / (x2 - x1)
+
+f(R1) = f(Q11) + (x - x1) · [f(Q21) - f(Q11)] / (x2 - x1)</code></pre>
+<p>这个结果的读法是：<strong>以 Q11 的灰度值为基准，按待求点到 Q11 的距离占整段区间长度的比例，在 Q11 与 Q21 之间做线性过渡</strong>。可以顺手验证两端：x 落在 x1 上时结果回到 f(Q11)，落在 x2 上时结果回到 f(Q21)，与已知采样值对得上。</p>
+<p>沿 Y 方向的第二步用同一个式子，只要把两点换成 R1 与 R2、把横坐标换成纵坐标：</p>
+<pre><code>f(P) = f(R1) + (y - y1) · [f(R2) - f(R1)] / (y2 - y1)</code></pre>
+<p>把两步合起来看，P 的灰度值最终是那四个角点灰度值的加权平均，权重由待求点到四个角的相对距离决定——这正是它比最近邻精确的原因：每个新像素都在参考周围一圈点的意见，而不是只认最近的那一个。</p>
+
+<h2>5. 双三次插值</h2>
+<p>双三次（Bicubic）插值把邻域再扩一圈。课件给出的算法基本思想是：<strong>f(x, y) 的值可以通过矩形网格中最近的十六个采样点的加权平均得到</strong>，需要使用两个多项式插值三次函数，每个方向使用一个。</p>
+<p>这两句话是配套的：十六个采样点正好是待求点周围 4×4 的网格，而一个方向上的 4 个已知点恰好能确定一个三次多项式，所以 X 方向用第一个三次多项式、Y 方向用第二个。流程和双线性一样，仍是先横后纵，只是每个方向参与计算的点从 2 个变成 4 个，插值函数从一次升到三次。精度换来的是计算量：邻域更大、函数阶数更高，开销也就更大。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-13/p0080.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-13/p0080.webp" alt="图 5　双三次插值的算法基本思想" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　双三次插值：由矩形网格中最近的十六个采样点加权平均，两个方向各用一个三次多项式（原课件第 80 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>放大的难点在于新增像素位置没有采样值，只能由邻域估计，这就是插值。三种方法按参与估计的采样点数递增：最近邻 1 个、双线性 2×2 共 4 个、双三次 4×4 共 16 个。</li>
+  <li>最近邻插值令新增像素的灰度值等于距它最近的输入像素灰度值，计算简单但不够精确，放大后会有锯齿现象。</li>
+  <li>双线性插值分两步：先沿 X 方向在 Q11 与 Q21、Q12 与 Q22 之间插入 R1、R2，再沿 Y 方向由 R1、R2 插出 P。</li>
+  <li>推导的依据是线性插值的斜率相等，由 [f(Q21) − f(Q11)] / (x2 − x1) = [f(R1) − f(Q11)] / (x − x1) 逐步解出 f(R1) = f(Q11) + (x − x1) · [f(Q21) − f(Q11)] / (x2 − x1)；Y 方向照搬同一式子。</li>
+  <li>双三次插值用矩形网格中最近的 16 个采样点加权平均，两个方向各用一个三次多项式；它仍然只是按规则把已有像素铺开，真正要把丢失的细节补出来，要看下一节的超分辨率重建。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-12.html">‹ 2.12 图像缩小——下采样</a>
+      <a class="next" href="2-14.html">2.14 图像超分辨率重建 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

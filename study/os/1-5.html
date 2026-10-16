@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.5 操作系统的资源管理功能 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.5 操作系统的资源管理功能：课件第 54–61 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html" aria-current="page"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.5 操作系统的资源管理功能</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说操作系统是「整个计算机系统的核心」，这一节就把这个核心拆开看：它到底管哪些资源、每一类资源上要解决什么问题。四大功能模块——处理机管理、存储器管理、设备管理、文件系统——构成了操作系统的主体，本节逐个说明它们的职责，最后收拢成操作系统必须解决的四个基本问题。</p>
+
+<h2>1. 主要功能：资源管理与并发活动控制</h2>
+<p>操作系统的主要功能可以概括为一句话：<strong>控制和协调并发活动</strong>。并发的程序在活动过程中会<strong>动态地申请和释放系统公共资源</strong>，比如处理器 CPU、主存、各种输入/输出设备；谁来申请、什么时候给、给多少、用完怎么收回，都需要一个统一的管理者。</p>
+<p>由此得到操作系统的两大支柱：<strong>系统资源管理</strong>和<strong>并发活动控制</strong>（即进程管理）。这两部分是互相联系、不可分割的——资源是并发的程序在争用，并发又是围绕资源展开的。也正因为如此，操作系统资源管理的目标和操作系统的宗旨完全一致：<strong>提高系统资源的利用率，方便用户使用</strong>。</p>
+<p>按管理对象划分，资源管理分成四个模块：处理机管理、存储器管理、设备管理和文件系统（信息管理），它们各自与底层的处理机、存储器、I/O 设备和磁盘打交道。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-5/p0056.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-5/p0056.webp" alt="图 1　操作系统的资源管理模块" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　操作系统的资源管理模块：处理机管理、存储器管理、设备管理、文件系统四个功能模块向下管理处理机、存储器、I/O 设备等系统资源（原课件第 56 张）</figcaption>
+</figure>
+
+<h2>2. 处理机管理</h2>
+<p>处理机是最宝贵的资源，处理机管理要回答三个层层递进的问题：</p>
+<ul>
+  <li><strong>提出进程调度策略</strong>：多个进程竞争一个 CPU 时，决定先运行哪个进程、它占用多长时间、如何让出 CPU；</li>
+  <li><strong>给出进程调度算法</strong>：把策略落实为可执行的算法，具体算出该选谁、选多久；</li>
+  <li><strong>进行处理机的分派</strong>：在调度时机到来时，真正把处理机交给选中的进程。</li>
+</ul>
+<p>策略、算法、分派三者次序不能颠倒：先定「按什么原则选」，再定「怎么算」，最后才是「动手交出去」。第 6 章「处理机调度」会把这些算法逐一摊开。</p>
+
+<h2>3. 存储器管理</h2>
+<p>多个程序在系统中运行，程序的指令和数据都要占用和分配内存，存储器管理要解决三件事：</p>
+<ul>
+  <li><strong>存储分配和存储无关性</strong>：程序无法预知自己在主存中的位置及所占区域的大小，而且程序也希望无需关心存储细节。因此系统负责分配，并让程序与具体存储位置无关；</li>
+  <li><strong>存储保护</strong>：程序只能访问自己的存储空间，彼此隔离；当它企图访问非法信息时，系统能够捕获这种越界行为；</li>
+  <li><strong>存储扩充</strong>：系统提供虚拟存储技术，扩大逻辑主存——程序看到的空间可以大于实际物理内存。</li>
+</ul>
+<p>这三件事与 1.4 节讲过的「扩展硬件的功能」正好互相印证：虚拟存储就是操作系统在裸机上造出来的新能力。第 7 章「主存管理」讲的就是这些机制。</p>
+
+<h2>4. 设备管理</h2>
+<p>设备管理的出发点是让用户不必和具体的硬件型号纠缠，它也有三个方面的职责：</p>
+<ul>
+  <li><strong>设备无关性</strong>：用户向系统申请和使用的设备与实际操作的设备无关，以达到方便用户、提高设备利用率的目的；</li>
+  <li><strong>设备分配</strong>：操作系统为各应用程序和运行实体分配各种设备。设备分配通常采用三种基本技术——<strong>独享</strong>、<strong>共享</strong>及<strong>虚拟技术</strong>；</li>
+  <li><strong>设备的传输控制</strong>：包括启动设备、中断处理、结束处理三个方面。</li>
+</ul>
+<p>这三条合起来回答的是「谁用哪台设备、用的时候数据怎么进出」。第 8 章「设备管理」会展开设备分配与缓冲、控制等细节。</p>
+
+<h2>5. 信息管理（文件系统）</h2>
+<p>信息管理又叫<strong>文件系统</strong>，它为用户提供一种简便的、统一的存取和管理信息的方法，并解决信息的共享、数据的存取控制和保密等问题。它要处理的具体内容包括：</p>
+<ul>
+  <li>信息的组织方式；</li>
+  <li>存取方法；</li>
+  <li>文件共享；</li>
+  <li>文件安全；</li>
+  <li>文件完整性；</li>
+  <li>磁盘空间分配。</li>
+</ul>
+<p>从这张清单可以看出，文件系统一手托两家：既要让用户方便地存取名下的信息（组织与存取方法），又要保证信息不被不该看的人看到、不被意外损坏（安全、完整、共享控制）。第 9 章「文件系统」将逐项展开。</p>
+
+<h2>6. 操作系统应解决的基本问题</h2>
+<p>把四大功能模块的职责再抽象一层，操作系统面对的基本问题可以归为四条：</p>
+<ul>
+  <li><strong>资源分配的策略和方法</strong>：资源有限而需求并发，按什么策略、用什么方法分配；</li>
+  <li><strong>协调并发活动的关系</strong>：并发的活动之间既可能争用资源，也可能需要相互配合；</li>
+  <li><strong>保证数据的一致性</strong>：并发访问之下，数据不能出现互相矛盾的中间状态；</li>
+  <li><strong>实现数据存取控制（权限管理）</strong>：谁可以访问哪些数据、以什么方式访问，必须受控。</li>
+</ul>
+<p>这四条是全课的纲：第 4 章的进程管理对应「协调并发活动」，第 5 章的分配机制与策略、死锁处理对应「资源分配的策略和方法」，第 7、8、9 章则分别把主存、设备、文件这三类资源的分配、保护与一致性问题讲到底。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>操作系统的主要功能是控制和协调并发活动；并发的程序动态申请与释放系统公共资源（CPU、主存、I/O 设备），因此「资源管理」与「并发活动控制（进程管理）」是互相联系、不可分割的核心功能；</li>
+  <li>资源管理分四个模块：处理机管理、存储器管理、设备管理、文件系统（信息管理）；资源管理的目标与操作系统宗旨一致——提高资源利用率、方便用户使用；</li>
+  <li>处理机管理三步走：提出进程调度策略（先运行哪个进程、占用多长时间、如何让出 CPU）→ 给出进程调度算法 → 在调度时机到来时进行处理机分派；</li>
+  <li>存储器管理三件事：存储分配与存储无关性、存储保护（隔离并捕获越界访问）、存储扩充（虚拟存储技术扩大逻辑主存）；</li>
+  <li>设备管理三方面：设备无关性、设备分配（独享、共享、虚拟三种基本技术）、设备的传输控制（启动设备、中断处理、结束处理）；</li>
+  <li>文件系统提供简便统一的存取和管理信息的方法，解决共享、存取控制与保密问题，涉及信息组织、存取方法、文件共享、文件安全、文件完整性、磁盘空间分配；</li>
+  <li>操作系统应解决的四个基本问题：资源分配的策略和方法、协调并发活动的关系、保证数据的一致性、实现数据存取控制（权限管理）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-4.html">‹ 1.4 操作系统的定义和特性</a>
+      <a class="next" href="1-6.html">1.6 操作系统采用的关键技术 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

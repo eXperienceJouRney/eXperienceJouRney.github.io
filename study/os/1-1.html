@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.1 操作系统在计算机系统中的地位 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.1 操作系统在计算机系统中的地位：存储程序式计算机、操作系统与各层的关系、顺序计算模型与并行计算模型的矛盾。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html" aria-current="page"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.1 操作系统在计算机系统中的地位</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节回答一个总揽性的问题：操作系统在计算机系统中到底处于什么地位？思路是三步走：先弄清它管理的硬件——存储程序式计算机——长什么样；再看它在计算机系统分层中「承上启下」的位置；最后引出贯穿整门课的矛盾：硬件提供的顺序计算模型与应用需要的并行计算模型之间的矛盾。</p>
+<h2>1. 存储程序式计算机：操作系统赖以存在的硬件</h2>
+<p>看清一个事物的本质，就要从它的产生说起。计算机的诞生源于大量计算的需求：加密解密、统计、物理计算等各种复杂问题，最终都要转化为算术四则运算才能求解。</p>
+<p>在计算机出现之前，计算靠<strong>手工操作</strong>完成：由人来主导——预先确定计算方案，输入原始数据，按操作步骤做第一步计算，记下中间结果，再做下一步计算，直到算出并记录最终结果。算盘和计算器只是辅助人加快计算的工具，纸张用来记录结果。</p>
+<p>那么，如何用一种机器实现计算的自动化？数学家冯·诺依曼总结了手工操作的规律，指出机器要自动计算，必须满足三个前提：</p>
+<ul>
+  <li>（1）必须预先有计算方案（对计算过程的描述）和初始数据；</li>
+  <li>（2）机器能够理解计算过程，并顺序执行其中的操作；</li>
+  <li>（3）机器能够获取指令、初始数据和中间计算数据，并能输出结果。</li>
+</ul>
+<p>1945 年，冯·诺依曼据此提出了<strong>存储程序式计算机</strong>（冯·诺依曼体系结构）：把描述计算过程的<strong>指令</strong>和<strong>数据</strong>一同存入存储器，机器自动地一条条取指令、执行指令，直到整个程序运行完毕——计算从此实现了自动化。</p>
+<h3>（1）基本部件</h3>
+<ul>
+  <li><strong>CPU</strong>：运算器、控制器、寄存器（保存状态和中间结果）；</li>
+  <li><strong>存储器</strong>：用来存储计算过程（指令）和数据；</li>
+  <li><strong>I/O 设备</strong>：输入数据、输出计算结果。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/1-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-1/p0005.webp" alt="图 1　存储程序式计算机的基本结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　存储程序式计算机的基本结构：处理器（CPU）、主存储器与输入/输出设备经 I/O 总线互连（原课件第 5 张）</figcaption>
+</figure>
+<h3>（2）「存储程序」如何落地：一个例子</h3>
+<p>拿「计算 1+2+3+…+N」这个例子，能把上面的部件和工作方式看得更具体。先用 C 语言描述这个方案：</p>
+<pre><code>int add_N(int r0)   // r0 = N
+{
+    r1 = 0;
+    for (r2 = 1; r2 &lt;= r0; ++r2)
+        r1 += r2;
+    return r1;
+}</code></pre>
+<p>把它编译成机器指令，大致是这样一段：</p>
+<pre><code>; 入口参数：r0 ← N（由调用方置好）
+mov r1, 0      ; 累加和清零
+mov r2, 1      ; 循环变量置 1
+cmp_g r2, r0   ; 比较：r2 &gt; r0 ？
+jmpc +3        ; 是 → 跳出循环
+add r1, r2     ; 否 → 累加：r1 += r2
+add r2, 1      ; 计数：r2 += 1
+jmp -5         ; 跳回 cmp_g，继续循环
+ret r1         ; 返回累加和</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-1/p0006.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-1/p0006.webp" alt="图 2　处理器 CPU 的内部结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　处理器（CPU）：控制单元负责取指令，计算单元 ALU 负责运算，与主存储器、I/O 总线配合工作（原课件第 6 张）</figcaption>
+</figure>
+<p>这段小程序正体现了存储程序的精髓：指令和数据都存放在<strong>主存储器</strong>中；CPU 中的<strong>控制单元</strong>负责取指令，<strong>计算单元 ALU</strong> 完成加减、比较等运算，寄存器 r0、r1、r2 暂存参数与中间结果。整个工作过程就是周而复始的<strong>「取指令 → 执行指令（读数据、计算、写数据）」</strong>。</p>
+<h3>（3）结构特点：集中顺序过程控制</h3>
+<p>存储程序式计算机的工作方式可以概括为<strong>集中顺序过程控制</strong>：</p>
+<ul>
+  <li><strong>过程性</strong>：模拟人们手工操作的步骤；</li>
+  <li><strong>集中控制</strong>：由 CPU 集中管理；</li>
+  <li><strong>顺序性</strong>：指令顺序执行。</li>
+</ul>
+<h3>（4）变与不变</h3>
+<p>计算机的<strong>本质</strong>是用指令来处理数据；程序（作业）就是指令和数据的集合，也可以看作「数据结构＋算法」。从 1945 年至今：</p>
+<ul>
+  <li>计算机的模型没有变；</li>
+  <li>计算机的本质没有变；</li>
+  <li>程序的本质也没有变；</li>
+  <li>变化的只是计算机中各个部件的规模和性能。</li>
+</ul>
+<p>部件的发展大致沿着四条线：<strong>CPU</strong>——运算器、控制器、寄存器到多核，指令集从 x86（8086、386…）、x86-64 到 ARM（v4～v7）、ARMv8、MIPS、RISC-V，寄存器位数和数量不断增长；<strong>存储器</strong>——高速缓存 cache 与内存；<strong>输入/输出设备</strong>；以及<strong>总线</strong>。</p>
+<h2>2. 操作系统与各层的关系</h2>
+<p>把视野从单台机器的部件拉高到整个计算机系统。一个计算机系统自上而下大致分层：应用程序（含用户程序）、其他系统软件、操作系统、裸机（纯硬件）。操作系统正处在「承上启下」的位置——这也是它在计算机系统中地位的直接写照。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-1/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-1/p0010.webp" alt="图 3　计算机系统的分层与操作系统的位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　计算机系统的分层：应用程序 / 其他系统软件 / 操作系统 / 裸机，操作系统居中承上启下（原课件第 10 张）</figcaption>
+</figure>
+<h3>（1）OS 对各层的管理和控制</h3>
+<ul>
+  <li><strong>与硬件的关系</strong>（向下）：控制 CPU 的工作、访问存储器、进行设备驱动和中断处理——操作系统直接管理底层硬件资源；</li>
+  <li><strong>与用户及应用软件的关系</strong>（向上）：为应用软件提供运行环境，为用户提供方便的用户接口，并对它们进行控制和管理。</li>
+</ul>
+<h3>（2）各层对 OS 的制约和影响</h3>
+<ul>
+  <li><strong>硬件的制约</strong>：硬件提供 OS 的运行基础；但硬件是集中顺序过程控制，而操作系统是多用户、多任务的并行计算模型——两者存在根本性的错位；</li>
+  <li><strong>用户和应用软件的需求</strong>：操作系统必须满足上层软件提出的各种需求，提供良好的用户界面，方便用户使用。</li>
+</ul>
+<p>由此得到操作系统的宗旨：<strong>提高计算机的使用效率，方便用户使用。</strong></p>
+<h2>3. 计算机系统结构与操作系统的关系</h2>
+<p>上一段留下的「错位」值得展开：计算机系统结构提供的是<strong>顺序计算模型</strong>，而实际应用需要的是<strong>并行计算模型</strong>，二者构成一对矛盾。如何解决这对矛盾？出路有两条：</p>
+<ul>
+  <li>（1）<strong>OS 采用的软件技术</strong>：多道程序设计技术、分时技术、进程、资源分配与调度的机制和策略等——用软件在顺序的硬件上「虚拟」出并行；</li>
+  <li>（2）<strong>计算机体系结构与硬件技术的发展</strong>：从单 CPU 计算机，到并行多处理器系统、消息传递型多计算机、计算机网络与分布式系统——从硬件上直接提供并行能力。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/1-1/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-1/p0012.webp" alt="图 4　顺序计算模型与并行计算模型的矛盾及其解决" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　顺序计算模型与并行计算模型的矛盾，以及两条解决路线（原课件第 12 张）</figcaption>
+</figure>
+<p>这两条路线正好构成本门课的主线：第 4 章「进程及进程管理」、第 5 章「资源分配与调度」讲的正是第（1）条——操作系统如何用软件技术化解这对矛盾。</p>
+<h2>本节小结</h2>
+<ul>
+  <li>存储程序式计算机（1945，冯·诺依曼）：指令与数据同存于存储器，CPU 周而复始地「取指令—执行指令」；</li>
+  <li>基本部件＝CPU（运算器、控制器、寄存器）＋存储器＋I/O 设备；工作特点是集中顺序过程控制（过程性、集中控制、顺序性）；</li>
+  <li>计算机的本质是用指令处理数据，程序＝指令＋数据＝数据结构＋算法；模型不变，变的是部件的规模与性能；</li>
+  <li>计算机系统分层：应用程序／其他系统软件／操作系统／裸机。OS 向下管理硬件（CPU、存储器、设备、中断），向上提供运行环境与用户接口；宗旨是提高使用效率、方便用户使用；</li>
+  <li>核心矛盾：顺序计算模型 vs 并行计算模型；两条出路——OS 软件技术（多道程序设计、分时、进程、调度）与硬件体系结构发展（多处理器、多计算机、分布式）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <span></span>
+      <a class="next" href="1-2.html">1.2 操作系统的形成与发展 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

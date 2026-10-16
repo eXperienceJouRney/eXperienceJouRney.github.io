@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.6 人脸识别的概念与发展 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.6 人脸识别的概念与发展：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html" aria-current="page"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.6 人脸识别的概念与发展</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">到这里，人脸已经找出来、也摆正了，接下来才是「识别」本身。这一节先分清三个模块里谁才是识别算法，再看一遍完整的识别流程，最后把三十多年的人脸识别史压成三个阶段——早期算法、人工特征加分类器、深度学习——并交代每个阶段的代表方法与它们的局限。</p>
+
+<h2>1. 人脸识别的三个模块</h2>
+<p>课件把整套流程里的三个模块列了出来：</p>
+<ul>
+  <li><strong>人脸检测</strong>（Face Detection）；</li>
+  <li><strong>人脸对齐</strong>（Face Alignment）；</li>
+  <li><strong>人脸特征表征</strong>（Feature Representation）。</li>
+</ul>
+<p>并明确指出：<strong>人脸特征表征即是人脸识别算法</strong>。它接受的输入是标准化的人脸图像，通过特征建模得到向量化的人脸特征，最后通过分类器判别得到识别的结果。</p>
+<p>这句话把边界划清楚了：检测和对齐是在「准备输入」，它们不负责判断是谁。真正决定「这张脸是谁」的，是特征表征这一步——把一张人脸图像压缩成一个<strong>紧凑且可判别</strong>的特征向量，再用这个向量去比较或分类。本章后面讲的 DeepID、FaceNet，讲的都是这一件事。</p>
+
+<h2>2. 人脸识别流程</h2>
+<p>把三个模块和前面的检测、对齐串起来，就是一条完整的人脸识别流水线：图像的输入经过检测与对齐得到<strong>标准化人脸图像</strong>，再送入<strong>人脸识别模型</strong>，由模型输出识别结果。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-6/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-6/p0040.webp" alt="图 1　人脸识别流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　人脸识别流程：输入图像经检测与对齐得到标准化人脸图像，送入人脸识别模型后输出识别结果（原课件第 40 张）</figcaption>
+</figure>
+<p>流程里最值得注意的是「标准化」这个前提。标准化意味着模型看到的人脸已经被裁好、摆正、缩放到统一尺寸——也就是说，<strong>识别模型的泛化压力，有很大一部分被前两个模块替它扛掉了</strong>。这也解释了为什么现实系统里，检测和对齐出错往往比识别模型本身更致命。</p>
+
+<h2>3. 人脸识别算法的三个阶段</h2>
+<p>课件把人脸识别算法的发展分成三个阶段：<strong>早期算法</strong>、<strong>人工特征 + 分类器</strong>、<strong>深度学习</strong>。前两个阶段常被一起称为传统方法，第三个阶段从 2012 年之后开始。</p>
+
+<h3>（1）早期算法：几何、模板与子空间</h3>
+<p>早期的算法有基于几何特征的算法、基于模板匹配的算法、子空间算法等多种类型。课件的定义是：<strong>子空间算法将人脸图像当成一个高维的向量，将向量投影到低维空间中，投影之后得到的低维向量可以对不同的人具有良好的区分度</strong>；此外还有用<strong>流形学习进行非线性降维</strong>的一类做法。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-6/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-6/p0042.webp" alt="图 2　早期算法：子空间与流形学习" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　早期算法的思路之一：把人脸图像当成高维向量，投影到低维子空间（或用流形学习做非线性降维），使低维向量对不同的人有良好的区分度（原课件第 42 张）</figcaption>
+</figure>
+<p>这几类方法有一个共同的假设：<strong>人脸的主要变化可以用一个低维线性（或低维流形）结构来刻画</strong>。这个假设在受控条件下成立——正面、光照均匀、表情中性时，子空间方法（如 PCA、LDA 那一系）效果相当好；但一旦进入无约束环境，姿态和光照带来的非线性变化就不是一个线性子空间能装得下的了。</p>
+
+<h3>（2）人工特征 + 分类器</h3>
+<p>第二阶段把问题拆成两半：<strong>特征由人设计，分类交给成熟算法</strong>。课件的说法是：分类器有较成熟的方案，如神经网络、支持向量机、贝叶斯等；<strong>关键在于人工特征的设计</strong>，它要能有效地区分不同的人。描述图像的很多特征都先后被用于人脸识别问题，包括 <strong>HOG、SIFT、Gabor、LBP</strong> 等。</p>
+<p>这些特征的共同点是刻画局部纹理和梯度结构——LBP 描述局部纹理模式，HOG 描述梯度方向分布，Gabor 是一组多尺度多方向的滤波器，SIFT 则是尺度不变的关键点描述子（本课程第 4 章讲过）。把它们用在人脸上，本质上还是「人告诉机器该看什么」。</p>
+<p>这个阶段的天花板也就在这里：<strong>特征的好坏取决于设计者对「什么对人脸有区分度」的理解</strong>，而人能预先想到的变化总是有限的。这与第 1 节里讲的「针对每种变化分别设计方法」是同一个局限。</p>
+
+<h3>（3）深度学习阶段</h3>
+<p>转折点是 2012 年：深度学习在 ILSVRC-2012 上大放异彩后，很多研究者都在尝试将其应用在自己的方向，这极大地推动了深度学习的发展。<strong>卷积神经网络在图像分类问题中脱颖而出，通过学习得到的卷积核明显优于人工设计的特征 + 分类器的方案</strong>。</p>
+<p>课件列出了这一阶段的代表网络与年份：</p>
+<ul>
+  <li><strong>DeepID 系列</strong>：CVPR 2014、CVPR 2015；</li>
+  <li><strong>FaceNet</strong>：CVPR 2015；</li>
+  <li><strong>SphereFace</strong>：CVPR 2017；</li>
+  <li><strong>CosFace</strong>：CVPR 2018；</li>
+  <li><strong>ArcFace</strong>：CVPR 2019。</li>
+</ul>
+<p>这份清单里有两条线索值得先点出来，后面两节会展开：<strong>DeepID 系列</strong>的思路是「用卷积网络学特征，再用精心设计的损失函数把类内距离压小、类间距离拉大」，从 DeepID1 一路迭代到 DeepID3；<strong>FaceNet</strong> 则直接把人脸映射到欧几里得空间，用三元组损失（triplet loss）让距离本身成为相似度度量——识别、验证、聚类都变成空间里的距离比较。而清单后半段的 SphereFace、CosFace、ArcFace，都是沿着「如何设计更好的角度间隔损失」这条线继续往下走的。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>人脸识别算法包含三个模块：人脸检测、人脸对齐、人脸特征表征；其中<strong>人脸特征表征才是人脸识别算法</strong>，它把标准化的人脸图像转成向量化的特征，再用分类器判别。</li>
+  <li>完整流程是：输入图像 → 检测与对齐 → <strong>标准化人脸图像</strong> → 人脸识别模型 → 识别结果。前两个模块替识别模型扛掉了姿态与尺度的归一化压力。</li>
+  <li>发展分三个阶段：<strong>早期算法</strong>（几何特征、模板匹配、子空间算法把人脸高维向量投影到低维空间、流形学习做非线性降维）；<strong>人工特征 + 分类器</strong>（HOG、SIFT、Gabor、LBP 配上神经网络/SVM/贝叶斯，关键是人工特征设计）；<strong>深度学习</strong>（2012 年之后，CNN 学到的卷积核明显优于人工特征）。</li>
+  <li>深度学习阶段的代表网络：DeepID 系列（CVPR 2014、2015）、FaceNet（CVPR 2015）、SphereFace（CVPR 2017）、CosFace（CVPR 2018）、ArcFace（CVPR 2019）——前两个是下一节的主角。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-5.html">‹ 8.5 检测与对齐联合：MTCNN 与 RetinaFace</a>
+      <a class="next" href="8-7.html">8.7 经典网络：DeepID 系列 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

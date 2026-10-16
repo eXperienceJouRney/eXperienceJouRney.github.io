@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.8 经典网络：FaceNet 与 Triplet Loss · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.8 经典网络：FaceNet 与 Triplet Loss：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html" aria-current="page"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.8 经典网络：FaceNet 与 Triplet Loss</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">DeepID 的路线是「分类网络 + 验证损失」，FaceNet 干脆把分类器拿掉：不再问「这是几号人」，而是直接问「这两张脸在空间里离得有多远」。这一节看它如何把人脸映射到欧几里得空间、用 128 维向量表示身份，以及三元组损失（triplet loss）是怎么把「同人近、异人远」写成一条可以优化的式子的。</p>
+
+<h2>1. 把人脸映射到欧几里得空间</h2>
+<p>FaceNet 基于深度卷积神经网络，将人脸图像<strong>映射到欧几里得空间</strong>，<strong>空间距离的长度代表了人脸图像的相似性</strong>：同一个人的不同图像在空间距离很小，不同人的图像在空间中有较大距离。</p>
+<p>课件接着给了一句很有分量的话：<strong>只要该映射空间生成，人脸识别、验证和聚类等任务就可以轻松完成。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-8/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-8/p0057.webp" alt="图 1　FaceNet：把人脸图像映射到欧几里得空间" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　FaceNet 把人脸图像映射到欧几里得空间，用空间距离表示人脸的相似性——同一人的图像距离小，不同人的距离大（原课件第 57 张）</figcaption>
+</figure>
+<p>这句话把 FaceNet 的野心讲清楚了：它输出的不是一个分类结果，而是一个<strong>度量空间</strong>。有了这个空间，识别（在新库里找最近的）、验证（比一个阈值）、聚类（把近的归成一堆）都退化成同一个动作——算距离。这与 DeepID2 的验证损失是同一个思想方向，只是 FaceNet 把它做成了唯一的训练目标。</p>
+<p>效果上，FaceNet 在 LFW 数据集上准确率为 <strong>99.63%</strong>。课件的评价是：<strong>FaceNet 模型的优点是只需要对图片进行很少量的处理——只需要裁剪脸部区域，而不需要如 3D 对齐之类的额外预处理即可作为模型输入</strong>；同时，该模型在数据集上准确率比较高。</p>
+<p>这条「不需要 3D 对齐」的优点是相对于传统方法说的：早期方法为了消除姿态影响，往往要先做三维对齐这类重预处理；FaceNet 表明，<strong>只要训练得足够充分，网络自己就能在特征空间里吸收掉这些变化</strong>。这也回应了本章第 1 节的那条主线——把「对付变化」的工作从人工流水线交给数据驱动的模型。</p>
+
+<h2>2. 128 维向量与三元组损失</h2>
+<p>FaceNet 的结构选择很直接：网络直接输出为 <strong>128 维度的向量空间</strong>；训练时不加分类损失，<strong>直接使用基于 triplets 的最大边界近邻分类的 loss 函数训练神经网络</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-8/p0058.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-8/p0058.webp" alt="图 2　FaceNet 输出 128 维向量" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　FaceNet 直接输出 128 维向量空间，并用基于三元组的最大边界近邻分类损失（triplet loss）训练（原课件第 58 张）</figcaption>
+</figure>
+<p>「最大边界」这个词来自它的损失形式：它不是要求异类距离无限大，而是要求「异类比同类至少远出一个边界 α」，达到这个边界就不再惩罚。这与 DeepID2 验证损失里的阈值 m 是同一个思路。</p>
+
+<h2>3. Triplet Loss：锚点、正样本、负样本</h2>
+<p>三元组指的是三张图：<strong>anchor</strong>（锚点，当前这张脸）、<strong>positive</strong>（与锚点同一身份的另一张脸）、<strong>negative</strong>（与锚点不同身份的一张脸）。FaceNet 将人脸图像编码到欧几里得空间，在该空间内，使用 triplet loss 希望保证与图像（anchor）<strong>同一身份的（positive）距离近、与不同身份的（negative）距离远</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-8/p0059.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-8/p0059.webp" alt="图 3　Triplet Loss 中的 anchor、positive 与 negative" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　三元组：anchor 与 positive 同身份、与 negative 不同身份；训练目标就是让 anchor 靠近 positive、远离 negative（原课件第 59 张）</figcaption>
+</figure>
+<p>写成式子，就是让「锚点到正样本的距离」比「锚点到负样本的距离」至少小一个边界 α：</p>
+<p><code>L = ‖f(a) − f(p)‖² − ‖f(a) − f(n)‖² + α</code></p>
+<p>课件的记法是把它写成最小化形式：<strong>最小化 L：D(a, p) → 0，D(a, n) &gt; α</strong>——也就是锚点到正样本的距离趋近于 0，同时锚点到负样本的距离大于边界 α。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-8/p0060.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-8/p0060.webp" alt="图 4　FaceNet 的 Triplet Loss" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　Triplet Loss：三个共享权重的 CNN（anchor / positive / negative）分别编码，最小化 L 使 D(a, p) → 0、D(a, n) &gt; α（原课件第 60 张）</figcaption>
+</figure>
+<p>图上还有一个容易忽略的细节：三条支路标注的是 <strong>Shared weights</strong>（共享权重）。三个 CNN 其实是同一个网络的三次调用，因此三张图被映射进的是<strong>同一个</strong>空间——不然距离就没有可比性了。这一点在设计度量学习类网络时是必须遵守的前提。</p>
+<p>最后说清 α 的作用。如果只要求 D(a, p) 小、D(a, n) 大，网络可以把所有特征都压到一个点上再靠噪声分开；有了 α，<strong>模型必须为「不同身份」留出至少 α 的间隔</strong>，空间才有真正的判别力。而 α 取多大是个权衡：太小区分度不够，太大则大多数三元组都落在惩罚区内、训练难以收敛。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>FaceNet（CVPR 2015）基于深度卷积网络，把人脸图像<strong>映射到欧几里得空间</strong>，空间距离即相似性：同一人的图像距离小，不同人距离大。映射空间一旦学成，识别、验证、聚类都可以用距离比较完成。</li>
+  <li>网络直接输出 <strong>128 维向量</strong>，用基于三元组的<strong>最大边界近邻分类损失（triplet loss）</strong>训练；在 LFW 上准确率 99.63%。优点是只需要裁剪脸部区域，不需要 3D 对齐之类的额外预处理。</li>
+  <li>三元组由 <strong>anchor、positive（同身份）、negative（异身份）</strong>组成，目标是同身份靠近、异身份远离；损失写成 <code>L = ‖f(a) − f(p)‖² − ‖f(a) − f(n)‖² + α</code>，即最小化 L 时 <code>D(a, p) → 0</code>、<code>D(a, n) &gt; α</code>。</li>
+  <li>三条支路共享权重，保证三张图被编码进同一个空间；边界 α 决定了「不同身份至少要隔开多远」，是区分度与收敛难度的权衡。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-7.html">‹ 8.7 经典网络：DeepID 系列</a>
+      <a class="next" href="8-9.html">8.9 代码示例：face_recognition 库 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

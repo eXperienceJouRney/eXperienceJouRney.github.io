@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.5 进程优先数调度算法 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.5 进程优先数调度算法：课件第 17–18 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html" aria-current="page"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.5 进程优先数调度算法</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">从这一节开始，课程进入「进程调度算法」这一组内容：6.5 节讲进程优先数调度算法，6.6、6.7 节讲循环轮转调度算法及其发展，6.8 节讲时间片与优先级的混合调度。优先数调度是其中最直观的一种——谁的优先权高，谁先占用处理机。这一节要弄清三件事：它按什么规则分配处理机；优先数怎么确定，哪些是静态的、哪些是动态的；以及这两类优先数各自换来什么、又付出什么。</p>
+
+<h2>1. 什么是进程优先数调度算法</h2>
+<p>进程优先数调度算法的做法是：系统先为每个进程<strong>预先确定</strong>一个优先数，到了要选择占用处理机的进程时，就把处理机的使用权交给<strong>就绪队列中优先权最高</strong>的那个就绪进程。所谓「预先确定」，意思是优先数在进程参与调度之前就已经给出，而不是等到调度那一刻才临时判断；调度程序每次要做的主要是比较，谁的优先权最高谁先上。</p>
+<p>课件在这句定义后面特意加了一句注解：「优先数和一定的优先级相对应」。这句话是理解本节的关键。<strong>优先数</strong>（priority number）是系统内部用来排队比较的数值，<strong>优先级</strong>（priority）才是「进程要求处理的紧迫程度」这一语义——第 4 章 4.2 节讲进程控制块 PCB（Process Control Block）时，就把优先级列为 PCB 中的一项信息，并说明它「反映了进程要求 CPU 的紧迫程度」。排在就绪队列里的进程，实际上是按优先级高低排序的。</p>
+<p>讲解时可以指出：优先数与优先级之间的对应关系是<strong>系统约定</strong>，不同约定下数值方向正好相反——一种约定优先数越大优先级越高，另一种约定优先数越小优先级越高。本节后面讲动态优先数的调整，用的是「降低优先数」表示惩罚、「增加（提高）优先数」表示照顾，可见课件是按「优先数越大、优先级越高」的口径来说的；而 UNIX/Linux 一类系统则相反，习惯用较小的数表示较高的优先级（第 3 章 3.4 节提到的 nice() 正是一个改变进程优先级的系统调用）。所以无论做题还是看代码，第一步都要先确认这个约定，再把优先数换算成优先级去比较，否则整个选取顺序会完全取反。</p>
+<p>这条策略并不是凭空出现的。第 5 章 5.2 节讲资源分配策略时已经介绍过「优先调度」：为每一个进程指定一个优先级，优先级反映进程要求处理的紧迫程度，排序原则是按优先级的高低排序；6.4 节讲进程调度的功能时，列出的第一种调度策略也是优先级调度——就绪队列按进程优先级高低排序。优先数调度算法就是把这条策略具体落到进程调度上，并回答「优先级这个数从哪儿来」。至于要不要抢占，则取决于 6.4 节讲的调度方式：在剥夺方式下，一旦出现优先权更高的就绪进程就立即夺走处理机；非剥夺方式下则等当前进程自己让出处理机之后再做比较。</p>
+
+<h2>2. 优先数的分类及确定</h2>
+<p>既然关键在于优先数这个数值，接下来的问题就是它从哪里来。按优先数在进程运行期间能不能改变，课件把它分成两类：<strong>静态优先数</strong>与<strong>动态优先数</strong>。两者回答的问题不同——静态优先数回答「一开始给多少」，动态优先数回答「运行中怎么调」。</p>
+<p>「静态／动态」这组对立在别处也出现过：第 1 章 1.3 节讲实时任务调度算法时，就按优先级的确定方式分成静态优先级调度算法（如速率单调调度算法 RM）与动态优先级调度算法（如最早截止期优先调度算法 EDF）。称呼不同，判别的标准却是一致的——看优先级在进程运行期间会不会变。</p>
+<h3>（1）静态优先数</h3>
+<p>静态优先数在进程被创建时确定，并且<strong>一经确定，在整个进程运行期间不再改变</strong>。它的好处是调度程序只需要比较大小，不必反复计算，实现简单、开销小。课件给出三条确定静态优先数的依据：</p>
+<ul>
+  <li><strong>根据进程所需使用的资源来计算</strong>：把进程对处理机、主存、外设等资源的申请情况折算成一个数值，作为它的优先数。资源需求情况本身就是系统衡量一个进程「分量」的依据之一，6.2 节讲作业控制块 JCB（Job Control Block）时，优先级与资源需求情况同样是记在其中的信息。</li>
+  <li><strong>基于程序运行时间的估计</strong>：先估计程序要运行多久，再据此确定优先数。这条思路和 6.3 节作业调度里的「短作业优先」一脉相承——估计运行时间短的进程，可以给较高的优先权，让它们先通过。</li>
+  <li><strong>基于进程的类型</strong>：按进程属于哪一类给不同的优先数。类别不同，紧迫程度不同，起点也就不同，例如 I/O 繁忙型与计算繁忙型这两类进程就可以给不同的优先数（6.8 节混合调度的目标之一，正是优先照顾 I/O 量大的进程）。</li>
+</ul>
+<h3>（2）动态优先数</h3>
+<p>动态优先数与静态优先数正好相反：进程的优先数在进程运行期间可以改变。系统在进程运行的过程中，根据它的实际表现来调整优先数，因而更贴近真实情况。课件给出三种调整情形：</p>
+<ul>
+  <li><strong>进程使用 CPU 超过一定时间时，降低优先数</strong>：一直占着处理机不放的计算型进程会被压下去，把机会让给别的进程；</li>
+  <li><strong>进程 I/O 操作后，增加优先数</strong>：发起 I/O 操作意味着进程主动让出了处理机，让它下一次更快被选中，既是一种补偿，也能让处理机与 I/O 设备更好地并行工作（呼应 6.8 节「优先照顾 I/O 量大的进程」）；</li>
+  <li><strong>进程等待时间超过一定数值时，提高优先数</strong>：等得越久，优先权抬得越高，长时间排在就绪队列里的进程就不会永远轮不到——这就是通常所说的「老化」思想。</li>
+</ul>
+<p>这三条合起来看，第一条是「罚」，罚的是长时间占用处理机的行为；后两条是「奖」，奖的是主动做 I/O 和耐心等待的行为。调整的依据都是进程在运行中表现出来的特征，而不是一开始就定死的静态印象。</p>
+<p>讲解时可以指出：读这三条要注意方向问题。课件按「优先数越大、优先级越高」的口径，用「降低优先数」表示下调优先权、「增加／提高优先数」表示上调优先权；如果换成「优先数越小、优先级越高」的系统，同一个意思就要改用「加大数值」「减小数值」来描述。数值的方向随系统约定而变，但奖惩的含义不变——罚长期占用处理机，奖 I/O 操作与长时间等待。</p>
+
+<h2>3. 静态与动态优先数的取舍</h2>
+<p>讲解时可以指出：这两类优先数没有绝对的优劣，取舍的标准是「调度效果」与「系统开销」之间的权衡。把它们放在一起看，差别是这样：</p>
+<table>
+<caption>静态优先数与动态优先数的比较（讲解时补充，课件未给此表）</caption>
+<thead>
+<tr><th>比较项</th><th>静态优先数</th><th>动态优先数</th></tr>
+</thead>
+<tbody>
+<tr><td>确定与改变时机</td><td>进程被创建时确定</td><td>进程运行期间可以改变</td></tr>
+<tr><td>运行期间是否变化</td><td>一经确定，整个运行期间不再改变</td><td>随进程运行情况不断调整</td></tr>
+<tr><td>长处</td><td>实现简单、开销小</td><td>能反映运行中的变化，公平性更好</td></tr>
+<tr><td>局限</td><td>难以反映进程运行中的变化，可能出现长进程饥饿</td><td>需要不断计算优先数，系统开销较大</td></tr>
+</tbody>
+</table>
+<p>静态优先数的优势在于简单：优先数在创建时算一次就够，此后调度程序只做比较，适合对开销敏感、进程行为比较稳定的场合。它的短处也同样明显——优先数一旦定下，就不再反映进程在运行中的变化。一个进程可能后来已经等了很久，或者刚刚完成大量 I/O，静态优先数对这些情况都「看不见」。更值得注意的是公平性：如果系统不断有高优先权的进程加入，优先数低的长进程就可能长时间排不上队，出现<strong>饥饿</strong>。</p>
+<p>动态优先数补上的正是这块短板。它随进程的运行情况调整，公平性更好，也能同时兼顾 I/O 密集与计算密集这两类进程。代价是要不停地重新计算优先数——每次调度前后都可能涉及一次调整，系统开销较大，实现也更复杂。</p>
+<p>把眼光放宽一点：6.7 节的多级时间片循环调度、6.8 节的时间片与优先级混合调度，走的都是把「事先定死的规则」与「随运行情况调整」结合起来的折中路线。本节这两类优先数的取舍，正是后面几种算法反复要面对的同一个问题。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>进程优先数调度算法：预先为每个进程确定优先数，调度时把处理机的使用权交给就绪队列中优先权最高的就绪进程；</li>
+  <li>「优先数」是系统内部排队比较的数值，「优先级」是进程要求处理的紧迫程度；两者按系统约定对应，数值方向可能相反，比较之前先认约定；</li>
+  <li>静态优先数在进程被创建时确定、整个运行期间不再改变，确定依据有：进程所需使用的资源、程序运行时间的估计、进程的类型；</li>
+  <li>动态优先数在进程运行期间可以改变：使用 CPU 超过一定时间就降低优先数，I/O 操作后增加优先数，等待时间超过一定数值就提高优先数；</li>
+  <li>静态优先数实现简单、开销小，但难以反映运行中的变化，可能使长进程饥饿；动态优先数公平性更好，代价是不断计算带来的开销；6.6～6.8 节的循环轮转、多级时间片与混合调度，接着把这条「定规则」与「随情况调」的线索展开。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-4.html">‹ 6.4 进程调度</a>
+      <a class="next" href="6-6.html">6.6 循环轮转调度算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

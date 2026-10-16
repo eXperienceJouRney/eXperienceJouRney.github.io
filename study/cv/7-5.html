@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.5 长程依赖问题与改进方案 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.5 长程依赖问题与改进方案：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html" aria-current="page"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.5 长程依赖问题与改进方案</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节推导 BPTT 时，误差项 δ<sub>t,k</sub> 里出现了一个沿时间的<strong>连乘</strong>。本节要讲的就是这个连乘带来的后果：随着回传的距离变长，梯度要么爆掉、要么消失，于是网络实际上只能学到短期依赖——这就是<strong>长程依赖问题</strong>。课件把它拆成两半来处理：先针对梯度爆炸，再针对梯度消失，最后给出通行的解决方案：<strong>门控机制</strong>。</p>
+
+<h2>1. 梯度消失与梯度爆炸</h2>
+<p>回顾 7.4 节的结果：误差项 δ<sub>t,k</sub> = ∏<sub>i=k</sub><sup>t−1</sup>(diag(f′(z<sub>i</sub>)) U<sup>T</sup>) · δ<sub>t,t</sub>，梯度里因此含有一个随距离 (t − k) 增长的因子。课件把这个因子的量级记为 γ<sup>t−k</sup>，于是两种极端情况一目了然：</p>
+<ul>
+  <li>若 <strong>γ &gt; 1</strong>，当 t − k → ∞ 时，γ<sup>t−k</sup> → ∞，梯度变得很大，引起<strong>梯度爆炸</strong>问题；</li>
+  <li>若 <strong>γ &lt; 1</strong>，当 t − k → ∞ 时，γ<sup>t−k</sup> → 0，梯度变得很小，引起<strong>梯度消失</strong>问题。</li>
+</ul>
+<p>两种毛病的表现不同：梯度爆炸会让参数一步更新得过大，训练直接发散（损失变成 NaN）；梯度消失则相反——远处的时刻几乎收不到任何有效的更新信号，参数原地不动。</p>
+<p>课件由此给出结论：<strong>由于梯度爆炸或消失问题，实际上只能学习到短周期的依赖关系。这就是所谓的长程依赖问题。</strong></p>
+
+<h2>2. 长程依赖问题</h2>
+<p>什么叫「长程依赖」？课件的定义是：<strong>如果时刻 t 的输出 y<sub>t</sub> 依赖于时刻 k 的输入 x<sub>k</sub>，当间隔 t − k 比较大时，简单循环神经网络很难建模这种长距离的依赖关系，称为长程依赖问题。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-5/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-5/p0035.webp" alt="图 1　长程依赖问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　长程依赖问题：输出依赖的是较早时刻的输入时，误差要跨越很多个时刻才能回传，梯度在连乘中衰减或放大（原课件第 35 张）</figcaption>
+</figure>
+<p>把这件事放在语言里看会更具体。读一句话时，前面出现的某个词可能决定后面很远的某个词该怎么理解；如果网络只能记住三五个时刻以内的信息，这种跨度较大的关联就学不到。这也正是 7.1 节那个词性分类例子留下的尾巴：判断当前词要看上下文，而上下文可能离得很远。</p>
+
+<h2>3. 针对梯度爆炸：权重衰减与梯度截断</h2>
+<p>两类问题里，梯度爆炸相对好办——只要把参数或梯度「压小」就行。课件给了两种做法：</p>
+<ul>
+  <li><strong>权重衰减</strong>：给参数增加 L1/L2 范数的正则化项来限制参数的取值范围，从而使得 γ ≤ 1；</li>
+  <li><strong>梯度截断</strong>：当梯度的模大于一定的阈值时，截断为一个较小的数。</li>
+</ul>
+<p>两者的思路不同但目标一致：权重衰减是<em>事前</em>约束参数的规模，让连乘因子从一开始就不会大于 1；梯度截断是<em>事后</em>补救，一旦某次算出来的梯度太大，就按比例把它缩回去，避免一步更新把训练带偏。</p>
+<p>不过要留意，这两种方法都只能治「爆炸」，对「消失」无能为力——把梯度往小里压，恰恰是梯度消失更严重的方向。</p>
+
+<h2>4. 针对梯度消失：改循环边</h2>
+<p>为了治消失，得从结构上动手。课件给了两条改动思路，都围绕着那条循环边。</p>
+<h3>（1）循环边改为线性依赖关系</h3>
+<p>第一条思路是把状态之间的传递改成<strong>线性的</strong>：原来的 h<sub>t</sub> = f(U h<sub>t−1</sub> + W x<sub>t</sub> + b) 改为 <strong>h<sub>t</sub> = h<sub>t−1</sub> + g(x<sub>t</sub>; θ)</strong>，其中 g(·) 是一个非线性函数，θ 为参数。此时状态之间的路径变成「h<sub>t−1</sub> 加一项」，求导时不再需要连乘一串矩阵，梯度可以顺畅地往回传。</p>
+<p>代价课件也写明了：这样做<strong>丢失了神经元在反馈边上的非线性激活性质，因此也降低了模型的表示能力</strong>。换句话说，梯度是通畅了，但网络表达复杂规律的本事也被削掉了一块。</p>
+<h3>（2）增加非线性</h3>
+<p>第二条思路是在线性传递的基础上把非线性补回来：让新增的那一项同时看到当前输入和上一时刻的状态：<strong>h<sub>t</sub> = h<sub>t−1</sub> + g(x<sub>t</sub>, h<sub>t−1</sub>; θ)</strong>。
+<p>但课件同样说明了它的局限：这样<strong>仍然存在梯度爆炸问题以及记忆容量问题</strong>。所谓记忆容量问题，是指隐状态 h<sub>t</sub> 可以存储的信息是有限的：随着记忆单元存储的内容越来越多，其丢失的信息也越来越多。用一个固定维度的向量去承载任意长的历史，本身就会「装不下」。</p>
+
+<h2>5. 门控机制：Gated RNN</h2>
+<p>既然「全记」会爆、「硬改」会损失表达能力，那就让网络<strong>自己决定记什么、忘什么</strong>。课件给出的总结是：为了改善循环神经网络的长程依赖问题，一种非常好的解决方案是<strong>引入门控机制来控制信息的积累速度</strong>，包括有选择地加入新的信息，并有选择地遗忘之前积累的信息。这一类网络称为<strong>基于门控的循环神经网络（Gated RNN）</strong>。</p>
+<p>课件列出的两种门控网络，就是接下来两节的主角：</p>
+<ul>
+  <li><strong>长短期记忆网络</strong>（Long Short-Term Memory，LSTM），见 7.6 节；</li>
+  <li><strong>门控循环单元网络</strong>（Gated Recurrent Unit，GRU），见 7.7 节。</li>
+</ul>
+<p>它们的共同点在于：用一组取值在 0 到 1 之间的「门」去控制信息流的比例，从而让某条路径上的梯度可以近乎不衰减地传很远——这正是缓解梯度消失的关键。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>BPTT 的误差项含有一个随距离增长的连乘因子 γ<sup>t−k</sup>：γ &gt; 1 时梯度爆炸，γ &lt; 1 时梯度消失；两者都导致网络实际上只能学习短周期的依赖关系。</li>
+  <li>长程依赖问题的定义：时刻 t 的输出 y<sub>t</sub> 依赖时刻 k 的输入 x<sub>k</sub>，当间隔 t − k 较大时，简单循环神经网络很难建模这种关系。</li>
+  <li>针对梯度爆炸：<strong>权重衰减</strong>（加 L1/L2 正则项限制参数范围，使 γ ≤ 1）与<strong>梯度截断</strong>（梯度模超过阈值就截断为较小的数）。</li>
+  <li>针对梯度消失：把循环边改成线性依赖 h<sub>t</sub> = h<sub>t−1</sub> + g(x<sub>t</sub>; θ)（代价是丢失反馈边上的非线性，表示能力下降），或增加非线性 h<sub>t</sub> = h<sub>t−1</sub> + g(x<sub>t</sub>, h<sub>t−1</sub>; θ)（仍有梯度爆炸与记忆容量问题）。</li>
+  <li>通行方案是<strong>门控机制</strong>：有选择地加入新信息、有选择地遗忘旧信息，这类网络称为 Gated RNN，代表是 LSTM 与 GRU。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-4.html">‹ 7.4 参数学习：BPTT 与 RTRL</a>
+      <a class="next" href="7-6.html">7.6 长短期记忆网络 LSTM ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

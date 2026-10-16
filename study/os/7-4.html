@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.4 页式存储管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章 7.4 页式存储管理：课件第 70–92 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html" aria-current="page"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 7 章 主存管理</p>
+      <h1>7.4 页式存储管理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节讲页式存储管理，它是主存管理里被最广泛采用的一种方式，也是后面 7.5 节页面置换算法、7.6 节段页式管理的基础。思路是三步：先说清楚它要解决的两个老问题——分区存储留下的碎片，以及「作业必须整个装进主存」的硬约束；再看它用「等分 + 页表」这套办法怎么把问题绕开；最后落到实现细节：地址怎么变换、页表怎么查得快、程序只装一部分时缺页怎么办。</p>
+
+<h2>1. 页式管理要解决的两个问题</h2>
+<p>先说碎片。在 7.3 节的分区存储管理里，用户要求分配的逻辑地址是一个连续的范围，系统就必须在主存里找到一块<strong>同样连续</strong>的空闲区给它。当主存中现有的空闲区大小都小于要求分配的大小时，这些装不下任何作业的空闲区就是<strong>碎片</strong>（也叫零头）。碎片不是「内存不够用」，而是「剩下的空闲区都被切得太碎了，拼不出一个够大的连续块」。</p>
+<p>对付碎片，分区管理里有一个办法叫拼接（紧凑）：把主存里所有在跑的作业挪到一起，让零散的空闲区并成一大块。但拼接要搬动大量数据、要暂停作业、还要改所有相关的地址，<strong>代价太大</strong>，不能作为常规手段反复使用。所以要寻找新路径：能不能避开程序对地址连续性的要求，让一个程序分散地放到若干块<strong>互不相邻</strong>的区域里去？这正是分页的思想。</p>
+<p>再说不必全部装入的问题。分区存储管理有一个硬约束：作业的地址空间必须能整体装进主存可用空间，否则这个作业根本无法投入运行——主存有多大，能同时跑的作业就有多小。于是很自然地要问：能不能不必把程序地址空间全部装入主存，而只把<strong>当前所需的一部分</strong>内容装入？程序运行过程中需要用到别的内容时，由操作系统和硬件配合，自动地从辅存把所需内容调入主存。做到这一点，主存就被「扩充」了：小主存也能跑大程序。</p>
+<p>这两条需求合起来，就是页式存储管理的出发点。分页存储是一种比较完美的内存管理方式，因此被广泛采用。</p>
+
+<h2>2. 页式系统的基本概念</h2>
+<h3>（1）分页</h3>
+<p>分页的做法是「两边等分」：</p>
+<ul>
+  <li>程序的<strong>虚拟地址空间</strong>被等分成大小相等的片，称为<strong>页面</strong>，又称为<strong>虚页</strong>；</li>
+  <li><strong>物理内存</strong>也被等分成同样大小的片，称为<strong>主存块</strong>，又称为<strong>实页</strong>。</li>
+</ul>
+<p>注意这里的关键词是「等分」：分的时候不管程序本身的结构，也不管它原来是一段代码还是一段数据，一律按固定大小切开。切出来的页面是逻辑上的划分，主存块是物理上的划分，两者大小完全一样。</p>
+<h3>（2）动态映射</h3>
+<p>既然虚页和实页大小一样，一个虚页就可以整块地放进任意一个空闲的主存块。于是：<strong>连续的虚页可以被映射到不连续的实页</strong>——程序在逻辑上仍然是一段连续的地址空间，在物理上却可以分散地摆在主存的各个角落。碎片问题就此解决：主存里只要还有够一个页面大小的空闲块，就能装东西，不需要凑出一个大连续区。</p>
+<p>动态映射还带来第二个好处：程序开始运行时，只需要把<strong>部分页面</strong>装入主存块，也就是说程序可以部分装入就投入运行，其余页面在运行过程中<strong>按需加载</strong>。这正好对应前面「主存扩容」的需求。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0075.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0075.webp" alt="图 1　页式系统的存储映像：作业地址空间按页面划分后装入主存块" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　页式系统实例：作业地址空间从 0 到 256KB−1 按 2KB 等分成页面（0 页、1 页、2 页……），主存同样按 2KB 等分成块，页面可以装入任意空闲块（原课件第 75 张）</figcaption>
+</figure>
+
+<h2>3. 页式系统需要解决的问题</h2>
+<p>把「等分 + 映射」这个想法落地，系统必须回答三个问题，它们也构成了本节后半部分和下一节的内容线索：</p>
+<ul>
+  <li><strong>地址映射</strong>：逻辑地址里的「页」怎么换成物理主存里的「块」？这既要给出方法，也要考虑效率；</li>
+  <li><strong>请调机制</strong>：要能判断当前访问的页面是否已经在内存中；如果不在内存，又该如何处理；</li>
+  <li><strong>淘汰策略（置换算法）</strong>：主存已满而又有新页面要调入时，该把哪一页换出去。这一条正是 7.5 节的主题。</li>
+</ul>
+
+<h2>4. 地址映射与页表</h2>
+<p>先看第一个问题的「方法」。既然一个虚页可能被装到任何一个主存块里，系统就必须记录下「哪个虚页在哪一块」的对应关系。为了实现从逻辑地址空间到物理主存的映像，系统建立的一种记录页与内存块之间对应关系的地址变换机构，称为<strong>页面映像表</strong>，简称<strong>页表</strong>。</p>
+<p>页表是每个作业（进程）一张的，表中的每一项对应程序的一个页，写明该页被分配到的主存块号。程序运行时的页表由操作系统建立和维护，硬件在地址变换时直接查它。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0078.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0078.webp" alt="图 2　三个程序的地址空间、各自的页表与共享的主存" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　分页映像存储的例子：程序 1、程序 2、程序 3 各自有自己的地址空间和页表，页表项给出「页号 → 主存块号」；主存被划成等长的块，各程序的页混装在其中（原课件第 78 张）</figcaption>
+</figure>
+<p>看图 2 可以直观地理解页式管理「分散存放」的特点：每个程序在逻辑上都是连续的一段地址空间，但它们的页在主存里交错分布、互不相邻。程序自己看不到这种交错——它给出的仍然是连续的虚地址，由页表在背后完成转换。</p>
+
+<h2>5. 页式地址变换：从虚地址到物理地址</h2>
+<h3>（1）虚地址的结构</h3>
+<p>页式系统里，一个逻辑地址被分成两部分：高位是<strong>页号 P</strong>，低位是<strong>页内位移 W</strong>（也称页内偏移、页内相对位移）。这个划分不是人为约定，而是由页面大小决定的：页面大小是 2 的整数次幂时，页内位移正好占低位若干位，剩下的高位就是页号。图 3 所示的结构里，1KB 的页面意味着页内位移占低 10 位（2<sup>10</sup> = 1024），页号占高位部分。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0079.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0079.webp" alt="图 3　虚地址结构：页号 P 与页内位移 W，以及对应的页表" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　页式地址变换的准备：虚地址被分为页号 P 和页内位移 W；程序 2 的地址空间按 1KB 分页，页表给出各页对应的主存块号（原课件第 79 张）</figcaption>
+</figure>
+<h3>（2）变换过程：一个具体例子</h3>
+<p>设页面大小为 1KB，程序 2 中有一条指令要访问地址 2500，页表里第 2 页对应的块号是 7。变换过程如图 4：</p>
+<ul>
+  <li>分页机构把 2500 一分为二。2500 ÷ 1024 = 2 余 452，所以<strong>页号 p = 2，页内位移 w = 452</strong>；</li>
+  <li>以页号 2 为索引，结合页表始址寄存器指示的页表起始地址，在页表中找到第 2 页的项，读出主存块号 <strong>b = 7</strong>；</li>
+  <li>把块号 b 和页内位移 w 拼起来，就得到访问主存的物理地址：<strong>7 × 1024 + 452 = 7620</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0080.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0080.webp" alt="图 4　页式地址变换过程：2500 变换为物理地址 7620" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　页式地址变换过程：逻辑地址 2500 分出页号 2 和页内位移 452，查页表得块号 7，拼成物理地址 7×1024＋452＝7620（原课件第 80 张）</figcaption>
+</figure>
+<h3>（3）页式地址变换步骤</h3>
+<p>把上面的过程写成通用的四步：</p>
+<ul>
+  <li>（1）CPU 给出操作数地址（上例中为 2500）；</li>
+  <li>（2）由分页机构自动地把逻辑地址分为两部分，得到页号 p 和页内相对位移 w（p = 2，w = 452）；</li>
+  <li>（3）根据页表始址寄存器指示的页表起始地址，以页号为索引，找到第 2 页所对应的块号（为 7）；</li>
+  <li>（4）将块号 b 和页内位移量 w 拼接在一起，形成访问主存的物理地址（7 × 1024 + 452 = 7620）。</li>
+</ul>
+<p>这四步里最值得记住的一点是：<strong>页内位移 w 自始至终没有变过</strong>。它只参与「分」和「拼」，不参与查找。正因为如此，一个页被搬到主存的哪一块都不影响页内各字节的相对位置，程序感觉不到自己被拆散过。</p>
+
+<h2>6. 课堂练习：习题 7-14</h2>
+<p>课件在这里安排了一道练习，用来检验地址变换是否真的掌握了：</p>
+<ul>
+  <li>（1）试画出作业 A 的页面映射表；</li>
+  <li>（2）当 200 号单元处有一条指令 <code>mov r1, [3500]</code> 执行时，如何进行正确的地址变换，以使得 3500 处的内容 12345 装入寄存器 r1 中？要求用图画出地址变换过程，并给出最终的物理地址。</li>
+</ul>
+<p>题目给出的装入情况是：主存容量 64KB，作业 A 的地址空间按 1KB 分页，共 4 页（0、1、2、3），分别被分配到主存的 2、4、6、7 号块中；200 号单元处是一条访问 3500 号单元的指令，3500 处存放着数据 12345（图 5）。</p>
+<p>第（1）问的页面映射表按装入情况直接写出：</p>
+<table>
+  <caption>表 1　习题 7-14 中作业 A 的页面映射表（页面大小 1KB）</caption>
+  <thead>
+    <tr><th>页号 p</th><th>主存块号 b</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>2</td></tr>
+    <tr><td>1</td><td>4</td></tr>
+    <tr><td>2</td><td>6</td></tr>
+    <tr><td>3</td><td>7</td></tr>
+  </tbody>
+</table>
+<p>第（2）问沿用小节 5 里的三步。先分：页面大小为 1KB，3500 = 3 × 1024 + 428，所以这条指令访问的是<strong>第 3 页</strong>、页内位移 <strong>w = 428</strong>；再查：由上面的映射表，第 3 页装在主存的第 <strong>7</strong> 块；后拼：物理地址 = 7 × 1024 + 428 = <strong>7596</strong>。可见被中断的只是「3500」这个逻辑地址，页内位移 428 在变换前后没有变，变的只有「哪一块」。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0082.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0082.webp" alt="图 5　习题 7-14 的作业地址空间与指令 mov r1,[3500]" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　习题 7-14：作业 A 的地址空间按 1KB 分成 0～3 页，200 号单元处是一条访问 3500 号单元的指令（原课件第 82 张）</figcaption>
+</figure>
+
+<h2>7. 二级页表</h2>
+<p>页表本身也要占用主存。一个作业的地址空间越大、页面越小，页表项就越多，页表也就越大——大到它自己也需要被分割、按需装入时，就出现了<strong>二级页表</strong>。</p>
+<p>图 6 给出的结构是：线性地址被分成三段，高位是<strong>页表目录索引</strong>，中间是<strong>页表索引</strong>，低位是<strong>页内偏移</strong>。查找时分两步走：先用页表目录索引在<strong>页表目录</strong>里找到对应的那张页表（图中页表项的编号 0～1023），再用页表索引在那张页表里找到该页的<strong>页首地址</strong>；最后把页首地址与页内偏移拼起来，得到物理地址（实地址）。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0083.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0083.webp" alt="图 6　二级页表：线性地址经页表目录与页表两级查表得到物理地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　二级页表结构：线性地址分成页表目录索引、页表索引、页内偏移三段，先查页表目录再查页表，得到页首地址后与页内偏移拼成物理地址（原课件第 83 张）</figcaption>
+</figure>
+
+<h2>8. 效率分析与快表</h2>
+<p>页表法解决的是「能不能映射」的问题，接下来要解决「快不快」。麻烦在于：页表本身也存在主存里。要访问一个数据，硬件必须先读一次主存去取页表项、拿到块号，然后再读一次主存去取真正要的数据。所以<strong>每次读写一个数据至少需要访问 2 次内存，执行速度下降 100%</strong>——访存开销翻了一倍，这是不能接受的。</p>
+<p>怎么办？办法是在地址变换这条路上加一层特殊的<strong>高速缓冲存储器——联想存储器</strong>，专门用来存放页表里最近用到的那些项。</p>
+<ul>
+  <li><strong>什么是联想存储器</strong>：一种高速、小容量的半导体存储部件，又称高速缓冲存储器。它可以按内容并行比较，而不像普通内存那样只能按地址逐项查找；</li>
+  <li><strong>什么是快表</strong>：在高速缓冲存储器中存放正在运行的进程当前用到的页号和对应的块号，这样的部件又称为<strong>快表</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0086.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0086.webp" alt="图 7　联想存储器与主存页表相结合的地址变换" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　利用快表进行地址映射：虚地址的页号先在联想存储器中并行匹配，命中则直接得到块号 b，与页内位移 w 拼成物理地址；只有联想映像不匹配时，才去访问主存中的页表（原课件第 86 张）</figcaption>
+</figure>
+<p>用了快表以后，地址变换的路径变成：页号先进联想存储器比对，命中就直接拿到块号，把它和页内位移拼成物理地址——全程只访问一次主存（取数据那一次）；只有没命中时，才回过头去查主存里的页表。因为程序访问页面有很强的局部性，快表的命中率可以做得非常高。</p>
+<p>课件给了一组具体数字来量化收益：假定访问主存时间为 100 微秒，访问联想存储器时间为 10 微秒，联想存储器为 32 个单元时快表命中率可达 99%，则按逻辑地址存取的平均时间为</p>
+<pre><code>(100 + 10) × 99% + (100 + 100) × (1 − 99%) = 111 微秒</code></pre>
+<p>而不用快表、老老实实两次访问主存的时间为</p>
+<pre><code>100 × 2 = 200 微秒</code></pre>
+<p>也就是说，平均每次访存从 200 微秒降到 111 微秒，几乎省掉了一次完整的访存。代价是联想存储器容量很小（只有几十项），所以它只装得下「当前用到的」那些页表项，换来的是绝大部分访问都走捷径。</p>
+
+<h2>9. 内存扩充：程序部分装入与请求分页</h2>
+<p>回到本节开头提出的第二个需求：主存能不能只装程序的一部分？页式管理给出的答案是肯定的——只装入一个作业的部分页面即可投入运行，同时系统为该作业<strong>事先分配固定数目的主存块</strong>（比如 m 块），这个数目在整个运行期间不变。</p>
+<p>在程序执行过程中，如果需要执行的指令或访问的数据尚未在内存（这种情况称为<strong>缺页</strong>），则由处理器通知操作系统将相应的页或段调入到内存，然后继续执行程序。程序本身并不知道自己的一部分还躺在辅存里，这一层由硬件和操作系统替它兜住。</p>
+<p>要做到这一点，必须给页表<strong>扩充功能</strong>。原来的页表只有「页号 → 主存块号」，现在要再加两项：</p>
+<p>扩充后的页表项有四个字段：<strong>页号</strong>、<strong>主存块号</strong>、<strong>中断位</strong>、<strong>辅存地址</strong>。已经装入主存的页，主存块号有值、中断位为 0；还留在辅存的页，主存块号为空，中断位为 1，辅存地址栏则记着它在辅存中的位置。</p>
+<ul>
+  <li><strong>中断位 i</strong>：标识该页是否在主存。若 i = 1，表示此页不在主存；若 i = 0，表示该页在主存；</li>
+  <li><strong>辅存地址</strong>：该页面在辅存中的位置。缺页时，系统就按这个地址去辅存把页读进来。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0089.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0089.webp" alt="图 8　扩充后的页表：页号、主存块号、中断位与辅存地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　程序部分装入需要扩充页表功能：除页号与主存块号外，增加标识该页是否在主存的中断位 i 和该页在辅存中的地址（原课件第 89 张）</figcaption>
+</figure>
+
+<h2>10. 缺页处理示例</h2>
+<h3>（1）程序 2 在请求分页系统中的存储映像</h3>
+<p>课件用一个完整的例子把缺页处理串了一遍。设页面大小为 1KB，程序 2 的固定主存块数 m = 3，程序中有两条指令：</p>
+<pre><code>mov r1, [2120]
+add r1, [3410]</code></pre>
+<p>程序 2 的地址空间被分成若干页，其中一部分已装入主存，另一部分还留在辅存；页表里同时记着中断位、块号和辅存地址，如图 9。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0090.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0090.webp" alt="图 9　程序 2 在请求分页系统中的存储映像与页表" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　程序 2 在请求分页系统中的存储映像：页面大小 1KB，程序 2 的固定主存块数 m = 3，页表给出各页的辅存地址、中断位与块号（原课件第 90 张）</figcaption>
+</figure>
+<h3>（2）缺页处理</h3>
+<p>现在执行 <code>mov r1, [2120]</code>，处理过程如下：</p>
+<ul>
+  <li>CPU 产生的虚地址为 2120；</li>
+  <li>分页机构将其分为页号和页内位移：2120 ÷ 1024 = 2 余 72，得 <strong>p = 2，w = 72</strong>；</li>
+  <li>查页表，该页的中断位 <strong>i = 1</strong>，说明这一页并不在主存；</li>
+  <li><strong>发生缺页中断！</strong>——处理器把控制权交给操作系统；</li>
+  <li>获取辅存位置：按页表里记录的辅存地址，找到该页在辅存中的存放位置；</li>
+  <li>如主存中有空白块，且 n &lt; m，则直接调入（n 表示当前程序已分配的块数，m 是它固定的主存块数）；</li>
+  <li>如主存中无空白块，或 n = m，则需淘汰该程序在主存中的一页，腾出块来再调入；</li>
+  <li>中断返回：操作系统改好页表和存储分配表，重新执行刚才被中断的那条指令，此后访问 2120 就能在主存里正常完成了。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0091.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0091.webp" alt="图 10　缺页处理：虚地址 2120 查页表发现中断位为 1" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　缺页处理：虚地址 2120 分出页号 2、页内位移 72，查页表得中断位 i = 1，于是发生缺页中断，由操作系统决定调入还是先淘汰一页（原课件第 91 张）</figcaption>
+</figure>
+<h3>（3）缺页处理过程图示</h3>
+<p>把上面的动作画成流程图，就是图 11。它把「指令执行」和「缺页中断处理」两条线索交织在一起，注意其中的硬件与软件分工：</p>
+<ul>
+  <li>硬件负责：启动要处理的指令 → 给出虚地址 → 得到页号 → 判断该页是否在主存；命中则执行完该指令，再准备执行下条指令；</li>
+  <li>软件（操作系统）负责：缺页中断发生后，先看主存有没有空闲块——有则直接从外存读入所需的页；没有则先选一页淘汰，若要重写（被淘汰的页被修改过）还需先把它写回外存；然后从外存读入所需的页，调整存储分配表和页表；</li>
+  <li>最后<strong>重新启动被中断的指令</strong>，从刚才失败的那一步重来一遍，程序对此毫无察觉。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/7-4/p0092.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-4/p0092.webp" alt="图 11　指令执行步骤与缺页中断处理过程流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　指令执行步骤和缺页中断处理过程：硬件的「取地址—查页表—判在否」与软件的「缺页中断—淘汰或调入—调整页表—重启指令」衔接成一条闭环（原课件第 92 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>页式管理要解决两个老问题：分区存储的<strong>碎片</strong>（连续空闲区凑不出来，拼接代价太大）和「作业必须整体装入主存」的硬约束（小主存跑不了大程序）；</li>
+  <li>基本手段是两边等分 + 动态映射：虚拟地址空间等分成<strong>页面（虚页）</strong>，主存等分成<strong>主存块（实页）</strong>，连续的虚页可以映射到不连续的实页，程序部分装入也能运行；</li>
+  <li>要落地必须解决<strong>地址映射、请调机制、淘汰策略</strong>三件事，其中淘汰策略（页面置换算法）是下一节的内容；</li>
+  <li>地址变换靠<strong>页表</strong>：虚地址分成页号 P 和页内位移 W，查页表得块号 b，物理地址 = b × 页面大小 + W；页内位移在变换中始终不变（例：2500 → p=2、w=452，块号 7，物理地址 7620）；</li>
+  <li>页表本身也在主存里，直接查表要两次访存、速度下降 100%，所以引入<strong>联想存储器（快表）</strong>：命中率 99% 时平均访存由 200 微秒降到 111 微秒；地址空间很大时还可用<strong>二级页表</strong>（页表目录 + 页表）分级存放；</li>
+  <li>支持部分装入要<strong>扩充页表</strong>：增加<strong>中断位 i</strong>（i = 1 不在主存，i = 0 在主存）和<strong>辅存地址</strong>；缺页时由缺页中断进入操作系统，有空闲块就调入，没有就淘汰一页再调入，最后重启被中断的指令。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-3.html">‹ 7.3 分区存储管理</a>
+      <a class="next" href="7-5.html">7.5 页面置换算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

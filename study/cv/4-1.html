@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1 为什么需要局部特征 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 4 章 特征检测与匹配 4.1 为什么需要局部特征：以「4-特征检测与匹配.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html" aria-current="page"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 4 章 特征检测与匹配</p>
+      <h1>4.1 为什么需要局部特征</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节要回答一个「为什么」：既然第 3 章已经能从图像里找出边缘和线条，为什么还要另起一套「局部特征」？课件用三组动机把问题讲清楚——同一场景的视角与光线会剧烈变化、全景拼接需要找对齐点、火星探测器拍回的两幅图像要先判断有没有重叠区域——这些任务都要求先在两幅图里找到<strong>同一些</strong>位置，再去比较它们。由此引出局部特征检测与匹配的三步走，以及两个必须先回答的问题：怎么保证检测可重复，怎么保证描述够独特。</p>
+
+<h2>1. 三步走：特征检测、特征描述与特征匹配</h2>
+<p>课件先讲了一个「小蓝与小红」的故事。两人手里各有一幅图像，小蓝说：我的图像里有五个很明显的特征，分别在图像的上下左右中五个位置；小红说：我的图像里也有五个特征，位置也一样。于是两人对上了第一层——<strong>特征的位置是可重复检测的</strong>。</p>
+<p>但位置对上还不够。小蓝接着说：我的一个特征，左边是三角形、右边是圆形、上面是菱形、下面是正方形、中间是星星；小红也给出了完全相同的描述。到这一步，两人才敢说「我们看到的是同一幅图像」。这段对话恰好对应了局部特征检测与匹配的三个步骤：</p>
+<ul>
+  <li><strong>Step 1　特征检测</strong>：寻找那些能在其他图像中较好匹配的位置（关键点）；</li>
+  <li><strong>Step 2　特征描述</strong>：把检测到的关键点周围区域转化为一个紧凑、稳定的描述；</li>
+  <li><strong>Step 3　特征匹配</strong>：对特征的相似性进行判断，也就是计算匹配。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0003.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0003.webp" alt="图 1　小蓝与小红的三段对话" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　课件用「小蓝与小红的三段对话」串起三步走：对话 1 对应特征检测，对话 2 对应特征描述，对话 3 对应特征匹配（原课件第 3 张）</figcaption>
+</figure>
+<p>注意这三步的分工：<strong>检测</strong>决定「在哪儿看」，<strong>描述</strong>决定「看到的是什么」，<strong>匹配</strong>决定「这两个是不是同一个」。后面几节正是沿着这条线走的——4.2 节讲检测（Harris），4.3 节解决检测的尺度问题（LoG、DoG），4.4 节讲描述（SIFT），4.5 节讲匹配与评价。</p>
+
+<h2>2. 动机：为什么需要局部特征</h2>
+<p>课件给出的第一个动机是一组「同一场景、不同人拍」的照片——同一处风景，视角和光线都发生了剧烈变化。人一眼就能看出这是同一个地方，因为人抓住的是画面里那些<strong>稳定、独特</strong>的局部结构（建筑轮廓、窗格、雕塑），而不是逐像素去比对整幅图。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0004.webp" alt="图 2　同一场景下视角、光线剧烈变化" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　同一场景在视角与光线剧烈变化下的三张照片（课件中标注了三位摄影师 by Diva Sian、by Sarah Washford、by scgbt，来自照片分享社区）（原课件第 4 张）</figcaption>
+</figure>
+<p>第二个动机来自工程现场：<strong>美国宇航局火星探测器</strong>拍回的两幅图像，有没有重叠区域？这个问题不能靠人眼回答——探测器要在星上或在地面自动判断，才能决定下一步怎么走、往哪儿走。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0005.webp" alt="图 3　火星探测器拍回的两幅图像" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　美国宇航局火星探测器图像：这两幅图像有重叠区域吗？（原课件第 5 张）</figcaption>
+</figure>
+<p>第三个动机是<strong>图像拼接（对齐）</strong>。把两张有重叠的照片拼成一张全景图，第一步不是 blending，而是找到它们在重叠区里对应同一物理点的位置，然后估计出一个变换把两幅图对齐。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0007.webp" alt="图 4　如何将两幅图像拼接对齐" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　如何将这两幅图像进行拼接（对齐）？——先找对应点，再求变换（原课件第 7 张）</figcaption>
+</figure>
+<p>三个动机指向同一套流程，课件把它总结为「局部特征检测与匹配」：</p>
+<ol>
+  <li><strong>在两幅图像中检测局部特征</strong>（特征检测 + 特征描述）；</li>
+  <li><strong>找到对应匹配的特征点</strong>；</li>
+  <li><strong>利用匹配的点集进行图像对齐</strong>。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0010.webp" alt="图 5　局部特征检测与匹配的完整流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　局部特征检测与匹配的三步：检测局部特征（检测＋描述）→ 找到对应匹配的特征点 → 利用匹配的点集进行图像对齐（原课件第 10 张）</figcaption>
+</figure>
+<p>这里要提醒一句：<strong>「检测」和「描述」是两个独立的环节，但常常配套设计</strong>。检测负责选出位置，描述负责把位置变成可比较的向量；如果描述子不稳定，再好的检测子也匹配不上——这正是下一节两个问题中的第二个。</p>
+
+<h2>3. 两个必须先回答的问题</h2>
+<p>把流程拆开之后，问题就变成两个。</p>
+<h3>问题 1：如何在两幅图像的相同区域检测到关键点？</h3>
+<p>课件用一组对比图说明了什么叫「不行」与什么叫「需要」：同一片区域，如果检测结果随视角、光照改变而漂移，那这些点就<strong>无法在两幅图之间对上</strong>。所以需要的是<strong>可重复（repeatable）</strong>的特征点检测器——同一物理位置，在各种变换之后仍然能被检测到，并且检测出来的就是它。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0011.webp" alt="图 6　问题 1：检测结果必须可重复" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　问题 1：如何在两幅图像的相同区域检测到关键点？——需要<strong>可重复（repeatable）</strong>检测相同区域的特征点检测器（原课件第 11 张）</figcaption>
+</figure>
+<h3>问题 2：如何使每一个点都能找到正确匹配的点？</h3>
+<p>即使两边都检测到了正确的点，还要能把它们<strong>一一对上</strong>。如果两个不同的关键点在描述上长得一样，匹配就会出错。所以每一个点都需要一个<strong>可靠且独特（distinctive）</strong>的描述子。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0012.webp" alt="图 7　问题 2：描述子必须可靠且独特" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　问题 2：如何使得每一个点都可以找到正确匹配的点？——每一个点需要一个可靠且独特（distinctive）的描述子（原课件第 12 张）</figcaption>
+</figure>
+<p>这两个问题分别对应「检测子」和「描述子」，也解释了为什么这门课在 4.2–4.4 节要连着讲三种算子：Harris 解决「哪些位置适合做关键点」，LoG/DoG 解决「在哪个尺度上做关键点」，SIFT 解决「怎么描述才能既稳定又独特」。</p>
+
+<h2>4. 为什么困难：变换、退化与异常</h2>
+<p>课件用一页专门讲<strong>光线变化</strong>：同一个物体，曝光和明暗一变，像素值整体就变了，基于灰度比较的方法很容易失效。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0013.webp" alt="图 8　光线变化带来的困难" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　局部特征检测与匹配是困难的……光线变化（图取自 T. Tuytelaars 在 ECCV 2006 的教程）（原课件第 13 张）</figcaption>
+</figure>
+<p>另一页讲<strong>视角变换</strong>：相机绕着物体转，同一个平面在图像里被压成了不同的形状——这正是第 2 章里讲过的透视变换在起作用。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0014.webp" alt="图 9　视角变换带来的困难" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　局部特征检测与匹配是困难的……视角变换（原课件第 14 张）</figcaption>
+</figure>
+<p>最能说明问题的是「小蓝与小红」对话的<strong>反面版本</strong>：这一回，小红把一个特征四周的排布整个转了个方向——小蓝说「左边是三角形，右边是圆形，上面是菱形，下面是正方形」，小红说「左边是正方形，右边是菱形，上面是三角形，下面是圆形」。位置仍然对得上，描述却对不上了。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0015.webp" alt="图 10　图像旋转 90° 后，位置对上但描述对不上" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　把其中一幅图像向右旋转 90°：五个特征的位置依然对得上，但四周的排布变了，对话 3 因此变成「我们看到的不是同一幅图像！」——描述子必须对旋转不变（原课件第 15 张）</figcaption>
+</figure>
+<p>这张图给了一个很实用的结论：<strong>「检测到同一个点」和「认出它是同一个点」是两回事</strong>。前者要求检测子可重复，后者要求描述子对旋转、尺度、光照等变换保持不变。课件还补了一句——除了几何与光照，还有<strong>噪声、遮挡、人为压缩</strong>等等问题。</p>
+
+<h2>5. 好的局部特征应具备的性质</h2>
+<p>把上面的困难倒过来看，就得到好特征的五条标准：</p>
+<ul>
+  <li><strong>可重复性（最重要）</strong>：一张图像上有某个特征，若该图像经过各种几何和光线变换后，该特征仍然可以在变换后的图像上被检测出来，那么这个特征的可重复性强。其中两个关键的不变性是<strong>旋转不变性</strong>与<strong>尺度不变性</strong>；</li>
+  <li><strong>显著性</strong>：一个特征容易被识别到，则它的显著性强；</li>
+  <li><strong>表达紧凑而高效</strong>：一个特征若能用较少的像素信息表现显著的内容，则它的表达紧凑而高效；</li>
+  <li><strong>局部性</strong>：特征只会在小区域中与周围信息产生关联，局部的「关系」不会受全局变化的影响。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-1/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-1/p0017.webp" alt="图 11　好的局部特征应具备的性质" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　好的局部特征应具备的性质：可重复性（含旋转不变性、尺度不变性）、显著性、表达紧凑而高效、局部性（课件标注 Figure: David Lowe，即 SIFT 的作者）（原课件第 17 张）</figcaption>
+</figure>
+<p>这四条里，<strong>可重复性被排在最前面</strong>，因为它是后面一切的前提：点都找不准，描述得再漂亮也没用。<strong>局部性</strong>则解释了「局部特征」这个名字——正因为只看局部，遮挡掉一半图像时，剩下那一半里的特征依然可用；而边缘检测、模板匹配这类依赖全局或大范围结构的方法，一遮挡就整体失效。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>局部特征检测与匹配分三步：<strong>特征检测</strong>（找位置）、<strong>特征描述</strong>（把关键点周围区域变成紧凑稳定的描述）、<strong>特征匹配</strong>（判断相似性）。</li>
+  <li>三个动机贯穿全章：同一场景的<strong>视角与光线剧烈变化</strong>、<strong>火星探测器图像</strong>判断有无重叠区域、<strong>图像拼接（对齐）</strong>——都要先在两幅图里找到对应同一物理点的位置。</li>
+  <li>两个核心问题：检测必须<strong>可重复（repeatable）</strong>，描述必须<strong>可靠且独特（distinctive）</strong>。</li>
+  <li>困难来自变换与退化：光线变化、视角变换、图像旋转（位置对得上而描述对不上）、噪声、遮挡、人为压缩。</li>
+  <li>好的局部特征应具备：<strong>可重复性</strong>（含旋转不变性、尺度不变性）、显著性、表达紧凑而高效、局部性。其中可重复性是前提，局部性保证了遮挡下的鲁棒性。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-5.html">‹ 3.5 参考资料</a>
+      <a class="next" href="4-2.html">4.2 Harris 角点检测 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.3 操作系统的结构 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 2 章 2.3 操作系统的结构：课件第 12–37 张 · 13 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html" aria-current="page"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 2 章 结构与硬件支持</p>
+      <h1>2.3 操作系统的结构</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节从工程角度说了组织结构「为什么重要」，这一节把四种结构类型逐一摊开：单体结构、模块结构、层次结构和可扩展内核结构（微内核），每种都讲清它的做法、优点和代价；然后用 UNIX、Linux、Windows、Android 和鸿蒙五个真实系统做实例，最后回到硬件——虚拟技术要落地，硬件必须提供哪些支持。</p>
+
+<h2>1. 操作系统的结构类型</h2>
+<p>操作系统内部的组织方式，按发展顺序有四种类型。</p>
+
+<h3>（1）单体结构</h3>
+<p>单体结构的特点是：<strong>操作系统是一组函数或过程的集合，这些过程之间可以相互调用而不受约束</strong>。也就是说，除了「都在一个程序里」之外，几乎没有别的结构可言，所以它也被称为<strong>无结构的操作系统</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0012.webp" alt="图 1　单体结构的操作系统" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　单体结构：应用软件、其他系统软件之下是操作系统整体，内核与操作系统其他功能之间的调用不受约束，内核运行在内核态（原课件第 12 张）</figcaption>
+</figure>
+<ul>
+  <li><strong>优点</strong>：操作系统运行效率高——过程之间直接调用，没有额外的层次开销；</li>
+  <li><strong>缺点</strong>：难以理解，难以维护，难以验证；</li>
+  <li><strong>代表</strong>：AT&amp;T System V 和 BSD UNIX。</li>
+</ul>
+
+<h3>（2）模块结构</h3>
+<p>模块结构把操作系统拆成若干个逻辑上独立的功能模块，模块之间约定好接口。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0014.webp" alt="图 2　模块结构的操作系统" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　模块结构：操作系统由多个逻辑上独立的功能模块构成，各模块之间有良好定义的接口，模块内部隐藏实现细节（原课件第 14 张）</figcaption>
+</figure>
+<p>它的特点可以概括为四条：操作系统由多个逻辑上独立的功能模块构成；各模块之间有良好定义的接口；模块内部隐藏了实现细节；各个模块之间可以相互调用。前三条正是「高聚合、低耦合」的落实，最后一条说明它比层次结构宽松——正因为如此，它有利于操作系统的理解和维护，却不像层次结构那样把调用方向锁死。</p>
+
+<h3>（3）层次结构</h3>
+<p>层次式结构是把操作系统划分为<strong>内核</strong>和若干功能模块，并让它们按层次排列。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0016.webp" alt="图 3　层次结构的操作系统" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　层次结构：操作系统分为内核与操作系统其他功能两部分，内核位于下层，上层功能只能通过内核提供的服务向下请求（原课件第 16 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0017.webp" alt="图 4　操作系统层次结构示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　操作系统层次结构示意：最底层是裸机（硬件层），其上为系统核（初级中断处理、进程控制、进程通信、处理机分派、存储管理等），再向上依次是 I/O 处理、文件存取、资源分配与调度及其他功能（原课件第 17 张）</figcaption>
+</figure>
+<ul>
+  <li><strong>优点</strong>：系统结构清晰，各层之间不构成循环；整体问题局部化，系统的正确性可通过各层的正确性来保证；增加、修改或替换某一层次不会影响其他层次，有利于系统的维护和扩充；</li>
+  <li><strong>缺点</strong>：限制过于严格——各层只能单向依赖；过于追求形式反而会使系统更复杂、效率低；在真实系统中很难完全做到，因此「不现实，只是一种指导原则」。</li>
+</ul>
+
+<h3>（4）可扩展内核结构（微内核）</h3>
+<p>可扩展内核结构把操作系统内核分为<strong>基础核心</strong>和<strong>其他核心功能</strong>两部分。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0019.webp" alt="图 5　可扩展内核结构（微内核）" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　可扩展内核结构：内核只保留基础核心，操作系统的其他功能移到核外，以运行在用户态的服务进程方式提供（原课件第 19 张）</figcaption>
+</figure>
+<ul>
+  <li><strong>基础核心</strong>只包括必需的最基本的功能集合：处理器管理、低级存储器管理、中断处理、进程间通信；</li>
+  <li><strong>其他功能</strong>通过运行在核外的<strong>服务进程</strong>来实现，采用 <strong>Client/Server 方式</strong>；典型的服务进程有文件系统、设备驱动、网络协议栈、图形系统、各种虚拟资源管理等；</li>
+  <li><strong>优点</strong>：灵活性、易维护性和可扩充性——基础核心稳定、易于维护，服务进程便于定制；</li>
+  <li><strong>缺点</strong>：效率非常低。</li>
+</ul>
+<p>效率低在哪里？因为操作系统是以客户/服务器形式为用户程序服务的：内核把用户请求传给服务器，服务器进程执行用户请求，内核再把请求结果返回给用户程序。这一来一回要付出三类开销：<strong>消息发送拷贝</strong>、<strong>处理器状态切换</strong>、<strong>虚拟内存切换</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0022.webp" alt="图 6　微内核结构下的请求路径与效率开销" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　微内核的效率开销：应用程序经 write()、read() 等系统调用进入操作系统微内核，再通过进程间通讯（IPC）转给核外的文件系统服务、块设备和磁盘设备驱动、PCI 驱动、USB 驱动等；每次往返都伴随处理器状态切换、进程上下文环境切换（寄存器、内存空间）与 cache 失效（原课件第 22 张）</figcaption>
+</figure>
+<p>尽管代价明确，微内核在可靠性与可扩展性上的吸引力仍然很大，课件列出的代表系统包括：卡耐基梅隆大学研制的 <strong>Mach OS</strong>（最有代表性，1985 年启动，1994 年推出 Mach 3.0）、<strong>iOS</strong>、<strong>L4</strong> 与 <strong>seL4</strong>、Quantum Software Systems 公司的 <strong>QNX</strong>，以及 <strong>HarmonyOS Next 鸿蒙微内核</strong>。</p>
+
+<h2>2. 实例操作系统的结构</h2>
+
+<h3>（1）UNIX 系统</h3>
+<p>UNIX 的结构分成核心层和实用层两大部分：</p>
+<ul>
+  <li><strong>核心层</strong>：处理机管理、存储管理、设备管理、文件系统；</li>
+  <li><strong>实用层</strong>：一类是实用程序，如编辑程序、调试程序、系统状态监控、文件管理等；另一类是存储管理软件工具，如源代码控制程序 SCCS、文档准备程序包等。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0024.webp" alt="图 7　UNIX 操作系统的结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　UNIX 操作系统结构：核心层（处理机管理、存储管理、设备管理、文件系统）之上是实用层，包含各类实用程序与存储管理软件工具（原课件第 24 张）</figcaption>
+</figure>
+
+<h3>（2）Linux 系统的核心结构</h3>
+<p>Linux 的核心结构有三个特点：<strong>模块化</strong>（大模块、小模块并存）；<strong>局部的层次化</strong>；以及呈现<strong>微内核的趋势</strong>。三者合起来，既保留了单体结构的高效率，又吸收了模块化带来的可维护性与可扩展性。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0026.webp" alt="图 8　Linux 系统的核心结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　Linux 系统的核心结构：整体上模块化，局部有层次划分，并带有微内核的趋势（原课件第 26 张）</figcaption>
+</figure>
+
+<h3>（3）Windows 操作系统</h3>
+<p>Windows NT/2000/XP 系统结构的设计目标有五条：<strong>可扩充性、可移植性、可靠性与坚固性、兼容性、高性能</strong>。它采用基于对象的技术，提出了一种 C/S（客户/服务器）系统结构；这种结构在纯微内核结构的基础上做了扩展，融合了层次式结构和纯微内核结构的特点——<strong>对操作系统性能影响很大的组件放在内核下运行，其他功能则在内核外实现</strong>。由此得到的主要优点是：模块化程度高、灵活性大、便于维护、系统性能好。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0029.webp" alt="图 9　Windows XP 客户/服务器结构简框图" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　Windows XP 客户/服务器结构简框：用户态包含系统进程、服务进程、应用程序，它们经环境子系统和子系统动态链接库进入核心态；核心态包含执行体、图形引擎、设备驱动程序、核心与硬件抽象层（原课件第 29 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0030.webp" alt="图 10　Windows XP 客户/服务器结构详图" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　Windows XP 客户/服务器结构：用户态有服务管理器、任务管理器、安全验证、Win 登录、Spooler、会话管理器、事件日志、子系统 DLL（WIN32、POSIX、OS/2 等）等；核心态的执行体由 I/O 管理器、文件缓存管理、虚存管理、进程线程管理、对象管理器、即插即用与电源管理、安全访问监视、注册表配置管理器、局部过程调用、系统服务调度等构成，其下是设备驱动程序、内核与硬件抽象层 HAL（原课件第 30 张）</figcaption>
+</figure>
+
+<h3>（4）Android 架构</h3>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0031.webp" alt="图 11　Android 系统架构" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　Android 架构：由下而上为 Linux 内核（移动平台移植）、原生 C++ 类库层、框架层与应用层（原课件第 31 张）</figcaption>
+</figure>
+<p>按层次自下而上理解 Android：</p>
+<ul>
+  <li><strong>最底层</strong>是 Linux Kernel 在移动平台上的一个移植，它隐藏了硬件、网络等相关的细节，为上层提供了一个相对干净的、统一的接口；</li>
+  <li><strong>其上一层</strong>是一些核心的和扩展的类库，都是原生的 C++ 实现。这一层里能看到很多熟悉的开源身影，开源的力量与贡献由此可见。如果该层类库需要被上层函数调用，就必须通过 JNI 导出相应的接口函数，否则只能在层次内部自行调用；</li>
+  <li><strong>再往上</strong>是框架层，包含所有开发所用的 SDK 类库，另外还有一些未公开接口的类库和实现，它们是整个 Android 平台核心机制的体现；</li>
+  <li><strong>最上面</strong>是应用层，系统自带的应用和第三方开发的所有应用都位于这一层，总是基于 SDK 来实现。</li>
+</ul>
+
+<h3>（5）HarmonyOS Next 鸿蒙微内核</h3>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0035.webp" alt="图 12　HarmonyOS Next 鸿蒙微内核结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 12　HarmonyOS Next 鸿蒙微内核：鸿蒙内核由核心内核加一系列高权限的特权服务构成，其上可运行 AOSP、OpenHarmony 等复杂应用框架（原课件第 35 张）</figcaption>
+</figure>
+<p>鸿蒙内核包含一个<strong>核心内核</strong>加一系列<strong>高权限的特权服务</strong>；鸿蒙内核之上可以运行复杂的应用框架，比如 AOSP、OpenHarmony。课件给出的数据是：鸿蒙内核有 <strong>9 万行核心代码</strong>，基于 C 语言的受限子集实现，100% 自研；而鸿蒙系统所有服务版本合计超过 <strong>100 万行代码</strong>。据课件介绍，其性能和安全性超越 Linux 同类设备，并且可以根据针对各种场景指定的详细配置来组装 OS 服务。</p>
+<p>它的基本判断是：微内核的可靠性、安全性和扩展性优于宏内核。但微内核也有两个公认的挑战——<strong>兼容性、生态系统、重用已有软件</strong>，以及上一小节反复提到的<strong>性能</strong>问题。课件随后列出了应对这些挑战的具体做法：</p>
+<ul>
+  <li><strong>最大限度地提高与 Linux 系统的兼容性</strong>：完全兼容 Linux API/ABI，可以重用 Linux 应用软件（而不仅仅是只兼容 POSIX 标准）；</li>
+  <li><strong>提供 Linux 驱动容器 LDC</strong>：LDC 通过修改开源 Linux 内核代码，作为用户空间运行时来运行未修改的 Linux 驱动程序，包括未开源的二进制驱动程序。课件补充了这么做的必要性——驱动数量需求快速增长，车辆和手机要求超过 700 个驱动，重写估计需要 5000 人一年的工作量；目前支持 Linux 内核驱动 4.4、4.19、5.10 版本；</li>
+  <li><strong>孪生驱动程序</strong>（twin drivers）：对于性能关键的 Linux 驱动程序（相机、闪存存储），在本地驱动层创建孪生驱动程序，接收设备信息和操作命令，以降低性能开销；</li>
+  <li><strong>优化同步 IPC 调用过程</strong>：减少 IPC 往返调用次数；</li>
+  <li><strong>实现灵活的系统服务组合</strong>：把可信服务紧密耦合，降低隔离带来的 IPC 开销；</li>
+  <li><strong>灵活使用共享内存</strong>：实现内核对象所在内存页面的共享，使服务进程可以直接访问内核对象。</li>
+</ul>
+
+<h2>3. 操作系统的结构和硬件支持</h2>
+<p>结构讲完，还要回到 2.1 节提出的目标：要实现操作系统虚拟机及相关虚拟技术，<strong>硬件必须提供哪些支持</strong>？先把虚拟技术要达成的三件事摆出来：</p>
+<ul>
+  <li><strong>CPU 调度和分配（时间）</strong>：分时技术、时间片，虚拟 CPU、独占；</li>
+  <li><strong>内存管理（空间）</strong>：虚拟存储技术、虚拟地址空间、独占，以及虚拟地址到物理地址的转换；</li>
+  <li><strong>设备管理</strong>：虚拟设备（输入、输出），共享和分时。</li>
+</ul>
+<p>这三件事都不是纯软件能独立完成的，它们对硬件提出了相应的要求：时间上的虚拟需要定时与计时机制（时钟中断）来产生时间片；空间上的虚拟需要地址转换与存储保护的硬件支持；设备的共享与分时需要中断机制来通知 I/O 完成。这些硬件支持正是本章后续几节的内容——2.4 节讲处理机的特权级，2.5 节讲中断及其处理，2.6 节看 Linux 是怎么做的。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-3/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-3/p0037.webp" alt="图 13　操作系统的结构与硬件支持" loading="lazy" decoding="async"></a>
+  <figcaption>图 13　操作系统的结构和硬件支持：应用程序 →（函数调用）系统库 →（系统调用）操作系统内核 →（机器指令）硬件；虚拟技术的实现需要硬件在时钟、地址转换、存储保护与中断等方面提供支持（原课件第 37 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>四种结构类型：单体结构（一组可相互自由调用的函数或过程的集合，即无结构；效率高，但难以理解、维护、验证；代表是 AT&amp;T System V 与 BSD UNIX）；模块结构（多个逻辑上独立的功能模块，有良好定义的接口，模块内部隐藏实现细节，模块之间可相互调用）；层次结构（划分内核与若干功能模块，各层单向依赖；结构清晰、问题局部化、便于替换，但限制过严、易流于形式）；可扩展内核结构（微内核）；</li>
+  <li>微内核把内核分为基础核心（处理器管理、低级存储器管理、中断处理、进程间通信）与核外服务进程（文件系统、设备驱动、网络协议栈、图形系统、虚拟资源管理等），以 Client/Server 方式服务；优点是灵活性、易维护性、可扩充性，缺点是效率非常低，开销来自消息发送拷贝、处理器状态切换和虚拟内存切换；代表系统有 Mach OS、iOS、L4/seL4、QNX 与鸿蒙；</li>
+  <li>实例结构：UNIX 分核心层（处理机、存储、设备、文件系统）与实用层（实用程序、SCCS 等工具）；Linux 核心结构是模块化＋局部层次化＋微内核趋势；Windows NT/2000/XP 以可扩充性、可移植性、可靠性与坚固性、兼容性、高性能为目标，采用融合层次式与微内核特点的 C/S 结构，性能关键组件放在内核下运行；Android 自下而上为 Linux 内核、原生 C++ 类库层（跨层调用需经 JNI 导出接口）、框架层（SDK 类库）与应用层；</li>
+  <li>鸿蒙微内核由核心内核加高权限特权服务构成，核心代码 9 万行、100% 自研，服务版本合计超过 100 万行；针对兼容性与性能挑战，采取完全兼容 Linux API/ABI、Linux 驱动容器 LDC、孪生驱动、优化同步 IPC、灵活的服务组合与共享内存等措施；</li>
+  <li>虚拟技术（CPU 时间上的虚拟、内存空间上的虚拟、设备虚拟）必须得到硬件的支持：时钟与计时、地址转换与存储保护、中断机制；这正是 2.4～2.6 节要讲的特权级与中断处理。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-2.html">‹ 2.2 操作系统的组织结构</a>
+      <a class="next" href="2-4.html">2.4 处理机的特权级 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

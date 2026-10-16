@@ -1,0 +1,237 @@
+/* ═══════════════════════════════════════════════════════════════
+   作业页样式 · homework.css
+   用于 study/network/homework.html（作业板块首页）、
+   study/network/hw-*.html（每章作业）以及讲义页顶部的模块切换。
+   颜色令牌都取自 assets/theme.css，正文排版复用 assets/course.css。
+   改完把引用处的 ?v=N 加一。
+
+   每章作业页的版式：不用左侧目录栏，正文铺开成「题目 | 答案」两栏；
+   窄屏自动落回单栏。
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 模块切换：讲义 / 作业 同级入口 ─────────────────────── */
+.mod-switch{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:4px;margin:0 0 20px;
+  background:var(--panel);border-radius:999px;
+  font-size:14px;line-height:1;
+}
+.mod-switch a{
+  padding:7px 18px;border-radius:999px;
+  color:var(--muted);font-weight:600;text-decoration:none;
+  transition:background .18s ease,color .18s ease;
+}
+.mod-switch a:hover{color:var(--fg);text-decoration:none}
+.mod-switch a[aria-current="page"]{
+  background:var(--card);color:var(--accent-ink);box-shadow:var(--shadow);
+}
+/* 放在左侧目录里时铺满整列 */
+.doc-toc .mod-switch{display:flex;margin:0 0 12px;font-size:12.5px}
+.doc-toc .mod-switch a{flex:1 1 0;text-align:center;padding:6px 4px}
+
+/* ── 作业页不用左侧目录栏：正文一栏到底 ─────────────────── */
+.doc-wide{grid-template-columns:minmax(0,1fr);gap:0}
+.doc-wide .doc-body{max-width:1240px;margin-inline:auto;width:100%}
+
+/* ── 工具条：题目导航 + 提示 + 「始终显示」按钮 ──────────── */
+.hw-toolbar{
+  position:sticky;top:var(--bar-h);z-index:20;
+  display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;
+  margin:20px 0 30px;padding:10px 14px;
+  background:var(--glass);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);
+  backdrop-filter:saturate(180%) blur(16px);
+  border:1px solid var(--line);border-radius:var(--r-sm);
+}
+.hw-nav{display:flex;flex-wrap:wrap;gap:6px}
+.hw-nav a{
+  padding:5px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--soft);
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  transition:color .18s ease,border-color .18s ease,background .18s ease;
+}
+.hw-nav a:hover{color:var(--fg);border-color:var(--accent);text-decoration:none}
+.hw-nav a.is-active{
+  background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);
+}
+.hw-toolbar .hw-tip{
+  margin:0 0 0 auto;font-size:13px;line-height:1.5;color:var(--muted);
+}
+.hw-toolbar .hw-tip kbd{
+  font:inherit;font-size:12.5px;font-weight:600;color:var(--fg);
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:6px;padding:1px 6px;
+}
+.hw-toggle{
+  flex:0 0 auto;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--fg);
+  font:inherit;font-size:13.5px;font-weight:600;line-height:1;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,color .18s ease;
+}
+.hw-toggle:hover{border-color:var(--accent);color:var(--accent-ink)}
+.hw-toggle .ico{font-size:14px;line-height:1}
+.hw-toggle[aria-pressed="true"]{
+  background:var(--accent);border-color:var(--accent);color:var(--on-accent);
+}
+.hw-toggle[aria-pressed="true"]:hover{color:var(--on-accent)}
+
+/* ── 题目卡片：抬头一整行，下面「题目 | 答案」两栏 ───────── */
+.hw{max-width:none}
+.hw-q{
+  margin:0 0 38px;padding:22px 24px 22px;
+  border:1px solid var(--line);border-radius:var(--r-sm);
+  background:var(--soft);
+  scroll-margin-top:calc(var(--bar-h) + 92px);
+}
+.hw-q>h2{
+  margin:0 0 20px;padding:0 0 14px;border-top:0;
+  border-bottom:1px solid var(--line);
+  font-size:19px;line-height:1.45;letter-spacing:-.01em;
+}
+.hw-no{
+  display:inline-block;margin-right:10px;padding:2px 11px 3px;
+  border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);
+  font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;vertical-align:2px;white-space:nowrap;
+}
+
+/* 两栏容器（宽屏才分栏，见文件末尾的媒体查询） */
+.hw-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.hw-col-q{min-width:0}
+.hw-col-a{min-width:0}
+
+/* 左右两侧的小标签对齐用同一套尺寸 */
+.hw-tag,.hw-a-tag{
+  display:flex;align-items:center;gap:8px;
+  margin:0 0 12px;padding:0;
+  font-size:12.5px;font-weight:600;letter-spacing:.04em;
+}
+.hw-tag{color:var(--muted)}
+.hw-tag::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--muted);flex:0 0 auto;
+}
+.hw-a-tag{color:var(--accent-ink)}
+.hw-a-tag::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex:0 0 auto;
+}
+
+/* ── 题干与问题 ────────────────────────────────────────── */
+.hw-stem{font-size:16px;line-height:1.8}
+.hw-stem>p{margin:0 0 .9em}
+.hw-stem>ul{margin:0 0 1em;padding-left:1.35em}
+.hw-ask-label{margin:.2em 0 .5em;font-weight:600}
+.hw-ask{list-style:none;margin:0 0 6px;padding:0;counter-reset:ask}
+.hw-ask>li{
+  position:relative;margin:.42em 0;padding-left:2.5em;
+  font-size:15.5px;line-height:1.75;
+}
+.hw-ask>li::before{
+  counter-increment:ask;content:"（" counter(ask) "）";
+  position:absolute;left:0;top:0;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+/* 题目内部的 ①②③ 子问：序号已经在文字里，不再加项目符号 */
+.hw-sub{list-style:none;margin:.3em 0 .7em;padding:0}
+.hw-sub>li{margin:.26em 0;font-size:15.5px;line-height:1.75}
+
+/* ── 答案栏：默认模糊，鼠标移入才看得清 ─────────────────── */
+.hw-a{
+  position:relative;height:100%;
+  padding:14px 18px 2px;
+  border:1px dashed var(--line);border-radius:var(--r-sm);
+  background:var(--card);
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.hw-a:hover,.hw-a:focus-visible{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);
+}
+.hw-a-hint{
+  margin-left:auto;font-weight:400;letter-spacing:0;
+  color:var(--muted);font-size:12.5px;
+}
+.hw-a-hint::before{content:"鼠标移入显示"}
+.hw-a:hover .hw-a-hint,.hw-a:focus-visible .hw-a-hint{opacity:0}
+
+.hw-a-body{
+  font-size:15.5px;line-height:1.8;
+  filter:blur(6px);opacity:.3;
+  user-select:none;-webkit-user-select:none;pointer-events:none;
+  transition:filter .24s ease,opacity .24s ease;
+}
+.hw-a:hover .hw-a-body,
+.hw-a:focus-visible .hw-a-body{
+  filter:none;opacity:1;
+  user-select:auto;-webkit-user-select:auto;pointer-events:auto;
+}
+.hw-a-body>p{margin:0 0 .85em}
+.hw-a-body :is(ul,ol){margin:0 0 .9em;padding-left:1.35em}
+.hw-a-body li{margin:.28em 0}
+.hw-a-body h3{
+  margin:1.1em 0 .4em;font-size:15.5px;font-weight:600;color:var(--accent-ink);
+}
+.hw-a-body h3:first-child{margin-top:.1em}
+.hw-a-body table{font-size:14.5px;margin:1em 0 1.3em}
+/* 答案栏比讲义窄：表头允许换行（course.css 里是 nowrap）；仍放不下的宽表
+   用 .hw-tbl 包一层在卡片内横向滚动，免得把整页撑出一条横向滚动条 */
+.hw-a-body thead th{white-space:normal}
+.hw-tbl{max-width:100%;overflow-x:auto}
+/* 计算过程：浅底、能对齐数字 */
+.hw-calc{
+  margin:.3em 0 1em;padding:11px 14px;
+  border-radius:var(--r-sm);background:var(--panel);
+  font-size:14.5px;line-height:1.75;
+}
+.hw-calc p{margin:0 0 .3em}
+.hw-calc p:last-child{margin-bottom:0}
+
+/* ── 「始终显示」状态（按钮或 localStorage 触发） ───────── */
+html.hw-show .hw-a{
+  border-style:solid;border-color:var(--accent);background:var(--card);
+}
+html.hw-show .hw-a-body{
+  filter:none;opacity:1;
+  user-select:auto;-webkit-user-select:auto;pointer-events:auto;
+}
+html.hw-show .hw-a-hint{display:none}
+
+/* ── 宽屏：题目左、答案右 ──────────────────────────────── */
+@media (min-width:980px){
+  .hw-cols{
+    grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
+    column-gap:38px;row-gap:0;
+    align-items:start;
+  }
+  /* 右栏 .hw-a 自带 1px 边框 + 14px 内边距，左栏补同样高度，
+     「题目 / 参考答案」两个小标签才落在同一条线上 */
+  .hw-col-q{padding-top:15px}
+}
+
+/* 触屏：没有悬停，提示改成轻点 */
+@media (hover:none){
+  .hw-a-hint::before{content:"轻点显示"}
+}
+
+/* ── 窄屏：单栏，工具条不再吸顶 ────────────────────────── */
+@media (max-width:980px){
+  .hw-q{padding:18px 16px 16px}
+}
+@media (max-width:720px){
+  .hw-toolbar{position:static;margin:16px 0 22px;padding:11px 12px}
+  .hw-toolbar .hw-tip{display:none}
+  .hw-ask>li,.hw-sub>li{font-size:15.5px}
+}
+
+/* ── 打印：一律单栏、答案全显示 ─────────────────────────── */
+@media print{
+  .hw-toolbar,.mod-switch{display:none}
+  .hw-cols{grid-template-columns:minmax(0,1fr);gap:16px}
+  .hw-a{border:1px solid var(--line);page-break-inside:avoid}
+  .hw-a-body{filter:none;opacity:1;pointer-events:auto}
+  .hw-a-hint{display:none}
+}

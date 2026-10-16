@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4 进程之间的相互制约关系 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.4 进程之间的相互制约关系：课件第 57–67 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html" aria-current="page"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.4 进程之间的相互制约关系</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">进程被创建出来之后，问题并没有结束：并发执行的多个进程各自以不同的速度向前推进，只要它们之间有协作，就必然互相牵制。这一节把这种牵制分成两类——竞争资源引起的<strong>间接</strong>制约和共享数据引起的<strong>直接</strong>制约——并给出直接制约的两种表现形式：<strong>互斥</strong>与<strong>同步</strong>。理解这两者是后面学习同步机构、信号量乃至死锁的基础。</p>
+
+<h2>1. 进程之间的两种相互制约关系</h2>
+<p>并发执行的多个进程以各自的速度向前推进，但是相互协作的多个进程之间不是孤立的，存在相互制约的关系。这样的例子在生活与系统中随处都是：多个终端订票、医院看病与化验、输入与打印、接力赛跑、视频播放、图像处理……</p>
+<p>这些制约关系按成因分成两种情况：</p>
+<ul>
+  <li><strong>由于竞争系统资源引起的间接相互制约关系</strong>。比如处理器的共享（分时）、内存分配、其他硬件资源。进程之间并没有商量好要协作，只是因为都想用同一件东西而被迫互相等待，所以是「间接」的；</li>
+  <li><strong>进程之间存在共享数据而引起的直接相互制约关系</strong>。比如共享文件、共享变量、相互协作。进程之间为了完成同一件事而必须按约定的次序推进，所以是「直接」的。</li>
+</ul>
+<p>协调进程之间的直接相互制约关系，就是要协调各进程前进的步伐，即实现进程的<strong>同步</strong>；而要实现进程的同步，必须支持进程之间的信息交换，这就是<strong>进程间的通信</strong>。</p>
+
+<h2>2. 直接制约关系的三种约束形式</h2>
+<p>并发进程之间的直接相互制约关系分为两种：<strong>进程互斥</strong>和<strong>进程同步</strong>。把它们的约束条件抽象出来，无非是三种形式：</p>
+<ul>
+  <li>操作 A 必须在操作 B 之前执行；</li>
+  <li>操作 C 必须在操作 A 和 B 都完成之后才能执行；</li>
+  <li>操作 D 和操作 E 不能在同一时刻执行。</li>
+</ul>
+<p>前两种说的是「先后次序」，对应同步；第三种说的是「不能同时」，对应互斥。后面两节分别展开。</p>
+
+<h2>3. 进程互斥</h2>
+<h3>（1）例 1：两个进程共享一个变量 x</h3>
+<p>设 x 代表某航班机座号，p1 和 p2 是两个售票进程，售票工作就是对变量 x 加 1。这两个进程在一个处理机 C 上并发执行，分别具有内部寄存器 r1 和 r2。每个进程要做三件事：把 x 读进自己的寄存器、寄存器加 1、再写回 x。</p>
+<p>两种可能的执行次序如下：</p>
+<pre><code>p1: r1 := x;  r1 := r1+1;  x := r1;
+p2:                                     r2 := x;  r2 := r2+1;  x := r2;</code></pre>
+<p>设 x 的初值为 10，两种情况下的执行结果截然不同：</p>
+<ul>
+  <li>情况 A（p1 的三条语句先全部执行完，p2 再执行）：x = 10+2，卖出了两张票；</li>
+  <li>情况 B（两个进程的语句交错，p2 在 p1 写回之前也读到了 x=10）：x = 10+1，两张票卖出却只加了一次。</li>
+</ul>
+<p>由此得到一条重要特点：<strong>当两个进程公用一个变量时，它们必须顺序地使用，一个进程对公用变量操作完毕后，另一个进程才能去访问和修改这一变量。</strong></p>
+<h3>（2）临界区</h3>
+<p>把「访问与修改公共变量的那几行代码」单独提出来，就是<strong>临界区</strong>：它是进程中对公共变量（或存储区）进行访问与修改的程序段，称为相对于该公共变量的临界区。在示意图中，进程 A 的临界区记作 <code>csa</code>、进程 B 的记作 <code>csb</code>，两者的内部都是对同一变量执行 <code>x := x+1;</code> 这样的操作。</p>
+<h3>（3）临界区的调度原则</h3>
+<p>要让多个临界区正确地互斥执行，调度必须满足三条原则：</p>
+<ul>
+  <li><strong>互斥访问</strong>：一次至多允许一个进程进入临界区内；</li>
+  <li><strong>有限等待</strong>：一个进程不能无限地停留在临界区内，也不能无限地等待进入临界区；</li>
+  <li><strong>空闲让进</strong>：当没有进程在执行临界区代码时，必须允许等待的进程或申请进入的进程进入临界区。</li>
+</ul>
+<p>这三条常被概括为一句口诀：<strong>无空等待、有空让进、择一而入、算法可行</strong>。</p>
+<h3>（4）互斥的定义</h3>
+<p>在操作系统中，当某一进程正在访问某一存储区域时，就不允许其他进程来读出或者修改存储区的内容，否则就会发生后果无法估计的错误。进程间的这种相互制约关系（<strong>排它性控制</strong>）称为<strong>互斥</strong>。用示意图来说：进程 A 正在执行 <code>csa</code> 段时，进程 B 就不能进入 <code>csb</code> 段执行。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-4/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-4/p0065.webp" alt="图 1　进程临界区示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　进程临界区示意图：进程 A 的 csa 段与进程 B 的 csb 段都在对同一公共变量执行 <code>x := x+1</code>，A 进入 csa 时 B 不得进入 csb（原课件第 65 张）</figcaption>
+</figure>
+<p>这里有一条容易忽略的限制：<strong>只有针对同一临界资源的临界区才需要互斥进入</strong>。访问不同资源的临界区之间没有竞争，不必互相等待。</p>
+
+<h2>4. 进程同步</h2>
+<h3>（1）什么是进程同步</h3>
+<p>同步针对的是协作关系：若干进程为了共同完成一项任务，必须按照约定的先后次序推进，谁也不能跑到前面去。它对应的正是上一节列出的前两种约束形式——「操作 A 必须在操作 B 之前执行」和「操作 C 必须在操作 A 和 B 都完成之后才能执行」。</p>
+<h3>（2）例：医院就诊</h3>
+<p>看病与化验是两件必须配合的事，可以把它们看成两个进程的活动：</p>
+<ul>
+  <li><strong>化验活动</strong>：判断「有化验单？」——有，则进行化验、最后开出化验结果；</li>
+  <li><strong>看病活动</strong>：看病 → 要病人去化验 → 等化验结果 → 继续诊病。</li>
+</ul>
+<p>两者的同步约束条件是显然的：<strong>化验必须在拿到化验单之后进行，看病必须等化验结果出来才能继续</strong>。少了任何一条，流程就会出错。</p>
+<h3>（3）例：共享缓冲区的计算进程与打印进程</h3>
+<p>另一个更贴近系统的例子是计算进程 <code>cp</code> 与打印进程 <code>iop</code> 共享一个缓冲区 <code>buf</code>，两者之间同样存在先后约束：</p>
+<ul>
+  <li>（1）<code>cp</code> 进程把数据送入 <code>buf</code> 后，<code>iop</code> 进程才能取出数据去打印；</li>
+  <li>（2）<code>iop</code> 进程把数据取出后，<code>cp</code> 进程才能把下一个数据送入 <code>buf</code>。</li>
+</ul>
+<p>这两条约束正好构成一对「一进一出」的配合：前一条保证不打印空数据，后一条保证不覆盖尚未打印的数据。原课件在这里同样留了一个问题——「同步约束条件？」——要求读者自己把它写全。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>并发进程之间不是孤立的。相互制约关系分两种：竞争系统资源（处理器分时、内存分配、其他硬件资源）引起的间接制约；共享数据（共享文件、共享变量、相互协作）引起的直接制约。</li>
+  <li>协调直接制约关系就是协调各进程前进的步伐，即实现进程同步；而实现同步必须支持进程之间的信息交换，这就是进程间的通信。</li>
+  <li>直接制约关系分进程互斥与进程同步两类，抽象为三种约束形式：A 必须在 B 之前执行、C 必须在 A 与 B 都完成之后执行（同步），D 与 E 不能在同一时刻执行（互斥）。</li>
+  <li>互斥的由来：两个进程共用变量 x（如售票对 x 加 1）时，交错执行会导致结果错误（x 初值 10 时，正确应为 10+2，交错则可能只得到 10+1），因此必须顺序地使用公用变量。</li>
+  <li>临界区是对公共变量（或存储区）进行访问与修改的程序段；临界区的调度原则是互斥访问、有限等待、空闲让进，口诀为「无空等待、有空让进、择一而入、算法可行」。</li>
+  <li>互斥是排它性控制：一个进程访问某存储区域时不允许其他进程读出或修改，A 执行 csa 时 B 不能进入 csb；注意只有针对同一临界资源的临界区才需要互斥进入。</li>
+  <li>同步针对协作：医院就诊（化验与看病必须一前一后）、计算进程 cp 与打印进程 iop 共享缓冲区 buf（送入后才能取出、取出后才能送入）都是典型例子，两条约束合起来才保证结果正确。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-3.html">‹ 4.3 进程控制</a>
+      <a class="next" href="4-5.html">4.5 进程同步机构 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

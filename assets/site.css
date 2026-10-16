@@ -127,6 +127,8 @@ main{flex:1 0 auto}
 .tile h2 a:hover{text-decoration:none}
 .tile p{font-size:17px;color:var(--muted);max-width:36ch;letter-spacing:-.005em}
 .tile .more{font-size:17px}
+/* 一块瓦片挂多个入口（如「讲义 / 作业」）时并排排 */
+.tile-links{display:flex;gap:12px 26px;flex-wrap:wrap;align-items:baseline}
 .tile .date{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .tile .year{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .tile.sm{min-height:248px;padding:34px 32px;gap:22px}

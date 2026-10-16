@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1 用户工作环境 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 3 章 3.1 用户工作环境：课件第 3–17 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html" aria-current="page"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 3 章 用户接口</p>
+      <h1>3.1 用户工作环境</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">从这一节起进入「用户接口」这一章。用户要使用计算机，先得有一个可用的工作环境——一台机器从裸机变成能登录、能敲命令的系统，中间要经过系统生成、系统启动、系统引导三道工序；环境建好之后，用户才谈得上通过命令接口或编程接口使用它。这一节先讲环境是怎么建起来的，再以 Linux 命令行为例看看环境建成后用户面对什么。</p>
+
+<h2>1. 用户工作环境包含哪些内容</h2>
+<p>用户使用计算机的环境，指的是<strong>设计合理的操作方式和命令，使用户能够方便地通过操作系统使用计算机</strong>。它包含三方面的工作：</p>
+<ul>
+  <li>提供各种软、硬件资源；</li>
+  <li>设计操作系统的用户接口，也就是命令集。它又分三种形式：键盘命令操作（命令接口）、图形界面操作（命令接口）、系统调用接口（编程接口）；</li>
+  <li>激活系统、提供服务——这主要针对多用户环境下的分时系统。</li>
+</ul>
+<p>按这个顺序，下面依次看系统生成、系统启动、系统引导，最后看系统投入使用后用户面对的命令集合。</p>
+
+<h2>2. 系统生成</h2>
+<p><strong>系统生成</strong>是指在一台裸机上安装操作系统的过程，目的是准备好用户工作环境。一般情况下，这项工作由<strong>系统程序员</strong>来完成：系统生成过程中要涉及机器的硬件配置和操作系统核心参数的设置，还会涉及软件系统的版权问题。</p>
+<p>对个人计算机 PC 来说，系统生成就是用户自己安装一套操作系统：常见的是 Microsoft Windows，或者某个 Linux 发行版（Ubuntu、Fedora，乃至从零构建的 LFS，即 Linux From Scratch）。</p>
+
+<h2>3. 系统启动</h2>
+<p>系统启动指的是把操作系统从存储设备装入主存并让它运行起来。这一步由谁来做，取决于机器的规模：对大、中、小型计算机来说，系统启动的工作由系统程序员（或系统管理员）完成；对个人计算机 x86 PC 来说，则由用户自己完成。</p>
+
+<h2>4. 系统引导的两种方式</h2>
+<p>操作系统核心文件放在哪里、由谁把它装进主存，决定了引导方式分为两类。</p>
+<h3>（1）现场独立引导方式（滚雪球方式）</h3>
+<p>操作系统的核心文件存储在系统本身的存储设备中，由系统自己把 OS 核心程序读入主存并运行，从而建立一个操作环境。这种方式适用于微机和大多数系统。</p>
+<h3>（2）辅助下装方式</h3>
+<p>操作系统的主要文件不放在系统本身的存储设备中，而是在系统启动后执行下装操作，从另外的计算机系统中把操作系统的常驻部分传送到本机，使它形成一个操作环境。这种方式适用于无盘工作站、网络计算机及分布式系统，常见的技术手段有网卡的 PXE 模式、网络文件系统 NFS、CIFS（samba）。</p>
+
+<h2>5. 独立引导方式的过程（以 x86 PC 为例）</h2>
+<p>独立引导方式之所以又叫「滚雪球」，是因为一小段代码加载更大一段代码、逐级把 OS 拉起来。以 x86 PC 为例，过程如下：</p>
+<ul>
+  <li>（1）系统加电，自动跳转到内存地址 FFFF:0000 处执行，该地址位于主板 BIOS 只读存储器；</li>
+  <li>（2）BIOS 执行系统硬件和配置的检测，保证系统没有硬件错误；</li>
+  <li>（3）如果从硬盘启动，读入启动硬盘的第一个扇区内容（MBR）。如果它以 0xAA55 结束，则认为它是一个引导扇区（Boot Sector）——引导扇区共 512 字节，包括 446 字节的引导代码和 64 字节的分区表；</li>
+  <li>（4）BIOS 将引导扇区加载到内存 0000:7C00 位置，然后跳转到该内存地址运行引导代码；</li>
+  <li>（5）MBR 引导代码的默认操作是加载可启动分区的第一个扇区的内容，并把控制权交给下一级引导代码；</li>
+  <li>（6）MBR 引导代码也可以是一个复杂 bootloader 的一部分（stage1），它会加载更多的 bootloader 代码（stage2），然后根据分区表和分区中的系统类型让用户选择，继续引导磁盘分区中的操作系统，把核心加载到内存，并将控制权交给 OS。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/3-1/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-1/p0009.webp" alt="图 1　x86 PC 的独立引导过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　独立引导方式的过程（以 x86 PC 为例）：加电转入 BIOS，检测硬件后读入 MBR 引导扇区，再逐级交给 bootloader，最终把操作系统核心装入主存（原课件第 9 张）</figcaption>
+</figure>
+<p>上面第（6）步提到的 bootloader 是引导过程中的关键部件，常见的实现有：lilo、grub、ntldr、syslinux（含 extlinux、pxelinux、isolinux）、uboot。</p>
+
+<h2>6. Linux 系统的启动</h2>
+<p>Linux 的启动过程是独立引导方式的一个具体实例。核心镜像 <code>vmlinuz</code> 经过自解压得到 <code>vmlinux</code>（位于 <code>arch/x86/boot/compressed/</code>），其间由 Setup.S、Head.S 等汇编代码完成最初的准备工作，随后进入用 C 语言写的 <code>Start_kernel()</code>。内核初始化要依次完成这些事：</p>
+<ul>
+  <li>对与 CPU、内存等最基本硬件相关的部分进行初始化；</li>
+  <li>对中断向量表进行初始化；</li>
+  <li>为进程调度程序作准备；</li>
+  <li>设置基准时钟；</li>
+  <li>内核的内存分配；</li>
+  <li>对文件系统进行初始化；</li>
+  <li>建立 init 进程（以 root 身份启动后台服务）。</li>
+</ul>
+<p>init 进程接着为每一个联机终端建立 getty 进程，getty 在终端上显示 <code>login：</code>，等待用户登录；用户输入用户名和密码并验证通过后，就可以开始使用操作系统了。</p>
+<p>这里已经埋下了后面几章的伏笔：中断向量表的初始化对应第 2 章讲的中断机制，进程调度的准备和 init 进程的建立则是第 4 章「进程及进程管理」的主题。</p>
+
+<h2>7. 系统使用：Linux 命令行</h2>
+<p>系统启动完成后，用户面对的是操作系统的各项资源管理功能，它们都可以通过命令来操作：进程管理、内存管理、设备管理（字符设备、块设备、网络设备；存储设备、网卡、输入设备、声卡、显卡……）以及文件系统。UNIX/Linux 的设计思想是<strong>一切皆是文件</strong>——正因为如此，下面这些针对文件和目录的命令才能覆盖绝大部分日常操作。</p>
+<h3>（1）文件和目录的常用操作命令</h3>
+<ul>
+  <li><strong>创建</strong>：<code>mkdir</code>、<code>touch</code> 等；</li>
+  <li><strong>查看</strong>：<code>cd</code>、<code>pwd</code>、<code>du</code>、<code>ls</code>；</li>
+  <li><strong>拷贝／移动</strong>：<code>cp</code>、<code>mv</code>；</li>
+  <li><strong>删除</strong>：<code>rm</code>；</li>
+  <li><strong>权限修改</strong>：<code>chmod</code>、<code>chown</code>；</li>
+  <li><strong>文件读写</strong>：编辑器（<code>vi</code>、<code>gedit</code>、<code>geany</code> 等）；</li>
+  <li><strong>打包文件</strong>：<code>tar</code>；</li>
+  <li><strong>查找文件</strong>：<code>find</code>、<code>grep</code>。</li>
+</ul>
+<h3>（2）其他常用命令与数据流</h3>
+<p>文件内容的处理还有一批工具命令：<code>cat</code>、<code>sort</code>、<code>uniq</code>、<code>wc</code>，以及按行逆序的 <code>tac</code>、按字符逆序的 <code>rev</code>，还有识别文件类型的 <code>file</code>。</p>
+<p>更重要的是，命令行把输入输出也统一成了数据流：<strong>重定向</strong> <code>&gt;</code> 和<strong>管道</strong> <code>|</code> 用来在命令之间搬运数据；每个进程默认带有三个标准通道——标准输入（0）、标准输出（1）、错误输出（2）。</p>
+<p>除了文件，其他系统资源也通过文件的方式获取信息：系统进程、内存和设备的信息都可以用文件的形式读到，再配合一些常用辅助命令查看，如 <code>ps</code>、<code>kill</code>、<code>top</code>、<code>free</code>。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>用户工作环境要做三件事：提供软硬件资源、设计用户接口（键盘命令、图形界面、系统调用接口）、激活系统提供服务。</li>
+  <li>系统生成是在裸机上安装操作系统、准备用户工作环境的过程，涉及硬件配置与核心参数设置；系统启动在大中型机上由系统程序员或系统管理员完成，在 x86 PC 上由用户自己完成。</li>
+  <li>系统引导分现场独立引导方式（滚雪球方式，核心文件在本机，适用于微机和大多数系统）和辅助下装方式（核心文件在别的机器上，适用于无盘工作站、网络计算机与分布式系统，靠 PXE、NFS、CIFS 等下装）。</li>
+  <li>x86 PC 的独立引导过程：加电跳转到 FFFF:0000 的 BIOS → 检测硬件 → 读 MBR 引导扇区（512 字节，以 0xAA55 结束）并加载到 0000:7C00 → 逐级交给 bootloader，最后把操作系统核心装入主存。</li>
+  <li>Linux 启动由 vmlinuz 自解压为 vmlinux、进入 Start_kernel() 初始化，最终建立 init 进程；init 为每个终端建立 getty，等待用户登录。</li>
+  <li>Linux 命令行体现「一切皆是文件」的设计思想：文件和目录操作用 mkdir、cp、rm、chmod、tar、find 等命令完成，输入输出用重定向与管道串成数据流，标准输入、标准输出、错误输出分别对应 0、1、2。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-7.html">‹ 2.7 小结</a>
+      <a class="next" href="3-2.html">3.2 应用程序的处理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

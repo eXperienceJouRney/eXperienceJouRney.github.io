@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.4 几种典型的卷积神经网络 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 6 章 卷积神经网络 6.4 几种典型的卷积神经网络：以「6-卷积神经网络.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html" aria-current="page"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 6 章 卷积神经网络</p>
+      <h1>6.4 几种典型的卷积神经网络</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面三节讲的是卷积神经网络的「零件」，这一节看几台真正跑起来的机器。从 2012 年起，ILSVRC 图像识别竞赛把卷积神经网络推上了舞台，LeNet、AlexNet、ZFNet、VGG、GoogLeNet、ResNet 依次登场，每一代都在回答同一个问题：怎样把网络做得更深、更强，同时不让参数和计算量失控。最后再看一个实践环节——把网络每一层学到的特征图可视化出来。</p>
+
+<h2>1. 从 ILSVRC 说起</h2>
+<p>ImageNet 大规模视觉识别挑战赛（ILSVRC）是这段历史的坐标系。课件给出的这张图汇总了历年的冠军模型与它们的识别错误率：</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0054.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0054.webp" alt="图 1　ILSVRC 历年冠军模型与错误率" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　ILSVRC 历年的冠军模型与 Top-5 错误率：从 2010 年的 28.2% 一路降到 2017 年的 2.25%，AlexNet、ZFNet、VGG、GoogLeNet、ResNet、SENet 依次登场（原课件第 54 张）</figcaption>
+</figure>
+<table>
+  <caption>表 1　课件汇总的 ILSVRC 冠军模型与错误率（Top-5）</caption>
+  <thead>
+    <tr><th>年份</th><th>模型</th><th>错误率</th><th>课件给出的要点</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2010 / 2011</td><td>—</td><td>28.2% / 25.8%</td><td>卷积神经网络登场之前的最好成绩</td></tr>
+    <tr><td>2012</td><td>AlexNet</td><td>16.4%</td><td>第一个现代深度卷积网络，浅层与深度神经网络的分界线</td></tr>
+    <tr><td>2013</td><td>ZFNet</td><td>11.7%</td><td>在 AlexNet 上改动很小，靠可视化指导调参</td></tr>
+    <tr><td>2014</td><td>GoogLeNet / VGG</td><td>6.7% / 7.3%</td><td>冠军 GoogLeNet 更宽更省参数，亚军 VGG 更深</td></tr>
+    <tr><td>2015</td><td>ResNet</td><td>3.57%</td><td>152 层，残差学习，CNN 图像史上的里程碑</td></tr>
+    <tr><td>2016 / 2017</td><td>Trimps-Soushen / SENet</td><td>2.99% / 2.25%</td><td>错误率逼近 2%，已低于一般人类的水平</td></tr>
+  </tbody>
+</table>
+<p>下面按登场顺序，把它们各自的「代表作」讲清楚。</p>
+
+<h2>2. LeNet：卷积神经网络的 Hello World</h2>
+<p>LeNet 是一系列网络的合称，包括 LeNet-1、LeNet-5 等，由 Yann LeCun 等人提出，被称为卷积神经网络的 <strong>Hello World</strong>。基于 LeNet-5（共 7 层）的手写数字识别系统在 90 年代被美国很多银行使用，用来识别支票上面的手写数字——这是卷积神经网络最早的大规模商业落地。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0055.webp" alt="图 2　LeNet-5 的网络结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　LeNet-5 的网络结构：C3 卷积层输出 16@10 × 10、S2 汇聚层输出 6@14 × 14、S4 汇聚层输出 16@5 × 5、C5 卷积层与 F6 全连接层，最后是输出层（原课件第 55 张）</figcaption>
+</figure>
+<p>LeNet-5 的逐层配置是理解「卷积神经网络怎么堆」的第一份完整图纸，它一共 7 层（传统上不把输入层算作网络层次结构之一）：</p>
+<table>
+  <caption>表 2　LeNet-5 的逐层结构（输入图像统一归一化为 32 × 32；「配置」依次是卷积核大小、步长、填充、卷积核个数，每一层的输入就是上一层的输出；传统上不把输入层算作网络层次结构之一）</caption>
+  <thead>
+    <tr><th>层</th><th>配置</th><th>输出特征图</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1. 输入层</td><td>归一化为 32 × 32</td><td>32 × 32</td></tr>
+    <tr><td>2. 卷积层 C1</td><td>5 × 5，步长 1，填充 0，6 个</td><td>28 × 28 × 6</td></tr>
+    <tr><td>3. 池化层 S2</td><td>2 × 2，步长 2，填充 0</td><td>14 × 14 × 6</td></tr>
+    <tr><td>4. 卷积层 C3</td><td>5 × 5，步长 1，填充 0，16 个</td><td>10 × 10 × 16</td></tr>
+    <tr><td>5. 池化层 S4</td><td>2 × 2，步长 2，填充 0</td><td>5 × 5 × 16</td></tr>
+    <tr><td>6. 卷积层 C5</td><td>5 × 5，步长 1，填充 0，120 个</td><td>1 × 1 × 120</td></tr>
+    <tr><td>7. 全连接层 F6</td><td>120 维向量 → 84 维向量</td><td>84 维向量</td></tr>
+    <tr><td>8. 输出层</td><td>Softmax 得到 10 个类别的概率</td><td>10 维向量</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0056.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0056.webp" alt="图 3　LeNet-5 逐层尺寸变化" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　LeNet-5 的逐层尺寸变化：INPUT 32 × 32 → C1（6@28 × 28）→ S2（6@14 × 14）→ C3（16@10 × 10）→ S4（16@5 × 5）→ C5 → F6 → OUTPUT；图中 Convolutions 为卷积、Subsampling 为子采样（原课件第 56 张）</figcaption>
+</figure>
+<p>表里每一层的输入就是上一层的输出，所以从 32 × 32 一路读下来，正好能看清网络是怎样把一幅图像逐步压成 10 个类别概率的。而表里的每个尺寸都可以用 6.1 节的公式 ⌊(M − K + 2P) / S⌋ + 1 核对一遍：32 → 28（5 × 5 卷积），28 → 14（2 × 2、步长 2 池化），14 → 10（5 × 5 卷积），10 → 5（池化），5 → 1（5 × 5 卷积，正好把特征图卷成一个点）。<strong>卷积层负责提取特征，池化层负责把尺寸减半，最后两层全连接把特征变成 10 个数字的概率</strong>——这个套路此后二十年基本没变。</p>
+
+<h2>3. AlexNet：深度学习的引爆点</h2>
+<p>AlexNet 是 2012 年 ImageNet 图像识别竞赛的冠军算法。课件把它定义为<strong>第一个现代深度卷积网络模型</strong>，理由是它同时用上了几项后来成为标配的技术：<strong>用 GPU 进行并行训练</strong>、采用 <strong>ReLU</strong> 作为非线性激活函数、使用 <strong>Dropout</strong> 防止过拟合、使用<strong>数据增强</strong>等。</p>
+<p>结构上它与 LeNet 相似，但用了更多的卷积层和更大的参数空间来拟合大规模数据集，包括 <strong>5 个卷积层、3 个汇聚层和 2 个全连接层</strong>。课件称它是<strong>浅层神经网络和深度神经网络的分界线</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0064.webp" alt="图 4　AlexNet 的关键技术" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　AlexNet：第一个现代深度卷积网络模型，使用 GPU 并行训练、ReLU 激活、Dropout 与数据增强（原课件第 64 张）</figcaption>
+</figure>
+<p>它的网络结构按顺序排开是：卷积层 1（Conv1）→ 最大池化层 1（Max-Pooling1）→ 卷积层 2（Conv2）→ 最大池化层 2（Max-Pooling2）→ 卷积层 3（Conv3）→ 卷积层 4（Conv4）→ 卷积层 5（Conv5）→ 最大池化层 3（Max-Pooling3）→ 全连接层 1（FC1）……</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0065.webp" alt="图 5　AlexNet 的网络结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　AlexNet 的网络结构：卷积层与最大池化层交替堆叠（图中 input 为 224 × 224，含 192、2048 等通道数），最后接全连接层（原课件第 65 张）</figcaption>
+</figure>
+<p>这里有一个值得留意的细节：卷积层 3、4、5 是<strong>连在一起</strong>的，中间没有池化层。回看 6.2 节最后讲的「卷积块」——连续 M 个卷积层加 b 个汇聚层（M 取 2 ∼ 5，b 取 0 或 1）——AlexNet 正是这个结构的早期实例。</p>
+
+<h2>4. ZFNet：用可视化指导调参</h2>
+<p>ZFNet 是 2013 年 ILSVRC 的冠军模型。它的网络结构在 AlexNet 上并没有做很大的改进，只是将第一层的卷积核大小从 11 × 11 改成了 7 × 7，并将步长由 4 改为了 2。真正的贡献在于方法：<strong>根据可视化结果判断模型效果，从而确定调参方向</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0066.webp" alt="图 6　ZFNet 的结构改动" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　ZFNet：结构与 AlexNet 接近，第一层卷积核由 11 × 11 改为 7 × 7、步长由 4 改为 2；靠可视化结果判断模型效果（原课件第 66 张）</figcaption>
+</figure>
+<p>它可视化的正是卷积层提取出来的特征图像，做法与前面的层一一对应：<strong>每一层的前向基本操作是「卷积 → ReLU → 池化」，可视化的反向过程就是「反池化 → 反 ReLU → 反卷积」</strong>。把中间层的特征图还原回像素空间，就能看见这一层到底在响应什么样的图案——这也是理解卷积神经网络「黑箱」的第一条实用路径。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0067.webp" alt="图 7　ZFNet 的特征可视化" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　ZFNet 可视化卷积层提取出来的特征图像：Layer 1 到 Layer 5 逐层展开，可以看出浅层响应纹理与边缘、深层响应更整体的模式（原课件第 67 张）</figcaption>
+</figure>
+
+<h2>5. VGG：把网络做深</h2>
+<p>VGG 是 2014 年 ILSVRC 的亚军模型，由牛津大学的 Visual Geometry Group（VGG）提出。它<strong>探索了卷积神经网络的深度和性能之间的关系</strong>，构造了 16 ∼ 19 层深的卷积神经网络，证明网络的深度能够在一定程度上影响最终性能，使错误率大幅下降；同时它拓展性很强，在之后的应用中仍然常常被用来<strong>提取图像特征</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0068.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0068.webp" alt="图 8　VGG 的贡献" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　VGG：构造 16 ∼ 19 层深的卷积神经网络，证明深度能影响性能，并在之后被广泛用作特征提取器（原课件第 68 张）</figcaption>
+</figure>
+<p>VGG 的基本原理是<strong>采用堆积的小卷积核替代大卷积核</strong>：用连续的几个 3 × 3 卷积核代替 AlexNet 中的较大卷积核（11 × 11、7 × 7、5 × 5）。这样做的好处是，多层非线性层可以增加网络的深度来保证学到更复杂的模式，而且代价还比较小——<strong>参数更少</strong>。具体的替换规则是：用 2 个 3 × 3 的卷积核级联起来代替 5 × 5 的卷积核，用 3 个 3 × 3 的卷积核级联起来代替 7 × 7 的卷积核。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0069.webp" alt="图 9　VGG 用堆积小卷积核替代大卷积核" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　VGG 的基本原理：2 个 3 × 3 卷积级联代替 5 × 5，3 个 3 × 3 卷积级联代替 7 × 7（原课件第 69 张）</figcaption>
+</figure>
+<p>「参数更少」这句话是可以算出来的，这也解释了为什么这笔买卖划算：卷积核的感受野是它的边长，<strong>2 个 3 × 3 的感受野与 1 个 5 × 5 相同，但参数量是 2 × 9 = 18，而 5 × 5 需要 25 个参数；3 个 3 × 3 的感受野与 1 个 7 × 7 相同，参数量是 27 对 49</strong>。感受野一样大、参数更少、非线性层更多——三重收益。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0070.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0070.webp" alt="图 10　VGG 论文中的六种配置" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　VGG 论文中截取的配置表：输入为 224 × 224 的 RGB 图像，作者尝试了 6 个不同的配置（A、A-LRN、B、C、D、E，分别对应 11、13、16、19 个权重层），实际使用最多的是 D 配置，也就是 VGG16（原课件第 70 张）</figcaption>
+</figure>
+
+<h2>6. GoogLeNet 与 Inception：又深又省</h2>
+<p>GoogLeNet 是 2014 年 ILSVRC 的冠军模型，它的特点是<strong>网络更深、参数更少、性能却更加优越</strong>。要理解它，先要看它反对什么。</p>
+<p>一般来说，提升网络性能最直接的办法就是增加网络的<strong>深度</strong>和<strong>宽度</strong>——深度指网络层数，宽度指神经元数量。但课件指出这种方式存在三个问题：</p>
+<ol>
+  <li>参数太多，如果训练数据有限，容易过拟合；</li>
+  <li>参数太多，计算复杂，难以应用；</li>
+  <li>网络越深，容易出现梯度消失问题，难以优化模型。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0071.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0071.webp" alt="图 11　加深加宽网络的三个问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　增加网络深度和宽度虽然直接，但会带来过拟合、计算复杂与梯度消失三个问题（原课件第 71 张）</figcaption>
+</figure>
+<p>GoogLeNet 的思路是「<strong>增加网络深度和宽度的同时减少参数</strong>」，办法就是 <strong>Inception 模块</strong>。Inception 网络由多个 Inception 模块和少量汇聚层堆叠而成，模块本身经历了 V1、V2、V3、V4 等多个版本的迭代优化，GoogLeNet 使用的是 Inception 模块。</p>
+<p><strong>Inception-V1</strong> 的核心动作是：同时使用 1 × 1、3 × 3、5 × 5 等不同大小的卷积核，并把得到的特征映射<strong>在深度上拼接（堆叠）起来</strong>作为输出特征映射。这样同一个模块里既有「看得近」的小卷积核、也有「看得远」的大卷积核，实现<strong>多尺度特征提取</strong>——图像里的目标有大有小，与其赌一个尺度，不如一次都试。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0073.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0073.webp" alt="图 12　Inception-V1 模块" loading="lazy" decoding="async"></a>
+  <figcaption>图 12　Inception-V1：同时使用 1 × 1、3 × 3、5 × 5 等不同大小的卷积核，把得到的特征映射在深度上拼接起来，实现多尺度特征提取（原课件第 73 张）</figcaption>
+</figure>
+<p><strong>Inception-V3</strong> 则把 V1 中的大尺寸卷积核替换为多个小尺寸卷积核的堆叠，以此减少模型参数量、增加网络深度、提升模型拟合复杂分布的能力。具体包括两点：<strong>用两层 3 × 3 卷积替换 V1 中的 5 × 5 卷积</strong>（这与 VGG 的思路一致），以及<strong>用连续的 K × 1 和 1 × K 卷积替换 K × K 卷积</strong>——把一个二维大卷积核拆成一横一竖两个一维卷积核，感受野不变而参数进一步减少。此外，Inception-V3 还引入了批量归一化等优化方法来帮助训练，这一点在 6.5 节还会专门讲。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0074.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0074.webp" alt="图 13　Inception-V3 模块" loading="lazy" decoding="async"></a>
+  <figcaption>图 13　Inception-V3：把大尺寸卷积核替换为多个小尺寸卷积核的堆叠，用两层 3 × 3 替换 5 × 5，用 K × 1 与 1 × K 替换 K × K（原课件第 74 张）</figcaption>
+</figure>
+
+<h2>7. ResNet：用残差学习解决「越深越差」</h2>
+<p>ResNet 是 2015 年 ILSVRC 的冠军模型，共有 152 层。它是 CNN 图像史上的里程碑事件，作者何恺明也因此获得 CVPR 2016 最佳论文奖。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0075.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0075.webp" alt="图 14　ResNet 的地位" loading="lazy" decoding="async"></a>
+  <figcaption>图 14　ResNet：2015 年 ILSVRC 冠军，共 152 层，是 CNN 图像史上的里程碑（原课件第 75 张）</figcaption>
+</figure>
+<p>它要解决的是<strong>深度网络的退化问题</strong>：随着网络深度增加，网络的表现先是逐渐增加至饱和，然后迅速下降。注意下降的是<strong>训练误差</strong>，所以这不是过拟合，而是更深反而更难优化。课件给出了一个很漂亮的反证：如果存在某个 k 层的网络 f 是当前最优的网络，那么可以构造一个更深的网络，让它最后几层仅仅是 f 第 k 层输出的<strong>恒等映射</strong>，就能取得与 f 一致的结果；也许 k 还不是最佳参数，那么更深的网络还可以取得更好的结果。所以按照常理，深层网络不应该表现得更差。由此得到一个合理的猜测：<strong>恒等映射并不是那么好学的</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0076.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0076.webp" alt="图 15　深度网络的退化问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 15　深度网络的退化问题：图中给出 20 层与 56 层网络在训练集上的错误率曲线，56 层的错误率反而更高——退化的根源不是过拟合，而是深层网络难以优化（原课件第 76 张）</figcaption>
+</figure>
+<p>既然「直接学恒等映射」很难，那就换个目标去学。ResNet 的答案是<strong>残差学习</strong>：当输入为 X 时，网络原本要学的特征记为 H(X)，现在改成让它去学<strong>残差 F(X) = H(X) − X</strong>，而原始特征通过一条<strong>跳跃连接（skip connection）</strong>直接加到输出上，得到 F(X) + X。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0077.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0077.webp" alt="图 16　残差学习与跳跃连接" loading="lazy" decoding="async"></a>
+  <figcaption>图 16　残差学习：输入 X 经过两层 weight layer 与 ReLU 得到 F(X)，再与 X 相加（F(X) + X）后经过 ReLU 输出；identity 那条线就是跳跃连接（原课件第 77 张）</figcaption>
+</figure>
+<p>这样改动之后有两点好处，课件都写得很明白：</p>
+<ul>
+  <li><strong>学习更容易</strong>：直观上看，学习残差比直接学习原始特征更加容易，因为残差一般会比较小，学习难度也小；跳跃连接也可以提高信息的传播效率。</li>
+  <li><strong>缓解梯度消失</strong>：在反向传播过程中，梯度可以通过跳跃连接直接传递到前面的层，避免了梯度在多层传播中的衰减。</li>
+</ul>
+<p>把普通网络与残差网络放在一起比较，效果一目了然：34 层的普通网络退化明显，而 34 层的残差网络不仅没有退化，还优于更浅的网络。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0078.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0078.webp" alt="图 17　普通网络与残差网络的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 17　VGG-19、34 层普通网络（34-layer plain）与 34 层残差网络（34-layer residual）的对比：加了跳跃连接之后，更深的网络不再退化（原课件第 78 张）</figcaption>
+</figure>
+
+<h2>8. 把网络看进去：特征图可视化</h2>
+<p>最后一节是动手环节：展示如何<strong>可视化卷积神经网络每一层输出的特征图</strong>，选用的模型是 PyTorch 框架提供的 <strong>VGG16</strong>。网络的输入以一幅花为例，经过 VGG16 的第一层卷积层之后，就会有 <strong>64 个特征图</strong>——每一个特征图都是这一层某个卷积核「看到」的结果。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0079.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0079.webp" alt="图 18　用 VGG16 可视化每一层的特征图" loading="lazy" decoding="async"></a>
+  <figcaption>图 18　可视化 VGG16 每一层输出的特征图：输入是一幅花，第一层卷积之后得到 64 个特征图（原课件第 79 张）</figcaption>
+</figure>
+<p>流程分四步。第一步是<strong>获取 VGG16 模型并初始化路径</strong>；第二步是<strong>预处理输入图片</strong>，使图像变成能被卷积神经网络接受的大小——课件用的是 <code>transforms.Resize(256)</code> 与 <code>transforms.CenterCrop(224)</code>，即先把短边缩放到 256、再从中心裁出 224 × 224，这正是 VGG16 要求的输入尺寸。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0080.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0080.webp" alt="图 19　模型加载与图片预处理" loading="lazy" decoding="async"></a>
+  <figcaption>图 19　获取 VGG16 模型、初始化路径，并用 transforms.Resize(256)、transforms.CenterCrop(224) 把图片预处理成网络接受的尺寸（原课件第 80 张）</figcaption>
+</figure>
+<p>第三步要知道 VGG16 的整体结构，才能确定「第 k 层」指的是哪一层。课件打印了完整的 VGG 模型结构。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0081.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0081.webp" alt="图 20　VGG16 的模型结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 20　VGG16 的整个模型结构：由卷积层、ReLU、最大池化与全连接层按顺序堆叠而成（原课件第 81 张）</figcaption>
+</figure>
+<p>第四步是<strong>前向传播并截取中间层</strong>：把处理后的图片输入 VGG16，在传播过程中计算当前的网络层数，直到层数等于我们希望可视化的层数 k，这样就能拿到需要的特征图。拿到第 k 层的特征图之后还要<strong>遍历显示</strong>——因为每一层的特征图可能有多个（第一层就有 64 个），所以要把它们逐个取出来画成一张张小图。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0082.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0082.webp" alt="图 21　取出第 k 层特征图并显示" loading="lazy" decoding="async"></a>
+  <figcaption>图 21　获取与显示特征图：<code>getKLayerFeatureMap()</code> 按层数截取第 k 层的输出，<code>showFeatureMap()</code> 先取出通道数，再用 ⌈√通道数⌉ 决定子图的行列数逐个显示（原课件第 82 张）</figcaption>
+</figure>
+<p>串起来就是：<strong>读入图片 → 预处理 → 送入网络逐层前向 → 在第 k 层截住 → 把该层的每个通道画成一张小图</strong>。图片路径和希望提取的层数 k 都可以自定义。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-4/p0083.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-4/p0083.webp" alt="图 22　完整的可视化流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 22　完整的可视化流程：在主程序里指定图片路径与要提取的层数 k，再依次完成预处理、前向与显示（原课件第 83 张）</figcaption>
+</figure>
+<p>课件还给出了一个更省事的替代方案：<a href="https://www.cs.ryerson.ca/~aharley/vis/conv/flat.html" target="_blank" rel="noopener">LeNet-5 识别手写数字的可视化网站</a>，可以直接在浏览器里看每一层的响应（原课件第 84 张）。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>ILSVRC 是这段历史的坐标系：错误率从 2010 年的 28.2% 一路降到 2017 年的 2.25%，AlexNet（2012，16.4%）、ZFNet（2013，11.7%）、GoogLeNet 与 VGG（2014，6.7% / 7.3%）、ResNet（2015，3.57%）依次登场。</li>
+  <li><strong>LeNet-5</strong> 是卷积神经网络的 Hello World，共 7 层，90 年代用于识别银行支票上的手写数字；结构为「32 × 32 输入 → C1 卷积 → S2 池化 → C3 卷积 → S4 池化 → C5 卷积 → F6 全连接 → Softmax 输出」，每一级的尺寸都能用 ⌊(M − K + 2P) / S⌋ + 1 核对。</li>
+  <li><strong>AlexNet</strong> 是第一个现代深度卷积网络模型，用上了 GPU 并行训练、ReLU、Dropout、数据增强，包含 5 个卷积层、3 个汇聚层和 2 个全连接层，是浅层与深度神经网络的分界线。</li>
+  <li><strong>ZFNet</strong> 只把第一层卷积核从 11 × 11 改成 7 × 7、步长从 4 改成 2，它的贡献是「用可视化指导调参」：前向是卷积 → ReLU → 池化，可视化则走反池化 → 反 ReLU → 反卷积。</li>
+  <li><strong>VGG</strong> 构造了 16 ∼ 19 层的网络，证明深度能影响性能；基本原理是堆积小卷积核替代大卷积核——2 个 3 × 3 代替 5 × 5（参数 18 &lt; 25），3 个 3 × 3 代替 7 × 7（参数 27 &lt; 49），感受野相同而参数更少、非线性更多；常用 D 配置即 VGG16。</li>
+  <li><strong>GoogLeNet</strong> 用小模块换取「更深、参数更少」：Inception-V1 同时使用 1 × 1、3 × 3、5 × 5 卷积并在深度上拼接，实现多尺度特征提取；Inception-V3 用两层 3 × 3 替换 5 × 5、用 K × 1 与 1 × K 替换 K × K，并引入批量归一化。</li>
+  <li><strong>ResNet</strong>（152 层）针对深度网络的退化问题——更深的网络训练误差反而更高——提出残差学习：让网络学 F(X) = H(X) − X，并用跳跃连接把 X 直接加回去；这样残差更容易学，梯度也能经跳跃连接直传，缓解梯度消失。</li>
+  <li>特征图可视化用 PyTorch 的 VGG16 演示：预处理（Resize(256) + CenterCrop(224)）→ 逐层前向到第 k 层截住 → 遍历该层每个通道画成小图；第一层就有 64 个特征图。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-3.html">‹ 6.3 其他卷积方式</a>
+      <a class="next" href="6-5.html">6.5 网络训练注意事项 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

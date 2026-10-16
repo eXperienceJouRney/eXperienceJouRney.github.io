@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.3 数据可靠传输的基本需求 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 2 章 网络中的数据通信 2.3 数据可靠传输的基本需求：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html" aria-current="page"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 2 章 网络中的数据通信</p>
+      <h1>2.3 数据可靠传输的基本需求</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">数据在信道上传输，理想的结果是发送方发什么、接收方就收到什么。真实网络做不到：分组可能丢在半路、可能带着比特错误到达、可能不按发送顺序到达，甚至可能被重复送到。本节先看这四类异常的成因与检测手段，再归纳出数据可靠传输必须满足的需求，为 2.4 节设计可靠传输协议立好目标。</p>
+
+<h2>1. 传输过程中可能出现的四类异常</h2>
+<p>课件的定义是：</p>
+<ul>
+  <li><strong>数据丢失</strong>——部分分组没有按照预期到达接收方；</li>
+  <li><strong>数据出错</strong>——部分分组到达接收方时发生了比特错误；</li>
+  <li><strong>数据乱序</strong>——分组没有按照发送顺序依次到达接收方；</li>
+  <li><strong>数据重复</strong>——部分分组在传输过程中被传输了多次。</li>
+</ul>
+<p>四句话合起来是一个结论：<strong>数据传输过程不可靠</strong>。2.2 节的编码与调制解决的是「比特怎样变成信号送出去」，并不保证接收端拿到正确的内容；可靠传输要靠上层专门设计的机制来保证，这正是 2.4 节与 2.5 节的题目。</p>
+
+<h2>2. 数据丢失：原因与检测手段</h2>
+<p>丢失最容易发生在链路的中间环节，课件归为两类原因。</p>
+<ul>
+  <li>信道质量差导致帧丢失。2.1 节讲过的导引型介质都受衰减与干扰影响，信号畸变到接收方无法判读时，这一帧就等于丢了；</li>
+  <li>网络拥塞导致路由器缓存溢出。路由器收到分组要先放进缓存队列，队列长度有限，<strong>当数据队列已满时，再收到的数据只能丢掉</strong>。</li>
+</ul>
+<p>课件还提到：报文传输时若路由形成环路，始终无法传送到目标节点，最终也只能丢掉。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-3/p0050.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-3/p0050.webp" alt="图 1　数据丢失的原因：信道质量差导致帧丢失" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　数据丢失的一类原因：信道质量差，帧在传输途中丢失（原课件第 50 张）</figcaption>
+</figure>
+<p>Ping 命令利用 ICMP（Internet Control Message Protocol，因特网控制报文协议）发送 Echo 请求，若无响应则推测为丢包；Traceroute 路由跟踪则分段检查路径中每一跳的响应情况，分析是否为链路中间节点导致的丢包。ICMP 报文详见第 5 章 5.4 节。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-3/p0054.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-3/p0054.webp" alt="图 2　丢包的检测方法：Ping 命令与 Traceroute 路由跟踪" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　检测丢包的两种手段：Ping 用 Echo 请求探测有无响应，Traceroute 逐跳检查路径中每一跳的响应（原课件第 54 张）</figcaption>
+</figure>
+<p>丢包的严重程度用<strong>丢包率</strong>衡量，它是单位时间内丢失的数据包数量与发送数据包数量的比值。</p>
+
+<h2>3. 数据出错与误码率</h2>
+<p>第二类异常是分组到了、比特却变了。课件列出三方面原因：模拟信道中的电磁干扰；光纤接头折损、信号衰减；编码/调制错误或硬件故障。后果是应用数据无法解析，内容显示乱码、无法使用。</p>
+<p>出错的程度用<strong>误码率</strong>（Bit Error Rate，BER）衡量，即单位时间内出错的比特数量与总发送比特数量的比值。</p>
+
+<h2>4. 数据差错的检测</h2>
+<h3>（1）基本思路：附加检验比特</h3>
+<p>比特错误必须先被发现，才谈得上纠正或重传。差错检测的做法只有两步：在要发送的数据中增加若干比特的信息，再用一定的方法基于这些信息判断是否有差错发生。课件把增加的信息画成 d 比特与 r 比特：d 比特是被发送的数据 D，r 比特是检验比特 R；接收方按约定方法重算一遍，与 R 比对即可判断对错。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-3/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-3/p0057.webp" alt="图 3　数据差错的检测思路：d 比特数据后附加 r 比特检验比特" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　差错检测的基本思路：d 比特的数据 D 与 r 比特的检验比特 R 一同发送，接收方依据 R 判断数据是否出错（原课件第 57 张）</figcaption>
+</figure>
+<h3>（2）常见的差错检测方法</h3>
+<p>课件把方法与层次对应起来：链路层是奇偶校验与循环冗余校验码 CRC（Cyclic Redundancy Check），运输层和网络层是检查和（也叫检验和）。</p>
+<h3>（3）检验和怎样计算</h3>
+<p>发送方做三件事：把报文段看作是 16 比特字的序列；对报文的所有 16 比特字求和；将求和结果放入报文的校验和字段。接收方计算收到的报文的校验和，检查是否与报文中的校验和相同：不同就检测到错误，相同则没有检测到错误——不过课件特意补了一句「<strong>但仍可能存在错误</strong>」——特定的错误组合会让两边结果碰巧相同，错误便被漏过。</p>
+<p>求和有一个容易忽略的细节：<strong>最高有效位的进位要回卷加到结果当中</strong>。两个 16 比特字相加可能超出 16 比特，多出来的最高位不能丢掉，而要加回到最低位上。课件的算例是：</p>
+<div class="tbl-wrap"><div class="tbl-wrap"><table>
+  <caption>两个 16 比特字相加的过程，依原课件第 60 张的算例整理。</caption>
+  <thead>
+    <tr><th>步骤</th><th>16 比特结果</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>第一个 16 比特字</td><td>1110 0110 0110 0110</td></tr>
+    <tr><td>第二个 16 比特字</td><td>1101 0101 0101 0101</td></tr>
+    <tr><td>逐位相加，最高有效位产生进位 1</td><td>1011 1011 1011 1011</td></tr>
+    <tr><td>把进位回卷加到最低位</td><td>1011 1011 1011 1100</td></tr>
+    <tr><td>取二进制反码，得到检查和</td><td>0100 0100 0100 0011</td></tr>
+  </tbody>
+</table></div></div>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-3/p0060.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-3/p0060.webp" alt="图 4　两个 16 比特字相加与最高有效位进位的回卷" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　检验和的计算过程：两个 16 比特字逐位相加，最高有效位的进位回卷加到最低位（原课件第 60 张）</figcaption>
+</figure>
+<p>课件文字说「将求和结果放入校验和字段」，图里的数值更准确：写入字段的是回卷求和结果的二进制反码（回卷结果 1011 1011 1011 1100，末行检查和 0100 0100 0100 0011 即其逐位取反）。</p>
+
+<h2>5. 数据乱序与数据重复</h2>
+<h3>（1）数据乱序</h3>
+<p>原因有三条：多路径传输，同一报文的分组走了不同路径；中间节点转发策略不同，例如负载均衡；重传机制错乱。影响是应用数据重组失败、产生语义错误，课件举的例子是「你好吗」变成「好吗你」。</p>
+<h3>（2）数据重复</h3>
+<p>原因有两条：确认 ACK（Acknowledgement）丢失，发送端等不到确认便重复重传；网络重定向缓存错误。影响是接收端记录重复消息。</p>
+<p>课件在这两张上都只留了一个「检测？」的提示：单看一个分组无法判断它是否乱序、是否重复，必须借助序号之类的额外信息——这正是 2.4 节可靠传输模型要设计的机制。</p>
+
+<h2>6. 有效数据与数据可靠传输的基本需求</h2>
+<p>把四类异常放在一起看，就有了有效数据与无效数据的界线。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-3/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-3/p0063.webp" alt="图 5　有效数据与无效数据" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　有效数据与无效数据的对应关系（原课件第 63 张）</figcaption>
+</figure>
+<p>课件的答案只有两组词：无效数据是丢失、乱序、被篡改、重复，有效数据是按序到达、唯一、完整、正确。两组词恰好一一对应——丢失谈不上完整，乱序谈不上按序到达，被篡改谈不上正确，重复谈不上唯一。由此列出数据可靠传输的基本需求，课件把它们分成功能性与性能性两类：</p>
+<div class="tbl-wrap"><div class="tbl-wrap"><table>
+  <caption>数据可靠传输的基本需求，依原课件第 64 张的表格整理。</caption>
+  <thead>
+    <tr><th>类别</th><th>需求</th><th>说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>功能性</td><td>1. 无丢失</td><td>所有数据都应到达</td></tr>
+    <tr><td>功能性</td><td>2. 无错误</td><td>到达的数据是原始数据</td></tr>
+    <tr><td>功能性</td><td>3. 按序到达</td><td>乱序数据要重排</td></tr>
+    <tr><td>功能性</td><td>4. 无重复</td><td>数据不应重复处理</td></tr>
+    <tr><td>性能性</td><td>5. 高效</td><td>传输效率高，资源占用少</td></tr>
+  </tbody>
+</table></div></div>
+<p>前四条是功能性的，回答「传输能不能用」；第五条是性能性的，回答「传输好不好用」。功能性需求不满足，数据根本不能用；性能性需求不满足，代价又太大，平衡两者正是 2.5 节的优化问题。本节的目标是：<strong>正确、完整、唯一、有序、高效地传送数据</strong>。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>数据传输过程不可靠，收发两端的内容之间可能出现丢失、出错、乱序、重复四种差距；丢失来自信道质量差、路由器缓存溢出与路由环路；Ping、Traceroute 用于发现与定位丢包，丢包率度量丢失程度；</li>
+  <li>数据出错源于电磁干扰、光纤折损、编码/调制错误或硬件故障，程度用误码率衡量；</li>
+  <li>差错检测的骨架是「附加检验比特 ＋ 按约定方法判断」：d 比特数据 D 配 r 比特检验比特 R；链路层用奇偶校验与 CRC，运输层与网络层用检查和，发送方求和、进位回卷、取反码写入校验和字段，接收方重算比对，相同仍可能漏检；</li>
+  <li>乱序来自多路径、转发策略不同或重传错乱，重复来自 ACK 丢失或缓存错误；两者都要靠序号等信息判断，是 2.4 节协议要解决的问题；</li>
+  <li>有效数据要按序到达、唯一、完整、正确；可靠传输的需求是功能性的无丢失、无错误、按序到达、无重复，加上性能性的高效，目标是正确、完整、唯一、有序、高效地传送数据。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-2-2.html">‹ 2.2 网络中的数据传输</a>
+      <a class="next" href="v2-2-4.html">2.4 数据可靠传输模型及传输协议的设计 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

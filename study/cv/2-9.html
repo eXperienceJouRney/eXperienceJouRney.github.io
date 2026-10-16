@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.9 边界处理 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.9 边界处理：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html" aria-current="page"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.9 边界处理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面讲卷积时都默认了一件事：核扣在图像上总能找到完整的邻域。可图像是有边界的，最外面那一圈像素的邻域有一半落在图像之外。这一节讨论两种处理办法——任其变小，或者先把边界补出来——并给出四种填充策略。话题不大，却决定了一次滤波之后图像还剩多大、边界附近的像素算得准不准。</p>
+
+<h2>1. 边界问题的来源</h2>
+<p>卷积的规则是把核扣在当前像素上，与它的邻域逐个相乘再求和。3×3 的核意味着每算一个输出像素，都要读入以它为中心的 3×3 邻域；而对图像最外圈的那些像素来说，邻域里有一半的位置在图像之外，根本没有取值，核越大，越界的范围越宽。这就是边界处理要解决的问题。</p>
+<p>课件第 52 张用一个 10×10 的矩阵做示意：四周是 0，中间是一块值为 90 的亮区。核滑到最外圈时，必然有一部分压在图像外面，那里没有像素可用。</p>
+
+<h2>2. 选项一：不做任何处理</h2>
+<p>最省事的办法是<strong>不做任何处理</strong>：凡是邻域越界的输出位置，干脆不算。代价就写在括号里——<strong>图像滤波（卷积）后会变小</strong>。变小多少由核的尺寸决定，输出尺寸 = 输入尺寸 − 核尺寸 + 1：3×3 的核扣在 10×10 的图上，能完整放下核的位置只剩 8×8 个，也就是每边被削掉一个像素。图像越小、核越大，损失的比例越明显。</p>
+<p>课件第 52 张把前后两种情况画在一起：上面是 10×10 的输入矩阵，下面是卷积得到的输出矩阵，尺寸明显小了一圈。这种做法实现最简单，代价是图像尺寸发生了变化，如果后续处理依赖固定的尺寸，就得额外记住这个偏移。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-9/p0052.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-9/p0052.webp" alt="图 1　不做任何处理时图像变小" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　边界处理选项一：不做任何处理，图像滤波（卷积）后会变小——10×10 的输入经过一次滤波，输出矩阵小了一圈（原课件第 52 张）</figcaption>
+</figure>
+
+<h2>3. 选项二：先填充，再滤波</h2>
+<p>第二种做法是<strong>对原图像四周填充额外的行或列，使用不同的策略填充</strong>。边界补齐之后，最外圈的像素也有了完整的邻域，卷积就不必丢弃任何位置，因此<strong>可保持图像大小不变</strong>。代价是这些补出来的像素本来并不存在，取值只能由人来定，而不同的填法会影响边界附近算出来的结果。</p>
+<p>课件第 53 张给出四种填充策略：</p>
+<ul>
+  <li><strong>填充 0 值像素</strong>：做法最简单，在图像外面补一圈 0。它会人为造出一条从图像内容到 0 的突降；如果后面还要做边缘检测，这条突降很可能被当成图像四周的一条真实边缘。</li>
+  <li><strong>填充对应边缘像素</strong>：把最外圈的像素值直接向外复制，相当于认为图像在边界之外继续保持边缘处的取值。它不引入新的突变，是工程实现里很常见的一种默认做法。</li>
+  <li><strong>与边缘区域对称填充</strong>：把边界当作镜面，让图像内部的像素值对称地折到外面去，补出来的值同样来自图像本身。</li>
+  <li><strong>填充对边区域像素</strong>：把图像另一侧的像素搬过来，相当于认为图像在横竖两个方向上首尾相接、循环出现。</li>
+</ul>
+<p>四种策略没有绝对的好坏：越简单的策略算得越快，越「讲道理」的策略，在边界处引入的假响应越少。选哪一种，取决于后续任务对边界区域的敏感程度——如果只关心图像中间的目标，直接不做处理、让它变小也未尝不可。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-9/p0053.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-9/p0053.webp" alt="图 2　四种填充策略" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　边界处理选项二：对原图像四周填充额外的行或列，可保持图像大小不变；课件并列了填充 0 值像素、填充对应边缘像素、与边缘区域对称填充、填充对边区域像素四种策略（原课件第 53 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>边界问题的来源：卷积需要完整的邻域，图像最外圈像素的邻域有一半越界，核越大越严重。</li>
+  <li>选项一：不做任何处理——越界的位置不算，滤波后图像变小；输出尺寸 = 输入尺寸 − 核尺寸 + 1，10×10 的图配 3×3 的核只剩 8×8 个输出位置。</li>
+  <li>选项二：先对原图像四周填充额外的行或列，再滤波，这样可以保持图像大小不变。</li>
+  <li>四种填充策略：填充 0 值像素、填充对应边缘像素、与边缘区域对称填充、填充对边区域像素；其中填充 0 值会在边界造出人为的突降，而突降在 2.7 节里正意味着一个大梯度，所以它最容易在边缘检测时被误认为边缘。</li>
+  <li>边界处理的取舍在「实现简单」与「边界不引入假信息」之间；它不是独立的知识点，而是把前面讲的卷积真正落到图像上时必须补的一步。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-8.html">‹ 2.8 图像锐化</a>
+      <a class="next" href="2-10.html">2.10 滤波案例分析 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

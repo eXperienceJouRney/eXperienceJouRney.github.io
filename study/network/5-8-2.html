@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.8.2 TCP的运输连接管理 —— TCP的连接释放 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 5 章 5.8.2 TCP的运输连接管理 —— TCP的连接释放：讲义第 1379–1401 页 · 9 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html" aria-current="page"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 5 章 运输层</p>
+      <h1>5.8.2 TCP的运输连接管理 —— TCP的连接释放</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节 5.8.1 用「三报文握手」建立了连接，本节讲连接的另一半——释放。TCP 连接是全双工的，两个数据传输方向要各自独立关闭，所以释放比建立更啰嗦：一次正常释放要在两端之间来回四个报文段，这就是「四报文挥手」。我们沿着客户与服务器各自的状态迁移（FIN-WAIT-1、CLOSE-WAIT、FIN-WAIT-2、LAST-ACK、TIME-WAIT、CLOSED）把这四个报文段走一遍，再解释主动关闭方为什么必须多等 2MSL 才能关闭，最后看保活计时器如何在对方主机悄无声息地出故障时发现问题。</p>
+
+<h2>1. 连接释放为什么是「四报文挥手」</h2>
+<p>TCP 连接一旦建立，通信双方就都能发送和接收数据，这条通路是<strong>全双工</strong>的。所谓释放连接，并不是把整条通路一刀切断，而是两个方向各自独立地关闭：一方不再发送数据，不等于另一方也没有数据要发。方向既然彼此独立，释放时就无法像建立连接那样把对方的确认捎带进自己的请求里（三报文握手的第二个报文段就把 SYN 与 ACK 合在了一起），只能一个方向一个方向地来，于是标准流程一共要交换四个报文段，这也是「挥手」比「握手」多一次的根本原因。</p>
+<p>习惯上把主动发起关闭的一方称为<strong>客户</strong>，被动关闭的一方称为<strong>服务器</strong>。这只是本例的约定：实际通信中哪一方先调用关闭，哪一方就是主动关闭方。</p>
+<p>一个方向已关闭、另一个方向仍能传输数据时，连接处于<strong>半关闭（half-close）</strong>状态。客户发出「我不再发送数据」的 FIN 之后，服务器仍然可以把剩余数据全部传给客户，连接真正断开要等服务器也发出自己的 FIN。这份「一半关、一半开」的能力是 TCP 连接释放的核心，也正是它必须用四个报文段、而不能草草两步收场的原因。</p>
+
+<h2>2. 四报文挥手的往复过程与状态迁移</h2>
+<p>先约定几个记号。FIN 标志位置 1 的报文段专门用于连接释放；序号 u 是客户此前已发送数据的最后一个字节序号加 1，v 是服务器已发送数据的最后一个字节序号加 1，w 则是服务器在关闭等待期间把剩余数据发完后的下一个序号（若服务器不再发送数据，则 w 与 v 相同）。要特别注意：<strong>FIN 报文段即使不携带数据，也要消耗一个序号</strong>，所以对方确认它时确认号要写 u + 1。</p>
+<h3>（1）第一步：客户发送连接释放报文段，进入 FIN-WAIT-1</h3>
+<p>客户的应用进程先关闭自己这一端，TCP 客户进程随即发送连接释放报文段：FIN = 1，ACK = 1（顺带确认此前收到的数据），序号 seq = u，确认号 ack = v。发送完毕，客户进入 <strong>FIN-WAIT-1（终止等待 1）</strong>状态，等待服务器确认。此时客户到服务器这个方向已经没有数据可发了。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1382.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1382.webp" alt="图 1　客户发送连接释放报文段，进入 FIN-WAIT-1" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　第一步：客户发送 FIN = 1、ACK = 1、seq = u、ack = v 的连接释放报文段，从 ESTABLISHED 进入 FIN-WAIT-1（终止等待 1）（原讲义第 1382 页）</figcaption>
+</figure>
+<h3>（2）第二步：服务器确认，进入 CLOSE-WAIT</h3>
+<p>服务器收到连接释放报文段后立即回一个普通确认：ACK = 1，seq = v，ack = u + 1，并进入 <strong>CLOSE-WAIT（关闭等待）</strong>状态，同时<strong>通知自己的应用进程</strong>：对方要求关闭连接了。这一步只表示「你的 FIN 我收到了」，并不表示服务器也马上关闭——服务器到客户方向的数据传输仍可继续。从客户发出 FIN 到服务器发出自己的 FIN 之间，连接就处在半关闭状态。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1384.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1384.webp" alt="图 2　服务器发回普通确认并进入 CLOSE-WAIT，连接进入半关闭" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　第二步：服务器发回普通确认 ACK = 1、seq = v、ack = u + 1，进入 CLOSE-WAIT（关闭等待），连接进入半关闭；客户仍在 FIN-WAIT-1（原讲义第 1384 页）</figcaption>
+</figure>
+<h3>（3）第三步：服务器发送连接释放报文段，进入 LAST-ACK</h3>
+<p>服务器的应用进程把剩余数据发送完毕、也调用关闭之后，服务器才发送自己的连接释放报文段：FIN = 1，ACK = 1，seq = w，ack = u + 1，并进入 <strong>LAST-ACK（最后确认）</strong>状态，等待客户对它这个 FIN 的确认。客户收到该报文段后，由 FIN-WAIT-1 转入 <strong>FIN-WAIT-2（终止等待 2）</strong>。到此为止，两个方向的「不再发送」都已通知完毕。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1388.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1388.webp" alt="图 3　服务器发送自己的连接释放报文段并进入 LAST-ACK，客户进入 FIN-WAIT-2" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　第三步：服务器发送 FIN = 1、ACK = 1、seq = w、ack = u + 1 的连接释放报文段，进入 LAST-ACK（最后确认）；客户由 FIN-WAIT-1 转入 FIN-WAIT-2（终止等待 2）（原讲义第 1388 页）</figcaption>
+</figure>
+<h3>（4）第四步：客户确认，进入 TIME-WAIT</h3>
+<p>客户对服务器的连接释放报文段做确认：ACK = 1，seq = u + 1，ack = w + 1。服务器收到这个确认后直接进入 <strong>CLOSED（关闭）</strong>状态，它这一端的连接释放完毕；客户则进入 <strong>TIME-WAIT（时间等待）</strong>状态，还不能立刻关闭，要等到时间等待计时器所设置的 2MSL 超时之后才进入 CLOSED。也就是说，<strong>主动关闭的一方比被动关闭的一方晚一步才真正关闭连接</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1391.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1391.webp" alt="图 4　客户发出最后确认并进入 TIME-WAIT，服务器收到后进入 CLOSED" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　第四步：客户发出 ACK = 1、seq = u + 1、ack = w + 1 的确认并进入 TIME-WAIT（时间等待）；服务器收到确认后进入 CLOSED，客户还要等 2MSL 才关闭（原讲义第 1391 页）</figcaption>
+</figure>
+<p>把两端的路径并排看更清楚：客户走 ESTABLISHED → FIN-WAIT-1 → FIN-WAIT-2 → TIME-WAIT → CLOSED；服务器走 ESTABLISHED → CLOSE-WAIT → LAST-ACK → CLOSED。服务器不必经历 FIN-WAIT-2 和 TIME-WAIT，因为它一收到最终确认就可以立即关闭。</p>
+
+<h2>3. TIME-WAIT 与 2MSL：客户为什么不能马上关闭</h2>
+<p>MSL（Maximum Segment Lifetime）的意思是<strong>最长报文段寿命</strong>，即一个 TCP 报文段在网络中能够存活的最长时间，RFC 793 建议取 2 分钟。TIME-WAIT 状态使用时间等待计时器等待 <strong>2MSL</strong>（按这个建议值就是 4 分钟）才进入 CLOSED，这段等待看似浪费，却解决两个不能省略的问题。</p>
+<h3>（1）确保最后一个确认能够到达服务器</h3>
+<p>第四步的确认报文段一旦丢失，服务器就会超时重传它的 FIN 报文段（重传时机的选择与 5.6 节的超时重传时间同一套机制）。客户停留在 TIME-WAIT 期间还能收到这个重传的 FIN，并再次发出确认，服务器才能正常进入 CLOSED。反过来，如果客户发完确认就立即关闭，服务器超时重传的 FIN 将永远等不到应答，被动关闭的一方就会<strong>卡在 LAST-ACK 状态无法关闭</strong>——这正是延时等待要防的事故。</p>
+<h3>（2）让旧连接的报文段从网络中消逝</h3>
+<p>经过 2MSL，本次连接持续时间内产生的所有报文段都已在网络中消逝，不会残留在某处。这样，即使随后立刻用相同的端口建立新连接，也不会把旧连接的延迟报文段误当成新连接的数据来接收。2MSL 因此既保护了本次连接的收尾，也保护了下一次连接的开局。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1394.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1394.webp" alt="图 5　客户在 TIME-WAIT 等待 2MSL 后进入 CLOSED" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　客户在 TIME-WAIT 状态等待 2MSL 之后才进入 CLOSED，连接两端至此全部释放；服务器已先一步进入 CLOSED（原讲义第 1394 页）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1401.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1401.webp" alt="图 6　四报文挥手全过程与两端状态迁移总览" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　四报文挥手全过程与两端状态迁移总览：客户 FIN-WAIT-1 → FIN-WAIT-2 → TIME-WAIT（等待 2MSL）→ CLOSED，服务器 CLOSE-WAIT → LAST-ACK → CLOSED；图中并给出 MSL 的含义与建议值（原讲义第 1401 页）</figcaption>
+</figure>
+<p>注记：MSL = 2 分钟是 RFC 793 偏保守的建议值，当代多数实现把 MSL 取得更小，例如 Linux 中 TIME-WAIT 的持续时间为固定的 60 秒；但「主动关闭方多等 2MSL 再关闭」这一机制并没有改变。</p>
+
+<h2>4. 保活计时器：怎么发现对端主机已经出故障</h2>
+<p>连接建立后，若客户主机突然出故障（比如掉电），服务器既收不到数据，也等不来对方的 FIN，这条连接会一直挂在服务器上占用资源。为了发现这种「对方已经不在了」的情况，TCP 服务器进程使用<strong>保活计时器（keepalive timer）</strong>。</p>
+<p>它的工作规则是：TCP 服务器进程每收到一次 TCP 客户进程的数据，就重新设置并启动保活计时器（2 小时定时）。若在定时周期内没有收到客户进程发来的数据，则当保活计时器到时后，服务器就向客户发送一个<strong>探测报文段</strong>，以后每隔 75 秒发送一次。若一连发送 10 个探测报文段后仍无客户进程的响应，服务器就认为客户进程所在主机出了故障，接着关闭这个连接。按这些数值估算，从收到最后一份数据到判定对端故障，最长约 2 小时 12 分钟。</p>
+<figure class="fig">
+  <a href="../../assets/course/5-8-2/p1399.webp" target="_blank" rel="noopener"><img src="../../assets/course/5-8-2/p1399.webp" alt="图 7　客户主机出现故障后，服务器用保活计时器和探测报文段判断对端是否还在" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　客户主机出现故障、长时间没有数据往来时，服务器靠保活计时器到点后发送探测报文段来判断对端是否还在，连发 10 个探测报文段仍无响应就关闭连接（原讲义第 1399 页）</figcaption>
+</figure>
+<p>注记：保活计时器并不是 TCP 规范强制要求的功能，规范只要求「若实现该功能，必须可配置且默认关闭」，实际是否启用由应用程序通过套接字选项决定。本讲义按教材口径把它作为连接管理的一部分介绍，便于理解服务器如何在长期空闲的连接上察觉异常。</p>
+
+<h2>5. 再讨论：为什么不能合并成「三次挥手」</h2>
+<p>既然第二个报文段（服务器的确认）和第三个报文段（服务器的连接释放）都是服务器发给客户的，能不能像建立连接时那样把它们合成一个，把过程缩短为三个报文段？关键要看服务器还有没有数据要发。收到 FIN 只说明「对方不再发数据了」，服务器往往还有数据留在缓冲区里，应用进程也未必马上调用关闭，因此它必须先发一个确认，把「你的 FIN 我已收到」及时告诉客户，然后从容地把自己的数据发完。只有在服务器确实再没有数据可发、应用进程随即关闭的场合，确认与 FIN 才能合并到同一个报文段中发出，过程才退化为三个报文段。所以「四次」是释放连接的一般情形，不是可以随意省掉的冗余步骤。</p>
+<p>至于第三步和第四步，则不可能合并：它们方向相反，确认只能由收到 FIN 的那一方发出。另外，第一个报文段里 FIN = 1 与 ACK = 1 同时出现并不矛盾——FIN = 1 表示本方不再发送数据，ACK = 1 表示对已收到数据的确认，同一个报文段完全可以同时承担这两件事。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>连接释放之所以要四个报文段，是因为 TCP 全双工、两个方向必须独立关闭，中间还存在半关闭状态；FIN 报文段不携带数据也要占一个序号，故确认号写作 u + 1。</li>
+  <li>四报文挥手的状态迁移：客户 ESTABLISHED → FIN-WAIT-1 → FIN-WAIT-2 → TIME-WAIT → CLOSED；服务器 ESTABLISHED → CLOSE-WAIT → LAST-ACK → CLOSED。服务器收到最终确认即关闭，客户还要等 2MSL。</li>
+  <li>主动关闭方在 TIME-WAIT 等待 2MSL（MSL 由 RFC 793 建议为 2 分钟）：一是保证最后一个确认丢失时还能重发、让服务器正常进入 CLOSED；二是让本次连接的旧报文段全部从网络中消逝，不干扰随后建立的新连接。</li>
+  <li>保活计时器用于发现对端主机故障：每收到一次数据就重置（2 小时定时），到点后发探测报文段并每隔 75 秒重发，连发 10 个无响应即认为对端出故障并关闭连接。</li>
+  <li>释放过程一般不能合并为三个报文段，因为服务器收到 FIN 后通常仍有数据要发、必须先确认；只有确实无数据可发的特殊情形才可能合并。</li>
+  <li>本节与前后呼应：5.8.1 的三报文握手负责建立，本节的四报文挥手负责释放；下一节 5.9 讲 TCP 报文段的首部格式，其中 FIN、ACK 等标志位与序号字段的用法正来自本节描述的这些报文段；服务器重传 FIN 的等待时间则由 5.6 节的超时重传时间决定。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-8-1.html">‹ 5.8.1 TCP的运输连接管理 —— TCP的连接建立</a>
+      <a class="next" href="5-9.html">5.9 TCP报文段的首部格式 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

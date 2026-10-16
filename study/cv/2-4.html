@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.4 平滑滤波——均值滤波与中值滤波 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.4 平滑滤波——均值滤波与中值滤波：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html" aria-current="page"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.4 平滑滤波——均值滤波与中值滤波</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节回答的是「为什么要滤波」——噪声拉低了图像质量，也会连累后面的分割、特征提取和识别。这一节开始动手做平滑：先用课件给的示例矩阵把<strong>均值滤波</strong>的滑窗求平均完整走一遍，看窗口变大以后图像为什么会糊；再换一种统计量，讲<strong>中值滤波</strong>，看它凭什么能对付椒盐噪声、还保得住边缘；最后引出按距离加权的高斯滤波，为下一节的高斯滤波参数做铺垫。</p>
+
+<h2>1. 均值滤波：用邻域的平均值替换每个像素</h2>
+<p>均值滤波（mean filtering）的做法一句话就能说完：用每个像素和它周围像素计算出来的平均值，替换图像中的每个像素；它能消除尖锐噪声，实现图像平滑、模糊等功能。这里要留意「尖锐」两个字——一个孤立的、和邻居差得很远的像素（比如椒盐噪声里的那个纯白点），在求平均时会被周围的正常值稀释掉，这正是它去噪的道理；代价是图像里所有细节都被同样地摊平，所以平滑与模糊是同一件事的两面。</p>
+<p>课件先用一维情形说明权重怎么给：取周围五个位置的像素，这五个像素的权重为 [1, 1, 1, 1, 1] / 5。也就是说五个邻居一视同仁，谁也不比谁更重要，输出就是它们的算术平均：</p>
+<pre><code>权重 = [1, 1, 1, 1, 1] / 5
+输出 = (p1 + p2 + p3 + p4 + p5) / 5</code></pre>
+<p>把这件事搬到二维图像上，邻域就从一条线上的五个点变成中心像素周围的一个方块，最常用的取法是 3×3 的九个位置，每个位置分到一份 1/9：</p>
+<pre><code>3×3 均值核
+1/9  1/9  1/9
+1/9  1/9  1/9
+1/9  1/9  1/9</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0018.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0018.webp" alt="图 1　均值滤波的原理与一维五点等权示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　均值滤波的原理：用每个像素和它周围像素的平均值替换该像素；一维情形取周围五个位置，权重为 [1, 1, 1, 1, 1] / 5（原课件第 18 张）</figcaption>
+</figure>
+<p>用的时候唯一需要决定的量就是窗口取多大——3×3、5×5 还是更大，它直接决定了输出的模糊程度，这一点马上就会看到。</p>
+
+<h2>2. 滑窗：拿一个示例矩阵走一遍</h2>
+<p>课件没有停在公式上，而是给了一个只有 0 和 90 两种灰度值的示例矩阵，让 3×3 的窗口从左上角开始一格一格地滑过整幅图：每停一次，把窗口盖住的九个灰度值加起来除以 9，写进输出矩阵中与窗口中心对应的位置。</p>
+<pre><code>示例矩阵（只有 0 与 90 两种灰度，90 的方块里留了一个 0）
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 90 90 90 90 90 0 0
+0 0 0 90 90 90 90 90 0 0
+0 0 0 90 90 90 90 90 0 0
+0 0 0 90 0 90 90 90 0 0
+0 0 0 90 90 90 90 90 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 90 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0019.webp" alt="图 2　均值滤波的输入示例矩阵" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　均值滤波的输入：一个只含 0 与 90 两种灰度值的示例矩阵，3×3 的窗口从左上角开始逐格滑过它（原课件第 19 张）</figcaption>
+</figure>
+<p>第一帧里窗口整个落在 0 上，平均值自然是 0；向右挪一格，窗口右下角压住了一个 90，九个值的和是 90，平均值就变成 10；再挪一格压住两个 90，平均值是 20；压住三个 90 时是 30，随后又按对称的方式回落成 20、10。课件用连续几帧记录的就是这个逐格累加、逐个数字被写进结果的过程。</p>
+<p>等窗口扫完整幅图，原来的硬边界已经不见了，取而代之的是一条 0、10、20、30 组成的缓坡；<strong>矩阵下方那个孤立的 90</strong> 也被邻域摊薄，只在结果里留下 10 左右的小痕迹。</p>
+<pre><code>滤波结果（8×8）
+0 10 20 30 30 30 20 10
+0 20 40 60 60 60 40 20
+0 30 60 90 90 90 60 30
+0 30 50 80 80 90 60 30
+0 30 50 80 80 90 60 30
+0 20 30 50 50 60 40 20
+10 20 30 30 30 30 20 10
+10 10 10 0 0 0 0 0</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0024.webp" alt="图 3　示例矩阵的均值滤波结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　滑窗扫完一遍的结果：0 与 90 之间的硬边界变成 10、20、30 组成的过渡带，90 方块内部那个 0 也被平均成 80（原课件第 24 张）</figcaption>
+</figure>
+<p>对着这两张矩阵逐项看，均值滤波的两个特点就具体了。一是<strong>边界被柔化</strong>：0 和 90 原本是一次突跳，现在中间多出一圈 10、20、30 的中间值，视觉上就是糊。二是<strong>孤立噪声被削弱</strong>：嵌在 90 方块里的那个 0，在任何一个盖住它的窗口里都只占九分之一，于是它把窗口的平均值从 90 拉到 80，自己却被抹平了——这就是「消除尖锐噪声」的确切含义。</p>
+
+<h2>3. 窗口越大，图像越模糊</h2>
+<p>课件接着把同一幅原图像分别交给 3×3 均值滤波器和 5×5 均值滤波器处理，结论写得很直接：<strong>随着窗口的增大，图像越来越模糊</strong>。道理和上面那个示例是一致的：窗口越大，参与平均的像素越多、覆盖的邻域越广，中心像素的取值被越多邻居平摊，相邻像素之间的差异就被抹得越平；极端情况下窗口大到和整幅图一样大，输出会退化成一张只有一个灰度值的图。所以窗口大小就是平滑力度的旋钮——噪声压得越狠，细节也丢得越多，这对矛盾在后面每一节里都会反复出现。</p>
+
+<h2>4. 中值滤波：用邻域的中值替换中心像素</h2>
+<p>均值滤波把邻域里所有像素都拿来平均，软肋也在这里：一个离谱的极值会把平均值整个拽偏。中值滤波（median filtering）换了一个统计量——用每个像素和它周围像素的中值替换图像中的每个像素，也就是把邻域内的灰度值排好序，取正中间的那个值替换中心像素。课件给的例子是这样的：</p>
+<pre><code>邻域里的 9 个灰度值
+10  15  20  23  90  27  33  31  30
+
+排序后
+10  15  20  23  27  30  31  33  90
+                 ↑ 中间的这一个：27
+
+中心像素（原来的 90）被替换成 27</code></pre>
+<p>这个例子点出了中值滤波的关键性质：排序之后，一个极端值无论多大，都只能排到队尾，永远坐不到正中间的位置上。所以中值滤波<strong>对脉冲噪声和椒盐噪声有良好的效果</strong>——这两类噪声恰好就是孤立的白点和黑点，它们的数值再极端也影响不了中值。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0026.webp" alt="图 4　中值滤波的排序取中值过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　中值滤波：把邻域内的灰度值排序后取中间值，用它替换中心像素；图中 90 这个极值被 27 替换掉（原课件第 26 张）</figcaption>
+</figure>
+
+<h2>5. 中值滤波为什么能保住边缘</h2>
+<p>接下来是更值得比较的一点：同样是压噪声，中值滤波和均值滤波的结果差在哪里。均值滤波在边缘附近会把两侧的灰度混在一起，算出 10、20、30 这样的中间值，边缘于是被推成一条缓坡；中值滤波取的是排序后居中的那个值，只要窗口内多数像素属于同一侧，输出就取那一侧的值，灰度突跳因此得以保留。课件的结论是：<strong>中值滤波可以有效保留边缘</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0027.webp" alt="图 5　椒盐噪声图像与中值滤波后的图像" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　左为加了椒盐噪声的图像，右为中值滤波后的图像：孤立的黑白点被消除，图像整体结构保持完好（原课件第 27 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0028.webp" alt="图 6　中值滤波与均值滤波在边缘处的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　中值滤波可以有效保留边缘：对同一输入（INPUT），中值滤波（MEDIAN）保住了阶跃，均值滤波（MEAN）把边缘抹成了斜坡（原课件第 28 张）</figcaption>
+</figure>
+<p>把这两张图放在一起看，就能明白为什么工程上常把中值滤波当成椒盐噪声的首选：噪声是「少数派的极端值」，而中值滤波恰好是按「多数派」投票的。</p>
+
+<h2>6. 高斯滤波：按距离加权的平均</h2>
+<p>平滑这条线最后落到高斯滤波上。均值滤波对邻域内所有像素一视同仁，可是离中心越远的像素，和中心像素的关系理应越疏远。<strong>高斯滤波</strong>（Gaussian filtering）就是顺着这个直觉做的：用每个像素和它周围像素的<strong>加权平均灰度值</strong>替换图像中的每个像素，距离中心像素越近的像素权重越大。</p>
+<p>课件给出的 3×3 高斯核把这句话写成了数字：中心权重 4，上下左右权重 2，四个角权重 1，离中心越远权重越小：</p>
+<pre><code>3×3 高斯滤波核
+1  2  1
+2  4  2
+1  2  1</code></pre>
+<p>课件同时提醒，这个核是对高斯方法的<strong>模拟近似</strong>：真正的高斯权重来自连续高斯函数的采样，上面这个矩阵只是它在 3×3 邻域上的一个方便版本。（九个权重之和为 16，实际使用时要除以 16 做归一化，输出才不会整体变亮。）</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-4/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-4/p0029.webp" alt="图 7　3×3 高斯滤波核与待处理的图像矩阵" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　高斯滤波：左侧的 3×3 核按「离中心越近权重越大」给出 1、2、4 三档权重，右侧是待处理的图像矩阵（原课件第 29 张）</figcaption>
+</figure>
+<p>到这里，平滑滤波的两条主线都出来了：均值滤波和高斯滤波都用加权平均压噪声，区别只在权重是平均给还是按距离给；中值滤波则改用取中位数的方式压极值，代价是计算时要排序。高斯滤波还有核的大小与标准差 σ 两个参数没交代，那是下一节 2.5 的内容。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>均值滤波用每个像素和周围像素的平均值替换该像素：一维情形取周围五个位置，权重为 [1, 1, 1, 1, 1] / 5；二维常用 3×3 邻域，九个位置各占 1/9。它能消除尖锐噪声、实现平滑与模糊。</li>
+  <li>滑窗每挪一格就做一次「邻域求和除以邻域个数」。课件示例里 0 与 90 的硬边界被算成 10、20、30 的过渡带，90 方块中的那个 0 被平均成 80，孤立的 90 也只剩 10 左右的痕迹。</li>
+  <li>随着窗口的增大，图像越来越模糊：参与平均的邻域越广，相邻像素的差异被抹得越平，细节丢得越多。</li>
+  <li>中值滤波用邻域灰度值的中值替换中心像素。排序后极值永远到不了中间位置，所以它对脉冲噪声和椒盐噪声有良好的效果。</li>
+  <li>中值滤波不会像均值滤波那样把边缘两侧的灰度混成一个中间值，因此可以有效保留边缘——这也是椒盐噪声场景下优先选它的原因。</li>
+  <li>高斯滤波做的是加权平均，离中心越近权重越大，3×3 的模拟近似核中心为 4、上下左右为 2、四角为 1（和为 16，需归一化）；核的大小与标准差 σ 是下一节 2.5 的内容。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-3.html">‹ 2.3 图像滤波与卷积的动机——图像噪声</a>
+      <a class="next" href="2-5.html">2.5 高斯滤波 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

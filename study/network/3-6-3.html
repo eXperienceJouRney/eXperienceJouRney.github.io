@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.6.3 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.6.3 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD：讲义第 473–521 页 · 18 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html" aria-current="page"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.6.3 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讲的静态划分信道把资源预先切给各用户，灵活性和信道利用率都受限。本节进入动态接入控制中最重要的一类——<strong>随机接入</strong>，讲共享式以太网使用的协议：载波监听多址接入/碰撞检测 CSMA/CD。要抓住三条线索：三个要素（MA、CS、CD）、围绕碰撞展开的两个数字（争用期与最小帧长）、以及碰撞之后的退避算法。</p>
+
+<h2>1. CSMA/CD 协议与它的三个要素</h2>
+<p><strong>载波监听多址接入/碰撞检测 CSMA/CD（Carrier Sense Multiple Access/Collision Detection）</strong>是共享式以太网采用的随机接入协议，它的名字本身就包含了三个要素：</p>
+<ul>
+  <li><strong>多址接入 MA（Multiple Access）</strong>：多个站连接在一条总线上，竞争使用总线；</li>
+  <li><strong>载波监听 CS（Carrier Sense）</strong>：每一个站在发送帧之前先要检测一下总线上是否有其他站点在发送帧，即「先听后说」；</li>
+  <li><strong>碰撞检测 CD（Collision Detection）</strong>：每一个正在发送帧的站边发送边检测碰撞，即「边说边听」。</li>
+</ul>
+<p>把三者的操作连起来，就是四句话的口诀：<strong>先听后说，边听边说；一旦冲突，立即停说；等待时机，重新再说</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0478.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0478.webp" alt="图 1　多址接入：多个站连接在一条总线上竞争使用总线" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　多址接入 MA：多个站连接在一条总线上，竞争使用总线（原讲义第 478 页）</figcaption>
+</figure>
+
+<h2>2. 碰撞是怎样发生的</h2>
+<p>单条总线上同一时刻只允许一个站发送，否则信号就会叠加而互相破坏。碰撞有两种典型情形：</p>
+<ul>
+  <li>总线本身空闲，主机 B 和主机 C 同时发送数据，则传输信号发生碰撞（或称冲突）；</li>
+  <li>主机 B 正在占用总线传输数据，主机 C 也要发送数据，则传输信号发生碰撞。</li>
+</ul>
+<p>第一种情形说明「同时监听、同时判空、同时发送」是可能的——因为监听到空闲到真正发出信号之间存在传播时延；第二种情形说明「先听后说」并不能完全避免碰撞——主机 C 听到的信道状态可能已经过时了。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0475.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0475.webp" alt="图 2　共享总线上发生碰撞的两种情形" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　共享总线上的碰撞：两站同时发送，或一站正在发送时另一站也发送（原讲义第 475 页）</figcaption>
+</figure>
+
+<h2>3. 载波监听 CS 与碰撞检测 CD 的具体做法</h2>
+<h3>（1）载波监听 CS——先听后说</h3>
+<p>每一个站在发送帧之前先要检测一下总线上是否有其他站点在发送帧，具体规则是：</p>
+<ul>
+  <li>若检测到总线空闲 <strong>96 比特时间</strong>，则发送这个帧；</li>
+  <li>若检测到总线忙，则继续检测并等待总线转为空闲 96 比特时间，然后发送这个帧。</li>
+</ul>
+<p>「96 比特时间」是指发送 96 个比特所需要的时间。规定一段空闲时间的意义在于：帧与帧之间必须留出间隔，让信号在总线上传播开、让各站的收发器都恢复到稳定状态，否则前一个帧的尾部残留会被误认为是新的载波。</p>
+<h3>（2）碰撞检测 CD——边说边听</h3>
+<p>每一个正在发送帧的站边发送边检测碰撞，一旦发现总线上出现碰撞，则<strong>立即停止发送</strong>，退避一段随机时间后再次发送。也就是说：「一旦冲突，立即停说，等待时机，重新再说」。</p>
+<h3>（3）强化碰撞</h3>
+<p>以太网还采取一种叫做<strong>强化碰撞</strong>的措施：当发送帧的站点一旦检测到碰撞，除了立即停止发送帧之外，还要再继续发送 <strong>32 比特或 48 比特</strong>的人为干扰信号（Jamming Signal），以便有足够多的碰撞信号使所有站点都能检测出碰撞。如果没有这个措施，离碰撞点近的站可能已经停止发送，离得远的站还在发，碰撞信号会很快消失而检测不到。</p>
+
+<h2>4. 争用期（碰撞窗口）</h2>
+<p>「先听后说、边说边听」听起来很可靠，但有一个时间上的漏洞：一个站刚发出去的数据还没有到达最远的那个站，那个站就检测到信道空闲并开始发送，碰撞已经注定发生，而前一个站此刻还蒙在鼓里。要把这个漏洞堵住，就必须弄清「发了多久以后才能确认不会碰撞」。</p>
+<p>设以太网单程端到端传播时延为 τ。考察两个相距最远的主机 A 和 D：</p>
+<ol>
+  <li>t = 0 时，A 检测到信道空闲，开始发送数据；</li>
+  <li>t = τ − δ 时，D 检测到信道空闲（此时 A 的信号还差一点才到 D），也开始发送数据；</li>
+  <li>t = τ − δ/2 时，两者的信号相遇，发生碰撞；</li>
+  <li>t = τ 时，D 检测到碰撞，停止发送；</li>
+  <li>t = 2τ − δ 时，碰撞信号传回 A，A 检测到碰撞，停止发送。</li>
+</ol>
+<p>于是得到两条重要结论：</p>
+<ul>
+  <li>主机最多经过 <strong>2τ</strong>（即 δ → 0）的时长就可以检测到本次发送是否遭受了碰撞。因此，以太网的端到端往返传播时延 2τ 称为<strong>争用期</strong>或<strong>碰撞窗口</strong>；</li>
+  <li><strong>经过争用期这段时间还没有检测到碰撞，才能肯定这次发送不会发生碰撞</strong>。</li>
+</ul>
+<p>换句话说，每一个主机在自己发送帧之后的一小段时间内，都存在着遭遇碰撞的可能性，这一小段时间是不确定的——它取决于另一个发送帧的主机到本主机的距离，但不会超过总线的端到端往返传播时延，即一个争用期。显然，在以太网中发送帧的主机越多、端到端往返传播时延越大，发生碰撞的概率就越大。因此<strong>共享式以太网不能连接太多主机，使用的总线也不能太长</strong>。</p>
+<p>举一个具体的数字：10 Mb/s 以太网把争用期定为 <strong>512 比特发送时间，即 51.2 μs</strong>。据此推算，总线长度不能超过 5120 m；但考虑到其他一些因素（如信号衰减等），以太网规定总线长度不能超过 <strong>2500 m</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0495.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0495.webp" alt="图 3　争用期（碰撞窗口）：从发送到检测到碰撞最多经过 2τ" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　争用期（碰撞窗口）：A 在 t = 0 发送，D 在 t = τ − δ 发送，A 最迟在 t = 2τ − δ 检测到碰撞（原讲义第 495 页）</figcaption>
+</figure>
+
+<h2>5. 最小帧长</h2>
+<p>争用期还带来一个直接后果：帧不能太短。设想主机 A 给主机 D 发送帧，边发送边检测碰撞。如果帧很短，A 有可能在碰撞信号传回来之前就<strong>发送完毕</strong>了。发送完毕之后 A 就不再针对该帧检测碰撞，也就不知道刚才发出的这一帧遭遇了碰撞，自然<strong>不会重发该帧</strong>；而接收方那边只会收到一个有差错的帧并把它<strong>丢弃</strong>。结果这一帧就永久丢失了，而 CSMA/CD 的机制完全失效。因此，<strong>以太网的帧长不能太短</strong>。</p>
+<p>以太网的具体规定是：</p>
+<ul>
+  <li>最小帧长为 <strong>64 字节，即 512 比特</strong>——512 比特时间恰好就是一个争用期；</li>
+  <li>如果要发送的数据非常少，那么必须加入一些<strong>填充字节</strong>，使帧长不小于 64 字节；</li>
+  <li>以太网的最小帧长确保了主机可在帧发送完成之前就检测到该帧的发送过程中是否遭遇了碰撞；</li>
+  <li>如果在争用期（共发送 64 字节）内没有检测到碰撞，那么后续发送数据就一定不会发生碰撞；</li>
+  <li>如果在争用期内检测到碰撞，就立即中止发送，这时已经发送出去的数据一定小于 64 字节。因此，<strong>凡长度小于 64 字节的帧都是由于碰撞而异常中止的无效帧</strong>。</li>
+</ul>
+<p>把最小帧长的关系写成式子就是：<strong>最小帧长 = 争用期 × 信道带宽（数据发送速率）</strong>。对 10 Mb/s 的传统以太网，争用期为 51.2 μs，因此最小帧长为 512 bit，即 64 字节。这个式子也说明了最小帧长为什么与网络跨距和数据传输速率都有关系：跨距越大，争用期越长，最小帧长就要越大。</p>
+
+<h2>6. 最大帧长</h2>
+<p>帧不能太短，也不能太长。如果某个站发送一个很长的帧，总线就会被它长时间占用，其他有帧要发的站点只能干等（「总线怎么还是忙啊」），而接收方的缓冲区也可能被撑满。因此，为了防止主机长时间占用总线，以太网的帧<strong>也不能太长</strong>：</p>
+<ul>
+  <li>以太网 V2 的 MAC 帧最大长度为 <strong>1518 字节</strong>，即 1500 字节数据载荷加 18 字节首尾字段；</li>
+  <li>插入 VLAN 标记后的 802.1Q 帧最大长度为 <strong>1522 字节</strong>，即 1500 字节数据载荷加 22 字节首尾字段。</li>
+</ul>
+
+<h2>7. 截断二进制指数退避算法</h2>
+<p>检测到碰撞、停止发送之后，站点不能立刻重发——否则两个碰撞的站点会再次同时发送、再次碰撞。正确做法是各自退避一段<strong>随机时间</strong>。以太网采用的算法叫<strong>截断二进制指数退避算法</strong>，规则如下：</p>
+<ul>
+  <li>退避时间 = <strong>争用期 2τ × 随机数 r</strong>，其中 r 从离散整数集合 <strong>{0, 1, …, （2<sup>k</sup> − 1）}</strong>中随机取出一个；</li>
+  <li>集合参数取 <strong>k = Min[重传次数, 10]</strong>，即参数随重传次数增长，但到 10 就截断封顶。</li>
+</ul>
+<p>按这个规则，随着重传次数的增加，可能的退避时间集合不断扩大：</p>
+<ul>
+  <li><strong>第 1 次重传</strong>：k = Min[1, 10] = 1，随机数 r 从集合 {0, 1} 中取，可能的退避时间是 0 × 2τ、1 × 2τ；</li>
+  <li><strong>第 2 次重传</strong>：k = 2，r 从集合 {0, 1, 2, 3} 中取，可能的退避时间是 0 × 2τ、1 × 2τ、2 × 2τ、3 × 2τ；</li>
+  <li><strong>第 10 次及以后的重传</strong>：k 取到上界 10 不再增加，r 从集合 {0, 1, 2, 3, 4, 5, …, 1023} 中取，可能的退避时间从 0 × 2τ 一直到 1023 × 2τ。</li>
+</ul>
+<p>若连续多次发生碰撞，就表明可能有较多的主机参与竞争信道。使用上述退避算法可以使重传需要推迟的平均时间随重传次数而增大（这也称为<strong>动态退避</strong>），因而减小发生碰撞的概率，有利于整个系统的稳定。而当重传达 <strong>16 次</strong>仍不能成功时，表明同时打算发送帧的主机太多，以至于连续发生碰撞，则<strong>丢弃该帧，并向高层报告</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0505.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0505.webp" alt="图 4　截断二进制指数退避算法的退避时间与随机数集合" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　退避时间 = 争用期 2τ × 随机数 r，r 取自 {0, 1, …, 2<sup>k</sup> − 1}，k = Min[重传次数, 10]（原讲义第 505 页）</figcaption>
+</figure>
+
+<h2>8. 信道利用率</h2>
+<p>考虑一种理想情况：各主机发送帧都不会产生碰撞；总线一旦空闲就有某个主机立即发送帧。此时发送一帧占用总线的时间为 T<sub>0</sub> + τ，而帧本身的发送时间是 T<sub>0</sub>，于是得到极限信道利用率：</p>
+<p><strong>S<sub>max</sub> = T<sub>0</sub> / (T<sub>0</sub> + τ) = 1 / (1 + a)</strong>，其中 <strong>a = τ / T<sub>0</sub></strong>。</p>
+<p>由这个式子可以推出两条提高信道利用率的途径：<strong>参数 a 的值要尽量小</strong>。而 a = τ/T<sub>0</sub> 说明——以太网端到端的距离受到限制（τ 要小），以太网帧的长度应尽量长些（T<sub>0</sub> 要大）。这也正好解释了第 4 节的总线长度限制和第 6 节的最大帧长规定。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0510.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0510.webp" alt="图 5　CSMA/CD 的信道利用率与参数 a" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　信道利用率：发送一帧的平均时间里包含多次争用期与退避，极限利用率为 1/(1 + a)（原讲义第 510 页）</figcaption>
+</figure>
+
+<h2>9. 帧的发送流程与接收流程</h2>
+<p>把前面各条规则串起来，就得到 CSMA/CD 的帧发送流程图：有帧要发送时，先封装成帧并把重传次数 c 置 0；载波监听，若信道空闲 96 比特时间则发送帧的第一比特，否则继续监听；边发送边做碰撞检测——没有碰撞就继续发送下一比特直到发送完成；一旦检测到碰撞，就发送 32 或 48 比特干扰信号，把重传次数加 1，用截断二进制指数退避算法算出退避时间 T 并等待 T 时间后重新尝试；当重传次数达到 16 次仍不成功，就放弃发送该帧并向高层报告。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0511.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0511.webp" alt="图 6　CSMA/CD 协议的帧发送流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　帧发送流程：载波监听 → 发送 → 碰撞检测 → 退避重发（重传 16 次仍失败则放弃并向高层报告）（原讲义第 511 页）</figcaption>
+</figure>
+<p>接收方的流程则是：监听信道，信道活跃时开始接收帧；接收完成后要依次做三项检查——<strong>帧太短？</strong>（小于最短帧长则认为遭遇了碰撞）、<strong>地址正确？</strong>（帧的目的 MAC 地址与接收方 MAC 地址相同，或是广播地址）、<strong>校验正确？</strong>（使用 CRC 检查帧是否出现了误码）。三项都通过就接受该帧，否则丢弃该帧，随后接收结束。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0512.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0512.webp" alt="图 7　CSMA/CD 协议的帧接收流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　帧接收流程：接收完成后依次检查帧长、目的 MAC 地址与 CRC 校验，全部通过才接受该帧（原讲义第 512 页）</figcaption>
+</figure>
+
+<h2>10. 用几道考题检验</h2>
+<h3>（1）关于 CSMA/CD 的叙述</h3>
+<p>2015 年的一道真题问：下列关于 CSMA/CD 协议的叙述中，错误的是哪一个？四个选项依次是 A「边发送数据帧，边检测是否发生冲突」、B「适用于无线网络，以实现无线链路共享」、C「需要根据网络跨距和数据传输速率限定最小帧长」、D「当信号传播延迟趋近于 0 时，信道利用率趋近 100%」。</p>
+<p>判断如下：选项「边发送数据帧，边检测是否发生冲突」描述的是碰撞检测，正确；选项「适用于无线网络，以实现无线链路共享」<strong>错误</strong>，因为 CSMA/CD 协议不适用于无线网络——无线网络要使用 CSMA/CA 协议（见下一节）；选项「需要根据网络跨距和数据传输速率限定最小帧长」正确，因为「网络跨距」相当于给出了端到端传播时延 τ，进而可得出争用期 2τ，再乘以数据传输速率即为最小帧长；选项「当信号传播延迟趋近于 0 时，信道利用率趋近 100%」也正确，从极限信道利用率 S<sub>max</sub> = T<sub>0</sub>/(T<sub>0</sub> + τ) 可以直接看出，τ 趋近于 0 时它趋近于 100%。<strong>答案：B</strong>。</p>
+<h3>（2）最小帧长与最远站点距离</h3>
+<p>2009 年的一道真题：在一个采用 CSMA/CD 协议的网络中，传输介质是一根完整的电缆，传输速率为 1 Gb/s，电缆中的信号传播速度是 200 000 km/s。若最小数据帧长度减少 800 比特，则最远的两个站点之间距离至少需要怎样变化？</p>
+<p>解析：设最远两个站点之间的距离为 d（m），最小帧长为 l（bit）。由「最小帧长 = 争用期 × 数据传输速率」得 l = (2d / v) × C，即 l = (2d / 2×10<sup>8</sup> m/s) × 10<sup>9</sup> b/s，整理得 l = 10 × d，反过来 d = l / 10。显然，若最小帧长减少 800 bit，最远的两个站点之间的距离至少会<strong>减少 80 m</strong>，对应选项 D。</p>
+<h3>（3）冲突的最短与最长检测时间</h3>
+<p>2010 年的一道真题：某局域网采用 CSMA/CD 协议，数据传输速率为 10 Mbps，主机甲和主机乙之间距离为 2 km，信号传播速度是 200 000 km/s。若主机甲和主机乙发送数据时发生冲突，则从开始发送数据时刻起，到两台主机均检测到冲突时刻止，最短需经过多长时间？最长需经过多长时间？</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-3/p0515.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-3/p0515.webp" alt="图 8　主机甲与主机乙相距 2 km 发生冲突的情形" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　主机甲与主机乙相距 2 km，中间发生碰撞后碰撞信号向两端传播（原讲义第 515 页）</figcaption>
+</figure>
+<ul>
+  <li><strong>最短</strong>：两主机同时发送数据，信号在距离中点处相遇碰撞，碰撞信号再传回两端。这段时间包括主机发送的数据信号传播到距离中点处所耗费的传播时延，以及发生碰撞后碰撞信号传播回主机所耗费的时间（与之前的传播时延相等），即两主机间<strong>单程</strong>的传播时延：2 km ÷ 200 000 km/s = <strong>0.01 ms</strong>；</li>
+  <li><strong>最长</strong>：甲发送的帧信号传播到无限接近乙的某个时刻，乙也要发送帧，它检测到信道空闲（但信道此时并不空闲），于是立刻开始发送帧，这必然导致碰撞。此时乙会首先检测到碰撞，一段时间后甲也会检测到碰撞。从开始发送数据时刻起，到两台主机均检测到碰撞时刻止，最长需要经过的时间就是两台主机间信号传播的<strong>往返时延</strong>（即一个争用期）：(2 km ÷ 200 000 km/s) × 2 = <strong>0.02 ms</strong>。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>CSMA/CD 的三个要素：多址接入 MA（多站竞争一条总线）、载波监听 CS（先听后说，信道空闲 96 比特时间才发送）、碰撞检测 CD（边说边听，一旦冲突立即停止发送并退避重发）；口诀是「先听后说，边听边说；一旦冲突，立即停说；等待时机，重新再说」；</li>
+  <li>检测到碰撞后还要继续发送 32 或 48 比特的人为干扰信号（强化碰撞），让所有站点都能检测到碰撞；</li>
+  <li>争用期（碰撞窗口）：以太网端到端往返传播时延 2τ，主机最多经过 2τ 就能检测出本次发送是否遭遇碰撞；经过争用期未检测到碰撞才可肯定本次发送不会碰撞。10 Mb/s 以太网的争用期为 512 比特时间即 51.2 μs，因此总线长度受限（规定不超过 2500 m）；</li>
+  <li>最小帧长 = 争用期 × 信道带宽，以太网规定为 64 字节（512 比特），不足的要填充；小于 64 字节的帧一定是碰撞而异常中止的无效帧。最大帧长方面，以太网 V2 的 MAC 帧为 1518 字节，插入 VLAN 标记的 802.1Q 帧为 1522 字节；</li>
+  <li>截断二进制指数退避算法：退避时间 = 争用期 2τ × 随机数 r，r 取自 {0, 1, …, 2<sup>k</sup> − 1}，k = Min[重传次数, 10]；重传达 16 次仍不成功则丢弃该帧并向高层报告；</li>
+  <li>极限信道利用率 S<sub>max</sub> = T<sub>0</sub>/(T<sub>0</sub> + τ) = 1/(1 + a)（a = τ/T<sub>0</sub>），因此端到端距离要受限制、帧长应尽量长些；</li>
+  <li>CSMA/CD 曾经用于各种总线结构的以太网和双绞线以太网的早期版本中；而现在的以太网基于交换机和全双工连接，不会有碰撞，因此没有必要使用 CSMA/CD 协议——但无线局域网仍然需要一套类似的机制，那就是下一节的 CSMA/CA。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-6-2.html">‹ 3.6.2 媒体接入控制 —— 静态划分信道</a>
+      <a class="next" href="3-6-4.html">3.6.4 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

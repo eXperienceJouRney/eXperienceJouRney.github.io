@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2 物理层下面的传输媒体 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 2 章 2.2 物理层下面的传输媒体：讲义第 169–190 页 · 13 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html" aria-current="page"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 2 章 物理层</p>
+      <h1>2.2 物理层下面的传输媒体</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">物理层要在两个相邻结点之间传送比特流，就得有承载信号的物理通路，这条通路就是<strong>传输媒体</strong>。信号走什么媒体，直接决定了带宽、传输距离、抗干扰能力和造价，所以它是物理层设计时首先要做的选择。本节按「信号是否被约束在物理通路里」把传输媒体分成导引型（有线）与非导引型（无线）两大类，逐个分析它们的结构、原理、优缺点和典型应用。</p>
+
+<h2>1. 传输媒体的两大类</h2>
+<p>传输媒体位于物理层下面，本身并不属于任何一层协议，但它是物理层实现比特传输的物质基础。按照信号是否沿着固体媒体传播，可以分成两类：</p>
+<ul>
+  <li><strong>导引型传输媒体（有线）</strong>：信号沿着固体媒体（铜线、光纤等）传播。常见的有同轴电缆、双绞线、光纤，以及把现有电力线用作数据通路的电力线。</li>
+  <li><strong>非导引型传输媒体（无线）</strong>：信号在自由空间（空气、真空）中传播。常见的有无线电波、微波、红外线，以及尚在探索中的可见光。</li>
+</ul>
+<p>下面先看四种导引型媒体，再看非导引型的电磁波谱与几种无线传输方式。</p>
+
+<h2>2. 同轴电缆</h2>
+<p>同轴电缆由内导体（铜芯）、绝缘层、屏蔽层和绝缘保护套层四部分构成，内导体与外层屏蔽层共用同一条轴线，故得此名。屏蔽层既作为信号回路，又能抵御外界的电磁干扰。按照用途和特性，它可以分成两类：</p>
+<ul>
+  <li><strong>基带同轴电缆</strong>（特性阻抗 50 Ω）：用于<strong>数字传输</strong>，过去在局域网中使用；</li>
+  <li><strong>宽带同轴电缆</strong>（特性阻抗 75 Ω）：用于<strong>模拟传输</strong>，目前主要供有线电视使用。</li>
+</ul>
+<p>同轴电缆的主要问题是价格较贵、布线和连接不够灵活方便。随着集线器的出现，局域网领域基本上都改用双绞线作为传输媒体了。</p>
+
+<h2>3. 双绞线</h2>
+<p>双绞线由两根相互绝缘的铜导线按一定密度绞合而成，是最古老、也最常用的一种传输媒体。绞合这件看似简单的工艺有两层作用：<strong>抵御部分来自外界的电磁波干扰</strong>，同时<strong>减少相邻导线之间的电磁干扰</strong>。</p>
+<p>按有无屏蔽层，双绞线分为<strong>无屏蔽双绞线 UTP（Unshielded Twisted Pair）</strong>和<strong>屏蔽双绞线 STP（Shielded Twisted Pair）</strong>。UTP 电缆里通常有 4 对导线，每对用不同颜色区分并分别绞合，例如蓝和蓝白绞合、橙和橙白绞合、绿和绿白绞合、棕和棕白绞合。STP 在每对线外或整条电缆外增加了屏蔽层，抗干扰能力更强，但价格更高、安装更麻烦。</p>
+<p>双绞线的性能差别很大，工程上按「绞合线类别」来选用：</p>
+<table>
+  <caption>双绞线的绞合线类别、带宽与典型应用（数据来源：原讲义第 172 页）。</caption>
+  <thead>
+    <tr><th>绞合线类别</th><th>带宽</th><th>线缆特点</th><th>典型应用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>3 类</td><td>16 MHz</td><td>2 对 4 芯双绞线</td><td>模拟电话；曾用于传统以太网（10 Mbit/s）</td></tr>
+    <tr><td>4 类</td><td>20 MHz</td><td>4 对 8 芯双绞线</td><td>曾用于令牌环局域网</td></tr>
+    <tr><td>5 类</td><td>100 MHz</td><td>与 4 类相比增加了绞合度</td><td>传输速率不超过 100 Mbit/s 的应用</td></tr>
+    <tr><td>超 5 类</td><td>125 MHz</td><td>与 5 类相比衰减更小</td><td>传输速率不超过 1 Gbit/s 的应用</td></tr>
+    <tr><td>6 类</td><td>250 MHz</td><td>与 5 类相比改善了串扰等性能</td><td>传输速率高于 1 Gbit/s 的应用</td></tr>
+    <tr><td>7 类</td><td>600 MHz</td><td>使用屏蔽双绞线</td><td>传输速率高于 10 Gbit/s 的应用</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0172.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0172.webp" alt="图 1　双绞线：绞合的作用与 UTP／STP 电缆的导线排列" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　双绞线中导线的绞合方式：绞合用于抵御外界电磁干扰并减少相邻导线间的干扰，UTP 与 STP 的区别在于有无屏蔽层（原讲义第 172 页）</figcaption>
+</figure>
+<p>可见，类别越高，绞合越密、带宽越大、对串扰和衰减的抑制越好，能支持的速率也越高。第 3 章讲以太网时还会用到这些类别——例如 100 Mbit/s 的快速以太网就跑在 5 类 UTP 上。</p>
+
+<h2>4. 光纤</h2>
+<p>光纤（光缆）利用光脉冲在玻璃纤维中的传播来传送数据。它的基本结构是：中间的<strong>纤芯</strong>由非常透明的石英玻璃拉成细丝（直径 8~100 微米），外面包裹一层折射率比纤芯低的<strong>包层</strong>（直径 125 微米），再往外是涂覆层与护套。实际工程中把若干根纤芯连同加强件、阻水带、松管套、轧纹钢带和 PE 护套封装成光缆，例如室外四芯光缆。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0173.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0173.webp" alt="图 2　室外四芯光缆的内部结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　光缆的内部结构：由纤芯、包层、松管套、加强件、阻水带、轧纹钢带与 PE 护套等多层构成（原讲义第 173 页）</figcaption>
+</figure>
+<h3>（1）光在纤芯中为什么能一直传输</h3>
+<p>关键在于<strong>全反射</strong>：当光从高折射率的媒体（纤芯）射向低折射率的媒体（包层）时，折射角大于入射角；如果入射角足够大，光就不会折射出去，而是碰到包层后全部反射回纤芯。于是光在纤芯中不断全反射，像在管道里「弹跳」着前进。发送端用发光二极管或半导体激光器做光源，接收端用光电二极管或激光检波器把光信号还原成电信号。</p>
+<p>光缆的工作波长通常选在 0.85 微米、1.30 微米或 1.55 微米，其中 0.85 微米衰减较大，1.30 微米和 1.55 微米衰减较小。</p>
+<h3>（2）多模光纤与单模光纤</h3>
+<p>按光在纤芯中的传播方式，光纤分为多模和单模两种，它们的差别直接决定了各自的使用场合：</p>
+<ul>
+  <li><strong>多模光纤</strong>：纤芯较粗（50 微米或 62.5 微米），光以多条路径、不断全反射的方式前进。由于色散（模式色散、材料色散、波导色散），光传输一定距离后必然产生<strong>脉冲展宽</strong>，造成信号失真，因此只适合<strong>近距离传输</strong>（例如建筑物内）。发送光源用发光二极管，接收检测用光电二极管。</li>
+  <li><strong>单模光纤</strong>：纤芯很细（9 微米），光一直向前传播而不发生全反射。它没有模式色散，且在 1.31 微米波长附近材料色散与波导色散大小相等、符号相反，正好相互抵消。单模光纤<strong>适合长距离传输且衰减小</strong>，但制造成本高、对光源要求高（用激光发生器与激光检波器）。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0179.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0179.webp" alt="图 3　多模光纤产生脉冲展宽，单模光纤不发生全反射" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　多模光纤与单模光纤的对比：多模光纤因色散导致输出脉冲展宽，单模光纤无模式色散、脉冲保持良好（原讲义第 179 页）</figcaption>
+</figure>
+<h3>（3）光纤的优点与缺点</h3>
+<p>光纤之所以成为现代骨干网的首选，是因为它的优点非常突出：</p>
+<ul>
+  <li><strong>通信容量大</strong>：可用带宽达 25000~30000 GHz；</li>
+  <li><strong>传输损耗小</strong>，远距离传输时更加经济；</li>
+  <li><strong>抗雷电和电磁干扰性能好</strong>，在大电流脉冲干扰的环境下尤为重要；</li>
+  <li><strong>无串音干扰，保密性好</strong>，不易被窃听；</li>
+  <li><strong>体积小、重量轻</strong>。</li>
+</ul>
+<p>缺点主要有两条：光缆割接需要专用设备；光电接口的价格较贵。</p>
+
+<h2>5. 电力线</h2>
+<p>电力线本来只是输送电能的线路，但由于它遍布千家万户，人们很自然地想到把数据信号调制到电力线上传输，这就是<strong>电力线通信</strong>。家庭中常见的用法是：光猫（或路由器）一侧接网络，另一侧接电力线适配器，数据沿家里的电线传到其他房间的适配器，再为 IPTV 机顶盒、电脑等设备提供网络接入，各楼层之间还可以用扩展器接力。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0180.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0180.webp" alt="图 4　利用电力线组建家庭网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　电力线通信的典型应用：光猫与电力线适配器把网络信号送到各楼层的扩展器，再接入 IPTV 机顶盒等设备（原讲义第 180 页）</figcaption>
+</figure>
+<p>它的好处是不必重新布线，插上插座就能联网；代价是电力线信道噪声大、时变性强，速率和稳定性都不如专用的双绞线或光纤。</p>
+
+<h2>6. 非导引型传输媒体与电磁波频谱</h2>
+<p>无线传输靠的是<strong>电磁波</strong>。电磁波的频率 f、波长 λ 与传播速度 c 满足 λ = c / f（c 为光速），频率越高波长越短。把电磁波按频率排列，就得到电信领域使用的电磁波频谱：低频端是无线电波，往上是微波、红外、可见光、紫外、X 射线、γ 射线。国际电信联盟 ITU 把无线电波划分成若干波段并编号，每种波段有对应的名称、频率范围、波长范围和典型用途。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0184.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0184.webp" alt="图 5　电磁波频谱、ITU 波段划分与地波、天波传播" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　电信领域使用的电磁波频谱与 ITU 波段划分：低频段（LF、MF）沿地球表面以地波方式传播，高频段（HF、VHF）靠高空带电离子层反射以天波方式传播（原讲义第 184 页）</figcaption>
+</figure>
+<p>不同波段的传播特点差别很大，这决定了它们的用途：</p>
+<ul>
+  <li><strong>低频段</strong>（LF 低频、MF 中频，即长波、中波）：沿地球表面以<strong>地面波</strong>方式传播，可传送较远距离，常用于国际广播、导航信标、调幅（AM）广播和海事通信。频率再低的极低频、超低频、特低频、甚低频（ELF~VLF）难以产生和调制，主要用于潜艇通信或直接转换成声音。</li>
+  <li><strong>高频段</strong>（HF 高频、VHF 甚高频，即短波、米波）：可以穿透高空带电离子层，靠电离层反射以<strong>天波</strong>方式传播到很远的地方，常用于国际广播、航空通信、业余无线电，以及调频（FM）广播和电视广播。</li>
+  <li><strong>超高频及以上</strong>（UHF 特高频、SHF 超高频、EHF 极高频，即分米波、厘米波、毫米波）：穿透建筑物能力弱、绕射能力差，但可用带宽大，用于电视广播、无线网络、卫星通信、雷达、射电天文学和人体安检仪等。</li>
+</ul>
+<p>再往上的红外、可见光、紫外等频段，或者很难产生和调制，或者穿透能力很弱、对生物有害，通常不作为电信传输手段使用。为了避免互相干扰，无线电频谱由专门机构管理：我国是工业和信息化部无线电管理局（国家无线电办公室），美国是联邦通信委员会 FCC。其中有一段<strong>ISM 频段（Industrial, Scientific, Medical，工业、科学、医疗频段）</strong>开放免许可使用，无线局域网就工作在其中的 2.4 GHz 和 5.8 GHz 附近。</p>
+
+<h2>7. 几种无线传输方式</h2>
+<p>在非导引型传输媒体中，实际用于通信的主要是无线电波、微波和红外线。</p>
+<h3>（1）无线电波</h3>
+<p>无线电波频段宽、绕射能力强，可以覆盖很广的区域，适合广播类业务和移动通信。它的频段划分与传播方式如上所述：中低频靠地波，高频靠天波，特高频以上则主要靠视距传播。</p>
+<h3>（2）微波</h3>
+<p><strong>微波</strong>一般指 300 MHz~300 GHz 的电磁波，它沿直线传播，遇到障碍物会被阻挡，因此主要采用<strong>视距 LOS（Line of Sight）</strong>传播，两个地面站之间的通信距离一般在 50~100 km 左右，更远就需要用中继站接力。要实现远距离、大范围的覆盖，可以采用<strong>卫星中继</strong>：把微波站放到卫星上，一颗在赤道上空约 35784 km 的地球同步卫星，其转发器就能覆盖地球表面约三分之一的区域；离地球较近的 700~1500 km 轨道则用于低轨卫星通信，此时卫星相对于地面快速移动，需要用多颗卫星组网。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0185.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0185.webp" alt="图 6　微波的视距传播、中继与卫星中继" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　微波的传播方式：地面站之间视距传播约 50~100 km，远距离可用中继站或赤道上空约 35784 km 的同步卫星转发（原讲义第 185 页）</figcaption>
+</figure>
+<p>微波通信的优点是频带宽、通信容量大，且不需要铺设线路；缺点是相邻站之间必须直视、受天气影响较大、保密性较差、隐蔽性和抗破坏性也不理想。</p>
+<h3>（3）红外线</h3>
+<p>红外通信也用直线传输，属于<strong>点对点无线传输</strong>：中间不能有障碍物，传输距离短，速率也不高（约 4 Mbit/s~16 Mbit/s）。它过去常用于遥控器、早期的 IrDA 设备等，在如今的互联网时代已基本被淘汰。</p>
+<figure class="fig">
+  <a href="../../assets/course/2-2/p0186.webp" target="_blank" rel="noopener"><img src="../../assets/course/2-2/p0186.webp" alt="图 7　红外通信：点对点、直线传输" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　红外通信的特点：点对点直线传输，中间不能有障碍物，传输距离短、速率低（4~16 Mbit/s），现已基本淘汰（原讲义第 186 页）</figcaption>
+</figure>
+<h3>（4）可见光</h3>
+<p>可见光频段资源极为丰富，理论上可用于通信（例如利用 LED 照明灯同时照明和传输数据的 LiFi），但目前还处在研究探索阶段，尚未大规模实用。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>传输媒体位于物理层下面，按信号是否被约束在物理通路中分为导引型（同轴电缆、双绞线、光纤、电力线）与非导引型（无线电波、微波、红外线、可见光）；</li>
+  <li>同轴电缆分 50 Ω 的基带同轴电缆（数字传输，过去用于局域网）与 75 Ω 的宽带同轴电缆（模拟传输，现用于有线电视），因价格贵、布线不便，局域网已让位于双绞线；</li>
+  <li>双绞线靠绞合抵御外界干扰并减少相邻导线间的串扰，分 UTP 与 STP；类别越高带宽越大（3 类 16 MHz 起，到 7 类 600 MHz），支持的速率也越高；</li>
+  <li>光纤利用纤芯与包层的折射率差形成<strong>全反射</strong>来导光：多模光纤有色散、脉冲展宽，只适合近距离；单模光纤无模式色散，适合长距离、衰减小；优点是容量大、损耗小、抗电磁干扰、保密好、体积小，缺点是割接需专用设备、光电接口较贵；</li>
+  <li>非导引型媒体依靠电磁波频谱中的各个波段：低频段以地波传播、高频段以天波传播、微波以视距和卫星中继传播，红外线已淘汰，可见光尚在探索；无线电频谱由专门机构管理（我国为工业和信息化部无线电管理局）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-1.html">‹ 2.1 物理层的基本概念</a>
+      <a class="next" href="2-3.html">2.3 传输方式 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.3 人脸对齐：原理与 DCNN 网络 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.3 人脸对齐：原理与 DCNN 网络：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html" aria-current="page"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.3 人脸对齐：原理与 DCNN 网络</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">检测框把脸框出来之后，第二步是把它「摆正」。这一节讲人脸对齐：它要解决什么问题、原理是什么（找关键点，再用相似变换把脸搬到标准姿态）、在哪些地方用得上、难在哪里；然后进入本章第一个深度网络——2013 年 CVPR 的 DCNN，看它是怎么用三级级联的卷积网络把五个关键点一步步定位到像素级的。</p>
+
+<h2>1. 为什么需要人脸对齐</h2>
+<p>同一个人在不同的图像序列中可能呈现出不同的姿态和表情，这种情况是不利于人脸识别的。所以有必要<strong>将人脸图像都变换到一个统一的角度和姿态</strong>，这就是人脸对齐。</p>
+<p>人脸对齐也叫<strong>关键点定位</strong>，就是输出人脸的关键点。它的原理是：先找到人脸的若干个关键点（基准点，如眼角、鼻尖、嘴角等），再利用这些对应的关键点，通过<strong>相似变换</strong>（旋转、缩放和平移）将人脸尽可能变换到标准人脸。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0015.webp" alt="图 1　人脸图像与特征点位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　人脸图像与其特征点位置：对齐的输入是检测框裁出的脸，输出是关键点坐标，二者一起决定怎样把脸变换到标准姿态（原课件第 15 张）</figcaption>
+</figure>
+<p>这一步为什么必要？因为后面的特征表征是对「像素」做运算的。如果拿一张歪头的脸和一张正脸直接比，网络首先要花力气去抵消这个角度差异，等于把「姿势」这种与身份无关的变化混进了特征里。<strong>对齐的本质是把姿态、尺度这些干扰因素在进入识别网络之前先归一化掉</strong>。</p>
+<p>相似变换这个名字要留意：「相似」在这里是几何术语，指保持形状不变、只做旋转、缩放和平移的变换。它不改变人脸的形状结构，只调整朝向和大小——这正是「摆正」所需要的。</p>
+
+<h2>2. 人脸对齐的应用与挑战</h2>
+<p>关键点本身就是一种有用的中间表示，所以人脸对齐的价值不止于「给识别做预处理」。课件给出四类典型应用：<strong>五官定位、表情识别、增强现实、AI 换脸</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0016.webp" alt="图 2　人脸对齐的应用：五官定位、表情识别、增强现实、AI 换脸" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　人脸对齐的四类应用：五官定位、表情识别、增强现实、AI 换脸——它们都需要知道五官的确切位置（原课件第 16 张）</figcaption>
+</figure>
+<p>但关键点并不好找。课件的结论是：<strong>关键点检测受姿态、遮挡、表情、光照等的影响</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0017.webp" alt="图 3　人脸对齐的挑战" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　人脸对齐的挑战：姿态、遮挡、表情、光照都会影响关键点的定位精度（原课件第 17 张）</figcaption>
+</figure>
+<p>这四类干扰里，姿态和遮挡最麻烦：侧脸会让一侧的关键点被压缩甚至完全不可见，遮挡则直接让某个关键点失去外观依据。后面 DCNN、PFLD、MTCNN、RetinaFace 这些网络的改进，基本都可以归到「怎么在这些干扰下把关键点定位得更准、更省算力」上。</p>
+
+<h2>3. 人脸对齐网络的四条脉络</h2>
+<p>课件把这一方向的工作分成两类、四个代表网络，后面几节就是依次讲它们：</p>
+<ul>
+  <li><strong>纯人脸对齐</strong>：
+    <ul>
+      <li><strong>DCNN 网络</strong>——2013 年在 CVPR 发表的经典文章，是利用深度学习进行人脸对齐的开山之作，<strong>首次将 CNN 用于人脸关键点检测</strong>；</li>
+      <li><strong>PFLD 网络</strong>——CVPR 2019 提出，一个高精度、轻量级的关键点检测模型。</li>
+    </ul>
+  </li>
+  <li><strong>人脸检测与对齐联合</strong>：
+    <ul>
+      <li><strong>MTCNN 网络</strong>——ECCV 2016，提出一种多任务级联的人脸检测框架，将人脸检测和人脸关键点检测同时进行；</li>
+      <li><strong>RetinaFace 网络</strong>——CVPR 2020，提出一种单阶段人脸检测器，通过联合外监督和自监督的多任务学习，对各种尺度条件下的人脸可以做到像素级的定位。</li>
+    </ul>
+  </li>
+</ul>
+<p>两条脉络的分工很清楚：前一条线只做关键点，追求精度和轻量；后一条线认为检测和对齐本就是一件事，用一套网络一次输出人脸框和关键点，省掉两级串联的开销。理解这个分类，后面四个网络就不会记混。</p>
+
+<h2>4. DCNN：级联卷积网络做关键点定位</h2>
+<p>DCNN 的整体结构分成三大部分：<strong>Level 1、Level 2、Level 3</strong>，每个 level 里面都包含着好几个 CNN 模型。</p>
+<ul>
+  <li>网络的输入：通过人脸检测器裁剪出 face bounding box，然后把它转换成灰度图，缩放到 <strong>39×39</strong> 大小的图片；</li>
+  <li>网络的输出：<strong>五个特征点</strong>——左眼、右眼、鼻子、左嘴角、右嘴角。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0019.webp" alt="图 4　DCNN 网络的三个 level" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　DCNN 网络总体上分成 Level 1、Level 2、Level 3 三大部分，每一级都由多个 CNN 组成，输入是 39×39 的灰度人脸图，输出是五个特征点坐标（原课件第 19 张）</figcaption>
+</figure>
+<p>注意这里的「级联」思路：后一级的输入不是原图，而是<strong>以高一级预测出的特征点为中心的局部小图</strong>。这样每一级都在上一级的基础上做局部精修，越往后看得越细，定位也就越准——这是关键点检测里非常经典的一种设计。</p>
+
+<h2>5. Level 1：三个网络各看一部分</h2>
+<p>Level 1 由三个卷积神经网络组成，分别命名为 <strong>F1</strong>（输入为一整张人脸图片）、<strong>EN1</strong>（输入图片包含了眼睛和鼻子区域）、<strong>NM1</strong>（输入图片包含了鼻子和嘴巴区域）。</p>
+<p>三个网络的输出规模都能算出来：</p>
+<ul>
+  <li><strong>F1</strong>：输出 5 个特征点的坐标，也就是 5 个点各一对 (x, y)，所以输出层有 <strong>10 个神经元</strong>；</li>
+  <li><strong>EN1</strong>：用于定位左眼、右眼、鼻子 3 个特征点，所以输出层有 <strong>6 个神经元</strong>；</li>
+  <li><strong>NM1</strong>：用于定位左嘴角、右嘴角、鼻子 3 个特征点，所以输出层有 <strong>6 个神经元</strong>。</li>
+</ul>
+<p>F1 看全脸，EN1 和 NM1 各自盯住半张脸，于是鼻子这个特征点会被<strong>重复预测</strong>。课件给出的处理办法是：<strong>对重复预测的特征点进行位置平均</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0020.webp" alt="图 5　DCNN 的 Level 1：F1、EN1、NM1 三个网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Level 1 的三个 CNN：F1 输入整张人脸，EN1 输入眼睛与鼻子区域，NM1 输入鼻子与嘴巴区域（原课件第 20 张）</figcaption>
+</figure>
+<p>这个设计值得多讲一句：让不同网络看不同的局部区域，等价于用「分区域专精」换「整体精度」；而把重复的预测做平均，又起到了集成（ensemble）的效果，比单个网络直接回归五个点更稳。</p>
+
+<h2>6. Level 2 与 Level 3：向局部要精度</h2>
+<p><strong>Level 2 由 10 个卷积神经网络组成</strong>。它以 Level 1 预测的五个特征点为中心，用一个较小的 bbox（15×15）把这五个特征点的小区域范围内的图片裁剪出来，作为 Level 2 的输入。这 10 个 CNN 分别用于预测 5 个特征点——<strong>每两个 CNN 预测一个特征点，然后对两个 CNN 的预测结果求平均</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-3/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-3/p0022.webp" alt="图 6　DCNN 的 Level 2 输入" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Level 2 的输入：红点是 Level 1 预测出来的位置，蓝点是 Ground Truth——以红点为中心裁出的 15×15 小图就是第二级的输入（原课件第 22 张）</figcaption>
+</figure>
+<p><strong>Level 3 同样由 10 个卷积神经网络组成</strong>：以 Level 2 预测的五个特征点为中心，重新进行裁剪；这 10 个 CNN 同样每两个负责一个特征点，预测结果求平均。</p>
+<p>三级串起来看，DCNN 是一条典型的「由粗到细」的流水线：Level 1 在整张 39×39 的图上给出大致位置，Level 2、Level 3 不断缩小感受范围、在更小的邻域里反复精修，同时每一级都靠多个网络平均来抑制单点误差。这套「级联 + 平均」的思想后来被 MTCNN 直接继承。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>人脸对齐（关键点定位）把不同姿态、表情的人脸变换到统一的角度和姿态；原理是找到眼角、鼻尖、嘴角等关键点，再通过<strong>相似变换</strong>（旋转、缩放、平移）把人脸变换到标准人脸。它对付的是识别中的一大干扰源——姿态。</li>
+  <li>应用包括五官定位、表情识别、增强现实、AI 换脸；挑战是关键点检测受<strong>姿态、遮挡、表情、光照</strong>影响。</li>
+  <li>对齐网络分两条脉络：纯对齐（<strong>DCNN</strong>，2013 CVPR，首次把 CNN 用于关键点检测；<strong>PFLD</strong>，CVPR 2019，轻量高精度）与检测对齐联合（<strong>MTCNN</strong>，ECCV 2016；<strong>RetinaFace</strong>，CVPR 2020）。</li>
+  <li>DCNN 分三级：输入 39×39 灰度图，输出左眼、右眼、鼻子、左嘴角、右嘴角五个点。Level 1 用 F1/EN1/NM1 三个网络分区域预测（输出层 10/6/6 个神经元，重复点做位置平均）；Level 2、Level 3 各用 10 个 CNN，以上一级预测点为中心裁 15×15 小图，每两个 CNN 负责一个点并取平均——整体是「由粗到细 + 多网络平均」的级联结构。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-2.html">‹ 8.2 人脸检测</a>
+      <a class="next" href="8-4.html">8.4 轻量级关键点检测：PFLD 网络 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.5 文件目录及其结构 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.5 文件目录及其结构：课件第 58–79 张 · 10 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html" aria-current="page"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.5 文件目录及其结构</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">文件系统要解决的两个转换——「信息的逻辑结构 → 存储介质的物理结构」和「文件操作 → 存储设备的 I/O 指令」——中间都靠一个数据结构牵线，那就是文件目录。这一节先看目录本身要记哪些东西，再看目录从「一张表」长成「一棵树」的过程，最后讲树型目录下的路径名、当前目录，以及让不同路径指向同一个文件的链接技术。</p>
+
+<h2>1. 文件目录的作用与目录项的内容</h2>
+<p>文件系统要解决的核心问题有两个：一是把信息的<strong>逻辑结构</strong>转换到存储介质的<strong>物理结构</strong>；二是把用户对文件的<strong>操作</strong>转换成存储设备的 <strong>I/O 指令</strong>。这两个转换过程中用到的主要数据结构就是<strong>文件目录</strong>：它把文件名和文件在辅存中的物理地址以及其他有关文件的说明信息、控制信息联系起来，从而实现「按名存取」——用户只需要说出文件名，系统就能找到文件的数据。按名存取是文件系统最基本的功能。</p>
+<p>那么一个<strong>目录项</strong>（目录中的一条记录）里究竟要记什么？它既要让系统找到数据，也要支持权限控制和日常管理，通常包含以下几类信息：</p>
+<table>
+  <caption>文件目录项包含的信息（原课件第 60、61 张）</caption>
+  <thead>
+    <tr><th>信息类别</th><th>具体内容</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>① 文件名</td><td>文件的符号名，用户按它访问文件</td></tr>
+    <tr><td>② 文件逻辑结构</td><td>说明该文件的记录是否定长、记录长度及记录个数等</td></tr>
+    <tr><td>③ 文件物理结构</td><td>连续文件——指出文件第一块的物理地址、文件所占块数；串联文件——指出该文件第一块的物理地址；索引文件——指出索引表的物理地址</td></tr>
+    <tr><td>④ 存取控制信息</td><td>文件主具有的存取权限，以及核准的其他用户及其相应的存取权限</td></tr>
+    <tr><td>⑤ 管理信息</td><td>文件建立日期和时间、上一次存取时间、要求文件保留的时间等</td></tr>
+    <tr><td>⑥ 文件类型</td><td>例如可分为数据文件、目录文件、块存储设备文件、字符设备文件</td></tr>
+  </tbody>
+</table>
+<p>可以注意第 ③ 项：目录项里怎么记物理位置，正好由上一节讲的物理结构决定——连续文件要记首块地址和块数，串联文件只记首块地址，索引文件记索引表的地址。目录结构由此和文件的物理结构衔接起来。</p>
+
+<h2>2. 一级文件目录与重名问题</h2>
+<p>最简单的目录形式是<strong>一级文件目录</strong>：系统把已建立的所有文件的文件名、存放地址及有关的说明信息统统放在一张表中，这张表就是一级文件目录。</p>
+<p>一级文件目录实现了按名存取，结构简单。但它要求<strong>文件名和文件之间有一一对应的关系</strong>，也就是不允许两个文件有相同的名字——否则表里出现两条同名记录，系统就无从判断用户指的是哪一个。单用户环境下这不成问题；一旦到了<strong>多用户环境</strong>，重名问题（也叫<strong>命名冲突</strong>）就出现了：不同用户对不同文件起了相同的名字，即两个或多个文件只有一个相同的符号名。</p>
+<p>要解决命名冲突、让用户获得更灵活的命名能力，文件系统必须放弃「一张表」的做法，改用<strong>多级目录结构</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0063.webp" alt="图 1　一级文件目录" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　一级文件目录：所有文件的文件名、存放地址与说明信息集中在一张表中，表项与文件一一对应（原课件第 63 张）</figcaption>
+</figure>
+
+<h2>3. 树型文件目录与文件路径名</h2>
+<p>多级目录系统的层次规则是：除最末一级外，任何一级目录的目录项既可以描述一个<strong>目录文件</strong>，也可以描述一个<strong>非目录文件</strong>（数据文件），而<strong>数据文件一定在树叶上</strong>。目录项层层指向下级目录，就构成了一棵<strong>树型（树形）文件目录</strong>：根在上、叶在下，中间节点都是目录。</p>
+<p>课件给出的例子是这样的结构：根目录为 <code>/</code>，其下有子目录 a、b、c 等分支；每个目录的每个表目在图中用一个 id 标出。例如图中 id 为 15 的文件位于「根目录 → 子目录 b → 子目录 f」这条通路上，它的文件名为 j。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0066.webp" alt="图 2　树型文件目录结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　树型（多级）文件目录结构：根目录 / 向下分出子目录 a、b、c 等分支，中间节点是目录，数据文件位于树叶，每个表目用 id 标识（原课件第 66 张）</figcaption>
+</figure>
+<h3>（1）绝对路径名</h3>
+<p>有了层次，就得有办法唯一地说出「是哪一个文件」。多级目录中，文件的<strong>路径名</strong>由「从根目录到该文件的通路上所有目录文件的符号名」加上「该文件的符号名」组成，各级符号名之间用 <code>/</code> 分隔。这种从根目录写起的路径名也叫<strong>绝对路径</strong>。例如图 2 中那个文件 j，其文件路径名是 <code>/b/f/j</code>——沿根目录、子目录 b、子目录 f 一路写下来，就不会有歧义。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0067.webp" alt="图 3　文件路径名（绝对路径）" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　文件路径名（绝对路径）：由根目录到文件通路上各级目录名与该文件名用「/」连接而成，图中 id 为 15 的文件路径名为 /b/f/j（原课件第 67 张）</figcaption>
+</figure>
+<h3>（2）重名问题如何被化解</h3>
+<p>树型目录恰好把重名问题化解掉了：不同的分支是彼此独立的名字空间，只要<strong>同一目录内不重名</strong>，不同目录下完全可以有同名文件。课件图中就有这样的情况——id 为 20 的文件与 id 为 12 的文件名都叫 a，但它们的路径名分别是 <code>/b/d/a</code> 与 <code>/c/a</code>；用户给出路径名，系统逐级查找，落到哪一个分支是明确的，不会混淆。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0068.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0068.webp" alt="图 4　树型目录下重名文件的区分" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　重名问题在树型目录下的解决：id 为 20 与 id 为 12 的两个文件同名（都叫 a），但分别位于 /b/d/a 与 /c/a 两条不同通路上，用路径名即可区分（原课件第 68 张）</figcaption>
+</figure>
+
+<h2>4. 当前目录与相对路径名</h2>
+<p>每次都从根目录写起毕竟麻烦，于是引入<strong>当前目录</strong>（又称<strong>值班目录</strong>）：它是用户当前正在操作的目录。为进程指定当前目录后，该进程对文件的所有访问都相对于「当前目录」进行，这时的文件路径名由「从当前目录到目标文件的通路上各级目录的符号名」加上目标文件名组成——这就是<strong>相对路径名</strong>。其中 <code>.</code> 表示当前目录本身，<code>..</code> 表示上一级目录。</p>
+<p>课件给了两个例子：</p>
+<ul>
+  <li>若指定当前目录为子目录 b（图中 id=3），那么 id 为 20 的文件（在 /b/d 之下）可以用相对路径名 <code>d/a</code> 或 <code>./d/a</code> 来访问，不必再写 <code>/b/d/a</code>。</li>
+  <li>若当前目录是子目录 f（图中 id=8），要访问子目录 c 中的文件 a（id=12），就要先用两个 <code>..</code> 回到根目录，再沿 c 下去，因此相对路径名是 <code>../../c/a</code>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0070.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0070.webp" alt="图 5　以当前目录为起点的相对路径名" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　当前目录为子目录 f（id=8）时，访问子目录 c 中的文件 a（id=12）可用 <code>../../c/a</code>：先退到根目录，再沿 c 下去（原课件第 70 张）</figcaption>
+</figure>
+
+<h2>5. 链接技术：让目录表目指向目录表目</h2>
+<p>文件共享除了靠路径名，还可以靠<strong>链接</strong>。所谓「链接」，就是在相应的目录表目之间建立联系：一个目录中的表目<strong>直接指向另一个目录表目所在的物理位置</strong>。特别要注意，这种链接指向的不是文件本身，而是<strong>相应的目录表目</strong>。这种做法也称为<strong>连访</strong>，被共享的文件称为<strong>连访文件</strong>——用户从自己的目录出发，沿着链接就能访问到别人目录里的那个文件。</p>
+<p>课件的例子是：子目录 f 中的表目 k 链接到子目录 e 中的文件 j。假定当前目录是子目录 b，那么用相对路径 <code>./f/k</code>（沿 f 找到 k）或用绝对路径 <code>/b/f/k</code> 都能访问到文件 j——路径上最后落到的虽然叫 k，实际访问的是 e 中的 j。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0072.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0072.webp" alt="图 6　目录表目之间的链接" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　链接技术示例：子目录 f 中的表目 k 链接到子目录 e 中的文件 j，用 <code>./f/k</code> 或 <code>/b/f/k</code> 均可访问 j（原课件第 72 张）</figcaption>
+</figure>
+
+<h2>6. UNIX/Linux 中的两种链接：软链接与硬链接</h2>
+<p>UNIX/Linux 把上述共享需求落实为两种具体的链接文件：<strong>硬链接</strong>（hard link）与<strong>软链接</strong>（又称<strong>符号链接</strong>，symbolic link）。它们的实现机制不同，行为差别也很值得对比。</p>
+<h3>（1）软链接（符号链接）</h3>
+<p>符号链接文件中并不包含实际的文件数据，只包含它<strong>所指向文件的路径</strong>。因此它可以链接到任意文件和目录，包括处于不同文件系统中的文件以及目录；路径既可以是相对路径，也可以是绝对路径。用户对链接文件操作时，系统会自动转到对源文件的操作；而<strong>删除链接文件本身，并不会删除源文件</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0074.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0074.webp" alt="图 7　文件的软链接示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　文件的软链接示意图：/usr/joc/foo 是真实文件（引用计数为 1），/usr/sue/bar 只是一个内容为路径 /usr/joc/foo 的链接文件，两者各自拥有自己的目录项与文件描述（原课件第 74 张）</figcaption>
+</figure>
+<h3>（2）硬链接</h3>
+<p>硬链接走的是另一条路：系统中的每一个文件或目录都有一个<strong>索引节点</strong>，通过索引节点访问文件或目录的内容，索引节点中存储了该文件的所有属性（不包括文件名）。<strong>多个目录项指向同一个索引节点</strong>，就是硬链接。因此硬链接的两个名字地位完全平等，谁也不是谁的「副本」。</p>
+<p>删除一个硬链接文件时，索引节点的<strong>引用计数减 1</strong>；只要引用计数不为 0，文件的索引节点和文件内容就仍然存在，通过别的名字照常访问。硬链接有两条限制：<strong>只能用于同一个文件系统内</strong>，并且<strong>不能是目录</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0076.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0076.webp" alt="图 8　文件的硬链接示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　文件的硬链接示意图：/usr/joc/foo 与 /usr/sue/bar 两个目录项指向同一个索引节点，引用计数为 2，删掉其中一个，文件内容依旧存在（原课件第 76 张）</figcaption>
+</figure>
+<h3>（3）两种共享方式在删除时的表现</h3>
+<p>两种方式的差别，在「拥有者删除了被共享的文件」这一刻暴露得最清楚。</p>
+<p>按<strong>符号链（软链接）</strong>方式共享时，链接文件里存的只是一个路径字符串。拥有者一旦删除了源文件 test1，路径就指不到任何东西了，共享者的链接变成<strong>悬空指针</strong>——访问它会失败。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0077.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0077.webp" alt="图 9　利用符号链实现文件共享，源文件被删除后指针悬空" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　利用符号链（软链接）实现文件共享：目录 B 链接到目录 C 中的文件 test1；拥有者删除 test1 之后，链接只剩一个路径字符串，成为悬空指针（原课件第 77 张）</figcaption>
+</figure>
+<p>按<strong>基于索引结点的共享（硬链接）</strong>方式共享时，共享者的目录项与拥有者的目录项指向的是同一个索引结点，只是引用计数由 1 变成 2。拥有者删除自己的目录项后，索引结点的引用计数减为 1，文件内容和索引结点都还在，共享者照样能访问——这也解释了为什么硬链接必须限制在同一个文件系统内。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-5/p0078.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-5/p0078.webp" alt="图 10　基于索引结点的共享方式及删除源文件后的情况" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　基于索引结点（硬链接）的共享：链接前引用计数为 1，建立链接后为 2；拥有者删除 test1 后减为 1，索引结点与文件内容依然保留（原课件第 78 张）</figcaption>
+</figure>
+<h3>（4）为什么不能对目录进行硬链接</h3>
+<ul>
+  <li>非常容易造成目录的<strong>死循环</strong>，而且文件系统没有很好的办法检测。软链接可以用于目录，因为软链接文件是一种特殊的文件类型，文件系统可以检测到并做特殊处理来防止死循环。</li>
+  <li><strong>父目录的含义会发生变化</strong>：一个目录出现多个父目录，甚至父子目录的辈分都会混乱（<code>..</code> 该指向谁不再确定）。</li>
+  <li>文件目录结构是一个<strong>树形结构，不能有环</strong>，而目录硬链接恰好会引入环。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>文件目录是把「逻辑结构 → 物理结构」「文件操作 → I/O 指令」这两次转换串起来的数据结构，它实现了按名存取；目录项通常记录文件名、逻辑结构、物理结构、存取控制、管理信息与文件类型六类内容。</li>
+  <li>一级文件目录把所有文件放在一张表里，简单但要求文件名唯一，多用户环境下会产生<strong>重名</strong>（命名冲突），必须改用多级目录。</li>
+  <li>树型（多级）文件目录中，中间节点是目录文件、数据文件在树叶上；用从根目录写起的<strong>绝对路径名</strong>（如 <code>/b/f/j</code>）唯一定位一个文件，不同分支因此可以放心地使用同名文件。</li>
+  <li>用<strong>当前目录</strong>（值班目录）作起点可以写<strong>相对路径名</strong>：<code>d/a</code>、<code>../../c/a</code> 这类写法都相对于当前目录解析，<code>.</code> 与 <code>..</code> 分别代表本目录和上一级目录。</li>
+  <li><strong>链接技术</strong>让一个目录表目指向另一个目录表目，被共享的文件称为连访文件；UNIX/Linux 中的<strong>软链接</strong>只存路径、可跨文件系统、可链目录，源文件删除后会悬空；<strong>硬链接</strong>让多个目录项共享同一索引结点、用引用计数管理，不能跨文件系统、不能用于目录。</li>
+  <li>目录结构解决了「文件放在哪里、怎么找」，下一节转向另一个问题：谁可以访问、以什么方式访问——文件共享与安全。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="9-4.html">‹ 9.4 文件存储空间的管理</a>
+      <a class="next" href="9-6.html">9.6 文件共享与安全 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

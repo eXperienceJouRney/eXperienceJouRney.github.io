@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.1 资源管理概述 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章 5.1 资源管理概述：课件第 2–8 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html" aria-current="page"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 5 章 资源分配与调度</p>
+      <h1>5.1 资源管理概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">第 4 章讲的是进程怎么并发起来，这一章换一个角度：并发起来之后，大家要用的那些资源该怎么分。这一节先建立总体认识——系统中都有哪些资源、为什么要有一套统一的资源管理办法、分配在哪一级进行、管理的目标与任务是什么，为后面几节的具体机制和策略打底。</p>
+
+<h2>1. 系统中的资源与资源管理</h2>
+<p>计算机系统拥有大量的资源，粗分起来有这么几类：<strong>硬件资源</strong>（处理机、存储器、各种外部设备）、<strong>软件资源</strong>（以文件形式存在的信息）以及<strong>内存数据</strong>。它们的使用者是作业和进程——也就是说，<strong>资源请求的「顾客」就是作业/进程</strong>。操作系统一方面提供这些资源，另一方面负责管理和分配这些资源。</p>
+<p>各种资源的性质差别很大：处理机是「用掉就没了、可以立刻收回」的，打印机是「谁占用谁独占」的，磁盘空间是「可以切开来分」的。但它们在管理上都有<strong>共性</strong>：都要回答「谁在请求、给谁、给多少、什么时候给、用完怎么收回」这一组问题。因此，本章不去逐类资源地讲，而是研究<strong>资源的分配方法和管理策略，寻求一种资源管理的普遍原则和方法</strong>，再把它们应用到具体的资源上去。这正是把「资源分配与调度」单列一章的原因。</p>
+
+<h2>2. 资源的静态分配与动态分配</h2>
+<p>从分配发生的时机看，系统的资源分配分成两级：</p>
+<ul>
+  <li><strong>资源的静态分配</strong>：系统对<strong>作业</strong>一级采用静态分配方法。系统在调度作业时，根据作业所需的资源进行分配；并在作业运行完毕时，收回所分配的全部资源。也就是说，分配与回收都发生在作业开始与结束这两个时刻，作业运行期间一直持有全部资源。</li>
+  <li><strong>资源的动态分配</strong>：系统对<strong>进程</strong>一级采用动态分配方法。系统在进程运行中，根据进程提出的资源需求，进行资源的动态分配和回收。资源是「要一次给一次、用完就还」的，进程不必在开始时就占住所有资源。</li>
+</ul>
+<p>静态分配简单、不会在运行中因缺资源而卡住，但资源利用率低；动态分配灵活、利用率高，却带来了新的风险——多个进程反复申请和释放资源，如果分配不当，就可能互相等待，这正是本章后半部分要讨论的死锁问题。因此这两级分配不是二选一的关系，而是配合使用：作业一级静态、进程一级动态。</p>
+
+<h2>3. 资源管理的目标</h2>
+<p>资源管理的根本矛盾在于：<strong>大量的资源请求与有限的资源之间存在矛盾</strong>。系统必须使互相竞争的进程能够有效地共享有限资源，具体目标有四条：</p>
+<ul>
+  <li>保证资源的高利用率；</li>
+  <li>在「合理」时间内使所有顾客都有获得所需资源的机会，即不让进程无限期地等下去；</li>
+  <li>对不可共享的资源实施互斥使用；</li>
+  <li>防止由资源分配不当而引起的死锁。</li>
+</ul>
+<p>前两条是「用好、分公平」，后两条是「管住争用、避免卡死」。可以看出，第 4 章讲的互斥与同步在这里获得了新的表述：互斥使用不可共享资源，就是资源管理目标中的第三条。</p>
+
+<h2>4. 资源的分类</h2>
+<p>按资源共享方式的不同，可以把资源分成四类，它们对应着不同的管理手段：</p>
+<ul>
+  <li><strong>互斥资源</strong>：同时只能一个用户使用，如打印机、磁带机；</li>
+  <li><strong>同类资源</strong>：对某类互斥资源，有多个完全相同的实例可以供多个用户同时使用，如多台同型号打印机、内存中的多个页框；</li>
+  <li><strong>可分时使用的互斥资源</strong>：同时只能一个用户使用，但可以分时使用，前提是能够备份和恢复资源的状态，如处理机——把当前进程的现场保存起来，就可以换另一个进程运行，之后再恢复；</li>
+  <li><strong>虚拟资源</strong>：通过虚拟技术把物理资源改造成多个逻辑资源供用户使用，如虚拟存储器、虚拟设备。</li>
+</ul>
+<p>这四类资源的申请、分配与回收方式各不相同，后面讨论分配机制与策略时，会反复回到这个分类上来。</p>
+
+<h2>5. 资源管理的任务</h2>
+<p>实施资源管理，需要做四件事：</p>
+<ul>
+  <li><strong>资源的描述</strong>：构造资源分配所需的数据结构，其中应包含该资源的物理名、逻辑名、类型、地址、分配状态等信息。没有准确的数据结构，就无从知道资源现在在谁手上、还剩多少；</li>
+  <li><strong>确定资源的分配原则（调度）</strong>：即决定资源分给谁、何时分配、分配多少等问题。同一个资源，按「先请求先服务」还是按「优先级」分配，效果大不一样；</li>
+  <li><strong>实施资源分配（分派）</strong>：根据所确定的分配原则以及用户的要求执行资源分配；当资源使用完毕后，收回资源以便重新分配给其他作业和进程使用；</li>
+  <li><strong>存取控制和安全保护</strong>：对资源的存取进行控制，并对资源实施安全保护措施，防止越权访问和破坏。</li>
+</ul>
+<p>其中前两条是「想清楚怎么分」，第三条是「真正分下去、再收回来」，第四条是「保证只有该用的人能用」。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>系统资源分硬件资源、软件资源（文件）、内存数据三类，请求资源的「顾客」是作业和进程，由操作系统负责提供、管理和分配；</li>
+  <li>资源管理的思路是研究各类资源在管理上的共性，形成普遍的原则和方法，而不是逐类资源各搞一套；</li>
+  <li>分配分两级：作业一级用静态分配（调度作业时一次分配，作业结束全部收回），进程一级用动态分配（运行中按需分配与回收）；</li>
+  <li>管理目标有四条：提高资源利用率、让所有顾客在合理时间内有机会获得资源、对不可共享的资源实施互斥、防止资源分配不当引起死锁；</li>
+  <li>资源按共享方式分四类：互斥资源、同类资源、可分时使用的互斥资源、虚拟资源；</li>
+  <li>资源管理的任务包括资源描述、确定分配原则、实施资源分配（分派）以及存取控制与安全保护。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-11.html">‹ 4.11 小结</a>
+      <a class="next" href="5-2.html">5.2 资源的分配机制和策略 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

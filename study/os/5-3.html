@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.3 死锁的概念与产生原因 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章 5.3 死锁的概念与产生原因：课件第 25–47 张 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html" aria-current="page"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 5 章 资源分配与调度</p>
+      <h1>5.3 死锁的概念与产生原因</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">第 4 章反复强调「资源必须互斥使用」，第 5 章开头又说明系统采用动态分配资源的策略。把这两件事放在一起，就会浮现一个危险：如果资源分配不当，进程之间可能互相等待、谁也不肯放手，全部被阻塞、无法推进。这就是死锁。这一节先看死锁是怎么发生的，再给出它的定义、产生原因、分析工具，最后归纳出产生死锁的四个必要条件——它是下一节讨论死锁预防的靶子。</p>
+
+<h2>1. 死锁是怎么发生的</h2>
+<p>操作系统的基本特征是<strong>并发</strong>和<strong>共享</strong>；共享的资源需要互斥访问；而资源的分配又是动态进行的。三件事合起来就意味着：进程会在运行过程中不断申请和释放资源，一旦分配不当，就可能出现「进程之间互相等待资源、全部都被阻塞不能推进」的局面。课件用两个例子说明这种局面是怎样形成的。</p>
+<h3>（1）多个互斥资源的共享</h3>
+<p>进程 p1、p2 共享一台打印机和一台光驱，两者都是互斥资源。时刻 t1：p1 占用了打印机，p2 占用了光驱；时刻 t2：p1 又请求占用光驱，p2 又请求占用打印机。此时 p1 手里的光驱要等 p2 释放，p2 手里的打印机要等 p1 释放，而双方都在等对方先放手——谁也推进不了。这是最典型的死锁：<strong>进程已经占有一部分资源，又在等待另一部分资源</strong>。</p>
+<h3>（2）同类资源的共享</h3>
+<p>再看一类资源的例子：进程 p1、p2 共享一个容量为 5 的缓冲区。时刻 t1：p1 占用 3 个缓冲区，p2 占用 2 个缓冲区；时刻 t2：p1 又请求 1 个缓冲区，p2 又请求 1 个缓冲区。缓冲区已经一个不剩，两个请求都无法满足，而它们占用的缓冲区又要等到自己做完才释放——同样全部被阻塞。可见死锁并不要求资源种类不同，<strong>同类资源被逐步瓜分干净也会造成死锁</strong>。</p>
+<h3>（3）生产者—消费者问题中的次序问题</h3>
+<p>第 4 章的生产者—消费者问题里也埋着同样的隐患。下面把生产者的两个 P 操作次序颠倒过来（原课件特意注明「这两个语句颠倒」）：</p>
+<pre><code>produceri( )
+{   while(生产未完成) {
+        生产一个产品;
+        p(mutex);      /* 这两个语句 */
+        p(empty);      /* 颠倒 */
+        送一个产品到有界缓冲;
+        v(mutex);
+        v(full);
+    }
+}
+
+consumerj( )
+{   while(还要继续消费) {
+        p(full);
+        p(mutex);
+        从有界缓冲区中取产品;
+        v(mutex);
+        v(empty);
+        消费一个产品;
+    }
+}</code></pre>
+<p>颠倒之后，生产者可能先拿到 mutex（缓冲区使用权），再去等一个空位置 empty；如果此刻缓冲区已满，它就只能抱着 mutex 等待。而消费者要取走产品、腾出空位置，恰恰需要先拿到 mutex——双方互相等待，系统死锁。这就印证了 4.6 节末尾的提醒：<strong>P 操作的次序不能随意交换</strong>。</p>
+
+<h2>2. 死锁的概念与特点</h2>
+<p>把上面的现象概括成定义：<strong>在两个或多个并发进程中，如果每个进程持有某种资源而又都等待着别的进程释放资源，它们都不能向前推进，此时称这一组进程产生了死锁</strong>。换一种说法，死锁是两个或多个进程被无限期阻塞、相互等待的一种状态，每个进程都占用了一定的资源而又都不能向前推进。</p>
+<p>死锁有几个特点值得单独记住：</p>
+<ul>
+  <li>死锁是由于<strong>资源分配不当</strong>引起的，不是资源本身有多少的问题；</li>
+  <li>死锁是<strong>百害而无一益</strong>的，它只会让系统停摆；</li>
+  <li>死锁<strong>不是必现</strong>的，它和时间有关，也就是与各进程申请、释放资源的具体时机有关。</li>
+</ul>
+<h3>（1）死锁与竞争的关系</h3>
+<p>既然死锁是竞争引起的，那能不能干脆取消竞争？不能。资源竞争本身是<strong>具有活力的、是需要的</strong>，虽然它存在着发生死锁的危险性。竞争是多个进程对共享资源的争夺，正是它使得多进程能够并发执行；死锁只是资源争夺过程中由于分配不当而造成的一种极端现象——永远互相等待。因此正确的态度是：<strong>操作系统应该采用有效的、安全的资源分配方法，来预防、避免或检测解除死锁，而不是取消竞争。</strong>后面几节讲的预防、避免、检测与解除，都是在这个前提下展开的。</p>
+
+<h2>3. 产生死锁的原因</h2>
+<p>死锁的产生与三个方面的因素有关：</p>
+<ul>
+  <li><strong>系统资源不足</strong>：资源数量不能满足所有进程的需要——注意这里的前提是「足够满足任一进程单独运行完」，也就是说每个进程单独跑都能跑完，只是同时跑就紧张了；</li>
+  <li><strong>进程占用和释放资源的顺序</strong>：如前面的生产者—消费者问题，P 操作次序不同，结果完全不同；</li>
+  <li><strong>进程的运行推进顺序</strong>：多个进程推进的相对快慢会改变资源的分配结果，所以死锁与时间有关、不是必现。</li>
+</ul>
+<p>分析死锁常用的工具有三个：<strong>死锁图解</strong>、<strong>资源分配有向图</strong>和<strong>系统资源模型</strong>。下面依次看前两个。</p>
+
+<h2>4. 用信号灯分析资源的占用序列</h2>
+<p>课件设置了一个可以动手分析的场景：进程 p1 与 p2 共享一台打印机 R1 和一台光驱 R2，用信号灯的 P、V 操作表示资源的申请和释放，s1 表示 R1 可用、s2 表示 R2 可用，初值都为 1。现在讨论四种资源占用序列，看哪种情况可能产生死锁。</p>
+<p><strong>序列 1（申请即释放、次序相同）</strong>：</p>
+<pre><code>进程 p1
+A1: p(s1); 占用 R1
+B1: v(s1);
+C1: p(s2); 占用 R2
+D1: v(s2);
+
+进程 p2
+A2: p(s1); 占用 R1
+B2: v(s1);
+C2: p(s2); 占用 R2
+D2: v(s2);</code></pre>
+<p>两个进程「申请一个、用一个、马上还一个」，任何时刻最多只持有一个资源，<strong>不满足「占有并等待」</strong>，因此不会死锁。</p>
+<p><strong>序列 2（申请即释放、次序相反）</strong>：</p>
+<pre><code>进程 p1
+A1: p(s1); 占用 R1
+B1: v(s1);
+C1: p(s2); 占用 R2
+D1: v(s2);
+
+进程 p2
+A2: p(s2); 占用 R2
+B2: v(s2);
+C2: p(s1); 占用 R1
+D2: v(s1);</code></pre>
+<p>p2 的申请次序与 p1 相反，但同样是用完即释放、不保持占有，所以<strong>仍然不会死锁</strong>。这说明「申请次序相反」本身还不足以致死锁，关键还要看是否「持有并等待」。</p>
+<p><strong>序列 3（保持占有、次序相同）</strong>：</p>
+<pre><code>进程 p1
+A1: p(s1); 占用 R1
+B1: p(s2); 又占用 R2
+C1: v(s1);
+D1: v(s2);
+
+进程 p2
+A2: p(s1); 占用 R1
+B2: p(s2); 又占用 R2
+C2: v(s1);
+D2: v(s2);</code></pre>
+<p>两个进程都是先占到 R1、再在持有 R1 的情况下申请 R2，即<strong>满足「占有并等待」</strong>；但它们的申请次序完全相同（都是 R1 → R2），不会形成「你等我、我等你」的环路，因此也不会死锁。</p>
+<p><strong>序列 4（保持占有、次序相反）</strong>：</p>
+<pre><code>进程 p1
+A1: p(s1); 占用 R1
+B1: p(s2); 又占用 R2
+C1: v(s1);
+D1: v(s2);
+
+进程 p2
+A2: p(s2); 占用 R2
+B2: p(s1); 又占用 R1
+C2: v(s2);
+D2: v(s1);</code></pre>
+<p>这一种<strong>可能产生死锁</strong>：两个进程都满足「占有并等待」，且申请次序相反。只要 p1 先拿到 R1、p2 先拿到 R2，接下来 p1 要的 R2 在 p2 手里，p2 要的 R1 在 p1 手里，就形成了环路等待。</p>
+<p>把这四种序列排在一起看，结论很清楚：<strong>死锁的发生既不取决于资源是否同类，也不仅仅取决于申请次序是否相反，而是几件条件同时成立的结果</strong>——这正是下一部分要提炼的「必要条件」。</p>
+
+<h2>5. 死锁图解</h2>
+<p>死锁图解用两个进程各自的推进过程作为两条坐标轴：一个进程轴上依次标出它的资源申请与释放动作，另一个进程轴同理，两条轴上的动作把平面划分成若干区域，落在特定区域内的推进组合就意味着两个进程都处在「已经占有一部分资源、又在等待另一部分」的状态，系统进入死锁。课件给出的这组动作是：</p>
+<pre><code>A1：p1 request (r1)      A2：p2 request (r2)
+B1：p1 request (r2)      B2：p2 request (r1)
+C1：p1 release (r1)      C2：p2 release (r2)
+D1：p1 release (r2)      D2：p2 release (r1)</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/5-3/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-3/p0037.webp" alt="图 1　死锁图解" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　死锁图解：以 p1、p2 的推进过程为两条坐标轴，标出各自的申请（A、B）与释放（C、D）动作，可以看出哪些推进组合会落入互相等待的区域（原课件第 37 张）</figcaption>
+</figure>
+
+<h2>6. 资源分配有向图</h2>
+<p>更规范的分析工具是<strong>资源分配有向图</strong>。它的节点集合由两部分组成：</p>
+<pre><code>资源集合：R = { r1, r2, ..., rm }
+进程集合：P = { p1, p2, ..., pn }</code></pre>
+<p>画法上，<strong>用矩形框表示资源，用圆圈表示进程</strong>。边集合 E 有两类：</p>
+<ul>
+  <li><strong>请求边 p → r</strong>：进程已请求资源、正在等待。这条有向边表示进程 p 申请资源类 r 中的一个资源得不到满足而处于等待状态，边从进程开始指向方框的边缘；</li>
+  <li><strong>分配边 r → p</strong>：资源已分配给进程。这条有向边表示 r 资源类中的一个资源已被进程 p 占用。如果一类资源有多个实例，就在矩形框中用<strong>黑点</strong>表示多个实例。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/5-3/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-3/p0039.webp" alt="图 2　资源分配有向图的请求边" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　资源分配有向图：圆圈表示进程、矩形表示资源，进程指向资源的边是请求边（原课件第 39 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/5-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-3/p0040.webp" alt="图 3　资源分配有向图的分配边与多实例表示" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　资源到进程的边是分配边；矩形框中的黑点表示该类资源的多个实例（原课件第 40 张）</figcaption>
+</figure>
+<p>有了这张图，前两节的例子就可以画成图 4 那样的两种典型形态：多个互斥资源的死锁（进程各自占有一个资源，又分别请求对方手里的资源，构成环）与同类资源的死锁。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-3/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-3/p0041.webp" alt="图 4　多个互斥资源的死锁与同类资源的死锁" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　资源分配有向图上的两种死锁：多个互斥资源的死锁与同类资源的死锁（原课件第 41 张）</figcaption>
+</figure>
+<h3>（1）环与死锁的关系</h3>
+<p>课件给出了一个具体例子：</p>
+<pre><code>P = { p1, p2, p3 }
+R = { r1, r2, r3, r4 }
+E = { p1 → r1, p2 → r2, r1 → p2,
+      r2 → p3, r3 → p1, r3 → p2 }</code></pre>
+<p>资源类型 r1 有 1 个实例，r2 有 1 个实例，r3 有 2 个实例，r4 有 3 个实例。由此可以判断：<strong>如果每种资源只有一个实例，有环是发生死锁的充分必要条件</strong>；而<strong>如果存在某种资源有多个实例，有环只是发生死锁的必要条件</strong>——有环不一定死锁，还要看实例够不够分。这个结论在 5.6 节讲死锁检测时会直接用到。</p>
+<h3>（2）同类资源的死锁问题</h3>
+<p>课件用两道练习结束这一部分，它们讨论的都是同类资源下死锁会不会发生：</p>
+<ul>
+  <li>三个进程共享四个同类资源，资源的分配和释放只能一次一个，已知每个进程最多需要两个资源，问该系统会不会发生死锁，为什么；</li>
+  <li>p 个进程共享 m 个同类资源，a 为所有进程对该类资源的最大需求数目之和，证明：如果 <strong>a &lt; p + m</strong>，则不会发生死锁（前提是单独每个进程对该类资源的最大需求量不超过 m）。</li>
+</ul>
+<p>第二题给出的判据很有用：它把「会不会死锁」转化成了一个关于资源总数的<strong>数量条件</strong>，而不需要去分析每个进程的推进时序。</p>
+
+<h2>7. 产生死锁的条件</h2>
+<p>把前面的分析提炼出来，产生死锁必须同时满足四个条件，缺一不可，因此它们也叫做<strong>死锁的必要条件</strong>：</p>
+<ul>
+  <li><strong>（1）互斥条件</strong>：涉及的资源是非共享的，即一次只有一个进程使用。如果有另一个进程申请该资源，那么它必须等待，直到该资源被释放；</li>
+  <li><strong>（2）不可抢占</strong>：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能由获得该资源的进程自己主动释放；</li>
+  <li><strong>（3）占有并等待（部分分配）</strong>：进程每次申请它所需要的一部分资源，在等待一个新资源的同时，进程继续占用已分配到的资源；</li>
+  <li><strong>（4）环路条件（循环等待）</strong>：存在一种进程的循环链，链中的每一个进程已获得的资源同时被链中下一个进程所请求。</li>
+</ul>
+<p>对照第 4 部分分析的四种序列，可以看到序列 4 之所以会死锁，正是因为它同时满足了这四条：R1、R2 是互斥资源；进程拿到资源后不会被人抢走；两个进程都占有并等待；两个进程之间构成了环路。而序列 1、2 破坏了第三条，序列 3 破坏了第四条。<strong>下一节死锁的预防，思路就是想办法破坏其中的某一条。</strong></p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>死锁是「每个进程持有某种资源又都在等待别的进程释放资源，谁都不能向前推进」的状态，其特点是由资源分配不当引起、有百害而无一益、不是必现且与时间有关；</li>
+  <li>死锁来自竞争，但竞争本身是并发活力所在，不能取消；要取消的是不安全的分配——正确的做法是用安全有效的资源分配方法去预防、避免或检测解除死锁；</li>
+  <li>产生死锁的原因有三：系统资源不足（但足够任一进程单独运行完）、进程占用释放资源的顺序、进程的运行推进顺序；常用分析工具有死锁图解、资源分配有向图、系统资源模型；</li>
+  <li>资源分配有向图中，圆圈是进程、矩形是资源，p → r 是请求边、r → p 是分配边，黑点表示多个实例。每种资源只有一个实例时，有环是死锁的充要条件；有资源存在多个实例时，有环只是必要条件；</li>
+  <li>产生死锁的四个必要条件：互斥、不可抢占、占有并等待、环路条件；生产者—消费者问题中颠倒两个 P 操作、以及信号灯序列 4 那种「保持占有 + 次序相反」，都是四条件同时成立的例子。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-2.html">‹ 5.2 资源的分配机制和策略</a>
+      <a class="next" href="5-4.html">5.4 死锁的预防 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

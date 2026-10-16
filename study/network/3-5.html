@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.5 点对点协议PPP · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.5 点对点协议PPP：讲义第 413–434 页 · 14 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html" aria-current="page"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.5 点对点协议PPP</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">用户家里的计算机要接入因特网，链路上跑的就是本节的主角——点对点协议 PPP（Point-to-Point Protocol）。它是目前使用最广泛的点对点数据链路层协议：既要把各种网络层协议的数据报封装成帧，又要负责链路的建立、配置、测试与鉴别。本节依次讲它的三部分构成、帧格式、透明传输方法、差错检测以及链路的工作状态。</p>
+
+<h2>1. 为什么需要 PPP 协议</h2>
+<p>在 3.1 节讲过，数据链路层可以分成点对点信道和广播信道两类。点对点信道最典型的应用场景，就是用户接入因特网：家庭或单位的用户计算机通过一条<strong>广域网链路</strong>连到 ISP 的路由器，在这条链路上运行的数据链路层协议就是 PPP。</p>
+<p>这条链路的两端各是谁？一端是用户的计算机，另一端是因特网服务提供者 ISP 的路由器。ISP 已经从因特网管理机构申请到一批 IP 地址，可以分配给接入的用户使用。目前常见的宽带接入方式叫 <strong>PPPoE（PPP over Ethernet）</strong>，也就是在以太网上运行 PPP，把 PPP 帧再封装进以太网帧中传输。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0415.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0415.webp" alt="图 1　用户通过 ISP 与 PPPoE 接入因特网" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　用户经广域网链路接入 ISP 的路由器，链路上运行 PPP（家庭宽带常用 PPPoE）（原讲义第 415 页）</figcaption>
+</figure>
+<p>PPP 协议由因特网工程任务组 IETF 于 1992 年制定，经过 1993 年和 1994 年的修订，现在已成为因特网的正式标准，见文档 <strong>[RFC 1661, RFC 1662]</strong>。</p>
+
+<h2>2. PPP 协议的三部分构成</h2>
+<p>PPP 为在点对点链路上传输各种协议数据报提供了一个标准方法，它由以下三部分构成：</p>
+<ul>
+  <li><strong>对各种协议数据报的封装方法</strong>，也就是封装成帧。这是 PPP 的主体，使它能承载不同网络层协议的数据报；</li>
+  <li><strong>链路控制协议 LCP（Link Control Protocol）</strong>：用于建立、配置以及测试数据链路的连接；</li>
+  <li><strong>一套网络控制协议 NCPs（Network Control Protocols）</strong>：其中的每一个协议支持不同的网络层协议。</li>
+</ul>
+<p>NCPs 是一族协议而不是一个协议，因为 PPP 要承载的网络层协议不止一种：TCP/IP 中的 IP、Novell NetWare 网络操作系统中的 IPX、Apple 公司的 AppleTalk 等，各自都有对应的 NCP。反过来，封装成帧的方法也要照顾两类物理链路——面向字节的异步链路和面向比特的同步链路。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0420.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0420.webp" alt="图 2　PPP 协议的三部分构成" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　PPP 由封装成帧、链路控制协议 LCP、一套网络控制协议 NCPs 三部分构成（原讲义第 420 页）</figcaption>
+</figure>
+
+<h2>3. PPP 帧的格式</h2>
+<p>PPP 帧由帧首部、帧的数据部分和帧尾部组成，各字段的长度和含义如下表所示。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0422.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0422.webp" alt="图 3　PPP 帧的格式" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　PPP 帧格式：标志、地址、控制、协议、数据部分与帧检验序列 FCS（原讲义第 422 页）</figcaption>
+</figure>
+<table>
+  <caption>PPP 帧各字段的长度与取值（依据原讲义第 422～424 页）。</caption>
+  <thead>
+    <tr><th>字段</th><th>长度</th><th>取值与作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>标志（Flag）</td><td>1 字节</td><td>PPP 帧的定界符，取值为 <code>0x7E</code></td></tr>
+    <tr><td>地址（Address）</td><td>1 字节</td><td>取值为 <code>0xFF</code>，预留（目前没有什么作用）</td></tr>
+    <tr><td>控制（Control）</td><td>1 字节</td><td>取值为 <code>0x03</code>，预留（目前没有什么作用）</td></tr>
+    <tr><td>协议（Protocol）</td><td>2 字节</td><td>指明帧的数据部分送交哪个协议处理</td></tr>
+    <tr><td>数据部分</td><td>不超过 1500 字节</td><td>要传输的数据报</td></tr>
+    <tr><td>帧检验序列（FCS）</td><td>2 字节</td><td>CRC 计算出的校验位</td></tr>
+    <tr><td>标志（Flag）</td><td>1 字节</td><td>PPP 帧的定界符，取值为 <code>0x7E</code></td></tr>
+  </tbody>
+</table>
+<p>协议字段的常见取值有三种，它们决定了数据部分到底是什么：</p>
+<ul>
+  <li><code>0x0021</code>：帧的数据部分为 <strong>IP 数据报</strong>，整个帧即 <code>7E FF 03 0021</code> 开头；</li>
+  <li><code>0xC021</code>：帧的数据部分为 <strong>LCP 分组</strong>，整个帧即 <code>7E FF 03 C021</code> 开头；</li>
+  <li><code>0x8021</code>：帧的数据部分为 <strong>NCP 分组</strong>，整个帧即 <code>7E FF 03 8021</code> 开头。</li>
+</ul>
+
+<h2>4. 透明传输</h2>
+<p>PPP 帧以标志字段 F 作为定界符，F 的取值是 <code>0x7E</code>，写成二进制就是 <code>01111110</code>。问题在于：帧的数据部分里完全可能出现与 F 相同的比特组合，如果接收方把它误当成帧的结束标志，帧就会被截断。因此 PPP 必须实现<strong>透明传输</strong>——不管数据部分出现什么比特组合，都能原样传过去而不被误判为定界符。方法视物理链路类型而定：</p>
+<ul>
+  <li><strong>面向字节的异步链路</strong>：采用<strong>字节填充法</strong>，即插入转义字符；</li>
+  <li><strong>面向比特的同步链路</strong>：采用<strong>比特填充法</strong>，即插入比特 0。</li>
+</ul>
+<h3>（1）字节填充法</h3>
+<p>面向字节的异步链路以字节为单位处理数据，转义字符取 <code>0x7D</code>。发送方对帧的数据部分逐字节检查并做如下变换：</p>
+<ul>
+  <li>出现的每一个 <code>0x7E</code>（PPP 帧的定界符）字节，转变成 2 字节序列 <code>（0x7D, 0x5E）</code>；</li>
+  <li>出现的每一个 <code>0x7D</code>（转义字符本身）字节，转变成 2 字节序列 <code>（0x7D, 0x5D）</code>；</li>
+  <li>出现的每一个 ASCII 控制字符（数值小于 <code>0x20</code> 的字符），则在该字符前面插入一个 <code>0x7D</code> 字节，同时将该字符的编码加上 <code>0x20</code>。</li>
+</ul>
+<p>接收方对帧的数据部分做反变换，即可恢复出原来的数据。可见「转义字符」这个思路和 3.2 节讲封装成帧时提到的办法是一致的。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0426.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0426.webp" alt="图 4　面向字节异步链路的字节填充法" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　字节填充法：<code>0x7E</code> 变成 <code>7D 5E</code>，<code>0x7D</code> 变成 <code>7D 5D</code>，控制字符前插入 <code>0x7D</code> 并加 <code>0x20</code>（原讲义第 426 页）</figcaption>
+</figure>
+<h3>（2）比特填充法</h3>
+<p>面向比特的同步链路不按字节对齐，而是直接在比特流上做文章，因为定界符 <code>01111110</code> 的特征就是「6 个连续的 1」。于是：</p>
+<ul>
+  <li>发送方对帧的数据部分进行扫描（一般由硬件实现），只要发现 <strong>5 个连续的比特 1</strong>，就立即填充 1 个比特 0；</li>
+  <li>接收方对帧的数据部分进行扫描（一般由硬件实现），只要发现 5 个连续的比特 1，就把其后的 1 个比特 0 删除。</li>
+</ul>
+<p>这样一来，数据部分里永远不会出现 6 个连续的 1，标志字段 <code>01111110</code> 就只可能出现在帧的首尾，定界不会出错。这就是 3.2 节提到的零比特填充法在 PPP 中的具体应用。</p>
+
+<h2>5. 差错检测</h2>
+<p>PPP 帧的帧检验序列 FCS 字段长 2 字节，是 CRC 计算出的校验位，使用的生成多项式为 <strong>CRC-CCITT = X<sup>16</sup> + X<sup>12</sup> + X<sup>5</sup> + 1</strong>。RFC 1662 的附录部分给出了 FCS 计算方法的 C 语言实现（查表法）。</p>
+<p>FCS 的计算范围是标志字段之外的部分，也就是帧首部的地址、控制、协议三个字段和帧的数据部分。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0429.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0429.webp" alt="图 5　PPP 帧的 FCS 计算范围" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　差错检测：FCS 的计算范围为标志字段之外的地址、控制、协议与数据部分，采用 CRC-CCITT（原讲义第 429 页）</figcaption>
+</figure>
+<p>接收方每收到一个 PPP 帧就做一次 CRC 检验：检验正确就收下这个帧，否则丢弃这个帧。请注意这里的措辞是「丢弃」而不是「重传」——<strong>使用 PPP 的数据链路层向上不提供可靠传输服务</strong>。这与 3.4 节讲的停止-等待、回退N帧、选择重传三种可靠传输机制形成了对照：PPP 只做差错检测，差错的处理交给上层（例如 TCP）负责。</p>
+
+<h2>6. PPP 链路的工作状态</h2>
+<p>PPP 协议不只是一套帧格式，它还规定了链路从建立到释放的完整过程。图 6 是 PPP 链路的<strong>状态图</strong>，我们可以沿着它走一遍：</p>
+<ol>
+  <li>链路最初处于<strong>静止</strong>状态。检测到载波并建立物理层连接后，进入<strong>建立</strong>状态；</li>
+  <li>在建立状态进行 <strong>LCP 配置协商</strong>，协商内容包括最大帧长和鉴别协议。可选的鉴别协议有三种：不鉴别、口令鉴别协议 PAP、挑战握手鉴别协议 CHAP。若 LCP 配置协商失败，则退回静止状态；</li>
+  <li>协商成功后进入<strong>鉴别</strong>状态：若选择了不鉴别、或者鉴别成功，就进入打开状态；若鉴别失败，则进入终止状态；</li>
+  <li>进入<strong>网络</strong>状态后进行 NCP 配置：PPP 链路的两端互相交换网络层特定的 NCP 分组。如果在这条 PPP 链路上运行的是 IP，就使用 IP 控制协议 IPCP 对链路两端的每一端配置 IP 模块，例如分配 IP 地址；</li>
+  <li><strong>打开</strong>状态下就可以进行数据通信了；</li>
+  <li>若出现故障或收到终止请求，则进入<strong>终止</strong>状态；载波停止后就回到静止状态，整个链路释放。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course/3-5/p0432.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-5/p0432.webp" alt="图 6　PPP 链路的工作状态" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　PPP 链路的工作状态：静止 → 建立（LCP 协商）→ 鉴别 → 网络（NCP 配置）→ 打开 → 终止（原讲义第 432 页）</figcaption>
+</figure>
+<p>把状态图与前面的内容连起来看：帧格式解决「怎么封装」，透明传输和差错检测解决「怎么把帧原样、可检验地送过去」，而 LCP 与 NCPs 解决「链路怎么建起来、两端怎么配置」——这正是 PPP 由三部分构成的含义。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>PPP 是目前使用最广泛的点对点数据链路层协议，用于用户经广域网链路接入 ISP 的场景，家庭宽带常见的 PPPoE 即「在以太网上运行 PPP」；标准文档为 RFC 1661 与 RFC 1662（IETF 1992 年制定，1993、1994 年修订）；</li>
+  <li>PPP 由三部分构成：对各种协议数据报的封装方法（封装成帧）、链路控制协议 LCP（建立、配置、测试数据链路）、一套网络控制协议 NCPs（每个支持一种网络层协议，如 IP、IPX、AppleTalk）；</li>
+  <li>帧格式为：标志（<code>0x7E</code>）＋地址（<code>0xFF</code>，预留）＋控制（<code>0x03</code>，预留）＋协议（2 字节）＋数据部分（不超过 1500 字节）＋FCS（2 字节）＋标志；协议字段 <code>0x0021</code> 表示 IP 数据报、<code>0xC021</code> 表示 LCP 分组、<code>0x8021</code> 表示 NCP 分组；</li>
+  <li>透明传输：面向字节的异步链路用字节填充法（<code>0x7E</code> → <code>7D 5E</code>、<code>0x7D</code> → <code>7D 5D</code>、控制字符前插 <code>0x7D</code> 并加 <code>0x20</code>），面向比特的同步链路用比特填充法（发送方遇 5 个连续 1 填 0，接收方遇 5 个连续 1 删后面的 0）；</li>
+  <li>差错检测用 2 字节 FCS，生成多项式为 CRC-CCITT = X<sup>16</sup> + X<sup>12</sup> + X<sup>5</sup> + 1，计算范围是标志字段之外的各字段；检验失败就丢弃，<strong>PPP 的链路层不向上提供可靠传输服务</strong>；</li>
+  <li>工作状态为：静止 → 建立（LCP 配置协商：最大帧长、鉴别协议 PAP/CHAP）→ 鉴别 → 网络（NCP 配置，运行 IP 时用 IPCP 分配 IP 地址）→ 打开（可数据通信）→ 终止 → 静止。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-4-4.html">‹ 3.4.4 可靠传输的实现机制 —— 选择重传协议</a>
+      <a class="next" href="3-6-1.html">3.6.1 媒体接入控制的基本概念 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

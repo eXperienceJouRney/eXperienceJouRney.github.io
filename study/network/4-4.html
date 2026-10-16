@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4 IP数据报的发送和转发过程 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.4 IP数据报的发送和转发过程：讲义第 869–893 页 · 15 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html" aria-current="page"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.4 IP数据报的发送和转发过程</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节弄清了地址怎么表示、怎么划分、怎么分配，这一节看它们怎么用起来：一个 IP 数据报从源主机出发，怎样判断该直接送到目的主机、还是交给路由器，路由器收到之后又按什么规则转发出去。这条路径上的每一步都由地址和子网掩码决定，理解它也就理解了「网际层的转发」到底做了什么、以及在广播和差错面前路由器为什么无能为力。</p>
+
+<h2>1. 发送与转发：两个环节</h2>
+<p>IP 数据报的发送和转发过程包含以下两部分：</p>
+<ul>
+  <li><strong>主机发送 IP 数据报</strong>——源主机判断目的主机是否与自己处在同一个网络中，决定是直接交付还是交给默认网关；</li>
+  <li><strong>路由器转发 IP 数据报</strong>——路由器收到数据报后检查首部、查路由表，决定从哪个接口送出去。</li>
+</ul>
+<p>为了把重点放在 TCP/IP 协议栈<strong>网际层</strong>的发送和转发过程上，之后的举例都忽略两件事：使用 ARP 协议来获取目的主机或路由器接口的 MAC 地址的过程，以及以太网交换机自学习和转发帧的过程。也就是说，本节只关心 IP 层怎么决策，不关心帧在链路层怎么走。</p>
+<p>以下的举例都基于同一个网络拓扑：一个 C 类地址块 192.168.0.0 被划分为两个子网，都用子网掩码 255.255.255.128（即 /25）。左侧子网 192.168.0.0/25 中有主机 A（192.168.0.1）、B（192.168.0.2）、C（192.168.0.3），经交换机 S1 接入路由器 R 的接口 192.168.0.126；右侧子网 192.168.0.128/25 中有主机 D（192.168.0.129）、E（192.168.0.130）、F（192.168.0.131），经交换机 S2 接入路由器 R 的另一个接口 192.168.0.254。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0871.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0871.webp" alt="图 1　本节举例的网络拓扑：192.168.0.0/25 与 192.168.0.128/25 两个子网经路由器 R 互连" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　举例拓扑：两个子网 192.168.0.0/25 与 192.168.0.128/25（掩码均为 255.255.255.128）通过路由器 R 互连，R 的接口分别是 192.168.0.126 和 192.168.0.254（原讲义第 871 页）</figcaption>
+</figure>
+
+<h2>2. 主机发送 IP 数据报</h2>
+<h3>（1）怎样判断目的主机是否与自己同在一个网络</h3>
+<p>源主机要回答的第一个问题是：目的主机是否与自己在同一个网络中？做法是把<strong>本机的子网掩码与目的主机的 IP 地址相与</strong>，得到目的网络地址，再与自己的网络地址比较，看两者是否相等。</p>
+<p>以主机 C 给主机 F 发送数据报为例：C 的地址是 192.168.0.3，子网掩码 255.255.255.128，F 的地址是 192.168.0.131。用掩码与 F 的地址相与，得到 <strong>192.168.0.128</strong>；而 C 所在网络的网络地址是 192.168.0.0——两者<strong>不相等</strong>，说明目的主机与源主机不在同一个网络中。反过来，如果 C 要把数据报发给同一个子网里的主机 B（192.168.0.2），相与的结果就是 192.168.0.0，与本网络地址相同，说明两者在同一网络内。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0874.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0874.webp" alt="图 2　源主机用子网掩码与目的地址相与得到目的网络地址，与本网络地址比较" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　判断方法：用本机子网掩码与目的地址相与得到目的网络地址 192.168.0.128，与本网络地址 192.168.0.0 不相等，因此属于间接交付（原讲义第 874 页）</figcaption>
+</figure>
+<h3>（2）直接交付与间接交付</h3>
+<ul>
+  <li>若目的主机<strong>与自己在同一个网络</strong>，则属于<strong>直接交付</strong>——数据报直接送到目的主机；</li>
+  <li>若<strong>不在同一个网络</strong>，则属于<strong>间接交付</strong>——数据报传输给主机所在网络的<strong>默认网关</strong>（路由器），由默认网关帮忙转发。</li>
+</ul>
+<h3>（3）默认网关</h3>
+<p>那么主机怎么知道路由器 R 的存在？靠的是本机配置中的<strong>默认网关</strong>。默认网关就是主机所在网络中路由器接口的 IP 地址：本拓扑中左侧子网的主机 A、B、C 把默认网关配置为 <strong>192.168.0.126</strong>（R 的接口 0），右侧子网的主机 D、E、F 把默认网关配置为 <strong>192.168.0.254</strong>（R 的接口 1）。凡是目的网络不是本机所在网络的数据报，一律先交给默认网关，再由它继续转发。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0876.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0876.webp" alt="图 3　两台子网中主机的默认网关分别配置为路由器 R 的两个接口地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　默认网关的配置：左侧子网主机配置 192.168.0.126，右侧子网主机配置 192.168.0.254，都是路由器 R 相应接口的地址（原讲义第 876 页）</figcaption>
+</figure>
+
+<h2>3. 路由器转发 IP 数据报</h2>
+<p>默认网关收到数据报后，按两步处理：</p>
+<ul>
+  <li><strong>第一步，检查 IP 数据报首部是否出错</strong>：若出错，则直接丢弃该 IP 数据报并通告源主机；若没有出错，则进行转发；</li>
+  <li><strong>第二步，根据 IP 数据报的目的地址在路由表中查找匹配的条目</strong>：若找到匹配的条目，则转发给条目中指示的下一跳；若找不到，则丢弃该 IP 数据报并通告源主机。</li>
+</ul>
+<p>本例中路由器 R 的路由表只有两条记录，因为它的两个接口分别直连着一个子网：</p>
+<table>
+  <caption>数据来源：原讲义第 880 页路由器 R 的路由表。</caption>
+  <thead>
+    <tr><th>目的网络</th><th>地址掩码</th><th>下一跳</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>192.168.0.0</td><td>255.255.255.128</td><td>接口 0 直连</td></tr>
+    <tr><td>192.168.0.128</td><td>255.255.255.128</td><td>接口 1 直连</td></tr>
+  </tbody>
+</table>
+<p>以主机 A 给主机 D 发送数据报为例，看整个过程的完整链条：</p>
+<pre><code>IP 数据报首部：
+源 192.168.0.1，目的 192.168.0.129
+A：掩码 255.255.255.128 与目的地址相与
+   得 192.168.0.128 ≠ A 的网络地址 192.168.0.0
+   → 间接交付，交给默认网关 192.168.0.126
+R：查首部无差错，相与得 192.168.0.128
+   与路由表第二行匹配 → 从接口 1 转发，到达主机 D</code></pre>
+<p>值得注意的是：在整个过程中，<strong>IP 数据报首部中的源地址和目的地址始终没有改变</strong>——源地址一直是 192.168.0.1，目的地址一直是 192.168.0.129。路由器只根据目的地址查表转发，它并不改写这两个地址，改变的只是承载数据报的帧在不同链路上的封装。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0881.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0881.webp" alt="图 4　路由器 R 根据目的地址查表，将数据报从对应接口转发出去" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　路由器 R 用目的地址与地址掩码相与查表，匹配到 192.168.0.128 后从接口 1 直连转发，首部中的源地址与目的地址保持不变（原讲义第 881 页）</figcaption>
+</figure>
+
+<h2>4. 广播分组：路由器为什么不转发</h2>
+<p>如果主机 A 发送的数据报是广播分组，情况就不同了。原讲义给出了三种广播地址的用法，它们都只在本网络内起作用，<strong>路由器一律不转发</strong>：</p>
+<ul>
+  <li>目的地址为 <strong>192.168.0.127</strong>，这是子网 192.168.0.0/25 的广播地址（主机号全 1），本网络内广播；</li>
+  <li>目的地址为 <strong>255.255.255.255</strong>，这是<strong>受限的广播地址</strong>，同样只在本网络内广播；</li>
+  <li>目的地址为 <strong>192.168.0.255</strong>，这是子网 192.168.0.128/25 的广播地址，也只有该子网内的主机会收到。</li>
+</ul>
+<p>所以广播分组无论目的地址写成上述哪一种，都止步于路由器，不会扩散到另一个子网去（图 5）。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0885.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0885.webp" alt="图 5　目的地址为本网络广播地址或受限广播地址的分组，路由器不转发" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　A 发送目的地址为 192.168.0.127（本网络广播地址）或 255.255.255.255（受限的广播地址）的分组，只在本网络内广播，路由器 R 不转发（原讲义第 885 页）</figcaption>
+</figure>
+<p>正是「路由器不转发广播」这一特性，使它在网络设备中显得特别：广播分组无法越过路由器，广播风暴也就被限制在一个网络之内。原讲义用 2010 年的一道真题来比较各类设备的这个能力：<strong>下列网络设备中，能够抑制广播风暴的是</strong>——I. 中继器，II. 集线器，III. 网桥，IV. 路由器；A. 仅 I 和 II，B. 仅 I，C. 仅 I 和 IV，D. 仅 IV。答案是 D。</p>
+<table>
+  <caption>数据来源：原讲义第 887 页 2010 年题 38 的解析。</caption>
+  <thead>
+    <tr><th>设备</th><th>层次</th><th>隔离冲突域</th><th>隔离广播域</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>中继器、集线器</td><td>物理层</td><td>不可以</td><td>不可以</td></tr>
+    <tr><td>网桥、交换机（多端口网桥）</td><td>数据链路层</td><td>可以</td><td>不可以</td></tr>
+    <tr><td>路由器</td><td>网络层</td><td>可以</td><td>可以</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 路由器的职责边界</h2>
+<p>路由器转发分组时做的事不少，但它并不负责可靠传输。原讲义用 2012 年的一道真题来澄清这一点：<strong>下列关于 IP 路由器概念的描述中，正确的是</strong>——I. 运行路由协议，设置路由表；II. 监测到拥塞时，合理丢弃 IP 分组；III. 对收到的 IP 分组头进行差错校验，确保传输的 IP 分组不丢失；IV. 根据收到 IP 分组的目的 IP 地址，将其转发到合适的输出线路上。选项是 A. 仅 I、IV，B. 仅 I、II、III，C. 仅 I、II、IV，D. I、II、III、IV，答案是 C。</p>
+<p>关键在描述 III 上：IP 路由器工作在 TCP/IP 体系结构的网际层（或称 IP 层），而<strong>网际层并不负责可靠传输</strong>，也就是不能确保传输的 IP 分组不丢失。准确的说法是：IP 路由器对收到的 IP 分组头进行差错校验，当发现错误时会丢弃该 IP 分组，并向源主机发送 ICMP 差错报告报文（类型为参数错误）——是「发现错误就丢并报告」，而不是「保证不丢」。所以描述 III 错误，其余三项都是路由器的正常职责。</p>
+
+<h2>6. 综合应用：主机能否访问 WWW 服务器与 Internet</h2>
+<p>把上面的判断方法用到具体配置上，就是原讲义选用的 2015 年题 47。网络拓扑如图 6：路由器内网接口为 111.123.15.1/24，WWW 服务器为 111.123.15.3/24，DHCP 服务器为 111.123.15.2/24，主机 1 为 111.123.15.4/24（静态配置），主机 2～主机 N 通过 DHCP 动态获取配置。题目问：<strong>若主机 1 的子网掩码和默认网关分别配置为 255.255.255.0 和 111.123.15.2，则该主机是否能访问 WWW 服务？是否能访问 Internet？</strong></p>
+<figure class="fig">
+  <a href="../../assets/course/4-4/p0889.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-4/p0889.webp" alt="图 6　2015 年题 47 的网络拓扑：路由器内网接口、WWW 服务器、DHCP 服务器与主机 1 均为静态地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　2015 年题 47 的拓扑：路由器内网接口 111.123.15.1/24、WWW 服务器 111.123.15.3/24、DHCP 服务器 111.123.15.2/24、主机 1 为 111.123.15.4/24（原讲义第 889 页）</figcaption>
+</figure>
+<p>结论是：<strong>主机 1 可以访问 WWW 服务器，但不能访问 Internet。</strong>理由分两层：</p>
+<ul>
+  <li>主机 1 使用的子网掩码 255.255.255.0 与网络前缀 /24 一致，从 IP 地址与子网掩码配置以及物理连接方面看，主机 1（111.123.15.4）和 WWW 服务器（111.123.15.3）处在同一网络中，所以访问 WWW 服务器属于直接交付，可以成功；</li>
+  <li>主机 1 的默认网关被错误地配置成了 DHCP 服务器的 IP 地址 111.123.15.2（正确的应当是路由器内网接口 111.123.15.1）。访问 Internet 属于间接交付，数据报会被交给默认网关，而 <strong>DHCP 服务器不具备路由器功能</strong>，无法把 IP 分组转发到 Internet，因此访问失败。</li>
+</ul>
+<p>这个例子把本节的两条线索串了起来：<strong>子网掩码决定「是不是同一个网络」，默认网关决定「不在同一个网络时交给谁」</strong>。两者任何一个配置错误，都会让主机在某些方向上通、在另一些方向上不通。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IP 数据报的发送和转发分两部分：主机发送 IP 数据报，路由器转发 IP 数据报；讨论时忽略 ARP 获取 MAC 地址与交换机转发帧的过程，只关注网际层的决策。</li>
+  <li>主机用本机子网掩码与目的 IP 地址相与得到目的网络地址，与本网络地址比较：相同则直接交付，不同则间接交付，交给默认网关。</li>
+  <li>默认网关是主机所在网络中路由器接口的地址，例如左侧子网配置 192.168.0.126、右侧子网配置 192.168.0.254。</li>
+  <li>路由器收到数据报后先检查首部是否出错（出错则丢弃并通告源主机），再按目的地址查路由表（找到则转发给下一跳，找不到则丢弃并通告源主机）；转发过程中源地址和目的地址都不改变。</li>
+  <li>本网络广播地址（如 192.168.0.127）、受限广播地址 255.255.255.255 以及指向某网络的广播地址（如 192.168.0.255），路由器一律不转发；因此只有路由器能隔离广播域，中继器、集线器、网桥和交换机都不能。</li>
+  <li>路由器工作在网际层，只做首部差错校验并在出错时丢弃、发送 ICMP 差错报告报文，并不保证 IP 分组不丢失。</li>
+  <li>配置是否正确的判断标准：子网掩码决定目的主机是否与本机同网，默认网关决定不同网时交给谁；2015 年题 47 中主机 1 因默认网关误配为 DHCP 服务器地址而无法访问 Internet。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-3-5.html">‹ 4.3.5 IPv4地址的应用规划</a>
+      <a class="next" href="4-5.html">4.5 静态路由配置及其可能产生的路由环路问题 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

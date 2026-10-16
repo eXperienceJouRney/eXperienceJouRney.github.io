@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.3 计算机网络的分类 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 1 章 计算机网络概述 1.3 计算机网络的分类：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html" aria-current="page"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 1 章 计算机网络概述</p>
+      <h1>1.3 计算机网络的分类</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">同样一张网，换个角度看就有不同的名字。网络分类的视角不止一种，这里取两条最常用的线索：按作用范围分成局域网、城域网、广域网、个域网和因特网，按拓扑结构分成总线网、星型网、树形网、环形网、网状网和混合型网。前者决定一张网覆盖多大的地域、由谁运营，后者决定结点之间怎样连接，直接影响可靠性、成本与扩展方式。</p>
+<h2>1. 按作用范围分类</h2>
+<p>按作用范围划分，就是按网络覆盖的地理区域划分，从小到大的顺序是个域网 PAN、局域网 LAN、城域网 MAN 和广域网 WAN；因特网 Internet 也列在这一组里，因为它的范围是全世界。覆盖越小越容易做到高速、稳定、可控，覆盖越大越要借助公共网络基础设施和专门的运营者。下表把这一组网络放在一起对照。</p>
+<div class="tbl-wrap"><table>
+  <caption>表 1　按作用范围划分的五类网络（取自原课件第 57–61 张；速率一栏保留课件的定性口径，速率、带宽等指标见 1.4 节）。</caption>
+  <thead>
+    <tr><th>网络类型</th><th>覆盖范围</th><th>传输速率与传输技术</th><th>典型应用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>个域网 PAN</td><td>通常只有几米</td><td>蓝牙、Wi-Fi Direct 等短距离技术（课件未给出速率）</td><td>蓝牙耳机接手机、智能手表接收通知、智能家居设备</td></tr>
+    <tr><td>局域网 LAN</td><td>3～5 公里之内（一个办公室、一栋楼或一个校园）</td><td>高速数据传输，安全性高、易于管理，较少受外部干扰</td><td>公司内部网络、学校校园网、医院信息系统</td></tr>
+    <tr><td>城域网 MAN</td><td>几公里到几十公里</td><td>提供高速互联网接入；由政府、电信公司或大型企业运营（课件未给出速率）</td><td>连接城市内不同局域网，支撑城市级数据中心与云计算</td></tr>
+    <tr><td>广域网 WAN</td><td>数百、数千甚至数万公里</td><td>经电话线、光纤和卫星链路等公共基础设施；由 ISP 运营并提供路由服务</td><td>跨城市、跨国乃至洲际传输；互联网是最著名的例子</td></tr>
+    <tr><td>因特网 Internet</td><td>全球范围</td><td>由众多网络互连而成，性能取决于所接入的网络</td><td>全球范围的资源共享与通信</td></tr>
+  </tbody>
+</table></div>
+<p><strong>局域网 LAN（Local Area Network）</strong>在相对较小的地理范围内——一个办公室、一栋楼或一个校园——把计算机、打印机和其他设备连接起来，让用户共享文件和打印机，也提供电子邮件、即时消息这类通信能力。它的覆盖范围通常限制在 3～5 公里之内，正因为它小，才做得到高效的数据传输速率和稳定的连接，适合企业和教育机构。主要特性是高速数据传输、高安全性、易于管理和控制：覆盖范围有限，一般不受外部网络干扰。公司内部网络、学校校园网和医院信息系统，都是它的典型应用。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-3/p0058.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-3/p0058.webp" alt="图 1　局域网的范围与典型应用" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　局域网：办公室、一栋楼或一个校园内的计算机与打印机互连共享资源（原课件第 58 张）</figcaption>
+</figure>
+<p><strong>城域网 MAN（Metropolitan Area Network）</strong>把范围放大到一个城市或都市区域，连接的是多个局域网和广域网，通常由政府部门、电信公司或大型企业运营。它的覆盖范围从几公里到几十公里不等，对外提供高速互联网接入，对内把城市里不同的局域网连成一片，并支撑城市级数据中心与云计算服务。一个城市用它连接政府机构、图书馆、学校和其他公共服务设施，就是典型应用。</p>
+<p><strong>广域网 WAN（Wide Area Network）</strong>跨越广阔的地理范围，通常包括多个城市、国家甚至洲际连接，互联网就是最著名的广域网例子。它的覆盖范围可以跨越数百、数千甚至数万公里。广域网通常使用公共网络基础设施，如电话线、光纤和卫星链路来传输数据，让数据能在不同地理位置之间往返；运营上通常由互联网服务提供商 ISP（Internet Service Provider）经营，由 ISP 提供网络连接和路由服务。</p>
+<p><strong>个域网 PAN（Personal Area Network）</strong>是这一组里最小的一种，覆盖范围通常只有几米，连接的是个体用户身边的设备。它一般用蓝牙、Wi-Fi Direct 等技术把设备直接连起来，连的对象可以是智能手机、平板电脑、耳机、健康监测器和智能家居设备。用蓝牙耳机接听手机、戴智能手表接收通知，都是它的常见用法。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-3/p0061.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-3/p0061.webp" alt="图 2　个域网的范围与设备类型" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　个域网：几米之内用蓝牙、Wi-Fi Direct 连接手机、耳机与穿戴式设备（原课件第 61 张）</figcaption>
+</figure>
+<p><strong>因特网 Internet</strong> 与上面四种不完全同类：它把全世界大量网络互连起来，不是按覆盖面积界定的那一类；1.2 节讲过它的成长过程，这里只需记住，它代表「全球」这一档。</p>
+<h2>2. 按拓扑结构分类</h2>
+<p>换个视角：不看网络铺多大，而看结点和链路连成了什么形状，这就是网络的<strong>拓扑结构</strong>。常见的有六种——总线网、星型网、树形网、环形网、网状网和混合型网。它决定信道怎样被共享、某处出故障会不会波及全网、增加新结点是否方便。</p>
+<h3>（1）总线型与星型</h3>
+<p><strong>总线型网</strong>把所有结点串接到一条公共传输介质（总线）上，任一结点发出的信号沿总线传播、其他结点都能收到，因此存在发送权的争用；它布线省、增删结点方便，但总线一旦断开，其余结点都受影响。<strong>星型网</strong>把每个结点各自连到中心结点（集线器或交换机），结点间通信都经中心结点转发；它便于管理、单个结点故障不牵连别人，代价是中心结点一出问题整网瘫痪，线缆较多。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-3/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-3/p0062.webp" alt="图 3　总线型与星型拓扑结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　总线型与星型：前者共用一条总线，后者各结点分别连到中心结点（原课件第 62 张）</figcaption>
+</figure>
+<h3>（2）树形与环形</h3>
+<p><strong>树形网</strong>是星型网的层层叠加：若干星型的中心结点再向上连到更高层的结点。它便于分级管理和扩展，适合有层次的组织，但层次越高影响面越大。<strong>环形网</strong>把各结点首尾相接连成闭合环路，数据沿环一站一站传递，通常靠令牌方式决定谁有权发送；它路径确定、实时性较好，但环上任何一处断链都可能使环路中断。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-3/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-3/p0063.webp" alt="图 4　树形与环形拓扑结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　树形与环形：树形把星型结构分层叠加，环形把结点首尾相接成闭合环路（原课件第 63 张）</figcaption>
+</figure>
+<h3>（3）网状与混合型</h3>
+<p><strong>网状网</strong>在结点之间建立多条通路，连成完整网状（全互连）或部分网状；它冗余度高，某条链路或结点失效，数据可以绕道而行；代价是链路多、维护成本高，多用于骨干网络。<strong>混合型网</strong>把几种结构组合使用，例如主干用网状保证可靠、接入用星型或总线节省成本，现实中的网络大多是混合型。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-3/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-3/p0064.webp" alt="图 5　网状与混合型拓扑结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　网状与混合型：网状在结点之间建立多条通路，混合型把几种结构组合使用（原课件第 64 张）</figcaption>
+</figure>
+<h2>本节小结</h2>
+<ul>
+  <li>网络分类的视角不止一种，本节取两条最常用的线索：作用范围与拓扑结构。</li>
+  <li>按作用范围由小到大：个域网 PAN（几米）→ 局域网 LAN（3～5 公里之内）→ 城域网 MAN（几公里到几十公里）→ 广域网 WAN（数百至数万公里）；因特网 Internet 代表「全球」这一档。</li>
+  <li>局域网高速、安全、易于管理，用于公司内部网络、校园网和医院信息系统；城域网连接城市内的局域网并支撑城市级数据中心与云计算；广域网借助电话线、光纤和卫星链路，由 ISP 运营；个域网用蓝牙、Wi-Fi Direct 连接个人设备。</li>
+  <li>按拓扑结构分六种：总线网（共用总线，省线但故障影响一片）、星型网（集中到中心结点，便于管理但中心是关键）、树形网（分层的星型）、环形网（首尾成环，路径确定但断链影响全网）、网状网（多路冗余，可靠但成本高）、混合型网（几种结构组合，现实中最多见）。</li>
+  <li>拓扑结构决定信道共享方式、故障影响范围与扩展的难易；速率、带宽、时延等指标见 1.4 节。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-1-2.html">‹ 1.2 计算机网络的演化</a>
+      <a class="next" href="v2-1-4.html">1.4 计算机网络的评价指标 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

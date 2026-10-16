@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.2 进程概念 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.2 进程概念：课件第 25–35 张 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html" aria-current="page"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.2 进程概念</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节留下的三个问题——与时间有关的错误、程序与计算不再一一对应、并发进程之间的相互制约——都指向同一个结论：程序这个概念已经不够用了。为了动态地反映程序的活动和状态的变化，操作系统引入了<strong>进程</strong>。这一节回答四个问题：为什么要引入进程、进程是什么以及它与程序有什么区别、进程有哪些状态和状态如何变迁、进程在内核里用什么数据结构来描述和组织。</p>
+
+<h2>1. 为什么要引入进程</h2>
+<p>回到上一节的线索，引入进程的原因有三条：</p>
+<ul>
+  <li>（1）提高资源利用率的要求导致<strong>程序并发执行</strong>；</li>
+  <li>（2）程序段的并发执行可以有任意的组合情况，为了保证并发程序的正确性、避免与时间有关的错误，并发程序之间存在<strong>同步和互斥的约束</strong>。这些运行时的约束是通过阻塞／唤醒程序来实现的，于是程序就不停地处于「运行／暂停／运行……」的状态；</li>
+  <li>（3）一个程序可以同时多次运行，每次运行的情况可能都不一样。</li>
+</ul>
+<p>基于以上原因，静态的「程序」概念已经不足以描述这种不断变化的执行过程。为了动态地反映程序的活动和状态的变化——运行 → 暂停 → 运行——操作系统引入了新的概念：<strong>进程</strong>。</p>
+
+<h2>2. 进程的定义及其与程序的区别</h2>
+<p>进程是支持并发作业的操作系统中最基本、最重要的概念，<strong>现代操作系统的设计都是建立在进程的基础上</strong>。简单说，进程就是程序的一次执行过程，它是能独立运行、参与资源竞争的活动单位。</p>
+<p>进程与程序的区别可以归结为四点：</p>
+<ul>
+  <li>① <strong>程序是指令的有序集合，是静态的概念；进程是程序的一次执行过程，是动态的概念</strong>；</li>
+  <li>② 进程是一个独立运行的活动单位；</li>
+  <li>③ 进程是竞争系统资源的基本单位；</li>
+  <li>④ <strong>一个程序可以对应多个进程，而一个进程一定包含一个程序</strong>。</li>
+</ul>
+<p>第 ④ 条最值得琢磨：同一个程序被多次启动，就会形成多个进程，它们各有各的进度、数据和状态——这正是「程序与计算不再一一对应」的正面表述，也是操作系统必须为每次执行单独建立一套描述信息的原因。</p>
+
+<h2>3. 进程的状态</h2>
+<h3>（1）进程的基本状态</h3>
+<p>一个进程在生命周期中至少要具备三种状态：</p>
+<ul>
+  <li><strong>运行状态</strong>（running）：该进程已获得运行所必需的资源，它的程序正在处理机上执行；</li>
+  <li><strong>等待状态</strong>（wait）：进程正等待着某一事件的发生而暂时停止执行。这时，即使给它 CPU 控制权，它也无法执行；</li>
+  <li><strong>就绪状态</strong>（ready）：进程已获得除 CPU 之外的运行所必需的资源，一旦得到 CPU 控制权，立即可以运行。</li>
+</ul>
+<p>等待与就绪的区别是这一节最容易混淆的地方：<strong>等待是「缺事件」，就绪是「只缺 CPU」</strong>。等待中的进程缺的是 I/O 完成、信号到来这类外部条件，条件不到，给它 CPU 也用不上；就绪进程万事俱备，只等被调度选中。</p>
+<h3>（2）进程状态的变迁</h3>
+<p>三种状态之间由四类事件驱动，来回转换：</p>
+<ul>
+  <li>运行 → 等待：进程发出<strong>服务请求</strong>（如请求 I/O 等），需要等待外部事件完成；</li>
+  <li>等待 → 就绪：<strong>服务完成或事件来到</strong>，进程重新具备运行条件；</li>
+  <li>就绪 → 运行：<strong>进程调度</strong>选中了它，把 CPU 分配给它；</li>
+  <li>运行 → 就绪：<strong>时间片到</strong>（在分时系统中），或者被更高优先级的进程抢占。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-2/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-2/p0031.webp" alt="图 1　进程状态变迁图（四条变迁）" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　进程状态变迁图：运行、就绪、等待三种状态之间的四条变迁路径，编号 1～4（原课件第 31 张）</figcaption>
+</figure>
+<p>把变迁条件标全，就是下面这张更完整的图：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-2/p0032.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-2/p0032.webp" alt="图 2　进程状态变迁图（含变迁条件）" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　进程状态变迁图（含变迁条件）：运行经服务请求进入等待，等待经服务完成／事件来到进入就绪，就绪经进程调度进入运行，运行经时间片到回到就绪（原课件第 32 张）</figcaption>
+</figure>
+
+<h2>4. 进程描述</h2>
+<h3>（1）进程的组成</h3>
+<p>一个进程由程序代码和一组记录其动态特征的数据结构组成：</p>
+<ul>
+  <li><strong>代码段</strong>：描述进程本身所应完成的功能；</li>
+  <li><strong>数据段</strong>：进程使用的数据；</li>
+  <li><strong>堆</strong>：用于动态分配的数据；</li>
+  <li><strong>栈</strong>：用于函数调用和参数传递；</li>
+  <li><strong>PCB</strong>：进程控制块（Process Control Block）。</li>
+</ul>
+<p>前四项合起来就是「代码与数据」，第五项是操作系统为进程建立的描述信息，二者共同构成一个进程。</p>
+<h3>（2）什么是进程控制块</h3>
+<p>PCB 是<strong>描述进程的动态特征、进程与其他进程和系统资源的关系的数据结构</strong>，是操作系统标识一个进程以及判断进程存在的<strong>唯一标识</strong>——进程与 PCB 一一对应。操作系统要管理进程、要让它参加调度、要保存和恢复它的运行现场，靠的都是 PCB。</p>
+<h3>（3）进程控制块的主要内容</h3>
+<ul>
+  <li>① <strong>进程标识符</strong>：进程名或内部 id 号；</li>
+  <li>② <strong>进程当前状态</strong>：本进程目前处于何种状态；</li>
+  <li>③ <strong>当前队列指针 next</strong>：登记处于同一状态的下一个进程的 PCB 地址；</li>
+  <li>④ <strong>进程优先级</strong>：反映进程要求 CPU 的紧迫程度；</li>
+  <li>⑤ <strong>CPU 现场保护区</strong>：当进程由于某种原因释放处理机时，CPU 现场信息被保存在 PCB 的该区域中；</li>
+  <li>⑥ <strong>通信信息</strong>：进程间进行通信时所记录的有关信息；</li>
+  <li>⑦ <strong>家族联系</strong>：指明本进程与家族的联系；</li>
+  <li>⑧ <strong>占有资源清单</strong>。</li>
+</ul>
+<p>这些项目各有分工：①②标识「我是谁、我在什么状态」，③④服务于调度和队列管理，⑤保证进程再次被调度时能从断点继续运行，⑥⑦⑧描述它与别的进程、与系统资源的关系。</p>
+
+<h2>5. 大量进程如何组织：进程队列</h2>
+<p>系统中同时存在大量进程，操作系统不可能逐个扫描，于是用<strong>队列</strong>把处于同一状态的进程串起来——这正是 PCB 中「当前队列指针 next」的用处。就绪队列用 <code>ready_q_start</code> 指向队首的 PCB1，PCB1 的 next 指向 PCB2，如此链到 PCB9；等待打印机的那批进程则挂在以 <code>wait_lpt_q_start</code> 为首的打印机等待队列上（PCB4、PCB3、PCB7……）；运行进程由指针 <code>running</code> 直接指出。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-2/p0034.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-2/p0034.webp" alt="图 3　进程队列结构示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　进程队列结构示例：就绪队列由 ready_q_start 串起 PCB1、PCB2……PCB9，打印机等待队列由 wait_lpt_q_start 串起 PCB4、PCB3、PCB7，运行指针 running 指向当前运行的进程（原课件第 34 张）</figcaption>
+</figure>
+<p>这样一来，状态变迁就落实为队列操作：进程状态改变时，把它从原队列摘下来、挂到新队列上去；进程调度则是在就绪队列里挑一个送给 CPU。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>引入进程的三条原因：提高资源利用率导致程序并发执行；并发程序之间有同步和互斥约束、靠阻塞／唤醒实现，程序不断处于运行／暂停／运行的状态；一个程序可以同时多次运行、每次情况可能不同。静态的程序概念已不足以描述这些变化。</li>
+  <li>进程是程序的一次执行过程，是动态概念；程序是指令的有序集合，是静态概念。进程是独立运行的活动单位，也是竞争系统资源的基本单位；一个程序可对应多个进程，一个进程一定包含一个程序。</li>
+  <li>进程至少有运行、等待、就绪三种基本状态：运行是已获得全部资源正在处理机上执行，等待是缺事件（给 CPU 也无法执行），就绪是只缺 CPU（一旦得到即可运行）。</li>
+  <li>状态变迁由四类事件驱动：服务请求（运行→等待）、服务完成／事件来到（等待→就绪）、进程调度（就绪→运行）、时间片到（运行→就绪）。</li>
+  <li>进程由代码段、数据段、堆、栈和 PCB 组成；PCB 描述进程的动态特征以及它与别的进程和系统资源的关系，是操作系统标识进程和判断进程存在的唯一标识，与进程一一对应。</li>
+  <li>PCB 的主要内容包括进程标识符、当前状态、队列指针 next、优先级、CPU 现场保护区、通信信息、家族联系和占有资源清单；大量 PCB 按状态用队列组织（就绪队列、各类等待队列），由运行指针指出当前运行进程。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-1.html">‹ 4.1 进程的引入</a>
+      <a class="next" href="4-3.html">4.3 进程控制 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

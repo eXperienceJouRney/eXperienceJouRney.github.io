@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.7 MAC地址、IP地址以及ARP协议（1） —— MAC地址 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.7 MAC地址、IP地址以及ARP协议（1） —— MAC地址：讲义第 553–585 页 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html" aria-current="page"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.7 MAC地址、IP地址以及ARP协议（1） —— MAC地址</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">数据链路层要解决的一个基本问题是「这一帧到底发给谁」。本节从点对点信道与广播信道的差别入手，说明为什么广播信道上必须给每个主机一个地址，进而引出 MAC 地址：它是谁在用、长什么样、为什么叫硬件地址又叫物理地址、如何区分单播/广播/多播。IP 地址与 ARP 协议虽属网际层，但与 MAC 地址密不可分，本节先看全局关系，再在 3.7.2、3.7.3 两节分别展开。</p>
+
+<h2>1. MAC 地址、IP 地址与 ARP 协议的分工</h2>
+<p>先建立一个整体印象。网络中的地址不止一种，它们分属不同的层次，各管一段路：</p>
+<ul>
+  <li><strong>MAC 地址</strong>是以太网的 MAC 子层所使用的地址，属于<strong>数据链路层</strong>；</li>
+  <li><strong>IP 地址</strong>是 TCP/IP 体系结构网际层所使用的地址；</li>
+  <li><strong>ARP 协议</strong>属于 TCP/IP 体系结构的网际层，其作用是：已知设备所分配到的 IP 地址，通过 ARP 协议获取到该设备的 MAC 地址。</li>
+</ul>
+<p>需要特别留意：IP 地址和 ARP 协议属于网际层，<strong>并不属于数据链路层</strong>；但它们与 MAC 地址之间存在紧密的配合关系，日常的网络应用离不开这三者。正因为如此，讲义把它们放在一起讨论——本节讲 MAC 地址，3.7.2 节专门讲 IP 地址，3.7.3 节讲 ARP 协议。</p>
+
+<h2>2. 为什么广播信道上的数据链路层必须有地址</h2>
+<p>并不是所有数据链路层都需要地址，关键看信道是点对点的还是广播的。</p>
+<h3>（1）点对点信道：不需要地址</h3>
+<p>使用<strong>点对点信道</strong>的数据链路层<strong>不需要使用地址</strong>。因为链路上只有唯一一个发送方和唯一一个接收方，发出去的帧只能到达另一端，没有「认错人」的可能，地址自然就没有用武之地。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0554.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0554.webp" alt="图 1　点对点信道上的帧发送：链路上只有一个接收端，无须地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　点对点信道：发送帧沿唯一链路到达另一端，数据链路层不需要地址（原讲义第 554 页）</figcaption>
+</figure>
+<h3>（2）广播信道：必须用地址区分各主机</h3>
+<p>使用<strong>广播信道</strong>的数据链路层<strong>必须使用地址来区分各主机</strong>。多个主机连接在同一条广播信道上时，一个主机发出的帧会沿着共享介质传播到所有主机，每台主机都会问一句：「这是发送给我的帧吗？」只有靠地址才能给出答案。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0557.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0557.webp" alt="图 2　广播信道上的帧发送：各主机都要判断「这是发送给我的帧吗」" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　广播信道：一个主机发送帧，同信道上所有主机都要判断该帧是否发给自己（原讲义第 557 页）</figcaption>
+</figure>
+
+<h2>3. MAC 地址的由来与别称</h2>
+<p>当多个主机连接在同一个广播信道上，要想实现两个主机之间的通信，则<strong>每个主机都必须有一个唯一的标识，即一个数据链路层地址</strong>。每个主机发送的帧中必须携带标识发送主机和接收主机的地址：接收方取出帧的目的地址与自己的地址比对，<strong>不匹配就丢弃该帧，匹配就接受该帧</strong>。</p>
+<p>由于这类地址是用于<strong>媒体接入控制 MAC（Media Access Control）</strong>，因此被称为 <strong>MAC 地址</strong>。</p>
+<p>MAC 地址一般被固化在网卡（网络适配器）的电可擦可编程只读存储器 <strong>EEPROM</strong> 中，所以 MAC 地址也被称为<strong>硬件地址</strong>。</p>
+<p>MAC 地址有时也被称为<strong>物理地址</strong>。请注意：这并不意味着 MAC 地址属于网络体系结构中的<strong>物理层</strong>！它仍然是数据链路层使用的地址，只是名字里带了「物理」二字而已。这一点是常见的混淆点，例如 2018 年的一道真题就问「下列选项中，不属于物理层接口规范定义范畴的是」，正确答案是「物理地址」——接口形状、引脚功能、信号电平才是物理层接口规范的内容。</p>
+<p>还要分清「接口」和「设备」。一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无线局域网适配器（无线网卡）；每个网络适配器都有一个全球唯一的 MAC 地址。而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的 MAC 地址。综上所述，<strong>严格来说，MAC 地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识</strong>。</p>
+
+<h2>4. IEEE 802 局域网的 MAC 地址格式</h2>
+<h3>（1）48 位的组成与表示法</h3>
+<p>IEEE 802 局域网使用的 MAC 地址又称<strong>扩展的唯一标识符 EUI（EUI-48）</strong>，共 48 个比特、6 个字节，分成前后两段：</p>
+<ul>
+  <li>前 3 个字节是<strong>组织唯一标识符 OUI</strong>（Organizationally Unique Identifier），由 IEEE 的注册管理机构分配给各个厂商；</li>
+  <li>后 3 个字节是<strong>网络接口标识符</strong>，由获得 OUI 的厂商自行随意分配。</li>
+</ul>
+<p>书写时按字节顺序给出，常见三种表示法：</p>
+<ul>
+  <li>标准表示法（Windows 采用）：<code>XX-XX-XX-XX-XX-XX</code>，例如 <code>00-0C-CF-93-8C-92</code>；</li>
+  <li>冒号分隔：<code>XX:XX:XX:XX:XX:XX</code>，例如 <code>00:0C:CF:93:8C:92</code>；</li>
+  <li>点分三段（每段 4 位十六进制）：<code>XXXX.XXXX.XXXX</code>，例如 <code>000C.CF93.8C92</code>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0562.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0562.webp" alt="图 3　EUI-48 的组成：3 字节 OUI 加 3 字节网络接口标识符，及其三种表示法" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　EUI-48 地址结构：前 3 字节 OUI 由 IEEE 分配，后 3 字节由厂商分配；下方为三种书写格式（原讲义第 562 页）</figcaption>
+</figure>
+<h3>（2）用 OUI 反查厂商</h3>
+<p>既然前 3 个字节由 IEEE 统一分配，那么只要拿到一个 MAC 地址，就可以到 IEEE 公开的 OUI 列表（standards-oui.ieee.org/oui.txt）中查出它属于哪家厂商。下表是把前 3 字节换算成十六进制后查到的几个结果：</p>
+<table>
+  <caption>数据来源：IEEE 公开的 OUI 分配列表 standards-oui.ieee.org/oui.txt（原讲义第 563、564 页）。</caption>
+  <thead>
+    <tr><th>OUI（前 3 字节）</th><th>注册厂商</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>30-FB-B8</td><td>HUAWEI TECHNOLOGIES CO., LTD</td></tr>
+    <tr><td>F4-97-C2</td><td>Nebulon Inc</td></tr>
+    <tr><td>A4-45-19</td><td>Xiaomi Communications Co Ltd</td></tr>
+    <tr><td>68-DB-F5</td><td>Amazon Technologies Inc.</td></tr>
+  </tbody>
+</table>
+<p>在 Windows 中也可以用 <code>ipconfig /all</code> 查看本机网卡的 MAC 地址（命令输出中叫「物理地址」）。例如某台机器的无线网卡地址是 <code>A4-45-19-00-00-01</code>，与上表对照即可确认该网卡由小米生产。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0565.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0565.webp" alt="图 4　在 Windows 中查看 MAC 地址，并用 OUI 反查厂商" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　用 ipconfig 查到的物理地址 A4-45-19-00-00-01 与 OUI 列表中的 Xiaomi 记录相对应（原讲义第 565 页）</figcaption>
+</figure>
+<h3>（3）b0、b1 位与四种地址类型</h3>
+<p>第一字节的最低位（记作 <strong>b0</strong>）和次低位（记作 <strong>b1</strong>）有特殊含义：</p>
+<ul>
+  <li><strong>b1 位</strong>：0 表示单播地址，1 表示多播地址；</li>
+  <li><strong>b0 位</strong>：0 表示全球管理，1 表示本地管理。</li>
+</ul>
+<p>两个比特组合起来，把整个 EUI-48 地址空间划成四类，各类各占 1/4：</p>
+<table>
+  <caption>数据来源：原讲义第 566、567 页的 MAC 地址类型表（原为乱码截图，此处还原为表格）。</caption>
+  <thead>
+    <tr><th>MAC 地址类型</th><th>含义与用途</th><th>占比</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>全球管理单播地址</td><td>厂商生产网络设备（网卡、交换机、路由器）时固化，是设备出厂自带的地址</td><td>1/4</td></tr>
+    <tr><td>全球管理多播地址</td><td>标准网络设备所支持的多播地址，用于特定功能</td><td>1/4</td></tr>
+    <tr><td>本地管理单播地址</td><td>由网络管理员分配，覆盖网络接口的全球管理单播地址</td><td>1/4</td></tr>
+    <tr><td>本地管理多播地址</td><td>用户对主机进行软件配置，以表明其属于某些多播组</td><td>1/4</td></tr>
+  </tbody>
+</table>
+<p>整个地址空间共有 2<sup>48</sup> = 281,474,976,710,656 个地址，即二百八十多万亿个。注意：当其余 46 位全为 1 时，整个地址就是广播地址 <code>FF-FF-FF-FF-FF-FF</code>。</p>
+<p>顺带回答一个常被问到的问题：EUI-48 的地址空间会耗尽吗？IEEE 的说明是，对于使用 EUI-48 空间的应用程序，目标寿命为 100 年（直到 2080 年），同时鼓励采用 EUI-64 作为替代。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0566.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0566.webp" alt="图 5　第一字节 b0、b1 位的含义与四类 MAC 地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　EUI-48 第一字节的 b0 位（全球/本地管理）与 b1 位（单播/多播），及其组合出的四类地址（原讲义第 566 页）</figcaption>
+</figure>
+
+<h2>5. MAC 地址的发送顺序</h2>
+<p>MAC 地址在链路上是按什么顺序发出去的？规则有两条：</p>
+<ul>
+  <li><strong>字节发送顺序</strong>：第一字节 → 第六字节；</li>
+  <li><strong>字节内的比特发送顺序</strong>：b0 → b7。</li>
+</ul>
+<p>也就是说，先发最左边字节的最低比特。这个顺序与「地址的类型位（b0、b1）在第一个字节」的事实配合起来，接收方才能在收到第一个字节后立刻判断这是单播还是多播，而不必等整个地址收完。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0569.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0569.webp" alt="图 6　MAC 地址的发送顺序：字节自第一字节到第六字节，字节内自 b0 到 b7" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　MAC 地址的发送顺序：字节按第一→第六字节发送，字节内按 b0→b7 发送（原讲义第 569 页）</figcaption>
+</figure>
+
+<h2>6. 单播、广播与多播地址举例</h2>
+<h3>（1）单播 MAC 地址</h3>
+<p>主机 B 给主机 C 发送单播帧，帧的目的地址填 C 的 MAC 地址 <code>00-0C-CF-B8-4A-82</code>。该帧到达共享信道后，每台主机用目的地址与自己比对：地址为 <code>00-0C-85-72-AB-72</code>、<code>00-E0-F9-A3-43-77</code> 的主机发现不匹配，丢弃该帧；只有主机 C 匹配，接受该帧。</p>
+<h3>（2）广播 MAC 地址</h3>
+<p>主机 B 发送广播帧时，目的地址填 <code>FF-FF-FF-FF-FF-FF</code>。这个地址是全局广播地址，广播信道上所有主机都接受该帧。</p>
+<h3>（3）多播 MAC 地址</h3>
+<p>主机 A 发送多播帧给多播地址 <code>07-E0-12-F6-2A-D8</code>。为什么它是多播地址？把第一字节 07 写成二进制 <code>0000 0111</code>，其最低位 b0 为 1，按前述规则就是多播地址。有一个便于速判的经验法则：<strong>第一字节的十六进制数的最后一位不能整除 2（即 1、3、5、7、9、B、D、F）时，该地址就是多播地址</strong>。</p>
+<p>收到多播帧后，主机是否接受取决于它是否加入了该多播组。例子中三台主机的多播组列表如下：</p>
+<ul>
+  <li>主机 B 的列表：<code>07-E0-12-F6-2A-D8</code>、<code>05-3F-EF-26-6C-B2</code> —— 能找到，接受该帧；</li>
+  <li>主机 C 的列表：<code>07-E0-12-F6-2A-D8</code>、<code>07-E8-5C-AB-22-3E</code> —— 能找到，接受该帧；</li>
+  <li>主机 D 的列表：无内容 —— 找不到，丢弃该帧。</li>
+</ul>
+<p>可见多播地址不是「一对全部」，而是「一对一组」：只有加入了对应多播组的主机才会接受。</p>
+<p>另外要注意，给主机配置多播组列表进行<strong>私有应用</strong>时，<strong>不得使用公有的标准多播地址</strong>，以免与标准功能冲突；公有标准多播地址可以在 IEEE 的公开查询页面（standards.ieee.org 的 grpmac/public.html）上查到。</p>
+
+<h2>7. 随机 MAC 地址</h2>
+<p>MAC 地址本是全球唯一的接口标识，这带来一个副作用：只要网卡地址不变，设备在 Wi-Fi 网络中的行为就可以被长期追踪。为此，现在的操作系统提供了<strong>随机 MAC 地址</strong>功能：iOS 系列设备在连接 Wi-Fi 时可使用随机化的硬件地址，Windows 10 也支持按网络随机化 MAC 地址，Linux 从内核版本 3.18 起同样支持。扫描 Wi-Fi 时使用随机地址，可以避免设备被跨网络识别和追踪。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7/p0583.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7/p0583.webp" alt="图 7　iOS 与 Windows 10 中的随机 MAC 地址选项" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　iOS 系列设备与 Windows 10 均支持使用随机 MAC 地址，Linux 内核 3.18 起也已支持（原讲义第 583 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>三种地址各司其职：MAC 地址在数据链路层（以太网 MAC 子层），IP 地址与 ARP 协议在网际层；ARP 的作用是由已知的 IP 地址求出对应的 MAC 地址；</li>
+  <li>点对点信道的链路层不需要地址；广播信道必须用地址区分各主机，帧中要携带源地址与目的地址，接收方比对目的地址：匹配则接受、不匹配则丢弃；</li>
+  <li>MAC 地址固化在网卡的 EEPROM 中，又称硬件地址、物理地址，但它属于数据链路层而非物理层；它标识的是<strong>接口</strong>而不是设备，所以交换机、路由器有一堆 MAC 地址；</li>
+  <li>IEEE 802 局域网的 MAC 地址即 EUI-48：前 3 字节 OUI 由 IEEE 分配、后 3 字节由厂商分配；可用 OUI 列表反查厂商，共有 <code>XX-XX-XX-XX-XX-XX</code> 等三种写法；</li>
+  <li>第一字节的 b0 位区分全球管理/本地管理、b1 位区分单播/多播，四类地址各占 1/4；全部 48 位为 1 即广播地址 <code>FF-FF-FF-FF-FF-FF</code>；发送顺序是字节第一→第六、字节内 b0→b7；</li>
+  <li>用途上分单播、广播、多播三类：单播只被目的主机接受，广播被信道上所有主机接受，多播只被加入了对应多播组的主机接受；为避免被追踪，现代系统普遍支持随机 MAC 地址。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-6-4.html">‹ 3.6.4 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a>
+      <a class="next" href="3-7-2.html">3.7 MAC地址、IP地址以及ARP协议（2） —— IP地址 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

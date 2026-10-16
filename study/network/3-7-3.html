@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.7 MAC地址、IP地址以及ARP协议（3） —— ARP协议 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.7 MAC地址、IP地址以及ARP协议（3） —— ARP协议：讲义第 604–619 页 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html" aria-current="page"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.7 MAC地址、IP地址以及ARP协议（3） —— ARP协议</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节留下了最后一个问题：每一跳都知道下一跳的 IP 地址，却不知道它的 MAC 地址，链路层首部就填不出来。本节讲的<strong>地址解析协议 ARP（Address Resolution Protocol）</strong>正是为此而生。我们跟着主机 B 给主机 C 发数据包这一个例子，把「查缓存 → 广播请求 → 单播响应 → 记录并发送」四步走完，再看 ARP 缓存表、作用范围以及它固有的安全隐患。</p>
+
+<h2>1. 问题的提出：知道 IP 地址，却不知道 MAC 地址</h2>
+<p>设主机 B 的 IP 地址为 <code>192.168.0.2</code>、MAC 地址为 <code>00-E0-F9-A3-43-77</code>，它要向主机 C 发送数据包，而 C 的 IP 地址是 <code>192.168.0.3</code>、MAC 地址是 <code>00-0C-CF-B8-4A-82</code>。</p>
+<p>B 知道自己要访问的是 C——网络层有 C 的 IP 地址就够了；可数据链路层在封装 MAC 帧时必须填写<strong>目的 MAC 地址</strong>，即 C 网卡的硬件地址。B 恰好不知道这个值。这就是地址解析协议要解决的问题：<strong>已知 IP 地址，求出对应的 MAC 地址</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7-3/p0605.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7-3/p0605.webp" alt="图 1　B 知道 C 的 IP 地址但不知道其 MAC 地址，无法填写目的 MAC 地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　B 知道 C 的 IP 地址 192.168.0.3，却不知道其 MAC 地址，封装 MAC 帧时目的地址无从填写（原讲义第 605 页）</figcaption>
+</figure>
+
+<h2>2. ARP 的工作过程</h2>
+<p>ARP 的设计很朴素：为了不做无谓的广播，每台主机都维护一张 <strong>ARP 高速缓存表</strong>，表中记录「IP 地址 → MAC 地址」的映射以及这条记录的类型。要发数据时先查表，查不到才广播询问。下面按顺序走一遍。</p>
+<h3>（1）先查自己的 ARP 高速缓存表</h3>
+<p>源主机在自己的 ARP 高速缓存表中查找目的主机的 IP 地址所对应的 MAC 地址：</p>
+<ul>
+  <li>若<strong>找到了</strong>，直接封装 MAC 帧发送，不必再问任何人；</li>
+  <li>若<strong>找不到</strong>，则发送 ARP 请求（封装在广播 MAC 帧中）。</li>
+</ul>
+<p>本例子中，B 的表中只有 <code>192.168.0.1</code> 和 <code>192.168.0.4</code> 两条记录，查 <code>192.168.0.3</code> 的结果是「未找到」，于是转入下一步。</p>
+<h3>（2）发送 ARP 请求（广播）</h3>
+<p>B 发出一个 ARP 请求报文，它封装在目的地址为 <code>FF-FF-FF-FF-FF-FF</code> 的<strong>广播 MAC 帧</strong>中，因此同一广播信道上的所有主机都会收到。请求报文的内容是：</p>
+<ul>
+  <li>我的 IP 地址为 <code>192.168.0.2</code>；</li>
+  <li>我的 MAC 地址为 <code>00-E0-F9-A3-43-77</code>；</li>
+  <li>我想知道 IP 地址为 <code>192.168.0.3</code> 的主机的 MAC 地址。</li>
+</ul>
+<p>各主机收到这个广播帧后，网卡把它交付上层处理，再按 IP 地址对号入座：<strong>不是问我的，不用理会</strong>；而 IP 地址正好是 192.168.0.3 的主机 C 则知道「问的是我，需要响应」。</p>
+<h3>（3）目的主机发送 ARP 响应（单播）</h3>
+<p>主机 C 收到 ARP 请求后做两件事：</p>
+<ol>
+  <li>把源主机 B 的 IP 地址与 MAC 地址<strong>记录到自己的 ARP 高速缓存表</strong>中；</li>
+  <li>给 B 发送 <strong>ARP 响应</strong>，告知自己的 MAC 地址。响应报文中包含 C 的 IP 地址 <code>192.168.0.3</code> 和 MAC 地址 <code>00-0C-CF-B8-4A-82</code>。</li>
+</ol>
+<p>与广播的请求不同，响应是<strong>单播</strong>的：它封装在目的地址为 <code>00-E0-F9-A3-43-77</code>（也就是 B 的 MAC 地址）的 MAC 帧中，直接发给提问者。</p>
+<h3>（4）源主机收到响应后记录并发送数据</h3>
+<p>这个单播帧到达 B 的网卡后，网卡比对目的 MAC 地址：不匹配就<strong>直接丢弃该帧</strong>，匹配才把帧<strong>交付上层处理</strong>。B 收到 ARP 响应，把 C 的 IP 地址与 MAC 地址记录到自己的 ARP 高速缓存表中，然后就可以封装之前想发送的那个 MAC 帧，并发送给主机 C——至此，数据包才真正出发。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7-3/p0613.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7-3/p0613.webp" alt="图 2　ARP 响应以单播方式返回，源主机把解析结果记入 ARP 高速缓存表" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　C 以单播方式回应 ARP 响应；B 收到后把 C 的 IP 地址与 MAC 地址记入自己的 ARP 高速缓存表（原讲义第 613 页）</figcaption>
+</figure>
+
+<h2>3. ARP 高速缓存表与记录类型</h2>
+<p>把上面的过程连起来看，B 的 ARP 高速缓存表在解析前后发生了变化——解析成功后新增了一条记录：</p>
+<table>
+  <caption>数据来源：原讲义第 606–615 页主机 B 的 ARP 高速缓存表示意图（此处还原为表格）。</caption>
+  <thead>
+    <tr><th>IP 地址</th><th>MAC 地址</th><th>类型</th><th>说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>192.168.0.1</td><td>00-0C-85-72-AB-72</td><td>动态</td><td>解析前表中已有</td></tr>
+    <tr><td>192.168.0.4</td><td>00-01-C7-D3-B2-B5</td><td>静态</td><td>解析前表中已有</td></tr>
+    <tr><td>192.168.0.3</td><td>00-0C-CF-B8-4A-82</td><td>动态</td><td>收到 ARP 响应后新增</td></tr>
+  </tbody>
+</table>
+<p>表中记录分两种类型，它们的来源和寿命不同：</p>
+<ul>
+  <li><strong>动态（dynamic）</strong>：自动获取，生命周期默认只有两分钟，过期即被删除，下次用时重新解析；</li>
+  <li><strong>静态（static）</strong>：手工设置，不同操作系统下的生命周期不同，例如有的系统重启后就不存在了，有的系统重启后依然有效。</li>
+</ul>
+<p>动态记录保证映射能跟上网络变化（比如某台主机换了网卡），静态记录则用于需要稳定映射的场合。</p>
+
+<h2>4. ARP 的作用范围与几点说明</h2>
+<p>ARP 的解析是「逐段链路」进行的：<strong>ARP 的作用范围是一段链路或一个网络</strong>。也就是说，数据包每经过一个网络、进入下一段链路，都要重新做一次地址解析——解析出的永远是「下一跳接口」的 MAC 地址，而不是最终目的主机的 MAC 地址。这与上一节「MAC 地址逐个链路改变、IP 地址始终不变」的结论正好互相印证。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-7-3/p0616.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-7-3/p0616.webp" alt="图 3　ARP 逐段链路使用：H1、R1、R2、H2 之间的每一段链路都要做地址解析" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　从 H1 到 H2 的三段链路各自使用一次 ARP，节点只解析下一跳的 MAC 地址（原讲义第 616 页）</figcaption>
+</figure>
+<p>还有两点值得一并记住：</p>
+<ul>
+  <li>除 ARP 请求和响应外，ARP 还有其他类型的报文，例如用于检查 IP 地址冲突的<strong>无故 ARP / 免费 ARP（Gratuitous ARP）</strong>；</li>
+  <li>ARP <strong>没有安全验证机制</strong>，任何人都可以声称某个 IP 地址对应自己的 MAC 地址，因此存在 <strong>ARP 欺骗（ARP 攻击）</strong>问题。这也是为什么在公共网络中不能仅凭 ARP 结果就信任通信对端的身份。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>ARP 要解决的问题：已知下一跳的 IP 地址，求出对应的 MAC 地址，使数据链路层能填写目的 MAC 地址；</li>
+  <li>工作过程四步：查自己的 ARP 高速缓存表 → 未找到则广播 ARP 请求（目的 MAC 为 FF-FF-FF-FF-FF-FF）→ 目的主机单播 ARP 响应并顺手记下源主机的映射 → 源主机记下映射后封装并发送原来的 MAC 帧；</li>
+  <li>ARP 高速缓存表的记录分动态（自动获取，默认两分钟生命周期）和静态（手工设置，生命周期随操作系统而异）；</li>
+  <li>ARP 的作用范围是一段链路或一个网络，每经过一段链路都要重新解析，解析出的只是下一跳接口的 MAC 地址；</li>
+  <li>ARP 报文不止请求与响应两类（还有用于检查 IP 地址冲突的免费 ARP 等），且缺少安全验证机制，存在 ARP 欺骗问题；</li>
+  <li>把三小节连起来看：MAC 地址负责同一网络内的寻址，IP 地址负责跨网络的寻址，ARP 负责在两者之间搭桥——这正是因特网寻址体系的分工。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-7-2.html">‹ 3.7 MAC地址、IP地址以及ARP协议（2） —— IP地址</a>
+      <a class="next" href="3-8.html">3.8 集线器与交换机的区别 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

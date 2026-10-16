@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3 以太网 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 4 章 局域网 4.3 以太网：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html" aria-current="page"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 4 章 局域网</p>
+      <h1>4.3 以太网</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">以太网（Ethernet）是今天使用最广的局域网 LAN（Local Area Network）技术。本节接着 4.1 节的局域网概述，先看以太网的由来、速率演进与拓扑结构，再讲它提供的服务、MAC 地址与帧格式、帧定界与 CSMA/CD，然后看集线器、交换机及其互联，最后比较交换机与路由器，并介绍虚拟局域网 VLAN（Virtual LAN）。</p>
+
+<h2>1. 以太网的由来</h2>
+<p>以太网诞生于 20 世纪 70 年代，发明者是 Bob Metcalfe 和 David Boggs，提出它的企业是施乐帕洛阿尔托研究中心 Xerox PARC。Metcalfe 借鉴夏威夷大学无线分组网 ALOHAnet 的思想，把它改造成适用于有线传输的版本：<strong>用一根同轴电缆作为共享总线，所有计算机都接到这根电缆上</strong>，任一台机器发出的信号都会传到所有机器。为管理多个节点同时发送造成的冲突，以太网引入了载波侦听多路访问/碰撞检测 CSMA/CD（Carrier Sense Multiple Access with Collision Detection），目标是高速、低成本、可扩展的局域网。</p>
+
+<h2>2. 从 10 Mb/s 到 1.6 T：以太网的速率演进</h2>
+<p>1978 年，数字设备公司 DEC（Digital Equipment Corporation）与英特尔公司 Intel 加入施乐，三方共同定义了 10 Mb/s 以太网标准，它成为 IEEE 802.3 10 Mb/s 标准的基础，对应产品是粗缆的 10BASE5。此后介质从 10BASE5（粗缆）换到 10BASE2（细缆）、10BASE-T（双绞线），拓扑从总线过渡到星型，中央设备由集线器换成交换机。</p>
+<p>20 世纪 90 年代进入百兆与全双工阶段：100BASE-TX（快速以太网 Fast Ethernet）把速率提到 100 Mb/s，仍用双绞线，并引入<strong>全双工模式</strong>，收发同时进行，不再需要 CSMA/CD；千兆以太网（Gigabit Ethernet，1000BASE-X/T）开始标准化（IEEE 802.3z/ab）。2000 年代千兆普及到桌面，服务器端开始部署 10GBASE-R 万兆以太网，以太网进入数据中心和运营商核心网络。</p>
+<p>2010 年代，40GBASE、100GBASE 标准成熟（IEEE 802.3ba），数据中心以太网 DCB（Data Center Bridging）与 RoCE（RDMA over Converged Ethernet）出现，以太网替代了部分专用的 SAN（Storage Area Network）/InfiniBand 场景。2020—2025 年走向超高速与低延迟：200GBASE、400GBASE 商用（IEEE 802.3bs、802.3cd），800GBASE 标准发布（IEEE 802.3df），面向 AI 集群和云数据中心；IEEE 正在推进 1.6T Ethernet（IEEE 802.3dj），预计 2026—2027 年完成标准化。800G/1.6T 光模块（QSFP-DD、OSFP-XD）服务于大规模 AI/ML 负载，以太网还与时间敏感网络 TSN（Time-Sensitive Networking）融合，用于工业控制、自动驾驶等低延迟场景。</p>
+
+<h2>3. 以太网采用过的四种拓扑结构</h2>
+<p>以太网用过总线、环型、星型、树型四种拓扑。总线拓扑流行于 20 世纪 90 年代中期，所有节点挂在一根共享总线上，同处一个碰撞域，一次只允许一个节点发送；介质破损时断口会形成信号反射，发送节点误认为冲突，于是「总是冲突」，早期 10BASE5、10BASE2 同轴电缆以太网就是这种结构。</p>
+<p>环型拓扑把节点首尾相连成闭合环路，单点断开可能导致环路中断；传统环网在以太网中少见，但工业以太网有以太网环保护倒换 ERPS（Ethernet Ring Protection Switching，IEEE 802.1Qay/802.1Qca）等环网冗余协议和令牌环以太网变种。</p>
+<p>星型拓扑让每个节点通过单独的链路连到中央设备（集线器或交换机），易于管理和故障定位，但中心设备是单点故障；双绞线以太网（10BASE-T、100BASE-TX、1000BASE-T）普遍采用它。树型拓扑是层次化的星型结构，多个星型网络经骨干链路级联，根节点通常为核心交换机；它易扩展、适合大型网络的分层管理，能隔离冲突域、提高性能，大型企业网和校园网常用，并常与 VLAN 和三层交换配合实现分布式管理。</p>
+
+<h2>4. 以太网的类型：总线式与交换式</h2>
+<p>按节点与信道的连接方式，以太网分为总线式与交换式，差别在于一个站发出的帧会被谁收到。处理这类问题的规则属于<strong>媒体接入控制 MAC（Media Access Control）</strong>子层，其中最基础的是地址。</p>
+<p>总线式以太网以共享总线为介质，两端各接一个匹配电阻，用来吸收传播到总线尽头的信号、避免反射。任一个站发出的帧都会沿两个方向传到所有站，因此每台适配器都要检查帧的目的 MAC 地址，只有目的站接收。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0057.webp" alt="图 1　总线式以太网：B 向 D 发送数据，只有 D 接收" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　总线式以太网：两端匹配电阻吸收传播到尽头的信号；B 向 D 发送数据时帧会传到所有站，但只有 D 接收，A、C、E 都不接收（原课件第 57 张）</figcaption>
+</figure>
+<p>交换式以太网把每个站点用单独的链路接到中央设备上，这个设备可能是集线器，也可能是交换机：用集线器时各端口在物理层连成一体，共享同一个碰撞域；用交换机时各端口分属不同的碰撞域，站点之间可以并行通信。</p>
+
+<h2>5. 以太网提供的服务</h2>
+<p>以太网向网络层提供的是<strong>无连接、不可靠</strong>的服务。「无连接」指收发适配器之间不需要握手；「不可靠」指接收适配器不发送确认帧，也不发送否认帧，帧因碰撞或差错被丢弃后以太网自己不会重传。</p>
+<p>因此交给网络层的数据报之间可能存在间隙：若应用使用 TCP，间隙会被填充；否则应用就会看见间隙。</p>
+
+<h2>6. 传统以太网的物理层与 MAC 地址</h2>
+<p>传统以太网有四种物理层实现：10BASE5（粗缆）、10BASE2（细缆）、10BASE-T（双绞线）、10BASE-F（光缆）。介质不同，但上面的 MAC 子层一致。</p>
+<p><strong>MAC 地址</strong>的作用是在数据链路层标识每一块网络适配器，使适配器能在广播信道上寻址目标节点：帧被所有站收到，只有地址匹配的适配器才把数据交给上层。MAC 地址共 48 bit，例如 1A-2F-BB-76-09-AD；前 24 bit 由 IEEE 分配管理，称为组织唯一标识符 OUI（Organizationally Unique Identifier），后 24 bit 由厂商自行分配。要注意，MAC 地址烧入网络适配器的 ROM 中，不可更改。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0062.webp" alt="图 2　MAC 地址的组成：48 bit 中前 24 bit 是 OUI 号，后 24 bit 由厂商分配" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　MAC 地址的组成：48 bit 中前 24 bit 是 IEEE 分配管理的 OUI 号，后 24 bit 由厂商分配（原课件第 62 张）</figcaption>
+</figure>
+
+<h2>7. 以太网的帧格式</h2>
+<p>以太网把网络层交下来的数据报封装成帧，一个帧由下列字段组成。</p>
+<ul>
+  <li>前同步码：8 字节，前 7 字节格式为 10101010，最后一个字节为 10101011，用于同步收发双方的时钟；</li>
+  <li>目的地址与源地址：各 6 字节，即收发双方的 MAC 地址；</li>
+  <li>类型：上层协议类型，大多为 IP 协议，也支持 Novell IPX、AppleTalk 等；</li>
+  <li>数据字段：46 至 1500 字节，承载网络层交下来的数据报；</li>
+  <li>循环冗余校验 CRC（Cyclic Redundancy Check）：由接收方检查，检测到错误就将该帧丢弃。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0064.webp" alt="图 3　以太网帧的字段结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　以太网帧的字段结构：从前同步码、目的地址、源地址、类型、数据字段到 CRC 校验字段（原课件第 64 张）</figcaption>
+</figure>
+<p>接收端只把有用的帧交上去：目的地址是自己的 MAC 地址或广播地址（例如 ARP 包）就交给网络层，否则丢弃该帧。<strong>地址过滤在适配器里完成</strong>。</p>
+
+<h2>8. 帧定界：接收方怎样找到帧的边界</h2>
+<p>帧在连续的比特流中传送，接收方必须先明确一帧从哪里开始、到哪里结束，这叫<strong>帧定界</strong>。常见做法有四种。</p>
+<ul>
+  <li>字符计数法：帧头用一个字段表示帧的字节数；计数字段出错会导致帧边界全乱；</li>
+  <li>字符填充法：用特殊的「标志字符」标记帧的开始和结束，数据中出现标志字符时插入转义字符 ESC 加以区分；</li>
+  <li>比特填充法：用特殊的比特模式（例如 01111110）作帧标志，数据中出现相同模式时在其中插入一个额外的 0；典型应用是高级数据链路控制 HDLC 协议；</li>
+  <li>违规编码法（Physical Layer Violation）：在编码层用「非法信号」表示帧边界，例如曼彻斯特编码中平时不出现的电平组合。</li>
+</ul>
+<p>以太网用的是<strong>物理层违规法加特定结构</strong>：7 字节前导码（Preamble）内容为反复出现的 10101010（0xAA），为接收端提供规律的比特序列以同步时钟；紧跟的 1 字节帧开始定界符 SFD（Start Frame Delimiter）内容为 10101011（0xAB），标志帧的真正开始。二者合起来就是前面所说的 8 字节前同步码。</p>
+
+<h2>9. 以太网使用的 CSMA/CD</h2>
+<p>4.2 节讲过载波侦听与碰撞检测的基本思想，以太网把它落成可执行的规则，有四个特点：没有时隙；侦听到其它适配器正在传输就不传帧，即载波侦听；正在传输时检测到别的适配器也在传输就中止自己的传输，即碰撞检测；重传之前等待一段随机时间，即随机回退。</p>
+<p>发送算法分五步：① 收到网络层数据报，创建帧；② 信道空闲就开始传输，忙则等到空闲再传；③ 传完整个帧而未检测到其它适配器的传输，本帧传输完成；④ 传输中检测到别的适配器也在传输，就停止传输并发送拥塞信号；⑤ 中止后进入指数回退：一帧经历第 m 次碰撞后，从 {0, 1, 2, …, 2<sup>m</sup>−1} 中随机选一个 K 值，等待 K×512 比特时间后返回第 ② 步。</p>
+<p>其中<strong>拥塞信号</strong>用来确保所有传输者都能检测到碰撞，长度为 48 bit；<strong>比特时间</strong>是传输 1 bit 所需的时间，在 10 Mb/s 以太网中 K = 1023 时等待时间约 50 ms。指数回退的目的是估计信道负载，负载重时等待更长；可选范围随碰撞次数加倍——第一次碰撞后从 {0, 1} 中选 K，延迟为 K×512 比特传输时间，第二次后从 {0, 1, 2, 3} 中选，第十次后从 {0, 1, 2, 3, 4, …, 1023} 中选，此后不再增大。</p>
+<p>使用 CSMA/CD 的以太网只能双向交替通信，即半双工通信，不能全双工；每个站在发送后的一小段时间内都可能遭遇碰撞，这种不确定性使全网平均通信量远小于最高数据率。4.2 节把端到端往返时延 2τ 称为争用期或碰撞窗口，以太网取 <strong>51.2 μs</strong> 为争用期，10 Mb/s 下恰好发送 512 bit，即 64 字节：前 64 字节没有碰撞，后续数据就不会碰撞；一旦碰撞必定发生在前 64 字节之内。又因检测到碰撞立即中止发送，已发出的数据一定小于 64 字节，因而<strong>最短有效帧长为 64 字节</strong>，更短的帧都是因冲突异常中止的无效帧，数据字段最小 46 字节的规定正与它呼应。</p>
+
+<h2>10. 集线器：把网段连成一个大碰撞域</h2>
+<p>集线器（Hub）工作在物理层，只做信号的整形与放大，收到比特就向其它端口转发。用主干集线器把若干局域网段互联可扩展节点间的最大距离，但原先各自独立的网段碰撞域会变成一个大的碰撞域：任一端口有信号都会被扩散到所有端口，各站仍要按 CSMA/CD 竞争同一个信道。它也不能把 10BaseT 与 100BaseT 以太网互联，因为它只处理电信号，不理解速率与帧格式的差别。</p>
+
+<h2>11. 交换机：MAC 层的存储转发设备</h2>
+<p>交换机（Switch）是存储—转发设备，在 MAC 层实现 LAN 互连。它先把整个帧收进缓存，看清目的 MAC 地址后再从合适的接口转发出去。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0076.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0076.webp" alt="图 4　交换机的概念结构与站表" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　交换机的概念结构：各接口及其缓存、登记「站地址—接口号」的站表，以及维护站表的接口管理软件与协议实体；网段 A 与网段 B 接在不同接口上（原课件第 76 张）</figcaption>
+</figure>
+<p>从概念结构看，交换机由若干接口、接口上的缓存和一张站表构成，另有维护站表的接口管理软件与协议实体。站表登记「站地址—接口号」的对应关系：网段 A 上 H1 至 H3 的地址 MAC1 至 MAC3 对应接口 1，网段 B 上 H4 至 H6 的地址 MAC4 至 MAC6 对应接口 2。</p>
+
+<h2>12. 以太网交换机的互联</h2>
+<h3>（1）工作原理与优势</h3>
+<p>交换机不断监听各接口是否有信号；收到无差错的帧就缓存，有差错的帧就丢弃；若帧的目的 MAC 地址属于另一个网段，就通过站表决定向哪个接口转发；同一网段内通信的帧不转发；转发时也不修改帧的源地址。</p>
+<p>好处是过滤通信量、扩大物理范围、提高可靠性，还能互连不同物理层、不同 MAC 子层和不同速率的局域网。代价是：完整接收后再转发增加了时延；MAC 子层没有流量控制，负荷重时缓存可能溢出而丢帧；广播帧扩散到全网，规模一大就会出现广播风暴，所以交换机只适合用户少于几百个、通信量不太大的局域网。</p>
+<h3>（2）与集线器的区别</h3>
+<p>集线器只在物理层把覆盖距离简单地延长，而且距离有限；交换机在 MAC 层工作，理论上可做到无限延长。集线器只有信号整形和放大功能，仅是硬设备；交换机是智能互连设备，能提供存储/转发、数据过滤、路由选择等能力，既有硬件也有软件。</p>
+<h3>（3）透明性与选路原理</h3>
+<p>交换机对站点是<strong>透明</strong>的：局域网上的每个站都不知道所发送的帧将经过哪几个交换机，即交换机对各站「看不见」。这来自自学习：交换机不必人工配置站表，看清帧从哪个接口进来即可。完整过程如下。</p>
+<ul>
+  <li>① 从接口 x 收到帧，有差错则丢弃，否则在站表中查找目的 MAC 地址；</li>
+  <li>② 找到则取出接口 d，转第 ③ 步；否则转第 ⑤ 步；</li>
+  <li>③ 若接口 d 就是 x，则丢弃此帧，否则从接口 d 转发；</li>
+  <li>④ 转到第 ⑥ 步；</li>
+  <li>⑤ 向除 x 以外的所有接口转发（可保证找到目的站）；</li>
+  <li>⑥ 如源站不在站表中，则将源站 MAC 地址、入接口号和时间写入站表并设置计时器，转第 ⑧ 步；否则转第 ⑦ 步；</li>
+  <li>⑦ 更新计时器——拓扑经常变化，超时记录要删除，以反映最新状态；</li>
+  <li>⑧ 等待新的数据帧，转第 ① 步。</li>
+</ul>
+<h3>（4）兜圈子与支撑树算法</h3>
+<p>为提高可靠性，常在交换机之间接冗余链路，而冗余会带来新问题：局域网 1 与局域网 2 之间有两条路径、经交换机 1 与交换机 2 构成回路时，A 发出的帧被反复转发，在两台交换机之间不停地兜圈子。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0083.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0083.webp" alt="图 5　交换机之间的回路使帧不停地兜圈子" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　交换机存在的问题——兜圈子：局域网 1 与局域网 2 之间存在回路时，A 发出的帧被交换机 1、交换机 2 反复转发（图中记为 F1、F2）（原课件第 83 张）</figcaption>
+</figure>
+<p>解决办法是<strong>支撑树算法</strong>：互连的交换机彼此通信后，找出原拓扑的一个子集，其中整个连通网络不存在回路；支撑树确定后交换机把某些接口断开。算法选择一个交换机为树的根，以最短路径为依据找到树上每个结点；为反映拓扑变化，每隔几秒钟每台交换机要广播自己的标识号和它所知道的其它交换机。缺点是互连局域网数目非常大时，算法可能花很多时间。</p>
+
+<h2>13. 以太网交换机与路由器的比较</h2>
+<p>交换机与路由器都是存储转发设备，但工作层次不同：交换机是<strong>链路层设备</strong>，只看帧的 MAC 地址，维护交换表，实现 MAC 地址过滤与学习算法；路由器是<strong>网络层设备</strong>，要检查网络层头部，维护路由表，实现路由算法。从协议栈看，主机要实现完整的五层，交换机只处理到第 2 层，路由器要处理到第 3 层。</p>
+<p>再加上集线器，三类设备的分工可以用一张表概括。</p>
+<div class="tbl-wrap"><table>
+  <caption>集线器、路由器与交换机在功能上的对比（依原课件第 87 张表格整理）。</caption>
+  <thead>
+    <tr><th>功能</th><th>集线器</th><th>路由器</th><th>交换机</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>流量隔离</td><td>无</td><td>有</td><td>有</td></tr>
+    <tr><td>即插即用</td><td>有</td><td>无</td><td>有</td></tr>
+    <tr><td>优化选路</td><td>无</td><td>有</td><td>无</td></tr>
+    <tr><td>直通交换</td><td>有</td><td>无</td><td>有</td></tr>
+  </tbody>
+</table></div>
+<p>流量隔离指能否把通信量限制在局部，集线器把所有端口连成一个碰撞域，做不到，交换机与路由器都能；即插即用指无需配置就能工作，集线器与交换机靠自学习转发，路由器必须配置路由或运行路由协议；优化选路指能否按拓扑为分组挑选较好的路径，只有路由器具备；直通交换指收到帧后能否尽快开始转发，集线器逐比特转发，交换机查到目的接口即可转发，路由器要完整处理网络层头部。</p>
+
+<h2>14. 虚拟局域网 VLAN</h2>
+<p><strong>虚拟局域网 VLAN（Virtual LAN）</strong>是指以软件方式实现逻辑工作组划分与管理的一种网络工作组组建技术。它要解决的问题是：交换机端口默认处于同一广播域，站点一多广播开销就大，而只按物理位置分组又满足不了按职能组网的需要。</p>
+<p>VLAN 有三个基本特征：局域网交换机是组建虚拟局域网的核心设备，划分与管理由交换机上的软件完成；各结点不受物理位置的限制，同一逻辑工作组的成员不一定要连接在同一个物理网段上；结点从一个工作组转移到另一个工作组，只要通过软件设定，不必改变物理位置。</p>
+<h3>（1）基于端口的 VLAN</h3>
+<p>最常见的划分方式是基于端口：交换机的端口被分成多组（由交换机管理软件完成），单个物理交换机因此可被划分为多个虚拟交换机。例如把 1 至 8 号端口划给电气工程系、其余端口划给计算机系，两个部门的通信在交换机内部就被隔开。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-3/p0090.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-3/p0090.webp" alt="图 6　基于端口的 VLAN：把交换机端口分成多组" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　基于端口的 VLAN：交换机端口被分成多组，单个物理交换机被划分为多个虚拟交换机；图中端口 1 至 8 属于电气工程系（原课件第 90 张）</figcaption>
+</figure>
+<h3>（2）构建方式与成员管理</h3>
+<p>构建方式有三种：基于交换机接口号、基于 MAC 地址、基于 IP 地址。基于接口号最常用；也可以基于各端点的 MAC 地址定义 VLAN，这样端口可以在 VLAN 之间动态分配，设备换到别的端口仍属于原来的 VLAN。</p>
+<h3>（3）流量隔离与 VLAN 之间的转发</h3>
+<p>VLAN 的第一个好处是<strong>流量隔离</strong>：来自 1 至 8 号端口的帧只能发送到 1 至 8 号端口。部门之间需要通信时，则通过路由完成 VLAN 之间的转发，就像各部门各用一台单独的交换机再用路由器连起来；实际上，供应商出售的交换机已把路由功能组合了进来。</p>
+<h3>（4）干线端口与 802.1Q 帧格式</h3>
+<p>同一 VLAN 的成员分布在多个物理交换机上时，交换机之间必须互相传递 VLAN 帧，这样的接口称为<strong>干线端口（Trunk Port）</strong>。干线端口上转发的帧不是普通的以太网帧，必须包含 VLAN ID 信息：在 802.1Q 协议中，干线端口转发帧时要添加额外的报头字段，接收时再删除，对端交换机才能判断帧属于哪个 VLAN，只把它转发给同一 VLAN 的端口——这就是基于 802.1Q 的 VLAN 帧格式。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>以太网 20 世纪 70 年代诞生于施乐 PARC，最初以一根同轴电缆作共享总线、靠 CSMA/CD 管理信道争用；1978 年 DEC、Intel 与施乐定义的 10 Mb/s 标准成为 IEEE 802.3 的基础，此后经百兆、千兆、万兆演进到 800G 与 1.6T。</li>
+  <li>它用过四种拓扑，最终以星型和树型为主流；向网络层提供无连接、不可靠的服务，不握手、不确认、不重传，可靠性留给上层 TCP。</li>
+  <li>MAC 地址 48 bit，前 24 bit 是 IEEE 分配的 OUI 号，后 24 bit 由厂商分配，烧入适配器 ROM 不可更改；帧由前同步码、源与目的地址、类型、46 至 1500 字节数据字段和 CRC 组成，定界用物理层违规法：7 字节前导码同步时钟，1 字节 SFD 标志帧的真正开始。</li>
+  <li>CSMA/CD 靠载波侦听、碰撞检测与随机回退工作：碰撞后先发 48 bit 拥塞信号，再按指数回退从 {0, 1, …, 2<sup>m</sup>−1} 中取 K，等待 K×512 比特时间后重传；争用期 51.2 μs 对应 10 Mb/s 下的 64 字节，即最短有效帧长。</li>
+  <li>集线器在物理层把各网段合并成一个大碰撞域；交换机在 MAC 层存储转发，靠自学习建立「站地址—接口号」的站表，优点是过滤通信量、扩大范围、提高可靠性，代价是时延、缓存溢出和广播风暴，冗余链路造成的兜圈子由支撑树算法断开部分接口来消除。交换机与路由器都是存储转发设备，前者在链路层、维护交换表，后者在网络层、维护路由表。</li>
+  <li>VLAN 用软件划分逻辑工作组，使成员摆脱物理位置的限制，可按端口、MAC 地址或 IP 地址构建以隔离流量；跨交换机时由干线端口承载带 VLAN ID 的 802.1Q 帧，VLAN 之间通过路由转发。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-4-2.html">‹ 4.2 多路访问链路和协议</a>
+      <a class="next" href="v2-4-4.html">4.4 Wi-Fi 802.11无线局域网 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

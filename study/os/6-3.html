@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.3 作业调度算法 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.3 作业调度算法：课件第 7–11 张 · 3 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html" aria-current="page"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.3 作业调度算法</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">作业调度算法要回答的是：磁盘后备队列里躺着好几个作业，按什么次序把它们挑进主存运行？同一批作业、同一台处理机，换一种调度算法，平均周转时间和平均带权周转时间就可能相差一大截——这正是评价调度算法好坏的基本尺子。本节的线索是：先给出这几个衡量指标的定义，再逐个讲解四种常用的作业调度算法——先来先服务、短作业优先、响应比高者优先和优先调度算法，并用同一批作业的数据把每种算法都算一遍、比一比。</p>
+
+<h2>1. 调度算法性能的衡量</h2>
+<p>衡量一个作业调度算法好不好，最常用的指标是作业的<strong>周转时间</strong>和<strong>带权周转时间</strong>，以及它们的平均值。这几个量都不是另做测量得来的，而是从作业进入系统时就记下来的时间信息里算出来的——6.2 节讲的作业控制块 JCB 里就已经存了「进入系统时间」和「估计执行时间」。</p>
+
+<h3>（1）周转时间</h3>
+<p>作业 i 的周转时间 t<sub>i</sub>，是它从进入系统到运行完成所经历的全部时间，也就是完成时刻减去进入时刻：t<sub>i</sub> = t<sub>ci</sub> − t<sub>si</sub>。其中 t<sub>si</sub> 为作业 i 进入系统（即处于后备状态）的时刻，t<sub>ci</sub> 为作业 i 的完成时刻。周转时间也叫响应时间，它包括了作业的等待时间加上执行时间：作业在后备队列里排队是等待，真正占用处理机运行是执行。</p>
+
+<h3>（2）平均周转时间</h3>
+<p>把 n 个作业的周转时间加起来再除以 n，就得到作业的平均周转时间 t。单个作业的周转时间只说明它自己等得久不久，平均周转时间才反映系统对一批作业的整体响应快慢，所以比较调度算法时看的是这个平均值。</p>
+
+<h3>（3）带权周转时间</h3>
+<p>只看周转时间还不够公平：周转时间的长短里混着作业本身大小的成分。同样是等上 1 个小时，一个原本就要执行 2.00 小时的作业只算慢了半拍，而一个只需执行 0.10 小时的作业，等待时间已经是自身长度的十倍。于是用作业的周转时间除以它自己的执行时间，消除作业大小的影响，得到<strong>带权周转时间</strong> w<sub>i</sub> = t<sub>i</sub> / t<sub>ri</sub>，其中 t<sub>ri</sub> 为作业 i 的执行时间。由「周转时间 = 等待时间 + 执行时间」可知，w<sub>i</sub> 相当于「1 加上等待时间占执行时间的倍数」：w<sub>i</sub> = 1 说明作业一到就立刻投入运行、没有任何等待，等待越多这个倍数越大。</p>
+
+<h3>（4）平均带权周转时间</h3>
+<p>各个作业带权周转时间的平均值就是平均带权周转时间 w。它比平均周转时间更能暴露「短作业被长作业堵住」这类毛病：短作业的执行时间本身很小，多等一会儿，带权周转时间就会成倍上升，进而把平均值拉高。下面四种算法都用同一批作业（4 个作业，8.00 起陆续进入系统）来算，正好可以直接对比这两个平均值。</p>
+
+<h2>2. 先来先服务调度算法</h2>
+<p><strong>先来先服务 FCFS</strong>（First Come First Served）调度算法按作业来到的先后次序进行调度：谁先进入系统，谁就先被选中运行；作业一旦投入运行，就一直运行到结束。它的特点是优先考虑等待时间较长的作业，而不管作业执行时间的长短。</p>
+<p>这种算法容易实现——后备队列按到达时间排队，每次取队首作业即可，不需要额外的比较和计算。但它的系统效率较低，因为<strong>对短作业不利</strong>：短作业如果排在长作业后面，就得陪着长作业一起等，自己的周转时间被拉得很长，带权周转时间会很高。</p>
+<div class="table-scroll" style="overflow-x:auto">
+  <table>
+    <caption>表 1　先来先服务（FCFS）调度算法示例（数据来自原课件第 8 张）</caption>
+    <thead>
+      <tr><th>作业</th><th>进入系统时间</th><th>执行时间</th><th>开始时间</th><th>完成时间</th><th>周转时间</th><th>带权周转时间</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>8.00</td><td>2.00</td><td>8.00</td><td>10.00</td><td>2.00</td><td>1</td></tr>
+      <tr><td>2</td><td>8.50</td><td>0.50</td><td>10.00</td><td>10.50</td><td>2.00</td><td>4</td></tr>
+      <tr><td>3</td><td>9.00</td><td>0.10</td><td>10.50</td><td>10.60</td><td>1.60</td><td>16</td></tr>
+      <tr><td>4</td><td>9.50</td><td>0.20</td><td>10.60</td><td>10.80</td><td>1.30</td><td>6.5</td></tr>
+      <tr><td colspan="6">平均周转时间 t=1.725　平均带权周转时间 w=6.875</td><td>单位：小时</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>表中的数字都可以验算。作业 1 在 8.00 进入系统，当时只有它一个作业，于是 8.00 开始运行，执行 2.00 小时后在 10.00 完成：周转时间 = 10.00 − 8.00 = 2.00，带权周转时间 = 2.00 / 2.00 = 1。作业 2、3、4 分别在 8.50、9.00、9.50 进入系统，但处理机一直被作业 1 占着，只能等到 10.00 才轮到，此后按到达先后依次运行。作业 2 从 10.00 到 10.50，周转时间 = 10.50 − 8.50 = 2.00，带权周转时间 = 2.00 / 0.50 = 4；作业 3 从 10.50 到 10.60，周转时间 = 10.60 − 9.00 = 1.60，带权周转时间 = 1.60 / 0.10 = 16；作业 4 从 10.60 到 10.80，周转时间 = 10.80 − 9.50 = 1.30，带权周转时间 = 1.30 / 0.20 = 6.5。于是平均周转时间 t = (2.00 + 2.00 + 1.60 + 1.30) / 4 = 1.725，平均带权周转时间 w = (1 + 4 + 16 + 6.5) / 4 = 6.875。</p>
+<p>特别值得看一眼作业 3：它只需要执行 0.10 小时，却从 9.00 一直等到 10.50，带权周转时间高达 16。这就是「对短作业不利」的具体样子，也是 FCFS 的平均带权周转时间被抬到 6.875 的原因。</p>
+
+<h2>3. 短作业优先调度算法</h2>
+<p><strong>短作业优先 SJF</strong>（Shortest Job First）调度算法总是选取执行时间最短的作业执行：后备队列里谁的执行时间（由 JCB 中记录的估计执行时间给出）最小，就选谁先运行。它容易实现，而且系统效率较高——让短的作业先做完、尽快离开系统，平均周转时间和平均带权周转时间都会明显下降。</p>
+<p>注：这一页课件把 SJF 的特点也写成「系统效率较低」，与 FCFS 那段几乎重复，应是笔误——本节三张表用的是同一批作业，SJF 的平均周转时间 1.55、平均带权周转时间 5.15 都低于 FCFS 的 1.725 和 6.875。这里按「系统效率较高」讲；复习时若遇到课件原话，以那三张表的数字为准。</p>
+<p>缺点是它只照顾短作业的利益，不考虑长作业。如果系统不断接受新的作业，长作业可能长时间等待而不能运行：每来一个更短的作业，长作业就被往后推一位。</p>
+<div class="table-scroll" style="overflow-x:auto">
+  <table>
+    <caption>表 2　短作业优先（SJF）调度算法示例（数据来自原课件第 9 张）</caption>
+    <thead>
+      <tr><th>作业</th><th>进入系统时间</th><th>执行时间</th><th>开始时间</th><th>完成时间</th><th>周转时间</th><th>带权周转时间</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>8.00</td><td>2.00</td><td>8.00</td><td>10.00</td><td>2.00</td><td>1</td></tr>
+      <tr><td>2</td><td>8.50</td><td>0.50</td><td>10.30</td><td>10.80</td><td>2.30</td><td>4.6</td></tr>
+      <tr><td>3</td><td>9.00</td><td>0.10</td><td>10.00</td><td>10.10</td><td>1.10</td><td>11</td></tr>
+      <tr><td>4</td><td>9.50</td><td>0.20</td><td>10.10</td><td>10.30</td><td>0.80</td><td>4</td></tr>
+      <tr><td colspan="6">平均周转时间 t=1.55　平均带权周转时间 w=5.15</td><td>单位：小时</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>这里的调度次序是这样定下来的。8.00 时只有作业 1，它仍然独占处理机运行到 10.00。到 10.00 时作业 2（执行时间 0.50）、作业 3（0.10）、作业 4（0.20）都已在后备队列里，短作业优先算法挑执行时间最短的作业 3 先跑：作业 3 从 10.00 到 10.10，周转时间 = 10.10 − 9.00 = 1.10，带权周转时间 = 1.10 / 0.10 = 11。接下来在剩下的作业 2 和作业 4 之间再比一次，选执行时间较短的作业 4：从 10.10 到 10.30，周转时间 = 10.30 − 9.50 = 0.80，带权周转时间 = 0.80 / 0.20 = 4。最后才轮到作业 2：从 10.30 到 10.80，周转时间 = 10.80 − 8.50 = 2.30，带权周转时间 = 2.30 / 0.50 = 4.6。于是平均周转时间 t = (2.00 + 2.30 + 1.10 + 0.80) / 4 = 1.55，平均带权周转时间 w = (1 + 4.6 + 11 + 4) / 4 = 5.15。</p>
+<p>与表 1 对照着看：短作业 3 的带权周转时间从 16 降到 11，短作业 4 从 6.5 降到 4，都是受益者；代价是执行时间较长一些的作业 2 被推到了最后，带权周转时间从 4 升到 4.6。两个平均值都下降了（t：1.725 → 1.55，w：6.875 → 5.15），说明对这批作业来说 SJF 确实比 FCFS 效率更高。</p>
+
+<h2>4. 响应比高者优先调度算法</h2>
+<p>前两种算法的毛病都在于「只认一头」：FCFS 只看等待时间，SJF 只看执行时间。<strong>响应比高者优先</strong>调度算法（Highest Response Ratio Next，HRRN）想把两头都照顾到，办法是给每个作业算一个响应比：响应比 = 响应时间 / 执行时间 = 1 + 等待时间 / 执行时间。它的做法是：在每一次要选择一个作业运行时，都实时动态计算所有作业的响应比，选择响应比高的作业运行。</p>
+<p>从公式就能看出它的取舍。等待时间越长，响应比越高，先来的作业迟早会占优，这是照顾作业到来的先后；执行时间越短，响应比越高，短作业一进队列就能拿到较高的响应比，这是照顾短作业。而且等待时间在分子上会随时间不断增长，长作业等久了响应比也会升上去，不会像 SJF 那样被后来的短作业无限期插队。它的代价是实现性能较差：每选一次作业，都要把当前所有候选作业的响应比算一遍再比较。</p>
+<div class="table-scroll" style="overflow-x:auto">
+  <table>
+    <caption>表 3　响应比高者优先调度算法示例（数据来自原课件第 10 张）</caption>
+    <thead>
+      <tr><th>作业</th><th>进入系统时间</th><th>执行时间</th><th>开始时间</th><th>完成时间</th><th>周转时间</th><th>带权周转时间</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>8.00</td><td>2.00</td><td>8.00</td><td>10.00</td><td>2.00</td><td>1</td></tr>
+      <tr><td>2</td><td>8.50</td><td>0.50</td><td>10.10</td><td>10.60</td><td>2.10</td><td>4.2</td></tr>
+      <tr><td>3</td><td>9.00</td><td>0.10</td><td>10.00</td><td>10.10</td><td>1.10</td><td>11</td></tr>
+      <tr><td>4</td><td>9.50</td><td>0.20</td><td>10.60</td><td>10.80</td><td>1.30</td><td>6.5</td></tr>
+      <tr><td colspan="6">平均周转时间 t=1.625　平均带权周转时间 w=5.675</td><td>单位：小时</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>响应比法的关键在第 2 步和第 3 步的选择，把当时的响应比算出来就一目了然。8.00 时只有作业 1，它运行到 10.00 完成。到 10.00，后备队列里有三个作业，各自的响应比为：作业 2 = 1 + (10.00 − 8.50) / 0.50 = 4；作业 3 = 1 + (10.00 − 9.00) / 0.10 = 11；作业 4 = 1 + (10.00 − 9.50) / 0.20 = 3.5。作业 3 的响应比最高，于是先运行，10.00 到 10.10 完成，周转时间 = 1.10、带权周转时间 = 11。到 10.10 再算一次：作业 2 = 1 + (10.10 − 8.50) / 0.50 = 4.2，作业 4 = 1 + (10.10 − 9.50) / 0.20 = 4.0，这一步作业 2 的响应比略高，所以选作业 2 运行（10.10 到 10.60），最后作业 4 从 10.60 运行到 10.80。</p>
+<p>注意表中的带权周转时间正是在「被选中运行的那一刻」算出的响应比：作业一旦开始运行，它的等待时间就不再增加，周转时间 = 等待时间 + 执行时间，再除以执行时间就还原成响应比，作业 2 的 4.2、作业 4 的 6.5 都能这样对上。按表算平均值：平均周转时间 t = (2.00 + 2.10 + 1.10 + 1.30) / 4 = 1.625，平均带权周转时间 w = (1 + 4.2 + 11 + 6.5) / 4 = 5.675，都落在 FCFS 与 SJF 之间——它既照顾了作业到来的先后，又考虑了作业的执行时间长短，是前两种算法较好的折中。</p>
+
+<h2>5. 优先调度算法</h2>
+<p><strong>优先调度算法</strong>（Priority Scheduling）不再局限于某一个标准，而是综合考虑有关因素——作业的缓急程度、作业大小、等待时间、资源使用等——并根据系统设计目标分析这些因素对调度性能的影响，然后自定义一种方法确定每个作业的优先级，调度时选择优先级高者先执行。换句话说，FCFS 和 SJF 都可以看成它的特例：前者把「优先级」取成到达时间的先后，后者取成执行时间的倒数。</p>
+<p>优先级的确定方式有两种。作业的优先级可以在作业进入系统时确定，一经确定就不再改变，这叫<strong>静态优先级</strong>；也可以在每次需要选择作业时算出，随着作业的等待情况和系统状态而变化，这叫<strong>动态优先级</strong>。静态优先级实现简单、计算开销小，但作业在等待期间处境的变化体现不出来；动态优先级调度更灵活，代价是每次选择都要重新计算。这个思路在 6.5 节进程调度的优先数算法里会再次出现，只是作用的对象从作业换成了进程。</p>
+<p>课件的例子给出了一个具体的设计方法。假设调度目标是优先考虑输出量较少、执行时间较短、等待时间较长的作业先运行，那么可以设计：</p>
+<p>优先级 = 等待时间² − 执行时间 − 16 × 输出量，优先级高者先运行。</p>
+<p>三个目标被直接写进了加减号和系数里：等待时间取平方，等待越久加分增长得越快，于是等待时间较长的作业占优；执行时间与输出量前面都是负号，取值越小优先级越高，于是执行时间较短、输出量较少的作业占优；系数 16 则体现输出量这一因素在调度目标中占多大分量。要优先照顾谁，就把它写进公式并给它合适的权重——这正是优先调度算法比前三种灵活的地方，而灵活性从哪来，取决于系统到底想优化什么。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>衡量调度算法看两个量：周转时间 t<sub>i</sub> = t<sub>ci</sub> − t<sub>si</sub>（也叫响应时间，等于等待时间 + 执行时间）与带权周转时间 w<sub>i</sub> = t<sub>i</sub> / t<sub>ri</sub>；比较算法时看它们的平均值 t 和 w。</li>
+  <li><strong>先来先服务 FCFS</strong>：按作业到达的先后次序调度，实现最简单，优先考虑等待时间长的作业而不管执行时间长短；对短作业不利，带权周转时间会很高（本例 t=1.725、w=6.875）。</li>
+  <li><strong>短作业优先 SJF</strong>：总是选取执行时间最短的作业，容易实现、系统效率较高（本例 t=1.55、w=5.15，三种算法里最低）；缺点是只照顾短作业，若系统不断接受新作业，长作业可能长时间等待而不能运行。</li>
+  <li><strong>响应比高者优先</strong>：每次选择时都实时动态计算所有作业的响应比（= 响应时间 / 执行时间 = 1 + 等待时间 / 执行时间），选高者运行；既照顾到来的先后又考虑执行时间长短，是前两种算法较好的折中（本例 t=1.625、w=5.675），代价是实现性能较差。</li>
+  <li><strong>优先调度算法</strong>：把缓急程度、作业大小、等待时间、资源使用等因素按系统设计目标折算成优先级，高者先执行；优先级在作业进入系统时确定的是静态优先级，每次选择时算出的是动态优先级。</li>
+  <li>四种算法的分歧，说到底是怎么看待「等待时间」和「执行时间」：FCFS 只看前者，SJF 只看后者，响应比把两者相除求比值，优先调度算法则允许按设计目标自由加权——公式怎么设计，调度就偏向谁。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-2.html">‹ 6.2 作业调度</a>
+      <a class="next" href="6-4.html">6.4 进程调度 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.6 快速检测：FAST 与 ORB · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 4 章 特征检测与匹配 4.6 快速检测：FAST 与 ORB：以「4-特征检测与匹配.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html" aria-current="page"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 4 章 特征检测与匹配</p>
+      <h1>4.6 快速检测：FAST 与 ORB</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前一节的收尾问题在这里得到回答：怎样在保证可用的前提下把检测与描述做快。课件给出两个算子——<strong>FAST</strong> 用「圆周上连续多少个像素比中心亮／暗」这一条极简判据换取速度，并用「只查 4 个点」的技巧把候选筛得更快；<strong>ORB</strong> 则在 FAST 的基础上补回尺度与旋转不变性（金字塔 + 矩法定方向），把精度做到与 SIFT 相当、速度却快了两个数量级。这一节篇幅最短，但它是这套方法真正落地的形态。</p>
+
+<h2>1. FAST 特征点检测：一条判据换速度</h2>
+<p>FAST 的判据只用像素之间的明暗比较，不算梯度、不做卷积，所以快。课件给出的定义是：</p>
+<ul>
+  <li>从图像中选取一个像素点 <strong>P</strong>，其强度为 <strong>I<sub>p</sub></strong>；</li>
+  <li>考虑以该像素点为中心、一个<strong>半径等于 3 个像素的离散化 Bresenham 圆</strong>，这个圆的边界上有 <strong>16 个像素</strong>；</li>
+  <li>如果在这个大小为 16 个像素的圆上，有<strong>连续 N 个像素</strong>（N 一般取 <strong>9 或 12</strong>）都比候选点 P 强度<strong>亮</strong>，或者都比 P 的强度<strong>暗</strong>，那么 P 就是一个角点。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-6/p0071.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-6/p0071.webp" alt="图 1　FAST 特征点检测的判据" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　FAST 特征点检测：以 P 为中心、半径 3 的离散化 Bresenham 圆上有 16 个像素，若其中连续 N 个（一般取 9 或 12）都比 I<sub>p</sub> 亮或都比 I<sub>p</sub> 暗，则 P 为角点（原课件第 71 张）</figcaption>
+</figure>
+<p>这个判据的巧妙之处在于它<strong>不描述「角点长什么样」，而是描述「角点周围必然出现什么现象」</strong>：角点是一块区域里灰度急剧转折的地方，绕它走一圈，强度必然一会儿高于它、一会儿低于它，而且高低各自会连成一段。于是「一圈里有没有连续 N 个同向的像素」就成了检测条件——这也是 4.2 节所说的「在任何方向上移动窗口都应该在强度上产生很大的变化」的离散版本。</p>
+<h3>更快的判断：只看 4 个点</h3>
+<p>逐个检查 16 个像素还是慢。课件给出的加速办法是：<strong>仅检查位置在 1、9、5、13 这四个位置的像素，就可以快速排除大部分非角点的像素</strong>：</p>
+<ol>
+  <li>首先检查位置 <strong>1 和 9</strong>，如果它们<strong>都</strong>比 I<sub>p</sub> 大（或者都小），再检测位置 <strong>5 和 13</strong>；</li>
+  <li>如果位置 5 和 13 中<strong>至少有一个</strong>比 I<sub>p</sub> 大（或者小），则该点是<strong>候选角点</strong>，否则剔除；</li>
+  <li>对于成为候选的角点，<strong>再做完整的测试</strong>，即检测圆上的所有点。</li>
+</ol>
+<p>课件的原理说明是：<strong>在 N = 12 的情况下，如果 P 是一个角点，超过四分之三圆的像素值必须大于或小于 I<sub>p</sub>，因此 1、9、5、13 这四个像素中至少有 3 个必须大于或小于 I<sub>p</sub></strong>。1、9、5、13 正好把圆周四等分，任意连续 12 个像素（即 3/4 圈）必然覆盖其中至少 3 个——所以「4 个里不足 3 个同向」就可以直接判非角点。这是一次<strong>用几何约束换掉大量像素比较</strong>的典型优化。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-6/p0072.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-6/p0072.webp" alt="图 2　FAST 的快速排除：只检查 1、9、5、13 四个位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　一种更快速的判断方式：先查位置 1 与 9，再查 5 与 13；N = 12 时若 P 为角点，这四点中至少 3 个必须同向大于或小于 I<sub>p</sub>，据此可快速排除大部分非角点像素（原课件第 72 张）</figcaption>
+</figure>
+
+<h2>2. ORB 特征检测：把不变性补回来</h2>
+<p>FAST 快，但只比明暗，因此既没有尺度概念、也没有方向概念。ORB 的做法是保留 FAST 的检测、把缺的两样补上。课件的总结是：<strong>ORB 算法性能与 SIFT 一样好，速度却快了两个数量级</strong>，具体做法有五条：</p>
+<ol>
+  <li><strong>构建图像特征金字塔</strong>；</li>
+  <li>在<strong>不同尺度上检测 FAST 特征点</strong>（为了让检测到的角点具有<strong>尺度不变性</strong>）；</li>
+  <li>对 FAST 提取到的角点计算 <strong>Harris 角点响应值</strong>，选取<strong>前 N 个具有最大响应值</strong>的角点作为特征点集合；</li>
+  <li><strong>非极大值抑制</strong>去除局部较密集特征点；</li>
+  <li>使用<strong>矩（moment）法</strong>来确定 FAST 特征点的方向（为了让检测到的特征具有<strong>旋转不变性</strong>）。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-6/p0073.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-6/p0073.webp" alt="图 3　ORB 特征检测的步骤与图像金字塔的构建" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　ORB：性能与 SIFT 一样好、速度快两个数量级——构建图像特征金字塔、在多尺度上检测 FAST、按 Harris 响应值取前 N 个、非极大值抑制、矩法定方向；图中同时给出金字塔的构建过程（原课件第 73 张）</figcaption>
+</figure>
+<p>注意第 2 条与第 3 条的配合：<strong>第 2 条把 4.3 节的思路接了过来</strong>——不再只在一个尺度上找 FAST，而是在金字塔的每一层都找，于是同一物理特征可以在不同尺度上被检测到，尺度不变性就回来了。而<strong>第 3 条又把 4.2 节的 Harris 请了回来</strong>：FAST 只告诉「这是角点」，没告诉「这个角点有多强」，于是用 Harris 响应值排序，只保留响应最大的前 N 个，既控制了特征数量，也提高了质量。这种「几种算子各取所长、拼在一起」的做法，在本章里出现了不止一次。</p>
+<p>课件也说明了金字塔本身怎么建：<strong>原始图像作为金字塔的最底层；对第 k 层图像进行高斯滤波，以一定的采样率对其进行降采样，生成第 k+1 层。</strong>层数越高图像越小，对应的结构尺度越大。</p>
+<h3>用矩（moment）法确定方向</h3>
+<p>最后一步是给特征点定方向，好让描述子能够跟着旋转一起转回去。课件给出的三步是：</p>
+<ol>
+  <li>在一个小的图像块 B 中，定义图像块的<strong>矩</strong>：<strong>m<sub>pq</sub> = Σ<sub>x,y</sub> x<sup>p</sup> y<sup>q</sup> I(x, y)</strong>；</li>
+  <li>通过矩找到图像块的<strong>质心</strong>：<strong>C = ( m<sub>10</sub>/m<sub>00</sub> , m<sub>01</sub>/m<sub>00</sub> )</strong>；</li>
+  <li>连接图像块的<strong>几何中心 O</strong> 与<strong>质心 C</strong>，得到一个方向向量 <strong>OC</strong>，这就是特征点的方向：<strong>θ = atan2(m<sub>01</sub>, m<sub>10</sub>)</strong>。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-6/p0074.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-6/p0074.webp" alt="图 4　用矩法确定 FAST 特征点的方向" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　使用矩（moment）法确定 FAST 特征点的方向：定义图像块的矩 m<sub>pq</sub> = Σ x<sup>p</sup>y<sup>q</sup>I(x, y)，求出质心 C = (m<sub>10</sub>/m<sub>00</sub>, m<sub>01</sub>/m<sub>00</sub>)，几何中心 O 到质心 C 的方向即特征点方向 θ = atan2(m<sub>01</sub>, m<sub>10</sub>)（原课件第 74 张）</figcaption>
+</figure>
+<p>直觉上讲，<strong>质心偏向哪一侧，说明那一侧的「重量」（灰度）更大</strong>，于是 O→C 就给出了这块区域的主方向。有了这个角度，描述子就可以先把窗口旋转到同一朝向再做统计——这样图像旋转时，描述子基本不变。</p>
+
+<h2>3. 本章的收束：一条从慢到快的路线</h2>
+<p>把 4.2 到 4.6 连起来看，本章其实是在<strong>三对矛盾</strong>之间反复权衡：</p>
+<ul>
+  <li><strong>位置 vs 尺度</strong>：Harris 解决了「哪些位置适合做关键点」但对尺度敏感；LoG/DoG 把特征点升维成 (x, y, σ)，补上尺度。</li>
+  <li><strong>简单 vs 独特</strong>：像素值直接排列最简单，却经不起微小移动；SIFT 用 128 维的方向梯度直方图换来独特与稳定。</li>
+  <li><strong>精度 vs 速度</strong>：SIFT 精度好但慢；FAST 用「一圈里连续 N 个同向像素」换速度；ORB 再把金字塔与矩法叠上去，用两个数量级的速度差换到与 SIFT 相近的性能。</li>
+</ul>
+<p>课件在本章结尾给出了一篇 ORB 的参考资料（<a href="https://zhuanlan.zhihu.com/p/91479558" target="_blank" rel="noopener">zhuanlan.zhihu.com/p/91479558</a>），想动手实现的可以对照阅读。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li><strong>FAST</strong> 的判据：以像素 P 为中心、半径 3 的离散化 Bresenham 圆上有 16 个像素；若有<strong>连续 N 个</strong>（一般取 <strong>9 或 12</strong>）都比 I<sub>p</sub> 亮或都比 I<sub>p</sub> 暗，则 P 为角点。</li>
+  <li><strong>快速排除</strong>：只查位置 1、9、5、13——先看 1 和 9 是否同向，再看 5 和 13 中是否至少一个同向，不满足即剔除，候选点才做完整测试。原理是 N = 12 时需要超过 3/4 圈同向，故这四点中至少 3 点同向。</li>
+  <li><strong>ORB</strong> 性能与 SIFT 一样好、速度快两个数量级，五步：建<strong>金字塔</strong> → 多尺度上检测 FAST（<strong>尺度不变性</strong>）→ 按 <strong>Harris 响应值</strong>取前 N 个 → 非极大值抑制 → <strong>矩法定方向</strong>（<strong>旋转不变性</strong>）。</li>
+  <li>金字塔的构建：原始图像为最底层，对第 k 层高斯滤波并降采样得到第 k+1 层。</li>
+  <li>矩法定方向：m<sub>pq</sub> = Σ x<sup>p</sup>y<sup>q</sup>I(x,y) → 质心 C = (m<sub>10</sub>/m<sub>00</sub>, m<sub>01</sub>/m<sub>00</sub>) → 连接几何中心 O 与质心 C 得方向，θ = atan2(m<sub>01</sub>, m<sub>10</sub>)。</li>
+  <li>本章三对矛盾：位置与尺度、简单与独特、精度与速度；Harris→LoG/DoG→SIFT→FAST/ORB 正是沿着这三条线逐步演进的。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-5.html">‹ 4.5 特征匹配与性能评价</a>
+      <a class="next" href="5-1.html">5.1 人工神经元与激活函数 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.3 动态主机配置协议DHCP · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 6 章 6.3 动态主机配置协议DHCP：讲义第 1454–1482 页 · 14 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html" aria-current="page"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 6 章 应用层</p>
+      <h1>6.3 动态主机配置协议DHCP</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">一台主机要接入网络并使用网络服务，必须事先配好 IP 地址、子网掩码、默认网关和 DNS 服务器这几项参数；主机一多，逐台手工配置既费事又容易出错。<strong>动态主机配置协议 DHCP（Dynamic Host Configuration Protocol）</strong>就是为了解决这个问题的应用层协议，它让主机一开机就自动获得这些配置信息，称为「即插即用连网」。本节先看清手工配置的困难，再依次讲 DHCP 的报文与端口、四步交互过程、租用期与续租释放，最后讲中继代理与 DHCP 服务器的位置。</p>
+<h2>1. 手工配置的困境</h2>
+<p>先看一个典型的例子。网络中有一台 Web 服务器，地址是 192.168.1.1、子网掩码 255.255.255.0，位于 192.168.1.0 网段；网络中还有一台 DNS 服务器 192.168.0.253，负责把域名 www.hnust.cn 解析成 Web 服务器的地址 192.168.1.1。用户主机位于 192.168.0.0 网段，本网段的出口（默认网关）是路由器接口 192.168.0.254。用户想用域名访问这台 Web 服务器，主机就必须先被配置好，而它需要的参数一项也不能少。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1456.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1456.webp" alt="图 1　用户主机要为访问 Web 服务器配置哪些参数" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　要正常访问 Web 服务器，每台用户主机都必须配置 IP 地址、子网掩码、默认网关和 DNS 服务器（图中给出 192.168.0.1、192.168.0.166 两台主机的配置，原讲义第 1456 页）</figcaption>
+</figure>
+<p>这四项参数各自的取值和作用见表 1。</p>
+<table>
+  <caption>表 1　例网中一台用户主机必须配置的四项参数（数据来源：原讲义第 1456、1457 页）</caption>
+  <thead>
+    <tr><th>参数</th><th>例网中的取值</th><th>作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>IP 地址</td><td>192.168.0.1、192.168.0.166（可分配范围 192.168.0.1～192.168.0.251）</td><td>主机在本网络中的标识，收发的分组都以它为源地址或目的地址</td></tr>
+    <tr><td>子网掩码</td><td>255.255.255.0</td><td>划出网络前缀，用来判断目的主机是否与本机同在一个网络</td></tr>
+    <tr><td>默认网关</td><td>192.168.0.254</td><td>本网段的出口；访问 192.168.1.0 网段的 Web 服务器必须经它转发</td></tr>
+    <tr><td>DNS 服务器</td><td>192.168.0.253</td><td>把域名 www.hnust.cn 解析为 Web 服务器的 IP 地址 192.168.1.1</td></tr>
+  </tbody>
+</table>
+<p>四项参数缺一不可：没有 IP 地址根本无法通信；子网掩码写错就分不清目的主机是本地还是远程；没有默认网关，分组出不了本网段；不指明 DNS 服务器，就只能输入 IP 地址而不能用域名访问。麻烦的是，这些参数要在<strong>每一台主机</strong>上重复设置一遍，正如原讲义所提示的——<strong>手工配置工作量大，且容易出错</strong>：地址可能被两台主机写成同一个（地址冲突），掩码、网关、DNS 服务器抄错一项就上不了网，主机搬到别的网段还得重新配置，笔记本、手机等临时接入的设备更是负担。于是人们希望把这件事交给网络自己去完成。</p>
+<h2>2. DHCP 的作用与即插即用连网</h2>
+<p>DHCP 提供的机制称为<strong>即插即用连网（plug-and-play networking）</strong>：一台计算机加入新网络时，可以自动获取 IP 地址等网络配置信息，而不需要手工参与。它把「配置参数」集中在服务器一端管理：管理员只要在 DHCP 服务器上规划好一段地址和有关参数，其余主机开机后自行索取即可。</p>
+<p>以例网为例，DHCP 服务器可以为局域网中的各主机提供以下信息：IP 地址（在 192.168.0.1～192.168.0.251 中分配）、子网掩码 255.255.255.0、默认网关 192.168.0.254、DNS 服务器 192.168.0.253。主机开机时启动 DHCP 客户程序，主动请求并获取这些配置信息，随后就能像手工配置好的主机一样正常访问网络服务。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1457.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1457.webp" alt="图 2　DHCP 服务器为主机自动分配配置信息" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　DHCP 服务器统一给出地址范围与子网掩码、默认网关、DNS 服务器，主机开机后自动获取，不再逐台手工配置（原讲义第 1457 页）</figcaption>
+</figure>
+<p>从协议的分层看，DHCP 属于应用层协议，是 6.1 节所说的应用层协议之一；它工作的方式正是 6.2 节讲的<strong>客户—服务器方式</strong>——一方运行服务器程序、集中管理配置信息，另一方运行客户程序、提出请求。它也是主机接入网络后首先要完成的一步：只有先拿到自己的 IP 地址、默认网关和 DNS 服务器地址，主机才能去访问 Web 服务器，也才能向 6.4 节要讲的域名系统请求域名解析。</p>
+<h2>3. DHCP 的报文、端口与客户—服务器方式</h2>
+<p>运行 DHCP 服务器程序的一方管理着一段可供分配的 IP 地址（通常称为地址池），负责回答客户请求并指定租期；请求配置的主机则运行 DHCP 客户程序。一个网络里可以有多台 DHCP 服务器（后面例子中就有两台），它们都可以向客户提供地址，客户从中挑选一份。</p>
+<p>DHCP 报文在运输层使用<strong>用户数据报协议 UDP（User Datagram Protocol）</strong>封装：配置信息本身很短，这一步又通常在一个网段内完成，用无连接的 UDP 既够用又省去建立连接的等待。端口号是固定的：<strong>DHCP 服务器使用 UDP 端口 67，DHCP 客户使用 UDP 端口 68</strong>（端口号与复用、分用的概念见 5.2 节）。这里还有一个特别之处：客户在未获取到 IP 地址时，报文的源 IP 地址只能填 <strong>0.0.0.0</strong>，因为它此时还没有可用的地址。</p>
+<p>DHCP 主要使用以下 6 种报文来实现其功能（表 2）。</p>
+<table>
+  <caption>表 2　DHCP 的 6 种报文及其作用（数据来源：原讲义第 1482 页，并结合第 1459—1477 页的交互过程整理）</caption>
+  <thead>
+    <tr><th>报文</th><th>中文名称</th><th>作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DHCP DISCOVER</td><td>DHCP 发现报文</td><td>客户广播寻找 DHCP 服务器，源 IP 地址为 0.0.0.0，目的 IP 地址为 255.255.255.255</td></tr>
+    <tr><td>DHCP OFFER</td><td>DHCP 提供报文</td><td>服务器从地址池中选出一个可用地址，连同子网掩码、地址租期、默认网关、DNS 服务器等信息一并提供</td></tr>
+    <tr><td>DHCP REQUEST</td><td>DHCP 请求报文</td><td>客户广播声明接受了哪一份租约；续租时改为单播发给原来那台服务器</td></tr>
+    <tr><td>DHCP ACK</td><td>DHCP 确认报文</td><td>服务器确认租约；续租成功时也用它给出新的租用期</td></tr>
+    <tr><td>DHCP NACK</td><td>DHCP 否认报文</td><td>服务器拒绝请求或不同意续租，客户必须重新发送 DHCP DISCOVER</td></tr>
+    <tr><td>DHCP RELEASE</td><td>DHCP 释放报文</td><td>客户随时解除 IP 地址租约，把地址还给服务器</td></tr>
+  </tbody>
+</table>
+<p>这些报文两两成对，构成了下面要讲的交互过程。</p>
+<h2>4. DHCP 的工作过程</h2>
+<p>一台新开机（或刚接入网络）的主机，要经过「寻找—提供—请求—确认」四个步骤才能拿到地址。整个过程很像租房：客户先到处问「谁能租给我一间房」——因为它既不知道服务器在哪里，也没有自己的地址可作源地址，所以只能广播；各服务器分别报出「我这有房，条件是这样」；客户挑定一家，正式提出申请；最后房东确认签约。由于客户还没有 IP 地址，双方只能靠报文中的<strong>事务 ID</strong>（一次申请事务的编号）和客户的 <strong>MAC 地址（Media Access Control address，媒体接入控制地址）</strong>来认领属于同一次申请的报文。</p>
+<h3>（1）寻找 DHCP 服务器 —— DHCP DISCOVER</h3>
+<p>DHCP 客户广播发送 DHCP 发现报文 DHCP DISCOVER。报文的源 IP 地址填 0.0.0.0，目的 IP 地址填 255.255.255.255，即受限广播地址，只在本地网络内传播；报文中携带事务 ID 和本机的 MAC 地址。之所以采用广播，是因为客户并不知道 DHCP 服务器位于何处、地址是多少，只能在本网段内「喊一声」，让本网段里的所有 DHCP 服务器都能收到这份请求。</p>
+<h3>（2）提供 IP 地址租用 —— DHCP OFFER</h3>
+<p>收到 DISCOVER 的服务器从地址池中选出一个尚未分配的 IP 地址，回送 DHCP 提供报文 DHCP OFFER。这个报文的源 IP 地址是服务器自己的地址——所以图中服务器 1 和服务器 2 各自以自身的地址为源地址；目的 IP 地址仍是广播地址，因为客户还没有可用的地址。报文中除了与 DISCOVER 相同的事务 ID，还带上这份租约的配置信息：<strong>子网掩码、地址租期、默认网关、DNS 服务器</strong>。服务器在提供之前还会用<strong>地址解析协议 ARP（Address Resolution Protocol）</strong>确认所选地址没有被网络中其他主机占用，避免把已经有人使用的地址再租出去。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1465.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1465.webp" alt="图 3　客户广播 DISCOVER，两台服务器分别回送 OFFER" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　客户以 0.0.0.0 为源地址广播 DHCP DISCOVER，两台服务器分别以自己的 IP 地址为源地址回送 DHCP OFFER（原讲义第 1465 页）</figcaption>
+</figure>
+<p>如果同时有多台服务器应答，客户就会收到多个 OFFER，它从中挑选一个（一般是先到达的那一个）。</p>
+<h3>（3）接受 IP 地址租约 —— DHCP REQUEST</h3>
+<p>客户在收到的若干 OFFER 中选定一份，然后广播发送 DHCP 请求报文 DHCP REQUEST，表明自己接受的是哪一份租约。这个报文仍然以 0.0.0.0 为源 IP 地址、以 255.255.255.255 为目的 IP 地址，内容包含事务 ID、DHCP 客户端 MAC 地址、<strong>所接受的租约中的 IP 地址</strong>以及<strong>提供该租约的 DHCP 服务器端 IP 地址</strong>。这里之所以还要广播，一是因为客户此时尚未正式取得地址，二是因为要让所有发过 OFFER 的服务器都知道结果：被选中的服务器准备确认，未被选中的服务器收回自己的提供，把那个地址留给别的主机使用。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1468.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1468.webp" alt="图 4　客户广播 DHCP REQUEST 声明接受的租约" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　客户以广播方式发送 DHCP REQUEST，报文中给出所接受的租约 IP 地址与提供该租约的服务器地址（原讲义第 1468 页）</figcaption>
+</figure>
+<h3>（4）确认 IP 地址租约 —— DHCP ACK</h3>
+<p>被选中的服务器发回 DHCP 确认报文 DHCP ACK，其源 IP 地址是服务器自己的地址，目的 IP 地址仍是广播地址。客户收到 ACK 后还不能马上使用这个地址，它要用 ARP 检测所分配到的 IP 地址是否已被网络中其他主机占用：</p>
+<ul>
+  <li>若被占用：给 DHCP 服务器发送 DHCP DECLINE 报文撤销 IP 地址租约，并重新发送 DHCP DISCOVER 报文；</li>
+  <li>若未被占用：就可以使用租约中的 IP 地址与网络中其他主机通信了。</li>
+</ul>
+<p>至此，一台主机从「没有任何配置」到「可以正常联网」的全过程就完成了，而这一切都是自动发生的。</p>
+<h2>5. 租用期、续租与租约释放</h2>
+<p>DHCP 分配给客户的并不是永久归其所有的地址，而是一段<strong>租用期</strong>：服务器在 DHCP OFFER（以及随后的 ACK）中通过「地址租期」字段告诉客户，这个地址可以借用多久。这样做的好处是地址能够循环使用——主机离开网络、关机之后不再使用，地址会自动回到地址池，可以再分配给别的主机，既避免地址被长期闲置占用，也方便网络重新规划。</p>
+<p>租用期快到的时候，客户必须向服务器申请<strong>续租</strong>。按照 DHCP 的一般规则，客户在租用期过半时就会主动发起：这次采用<strong>单播</strong>，DHCP REQUEST 的源 IP 地址填写自己租用的那个地址，目的 IP 地址则是先前提供该租约的 DHCP 服务器的地址——此时客户已经有地址，也知道该找谁，不必再广播。服务器对续租请求有三种处理方式（图 5）：</p>
+<ul>
+  <li><strong>情况 1</strong>：服务器发回 DHCP ACK（源 IP 地址为服务器地址，目的 IP 地址为租用的地址），客户得到新的租用期，可以继续使用原来的地址；</li>
+  <li><strong>情况 2</strong>：服务器发回 DHCP NACK，表示不同意续租（例如该地址已被划作他用），客户必须停止使用原来的地址，重新发送 DHCP DISCOVER 申请新地址；</li>
+  <li><strong>情况 3</strong>：服务器不响应，客户可以继续使用原来的地址，直到租用期结束为止，租用期一到就必须停止使用并重新申请。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1475.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1475.webp" alt="图 5　续租的三种结局：ACK、NACK 与不响应" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　续租时服务器有三种处理：情况 1 回 DHCP ACK（客户得到新租用期）、情况 2 回 DHCP NACK、情况 3 不响应；图中同时给出了租用期的时间轴（原讲义第 1475 页）</figcaption>
+</figure>
+<p>如果客户不再需要这个地址（例如正常关机、离开网络），则可以随时解除 IP 地址租约：向服务器发送 DHCP 释放报文 DHCP RELEASE，目的 IP 地址为广播地址 255.255.255.255，把这个地址提前还给服务器，让它能更早地分配给其他主机。图 6 把整个 DHCP 工作过程收在一张图上：四个交互步骤、租用期内的单播续租以及随时可以发出的 DHCP RELEASE。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1477.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1477.webp" alt="图 6　DHCP 完整工作过程与租约管理" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　DHCP 完整过程回顾：寻找 DHCP 服务器、提供 IP 地址租用、接受 IP 地址租约、确认 IP 地址租约，以及租用期内的单播续租和随时解除租约的 DHCP RELEASE（原讲义第 1477 页）</figcaption>
+</figure>
+<h2>6. DHCP 中继代理与服务器的位置</h2>
+<p>前面讲的广播只在<strong>本地网络</strong>内传播，这就带来一个新的问题：如果某个网络里没有 DHCP 服务器，该网络中的主机广播 DHCP DISCOVER 也不会有服务器应答。图 7 就是这样一个例子：DHCP 服务器接在 192.168.0.0 网段，而用户主机和 Web 服务器所在的 192.168.1.0 网段没有 DHCP 服务器；主机广播的 DHCP DISCOVER 到达路由器后被丢弃（路由器默认不转发广播），因此该网段的主机无法自动获取 IP 地址等网络配置信息。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1479.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1479.webp" alt="图 7　本网段没有 DHCP 服务器时，广播的 DISCOVER 得不到应答" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　192.168.1.0 网段的主机广播 DHCP DISCOVER，因本网段没有 DHCP 服务器而无法自动获取网络配置信息（原讲义第 1479 页）</figcaption>
+</figure>
+<p>解决办法不是给每个网络都装一台 DHCP 服务器，而是使用 <strong>DHCP 中继代理（DHCP relay agent）</strong>：给连接该网段的路由器配置上 DHCP 服务器的 IP 地址，让它充当代理。这样，本网段主机广播的 DHCP DISCOVER 会被中继代理以<strong>单播</strong>方式转发给 DHCP 服务器；服务器给出的应答再由中继代理转回给主机。于是该网段的主机同样可以自动获取到 IP 地址等网络配置信息（图 8）。</p>
+<figure class="fig">
+  <a href="../../assets/course/6-3/p1481.webp" target="_blank" rel="noopener"><img src="../../assets/course/6-3/p1481.webp" alt="图 8　把路由器配置成 DHCP 中继代理后，主机可以自动获取配置" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　给路由器配置 DHCP 服务器的 IP 地址并使之成为中继代理，广播的 DHCP DISCOVER 被以单播方式转发给 DHCP 服务器，主机即可自动获取配置信息（原讲义第 1481 页）</figcaption>
+</figure>
+<p>为什么不干脆在每个网络都放一台 DHCP 服务器？因为那样 DHCP 服务器的数量会太多，管理成本高，地址池也分散。因此现在的做法是：<strong>每一个网络至少有一个 DHCP 中继代理（通常是一台路由器）</strong>，它配置了 DHCP 服务器的 IP 地址信息，作为本网络中计算机与 DHCP 服务器之间的桥梁。换句话说，DHCP 服务器不必与客户处在同一个网段，它可以集中放置在某一个网段里，由各网段的中继代理「代收代转」。这也正好解释了前面那个设计细节：客户发出的第一个报文必须是广播（它不知道服务器在哪里），而中继代理存在的意义，就是让这个走不出本网段的广播能够被送到远处的 DHCP 服务器。</p>
+<h2>本节小结</h2>
+<ul>
+  <li>DHCP 是应用层协议，提供<strong>即插即用连网</strong>机制：主机加入新网络时自动获取 IP 地址、子网掩码、默认网关、DNS 服务器等配置信息，不必手工参与，从而免去逐台配置的工作量和出错风险；</li>
+  <li>DHCP 报文在运输层用 UDP 封装，<strong>服务器端口 67、客户端口 68</strong>，工作方式属于客户—服务器方式；客户未获取到 IP 地址时源 IP 地址用 0.0.0.0，寻找服务器时目的 IP 地址用广播地址 255.255.255.255；</li>
+  <li>6 种报文：DISCOVER（发现）、OFFER（提供）、REQUEST（请求）、ACK（确认）、NACK（否认）、RELEASE（释放）；初次申请按「发现—提供—请求—确认」四步完成，靠事务 ID 和客户 MAC 地址把同一次申请的报文对应起来；</li>
+  <li>地址是「租」来的：服务器给出地址租期，客户在租用期过半时以单播 DHCP REQUEST 请求续租——收到 ACK 得到新租用期、收到 NACK 必须重新申请、服务器不响应则可继续使用到租用期结束；不再需要时用 DHCP RELEASE 随时解除租约；</li>
+  <li>广播出不了本网段，所以每个网络至少配置一个 <strong>DHCP 中继代理</strong>（通常是一台路由器），由它把广播的 DISCOVER 以单播转发给 DHCP 服务器、再把应答转回，这样 DHCP 服务器就不必在每个网络都设一台。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-2.html">‹ 6.2 客户—服务器方式和对等方式</a>
+      <a class="next" href="6-4.html">6.4 域名系统DNS ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.1 主存管理概述 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章 7.1 主存管理概述：课件第 3–19 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html" aria-current="page"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 7 章 主存管理</p>
+      <h1>7.1 主存管理概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节是第 7 章「主存管理」的开场。主存（内存）和 CPU 一样是计算机系统的重要资源，任何程序的执行最终都要从内存中存取指令和数据，而它又必须被多个进程共享——怎么把它管好，就是本章要回答的问题。这一节先把背景铺开：存储器从打孔卡、磁芯到半导体存储器的演进，存储器件的分类（RAM 与 ROM），以及存储系统的层次结构；最后落到正题上，点明主存管理要解决的地址映射、分配、保护和扩充四件事。</p>
+<h2>1. 计算机存储系统的发展</h2>
+<p>存储器的功能是保存数据。评价一种存储器，归根到底看三个指标：读写速度、容量和价格。存储器的发展方向是<strong>高速读写、大容量和小体积</strong>，但这几个目标彼此冲突——读写速度越快，成本越高，容量就越小；读取速度越慢，成本越低，容量就越大。所以合理的存储结构不能只挑一种存储器，而要依据<strong>访问速度的匹配关系、容量要求和价格</strong>来折中安排，这也正是后文层次结构的由来。</p>
+<h3>（1）存储器件：从打孔卡到半导体存储器</h3>
+<p>存储器件这条演化线可以按年代铺开。最早的存储方式还谈不上「器件」：1839 年的打孔卡（Punch Card）靠卡片上有没有孔来记录信息，纸带、卡片这类介质一直沿用到早期的计算机。20 世纪 50 年代，1951 年的<strong>磁芯存储器</strong>（Magnetic Core Memory）用穿在导线上的小磁环表示 0 和 1，成为此后二十多年主存的主流形式；1953 年出现的选数管（Selectron Tube）也是这一时期的存储尝试。半导体工艺成熟之后，局面彻底改变：1966 年出现了动态随机存储器（DRAM），1971 年推出可擦除可编程只读存储器（EPROM），1984 年闪存（Flash）问世，1993 年、1996 年又相继出现同步动态随机存储器（SDRAM）和双倍数据速率同步动态随机存储器（DDR SDRAM）。静态存储单元则以集成电路芯片的形式出现，早期常见的形态是一块 2K×8 位的 SRAM 芯片。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-1/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-1/p0004.webp" alt="图 1　1951 年的磁芯存储器" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　1951 年的磁芯存储器（Magnetic Core Memory）：在半导体存储器普及之前，主存长期由磁芯阵列构成（原课件第 4 张）</figcaption>
+</figure>
+<h3>（2）磁盘：容量从 5MB 长到 TB 级</h3>
+<p>外存这条线的进步更直观，磁盘的几个里程碑能说明容量数量级是怎么被抬上去的：1956 年的第一台硬盘 IBM 350（RAMAC）容量只有 5MB，转速 1200 r/min；1973 年采用温彻斯特技术的 IBM 3340 把容量提高到 60MB；1979 年薄膜磁头使 IBM 3370 达到 571MB；1991 年 MR（磁阻）磁头用于 IBM 0663-E12，容量进入 GB 级；1997 年的 GMR（巨磁阻效应）磁头，以及 2007 年的垂直存储技术，又把硬盘容量推进到 TB 级。外存越做越大、越做越便宜，与内存的分工也越来越清楚：一个是长期存放大批数据的仓库，一个是 CPU 直接工作的场所。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-1/p0005.webp" alt="图 2　磁盘容量的演进" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　磁盘容量的演进：从 1956 年 IBM 350 RAMAC 的 5MB，经温彻斯特技术、薄膜磁头、MR 磁头，到 GB 级乃至 TB 级（原课件第 5 张）</figcaption>
+</figure>
+<h2>2. 存储器件的分类：RAM 与 ROM</h2>
+<p>按读写特性，半导体存储器分成两大类。<strong>随机存取存储器 RAM</strong>（Random Access Memory）可以随时读出、随时写入，但断电后信息随之丢失；<strong>只读存储器 ROM</strong>（Read-Only Memory）出厂时内容已经固定，通常只能读出。两类器件下面又各自演化出若干成员，这是理解主存特性的基础。</p>
+<h3>（1）静态存储单元与动态存储单元</h3>
+<p>RAM 按存储单元的实现方式分为静态、动态两种：</p>
+<ul>
+  <li><strong>静态存储单元 SRAM</strong>：速度快、使用简单、不需刷新、静态功耗极低，因此常用作高速缓存 Cache；</li>
+  <li><strong>动态存储单元 DRAM</strong>：需要定期进行刷新，但集成度远高于 SRAM，功耗低，价格也低，因而适合做大容量的主存。</li>
+</ul>
+<p>DRAM 本身也在演进。<strong>SDRAM</strong>（Synchronous Dynamic Random Access Memory，同步动态随机存储器）中的「同步」，是指内存工作需要同步时钟——读写操作与系统时钟步调一致，数据可以成批、流水地传送。SDRAM 从出现到现在已经经历了四代，分别是第一代 SDR SDRAM、第二代 DDR SDRAM、第三代 DDR2 SDRAM、第四代 DDR3 SDRAM（值得一提的是，显卡上的 DDR 已经发展到 DDR5）。这条线索说明，存储系统的发展不只是容量变大，还包括与 CPU 交换数据的接口方式在不断改进。</p>
+<h3>（2）ROM 家族与闪存</h3>
+<p>ROM 一侧的成员按「能不能改写」逐步放开：可编程只读存储器 PROM、可擦可编程只读存储器 EPROM 和电可擦可编程只读存储器 EEPROM，写入与擦除越来越方便，其中 EEPROM 已经可以电擦除、按需重写。</p>
+<p><strong>闪存</strong>（Flash Memory）是一种长寿命的非易失性存储器——在断电情况下仍能保持所存储的数据信息。它的一个重要特点是擦除粒度：数据删除不是以单个的字节为单位，而是以固定的区块为单位，区块大小一般为 256KB 到 20MB。从原理上说，闪存是电可擦除只读存储器（EEPROM）的变种；用它做成的存储卡称为<strong>闪存卡</strong>（Flash Card），也就是利用闪存技术达到存储电子信息目的的存储器。</p>
+<p>这里有两组容易混的地方值得点一下：SRAM 快而不需刷新，用来做 Cache；DRAM 慢一些但要定期刷新，集成度高、价格低，用来做主存——「快」与「大」在器件层面就已经分工。RAM 掉电即失、ROM 掉电不丢，这是易失性上的分界；而 EEPROM 与闪存是「种」与「变种」的关系，闪存把擦除单位从字节放宽到区块，也因此通常按整块来使用。</p>
+<h2>3. 计算机存储系统的层次结构</h2>
+<p>把前面的器件按速度、容量和价格排在一起，就得到存储系统的层次结构：越靠上速度越快、容量越小、单位价格越高；越靠下速度越慢、容量越大、单位价格越低。自上而下依次是 CPU 内部的寄存器、高速缓存 cache、主存（内存）和外存。层次结构的价值在于把最常访问的数据放在最快的层——用少量昂贵的器件换取接近 CPU 的速度，用大量便宜的器件提供足够的容量，从而在可接受的价格下取得整体性能。</p>
+<p>每一层包含的内容大致是：<strong>快速缓存</strong>分为数据 Cache 和指令 Cache，分别缓存程序运行中的数据与指令；<strong>内存</strong>由 DRAM、SDRAM、DDRAM 等构成；<strong>外存</strong>则包括硬盘、光盘、flash、软盘、磁带等。内存与外存的分界不只在速度上，更在于 CPU 能不能直接访问：CPU 只能直接读写内存中的内容，外存上的程序和数据必须先装入内存才能执行。前面第 1 节里那个速度、容量与价格的折中问题，最终就落在内存这一层上。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-1/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-1/p0016.webp" alt="图 3　计算机存储系统的层次结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　计算机存储系统的层次结构：寄存器、快速缓存（数据 Cache 与指令 Cache）、内存（DRAM、SDRAM、DDRAM 等）、外存（硬盘、光盘、flash、软盘、磁带等）（原课件第 16 张）</figcaption>
+</figure>
+<h2>4. 本章的研究对象：主存（内存）的管理</h2>
+<p>前面几段把存储系统整体看了一遍，从这里开始把镜头对准其中一层：<strong>主存储器（内存）</strong>。它与中央处理器一样是计算机系统的重要资源，而且同时是<strong>空间资源</strong>（容量）和<strong>时间资源</strong>（存取速度）。之所以必须由操作系统统一管理，原因有两个：任何程序的执行最终都要从内存中存取指令和数据，内存是必经之路；而内存又同时被多个进程共享，谁占多大、放在哪里、能不能越界，都必须有规矩。</p>
+<p>CPU 与主存之间靠总线连接，总线按传送的信息分成三组：<strong>控制总线</strong>传送读写命令和控制信号，<strong>地址总线</strong>传送要访问的主存单元地址，<strong>数据总线</strong>传送读出的或写入的数据。主存被划分成一个个编址的存储单元，CPU 给出地址、发出命令，再通过数据总线完成一次存取——这正是后面讨论地址映射和存储保护的硬件基础。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-1/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-1/p0017.webp" alt="图 4　CPU 与主存之间的三组总线" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　这一章研究的是主存（内存）的管理：CPU 与主存之间由控制总线、地址总线和数据总线相连（原课件第 17 张）</figcaption>
+</figure>
+<h3>（1）本章的主要内容</h3>
+<p>围绕主存，本章讨论四个方面的问题：</p>
+<ul>
+  <li><strong>内存地址映射</strong>：程序中使用的是逻辑地址，而真正访问的是物理地址，如何把前者正确、高效地转换成后者；</li>
+  <li><strong>内存的分配</strong>：多个进程都要占用内存，如何划分空间、如何回收，以及如何减少碎片；</li>
+  <li><strong>内存的保护</strong>：每个进程只能访问属于自己的那部分内存，防止越界访问，也防止破坏其他进程或系统区的数据；</li>
+  <li><strong>内存的扩充</strong>：让程序不必全部装入内存也能运行，用有限的物理内存支撑更大的程序和更多的并发进程。</li>
+</ul>
+<p>这四件事会在 7.2 节「主存管理的功能」中逐个展开（物理地址与逻辑地址、地址映射、存储分配、存储保护和存储扩充），随后 7.3 节至 7.6 节再把它们落实为分区、页式、段式与段页式等具体的存储管理方案。</p>
+<h3>（2）延伸阅读：每个程序员都应该了解的内存知识</h3>
+<p>最后推荐一篇英文长文《每个程序员都应该了解的内存知识》（在 http://www.oschina.net 上有部分中文翻译），它从程序员的视角把内存相关的知识讲得更细，共分九节：</p>
+<ul>
+  <li>第 1 节：RAM</li>
+  <li>第 2 节：CPU 的高速缓存</li>
+  <li>第 3 节：虚拟内存</li>
+  <li>第 4 节：NUMA 系统（非统一内存访问架构）</li>
+  <li>第 5 节：程序员可以做什么——高速缓存的优化</li>
+  <li>第 6 节：程序员可以做什么——多线程的优化</li>
+  <li>第 7 节：内存性能工具</li>
+  <li>第 8 节：未来的技术</li>
+  <li>第 9 节：附录与参考书目</li>
+</ul>
+<h2>本节小结</h2>
+<ul>
+  <li>存储器的功能是保存数据，发展方向是高速读写、大容量和小体积；但读写速度越快，成本越高、容量越小，因此合理的存储结构要依据访问速度的匹配关系、容量要求和价格来折中。</li>
+  <li>存储器件从 1839 年的打孔卡、1951 年的磁芯存储器、1953 年的选数管，走到 1966 年的 DRAM、1971 年的 EPROM、1984 年的闪存、1993 年的 SDRAM 和 1996 年的 DDR SDRAM；磁盘则从 1956 年 IBM 350 的 5MB，经温彻斯特技术（60MB）、薄膜磁头（571MB）、MR 磁头（GB 级），到 GMR 磁头与垂直存储技术（TB 级）。</li>
+  <li>RAM 中，SRAM 速度快、不需刷新、常用作 Cache，DRAM 需定期刷新、集成度高、功耗与价格更低；SDRAM 是与时钟同步的 DRAM，已历四代（SDR、DDR、DDR2、DDR3）。ROM 一脉有 PROM、EPROM、EEPROM；闪存是非易失存储器，以固定区块（256KB 到 20MB）为单位擦除，是 EEPROM 的变种，用它做成的是闪存卡。</li>
+  <li>存储系统按速度、容量与价格分层：寄存器、快速缓存（数据 Cache 与指令 Cache）、内存（DRAM、SDRAM、DDRAM 等）、外存（硬盘、光盘、flash、软盘、磁带等）；只有内存能被 CPU 直接访问。</li>
+  <li>主存与 CPU 同为计算机系统的重要资源（空间与时间），任何程序的执行都要从内存中存取指令和数据，加上多进程共享，所以必须由操作系统管理；内容涵盖内存地址映射、内存分配、内存保护和内存扩充四个方面，由 7.2 节起逐步展开。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-9.html">‹ 6.9 习题</a>
+      <a class="next" href="7-2.html">7.2 主存管理的功能 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

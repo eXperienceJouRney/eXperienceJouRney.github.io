@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.3 常见研究方向 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 1 章 绪论 1.3 常见研究方向：以「1-绪论.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html" aria-current="page"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><span class="todo">整理中</span></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 1 章 绪论</p>
+      <h1>1.3 常见研究方向</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节把计算机视觉的主干任务过一遍。理解它们最省力的办法，是看「输入是什么、输出是什么」：图像分类输出一个标签，目标检测输出若干个带类别的框，图像分割输出每一个像素的归属。看清输出形式，就看清了任务本身。这一节还会介绍一批以「图像到图像」为形式的转换类任务，以及医学图像处理这类面向具体行业的方向。</p>
+
+<h2>1. 图像分类（Image Classification）</h2>
+<p>图像分类是整个领域最基础的任务：<strong>输入一张图像，输出它属于哪个类别</strong>。比如给一张照片，判断里面是猫还是狗。它的输出是整个图像层面的<strong>一个标签</strong>（或一组类别的概率），不涉及「在哪里」。</p>
+<p>说它基础，是因为后面几乎所有任务都把分类器当作积木用：目标检测要在候选框上做分类，图像分割要在每个像素上做分类。本课程第 5、6、7 章讲的前馈神经网络、卷积神经网络和循环神经网络，最先要解决的也正是分类问题。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0024.webp" alt="图 1　图像分类任务" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　图像分类：输入一张图像，输出一个类别标签（原课件第 24 张）</figcaption>
+</figure>
+
+<h2>2. 目标检测（Object Detection）</h2>
+<p>图像分类只回答「是什么」，目标检测还要回答「<strong>在哪里、有几个</strong>」：<strong>输入一张图像，输出若干个边界框，每个框同时给出位置和类别</strong>。图中若有多个物体，就要输出多个框。</p>
+<p>这也是它比分类难的地方——模型不仅要判别，还要在空间上定位，并且要处理「同一张图里物体数量不固定」这个麻烦。图 2 中的椅子在同一场景里出现多个实例，正是目标检测要逐个框出来的对象。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0025.webp" alt="图 2　目标检测任务" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　目标检测：在同一张图中定位多个目标，并逐个给出类别（原课件第 25 张）</figcaption>
+</figure>
+
+<h2>3. 图像分割（Image Segmentation）</h2>
+<p>图像分割把粒度进一步下沉到<strong>像素</strong>。按输出形式的不同，它又分成三类：</p>
+<ul>
+  <li><strong>语义分割</strong>（Semantic Segmentation）：为每个像素给出<strong>类别标签</strong>（Per-pixel class labels）。同一类别的不同个体不区分，两只猫会被标成同一类；</li>
+  <li><strong>实例分割</strong>（Instance Segmentation）：为每个<strong>物体</strong>给出掩膜和类别标签（Per-object mask &amp; class label）。两只猫要分开标成两个实例；</li>
+  <li><strong>全景分割</strong>（Panoptic Segmentation）：同时给出每个像素的<strong>类别与实例</strong>标签（Per-pixel class+instance labels）——可以理解为语义分割与实例分割的统一。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0026.webp" alt="图 3　语义分割、实例分割与全景分割的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　图像分割的三种输出形式：语义分割、实例分割与全景分割；最左侧是输入图片（原课件第 26 张）</figcaption>
+</figure>
+<table>
+  <caption>图像分割三类任务的区别（数据来源：原课件第 26 张）</caption>
+  <thead>
+    <tr><th>任务</th><th>输出</th><th>同类个体是否区分</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>语义分割</td><td>Per-pixel class labels：每像素一个类别</td><td>不区分</td></tr>
+    <tr><td>实例分割</td><td>Per-object mask &amp; class label：每个物体一个掩膜＋类别</td><td>区分</td></tr>
+    <tr><td>全景分割</td><td>Per-pixel class+instance labels：每像素的类别＋实例</td><td>区分</td></tr>
+  </tbody>
+</table>
+
+<h2>4. 四类「图像到图像」的转换任务</h2>
+<p>前面三个任务的输出都是对图像内容的<strong>理解</strong>（标签、框、掩膜）。下面四个任务的输出则仍然是<strong>图像</strong>，变化的是图像的风格、缺失部分、分辨率或内容本身。</p>
+
+<h3>（1）风格迁移（Style Transfer）</h3>
+<p>保留一张图的<strong>内容</strong>，换上另一张图的<strong>风格</strong>——比如把一张普通照片画成油画笔触。它要解决的是「内容与风格如何分离」，这也是深度学习早期最有传播度的应用之一。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0027.webp" alt="图 4　风格迁移" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　风格迁移：把一张图的风格迁移到另一张图的内容上（原课件第 27 张）</figcaption>
+</figure>
+
+<h3>（2）图像修复（Image Inpainting）</h3>
+<p>把图像中缺失或被遮挡的区域<strong>补全</strong>，并且要让补出来的部分在语义和纹理上都与周围一致。老照片修复、去除水印或路人，都属于这个任务。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0028.webp" alt="图 5　图像修复" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　图像修复：把图像中缺失的区域补全（原课件第 28 张）</figcaption>
+</figure>
+
+<h3>（3）图像超分辨率（Image Super-resolution）</h3>
+<p>由<strong>低分辨率</strong>图像重建出<strong>高分辨率</strong>图像。图 6 中标注的「LR」（Low Resolution）就是作为输入的低分辨率版本——同一个细节在低分辨率下已经丢失，模型要把它「还原」出来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0029.webp" alt="图 6　图像超分辨率" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　图像超分辨率：由低分辨率图像（LR）重建高分辨率图像（原课件第 29 张）</figcaption>
+</figure>
+
+<h3>（4）图像生成（Image Generation / Synthesis）</h3>
+<p>让模型自己<strong>造出</strong>图像。这一方向的代表性技术是<strong>生成对抗网络</strong>（Generative Adversarial Networks，GANs）——用生成器与判别器相互对抗的方式，把「以假乱真」这个目标变成可训练的博弈过程。它是后来各种图像与视频生成技术的起点。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0030.webp" alt="图 7　图像生成与生成对抗网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　图像生成：代表性技术是生成对抗网络（GANs）（原课件第 30 张）</figcaption>
+</figure>
+
+<h2>5. 医学图像处理（Medical Image Analysis）</h2>
+<p>医学图像处理是计算机视觉最成熟、也最有社会价值的落地方向之一。目前，医学图像处理主要集中在<strong>四个方向</strong>：病变检测、图像分割、图像配准以及图像融合。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0031.webp" alt="图 8　医学图像处理的四个方向" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　医学图像处理的四个方向：病变检测、图像分割、图像配准与图像融合（原课件第 31 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0032.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0032.webp" alt="图 9　病变检测示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　病变检测示例：从医学影像中标出团块、结节与小结节等可疑病灶（原课件第 32 张）</figcaption>
+</figure>
+<p>四个方向的分工可以这样理解：<strong>病变检测</strong>回答「有没有异常、在哪里」；<strong>图像分割</strong>回答「器官或病灶的边界在哪」；<strong>图像配准</strong>把不同时间或不同设备拍摄的图像对齐到同一坐标（图 8 中的相似度数值 0.985、0.908 就是配准效果的一种度量）；<strong>图像融合</strong>则把多模态图像合成一张，让医生一次看到更多信息。</p>
+
+<h2>6. 其他更多研究方向</h2>
+<p>除上述方向之外，课件还列举了若干常见的研究课题：</p>
+<ul>
+  <li><strong>步态识别</strong>（Gait Recognition）——用行走的姿态识别身份，远距离、非配合条件下也可用；</li>
+  <li><strong>三维重建</strong>（3D Reconstruction）——从图像恢复物体的三维几何；</li>
+  <li><strong>图像去雾</strong>（Haze Removal）——去除雾霾对成像的影响；</li>
+  <li><strong>图像去雨</strong>（Rain Removal）——去除画面中的雨线；</li>
+  <li><strong>图像阴影检测</strong>（Shadow Detection）——找出图像中的阴影区域；</li>
+  <li>……</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-3/p0033.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-3/p0033.webp" alt="图 10　其他研究方向示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　其他研究方向与表情识别示例（图中给出 Angry 79.3%、Sad 72.1%、Happy 81.9% 等识别结果）（原课件第 33 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>按输出形式可以把主干任务串起来：<strong>分类</strong>输出一个标签，<strong>检测</strong>输出若干个带类别的框，<strong>分割</strong>输出每个像素的归属。</li>
+  <li>图像分割三类任务的区别在于「同类个体是否区分」：语义分割只给像素类别，实例分割给每个物体的掩膜与类别，全景分割两者兼给。</li>
+  <li>风格迁移、图像修复、图像超分辨率、图像生成这四类任务的输出不是标签而是<strong>图像</strong>；其中图像生成的代表技术是生成对抗网络（GANs）。</li>
+  <li>医学图像处理集中在<strong>病变检测、图像分割、图像配准、图像融合</strong>四个方向，分别对应「找异常、定边界、对齐坐标、合并多模态」。</li>
+  <li>此外还有步态识别、三维重建、图像去雾、图像去雨、图像阴影检测等大量细分方向——这也说明计算机视觉的问题域非常宽。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-2.html">‹ 1.2 计算机视觉发展史</a>
+      <a class="next" href="1-4.html">1.4 计算机视觉应用 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

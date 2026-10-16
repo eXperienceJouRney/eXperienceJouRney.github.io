@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.6 操作系统采用的关键技术 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.6 操作系统采用的关键技术：课件第 62–70 张 · 6 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html" aria-current="page"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.6 操作系统采用的关键技术</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节讲的是操作系统的功能与特性，这一节换个角度：看看实现这些功能时用到了哪些关键技术。课件先从 Linux 内核里的一段链表代码入手，展示操作系统实现中的数据结构与编程技巧；再归纳出两大技术支柱——并行处理技术和虚拟技术。前者让 CPU、内存、外设都不闲着，后者让用户看到的「逻辑机器」与真实的「物理机器」分离。</p>
+
+<h2>1. 操作系统实现中的数据结构与编程技巧</h2>
+<p>课件的前言给出了一份清单：Linux 内核中常用的数据结构和编程技巧，包括<strong>零长度的数组</strong>、<strong>链表</strong>、<strong>红黑树</strong>和<strong>哈希函数</strong>。这四样东西几乎出现在内核的每一个子系统中——进程队列、定时器、内存区管理、文件缓存、设备驱动都靠它们组织数据。其中链表最基础，也最能体现内核编程的风格，本节的例子就从它展开。</p>
+<p>注记：零长度数组后来被 C99 标准化为「柔性数组成员」，写法为 <code>char data[];</code>，用途不变——把变长数据紧跟在结构体尾部，一次分配、一次释放。</p>
+
+<h2>2. 从单向链表到内核双向循环链表</h2>
+
+<h3>（1）单向链表：头插法</h3>
+<p>最朴素的写法是给数据结构自己加一个指针成员，用头插法把新结点挂到链表头上：</p>
+<pre><code>struct student {
+    char *name;
+    int age;
+    struct student *next;
+};
+struct student *st_head = NULL;
+
+/* 头插 */
+st-&gt;next = st_head;
+st_head  = st;
+</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0063.webp" alt="图 1　单向链表的头插法" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　单向链表：每个 student 结点用 next 指针串成一条链，新结点插在头部后只需改两处指针（原课件第 63 张）</figcaption>
+</figure>
+
+<h3>（2）双向链表：多一个前驱指针</h3>
+<p>单向链表只能顺着走，要能往回走就得再加一个前驱指针，同时维护头、尾两个入口。头插时要照顾到三种情况：链表非空时要改原头结点的 prev；新结点成为头结点，prev 置空；若是插入第一个结点，还要把尾指针指向它。</p>
+<pre><code>struct student {
+    char *name;
+    int age;
+    struct student *prev;
+    struct student *next;
+};
+struct student *st_tail = NULL;
+
+/* 头插 */
+st-&gt;next = st_head;
+if (st_head != NULL)
+    st_head-&gt;prev = st;
+st-&gt;prev = NULL;
+if (st_tail == NULL)
+    st_tail = st;
+st_head = st;
+</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0064.webp" alt="图 2　双向链表的头插与头尾指针维护" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　双向链表：结点同时带 prev 和 next，插入时要同时维护头指针 st_head 与尾指针 st_tail，缺一处就会断链（原课件第 64 张）</figcaption>
+</figure>
+<p>可以看出问题：链表的维护代码与数据本身的定义纠缠在一起，每换一种数据结构就要重写一遍「插入」，而且分支判断越来越多。Linux 内核的做法是把链表节点独立出来。</p>
+
+<h3>（3）内核双向循环链表：节点与数据解耦</h3>
+<p>内核定义一个只有前驱、后继两个指针的链表节点，所有操作都只针对这个节点；链表本身是带头结点的循环链表，空链表时头结点的两个指针都指向自己。插入操作被拆成「在 prev 与 next 之间插入」和「插到头结点之后」两层，逻辑干净得没有一句多余判断：</p>
+<pre><code>typedef struct list {
+    struct list *prev;
+    struct list *next;
+} List;
+
+/* me 插到 prev 与 next 之间 */
+static void list_insert(List *me,
+                        List *prev,
+                        List *next)
+{
+    me-&gt;next = next;
+    me-&gt;prev = prev;
+    prev-&gt;next = me;
+    next-&gt;prev = me;
+}
+
+/* 插到头结点 head 之后 */
+static void list_add(List *me)
+{
+    list_insert(me, head, head-&gt;next);
+}
+</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0065.webp" alt="图 3　内核双向循环链表的结构与插入操作" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　内核双向循环链表：list_insert 只改四处指针，list_add 复用它把新节点插到头结点之后；链表节点与业务数据完全解耦（原课件第 65 张）</figcaption>
+</figure>
+
+<h2>3. 链表的使用手法：内嵌节点与反推宿主</h2>
+
+<h3>（1）把链表节点嵌进数据结构</h3>
+<p>既然链表节点是独立的，用的时候就把它<strong>内嵌</strong>到自己的数据结构里，而不是用指针指向它。头结点 head 初始化为指向自身的空环，插入时只把内嵌成员的地址交给 list_add：</p>
+<pre><code>struct student {
+    char *name;
+    int age;
+    List list;
+};
+List head = { &amp;head, &amp;head };
+
+add_student(...) {
+    ...
+    list_add(&amp;(st-&gt;list));
+}
+</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0066.webp" alt="图 4　把 List 成员内嵌到 student 结构中" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　内嵌节点的用法：student 结构里放一个 List 成员，head 初始化为空环，插入时只需 list_add(&(st-&gt;list))（原课件第 66 张）</figcaption>
+</figure>
+<p>这样做的好处是：一份链表操作代码可以服务任意类型的数据结构，插入和删除不再需要为每种数据重写。</p>
+
+<h3>（2）遍历链表与反推宿主地址</h3>
+<p>代价是遍历时手里只有 List 节点的地址，需要把它「换算」回包含它的 student 结构的地址。做法是先用一个空指针求出 list 成员在结构内的偏移量，再从节点地址里减掉这个偏移：</p>
+<pre><code>List *plist;
+int off;
+off = (int)&amp;(((struct student *)0)
+             -&gt;list);
+
+for (plist = head-&gt;next; plist != head;
+     plist = plist-&gt;next) {
+    /* 由节点地址减去偏移，得到宿主地址 */
+    st = (struct student *)
+         ((char *)plist - off);
+}
+</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0067.webp" alt="图 5　遍历链表并由节点地址反推宿主结构地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　遍历与反推：循环沿着 head→next 走一圈回到 head，再由 list 成员地址减去其偏移量，得到 student 结构的起始地址（原课件第 67 张）</figcaption>
+</figure>
+<p>注记：Linux 内核把这个「由成员地址反推宿主地址」的技巧封装成了 <code>container_of</code> 宏，遍历则用 <code>list_for_each_entry</code>，是内核中最常用的两个链表工具。</p>
+
+<h2>4. 并行处理技术</h2>
+<p>讲完编程技巧，回到操作系统本身。操作系统中存在大量的<strong>并行活动</strong>，也存在各种硬件资源（CPU、内存、外设）；要让进程并行运行、让硬件资源并行工作，从而最大限度提高系统效率，采用的是一整组技术：</p>
+<ul>
+  <li><strong>分时</strong>：把处理机时间切片轮转，让多个进程轮流推进；</li>
+  <li><strong>通道与中断</strong>：让外设与 CPU 并行工作，并在完成时通知 CPU；</li>
+  <li><strong>资源动态分配</strong>：资源按需申请、按需释放，而不是各自占住不放；</li>
+  <li><strong>消息通讯与共享内存</strong>：为并行的活动提供交换数据的手段；</li>
+  <li><strong>同步互斥结构</strong>（锁、信号量）：让并行的活动在需要时排好队，保证结果正确。</li>
+</ul>
+
+<h2>5. 虚拟技术</h2>
+<p>虚拟技术的本质是一句话：<strong>用户的逻辑视图与操作系统所管理的物理视图分离，两者之间靠映射联系起来</strong>。用户以为自己独占着 CPU、内存和打印机，实际上这些「东西」都是操作系统从有限的物理资源中虚拟出来的。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-6/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-6/p0069.webp" alt="图 6　虚拟技术示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　虚拟技术示意图：应用程序 1～n 面对的是虚拟 CPU（软件分时）、虚拟主存 1～n（主存管理）和虚拟打印机 1～n（假脱机打印），它们分别映射到硬件仅有的一台 CPU、一块主存和一台打印机上（原课件第 69 张）</figcaption>
+</figure>
+<p>按被虚拟的资源分类，虚拟技术有三个应用方向：</p>
+<ul>
+  <li><strong>CPU 调度和分配（时间上的虚拟）</strong>：用分时技术和时间片，把一台物理 CPU 变成多个「虚拟 CPU」，让每个进程都以为自己独占处理机；</li>
+  <li><strong>内存管理（空间上的虚拟）</strong>：用虚拟存储技术建立虚拟地址到物理地址的映射，每个进程都拥有自己的虚拟地址空间；</li>
+  <li><strong>设备管理</strong>：用虚拟设备（输入、输出）技术做虚拟分配，最典型的就是把一台打印机虚拟成多台——各进程的打印请求先落盘排队，再依次输出，也就是假脱机打印。</li>
+</ul>
+<p>对照图 6 可以看清这三条线：<strong>应用程序 → 虚拟资源 → 物理资源</strong>。软件分时对应 CPU，主存管理对应主存，假脱机打印对应打印机；中间那一层虚拟资源，正是操作系统「无中生有」造出来的部分。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>操作系统实现中常用的数据结构与编程技巧有零长度的数组、链表、红黑树和哈希函数，它们是内核组织进程、内存、文件等各类数据的基础；</li>
+  <li>链表经历了从「链指针直接放在数据里」的单向链表、双向链表，到「节点与数据解耦」的内核双向循环链表的过程：list_insert 只改四处指针，list_add 复用它插到头结点之后，操作代码与数据类型无关；</li>
+  <li>内核链表的用法是内嵌节点（在结构里放一个 List 成员，head 初始化为空环）加反推宿主（由成员地址减去偏移量得到结构地址，即 container_of 宏的思想）；</li>
+  <li>并行处理技术包括分时、通道、中断、资源动态分配、消息通讯、共享内存以及同步互斥结构（锁、信号量），目的是让进程并行运行、硬件资源并行工作；</li>
+  <li>虚拟技术的本质是逻辑视图与物理视图分离、并建立两者的映射：时间上用分时与时间片虚拟 CPU，空间上用虚拟存储与地址映射虚拟主存，设备上用虚拟设备与虚拟分配（如假脱机打印）虚拟外设。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-5.html">‹ 1.5 操作系统的资源管理功能</a>
+      <a class="next" href="1-7.html">1.7 UNIX系统 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

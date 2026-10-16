@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.1 为什么需要循环神经网络 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.1 为什么需要循环神经网络：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html" aria-current="page"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.1 为什么需要循环神经网络</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">从这一节起，课程进入「序列建模」这条线。前面第 5 章的<strong>前馈神经网络（Feedforward Neural Network）</strong>和第 6 章的卷积神经网络，处理的都是「定长输入、定长输出、样本之间互不影响」的任务；而现实中大量数据是<strong>序列</strong>——语句、语音、视频，长度可变，前后元素彼此关联。本节先讲清楚前馈网络的两条隐含假设，再用词性分类这个例子说明：为什么序列任务需要一种带记忆的网络。</p>
+
+<h2>1. 前馈网络：一个能拟合任意函数的黑盒子</h2>
+<p>先回顾前馈网络在监督学习里的用法。课件给它的定位很直白：<strong>神经网络可以当做能够拟合任意函数的黑盒子</strong>——只要训练数据足够，给定特定的输入 X，就能得到希望的输出 Y。全连接网络、卷积网络都是这个思路：把输入送进去，网络逐层做线性变换与非线性激活，最后在输出层给出结果。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-1/p0002.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-1/p0002.webp" alt="图 1　前馈网络的层间连接" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　前馈网络的一层结构（课件标注为「(a) 全连接层」）：层与层之间的节点全连接，同一层内的节点之间没有连接（原课件第 2 张）</figcaption>
+</figure>
+<p>这个「黑盒子」的说法很方便，但它藏着一个前提：<strong>盒子的进出口尺寸是固定的</strong>。一旦输入或输出的维度要随数据变化，这个盒子就没法直接用了。</p>
+
+<h2>2. 前馈网络处理不了什么</h2>
+<p>课件把问题点得很清楚：前馈网络<strong>层与层之间存在连接，而每一层内部的节点之间是没有连接的</strong>；同时，<strong>输入和输出的维度是固定的，不能任意改变</strong>。这两句话分别对应两类任务。</p>
+<p>第一类问题出在「层内无连接」上。既然同一层内的节点彼此独立，网络的一次前向计算就只看得见当前这一个输入，看不到「上一个输入是什么」。可序列数据的价值恰恰在于顺序：语句里词与词有语法和语义上的搭配，视频里相邻帧的内容是连续的。把序列拆成一个个互不相干的样本来喂给前馈网络，等于把这些关联全部丢掉。</p>
+<p>第二类问题出在「维度固定」上。序列的长度天然是变化的：句子可以三个词，也可以三十个词；视频可以是几十帧，也可以是几千帧。而前馈网络的输入层节点数在训练前就定死了，既接不住更长的序列，也无法把不同长度的样本统一起来。</p>
+
+<h2>3. 一个例子：词性分类</h2>
+<p>课件用「词性分类」把上面的道理落到具体任务上。所谓词性分类，就是给句子里的每个词标上词性（名词、动词等）。课件给的例子是句子「我 爱 学习」，三个词依次标注为 /nn、/v、/nn。</p>
+<p>这个任务为什么要看上下文？因为一个词该归到哪一类，往往不由它自己决定，而由它周围的词决定。课件给的结论是：<strong>一个句子中，前一个单词对当前单词的词性预测有很大影响</strong>。同一个词形在不同句子里可以承担不同的词性，只看孤立的一个词，连人也没法判断。</p>
+<p>这就把矛盾摆到了台面上：前馈网络每次只接收一个固定维度的输入，既不知道这个词前面出现过什么，也无法把「前一个词的判断结果」带到当前时刻来用。要解决这类问题，网络必须<strong>能记住前面处理过的信息</strong>，并把这份记忆和当前输入一起参与计算——这正是<strong>循环神经网络（Recurrent Neural Network，RNN）</strong>的出发点，下一节我们就来看它的结构。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>前馈网络被当作「能够拟合任意函数的黑盒子」：训练数据足够时，给定输入 X 就能得到希望的输出 Y，但它要求输入与输出的维度事先固定。</li>
+  <li>前馈网络的两条隐含假设是「层内节点之间无连接」与「输入输出维度固定」，它们分别对应序列数据的两条性质：元素之间有顺序依赖、序列长度可变。</li>
+  <li>词性分类的例子说明：判断一个词的词性要看它前后的词，同一个词在不同上下文中词性可以不同，孤立地看一个词无法判断。</li>
+  <li>序列任务需要一种带记忆的网络——把上一步的隐状态与当前输入一起参与计算，这就是下一节要讲的循环神经网络。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-6.html">‹ 6.6 卷积神经网络的应用</a>
+      <a class="next" href="7-2.html">7.2 循环神经网络的基本结构 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

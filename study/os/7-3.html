@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.3 分区存储管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章 7.3 分区存储管理：课件第 43–69 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html" aria-current="page"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 7 章 主存管理</p>
+      <h1>7.3 分区存储管理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">分区存储管理是最简单直接的一种存储管理方式：把主存切成若干大小不等的区域，每个作业占用一个或几个区域，操作系统自己也占一块，多个进程因此可以共存。它主要解决的是<strong>内存分配</strong>问题——这一节就把分配与回收的过程讲清楚，再看它用什么数据结构记住主存的使用情况、按什么策略挑空闲区，最后交代它绕不开的碎片问题、解决办法拼接技术，以及工程上常用的伙伴算法与真实的内存分配器。</p>
+
+<h2>1. 分区存储管理的基本原理</h2>
+<p>分区存储管理的做法是把内存划分为一些大小不等的区域，每个作业进程占用一个或几个区域，操作系统占用其中一个分区。这样做的直接好处是允许多个进程共存，因此它适用于多道程序系统和分时系统，也适用于虚拟地址空间的分配。</p>
+<p>这里要抓住一个定位：分区存储管理主要解决<strong>内存分配</strong>问题。作业提出了多大的地址空间，系统就要在空闲区里替它找一块合适的地方；作业结束，这块地方要还回去，还要尽量与相邻的空闲区合并成更大的块。分配与回收做得是否得当，直接决定了主存的利用率。</p>
+
+<h2>2. 动态分区的分配与回收</h2>
+<p>分区可以在作业装入时按需划分，这就是动态分区。课件用一串连续的申请演示了分配过程：主存共 256KB，操作系统占低端 0–20KB，此后作业 1 申请 32KB、作业 2 申请 14KB、作业 3 申请 64KB、作业 4 申请 100KB、作业 5 申请 50KB，作业依次从低地址端紧贴着往上放。</p>
+<p>按这个顺序摆放，各区域依次推进到 52KB、66KB、130KB、230KB：作业 1 占 20KB–52KB，作业 2 占 52KB–66KB，作业 3 占 66KB–130KB，作业 4 占 130KB–230KB。此时尾部只剩下 256 − 230 = 26KB 的空闲区，<strong>装不下 50KB 的作业 5</strong>——不是主存总量不够（26KB 仍是空闲的），而是剩下的空闲区太小，这正是分区方式要面对的典型困境。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0044.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0044.webp" alt="图 1　动态分区的分配过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　动态分区的分配过程：操作系统占 0–20KB，作业 1 至作业 4 依次申请 32KB、14KB、64KB、100KB，主存使用到 230KB，尾部仅剩 26KB（原课件第 44 张）</figcaption>
+</figure>
+<p>回收的过程与此相反。作业运行结束，它占用的分区要被系统收回，而收回时最值得琢磨的是<strong>与相邻空闲区的关系</strong>：如果这个分区的上邻或下邻已经是空闲区，就应该把它们合并起来，否则主存里会留下越来越多的「小零头」。课件用一个作业完成、又一个作业完成的例子演示了回收，可以看到空闲区随着回收逐渐向一起并拢。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0045.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0045.webp" alt="图 2　动态分区的回收过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　动态分区的回收过程：作业 2、作业 4 先后完成，它们占用的区域被收回，并与相邻空闲区合并（原课件第 45 张）</figcaption>
+</figure>
+<p>把「与上下邻区的关系」穷举一下，回收只有四种情况，课件用一张图把它们并排列出：</p>
+<table>
+  <caption>表 1　回收分区 r 的四种情况</caption>
+  <thead>
+    <tr><th>情况</th><th>上邻区</th><th>下邻区</th><th>处理办法</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>①</td><td>空闲区 f1</td><td>已分配区</td><td>r 与 f1 合并，成为一个大的空闲区 f1</td></tr>
+    <tr><td>②</td><td>已分配区</td><td>空闲区 f2</td><td>r 与 f2 合并，成为一个大的空闲区 f2</td></tr>
+    <tr><td>③</td><td>空闲区 f1</td><td>空闲区 f2</td><td>r 与 f1、f2 三者合并，成为一个大的空闲区 f1</td></tr>
+    <tr><td>④</td><td>已分配区</td><td>已分配区</td><td>r 自身成为一个新的空闲区 f</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0049.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0049.webp" alt="图 3　回收主存块的四种情况" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　回收主存块的四种情况：上邻空闲区、下邻空闲区、上下邻都是空闲区、上下邻都已分配（原课件第 49 张）</figcaption>
+</figure>
+
+<h2>3. 分配的数据结构：M_RIB 与 PD</h2>
+<p>分配与回收要落地，系统必须先记住「主存现在长什么样」。分区存储管理用了两级数据结构：一个总账本和一串分区说明书。</p>
+<p>总账本是<strong>主存资源信息块 M_RIB</strong>（Memory Resource Information Block），它登记三项内容：等待队列头指针、空闲区队列头指针、主存分配程序入口地址。前两项说明「谁在等」和「哪里还空着」，第三项让系统能找到真正干活的分配程序。</p>
+<p>每一个分区（无论空闲还是已分配）都跟着一个<strong>分区描述器 PD</strong>（Partition Descriptor），它把这块区域的状况记在三个字段里：</p>
+<table>
+  <caption>表 2　分区描述器 PD 的三个字段</caption>
+  <thead>
+    <tr><th>字段</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>flag（分配标志）</td><td>为 0 表示空闲区，为 1 表示已分配区</td></tr>
+    <tr><td>size（大小）</td><td>分区大小，等于 n + 3，其中 n 为分区可用字节数（多出来的 3 个字节就是描述器自身的开销）</td></tr>
+    <tr><td>next（指针）</td><td>空闲区时，它是自由主存队列中的勾链字；已分配区时，此项为零</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0046.webp" alt="图 4　分配数据结构：主存资源信息块与分区描述器" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　分配数据结构：主存资源信息块 M_RIB 与每个分区的分区描述器 PD（分配标志 flag、大小 size、指针 next）（原课件第 46 张）</figcaption>
+</figure>
+<p>空闲区靠 next 字段勾链成<strong>空闲区队列</strong>：所有 flag 为 0 的分区串成一条链，M_RIB 的空闲区队列头指针指向链首。作业申请主存时，分区分配程序就沿这条链去找一个满足要求的空闲块：找到之后，比较空闲块与请求块的大小，如果剩余部分大于门限值就把它分割成「已分配区 + 更小的空闲区」，否则整块分配，最后返回所分配区域的首址；如果整条链都找不到足够大的空闲块，就告知不能满足要求。队列怎么排（按地址排还是按大小排），就是下一节的放置策略问题。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0047.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0047.webp" alt="图 5　动态分区的空闲区队列结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　动态分区的空闲区队列结构：M_RIB 的空闲区队列头指针把各个空闲区的 PD 勾链起来（原课件第 47 张）</figcaption>
+</figure>
+
+<h2>4. 放置策略：按什么顺序挑空闲区</h2>
+<p>空闲区队列里可能同时有好几块够用的空闲区，究竟挑哪一块？<strong>选择空闲区的策略称为放置策略</strong>。常用的有三种：首次匹配（首次适应算法）、最佳匹配（最佳适应算法）、最坏匹配（最坏适应算法）。它们的差别不只在挑哪一块，还在空闲区队列的<strong>排序方式</strong>——排序方式决定了「第一个够用的块」是谁，所以队列结构本身就是算法的一部分。</p>
+<table>
+  <caption>表 3　三种放置策略的定义、队列结构与特点</caption>
+  <thead>
+    <tr><th>放置策略</th><th>空闲区队列结构</th><th>特点</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>首次适应算法<br>（首次匹配）</td>
+      <td>空闲区按地址由低到高排序</td>
+      <td>把作业放进第一个足够装入它的空闲区；尽可能利用内存低端的空闲区，尽量保存高端的空闲区；分配和释放的时间性能较好，较大的空闲分区可以被保留在内存高端；但随着低端分区不断划分而产生较多小分区，每次分配时的查找时间开销会增大</td>
+    </tr>
+    <tr>
+      <td>最佳适应算法<br>（最佳匹配）</td>
+      <td>空闲区按大小由小到大排序</td>
+      <td>把作业放进与它所需大小最接近的空闲区；尽可能利用存储器中小的空闲区，尽量保存大的空闲区；从个别来看碎片较小，但从整体来看会形成较多碎片</td>
+    </tr>
+    <tr>
+      <td>最坏适应算法<br>（最坏匹配）</td>
+      <td>空闲区按大小由大到小排序</td>
+      <td>把作业放进主存中最不适合它的空闲区（也就是最大的那块）；尽可能利用存储器中大的空闲区；基本不留下小空闲分区，但较大的空闲分区不被保留</td>
+    </tr>
+  </tbody>
+</table>
+<p>三种策略孰优孰劣，不能空谈，要放到具体的空闲区分布和作业序列上看。课件给了一个讨论题：主存里现有三块使用中的区域和若干空闲区，紧接着有三个作业依次申请——程序 A 要求 18KB、程序 B 要求 25KB、程序 C 要求 30KB。用三种算法分别走一遍这个序列，结论是：<strong>首次适应算法对该作业序列不合适，最坏适应算法也不合适，而最佳适应算法是合适的</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0060.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0060.webp" alt="图 6　首次适应算法处理该作业序列的结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　首次适应算法：空闲区按地址由低到高排序，程序 A 18KB、B 25KB、C 30KB 依次分配后，该作业序列没能全部放下（原课件第 60 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0061.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0061.webp" alt="图 7　最佳适应算法处理该作业序列的结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　最佳适应算法：空闲区按大小由小到大排序，A、B、C 依次找到与需求最接近的空闲区，该程序序列可以放下（原课件第 61 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0062.webp" alt="图 8　最坏适应算法处理该作业序列的结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　最坏适应算法：空闲区按大小由大到小排序，总是先动最大的那块，该作业序列同样没能全部放下（原课件第 62 张）</figcaption>
+</figure>
+<p>这个讨论给出的教训是：<strong>没有哪一种是绝对最优的放置策略</strong>，它们的表现取决于当前的空闲区分布与作业序列。首次适应算法实现简单、倾向保留高端大空闲区，代价是低端越切越碎；最佳适应算法看起来最「节省」，但它留下的是大量难以再利用的小碎片；最坏适应算法总在啃大块，能避免小碎片，却把大空闲区消耗掉了。</p>
+<h3>（1）习题 7-11：哪一种算法分配得下</h3>
+<p>课件紧接着安排了一道练习：主存中有两个空闲区，一个从 150KB 开始、大小 120KB，另一个从 300KB 开始、大小 78KB；现有作业序列——程序 1 要求 50KB、程序 2 要求 60KB、程序 3 要求 70KB。问用首次适应算法和最佳适应算法处理这个序列，哪一种能分配得下。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0063.webp" alt="图 9　习题 7-11 的两个空闲区" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　习题 7-11 的初始状态：150KB 处有 120KB 空闲区，300KB 处有 78KB 空闲区（原课件第 63 张）</figcaption>
+</figure>
+<p>按首次适应算法走一遍：<strong>首次</strong>适应要求空闲区按地址由低到高排序，队列里先是 150KB 处的 120KB，再是 300KB 处的 78KB。程序 1 要 50KB，取第一块，120 − 50 = 70KB，剩下一块 70KB 的空闲区；程序 2 要 60KB，仍然从低地址找，70KB 够用，70 − 60 = 10KB，只剩 10KB；程序 3 要 70KB，前两块的剩余（10KB）都不够，于是取 300KB 处的 78KB，78 − 70 = 8KB。<strong>三个作业全部放下</strong>，最后剩下 10KB 和 8KB 两块小空闲区。</p>
+<p>按最佳适应算法走一遍：<strong>最佳</strong>适应要求空闲区按大小由小到大排序，队列里先是 78KB（在 300KB 处），再是 120KB（在 150KB 处）。程序 1 要 50KB，78KB 是「最接近」的，78 − 50 = 28KB；程序 2 要 60KB，剩下的 28KB 不够，只能用 120KB 那块，120 − 60 = 60KB；程序 3 要 70KB，而此时手上只有 28KB 和 60KB 两个空闲区，都不够。<strong>最佳适应算法反而分配不下。</strong></p>
+<p>这道题正好印证了上一条结论：最佳适应算法每次都在挑「最贴近需求」的那块，看似节省，却可能把大块拆小、把可用的空间提前耗尽。</p>
+
+<h2>5. 碎片问题与拼接技术</h2>
+<p>分区存储管理有一个绕不开的毛病。作业要求分配的逻辑地址是一个连续的范围，系统就必须在物理主存里找一块<strong>同样连续</strong>的区域给它；当已分配区之间剩下的空闲区都很小、谁也用不上时，这些「没被充分利用的小空闲区」就是<strong>碎片</strong>。碎片的存在使主存的利用率下降：总量明明够，却因为没有一块足够大的连续区域而无法再装入新作业。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0064.webp" alt="图 10　碎片问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　碎片问题：已分配区之间散落着若干小块空闲区，任何新作业都装不进去（原课件第 64 张）</figcaption>
+</figure>
+<p>对付碎片有一个直接的办法——<strong>拼接技术</strong>（也叫紧凑）：移动存储器中某些已分配区的信息，使本来分散的空闲区连成一个大的空闲区。图 11 演示的正是这件事：把作业 1、作业 2、作业 3 依次向低地址方向挪动，散落的空闲区就在高端并成一大块。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-3/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0065.webp" alt="图 11　拼接技术图示" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　拼接技术：移动已分配区中的信息，让分散的空闲区连成一块大的空闲区（原课件第 65 张）</figcaption>
+</figure>
+<p>拼接能解决问题，但代价不小，课件把它归纳为三点：</p>
+<ul>
+  <li>移动分区要花费 CPU 时间；</li>
+  <li>拼接时必须停止所有工作，影响系统性能；</li>
+  <li>需要重新定义内存中的作业（地址变了，相关的地址信息都要跟着调整）。</li>
+</ul>
+<p>正因为代价大，拼接不能作为常规手段频繁使用。这也逼出了后面的新思路：干脆避开「程序必须连续存放」这个前提——分页正是在这条路上走出来的。</p>
+
+<h2>6. 伙伴算法与工程上的常用做法</h2>
+<p>除了上面三种放置策略，还有一种历史上有名的分配算法——<strong>伙伴算法</strong>（buddy system）。它的规则是：把内存分为大小相等的页，每次只能分配 2<sup>n</sup> 个内存单元（n = 0、1、2、…），也就是说可分配的大小只能是 2 的幂。这样规定之后，空闲块的合并就有了确定的搭档。</p>
+<p>两个块互为<strong>伙伴</strong>的条件有三条：</p>
+<ul>
+  <li>两个块具有相同的大小，记作 2<sup>b</sup>；</li>
+  <li>它们的物理地址是连续的；</li>
+  <li>第一块的第一个页的物理地址是 2<sup>b</sup> 的倍数——也就是第 0 块与第 1 块是伙伴、第 2 块与第 3 块是伙伴，而第 1 块与第 2 块<strong>不是</strong>伙伴。这样规定是为了保证一对伙伴合并后得到的仍是符合对齐要求的大块，从而能继续向上合并。</li>
+</ul>
+<p>用公式写出来，大小同为 2<sup>b</sup> 的一对伙伴就是：起始于 2n·2<sup>b</sup> 的那一块，与起始于 (2n+1)·2<sup>b</sup> 的那一块。回收时若自己的伙伴也是空闲的，两块就合并成一个 2<sup>b+1</sup> 大小的块，并继续向上检查能否再合并。</p>
+<p>课件给出一个练习来体会这套规则：总大小 1M 的内存，以 1K 为分配单位，操作序列是——请求 A = 100KB、请求 B = 240KB、请求 C = 64KB、请求 D = 256KB、释放 B、释放 A、请求 E = 75KB、释放 C、释放 E、释放 D。做这类题的第一步是把请求量向上凑成 2 的幂：</p>
+<table>
+  <caption>表 4　伙伴算法练习中各请求实际占用的块大小（1K 为分配单位）</caption>
+  <thead>
+    <tr><th>请求</th><th>申请大小</th><th>实际分配（向上取 2 的幂）</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td>100KB</td><td>128KB</td></tr>
+    <tr><td>B</td><td>240KB</td><td>256KB</td></tr>
+    <tr><td>C</td><td>64KB</td><td>64KB</td></tr>
+    <tr><td>D</td><td>256KB</td><td>256KB</td></tr>
+    <tr><td>E</td><td>75KB</td><td>128KB</td></tr>
+  </tbody>
+</table>
+<p>剩下的就是按「分裂到够用、合并到伙伴」的规则一步步走：不足的部分由更大的空闲块对半分裂而来，释放时只与自己的伙伴合并，伙伴不空闲就原地留着。这也解释了它的两个特点：分配与回收都快（找伙伴靠地址异或即可），但块大小只能取 2 的幂，块内装不满的部分就浪费掉了，这种浪费叫内部碎片。</p>
+<p>实际系统里的内存分配器并不照搬教科书算法，而是走一条更务实的路线：程序中频繁分配的是<strong>小内存</strong>，就用一整块内存（比如 4K）集中管理、切分着分；<strong>大内存</strong>则以 4K 为单位分配——因为大内存分配的次数少，产生碎片的机会自然就少，大内存的碎片也会少。Linux 下的 ptmalloc、Google 的 tcmalloc、Facebook 的 jemalloc 都属于这一类实现。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>分区存储管理把内存划分为大小不等的区域分给作业，操作系统占其中一块，允许多个进程共存；它主要解决内存分配问题。</li>
+  <li>动态分区按需划分：分配时在空闲区队列中找一块够用的空闲区，剩余部分大于门限值就分割、否则整块给出；回收时要看与被回收分区上下相邻区域的状态，分四种情况与相邻空闲区合并。</li>
+  <li>数据结构是一本总账加一串说明书：主存资源信息块 M_RIB 记录等待队列头指针、空闲区队列头指针和主存分配程序入口地址；每个分区有分区描述器 PD，含分配标志 flag、大小 size（= n + 3）和指针 next（空闲区为勾链字，已分配区为零）。</li>
+  <li>三种放置策略的差别在于空闲区队列的排序：首次适应按地址由低到高、最佳适应按大小由小到大、最坏适应按大小由大到小。没有绝对最优——课件题例中 A 18KB、B 25KB、C 30KB 的序列只有最佳适应算法放得下；习题 7-11 中反而是最佳适应算法分配不下、首次适应算法放得下。</li>
+  <li>分区方式的根本缺陷是碎片：连续分配的要求使小块空闲区无法利用。拼接技术能合并空闲区，但要花费 CPU 时间、要停止所有工作、还要重新定义内存中的作业。</li>
+  <li>伙伴算法把内存按页等分、每次只分配 2 的幂大小的块，伙伴须同大小、地址连续且首地址为 2<sup>b</sup> 的倍数，回收时与伙伴合并；代价是块内可能浪费（内部碎片）。实际系统用 ptmalloc、tcmalloc、jemalloc 这类分配器，小内存集中切分、大内存按 4K 为单位分配。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-2.html">‹ 7.2 主存管理的功能</a>
+      <a class="next" href="7-4.html">7.4 页式存储管理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

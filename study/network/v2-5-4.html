@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.4 因特网控制报文协议ICMP · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 5 章 网络互联 5.4 因特网控制报文协议ICMP：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html" aria-current="page"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 5 章 网络互联</p>
+      <h1>5.4 因特网控制报文协议ICMP</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">IP 数据报逐段转发，交付本身又没有任何保证：数据报被丢弃时，源主机不会收到通知。网络层的辅助协议——因特网控制报文协议 ICMP（Internet Control Message Protocol）正是为报告差错、探测连通性而设。本节先讲 ICMP 为什么存在，再交代报文的分类与统一格式，然后逐类看差错报告报文，最后落到 Ping 与 Tracert 两个应用。</p>
+
+<h2>1. 为什么网络层还需要一个控制报文协议</h2>
+<p>ICMP 的存在理由来自 IP 的三个特点。其一，<strong>IP 数据报逐段转发</strong>：源主机把数据报交给默认网关后，路径完全由沿途各路由器独立决定，它事先无从知晓。其二，<strong>IP 数据报非可靠传输</strong>：IP 只尽力而为，不保证不丢失、不重复、不乱序，路由器一旦发现检验和出错、生存时间耗尽或找不到去往目的网络的路由，只能丢弃数据报。其三，<strong>网络状态不可知</strong>：主机只看得到自己这一侧的信息，目的地是否可达、路径是否拥塞，一概不知。</p>
+<p>于是网络层除了转发，还得把「路上出了什么事」回告源主机，否则源主机只能干等。ICMP 的作用因此可归为三类：错误报告、请求与应答（即 ping 这类探测）、报文控制。ICMP 报文本身也封装在 IP 数据报中发送，并不把 IP 变成可靠传输，重传与速率调整仍由上层负责可靠传输的协议解决。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-4/p0132.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-4/p0132.webp" alt="图 1　为什么需要 ICMP：IP 的三个特点与 ICMP 的三项作用" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　IP 的三个特点——逐段转发、非可靠传输、网络状态不可知，与 ICMP 的三项作用——错误报告、请求与应答、报文控制（原课件第 132 张）</figcaption>
+</figure>
+
+<h2>2. ICMP 报文的两种类型</h2>
+<p>ICMP 这个名字里同时含着「差错」与「控制」两重意思，正对应它的两大类别。差错报告报文有五类：信息不可到达报告、参数出错报告、超时报告、重定向报文和源抑制报文；控制报文有三类：回应请求与应答报文、时间戳请求与应答报文、地址模请求与应答报文。</p>
+<p>两类报文的发起方式不同：差错报告由路由器或信宿机在转发、交付失败时被动发出；控制报文则由主机主动发起、成对使用，用来查询状态或测试连通性。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-4/p0133.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-4/p0133.webp" alt="图 2　ICMP 报文的分类：差错报告报文与控制报文" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　ICMP 的报文体系：差错报告报文与控制报文分别包含的报文种类（原课件第 133 张）</figcaption>
+</figure>
+
+<h2>3. ICMP 报文的格式与封装方式</h2>
+<p>各类 ICMP 报文的格式相当统一。最前面 4 个字节永远是类型、代码和检验和：类型指明报文类别，代码给出该类型下的细分原因，检验和检查这段报文在传输中是否出错。接下来 4 个字节的内容取决于类型，在差错报告里可能是未用字段、指针域或网关 IP 地址。再往后是 ICMP 的数据部分，长度也取决于类型——差错报告一般把出错数据报的报头连同其后的前 64 bit 数据装回去，好让源主机辨认是哪个数据报出了问题。</p>
+<pre><code> 0        8        16               31
+类型     代码     检验和
+取决于报文类型的 4 个字节
+ICMP 的数据部分（长度取决于类型）</code></pre>
+<p>ICMP 报文封装在 IP 数据报的数据部分中，加上 IP 首部后才交给链路层：它是网络层协议，却要借助 IP 传输，自身传递同样没有保证。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-4/p0134.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-4/p0134.webp" alt="图 3　ICMP 报文的格式及其在 IP 数据报中的位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　ICMP 报文前 4 个字节是类型、代码与检验和，其后部分随类型而变；整个报文装进 IP 数据报的数据部分（原课件第 134 张）</figcaption>
+</figure>
+
+<h2>4. 三类常见的差错报告报文</h2>
+<p>差错报告报文由路由器或信宿机在发现问题、丢弃数据报时发出，传递方向单一：从出错点回到最初发出该数据报的源主机。它们都要附上出错数据报的报头与前 64 bit 数据。</p>
+
+<h3>（1）信息不可到达报告（类型 3）</h3>
+<p>类型 3 报告「数据报送不到目的地」，代码取 0–12 以区分原因。课件列出三种典型情形：信宿机硬件故障或关机、发送者指定的地址不存在、网关不知道去往信宿的路径；代码还细分为目的网络未知、目的主机未知、目的协议不可达、目的端口不可达等。</p>
+<pre><code>类型（3）      代码（0–12）     检验和
+未用（全 0）
+出错数据报报头 + 前 64 bit 数据
+……</code></pre>
+
+<h3>（2）参数出错报告（类型 12）</h3>
+<p>类型 12 针对数据报首部参数本身有错的情况，代码只有两个取值。代码 0 表示数据报某个参数出错，报文里带指针域，指向出错的那一个字节；代码 1 表示数据报缺少某个选项，没有指针域。这份报告由路由器或信宿机在丢弃参数出错的报文时发出。</p>
+<pre><code>类型（12）     代码（0 或 1）    检验和
+指针           未用（全 0）
+出错数据报报头 + 前 64 bit 数据
+……</code></pre>
+
+<h3>（3）重定向报文（类型 5）</h3>
+<p>重定向报文针对一种具体的低效：路由转发中某台路由器发现源主机可以把报文直接发给下游路由节点，于是发出类型 5 的报文，通知源主机改用更合适的网关，并带上该网关的 IP 地址。代码含义是：1 为对主机重定向、2 为对服务类型和网络的重定向、3 为对服务类型和主机的重定向。</p>
+<pre><code>类型（5）      代码（0–3）      检验和
+网关 IP 地址
+数据报报头 + 前 64 bit 数据
+……</code></pre>
+<p>还要记住一条性质——<strong>ICMP 差错报告与控制报文都是单向传输的报文</strong>，发出之后不需确认。重定向能否起作用取决于源主机是否采纳，路径优化主要还是路由器的事（5.5 节）。</p>
+
+<h2>5. 常见类型与代码一览</h2>
+<p>类型与代码共同确定一份报文的具体含义，常见组合如下。</p>
+<div class="tbl-wrap"><table>
+  <caption>ICMP 常见类型与代码，依课件「ICMP 报文」表整理。</caption>
+  <thead>
+    <tr><th>类型</th><th>代码</th><th>描述</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>回声回答（对 Ping 的回答）</td></tr>
+    <tr><td>3</td><td>1</td><td>目的主机不可达</td></tr>
+    <tr><td>3</td><td>2</td><td>目的协议不可达</td></tr>
+    <tr><td>3</td><td>3</td><td>目的端口不可达</td></tr>
+    <tr><td>3</td><td>6</td><td>目的网络未知</td></tr>
+    <tr><td>3</td><td>7</td><td>目的主机未知</td></tr>
+    <tr><td>4</td><td>0</td><td>源抑制（拥塞控制，未用）</td></tr>
+    <tr><td>8</td><td>0</td><td>回声请求（ping）</td></tr>
+    <tr><td>9</td><td>0</td><td>路由器通告</td></tr>
+    <tr><td>10</td><td>0</td><td>路由器发现</td></tr>
+    <tr><td>11</td><td>0</td><td>TTL 过期</td></tr>
+    <tr><td>12</td><td>0</td><td>IP 首部错误</td></tr>
+  </tbody>
+</table></div>
+<p>其中值得留意的是：类型 3 用代码把不可达原因分成网络、主机、协议、端口等层次；8/0 与 0/0 构成 Ping 的请求与回答；9/0 与 10/0 用于路由器通告与发现；11/0 的 TTL 过期是 Tracert 逐跳探测的关键；4/0 源抑制未使用。</p>
+
+<h2>6. ICMP 的两个典型应用</h2>
+<h3>（1）Ping：判断一台主机是否可达</h3>
+<p>Ping 使用 ICMP 的回送请求与应答消息，来确定一台主机是否可达。源主机发出 8/0 的回声请求，目的主机回以 0/0 的回声回答：请求发得出去、回答收得回来，就说明这条路径双向都通。它用的是控制报文，属于主动探测。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-4/p0140.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-4/p0140.webp" alt="图 4　用 Ping 测试一台主机是否可达" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　Ping 用 ICMP 回送请求与应答消息确定一台主机是否可达，输出中可见往返时间（原课件第 140 张）</figcaption>
+</figure>
+
+<h3>（2）Tracert：确定路径上的每一跳</h3>
+<p>Tracert 回答的是路径问题：到目的主机沿途经过哪些路由器。做法是向目的端发送不同 TTL 的 UDP 报文。生存时间 TTL（Time To Live）每经过一台路由器减 1，减到 0 时该路由器丢弃报文，并向源端回送一份类型 11 的 ICMP 超时报告。源端先发 TTL 为 1 的报文，第一跳回报；再发 TTL 为 2 的，第二跳回报；如此依次递增，直到报文到达目的主机，路径上每一跳便都得到检测。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-4/p0142.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-4/p0142.webp" alt="图 5　Tracert 逐跳确定到目的主机的路径" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Tracert 向目的端发送不同 TTL 的 UDP 报文，使各跳节点回送 ICMP 报文，从而确定路径上确切的路由器（原课件第 142 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IP 只提供尽力而为的非可靠交付，源主机对网络状态无从得知；ICMP 补上的是错误报告、请求与应答、报文控制三条通道，但它自身也封装在 IP 数据报里，并不使 IP 变得可靠。</li>
+  <li>ICMP 报文分差错报告与控制两大类，前 4 个字节固定为类型、代码与检验和，其余取决于类型；差错报告一律附上出错数据报的报头与前 64 bit 数据。</li>
+  <li>差错报告由路由器或信宿机在丢弃数据报时发出，方向单一、不需应答：信息不可到达（类型 3，代码 0–12）、参数出错（类型 12，代码 0 或 1）、重定向（类型 5，代码 0–3）各有字段安排。</li>
+  <li>类型与代码的组合是查阅 ICMP 的索引：8/0 与 0/0 构成 Ping 的请求与回答，11/0 的 TTL 过期支撑 Tracert 的逐跳探测；这两项应用依靠的仍是 5.3 节的 IP 数据报格式与 5.5 节的选路转发。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-5-3.html">‹ 5.3 网络互联中的数据转发</a>
+      <a class="next" href="v2-5-5.html">5.5 网络互联中的选路 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

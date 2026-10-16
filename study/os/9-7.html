@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.7 文件操作与文件备份 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.7 文件操作与文件备份：课件第 88–93 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html" aria-current="page"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.7 文件操作与文件备份</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">文件系统建立起来之后，用户真正打交道的是「文件操作」：建立、读写、改名、删除、共享，每一项都是通过一条命令请求操作系统代为实现的。而文件一旦被误删或介质失效，数据就没了，所以文件系统还必须提供备份与恢复的机构。这一节先看有哪些常用的文件操作命令，再讲其中最容易被忽视的打开与关闭两个操作，最后讲文件备份的必要性、两种基本的转储方法以及备份技术的发展。</p>
+
+<h2>1. 常用的文件操作命令</h2>
+<p>用户对文件提出的各种要求，最终都要由操作系统去执行，这中间的接口就是一组文件操作命令。课件把它们整理成一张对照表，按作用对象大致可以分成五类：对文件本身进行管理的（create、delete、rename、file attribute、file date），对文件内容进行读写的（write、read），打开与关闭文件的（open、close），读取目录与磁盘信息的（directory read、disk space），以及建立和拆除共享关系的（link、unlink）。</p>
+<table>
+  <caption>课件第 89–90 张的表格：常用的文件操作命令</caption>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>create</code></td><td>创建一个新文件</td></tr>
+    <tr><td><code>delete</code></td><td>从系统目录中撤消一个文件</td></tr>
+    <tr><td><code>rename</code></td><td>在系统目录中改变文件的名字</td></tr>
+    <tr><td><code>file attribute</code></td><td>设置文件属性</td></tr>
+    <tr><td><code>open</code></td><td>打开文件</td></tr>
+    <tr><td><code>close</code></td><td>关闭文件</td></tr>
+    <tr><td><code>write</code></td><td>写到一个文件（或设备）上</td></tr>
+    <tr><td><code>read</code></td><td>从一个文件（或设备）读入数据信息</td></tr>
+    <tr><td><code>directory read</code></td><td>读目录信息</td></tr>
+    <tr><td><code>disk space</code></td><td>确定一个设备上可用磁盘区域的大小</td></tr>
+    <tr><td><code>link</code></td><td>建立链接</td></tr>
+    <tr><td><code>unlink</code></td><td>删除链接</td></tr>
+    <tr><td><code>file date</code></td><td>改变文件的时间</td></tr>
+  </tbody>
+</table>
+<p>这张表里有几处值得在讲课时点出来。一是 read 与 write 的<strong>对象并不限于磁盘上的文件</strong>——课件特意在括号里注明「或设备」，这与 UNIX 把外部设备统一当作文件来对待的思想是一致的，9.8 节讲 UNIX 文件系统的实现时会看到它的落地方式。二是 link 与 unlink 改动的不是文件内容，而是文件之间的链接关系，它们正对应 9.5 节讲过的链接技术：在目录表目之间建立指向关系，使一个文件可以被多个目录项共同使用；不再共享时就删掉这条链接。三是 file attribute 与 file date 修改的是文件的属性信息，其中包含 9.6 节讲过的用户存取权限（那里就以 CHANGE 表示改变文件属性）；而 disk space 问的是「这个设备上还有多大空闲区域可用」，与 9.4 节的文件存储空间管理直接相关。</p>
+<p>注记：课件第 90 张把读目录信息的那条命令写作 dirctory read，是 directory read 的笔误。</p>
+
+<h2>2. 打开与关闭文件</h2>
+<p>在全部命令里，open 和 close 最容易被当成可有可无的礼节性动作，实际上它们决定了文件能否被高效地反复使用。要看清这一点，先看这两个操作究竟做了什么。</p>
+<h3>（1）打开文件</h3>
+<p>所谓打开文件，就是把该文件的有关目录表目复制到主存中约定的区域，建立<strong>文件控制块</strong>（FCB，File Control Block），从而建立用户和这个文件的联系。关键词是「复制到主存」：文件目录平时存放在磁盘等辅存上（见 9.5 节），如果每次读写都要到辅存上去查目录、核对权限、定位物理块号，开销大得无法接受。打开操作相当于把这份目录信息一次性搬进主存并组织成文件控制块，此后对该文件的所有 read、write 都直接使用主存中的 FCB，不必再来回访问目录。</p>
+<h3>（2）关闭文件</h3>
+<p>所谓关闭文件，就是用户宣布这个文件当前不再使用，系统将其在主存中的文件控制块删去，因而也就切断了用户同这个文件的联系。关闭之后若还要读写，必须重新打开。可见 open 与 close 是一对配对使用的操作：打开是「把目录信息取进来」，关闭是「把主存里的这份信息撤掉」，一进一出，主存资源才能循环使用。</p>
+<h3>（3）活动文件表</h3>
+<p>由此引出一个术语：若一个文件的目录表目被复制到主存，则称它为<strong>已打开的</strong>（或<strong>活动的</strong>）文件。这些目录表目在主存中统一存放，形成一张<strong>活动文件表</strong>。已打开的文件可以多次使用，这正是先 open、再反复 read/write 的价值所在——一次打开、多次使用，比每次操作都重新查目录划算得多。反过来说，活动文件表占用主存，所以同时打开的文件数通常也受到系统的限制。下一节 9.8 讲 UNIX 文件系统的主要结构及实现时，这些结构会落到具体的名字上：主存中的活动 i 节点与系统打开文件表，对照着看，open/close 的完整过程就清楚了。</p>
+
+<h2>3. 文件备份的必要性</h2>
+<p>文件系统把数据长期保存下来，但保存本身并不可靠。为了能在软、硬件失效的意外情况下恢复文件，保证文件的完整性、数据的连续可利用性，文件系统提供适当的机构，以便复制备份。这就是文件备份要解决的问题。</p>
+<p>所谓「软、硬件失效的意外情况」，在课堂上可以分两头讲。软件一侧：操作系统或文件系统的缺陷、掉电时写到一半的目录与数据、用户的误删除和误覆盖、恶意程序对文件的破坏。硬件一侧：磁盘出现坏道、磁头或控制器故障、整台存储设备报废，以及火灾、水淹这类伤及机房的灾难。这些事故的共同特点是发生前无法预知、发生后原数据已经不可读，唯一的出路是<strong>事先另存一份副本</strong>。</p>
+<p>备份要达到的目标也由原文的两个说法界定：一是<strong>文件的完整性</strong>，恢复回来的内容应当完整、没有残缺；二是<strong>数据的连续可利用性</strong>，恢复之后数据能接着用、业务能接着跑，而不仅仅是「还剩一些碎片」。这里要和 9.6 节的文件安全区分开：文件安全解决的是「哪些用户可以在什么权限内使用文件」，防的是未授权的存取；文件备份解决的是「数据损坏或丢失之后还能不能恢复」，防的是数据本身的灭失。两者保护的不是同一件事，所以一个都不能少。</p>
+
+<h2>4. 两种备份方法及其发展</h2>
+<h3>（1）周期性转储（全量转储）</h3>
+<p>第一种方法按固定的时间周期把存储器中所有文件的内容转存到某种介质上，通常是磁带或磁盘。在系统失效时，使用这些转存磁盘或磁带，将所有文件重新建立并恢复到最后一次转存时的状态。</p>
+<p>它的好处是转储下来的就是一份完整副本，恢复过程简单直接——把这批介质上的文件重新写回即可，不必挑拣也不必拼接。代价同样明显：每一次都要把全部文件（包括长期没有改动的部分）重新写一遍，耗时长、占用介质多，转储期间系统负担也重；而受时间限制，转储周期不可能太短，两次转储之间发生的改动一旦丢失就找不回来了。这一矛盾正是下一种方法出现的原因。</p>
+<h3>（2）增量性转储</h3>
+<p>增量性转储这种技术转储的只是从上次转储以后已经改变过的信息；增量转储的信息量较小，故转储可在更短的时间周期内进行。改动越少，转储越快，于是可以把周期缩得很短，两次转储之间可能丢失的数据窗口也就跟着变小。</p>
+<p>实际系统里两种方法是配合使用的：周期性地做一次全量转储作为基准，两次全量之间按更短的周期做增量转储。这样，恢复时要先恢复最近一次全量转储，再按时序依次恢复其后的各次增量，才能回到失效前的状态。这也意味着增量的链条不能断——只要中间某一次增量介质损坏，该次之后的改动就都无法恢复了。课件原文只讲了两种方法各自的做法，这层配合关系是理解它们为什么要放在一起的关键。</p>
+<h3>（3）文件操作事务、日志文件系统与文件系统快照</h3>
+<p>课件在两种转储之外还列出了三项机制。它们与定时转储的思路不同：不是「过一段时间复制一份」，而是从变化本身入手保证文件系统的一致性。文件操作事务把若干个文件操作作为一个不可分割的单位，要么全部完成、要么全部不做，避免留下只改了一半的中间状态；日志文件系统在真正改动数据之前先把要做的改动记入日志，修改过程中若系统崩溃，可以依据日志重做或撤销，使文件系统恢复到一致状态；文件系统快照则记录文件系统在某一时刻的一致映像，生成快、代价小，常被用作备份的数据来源。</p>
+<p>注记：课件在这里只列出了这三个名称，上面一段是按这些术语的通用含义作的解释，其实现细节已超出原文口径，讲课时点到即止即可。</p>
+<h3>（4）文件备份的发展</h3>
+<p>课件把文件备份的发展概括为两条线索。一是<strong>动态备份</strong>：备份可以在系统运行过程中进行，不必让系统停下来。停机会中断服务，而全量转储动辄要跑几个小时，很难找到这样的停机窗口；把转储放到系统运行中完成，备份与可用性之间的冲突就缓解了。二是<strong>远程备份技术</strong>：备份的副本要离开本地。如果备份介质和原数据放在同一个机房，火灾、水淹、断电、整机损毁等事故会同时毁掉两者，备份也就白做了；把副本送到异地存放，才有对付这类本地灾难的能力。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>常用的文件操作命令按作用对象分为五类：文件本身的管理（create、delete、rename、file attribute、file date）、内容的读写（write、read）、打开与关闭（open、close）、目录与磁盘信息（directory read、disk space）、共享链接（link、unlink）。read 与 write 的对象可以是文件，也可以是设备。</li>
+  <li>打开文件＝把该文件的目录表目复制到主存、建立文件控制块（FCB），建立用户与该文件的联系；关闭文件＝删去主存中的文件控制块，切断这一联系。已打开的文件（活动文件）的目录表目在主存中统一存放，构成活动文件表，可以被多次使用。</li>
+  <li>文件备份是为了在软、硬件失效的意外情况下恢复文件，保证文件的完整性与数据的连续可利用性；它与 9.6 节的文件安全不是一回事——安全管「谁能用」，备份管「坏了能不能恢复」。</li>
+  <li>周期性转储（全量转储）按固定周期把所有文件转存到磁带或磁盘，恢复简单但耗时、耗介质，两次转储之间的改动会丢失；增量性转储只转存上次转储后改变过的信息，信息量小、周期可以更短，通常与全量转储配合使用，恢复时按「最近一次全量＋其后的各次增量」依次还原。</li>
+  <li>文件备份的发展有两条线索：动态备份（在系统运行中完成备份，避开停机窗口）与远程备份技术（副本异地存放，防范本地灾难）。课件另列的文件操作事务、日志文件系统与文件系统快照，则把备份推进到对文件系统变化本身的一致性管理。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="9-6.html">‹ 9.6 文件共享与安全</a>
+      <a class="next" href="9-8.html">9.8 UNIX文件系统的主要结构及实现 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2 图像的采样与量化 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.2 图像的采样与量化：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html" aria-current="page"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.2 图像的采样与量化</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说数字图像来自连续图像，中间隔着采样与量化两道工序。这一节就把这两道工序讲清楚：采样处理空间坐标，决定图像有多少个像素；量化处理灰度值，决定每个像素能取多少个值。课件对每一步都给出了操作定义和一个「取多细」的取舍，最后用两组对照实验把两种失真的差别摆出来。</p>
+
+<h2>1. 图像采样：空间坐标的数字化</h2>
+<p><strong>图像采样</strong>（sampling）是图像空间坐标的数字化，通俗地说就是「在图像平面上选取哪些坐标点」。连续平面上本来处处都有幅值，采样之后只有被选中的那些位置留下来成为像素，其余位置的信息不再保留。所以采样是把连续平面变成像素网格的那一步。</p>
+<p>采样间隔是这一步唯一的自由参数，而它对结果的影响非常直接：<strong>采样间隔越小，所得像素越多，图像的空间分辨率越高，细节越清晰。</strong>道理不难想——间隔小意味着取点密，场景中那些靠得很近的结构才有机会各自落到自己的像素上，轮廓和纹理才不会被抹平。</p>
+<p>但代价同样明确：像素多了<strong>文件尺寸大</strong>，<strong>处理时间长</strong>，对设备的存储与算力要求也随之提高。分辨率不是越高越好，而是要在「看得清」和「存得下、算得动」之间取一个平衡，这正是实际工程里最常遇到的一类取舍。也正因为如此，后面讲图像缩小时要专门处理下采样的问题。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-2/p0008.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-2/p0008.webp" alt="图 1　图像采样：空间坐标的数字化" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　图像采样是空间坐标的数字化，可以理解为坐标点的选取；采样间隔越小，像素越多、空间分辨率越高、细节越清晰（原课件第 8 张）</figcaption>
+</figure>
+
+<h2>2. 图像量化：灰度值的数字化</h2>
+<p>采样只解决了「在哪里取点」，取到的点上的幅值仍然是连续量，还差一步转换。<strong>图像量化</strong>（quantization）处理的就是这个量：它是图像函数值（灰度值）的数字化，可以理解为幅值的数字化。经过量化，每个像素的灰度值才变成计算机能存的整数。</p>
+<p>课件介绍的方式是<strong>均匀量化</strong>：将灰度级值等间隔分档取整。所谓等间隔分档，就是把灰度的取值范围切成若干段长度相同的区间，同一个区间内的连续取值统一取整到该档的代表值上去。2.1 节所说的「256 个灰度等级」，就是在这种分档方式下得到的结果。</p>
+<p>量化与采样一样有粗细之分，而它的后果更容易看出来：<strong>随着灰度等级的减少，图像的细节信息在逐渐损失，视觉效果越差。</strong>原因是原本明暗略有差别的相邻区域，被归并到了同一个灰度值上，这些差别从此无法区分。而且这种损失是不可逆的——采样丢弃的位置信息、量化抹平的明暗差别，都不会因为后面把图像放大或做变换而回来。理解这一点，就能理解为什么后续的每一个处理步骤都要尽量少地再引入新的信息损失。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-2/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-2/p0009.webp" alt="图 2　图像量化：灰度值的数字化" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　图像量化是图像函数值（灰度值）的数字化，均匀量化把灰度级值等间隔分档取整；灰度等级减少，细节信息逐渐损失（原课件第 9 张）</figcaption>
+</figure>
+
+<h2>3. 采样点数与量化级别对图像质量的影响</h2>
+<p>道理讲完，还需要看一眼效果。课件用两组对照实验来说明：一组只改变<strong>采样点数</strong>，从 (a) 512×512 依次降到 (f) 16×16；另一组只改变<strong>量化级别</strong>，从 (a) 256 依次降到 (f) 2。两组都按 (a)–(f) 编号，但它们是各自独立的对照，编号相同并不表示同一幅图。</p>
+<table>
+  <caption>两组对照实验的取值（数据来源：原课件第 10 张）</caption>
+  <thead>
+    <tr><th>编号</th><th>采样点数</th><th>量化级别</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>(a)</td><td>512 × 512</td><td>256</td></tr>
+    <tr><td>(b)</td><td>256 × 256</td><td>64</td></tr>
+    <tr><td>(c)</td><td>128 × 128</td><td>16</td></tr>
+    <tr><td>(d)</td><td>64 × 64</td><td>8</td></tr>
+    <tr><td>(e)</td><td>32 × 32</td><td>4</td></tr>
+    <tr><td>(f)</td><td>16 × 16</td><td>2</td></tr>
+  </tbody>
+</table>
+<p>把两组的结论合起来看，会发现它们破坏图像的方式并不相同。采样不足影响的是「像素在哪里」：位置被抽稀之后，原本连续的结构失去了落脚点，图像的空间细节先损失掉。量化不足影响的是「像素有多亮」：位置一个没少，但灰度被压缩到很少的几个档位上，明暗层次先损失掉。同一幅图用两种方式劣化，看上去并不是同一种「模糊」，这也说明空间分辨率与灰度分辨率是两个独立的质量维度，缺哪一个都不行。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-2/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-2/p0010.webp" alt="图 3　不同采样点数与不同量化级别对图像质量的影响" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　不同采样点数（(a) 512×512 至 (f) 16×16）与不同量化级别（(a) 256 至 (f) 2）对图像质量的影响（原课件第 10 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>图像采样是空间坐标的数字化，可以理解为坐标点的选取；采样间隔越小，所得像素越多、空间分辨率越高、细节越清晰，但同时文件尺寸大、处理时间长、对设备要求高。</li>
+  <li>图像量化是图像函数值（灰度值）的数字化；均匀量化把灰度级值等间隔分档取整，随着灰度等级的减少，图像的细节信息逐渐损失，视觉效果越差。</li>
+  <li>课件第 10 张给出两组对照：采样点数由 512×512 降到 16×16、量化级别由 256 降到 2，图像质量都随之下降，但前者损失的是空间细节、后者损失的是明暗层次。</li>
+  <li>采样与量化都是不可逆的信息损失，它们分别对应后面经常出现的「空间分辨率」与「灰度级数」两个概念；图像缩小所涉及的下采样问题将在 2.12 节展开。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-1.html">‹ 2.1 计算机中的数字图像</a>
+      <a class="next" href="2-3.html">2.3 图像滤波与卷积的动机——图像噪声 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

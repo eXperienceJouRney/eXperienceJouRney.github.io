@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4 特征描述子与 SIFT · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 4 章 特征检测与匹配 4.4 特征描述子与 SIFT：以「4-特征检测与匹配.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html" aria-current="page"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 4 章 特征检测与匹配</p>
+      <h1>4.4 特征描述子与 SIFT</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">检测解决了「在哪儿看」，这一节解决「看到的是什么」。课件在这一节开头又把全章反复出现的那张 <strong>Main questions</strong> 过渡页摆了出来——特征点从何而来？怎么在多幅图像中检测相同的、显著性的特征点？<strong>如何描述局部特征使其保证独特性？</strong>如何建立特征点之间的对应关系（如何计算匹配）？前两问已经由 Harris、LoG/DoG 回答，这一节回答第三问。课件从最朴素的描述子讲起——把窗口里的像素值排成一列——然后立刻指出它为什么不能用：图像稍微一动，向量就全变了。出路是把「逐个像素」换成「统计分布」，于是引出<strong>方向梯度直方图</strong>，并由此得到 <strong>SIFT 描述子</strong>：16×16 的窗口、16 个 4×4 的小块、每块 8 个梯度方向，拼成 128 维的特征向量。这一节也顺手把「直方图」这个基础工具交代清楚。</p>
+
+<h2>1. 最朴素的描述子，以及它为什么不行</h2>
+<p>给定一个关键点，怎么把它变成可以比较的东西？最直接的想法是：<strong>把检测窗口内的像素值有序排列，作为特征描述子</strong>。课件把这个动作画成了一个从区域到向量的映射——region A 写成向量 a，region B 写成向量 b，两个区域能不能对上，就看 a 和 b 像不像。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0055.webp" alt="图 1　最简单的特征描述子：把区域写成向量" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　最简单的方式：检测窗口内的像素值有序排列作为特征描述子（Write regions as vectors：region A → a，region B → b）（原课件第 55 张）</figcaption>
+</figure>
+<p>这个办法的<strong>缺点</strong>很致命：<strong>微小的移动会对匹配产生巨大的影响</strong>。因为向量里每个元素对应的是固定位置上的那一个像素——窗口平移一个像素，整列数值就整体错位，两个本来完全相同的区域会算出完全不同的向量。也就是说，这种描述子<strong>不具任何平移容忍度，更谈不上旋转和光照不变性</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0056.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0056.webp" alt="图 2　像素值直接排列的缺点" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　最简单方式的缺点：微小的移动会对匹配产生巨大的影响（原课件第 56 张）</figcaption>
+</figure>
+<p>问题出在「<strong>逐点比较</strong>」这四个字上。要想稳定，描述子就不该记住「哪个位置是什么值」，而应该记住「这块区域整体呈现出什么样的结构」——统计量天然具备这种性质。这就是下面两步的动机。</p>
+
+<h2>2. 两个预备知识：直方图与方向梯度直方图</h2>
+<h3>（1）什么是直方图</h3>
+<p>课件先补了最基础的工具：<strong>直方图是一种统计报告图，横轴表示数据类型，纵轴表示分布情况</strong>。用到图像上，就得到<strong>灰度直方图</strong>：<strong>将数字图像中的所有像素，按照灰度值的大小，统计其出现的频率</strong>。图中给出了原灰度图像与它对应的灰度直方图——图像里有多少偏暗的像素、多少偏亮的像素，一眼就能看出来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0058.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0058.webp" alt="图 3　直方图与灰度直方图" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　直方图：横轴为数据类型、纵轴为分布情况；灰度直方图则把像素按灰度值统计出现频率（图中左为原灰度图像，右为其灰度直方图）（原课件第 58 张）</figcaption>
+</figure>
+<p>直方图的价值在于<strong>丢掉了空间位置、保留了整体分布</strong>。这一点恰好治好了上一个描述子的病：像素整体挪动一点，直方图的形状几乎不变。</p>
+<h3>（2）什么是方向梯度直方图</h3>
+<p>描述局部结构，光有灰度不够，还要看<strong>变化的方向</strong>。课件的第一步是计算区块内每个像素的梯度——<strong>箭头长度表示梯度大小，箭头方向表示梯度方向</strong>：</p>
+<ul>
+  <li>水平方向梯度：<strong>G<sub>x</sub>(x, y) = I(x+1, y) − I(x−1, y)</strong></li>
+  <li>垂直方向梯度：<strong>G<sub>y</sub>(x, y) = I(x, y+1) − I(x, y−1)</strong></li>
+  <li>梯度大小：<strong>G(x, y) = √( G<sub>x</sub>²(x, y) + G<sub>y</sub>²(x, y) )</strong>，方向由 G<sub>x</sub>、G<sub>y</sub> 决定</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0059.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0059.webp" alt="图 4　方向梯度直方图：先算每个像素的梯度" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　方向梯度直方图的第一步：计算区块内每个像素的梯度，箭头长度表示梯度大小、方向表示梯度方向；水平与垂直梯度由相邻像素差分得到（原课件第 59 张）</figcaption>
+</figure>
+<p>第二步是<strong>把方向离散化并累加</strong>：<strong>将 360° 按照每隔 45° 划分为 8 个区间</strong>，再把属于每个区间的所有像素梯度值累加起来，就得到一个 8 维的方向梯度直方图。到这里，「一块区域的形状」被压缩成了 8 个数字——而且是统计量，不再是逐像素的排列。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0060.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0060.webp" alt="图 5　把 360° 分成 8 个方向区间并累加" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　方向梯度直方图的第二步：将 360° 每隔 45° 划分为 8 个区间，把属于每个区间的像素梯度值累加；课件在此页已画出 16×16 window 与 128 dimensional vector 的对应关系（原课件第 60 张）</figcaption>
+</figure>
+
+<h2>3. SIFT 描述子：128 维从哪来</h2>
+<p>把方向梯度直方图组织起来，就是 SIFT 描述子。课件（Scale Invariant Feature Transform）给出的步骤是：</p>
+<ol>
+  <li>以特征点为中心取 <strong>16×16 的窗口</strong>；</li>
+  <li>将窗口进一步分成 <strong>16 个 4×4 的图像小块</strong>；</li>
+  <li>在每一个图像小块中计算<strong>方向梯度直方图</strong>，含有 <strong>8 个梯度方向</strong>的向量信息；</li>
+  <li>形成 <strong>4×4×8 = 128 维的特征向量</strong>。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0057.webp" alt="图 6　SIFT 方法的步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　SIFT 方法（Scale Invariant Feature Transform）的步骤：以特征点为中心取 16×16 窗口 → 分成 16 个 4×4 小块 → 每块计算含 8 个梯度方向的方向梯度直方图 → 形成 4×4×8 = 128 维特征向量（原课件第 57 张；课件引用 David G. Lowe, <em>Distinctive image features from scale-invariant keypoints</em>, IJCV 60(2), pp. 91–110, 2004）</figcaption>
+</figure>
+<p>这个设计里有三处值得琢磨：</p>
+<ul>
+  <li><strong>为什么分块？</strong>因为整块算一个直方图太粗——「左上角有竖边、右下角有横边」和「全局横竖各半」会得到一样的结果。分成 4×4 块以后，每块的位置信息被保留在向量的不同段里，形状的<strong>空间分布</strong>就带上了。</li>
+  <li><strong>为什么是 128 维？</strong>4×4 块 × 每块 8 个方向 = 128，是「空间分辨率」与「描述长度」之间的折中。维度太低区分不开，太高则对噪声和形变敏感、匹配也变慢。</li>
+  <li><strong>为什么不用逐像素？</strong>因为每块用的是<strong>梯度的方向直方图</strong>——等于把这块区域的边缘方向结构统计出来。像素整体挪一点、亮度整体变一点，直方图基本不变；而 4.3 节又已经用 (x, y, σ) 把尺度标定好了，可能的话再把方向对齐，就能兼顾尺度与旋转。</li>
+</ul>
+
+<h2>4. SIFT 的特性与匹配效果</h2>
+<p>课件用一页总结 SIFT 的适用范围：<strong>可以应对视角变化</strong>——能够识别超过 60° 的视角变化；<strong>能够应对显著的光线变化</strong>——有时甚至可以将同一场景的白天和黑夜图像进行匹配。课件同时给出了可直接上手的代码资源（github.com/deepanshut041/feature-detection 与一篇 CSDN 博客）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0061.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0061.webp" alt="图 7　SIFT 的特性" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　SIFT 的特性：能应对超过 60° 的视角变化，也能应对显著的光线变化（有时可匹配同一场景的白天与黑夜图像）；课件并列出可用代码链接（原课件第 61 张）</figcaption>
+</figure>
+<p>最后一张是效果图：在两幅图像之间用 SIFT 特征做匹配，把匹配上的点用连线画出来。4.1 节开头那个「仔细看彩色方框……他们对应同一区域」的动机图，用的正是这套方法的输出。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-4/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-4/p0062.webp" alt="图 8　基于 SIFT 的图像匹配结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　基于 SIFT 的图像匹配结果（图片来源：谷歌图片）（原课件第 62 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>最朴素的描述子是<strong>把检测窗口内的像素值有序排列</strong>成向量；缺点是<strong>微小的移动会对匹配产生巨大的影响</strong>——逐点比较毫无平移容忍度。</li>
+  <li>出路是用<strong>统计量</strong>代替逐像素：直方图横轴为数据类型、纵轴为分布情况；<strong>灰度直方图</strong>把像素按灰度值统计出现频率，丢掉了空间位置、保住了整体分布。</li>
+  <li>描述局部结构要看<strong>梯度方向</strong>：G<sub>x</sub> = I(x+1,y) − I(x−1,y)，G<sub>y</sub> = I(x,y+1) − I(x,y−1)，G = √(G<sub>x</sub>²+G<sub>y</sub>²)；把 360° 每 45° 划分成 <strong>8 个区间</strong>并累加，得到方向梯度直方图。</li>
+  <li><strong>SIFT 描述子</strong>：16×16 窗口 → 16 个 4×4 小块 → 每块 8 个方向的方向梯度直方图 → <strong>4×4×8 = 128 维</strong>特征向量。</li>
+  <li>SIFT 的特性：能应对超过 <strong>60°</strong> 的视角变化，也能应对显著的光线变化（白天与黑夜图像有时也能匹配）；Lowe 的原文发表于 IJCV 60(2), 2004。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-3.html">‹ 4.3 尺度不变特征：LoG 与 DoG</a>
+      <a class="next" href="4-5.html">4.5 特征匹配与性能评价 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.8 课堂练习 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章 7.8 课堂练习：课件第 126–127 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html" aria-current="page"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 7 章 主存管理</p>
+      <h1>7.8 课堂练习</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节把第 7 章的两道课堂练习讲透：一道考分页系统里地址位数怎么切，一道考逻辑地址到物理地址的完整变换。两道题用的是同一套知识——「页号 + 页内偏移」，做完它们，7.4 节的页式地址变换才算真正落地。</p>
+
+<h2>1. 已知地址长度和页面大小，求最大页面数</h2>
+<p>题目：在分页管理系统中，CPU 的地址长度为 16 位，页面大小为 2KB，求每个作业最大页面数。</p>
+<p>分页系统把逻辑地址一分为二：高位是<strong>页号 p</strong>，低位是<strong>页内偏移 w</strong>。页内偏移要能覆盖一个页面里的每一个字节，所以它的位数由页面大小决定；地址总长里剩下的那几位，才归页号。于是这类题的第一步，是把页面大小写成 2 的整数次幂。</p>
+<p>页面大小为 2KB，即 2×1024 = 2048 字节。因为 2048 = 2<sup>11</sup>，所以页内偏移需要 11 位；CPU 地址共 16 位，留给页号的就是 16 − 11 = 5 位。</p>
+<p>5 位页号可以编出 2<sup>5</sup> = 32 个不同的页号，因此每个作业最大页面数为 32。换句话说，这个系统最多允许一个作业拥有 32 个页面，再多的页就没有页号可编了。</p>
+<p>易错点有两个：一是「2k」指的是 2KB = 2048 字节，不是 2 位、也不是 2000 字节，把它当成 2000 就取不到整数次幂；二是别把位数和字节数混着算——地址长度 16 位说的是「位」，页面大小 2KB 说的是「字节」，先统一到 2 的幂上再相减。</p>
+
+<h2>2. 由页表把逻辑地址变换成物理地址</h2>
+<p>题目：某作业有 4 页，分别被分配到主存的 2、5、3、6 号块中。先画出该作业的页表，再对逻辑地址 [5240] 处的指令计算其物理地址。</p>
+<p>页表记录的是「页号 → 主存块号」的对应关系。按题目给出的分配情况，作业的页表如下：</p>
+<table>
+  <caption>作业页表（页面大小 2KB = 2048 字节）</caption>
+  <thead>
+    <tr><th>页号 p</th><th>主存块号 b</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>2</td></tr>
+    <tr><td>1</td><td>5</td></tr>
+    <tr><td>2</td><td>3</td></tr>
+    <tr><td>3</td><td>6</td></tr>
+  </tbody>
+</table>
+<p>接下来做地址变换，可以记成三步：<strong>分、查、拼</strong>。</p>
+<h3>（1）分：把逻辑地址拆成页号和页内偏移</h3>
+<p>页面大小为 2048 字节，用逻辑地址除以页面大小，商是页号，余数是页内偏移：</p>
+<pre><code>5240 = 2 × 2048 + 1144
+∴ 页号 p = 2，页内偏移 w = 1144</code></pre>
+<h3>（2）查：用页号查页表</h3>
+<p>以页号 2 为索引查页表，得到对应的主存块号 b = 3，也就是第 2 页被装到了主存的第 3 块里。</p>
+<h3>（3）拼：块号乘页面大小，再加页内偏移</h3>
+<pre><code>物理地址 = b × 页面大小 + w
+         = 3 × 2048 + 1144
+         = 7288</code></pre>
+<p>所以这条指令的物理地址是 7288。这里最值得记住的一点是：<strong>页内偏移在「分」和「拼」两步里始终保持不变</strong>。分页之所以能把连续的虚页装到不连续的实页上，靠的正是这个性质——搬家只换「页」这一层，页内各字节的相对位置不动，程序的感觉不到自己被拆散过。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/7-8/p0127.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-8/p0127.webp" alt="图 1　作业的页表与逻辑地址到物理地址的变换" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　4 个页面装入主存的 2、5、3、6 块，逻辑地址 5240 经页表变换为物理地址 7288（原课件第 127 张）</figcaption>
+</figure>
+
+<h2>3. 这类题的通用步骤</h2>
+<ul>
+  <li><strong>化幂</strong>：把页面大小写成 2<sup>k</sup>，得到页内偏移位数 k；地址总长减 k 就是页号位数，页号位数决定最大页面数；</li>
+  <li><strong>分</strong>：页号 p = 逻辑地址 ÷ 页面大小（取整），页内偏移 w = 逻辑地址 mod 页面大小；</li>
+  <li><strong>查</strong>：用 p 查页表得到主存块号 b；页表项里若还有中断位、辅存地址等字段，那是请调（部分装入）时才用到的信息，见 7.4 节的缺页处理；</li>
+  <li><strong>拼</strong>：物理地址 = b × 页面大小 + w。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>逻辑地址 = 页号 + 页内偏移；页内偏移位数由页面大小决定，页号位数 = 地址长度 − 页内偏移位数；</li>
+  <li>16 位地址、2KB 页面：页内偏移 11 位、页号 5 位，最大页面数 2<sup>5</sup> = 32；</li>
+  <li>地址变换三步——分（拆页号与偏移）、查（查页表得块号）、拼（块号 × 页面大小 + 偏移）；</li>
+  <li>逻辑地址 5240 在 4 页装入 2、5、3、6 块的作业里：p = 2、w = 1144，查表得块号 3，物理地址 = 3 × 2048 + 1144 = 7288；</li>
+  <li>页内偏移在变换前后不改变，这是分页能消除外部碎片的关键。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-7.html">‹ 7.7 小结</a>
+      <a class="next" href="8-1.html">8.1 设备管理概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

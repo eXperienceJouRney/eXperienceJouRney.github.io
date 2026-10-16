@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.4 系统功能调用 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 3 章 3.4 系统功能调用：课件第 40–62 张 · 3 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html" aria-current="page"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 3 章 用户接口</p>
+      <h1>3.4 系统功能调用</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说的是「人」怎么用操作系统，这一节说的是「程序」怎么用操作系统——这就是系统功能调用（简称系统调用）。它是操作系统提供给编程人员的唯一接口，也是用户程序从用户态跨进核心态的唯一合法通道。这一节从系统调用的定义讲起，说清它的实现机制（访管指令与功能号）、与库函数的区别、POSIX 国际标准，最后落到常用的系统调用清单和 Linux 的具体实现。</p>
+
+<h2>1. 什么是系统功能调用</h2>
+<p><strong>系统功能调用</strong>是用户在程序一级请求操作系统服务的一种手段。要特别注意它的性质：它<strong>不是一条简单的函数调用硬件指令，而是带有一定功能号的「访管指令」</strong>。也就是说，系统调用的功能并非由硬件直接提供，而是由操作系统中的一段程序完成的，即由<strong>软件方法</strong>实现的。硬件只负责把处理机从用户态切到核心态并把控制权交出去，真正干活的是操作系统内核里的例行子程序。</p>
+
+<h2>2. 系统调用的实现</h2>
+<p>系统调用是操作系统提供给编程人员的唯一接口。利用系统调用，可以动态请求和释放系统资源、完成与硬件相关的工作以及控制程序的执行。不同的操作系统，系统调用实现的具体方法有所不同，但其实质是相同的，都遵循下面几条共同点：</p>
+<ul>
+  <li>采用统一的方式，由硬件提供<strong>访管指令</strong>（访管中断）：<code>svc i</code>；</li>
+  <li>每个系统调用对应一个<strong>系统调用号</strong>；</li>
+  <li>每个系统调用对应一个<strong>执行程序段</strong>；</li>
+  <li>每个系统调用要求一定数量的<strong>输入参数和返回值</strong>。</li>
+</ul>
+<p>系统调用的执行过程可以概括为：用户程序在需要服务时发出一条 <code>svc i</code> 访管中断；访管中断处理程序先保护现场，再取出 i 值，按 i 值转移，经入口地址表找到第 i 号例行子程序并执行；执行完恢复现场、返回用户程序。整个过程如下图所示：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-4/p0043.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-4/p0043.webp" alt="图 1　系统调用的执行过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　系统调用的执行过程：用户程序执行 <code>svc i</code> 触发访管中断，处理程序保护现场、取功能号 i 并按键值转移，经入口地址表进入第 i 号例行子程序，返回前恢复现场（原课件第 43 张）</figcaption>
+</figure>
+
+<h2>3. 访管中断与功能号</h2>
+<p>操作系统提供实现各种功能的例行子程序，其中的每一个功能对应访管指令的一个功能号。例如：</p>
+<pre><code>svc  0       显示一个字符
+svc  1       打印一个字符串
+...</code></pre>
+<p>功能号就是用户程序与操作系统之间的「约定编号」：程序不必知道服务程序放在哪里、叫什么名字，只要给出功能号和参数，剩下的由操作系统按号查找并执行。</p>
+
+<h2>4. 系统调用的两个例子</h2>
+<h3>（1）汇编程序例子：打印 5 个字符</h3>
+<p>用汇编语言调用操作系统的功能打印字符串，代码大致是这样：</p>
+<pre><code>OUTPUTS  DB   'abcde'
+MOV  DX, OFFSET OUTPUTS
+MOV  AH, 09H
+INT    80H</code></pre>
+<p>不同系统的系统调用入口指令不同：Windows 用 <code>INT 2eH</code>，Linux 用 <code>INT 80H</code>。</p>
+<p>注记：原课件把上面这段标为「调用 DOS 功能」，但 DOS 的经典功能调用入口是 <code>INT 21H</code>；<code>INT 80H</code> 是 Linux 的系统调用入口。此处照原课件保留，供对照理解。</p>
+<h3>（2）高级语言例子：打印 5 个字符</h3>
+<p>同样的功能用高级语言写，表面上只是调用了一个库函数 <code>printf</code>，而 <code>printf</code> 内部最终仍要通过系统调用把字符送到设备上：</p>
+<pre><code>char buff[4]="abcde";
+for(i=4;i&gt;=0;i--)
+    printf("%c",buff[i]);</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/3-4/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-4/p0046.webp" alt="图 2　用高级语言打印 5 个字符" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　系统调用的例子（2）：用高级语言倒序输出 5 个字符，库函数的底层仍是系统调用（原课件第 46 张）</figcaption>
+</figure>
+<p>注记：这段示例照原课件写作 <code>char buff[4]</code>，而长度为 5 的字符串加结尾的 <code>'\0'</code> 实际需要 6 个字节，循环取值也会越过数组边界。这里保留原样是为了与课件一致，实际编写时应注意数组长度。</p>
+
+<h2>5. 系统调用与访管指令的联系</h2>
+<p>两者经常被混为一谈，界线其实很清楚：</p>
+<ul>
+  <li><strong>系统调用</strong>是操作系统提供的功能，由软件实现；<strong>访管指令</strong>是硬件指令，通过硬件实现（一般是一条中断指令）。</li>
+  <li>系统调用在<strong>核心态</strong>运行，必须通过访管指令才能进入核心态；访管指令可以带有一个不同的<strong>功能号</strong>来区分不同的系统调用。</li>
+</ul>
+<p>换句话说，访管指令是「门」，功能号是「门牌」，系统调用是门里面真正提供的服务。</p>
+
+<h2>6. 系统调用函数与一般库函数的区别</h2>
+<p>系统调用一般都封装成高级语言函数的形式，于是它和普通库函数在写法上几乎一样，区别要落到三点上看：</p>
+<ul>
+  <li><strong>代码归属</strong>：系统调用的代码属于 OS（驻留在内存），库函数的代码由其他软件提供、由编译工具链链接进用户程序；</li>
+  <li><strong>处理机状态</strong>：系统调用代码的执行会引起 CPU 状态的变化——用户态 → 核心态；库函数的执行不会引起 CPU 状态的变化，始终在用户态；</li>
+  <li>因此，只有系统调用才需要付出状态切换的代价，也只有它能直接获得操作系统的服务。</li>
+</ul>
+
+<h2>7. 用户接口的整体层次</h2>
+<p>把用户看到的东西和内核提供的东西放在一起，操作系统的用户接口呈现出清晰的分层：最上面是用户；用户态一侧有标准系统程序（汇编、编译、编辑、Shell 等实用程序）和标准库函数接口；库函数之下是<strong>系统调用接口</strong>，它横跨用户态与核心态；核心态一侧是操作系统本身（进程管理、存储管理、文件管理、设备管理、进程间通信等）；再往下是硬件（处理器、存储器、磁盘、打印机、终端等）。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-4/p0049.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-4/p0049.webp" alt="图 3　操作系统的用户接口层次" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　用户接口：用户经标准系统程序或库函数使用操作系统，库函数再通过系统调用接口进入核心态，由操作系统管理硬件（原课件第 49 张）</figcaption>
+</figure>
+<p>这张图也解释了上一节那句话为什么成立——任何操作系统都必须同时提供操作接口和程序接口：操作接口服务于图的最上层，程序接口就是图中的「系统调用接口」。</p>
+
+<h2>8. 系统调用函数的国际标准</h2>
+<p>为了让为一种 UNIX 编写的软件能方便地搬到另一种 UNIX 上，接口必须标准化，这就是 <strong>POSIX</strong>：它是 IEEE 为要在各种 UNIX 操作系统上运行的软件而定义 API 的一系列互相关联的标准的总称，正式称呼为 IEEE 1003，国际标准名称为 ISO/IEC 9945。其中与本课程关系最大的三个是：</p>
+<ul>
+  <li><strong>1003.1</strong>：被广泛接受、用于源代码级别的可移植性标准，提供一个操作系统的 C 语言应用编程接口（API）。IEEE 和 ISO 已在 1990 年通过这个标准，IEEE 在 1995 年重新修订；</li>
+  <li><strong>1003.1b</strong>：用于实时编程的标准（以前的 P1003.4 或 POSIX.4），1993 年被 IEEE 通过，被合并进 ISO/IEC 9945-1；</li>
+  <li><strong>1003.1c</strong>：用于线程（在一个程序中当前被执行的代码段）的标准，以前是 P1993.4 或 POSIX.4 的一部分，1995 年被 IEEE 通过，归入 ISO/IEC 9945-1:1996。</li>
+</ul>
+<p>Linux 完全兼容 POSIX 标准，因此按 POSIX 接口写的程序可以不加修改地在 Linux 上编译运行。</p>
+
+<h2>9. 常用的系统调用</h2>
+<p>按管理对象分类，常用的系统调用大致有三个方向。</p>
+<h3>（1）与进程管理有关的系统调用</h3>
+<table>
+  <caption>表 1　与进程管理有关的系统调用（据原课件整理）</caption>
+  <thead>
+    <tr><th>系统调用</th><th>功能</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>fork()</td><td>建立一个进程</td></tr>
+    <tr><td>exec()</td><td>执行一个文件</td></tr>
+    <tr><td>wait()</td><td>等待子进程</td></tr>
+    <tr><td>exit()</td><td>进程中止</td></tr>
+    <tr><td>signal()</td><td>设置信号处理程序</td></tr>
+    <tr><td>alarm()</td><td>在指定时间后发送定时信号</td></tr>
+    <tr><td>pause()</td><td>等待信号</td></tr>
+    <tr><td>nice()</td><td>改变进程优先级</td></tr>
+    <tr><td>ptrace()</td><td>跟踪子进程</td></tr>
+    <tr><td>brk()</td><td>改变用户数据区大小</td></tr>
+    <tr><td>sleep()</td><td>等待一段时间</td></tr>
+    <tr><td>kill()</td><td>发送软中断</td></tr>
+  </tbody>
+</table>
+<h3>（2）与文件管理有关的系统调用</h3>
+<table>
+  <caption>表 2　与文件管理有关的系统调用（据原课件整理）</caption>
+  <thead>
+    <tr><th>系统调用</th><th>功能</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>open</td><td>打开文件</td></tr>
+    <tr><td>close</td><td>关闭文件</td></tr>
+    <tr><td>read</td><td>读文件</td></tr>
+    <tr><td>write</td><td>写文件</td></tr>
+    <tr><td>lseek</td><td>修改读写位置</td></tr>
+    <tr><td>creat</td><td>建立并打开文件</td></tr>
+    <tr><td>mknod</td><td>建立设备文件</td></tr>
+    <tr><td>link</td><td>创建硬链接文件</td></tr>
+    <tr><td>symlink</td><td>创建软链接文件</td></tr>
+    <tr><td>unlink</td><td>删除文件</td></tr>
+    <tr><td>chdir</td><td>改变当前目录</td></tr>
+    <tr><td>chmod</td><td>改变文件属性</td></tr>
+    <tr><td>pipe</td><td>建立并打开管道文件</td></tr>
+    <tr><td>chown</td><td>改变文件主和用户组</td></tr>
+    <tr><td>mount</td><td>安装文件系统（卷）</td></tr>
+    <tr><td>dup</td><td>复制文件描述符</td></tr>
+    <tr><td>umount</td><td>拆卸文件系统</td></tr>
+  </tbody>
+</table>
+<h3>（3）与系统状态有关的系统调用</h3>
+<table>
+  <caption>表 3　与系统状态有关的系统调用（据原课件整理）</caption>
+  <thead>
+    <tr><th>系统调用</th><th>功能</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>getuid</td><td>取用户号</td></tr>
+    <tr><td>setuid</td><td>设置用户号</td></tr>
+    <tr><td>getgid</td><td>取用户组号</td></tr>
+    <tr><td>setgid</td><td>设置用户组号</td></tr>
+    <tr><td>time</td><td>取日历时间</td></tr>
+    <tr><td>stime</td><td>设置日历时间</td></tr>
+    <tr><td>times</td><td>取进程执行时间</td></tr>
+    <tr><td>gtty</td><td>读当前终端 tty 部分信息</td></tr>
+    <tr><td>stty</td><td>设置当前终端 tty 部分信息</td></tr>
+    <tr><td>stat</td><td>读取文件状态（i 节点）</td></tr>
+    <tr><td>sync</td><td>使主存映像与磁盘文件信息一致</td></tr>
+  </tbody>
+</table>
+
+<h2>10. 不同系统的对应关系与 Linux 的实现</h2>
+<p>系统调用的功能各家都有，名字却未必相同。下面把 UNIX/Linux 的系统调用与 Windows 的 Win32 API 对应起来看：</p>
+<table>
+  <caption>表 4　UNIX/Linux 系统调用与 Win32 API 的对应（据原课件整理）</caption>
+  <thead>
+    <tr><th>UNIX/Linux</th><th>Win32</th><th>说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>fork</td><td>CreateProcess</td><td>创建进程</td></tr>
+    <tr><td>waitpid</td><td>WaitForSingleObject</td><td>等待进程终止</td></tr>
+    <tr><td>open/close</td><td>CreateFile / CloseHandle</td><td>创建或打开／关闭文件</td></tr>
+    <tr><td>read/write</td><td>ReadFile/WriteFile</td><td>读／写文件</td></tr>
+    <tr><td>lseek</td><td>SetFilePointer</td><td>移动文件指针</td></tr>
+    <tr><td>mkdir/rmdir</td><td>CreateDirectory / RemoveDirectory</td><td>建立／删除目录</td></tr>
+    <tr><td>stat</td><td>GetFileAttributesEx</td><td>获得文件属性</td></tr>
+  </tbody>
+</table>
+<p>在 Linux 内部，一个系统调用从用户态到内核实现要走一条固定的通路。以 <code>getppid()</code> 为例，用户态代码是：</p>
+<pre><code>int getppid(void)
+{
+    return  __kernel_vsyscall(__NR_getppid);
+}</code></pre>
+<p>其中 <code>__NR_getppid</code> 是系统调用号。<code>linux-3.12</code> 的内核源码里，这个通路是：</p>
+<pre><code>arch/x86/syscalls/syscall_32.tbl
+arch/x86/include/generated/asm/syscalls_32.h
+arch/x86/kernel/syscall_32.c
+sys_call_table[__NR_syscall_max+1]
+sys_call_table[__NR_getppid] = sys_getppid;
+kernel/sys.c
+SYSCALL_DEFINE0(getppid)</code></pre>
+<p>也就是说：系统调用号在 <code>syscall_32.tbl</code> 中登记，并生成编号定义头文件；系统调用表由 <code>syscall_32.c</code> 安装，表中第 <code>__NR_getppid</code> 项登记为 <code>sys_getppid</code>；具体的执行函数在 <code>kernel/sys.c</code> 中用 <code>SYSCALL_DEFINE0(getppid)</code> 定义。</p>
+<p>于是整个调用链就是：<code>__kernel_vsyscall</code> → <code>sys_call_table[__NR_getppid]</code> → <code>sys_getppid()</code>。</p>
+<p>如果要在 Linux 内核里增加一个自己的系统调用，需要同时改两端。<strong>内核中添加</strong>：</p>
+<pre><code>SYSCALL_DEFINEx(mycall, ...)
+{
+    printk("this my call\n");
+    return 0;
+}</code></pre>
+<p><strong>应用层调用</strong>：</p>
+<pre><code>#define _GNU_SOURCE
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+int main()
+{
+    syscall(__NR_mycall, ...);
+    return 0;
+}</code></pre>
+
+<h2>本节小结</h2>
+<ul>
+  <li>系统功能调用是用户在程序一级请求操作系统服务的手段，它是带功能号的访管指令，功能由操作系统的一段程序以软件方法实现，是操作系统提供给编程人员的唯一接口。</li>
+  <li>实现要点：硬件提供访管指令（访管中断）<code>svc i</code>，每个系统调用对应一个调用号、一个执行程序段以及一定数量的输入参数和返回值；执行时保护现场、取 i 值、按 i 值转移，返回前恢复现场。</li>
+  <li>系统调用与访管指令的关系：前者是软件功能、在核心态运行，后者是硬件中断指令、是进入核心态的唯一通道，功能号用来区分不同的系统调用。</li>
+  <li>系统调用函数与库函数的区别在于代码归属（属于 OS 还是链接进用户程序）和执行时的处理机状态（用户态→核心态，还是始终用户态）。</li>
+  <li>POSIX（IEEE 1003／ISO/IEC 9945）是系统调用接口的国际标准，1003.1 是可移植性标准，1003.1b 面向实时编程，1003.1c 面向线程；Linux 完全兼容 POSIX。</li>
+  <li>常用系统调用按进程管理（fork、exec、wait、exit、signal、kill 等）、文件管理（open、close、read、write、lseek、stat 等）和系统状态（getuid、setuid、time、gtty、sync 等）分类；不同系统名称不同，可对照 Win32 API；Linux 中由 <code>sys_call_table</code> 按调用号分发到 <code>SYSCALL_DEFINEx</code> 定义的函数。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-3.html">‹ 3.3 用户接口</a>
+      <a class="next" href="3-5.html">3.5 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

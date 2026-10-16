@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.4 轻量级关键点检测：PFLD 网络 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.4 轻量级关键点检测：PFLD 网络：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html" aria-current="page"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.4 轻量级关键点检测：PFLD 网络</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">DCNN 把精度做上去了，但它的三级级联要跑十几个网络，装不到手机上。这一节看 PFLD 是怎么在「高精度」和「轻量」之间找平衡的：先把关键点检测的四个难点摆清楚，再看它的双网络结构（主网络负责预测、辅网络只在训练时帮忙），最后看它最有想法的一处设计——按样本难度加权的损失函数。</p>
+
+<h2>1. 人脸特征点检测的四个挑战</h2>
+<p>课件把关键点检测的困难归纳成四条：</p>
+<ul>
+  <li><strong>局部变化</strong>：表情、局部特殊光照、部分遮挡，会导致一部分关键点偏离了正常位置，或者干脆不可见；</li>
+  <li><strong>全局变化</strong>：人脸姿态变化多样，另外因拍摄设备和环境影响，成像质量也有好有坏；</li>
+  <li><strong>数据不均衡</strong>：体现在大部分是正脸数据，侧脸很少；</li>
+  <li><strong>模型效率</strong>：在计算受限的设备（比如手机终端）上，必须要考虑计算速度和模型文件大小问题。</li>
+</ul>
+<p>前两条是「准不准」的问题，第四条是「跑不跑得动」的问题，而第三条最容易被忽略——<strong>它是数据问题，却会直接变成模型问题</strong>。训练集里正脸占绝大多数，模型在正脸上训练得很充分，遇到侧脸、遮挡这些少量样本时精度就掉下来。PFLD 的损失函数设计，针对的正是这一条。</p>
+
+<h2>2. 双网络结构：主网络预测，辅网络陪练</h2>
+<p>PFLD 的网络由两部分组成：<strong>主网络</strong>用于特征点位置的预测；<strong>辅网络</strong>在训练时预测人脸姿态。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-4/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-4/p0025.webp" alt="图 1　PFLD 的主网络与辅网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　PFLD 的双网络结构：主网络（MobileNet-V2 Block + 卷积 + 全连接）负责特征点位置预测，辅网络只在训练时预测人脸姿态（原课件第 25 张）</figcaption>
+</figure>
+<p>从课件给出的结构看，主网络用的是 <strong>MobileNet-V2 Block</strong> 加卷积层、全连接层——选择 MobileNet 系的基础模块，本身就是奔着「计算量小、模型小」去的。而辅网络的定位很关键：<strong>它只在训练时工作</strong>，用来预测人脸的姿态（yaw、pitch、roll 三个角度）。</p>
+<p>为什么要多一个辅网络？因为它预测出的姿态信息要拿去给损失函数用：姿态越极端的样本，在训练时应该被赋予越大的权重。这相当于让网络在训练阶段「自己识别出难样本」，把注意力集中到侧脸、大角度这些稀有情况上——这也正好回应了第一个挑战里的数据不均衡。</p>
+
+<h2>3. 损失函数：给稀有样本更高的权重</h2>
+<p>课件先讲清了动机：<strong>考虑到样本的不平衡，为了能对那些稀有样本赋予更高的权重</strong>，损失函数设计为对每个样本、每个特征点的距离误差做加权求和：</p>
+<p><code>L = (1/M) Σ<sub>m=1</sub><sup>M</sup> Σ<sub>n=1</sub><sup>N</sup> γ<sub>n</sub> · ‖d<sub>n</sub><sup>m</sup>‖</code></p>
+<p>其中 M 为样本个数，N 为特征点个数，γ<sub>n</sub> 为不同的权重，‖·‖ 为特征点的距离度量（预测位置与真实位置之间的距离）。也就是说，每个特征点的误差在求和时不是等权的，而是各自乘上一个权重 γ<sub>n</sub>。</p>
+<p>这个权重由两部分构成：</p>
+<ul>
+  <li><strong>姿态角度</strong>：K = 3，这一项代表着人脸姿态的三个维度，即 yaw、pitch、roll 角度——<strong>角度越大，权重越大</strong>；</li>
+  <li><strong>类别权重</strong>：C 为不同的人脸类别数（侧脸、正脸、抬头、低头、表情、遮挡等），w<sub>n</sub><sup>c</sup> 是与类别对应的给定权重，<strong>如果某类别样本少，则给定权重大</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-4/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-4/p0027.webp" alt="图 2　PFLD 的样本权重设计" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　样本权重的两个来源：姿态的三个角度（yaw、pitch、roll）越大权重越大；类别权重按样本多少给定，样本少的类别权重大（原课件第 27 张）</figcaption>
+</figure>
+<p>这套设计的思想可以一句话概括：<strong>把「样本不平衡」从数据层面搬到损失层面来补偿</strong>。数据层面难做的事情（去采集大量侧脸、遮挡样本），在损失层面用权重做近似——大角度的、稀有的样本，错一点就罚得更重，模型自然会被逼着把它们学好。</p>
+<p>顺便对照一下：DCNN 用的是「多个网络取平均」来提升鲁棒性，PFLD 用的是「加权损失把难样本顶上来」。两者解决的是同一个问题——少数困难样本决定模型的实际可用性——只是切入点不同。</p>
+
+<h2>4. 效率：手机上的实时关键点检测</h2>
+<p>课件给出的结果是：在 ARM 安卓机上可以跑到 <strong>140 fps</strong>，模型大小仅 <strong>2.1 M</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-4/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-4/p0028.webp" alt="图 3　PFLD 在 ARM 安卓机上的效率" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　PFLD 的效率指标：ARM 安卓机 140 fps，模型大小仅 2.1 M（原课件第 28 张）</figcaption>
+</figure>
+<p>把这三个数字放在一起看，PFLD 的定位就清楚了：它不是靠堆网络、堆数据把精度刷上去，而是在<strong>移动端算力约束下的高精度关键点检测</strong>。这也是它和 DCNN 最本质的区别——DCNN 证明「CNN 能做关键点检测」，PFLD 回答的是「怎么在手机上做好」。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>关键点检测有四个挑战：<strong>局部变化</strong>（表情、局部光照、遮挡）、<strong>全局变化</strong>（姿态、成像质量）、<strong>数据不均衡</strong>（正脸多、侧脸少）、<strong>模型效率</strong>（手机等算力受限设备要顾及速度和模型大小）。</li>
+  <li>PFLD 采用双网络：<strong>主网络</strong>用 MobileNet-V2 Block 等轻量模块做特征点位置预测，<strong>辅网络</strong>只在训练时预测人脸姿态，为损失函数提供姿态信息。</li>
+  <li>损失函数对每个样本、每个特征点的距离误差加权求和：<code>L = (1/M) Σ Σ γ<sub>n</sub> · ‖d‖</code>。权重来自姿态三个角度（yaw、pitch、roll，角度越大权重越大）和类别权重（样本少的类别权重大）——用损失层面的加权来补偿数据层面的不均衡。</li>
+  <li>效率上，PFLD 在 ARM 安卓机上达到 140 fps、模型仅 2.1 M，把「高精度关键点检测」带到了移动端。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-3.html">‹ 8.3 人脸对齐：原理与 DCNN 网络</a>
+      <a class="next" href="8-5.html">8.5 检测与对齐联合：MTCNN 与 RetinaFace ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

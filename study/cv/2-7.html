@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.7 图像梯度与边缘检测 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.7 图像梯度与边缘检测：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html" aria-current="page"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.7 图像梯度与边缘检测</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节的滤波都在做同一件事：把像素之间的差异压平——均值、中值、高斯，越平滑越好。这一节反过来，把差异本身当成要提取的信息。边缘是像素值发生突变的地方，也是图像中信息最集中的地方；要把它找出来，先得有刻画「变化」的数学工具，再把这套工具搬到离散的像素网格上，最后处理噪声带来的麻烦。整节的线索是：边缘的成因、导数与偏导数、梯度、有限差分与差分算子，最后是 Canny 的四步流程。</p>
+
+<h2>1. 边缘：像素值发生突变的地方</h2>
+<p><strong>边缘是像素值发生突变的地方，也是图像中信息最集中的地方。</strong>一幅自然图像里，绝大多数像素与邻居的差别都很小，真正携带结构信息的就是这些突变点——把边缘找出来，等于把图像压缩成轮廓与边界，后面的分割、配准、识别才有起点。课件把边缘的成因归成四类不连续：</p>
+<ul>
+  <li><strong>物体深度不连续</strong>：前后物体交叠，遮挡关系发生改变；</li>
+  <li><strong>物体颜色不连续</strong>：不同材料、不同物体的交界；</li>
+  <li><strong>物体所受光线不连续</strong>：光照与阴影的突变；</li>
+  <li><strong>物体表面形状不连续</strong>：同一个物体的朝向发生折转，例如棱边与折角。</li>
+</ul>
+<p>四类成因指向同一件事：图像上的突变，来自物理场景中某种真实的不连续。于是本节要回答的问题就变得很具体——<strong>如何判断一个像素是否属于边？</strong>靠的不是某条人为划定的规则，而是一个能度量「变化快慢」的量。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0035.webp" alt="图 1　引起图像边缘的四类不连续" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　图像边缘通常由四类不连续引起：物体深度不连续、物体颜色不连续、物体所受光线不连续、物体表面形状不连续（原课件第 35 张）</figcaption>
+</figure>
+
+<h2>2. 导数与偏导数：把「变化快慢」写成式子</h2>
+<p>度量变化最自然的工具是导数。课件第 36 张把一阶导数与二阶导数的定义并列写开：对于函数 f(x)，它的一阶导数记作 f′(x)，二阶导数记作 f″(x)，两者都是通过「自变量走一小步，看函数值改变多少」来定义的。</p>
+<pre><code>f′(x) = df(x)/dx
+      = lim [ f(x+Δx) − f(x) ] / Δx      (Δx → 0)
+
+f″(x) = df′(x)/dx
+      = lim [ f′(x+Δx) − f′(x) ] / Δx    (Δx → 0)</code></pre>
+<p>一阶导数衡量的是函数值随自变量变化的速率；二阶导数是一阶导数的导数，衡量的是「变化的快慢本身在怎么变」。本节随后一直用到的是一阶导数——把两个方向上的偏导数合起来就得到梯度；二阶导数要到后面第 4 章 4.3 节的 LoG 算子那里才会成为主角。</p>
+<p>图像不是一元函数：一幅灰度图可以看成二元函数 f(x, y)，两个自变量分别是像素的行下标与列下标。课件第 37 张因此引入<strong>偏导数</strong>：对 x 的偏导数记作 f′x(x, y)，对 y 的偏导数记作 f′y(x, y)。两者的含义都是「固定住另一个变量，只让这一个变量变化」，求法就是把另一个变量看作常数——对 x 求偏导时 y 不动，衡量的是同一行相邻像素之间的变化；对 y 求偏导时 x 不动，衡量的是同一列上的变化。</p>
+
+<h2>3. 图像梯度：方向与大小</h2>
+<p>两个偏导数各自只说了一个方向上的变化，把它们合起来就是<strong>梯度</strong>。课件第 37 张给出的定义是：对于二元函数 f(x, y)，<strong>梯度是一个向量，表示函数 f(x, y) 在点 (x, y) 处沿着该方向（梯度方向）变化最快</strong>。写成式子就是 ∇f(x, y) = ( ∂f/∂x, ∂f/∂y )：方向指向变化最快的那个方向，长度则是沿该方向变化的速率，也就是两个偏导数平方和的平方根。方向与大小这两件事，一个是「往哪儿变」，一个是「变得多快」，后面用起来各有用处。</p>
+<p>课件第 38 张用方格里的灰度变化说明「最快速变化的方向」是什么意思：方格里<strong>水平方向</strong>强度变化最快时，梯度就是水平的；<strong>垂直方向</strong>强度变化最快时，梯度就是垂直的；<strong>45° 方向</strong>强度变化最快时，梯度就指向 45°。方向始终跟着「最快的那个方向」走，这正是梯度的定义直接带来的结果。</p>
+<p>接着是这一节最实用的一句话：<strong>图像梯度计算的是图像像素值变化的速度。</strong>于是判断标准水到渠成——对于图像的边缘部分，因为其灰度值变化较大，所以梯度值也较大；对于图像中比较平滑的部分，因为其灰度值变化较小，所以梯度值也较小。「这个像素是不是边缘」由此变成了「这个像素处的梯度值够不够大」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0038.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0038.webp" alt="图 2　梯度指向强度最快速变化的方向" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　梯度指向强度最快速变化的方向：方格里水平、垂直或 45° 方向的强度变化最快时，梯度随之指向该方向（原课件第 38 张）</figcaption>
+</figure>
+
+<h2>4. 离散梯度：用有限差分近似导数</h2>
+<p>导数的定义里有 Δx → 0 这一步，数字图像上做不到：像素按整数下标离散取值，x 只能一格一格地走。课件第 39 张因此改用<strong>有限差分</strong>——不求极限，直接用相隔一个像素的两个取值之差去近似导数：</p>
+<pre><code>∂f/∂x (x, y) ≈ F[x+1, y] − F[x−1, y]
+∂f/∂y (x, y) ≈ F[x, y+1] − F[x, y−1]</code></pre>
+<p>两个式子都只用到目标像素的两个邻居：右边减左边得到水平方向的变化率，下边减上边得到垂直方向的变化率。要注意差分的中心仍然落在 (x, y) 上，而不是落在右邻居或下邻居上，所以同一个像素处横向、纵向的两个变化率可以直接配对使用。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0039.webp" alt="图 3　用有限差分近似偏导数" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　离散梯度：在像素网格上用有限差分近似偏导数，∂f/∂x 由左右相邻像素作差，∂f/∂y 由上下相邻像素作差（原课件第 39 张）</figcaption>
+</figure>
+<p>把这两个式子做在图像的每个像素上，就是两次卷积。课件第 40、41、42 张用同一个例子把这件事演示了一遍：第 40 张计算水平方向的差分，用的核三行都是「−1 0 1」；</p>
+<pre><code>-1   0   1
+-1   0   1
+-1   0   1</code></pre>
+<p>第 41 张计算垂直方向的差分，把同样的思路转 90°，核的三列都是「1 0 −1」。</p>
+<pre><code> 1   1   1
+ 0   0   0
+-1  -1  -1</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0040.webp" alt="图 4　计算水平方向的差分" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　计算水平方向的差分：用三行都是「−1 0 1」的核对图像做卷积，得到水平方向的差分结果（原课件第 40 张）</figcaption>
+</figure>
+<p>第 42 张把两个核与两个差分式并排放在一起，紧接着给出本节最重要的一句结论：<strong>边缘检测本质上就是一种滤波，区别在于滤波器的选择，滤波的规则是完全一样的。</strong>这句话把本节和前面讲卷积的地方接上了：规则没有变，还是把核扣在图像上逐点做加权求和，变的只是核里的系数。所谓「换一种边缘检测算法」，换的其实就是那个 3×3 的核。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0042.webp" alt="图 5　两个差分核与两个差分式" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　把两个差分核与两个有限差分式并排放在一起：边缘检测本质上就是一种滤波，区别在于滤波器的选择，滤波的规则完全一样（原课件第 42 张）</figcaption>
+</figure>
+
+<h2>5. 对不同方向求导的算子：Prewitt、Sobel 与 Roberts</h2>
+<p>上面那对核只是众多选择之一。课件第 43 张的标题是「对不同方向进行求导的滤波器」，并给出两条比较结论；第 40、41 张用到的那对核，就是其中的 Prewitt 算子。</p>
+<p>第一条结论是：<strong>Sobel 算子比 Prewitt 算子边缘检测性能更好。</strong>两个算子的形状完全一样，都是两个 3×3 的核，分别求水平与垂直方向的差分，差别在系数：Prewitt 的三行系数相同，等于在差分之前先沿另一个方向做了一次等权平均；Sobel 把中间一行（或中间一列）的系数加倍。</p>
+<pre><code>Prewitt            Sobel
+-1   0   1         -1   0   1
+-1   0   1         -2   0   2
+-1   0   1         -1   0   1</code></pre>
+<p>离中心像素越近的行权重越大——这是「距离越近影响越大」的加权平均。加权平均的意义在于抗噪：差分本身就会把噪声一起放大，先平滑一次能压掉一部分，而 Sobel 的加权方式比等权平均更贴近邻域的真实影响，所以在实际图像上表现更好。需要说明的是，原课件只给出了「Sobel 算子比 Prewitt 算子边缘检测性能更好」这一结论，上面两组系数是为了解释这条结论补出来的具体形式。</p>
+<p>第二条结论是：<strong>Roberts 算子计算对角线上而不是相邻两个像素的差分。</strong>Prewitt 与 Sobel 比较的都是「左与右」或「上与下」——两个像素位置相邻；Roberts 比较的是一对对角线上的像素，左上与右下、右上与左下各作一次差。因此它的核只要 2×2：</p>
+<pre><code> 0   1          1   0
+-1   0          0  -1</code></pre>
+<p>原课件同样只给了这条文字结论，两个 2×2 的核是把这句话写开的结果。把三个算子放在一起看，差别可以归结为两件事：<strong>核的大小</strong>与<strong>参与差分的像素对</strong>。核的大小决定了顺带做了多少平滑——2×2 几乎没有平滑，3×3 可以在差分之前先做一次平均；像素对决定了它最敏感的方向——是相邻的左右、上下，还是对角线。这也解释了标题为什么写「对不同方向求导」：一个核只对某一类方向的突变最敏感。</p>
+
+<h2>6. 45° 方向的边缘与「所有方向」的边缘</h2>
+<p>课件第 44 张把「方向」这件事往前推了一步，并列了两种说法：<strong>寻找 45° 边缘</strong>与<strong>寻找所有方向的边缘</strong>。理解这两句话的关键在于：一个差分核只在某一个方向上做差分，因此它对该方向的突变最敏感，对别的方向就没那么敏感。</p>
+<p>如果关心的边缘恰好是 45° 走向的，就专门拿一个对 45° 方向敏感的核去测，这对应第一种说法；如果各种朝向的边缘都可能出现，就得把多个方向的核都用上，再综合它们的输出，这对应第二种说法。换句话说，「寻找所有方向的边缘」不是某一个神奇的核，而是一组核的合力。</p>
+<p>这也让第 43 张的标题落了地：挑选算子，本质上是挑选「对哪些方向敏感」。Prewitt 与 Sobel 各出一对核，覆盖水平与垂直两个方向；把对角方向补上，方向才算齐。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0044.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0044.webp" alt="图 6　寻找 45° 边缘与寻找所有方向的边缘" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　课件用两组例子并列「寻找 45° 边缘」与「寻找所有方向的边缘」：前者只针对倾斜的单一方向，后者要把各个方向合起来看（原课件第 44 张）</figcaption>
+</figure>
+
+<h2>7. Canny 边缘检测器的四个步骤</h2>
+<p>到这里，边缘检测的基本框架已经完整：定一个（或一组）差分核，与原图卷积，梯度大的地方就是边缘。但这个框架在真实图像上还不够好用——噪声同样会被差分放大，而且算出来的边缘往往是一条多像素宽的带，位置说不清。课件第 45 张与第 46 张是同一页的两个版本，给出的 Canny 边缘检测器正是针对这两点设计的，它把流程分成四步：<strong>图像降噪、计算图像梯度、非极大值抑制、双阈值筛选</strong>。四步串成一条链，前一步的输出就是后一步的输入。</p>
+<h3>（1）图像降噪</h3>
+<p>第一步为什么是降噪？因为差分的对象是相邻像素之差，而噪声本身就是相邻像素之间没有规律的跳变，在数值上它和边缘长得一模一样，都会被差分放大成响应。若不先处理，梯度图上会布满并不对应任何真实边缘的亮点。所以要先在求导之前把图像平滑一遍（例如前面讲过的高斯滤波），把随机的抖动平均掉。这一步也决定了后面所有步骤的工作对象：它们处理的都是降噪之后的那张图。</p>
+<h3>（2）计算图像梯度</h3>
+<p>第二步是在降噪后的图上求梯度，做法与本节前面的有限差分完全一致：水平、垂直各算一次差分，再合成梯度。输出有两个：<strong>梯度强度</strong>，表示这个点的像素值变化有多剧烈，它是判断「是不是候选边缘」的依据；<strong>梯度方向</strong>，表示朝哪个方向变化最快，它是下一步要用的输入——非极大值抑制必须沿着方向去比较。</p>
+<h3>（3）非极大值抑制</h3>
+<p>前两步算出的梯度图有一个毛病：一条边缘附近的几个像素都会得到较大的梯度值，于是边缘被描成多像素宽的一条带，位置说不准。非极大值抑制就是用来瘦身的：<strong>对每个「边缘」像素，沿着它的梯度方向，跟邻域像素的梯度强度进行比较，如果是局部极大值，则视为边缘像素，否则丢弃。</strong>它的效果是<strong>将多像素宽的边缘减少至一个像素宽度</strong>。之所以沿梯度方向比较，是因为梯度方向正是跨过边缘的方向，在这个方向上取到局部极大值的位置，就是边缘最准确的位置；而沿着边缘走向（与梯度方向垂直）比较没有意义，因为那里的像素值几乎不变。这一步只做筛选，不改变任何像素的取值。</p>
+<h3>（4）双阈值筛选</h3>
+<p>最后一步要把噪声留下的残余响应剔掉。只用一个阈值会进退两难：阈值定高了，对比度低的真实边缘会被一起丢掉，轮廓断成几截；阈值定低了，噪声的响应又会被当成边缘留下。课件给出的办法是<strong>使用上下两个阈值来筛选</strong>：<strong>大于上阈值的认为是边缘点，小于下阈值的认为是非边缘点</strong>；至于落在两个阈值之间的像素，则看它<strong>是否与确定为边缘的点相邻接</strong>——相邻就认定为边缘点，否则丢弃。这样，一条强边缘旁边那些较弱的延续部分能被保住，轮廓不容易断；而孤零零待在噪声里的中等响应，因为接不上任何确定边缘，会被清掉。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0046.webp" alt="图 7　Canny 边缘检测器的四个步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　Canny 边缘检测器的四个步骤：图像降噪、计算图像梯度、非极大值抑制、双阈值筛选（原课件第 45 张、第 46 张，同一页的两个版本）</figcaption>
+</figure>
+
+<h2>8. 边缘检测前为什么要先降噪</h2>
+<p>把 Canny 的第一步单独拿出来看，就是这一问：<strong>边缘检测前为什么要降噪？</strong>课件第 47 张用一维信号和它的导数来说明这件事——信号的横轴是像素位置，纵轴是灰度值，求导之后，原本平缓的区间里会冒出许多细小的起伏。这些起伏来自噪声，却和真实边缘一样表现为「有变化」，一旦被当成边缘，结果就是满图的假轮廓。</p>
+<p>课件第 48 张给出了标准的处理顺序：先由<strong>高斯函数</strong>构造一个核，与原图做<strong>卷积</strong>得到<strong>高斯平滑</strong>的图像，再在这张图上<strong>求梯度</strong>，最后定位到<strong>边缘点</strong>。顺序这样安排的道理在于：平滑把相邻像素之间随机的、小尺度的抖动平均掉，而边缘处那种成片的、有规律的跳变会被保留下来，于是求导之后，梯度图上只剩下边缘处的响应。这也正是高斯滤波在本章里的用处所在——平滑本身不是目的，为后面求导提供一个干净的输入才是。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0047.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0047.webp" alt="图 8　边缘检测前为什么要降噪" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　课件用一维信号与其导数来回答「边缘检测前为什么要降噪」：噪声在求导之后同样表现为响应（原课件第 47 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-7/p0048.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-7/p0048.webp" alt="图 9　高斯函数、高斯平滑、求梯度与边缘点" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　从高斯函数到边缘点：先做高斯平滑（卷积），再对平滑后的图像求梯度，最后得到边缘点（原课件第 48 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>边缘是像素值发生突变的地方，也是图像中信息最集中的地方；成因可以归为物体深度、颜色、所受光线、表面形状四类不连续，它们都是真实场景中的不连续在成像结果上的表现。</li>
+  <li>刻画变化用导数：一元函数有一阶、二阶导数；图像的灰度是二元函数 f(x, y)，对 x、对 y 各有一个偏导数，合起来就是梯度——方向指向变化最快的方向，大小是沿该方向的变化速率。</li>
+  <li>图像是离散的，用有限差分近似导数：∂f/∂x ≈ F[x+1, y] − F[x−1, y]，∂f/∂y ≈ F[x, y+1] − F[x, y−1]；写成 3×3 的核就是一次卷积，所以边缘检测本质上就是一种滤波，换算法就是换核。</li>
+  <li>Prewitt 与 Sobel 都是 3×3、分别对水平和垂直方向求差分的算子，Sobel 给中间行（列）加倍权重因而性能更好；Roberts 比较的是一对对角线上的像素，核只有 2×2。差别的来源是核的大小与参与差分的像素对，也就是「对哪些方向敏感」。</li>
+  <li>要找 45° 边缘就针对该方向选核，要找所有方向的边缘就把多个方向的核都用上——方向齐了，边缘才不会漏。</li>
+  <li>Canny 检测器是一条四步流程：降噪（噪声也是突变，会被差分放大）→ 计算梯度（给出强度与方向）→ 非极大值抑制（沿梯度方向取局部极大，把多像素宽的边缘压成一个像素宽）→ 双阈值筛选（上阈值定边缘、下阈值靠与确定边缘相邻接来补回弱边缘）。这也回答了边缘检测前为什么必须先降噪。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-6.html">‹ 2.6 互相关与卷积</a>
+      <a class="next" href="2-8.html">2.8 图像锐化 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

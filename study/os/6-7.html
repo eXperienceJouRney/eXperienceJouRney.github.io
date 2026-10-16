@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.7 循环轮转调度算法的发展 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.7 循环轮转调度算法的发展：课件第 22–24 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html" aria-current="page"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.7 循环轮转调度算法的发展</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">6.6 节讲的简单循环轮转调度只有一个就绪队列、一个固定时间片，实现简单，但它对长短进程一视同仁：时间片按最坏情况预留，进程一多就嫌小、进程一少又白付切换开销。这一节顺着「时间片该怎么定、队列该怎么分」这两条线索，讲循环轮转调度算法的两个发展方向——可变时间片轮转调度与多级时间片循环调度。它们分别回答了「时间片大小要不要随负载变」和「长短进程要不要区别对待」，也是 6.8 节混合调度的直接来路。</p>
+
+<h2>1. 可变时间片轮转调度</h2>
+<p>6.6 节的简单循环轮转调度用的是一个<strong>固定时间片</strong>：时间片按 q = t / n_max 计算，其中 t 是用户能接受的响应时间，n_max 是按最坏情况（系统中进程最多时）取的进程数。这种做法实现起来省事，代价是时间片的长度与系统当时的真实负载脱了钩：进程少的时候，系统仍然按「进程最多」的假设切成小片，每个进程没做多少事就被换下来，进程切换的次数白白增多。</p>
+<p>可变时间片轮转调度的第一个「可变」正是针对这一点：<strong>时间片的大小是可变的，系统可根据系统中当前的进程数来确定时间片的大小</strong>。也就是说，6.6 节公式里那个固定的 n_max 被换成了系统当前实际的进程数 n——进程少时时间片取大一些，进程多时时间片取小一些，让时间片跟着负载走，而不是跟着最坏的假设走。</p>
+<p>课件对这种算法给出的评价是：<strong>它从理论上减少了当系统中进程数很少时的系统开销</strong>。道理在于，进程数很少时，固定时间片下的每个进程都要被反复打断、反复做现场保护和现场恢复，这些切换时间并不产生任何有用的计算；时间片一放大，一个进程往往能在一次分配里多做很多事甚至直接做完，被打断的次数随之下降，切换开销自然就省了下来。补充一句实现上的说明：时间片每次都要按当前进程数重算，调度程序比维护一个常数时间片要麻烦一些，这是它换来开销下降的一点代价。</p>
+
+<h2>2. 多级时间片循环调度</h2>
+<p>第二个发展方向换了个切入口。可变时间片轮转调度调整的只是时间片的<strong>长度</strong>，所有就绪进程仍在同一个队列里按同一个规则排队；多级时间片循环调度则把就绪进程分开排队，让<strong>队列的级别</strong>和时间片的长度一起变化。它的做法是设置<strong>多个就绪队列</strong>，不同队列的优先级和时间片长度都不一样：</p>
+<ul>
+  <li>进程先进入<strong>高优先级队列</strong>，高优先级队列的时间片较小；</li>
+  <li>当高优先级的进程时间片用完之后，它<strong>进入下一级的队列</strong>——优先级降低，但时间片<strong>增大一倍</strong>；</li>
+  <li>依此类推，级别越低，进程排得越靠后，一次能连续运行的时间却越长。</li>
+</ul>
+<p>名字里的「循环」仍然保留：同一级队列内部的进程还是轮流使用处理机，队列之间则靠「时间片用完就降级」衔接起来。一个进程如果在当前队列的时间片里没做完，就落到下一级队列重新排队；如果它在时间片内做完了，自然就离开了这套队列。低优先级队列的时间片是上一级的两倍，所以进程每降一级，被中断的频率就减半，直到它跑完或者落进最低一级队列为止——具体分几级由系统设定，本节只讲这个逐级加倍的结构。</p>
+<p>这样安排的<strong>效果</strong>可以分成两句话来看，恰好对应长短两类进程：</p>
+<ul>
+  <li>对短进程而言，它一进系统就待在时间片最小的高优先级队列里，往往一两个小时间片就把活干完，不用排队等在大时间片后面——<strong>该算法先用较小的时间片处理完较短的进程</strong>，短进程的响应因而很快；</li>
+  <li>对长进程而言，它落到低优先级队列之后拿到的时间片成倍增大，一次可以连续计算较长时间，<strong>同时避免较长的进程频繁被中断而影响处理机的效率</strong>——切换次数少了，处理机的时间更多花在有效计算上，而不是花在换进换出上。</li>
+</ul>
+<p>换句话说，多级时间片循环调度把「响应快」和「开销小」这两件本来互相拉扯的事分开照顾：短进程靠小时间片换响应，长进程靠大时间片换效率。图 1 把各级队列与它们各自的时间片画在一起，可以对照着看这个结构。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/6-7/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/6-7/p0024.webp" alt="图 1　多级时间片循环调度：多个就绪队列按优先级排列，时间片逐级加倍" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　多级时间片循环调度：就绪进程按优先级排进多个就绪队列，队列级别越低时间片越长（逐级增大一倍）；进程在高优先级队列里用小时片快速周转，时间片用完后降入下一级队列，长进程最终落入低优先级队列、用更长的时间片连续运行（原课件第 24 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>循环轮转调度的两个发展方向，分别针对 6.6 节固定时间片的两个难点：时间片的长度要不要随负载调整、长短进程要不要区别对待。</li>
+  <li><strong>可变时间片轮转调度</strong>让时间片的大小可变，由系统根据当前进程数来确定——相当于把 6.6 节固定时间片 q = t / n_max 里的 n_max 换成当前实际进程数 n；它从理论上减少了系统中进程数很少时的系统开销。</li>
+  <li><strong>多级时间片循环调度</strong>设置多个就绪队列：进程先进入高优先级队列，该队列时间片较小；时间片用完之后进入下一级队列，优先级降低，时间片增大一倍，级别越低时间片越长。</li>
+  <li>它的效果是两头兼顾：短进程一开始就在时间片最小的高优先级队列里被迅速处理完，长进程落入低优先级队列后拿到成倍增大的时间片、不再频繁被中断，处理机效率因此提高。</li>
+  <li>这条「按级别分配不同时间片」的思路就是 6.8 节时间片与优先级混合调度算法的来路——那里只分高低两级就绪队列，时间片取 100 ms 和 500 ms，可以对照本节的多级结构一起看。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-6.html">‹ 6.6 循环轮转调度算法</a>
+      <a class="next" href="6-8.html">6.8 时间片与优先级混合调度算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

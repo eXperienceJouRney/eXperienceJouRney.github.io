@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3 尺度不变特征：LoG 与 DoG · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 4 章 特征检测与匹配 4.3 尺度不变特征：LoG 与 DoG：以「4-特征检测与匹配.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html" aria-current="page"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 4 章 特征检测与匹配</p>
+      <h1>4.3 尺度不变特征：LoG 与 DoG</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节留下一个缺口：Harris 的检测窗口是固定大小的，图像一放大，原来的角点就变成了边缘。这一节解决它。课件的思路不是去改窗口的形状，而是给「窗口该多大」找一个依据——<strong>把窗口内的「内容」写成窗口尺度的函数，谁的窗口尺度能让内容取到极值，就用那个尺度去看</strong>。由此引出两个算子：<strong>高斯拉普拉斯算子（LoG）</strong>与它的高效近似<strong>高斯差分算子（DoG）</strong>。这两个算子既是尺度不变检测的核心，也是后面 SIFT 的骨架。</p>
+
+<h2>1. 问题的提出：让检测窗口自己会「缩放」</h2>
+<p>课件先把问题问清楚——如何检测具有尺度不变性的特征点？给出的思路是：<strong>需要找到一种方法，让检测窗口可以对同一张图像的尺度变化作出响应，也进行尺度上的改变</strong>，从而可以在尺度变换后的同一张图像上识别到同一个目标。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0036.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0036.webp" alt="图 1　如何检测具有尺度不变性的特征点" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　如何检测具有尺度不变性的特征点？思路是让检测窗口也对尺度变化作出响应，跟着做尺度上的改变（原课件第 36 张）</figcaption>
+</figure>
+<p>这句话里藏着本节最关键的一对概念，课件把它单列成一页：</p>
+<ul>
+  <li><strong>「变」的东西</strong>：一张图像（或者说图像上的检测对象）的<strong>尺度</strong>；</li>
+  <li><strong>「不变」的东西</strong>：一个相对区域内的<strong>内容</strong>；</li>
+  <li><strong>目标</strong>：寻求一个合理的检测窗口的<strong>绝对尺度</strong>，以迎合内容的<strong>相对不变</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0037.webp" alt="图 2　「变」的尺度与「不变」的内容" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　「变」的是图像（或检测对象）的尺度，「不变」的是一个相对区域内的内容；目标是寻求一个合理的检测窗口的绝对尺度（原课件第 37 张，讲者备注：研究重心——检测窗口的尺度）</figcaption>
+</figure>
+<p>这就是<strong>问题建模</strong>的第一步：<strong>把检测窗口内的「内容」作为一个函数，把检测窗口的「尺度」作为自变量。</strong>换个说法——不要问「这个像素是不是角点」，而要问「<strong>用多大的窗口去看，这块内容才最像一个特征</strong>」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0039.webp" alt="图 3　问题建模：内容作为窗口尺度的函数" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　问题建模：把检测窗口内的「内容」作为一个函数，把检测窗口的「尺度」作为自变量（原课件第 39 张）</figcaption>
+</figure>
+
+<h2>2. 如何量化「内容」：找极值</h2>
+<p>「内容」是个抽象词，得先能算。课件的回答很直接：<strong>让计算机去感知检测窗口中「内容」的极值</strong>——也就是说，先选定一种能代表窗口内内容的量，再看它随窗口尺度怎么变，把曲线上的极值点挑出来。至于这个量取什么，课件在讲者备注里给了一个具体的答案：<strong>窗口内的平均像素值</strong>。它足够简单，又能随窗口大小平滑变化，因此适合用来找极值。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0040.webp" alt="图 4　如何量化「内容」" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　如何量化所谓的「内容」？——让计算机去感知检测窗口中「内容」的极值（原课件第 40 张）</figcaption>
+</figure>
+<p>课件用两幅图说明为什么极值能带来尺度不变性：Image 1 与 Image 2 是同一场景、不同尺度的两张图（课件标注 <strong>scale = 1/2</strong>）。把「内容」f 画成窗口尺度（region size）的函数，会得到两条形状相似、但横向被拉伸／压缩了的曲线；<strong>它们各自的极值出现在不同的窗口尺度上，而这个极值所对应的内容量是相同的</strong>。于是「在极值处取特征点」这条规则，在两张图上都成立，而且指向的是同一个物理结构。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0041.webp" alt="图 5　两幅不同尺度的图像上的内容—尺度曲线" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Image 1 与 Image 2（scale = 1/2）上「内容—窗口尺度」函数的关系：曲线形状相同、极值对应的窗口尺度不同，但极值处的内容量一致（原课件第 41 张）</figcaption>
+</figure>
+<p>接下来的几页（原课件第 42–47 张）用动画演示了这条「窗口尺度—内容」函数的工作过程：随着窗口尺度从小到大推进，函数值先升后降，极值点处的窗口恰好把这块结构完整地框住——再小则框不全，再大则掺进了周围无关的内容。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0042.webp" alt="图 6　「窗口尺度—内容」函数的工作过程（一）" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　「窗口尺度—内容」函数的工作过程：横轴为窗口尺度 scale，纵轴为内容函数 f；极值点对应的尺度就是该内容的「绝对尺度」（原课件第 42 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0047.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0047.webp" alt="图 7　「窗口尺度—内容」函数的工作过程（二）" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　工作过程的后续几帧：同一场景的不同尺度上，曲线各自在属于自己的窗口尺度处取到极值（原课件第 47 张；第 42–47 张为同一动画的连续帧）</figcaption>
+</figure>
+
+<h2>3. 高斯拉普拉斯算子（LoG）</h2>
+<p>把上面的思想落到一个具体函数上，就是 LoG。课件分三步交代。</p>
+<p><strong>第一步，拉普拉斯算子。</strong>拉普拉斯算子是对图像进行<strong>二阶微分</strong>的算子，可以突出图像中强度发生快速变化的区域，通过求取二阶导数的<strong>零交叉点</strong>来进行图像边缘检测：</p>
+<p><strong>∇²f(x, y) = ∂²f(x, y)/∂x² + ∂²f(x, y)/∂y²</strong></p>
+<p><strong>第二步，先平滑再微分。</strong>由于微分对噪声比较敏感，可以先对图像进行<strong>高斯平滑滤波</strong>，再使用拉普拉斯算子做二阶微分，以降低噪声的影响。常用的二维高斯函数是：</p>
+<p><strong>G<sub>σ</sub>(x, y) = 1/(2πσ²) · exp( −(x² + y²)/(2σ²) )</strong></p>
+<p><strong>第三步，交换运算次序，得到 LoG 算子。</strong>原图像与高斯核函数卷积后再做拉普拉斯运算，而卷积与拉普拉斯可以交换，于是</p>
+<p><strong>∇²[ G<sub>σ</sub>(x, y) ∗ I(x, y) ] = [ ∇²G<sub>σ</sub>(x, y) ] ∗ I(x, y)</strong></p>
+<p>右边方括号里的 <strong>∇²G<sub>σ</sub></strong> 就是<strong>高斯拉普拉斯算子（LoG 算子）</strong>，它是一个不依赖图像的、只由 σ 决定的模板——所谓「墨西哥帽」形状的滤波器。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0048.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0048.webp" alt="图 8　高斯拉普拉斯算子（LoG）" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　高斯拉普拉斯算子（LoG）：拉普拉斯算子（二阶微分、零交叉点）、二维高斯函数 G<sub>σ</sub>，以及「先卷积再拉普拉斯」与「先拉普拉斯再卷积」的等价关系（原课件第 48 张）</figcaption>
+</figure>
+<p>为什么 LoG 能解决尺度问题？关键在参数 σ。课件讲得很直白：</p>
+<ul>
+  <li><strong>σ 越大，算子的尺度越大</strong>——直观上看，算子在三维空间中形成的那个「洞」的直径就越大，在图像上的<strong>检测窗口也就越大</strong>；</li>
+  <li><strong>无论图像初始尺寸多大，都可以通过调整 LoG 算子（即调整 σ），使窗口内的「内容」达到极值</strong>；在达到极值的尺度下，<strong>窗口所框出来的信息量是相同的</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0049.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0049.webp" alt="图 9　σ 决定 LoG 算子的尺度" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　σ 越大，算子尺度越大、窗口越大；无论图像初始尺寸多大，都能通过调整 LoG 算子让窗口内的「内容」达到极值，而极值尺度下窗口框出的信息量相同——课件以「红色框内信息量相同」标注（原课件第 49 张）</figcaption>
+</figure>
+<p>于是 LoG 特征检测的算法流程也顺理成章：</p>
+<ol>
+  <li>计算<strong>不同尺度上的尺度归一化 LoG 函数值</strong>（即 σ²∇²G<sub>σ</sub> 与图像卷积的结果）；</li>
+  <li><strong>同时在位置和尺度构成的三维空间上寻找尺度归一化 LoG 的极值点</strong>；</li>
+  <li>进行<strong>非极大值抑制</strong>，减少重复检测。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0050.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0050.webp" alt="图 10　LoG 特征检测算法流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　LoG 特征检测算法流程：计算不同尺度上的尺度归一化 LoG 函数值 → 在位置与尺度构成的三维空间找极值点 → 非极大值抑制（原课件第 50 张）</figcaption>
+</figure>
+<p>这里要特别留意<strong>「位置—尺度」三维空间</strong>这个说法：特征点不再只是图像上的一个 (x, y)，而是 (x, y, σ) 三元组——除了在哪儿，还包括「在哪个尺度上看它最显著」。这个三元组就是后面 SIFT 里的 <strong>keypoint</strong>。</p>
+
+<h2>4. 高斯差分算子（DoG）：LoG 的高效替代</h2>
+<p>LoG 好用但计算贵。DoG 的思路是<strong>用两个不同参数的高斯滤波结果相减来近似 LoG</strong>。课件给出的定义是：DoG 即高斯函数的差分，具体到图像中，<strong>就是将图像在不同参数下的高斯滤波结果相减，得到差分图</strong>：</p>
+<p><strong>DoG = G<sub>σ<sub>1</sub></sub> − G<sub>σ<sub>2</sub></sub>，即 D(x, y, σ) = [ G(x, y, kσ) − G(x, y, σ) ] ∗ I(x, y)</strong></p>
+<p>它与 LoG 的关系可以写成：</p>
+<p><strong>G(x, y, kσ) − G(x, y, σ) ≈ (k − 1) · σ²∇²G</strong></p>
+<p>也就是说，<strong>两个相邻尺度的高斯差分，近似正比于尺度归一化的 LoG</strong>。课件的结论是：<strong>DoG 相比 LoG 计算更简单，极值点对应的自变量相同，因此常用 DoG 替代 LoG。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0051.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0051.webp" alt="图 11　高斯差分算子（DoG）" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　高斯差分算子（DoG）：DoG = G<sub>σ<sub>1</sub></sub> − G<sub>σ<sub>2</sub></sub>；G(x,y,kσ) − G(x,y,σ) ≈ (k−1)σ²∇²G；图中还画出了 Laplacian 与 DoG 两条曲线的高度重合（原课件第 51 张）</figcaption>
+</figure>
+<p>DoG 的检测流程与 LoG 一一对应：</p>
+<ol>
+  <li>将同一图像在<strong>三个不同参数</strong>下进行高斯滤波；</li>
+  <li>将相邻参数的高斯滤波图<strong>两两相减</strong>，得到差分图；</li>
+  <li>求中间尺度对应的差分图像的每个像素与该像素<strong>同尺度的 8 个相邻点</strong>以及<strong>上下相邻尺度对应的 9×2 共 26 个点</strong>的极值。如果该点像素值为最大值或最小值，就认为该点是图像在该尺度下的一个特征点。</li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-3/p0052.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-3/p0052.webp" alt="图 12　DoG 角点检测算法流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 12　DoG 角点检测算法流程：三个参数下高斯滤波 → 相邻两两相减得差分图 → 与同尺度 8 邻点及上下相邻尺度 9×2 共 26 个点比较极值（图中 Difference of Gaussian 即差分图，Scale 为尺度层）（原课件第 52 张）</figcaption>
+</figure>
+<p>为什么是 <strong>26 个点</strong>？因为此时比较已经不只发生在二维图像上：一个候选点要和<strong>同一尺度的 8 个邻点</strong>比，还要和<strong>上一层尺度的 9 个点</strong>、<strong>下一层尺度的 9 个点</strong>比，8 + 9 + 9 = 26。这样找到的极值同时在位置和尺度上成立——这正是「尺度不变」四个字的来源。</p>
+<p>课件最后给了一篇参考资料（<a href="https://zhuanlan.zhihu.com/p/144875290" target="_blank" rel="noopener">zhuanlan.zhihu.com/p/144875290</a>），想再看一遍 LoG/DoG 推导的可以对照阅读。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>尺度的矛盾：「变」的是图像（检测对象）的尺度，「不变」的是相对区域内的内容；目标是找一个检测窗口的<strong>绝对尺度</strong>去迎合内容的相对不变。</li>
+  <li>建模方式：<strong>把窗口内的「内容」当作函数、把窗口的「尺度」当作自变量</strong>，再让计算机去感知这个函数的<strong>极值</strong>——极值所在的尺度就是该内容的特征尺度。</li>
+  <li>LoG：先用高斯 G<sub>σ</sub> 平滑再由拉普拉斯算子取二阶微分，且 ∇²[G<sub>σ</sub> ∗ I] = [∇²G<sub>σ</sub>] ∗ I，方括号内即 LoG 算子。<strong>σ 越大算子尺度越大、窗口越大</strong>；调整 σ 让窗口内内容取到极值时，不同初始尺寸的图像会框出相同的信息量。</li>
+  <li>LoG 检测流程：算不同尺度的<strong>尺度归一化</strong> LoG 值 → 在<strong>位置—尺度三维空间</strong>找极值 → 非极大值抑制。特征点因此是 (x, y, σ) 三元组。</li>
+  <li>DoG：<strong>D = [G(x,y,kσ) − G(x,y,σ)] ∗ I</strong>，且 G(x,y,kσ) − G(x,y,σ) ≈ (k−1)σ²∇²G；计算更简单、极值点对应的自变量相同，所以常用来替代 LoG。</li>
+  <li>DoG 流程：三个尺度上高斯滤波 → 相邻两两相减 → 与同尺度 8 邻点及上下尺度各 9 点共 <strong>26 个点</strong>比较取极值。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-2.html">‹ 4.2 Harris 角点检测</a>
+      <a class="next" href="4-4.html">4.4 特征描述子与 SIFT ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

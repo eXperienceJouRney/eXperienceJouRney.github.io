@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.1 文件系统的基本概念 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.1 文件系统的基本概念：课件第 3–15 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html" aria-current="page"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.1 文件系统的基本概念</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">文件系统是操作系统里最贴近用户的一块：我们每天都在「打开文件、保存文件」，却很少想过背后有哪些机构在支撑。这一节先把「为什么要引入文件系统」讲清楚，再依次交代文件是什么、文件如何分类、文件系统由哪些部分组成又该具备哪些功能，最后用「逻辑结构／物理结构」两种视角，为第 9 章后面几节搭好框架。</p>
+<h2>1. 为什么要引入文件系统</h2>
+<p>计算机的优势在于能够以极快的速度处理大量的信息，但处理过的信息并不都是一次性的：很多信息需要长期保存，下次开机、下次运行还要再用。存储介质本身并不会替我们管好这些信息——它只认得柱面、磁道、扇区，同名的、属于不同用户的数据混在一起，写在哪里、按什么顺序组织，都是问题。所以，必须解决信息数据的组织与存取问题。</p>
+<p>其次，用户需要摆脱各种存储介质的特性和 I/O 指令的细节，能够方便地存取信息。磁盘、磁带、U 盘的物理特性各不相同，读写它们要靠一条条 I/O 指令；让每个用户都去对付这些细节显然不现实。第 8 章 设备管理已经把设备的差异挡在设备层，文件系统则要在设备层之上再挡一层，把「哪台设备、哪个位置」换成「哪个文件」。</p>
+<p>再次，多用户使用同一台机器时，还要协调共享、保证安全：哪些数据可以共享、哪些只能自己用，谁能读、谁能写，都需要统一管理。最后，操作系统本身也需要文件系统——它的程序、配置信息、日志等，同样要以文件的形式存放在辅助存储器上。</p>
+<p>把数据组织成文件形式加以管理和控制，是计算机数据管理的重大发展：从此用户面对的是有名字的文件，而不是裸的存储介质。</p>
+<h2>2. 文件</h2>
+<h3>（1）什么是文件</h3>
+<p>文件是在逻辑上具有完整意义的信息集合，是文件系统存储和加工的逻辑部件。这里的「逻辑上具有完整意义」是一个判断标准：一段信息算不算一个文件，看的是它在用户眼里有没有独立、完整的意义，而不是看它占了多少存储空间。</p>
+<p>文件还要有一个名字以供标识，这就是文件名：文件名是以字母开头的字母数字串，并且是受若干约束的字符串。至于长度上限、允许出现的字符、是否区分大小写这些具体约束，由各操作系统自行规定。</p>
+<h3>（2）构成文件的基本单位</h3>
+<p>文件由什么构成？最基本的单位是<strong>信息项</strong>，即单个字符或字节；若干个信息项按一定的含义组合起来，就成为<strong>记录</strong>。因此，文件也可以说成是信息项的集合，或者说成是记录的集合。</p>
+<h3>（3）文件的其他描述</h3>
+<ul>
+  <li>文件是具有符号名的信息（数据）项的集合；</li>
+  <li>文件是具有符号名的记录的集合。</li>
+</ul>
+<p>两种说法并不矛盾：前者把文件一直拆到字符或字节一级，后者以记录为单位来看文件。9.2 节要讲的流式文件与记录式文件，区别正在这里。</p>
+<h3>（4）文件名与属性</h3>
+<p>每个文件有一个给定的名字，但名字并不是文件携带的全部信息，用户看到的还有两类：</p>
+<ul>
+  <li><strong>文件扩展名</strong>：表示文件的使用特征，如 .c、.obj、.lib 等，它提示这个文件大致是做什么用的；</li>
+  <li><strong>文件属性</strong>：文件的属性字，表示文件类型、权限等信息。</li>
+</ul>
+<p>属性不是文件内容，而是文件系统管理文件所必需的附加信息。9.5 节要讲的文件目录，正是把文件名和属性组织成目录项来管理的。</p>
+<h2>3. 文件的分类</h2>
+<p>同一个文件，站在不同角度看会归入不同的类别。课件给出了四种分类标准。</p>
+<h3>（1）按文件的性质和用途</h3>
+<ul>
+  <li><strong>系统文件</strong>：与操作系统本身有关的文件；</li>
+  <li><strong>程序库文件</strong>：供程序连接使用的库文件；</li>
+  <li><strong>用户文件</strong>：用户自己建立和使用的文件。</li>
+</ul>
+<p>按用途分类的意义在于权限：系统文件和程序库文件通常只允许系统使用或只允许读取，用户文件才由用户自己处理。</p>
+<h3>（2）按保护级别</h3>
+<ul>
+  <li><strong>执行文件</strong>：只允许执行，不允许读写，记为 x（execute）；</li>
+  <li><strong>只读文件</strong>：只允许读，不允许写，记为 r（read）；</li>
+  <li><strong>读写文件</strong>：读、写都允许，记为 rw。</li>
+</ul>
+<p>这里的 x、r、rw 就是文件系统为文件设置的访问权限标记，9.6 节讲文件共享与安全时还会用到。</p>
+<h3>（3）按文件流向</h3>
+<p>按信息相对计算机的流动方向划分：信息只能进入系统的称为<strong>输入文件</strong>，只能送出系统的称为<strong>输出文件</strong>，两个方向都允许的称为<strong>输入输出文件</strong>。例如打印机这类只能输出的对象对应输出文件，而磁盘上的文件既可以读也可以写，属于输入输出文件。</p>
+<h3>（4）按文件类型</h3>
+<p>这是 UNIX/Linux 一类系统的分类法，按文件在系统内部的类型划分为七种：</p>
+<ul>
+  <li><strong>普通文件</strong>（-）：存放数据或程序的文件；</li>
+  <li><strong>目录</strong>（d）：由目录项组成的文件，用来组织其他文件；</li>
+  <li><strong>链接文件</strong>（l）：指向另一个文件的文件；</li>
+  <li><strong>字符设备</strong>（c）：以字符为单位收发的设备文件；</li>
+  <li><strong>块设备</strong>（b）：以块为单位收发的设备文件；</li>
+  <li><strong>套接字</strong>（s）：用于网络通信的文件；</li>
+  <li><strong>管道文件</strong>（p）：用于进程之间传递数据的文件。</li>
+</ul>
+<p>括号里的字母是系统用来标识类型的符号，靠它一眼就能分辨一个名字代表的是普通文件，还是目录、设备或管道。9.8 节讲 UNIX 文件系统时还会回到这个分类。</p>
+<h2>4. 文件系统</h2>
+<h3>（1）什么是文件系统</h3>
+<p>文件系统是操作系统中负责管理和存取文件信息的软件机构。它由三个部分组成：</p>
+<ul>
+  <li>负责文件操作和管理的<strong>程序模块</strong>；</li>
+  <li>管理文件所需的<strong>数据结构</strong>，如目录表、文件控制块（FCB，File Control Block）、存储分配表；</li>
+  <li>访问文件的一组<strong>操作</strong>。</li>
+</ul>
+<p>三者的分工是明确的：程序模块负责动作，数据结构是记录管理信息的账本，操作则是提供给用户和上层软件的接口。所以文件系统不是一段孤立的程序，而是「程序＋数据＋接口」的整体——这也是理解后面各节（目录结构、存储空间管理、文件操作）的框架。</p>
+<h3>（2）文件系统的基本功能</h3>
+<p>文件系统要做四件事：</p>
+<ul>
+  <li><strong>实现「按名存取」</strong>：从「文件名」查寻到「文件内容」。用户只给出名字，不必知道文件在哪台设备、哪个位置，这是文件系统最本质的功能；</li>
+  <li><strong>解决文件数据的组织结构问题</strong>，实现逻辑结构到物理结构的转换；</li>
+  <li><strong>提供一组文件操作</strong>：创建、删除、读写、修改属性等；</li>
+  <li><strong>实现文件共享和保护</strong>。</li>
+</ul>
+<p>四条功能串起来正好是一条线索：文件叫什么（按名存取）→ 文件怎么组织（逻辑结构与物理结构）→ 用户怎么用（文件操作）→ 多用户怎么共用（共享与保护）。</p>
+<h3>（3）一个通用文件系统的要求</h3>
+<p>把上述功能进一步落到「对系统的要求」上，课件列出了七条：</p>
+<ul>
+  <li><strong>访问方式</strong>：允许用符号名访问文件；</li>
+  <li><strong>组织方式</strong>：用户应能以最适合于各自应用的方式构造各自的文件；</li>
+  <li><strong>操作命令</strong>：每个用户可以执行基本的文件操作命令，如创建、删除、读写文件等；</li>
+  <li><strong>空间管理</strong>：实现辅助空间的自动管理，使文件在辅助存储器中的分配位置与它的用户无关；</li>
+  <li><strong>共享控制</strong>：用户能在慎密的控制状态下互相合作、共享彼此的文件，共享机制应提供各种类型的受控访问，例如读、写、执行或它们的组合；</li>
+  <li><strong>后备与恢复</strong>：必须提供后备与恢复能力，以防止有意或无意地毁损信息；</li>
+  <li><strong>保密</strong>：对在敏感环境中需要保密与私用的数据，提供加密或解密的能力。</li>
+</ul>
+<h2>5. 两种视角：文件的逻辑结构与物理结构</h2>
+<p>研究文件的组织形式，有两种不同的观点：用户关心自己怎么把信息组织起来，系统关心信息实际怎么存放在存储器上。前者得到文件的逻辑结构，后者得到文件的物理结构。</p>
+<h3>（1）文件的逻辑结构（用户观点）</h3>
+<p>文件的逻辑结构是从用户角度看到的文件面貌，也就是用户对信息进行逻辑组织形成的文件结构。研究它的目的，是为用户提供一种逻辑结构清晰、使用简便的逻辑文件形式，让用户按这种形式去存储、检索和加工文件中的信息，而不必关心数据究竟放在哪里。</p>
+<h3>（2）文件的物理结构（实现观点）</h3>
+<p>文件的物理结构是信息在物理存储器上的存储方式，是数据的物理表示和组织。研究它的目的，是选择工作性能良好、设备利用率高的物理文件形式，更高效地利用物理存储设备、更快速地访问文件；系统按照文件的物理结构形式和外部设备打交道，控制信息的传输。</p>
+<p>这两者是同一件事的两面：逻辑结构对用户负责，物理结构对存储设备负责。9.2 节展开逻辑结构与存取方法，9.3 节展开物理结构。</p>
+<h2>6. 逻辑记录与物理记录</h2>
+<h3>（1）逻辑记录</h3>
+<p>逻辑记录是文件中按信息在逻辑上的独立含义来划分的信息单位，它是对文件进行存取操作的基本单位。用户说「读第几条记录」，指的就是逻辑记录——一个人的全部信息、一笔交易的明细，都可以构成一个逻辑记录。</p>
+<h3>（2）物理记录（块）</h3>
+<p>在存储介质上，由连续信息所组成的一个区域称为块，也叫物理记录。物理记录是对辅存进行存取操作的基本单位：主存与辅存之间每次交换一整块或整数块的信息。9.3 节讨论文件的物理结构时，会具体说明块的大小如何影响存取效率。</p>
+<h3>（3）两者的关系</h3>
+<p>逻辑记录是按信息在逻辑上的独立含义划分的单位，物理记录是存储介质上连续信息所组成的区域，逻辑记录最终要存放到物理记录上。课件用了一个贴切的类比：书和章节相当于文件和逻辑记录，是逻辑概念；页相当于块，是物理概念。章节由作者按内容划分，页由印刷装订按纸张划分，两者并不一一对应——文件与逻辑记录、块之间的关系也是如此。</p>
+<p>具体地说，一个逻辑记录可能占用一块或多块物理记录，也可能一个物理记录里包含多个逻辑记录。记录大于块时要跨块存放，读一条记录就得访问好几块；记录小于块时，一次块读写可能带回好几条记录。这一点在分析文件存取效率时会反复用到。</p>
+<p>从用户使用观点来看，关心的是数据的逻辑结构，即记录及其逻辑关系，数据独立于物理环境；从系统实现观点来看，关心的是数据的物理结构，数据被文件系统按照某种规则排列并存放到物理存储介质上。<strong>文件系统的作用，就是在逻辑文件和物理文件之间建立映像关系，并实现两者之间的相互转换。</strong></p>
+<h2>本节小结</h2>
+<ul>
+  <li>引入文件系统的四个原因：长期保存大量信息、屏蔽存储介质与 I/O 指令的细节、多用户协调共享与安全、操作系统自身也需要；结果是数据统一以文件形式管理和控制，这是计算机数据管理的重大发展；</li>
+  <li>文件是在逻辑上具有完整意义的信息集合，基本构成单位是信息项（单个字符或字节）与记录；文件名以字母开头的字母数字串标识，另有表示使用特征的扩展名和表示类型、权限的属性字；</li>
+  <li>文件可按四种标准分类：性质和用途（系统文件、程序库文件、用户文件）、保护级别（执行 x、只读 r、读写 rw）、流向（输入、输出、输入输出）、类型（普通文件 -、目录 d、链接 l、字符设备 c、块设备 b、套接字 s、管道 p）；</li>
+  <li>文件系统＝程序模块＋数据结构（目录表、文件控制块、存储分配表）＋访问文件的一组操作；基本功能是按名存取、逻辑结构到物理结构的转换、提供文件操作、实现共享和保护；通用文件系统还要求辅存空间自动管理、受控共享、后备与恢复、加密解密；</li>
+  <li>研究文件有两种视角：逻辑结构（用户观点，看文件面貌是否清晰、使用是否简便）与物理结构（实现观点，看存储方式是否高效、访问是否快速）；</li>
+  <li>逻辑记录按逻辑上的独立含义划分，是对文件存取操作的基本单位；物理记录（块）是存储介质上的连续区域，是对辅存存取操作的基本单位；两者不一一对应。文件系统最终要在逻辑文件和物理文件之间建立映像关系，并实现两者的相互转换。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-5.html">‹ 8.5 小结</a>
+      <a class="next" href="9-2.html">9.2 文件的逻辑结构与存取方法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

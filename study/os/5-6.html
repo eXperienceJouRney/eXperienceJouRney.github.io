@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.6 死锁的检测与解除 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章 5.6 死锁的检测与解除：课件第 69–75 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html" aria-current="page"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 5 章 资源分配与调度</p>
+      <h1>5.6 死锁的检测与解除</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">预防和避免死锁都要求系统在分配资源时小心翼翼，代价是资源利用率下降、算法开销上升。还有第三条路：分配时什么都不管，但让系统定期「体检」一次，查出死锁再动手解除。这一节讲这条路上的两个问题——如何检测，以及检测到之后如何解除；最后用经典的哲学家进餐问题把死锁的各种办法串起来。</p>
+
+<h2>1. 死锁的检测与解除：另一种思路</h2>
+<p>除了死锁的预防和避免，解决死锁问题的另一条途径是<strong>死锁检测和解除</strong>。它的做法与前两条路正好相反：这种方法<strong>对资源的分配不加任何限制，也不采取死锁避免措施</strong>，但系统定时地运行一个「死锁检测」程序，判断系统内是否已出现死锁；如果检测到系统已经发生了死锁，再采取措施解除它。</p>
+<p>三种策略的差别可以这样对照：预防是「事前把规则定死，让死锁不可能发生」；避免是「每次分配前算一算，不安全就不给」；检测与解除是「先用着，出了问题再治」。前两者牺牲并发性能换安全，后者换来的是资源的高利用率，代价是死锁真的发生时要有能力收拾局面。</p>
+
+<h2>2. 用资源分配图检测死锁</h2>
+<p>检测的工具就是 5.3 节画的<strong>进程-资源分配图</strong>。判据有三条：</p>
+<ul>
+  <li>如果进程-资源分配图<strong>无环路</strong>，则此时系统没有发生死锁；</li>
+  <li>如果有环路，且<strong>每个资源类中仅有一个资源</strong>，则系统中发生了死锁。此时环路是系统发生死锁的<strong>充要条件</strong>，环路中的进程便为死锁进程；</li>
+  <li>如果有环路，且涉及的资源类中<strong>有多个资源</strong>，则环路的存在只是产生死锁的<strong>必要条件而不是充分条件</strong>。</li>
+</ul>
+<p>第二条与第三条的区分正是 5.3 节那个例子的结论（r1 有 1 个实例、r2 有 1 个实例、r3 有 2 个实例、r4 有 3 个实例）。原因也不难理解：资源有多个实例时，环上的进程未必都在等同一份资源，可能还有别的空闲实例可以周转，所以「有环」不足以断定死锁，还需要进一步判断资源数量是否真的周转不开。</p>
+
+<h2>3. 死锁的解除</h2>
+<p>一旦确认系统陷入死锁，就要把某些进程「请出去」或把资源「要回来」，让环断掉。课件给出的办法分三类。</p>
+<h3>（1）撤销进程</h3>
+<ul>
+  <li><strong>立即结束所有进程的执行，并重新启动操作系统</strong>。方法简单，但以前的工作全部作废，损失可能很大；</li>
+  <li><strong>撤销陷于死锁的所有进程</strong>，解除死锁后继续运行；</li>
+  <li><strong>逐个撤销陷于死锁的进程</strong>，回收其资源，直至死锁解除。这种办法比较温和，可以先撤代价最小的那个，看环是否已经断掉。</li>
+</ul>
+<h3>（2）剥夺资源</h3>
+<ul>
+  <li><strong>剥夺陷于死锁的进程占用的资源，但并不撤销它</strong>，直至死锁解除。进程还在，只是把它手里的资源收回来给别人，它之后再重新申请；</li>
+  <li><strong>根据系统保存的 checkpoint，让所有进程回退</strong>，直到足以解除死锁。这就是「回滚」的思路：把系统退回到一个大家都还没卡住的时刻重新往前走；</li>
+  <li>当检测到死锁时，如果存在某些<strong>未卷入死锁的进程</strong>，而这些进程随着建立一些新的抑制进程能执行到结束，则它们可能释放足够的资源来解除死锁。</li>
+</ul>
+<h3>（3）忽略</h3>
+<p>还有一种不是办法的办法：<strong>死锁的忽略</strong>——人工干预，重启若干进程或整个系统。这在实际系统中并不罕见，因为死锁并不常发生，而预防、避免、检测的代价却是时时刻刻都在付出的。</p>
+
+<h2>4. 一个经典例子：哲学家进餐问题</h2>
+<p>1965 年 Dijkstra 提出的哲学家进餐问题，是死锁与同步问题最著名的模型。五个哲学家围坐在一张圆桌旁，桌上摆着五支叉子（信号灯 S0～S4，各自表示一支叉子是否可用），每位哲学家面前一支。哲学家的生活就是交替地思考和进餐，而进餐需要同时拿起左右两支叉子。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-6/p0075.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-6/p0075.webp" alt="图 1　哲学家进餐问题：五位哲学家与五支叉子" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　哲学家进餐问题：P0～P4 五位哲学家围桌而坐，S0～S4 五支叉子分别位于两人之间（原课件第 75 张）</figcaption>
+</figure>
+<p>课件的程序描述如下（i = 0～4，N = 5，第 i 位哲学家的左右叉子分别是 S[i] 与 S[(i+1) % N]）：</p>
+<pre><code>/* i = 0~4, N = 5 */
+void philosopher(int i)
+{
+    while(1) {
+        Think();
+        P(S[i]);              /* 拿左叉 */
+        P(S[(i + 1) % N]);    /* 拿右叉 */
+        Eat();
+        V(S[(i + 1) % N]);    /* 放右叉 */
+        V(S[i]);              /* 放左叉 */
+    }
+}</code></pre>
+<p>这段程序的问题一眼就能看出：如果五位哲学家同时感到饥饿，都执行了第一句 <code>P(S[i])</code>，那么每人手里都拿到了一支叉子，又都在等右边那支——而右叉正握在邻座手里。这正是 5.3 节说的<strong>环路条件</strong>：五个进程首尾相接构成循环等待，谁也不肯放手，系统死锁。</p>
+<p>要避免这种局面，就要破坏「每个人都先拿左叉」这个前提，例如规定拿叉子的次序（对应 5.4 节的有序资源分配法）、限制同时进餐的人数、或者一次性申请两支叉子。可见一个看似生活化的小问题，涵盖的正是本章的全部主题：互斥、同步、死锁的四个必要条件，以及预防、避免、检测解除这三条对策。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>死锁检测与解除对资源分配不加限制，也不做避免，而是由系统定时运行检测程序，发现死锁后再解除；它换来高资源利用率，代价是必须有能力收拾死锁；</li>
+  <li>检测工具是进程-资源分配图：无环则无死锁；有环且每个资源类只有一个资源，则环路是死锁的充要条件；有环且资源类有多个资源时，环路只是必要条件；</li>
+  <li>解除死锁可以从三方面下手：撤销进程（全部结束并重启、撤销所有死锁进程、逐个撤销）、剥夺资源（强行收回、按 checkpoint 回退、借助未卷入死锁的进程释放资源）以及忽略（人工干预、重启进程或系统）；</li>
+  <li>哲学家进餐问题（1965，Dijkstra）中，五位哲学家与五支叉子构成典型的循环等待：同时拿起左叉就会全部阻塞；</li>
+  <li>本章的对策可以按「事前—事中—事后」来记：预防破坏必要条件（5.4 节）、避免在分配前试算安全性（5.5 节银行家算法）、检测与解除则在事后收拾（本节）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-5.html">‹ 5.5 银行家算法</a>
+      <a class="next" href="5-7.html">5.7 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

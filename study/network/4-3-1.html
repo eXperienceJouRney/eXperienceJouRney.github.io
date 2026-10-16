@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3.1 IPv4地址概述 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.3.1 IPv4地址概述：讲义第 768–781 页 · 3 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html" aria-current="page"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.3.1 IPv4地址概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节进入网络层最基础的概念——IP 地址。它要回答三个问题：IPv4 地址到底是什么、由谁分配、长什么样。先把定义说准（32 比特、全球唯一、按接口分配），再说清编址方法走过的三个阶段，最后把点分十进制表示法和二进制—十进制换算练熟，因为后面分类编址、划分子网、无分类编址三节都要建立在这一节的表示方法之上。</p>
+
+<h2>1. IPv4 地址是什么</h2>
+<p>在 TCP/IP 体系中，IP 地址是一个最基本的概念，必须把它弄清楚。<strong>IPv4 地址就是给因特网（Internet）上的每一台主机（或路由器）的每一个接口，分配一个在全世界范围内唯一的 32 比特标识符。</strong></p>
+<p>这句话里有三个要点值得注意：</p>
+<ul>
+  <li><strong>32 比特</strong>——IPv4 地址的长度固定为 32 位二进制数，这正是它「地址空间有限」的根源；</li>
+  <li><strong>全世界范围内唯一</strong>——正因为唯一，IP 地址才能在网络层充当全局的寻址标识；</li>
+  <li><strong>分配给每一个接口</strong>——地址不是给「主机」这个整体，而是给主机（或路由器）的每个接口。一台路由器有多个接口，因此它拥有多个 IP 地址；这一点在后面理解路由器的转发过程时非常关键。</li>
+</ul>
+
+<h2>2. IP 地址的管理与分配</h2>
+<p>既然 IP 地址要求全球唯一，它的分配就不能由各网络随意进行。IP 地址由<strong>因特网名字和数字分配机构 ICANN（Internet Corporation for Assigned Names and Numbers）</strong>进行分配。我国用户可向<strong>亚太网络信息中心 APNIC（Asia Pacific Network Information Center）</strong>申请 IP 地址，并且需要缴费。</p>
+<p>IPv4 地址的总量是有限的，早已分配出去：</p>
+<ul>
+  <li><strong>2011 年 2 月 3 日</strong>，互联网号码分配管理局 IANA（由 ICANN 行使职能）宣布，<strong>IPv4 地址已经分配完毕</strong>；</li>
+  <li>我国在 2014 至 2015 年也逐步停止了向新用户和应用分配 IPv4 地址，同时全面开展商用部署 IPv6。</li>
+</ul>
+<p>由此可见，IPv4 地址的紧缺不是将来才会发生的事，而是已经发生的事实。这也是后文要用子网划分、无分类编址把地址「用得更省」的原因。</p>
+
+<h2>3. 编址方法经历的三个历史阶段</h2>
+<p>IPv4 的编址方法并不是一开始就设计好的，它随着地址紧缺和网络规模膨胀而不断演进，经历了三个历史阶段：</p>
+<ul>
+  <li><strong>1981 年——分类编址</strong>：把地址空间分成 A、B、C 等几类，按类分配；</li>
+  <li><strong>1985 年——划分子网</strong>：在原有分类的基础上，把一个大网络再划分为若干子网，提高地址利用率；</li>
+  <li><strong>1993 年——无分类编址</strong>：不再按类划分，用「网络前缀 + 主机号」的方式灵活分配地址块。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/4-3-1/p0780.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-3-1/p0780.webp" alt="图 1　IPv4 地址编址方法的三个历史阶段：分类编址、划分子网、无分类编址" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　IPv4 编址方法的三个历史阶段：1981 年分类编址 → 1985 年划分子网 → 1993 年无分类编址（原讲义第 780 页）</figcaption>
+</figure>
+<p>这三个阶段是本章 4.3.2 至 4.3.4 三节的线索：4.3.2 讲分类编址，4.3.3 讲划分子网，4.3.4 讲无分类编址。三种方法中，后出现的并没有立刻取代前面的，而是长期共存、配合使用。</p>
+
+<h2>4. 点分十进制表示法</h2>
+<p>32 比特的 IPv4 地址不方便阅读、记录以及输入，因此 IPv4 地址采用<strong>点分十进制</strong>（dotted decimal notation）表示方法以方便用户使用。做法是：把 32 比特按每 8 位分为一组，共 4 组，写出每组对应的十进制数（不会超过 255），组与组之间用小数点隔开。</p>
+<p>以原讲义给出的 32 比特地址为例：</p>
+<pre><code>32 比特 IPv4 地址：
+00001010 11110000 00001111 10101010
+每 8 位分为一组，写出各组的十进制数：
+   10        240        15        170
+写成点分十进制形式：10.240.15.170</code></pre>
+<p>下表是几个 32 比特地址与它们点分十进制形式的对照，可以当作练习检验自己是否已经掌握分组换算。</p>
+<table>
+  <caption>数据来源：原讲义第 772 页的换算练习及其解析。</caption>
+  <thead>
+    <tr><th>32 比特 IPv4 地址</th><th>点分十进制形式</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>00001010 11111110 00001111 11110000</td><td>10.254.15.240</td></tr>
+    <tr><td>10101100 00010000 10111111 11110111</td><td>172.16.191.247</td></tr>
+    <tr><td>11000000 10101000 10100101 00000111</td><td>192.168.165.7</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 8 位二进制数与十进制数的换算</h2>
+<p>点分十进制的书写与阅读都离不开 8 位二进制数与十进制数之间的相互换算，这是本章的基本功。</p>
+<h3>（1）8 位无符号二进制整数转十进制数</h3>
+<p>8 位二进制数的每一位都有自己的<strong>权值</strong>，从高位到低位依次是：</p>
+<pre><code>128   64   32   16   8   4   2   1</code></pre>
+<p>把每一位上的数字（0 或 1）乘以该位的权值，再全部相加，就得到对应的十进制数。例如：</p>
+<ul>
+  <li>10101010 = 1×128 + 0×64 + 1×32 + 0×16 + 1×8 + 0×4 + 1×2 + 0×1 = <strong>170</strong>；</li>
+  <li>11111100 = 128 + 64 + 32 + 16 + 8 + 4 = <strong>252</strong>，也可以看成 255 − 2 − 1；</li>
+  <li>11110000 = <strong>240</strong>，也可以看成 255 − 8 − 4 − 2 − 1；</li>
+  <li>10000001 = 128 + 1 = <strong>129</strong>。</li>
+</ul>
+<p>全部为 1 的 11111111 对应 255，这也是点分十进制中每一组数字的最大值。熟悉的读者不妨记住几个常见的「整块」值（如 11110000 = 240、11000000 = 192、10000000 = 128），换算会快很多。</p>
+<h3>（2）十进制正整数转 8 位无符号二进制数</h3>
+<p>反过来有两种常用做法。第一种是<strong>除 2 取余法</strong>：把十进制数反复除以 2，记下每次的余数，直到商为 0，再把余数从下往上读出。例如把 130 转换为 8 位二进制数：</p>
+<pre><code>130 ÷ 2 = 65  余 0     ← 最低位
+ 65 ÷ 2 = 32  余 1
+ 32 ÷ 2 = 16  余 0
+ 16 ÷ 2 =  8  余 0
+  8 ÷ 2 =  4  余 0
+  4 ÷ 2 =  2  余 0
+  2 ÷ 2 =  1  余 0
+  1 ÷ 2 =  0  余 1     ← 最高位
+从下往上读：130 = 10000010</code></pre>
+<p>第二种是<strong>凑值法</strong>：熟记 8 位二进制数各位的权值 128 64 32 16 8 4 2 1，从大到小试着凑出目标数，凑上的位置写 1，凑不上的写 0。例如 171：</p>
+<pre><code>171 = 1×128 + 0×64 + 1×32 + 0×16
+    + 1×8 + 0×4 + 1×2 + 1×1
+    = 128 + 32 + 8 + 2 + 1
+    = 10101011</code></pre>
+<p>两种方法结果相同，实际换算时通常用凑值法更快，用除 2 取余法校核。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IPv4 地址是给因特网上每台主机（或路由器）的<strong>每一个接口</strong>分配的、全世界唯一的 32 比特标识符。</li>
+  <li>地址由 ICANN 分配，我国用户向 APNIC 申请且需缴费；2011 年 2 月 3 日 IANA 宣布 IPv4 地址分配完毕，我国自 2014—2015 年起逐步停止向新用户分配 IPv4 并转向 IPv6 商用部署。</li>
+  <li>IPv4 编址方法经历三个历史阶段：1981 年分类编址、1985 年划分子网、1993 年无分类编址，对应后面 4.3.2、4.3.3、4.3.4 三节。</li>
+  <li>32 比特地址按每 8 位一组、写成 4 个十进制数并用小数点隔开，就是点分十进制表示法，每组数字的范围是 0～255。</li>
+  <li>8 位二进制数与十进制数的换算靠各位权值 128 64 32 16 8 4 2 1：从二进制到十进制逐位加权求和，从十进制到二进制可用除 2 取余法或凑值法。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-2.html">‹ 4.2 网络层提供的两种服务</a>
+      <a class="next" href="4-3-2.html">4.3.2 分类编址的IPv4地址 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.5 神经网络的直观理解 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 5 章 前馈神经网络 5.5 神经网络的直观理解：以「5-前馈神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html" aria-current="page"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 5 章 前馈神经网络</p>
+      <h1>5.5 神经网络的直观理解</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">公式看着抽象，但前馈网络在做什么其实可以很直观：矩阵乘法就是在「重新配比」，多一层就是在「再组合一次」。这一节用三个例子把这件事讲透——先用一个化学式的玩具例子说明权重的含义，再走完一元线性回归和手写体数字识别两个案例，最后用一个「多层线性网络等于一层」的推导说明激活函数为什么不可省。</p>
+
+<h2>1. 先看一个玩具例子：网络就是「重新配比」</h2>
+<p>假设输入 <strong>X</strong> 是二维向量，两个维度分别表示某种物质里 C 原子和 O 原子的数量：维度一决定 C 原子数量，维度二决定 O 原子数量。输出的 <strong>y</strong> 是三维向量，三个位置对应 CO₂、O₃、CO 三种物质的数量。写成矩阵形式就是 <strong>y</strong> = <strong>WX</strong>：</p>
+<ul>
+  <li>左图是输出 y 为三维向量的情况，通过改变权重的值可以获得不同的物质；</li>
+  <li>我们希望通过网络能从 [C, O] 转变到 [CO₂, O₃, CO]，也就是让权重矩阵对应到正确的配比；</li>
+  <li>如果在其后面再加一层，就表示可以通过组合……也就是说，多层网络做的事是「把这层的输出再重新配比一次」；</li>
+  <li>那么网络的学习过程，就是将 <strong>W</strong> 的数值尽可能接近理想配比的过程。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0035.webp" alt="图 1　用化学式的配比理解 Y = WX" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　用「C、O 原子重新配比成 CO₂、O₃、CO」理解矩阵乘法 y = WX：权重决定了输出各个维度的组合方式（原课件第 35 张）</figcaption>
+</figure>
+<p>这个例子虽然和视觉无关，却点明了后面所有内容的主线：<strong>网络的「知识」全部存在权重里，训练就是找权重</strong>。区别只在于，真实任务的理想配比事先谁也不知道，只能靠数据去逼近。</p>
+
+<h2>2. 案例 A：一元线性回归</h2>
+
+<h3>（1）任务与数据</h3>
+<p>横轴 X 表示西瓜重量，是 1 维；纵轴 Y 表示西瓜总价，也是 1 维。已知一部分西瓜的重量 X 与其对应的总价 Y，考虑称重误差，想要知道任意重量的西瓜的总价（图 2）。这是一个典型的回归问题：输入和输出都是连续数值。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0036.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0036.webp" alt="图 2　一元线性回归任务：由西瓜重量预测总价" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　任务 A：横轴是西瓜重量（1 维），纵轴是总价（1 维），由若干已知样本推测重量与总价的关系（原课件第 36 张）</figcaption>
+</figure>
+
+<h3>（2）数据准备</h3>
+<p>课件用一段代码造出数据（图 3）：生成 100 个样本，真实关系设为「总价约为重量的两倍」，再叠加一点称重误差；随后把前 80 个样本划为训练集，后 20 个划为测试集。测试集不参与训练，只用来检验模型是不是真的学到了规律。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0037.webp" alt="图 3　任务 A 的数据准备代码" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　任务 A 的数据准备：生成 100 个样本（Y = X × 2 加噪声），前 80 个作训练集、后 20 个作测试集（原课件第 37 张）</figcaption>
+</figure>
+<p>这段代码的骨架可以概括成几行：</p>
+<pre><code>n_example = 100
+X = tf.random_normal([n_example])
+noise = tf.random_uniform([n_example], -0.5, 0.5)   # 称重误差
+Y = X * 2 + noise
+
+train_x, train_y = X[:80], Y[:80]                   # 训练集
+test_x,  test_y  = X[80:], Y[80:]                   # 测试集</code></pre>
+
+<h3>（3）选模型</h3>
+<p>模型直接从 x 得到 y，要学习的参数是 ω 和 b，即 y = ωx + b。输入和输出的关系是由模型来决定的：整理好数据的下一步就是选择适当的模型；现实中我们并不知道输入和输出的关系是什么，只能凭经验猜测，所以西瓜总价任务用 y = ωx + b 这样的线性模型（图 4）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0038.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0038.webp" alt="图 4　一元线性回归的模型 y = ωx + b" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　任务 A 选定的模型 y = ωx + b：一条直线，两个待学参数 ω 与 b（原课件第 38 张）</figcaption>
+</figure>
+
+<h3>（4）模型构建</h3>
+<p>课件用一个类来承载模型：参数 <code>w</code>、<code>b</code> 用可训练的变量初始化，正向传递就是一次乘加。这正是 5.1 节那个神经元的特例——没有激活函数（或者说激活函数取恒等函数），只有一个输入。它的代码只有几行：</p>
+<pre><code>class Model(object):
+    def __init__(self):
+        self.w = tf.Variable(1.0)     # 参数初始化
+        self.b = tf.Variable(1.0)
+    def __call__(self, x):
+        return self.w * x + self.b    # 正向传递
+
+model = Model()                       # 实例化模型</code></pre>
+<p>注记：课件用的是 TensorFlow 1.x 的 eager 风格代码，需要显式执行 <code>tf.enable_eager_execution()</code> 才能逐行求值；在 TensorFlow 2.x 里默认就是这种「即显」模式，不再需要这一句。后续案例的代码同样属于这个版本背景，读的时候抓住「定义参数 → 定义正向传递 → 定义损失 → 求梯度更新」这条主线即可。</p>
+
+<h2>3. 案例 B：手写体数字识别</h2>
+
+<h3>（1）任务</h3>
+<p>已知部分手写体数字图像 X 和其对应的数字 Y，想要知道任意图像的对应数字（图 5）。这是一个分类问题：输入是图像，输出是 0 到 9 这十个类别中的一个。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0040.webp" alt="图 5　手写体数字识别任务" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　任务 B：由手写体数字图像预测它到底是哪个数字（原课件第 40 张）</figcaption>
+</figure>
+<p>关键在于「图像在计算机里是什么」：图像在计算机中也只是一堆数字，每个数字控制着每个像素的颜色；黑白模式下，255 表示最亮，0 表示最暗。这里每个图像都有 28×28 = 784 个像素，可以伸展成一个 784 维的向量；而输出是维度为 10 的向量，每个位置的数值都对应着一种可能性（图 6）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0041.webp" alt="图 6　图像表示成 784 维向量、输出 10 维向量" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　图像就是一堆数字：28×28 = 784 个像素展成 784 维输入向量，输出是 10 维向量，每个位置对应一个数字的可能性（原课件第 41 张）</figcaption>
+</figure>
+
+<h3>（2）数据准备</h3>
+<p>任务 B 用的是 MNIST 数据集，总样本 70000 张：训练集 60000 张、测试集 10000 张。代码把每张图从 28×28 展平成 784 维，并把像素转成浮点数、标签转成整数（图 7）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0042.webp" alt="图 7　任务 B 的数据准备代码" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　任务 B 的数据准备：载入 MNIST，把图像 reshape 成 (N, 784)，训练集 (60000, 784)、测试集 (10000, 784)（原课件第 42 张）</figcaption>
+</figure>
+<pre><code>train, test = tf.keras.datasets.mnist.load_data()          # 导入数据
+(train_x, train_y), (test_x, test_y) = train, test
+train_x = train_x.reshape([-1, 784]).astype('float32')     # 形状和类型
+test_x  = test_x.reshape([-1, 784]).astype('float32')
+train_y = train_y.astype('int32')
+test_y  = test_y.astype('int32')</code></pre>
+
+<h3>（3）任务分析：在输入和输出之间加隐藏层</h3>
+<p>直接用 784 维输入去预测 10 类输出，效果不好——对于数字识别任务，直接从 x 到 y 是很困难的。课件的方案是：在输入和输出之间增加若干个隐藏层，让网络先把输入变成一层层中间表示，再由最后一层给出分类结果（图 8）。课件给出的一个具体配置是：</p>
+<ul>
+  <li>x: [784, 1] → h₁: [512, 1] → h₂: [256, 1] → y: [10, 1]；</li>
+  <li>W₁: [512, 784]、W₂: [256, 512]、W₃: [10, 256]，b₁: [512, 1]、b₂: [256, 1]、b₃: [10, 1]；</li>
+  <li>三层的计算分别是 h₁ = W₁x + b₁、h₂ = W₂h₁ + b₂、y = W₃h₂ + b₃。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0043.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0043.webp" alt="图 8　两层隐藏层的手写体数字识别网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　在输入与输出之间加隐藏层：784 → 512 → 256 → 10，各层的权重与偏置形状见图（原课件第 43 张）</figcaption>
+</figure>
+<p>注记：课件图里第三个偏置写成了 b₂: [10, 1]，按上下文应为 b₃: [10, 1]，属于笔误。</p>
+
+<h3>（4）为什么必须加激活函数</h3>
+<p>如果只是这样把线性层叠起来，网络就白搭了。课件给了推导（图 9）：令 W₁X₁ + b₁ = X₂，则 Y₁ = W₂X₂ + b₂；反复代入即得 Y₁ = W₂(W₁X₁ + b₁) + b₂，展开后仍然是一个「输入乘以某个矩阵再加某个向量」的线性变换。</p>
+<p>结论很硬：<strong>一系列线性方程的运算最终都可以用一个线性方程表示</strong>。对于三层神经网络是这样，就算网络深度加到 100 层，也依然是这样——因此神经网络就失去了意义。为了增强网络的表达能力，必须为网络添加非线性功能，也就是激活函数。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0044.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0044.webp" alt="图 9　不用激活函数时多层线性层的合并" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　不使用激活函数时：Y₁ = W₂(W₁X₁ + b₁) + b₂，多层线性变换等价于单层线性变换（原课件第 44 张）</figcaption>
+</figure>
+<p>于是模型构建就变成：在线性模型的基础上增加若干个线性和非线性单元，正向传递的每一层都套一个 ReLU（课件的写法如下）：</p>
+<pre><code>h1 = tf.nn.relu(tf.matmul(x,  self.W1) + self.b1)   # 正向传递
+h2 = tf.nn.relu(tf.matmul(h1, self.W2) + self.b2)
+y  = tf.nn.relu(tf.matmul(h2, self.W3) + self.b3)</code></pre>
+
+<h2>4. 神经网络的训练：调整权重去逼近目标</h2>
+<p>三层神经网络可以表达任意连续函数，所以对于我们要求解的大部分问题，目标就是让网络的输出尽可能接近想要预测的值，从而让神经网络更好地拟合对应问题。因此，<strong>训练就是要调整权重矩阵 ω，让当前网络的预测值接近我们真正想要的目标值</strong>。</p>
+<p>回到前面化学式的例子就很好理解：要得到 CO₂ 而不是 CO₃，可以将 O 原子数量上升、C 原子不变；要得到 O₃ 而不是 C₆₀，可以将 C 原子的数量降低、氧原子数量上升。对应到网络里，就是当权重矩阵配比不对时去调整权重矩阵 ω（图 10）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/5-5/p0048.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/5-5/p0048.webp" alt="图 10　训练就是调整权重使预测值接近目标值" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　神经网络的训练：训练就是调整权重矩阵 ω，让网络输出接近真正想要的目标值；右图是权重的两种配比 (1) 与 (2)（原课件第 48 张）</figcaption>
+</figure>
+<p>不过「调大还是调小」不能靠猜。下一节要引入的损失函数，正是用来度量「当前权重有多差」的那把尺子。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>矩阵乘法可以理解成「重新配比」：权重决定输出各维度如何由输入各维度组合而来；网络的知识全在权重里，学习就是找权重；</li>
+  <li>案例 A（一元线性回归）：由西瓜重量预测总价，选模型 y = ωx + b，参数只有 ω、b；数据 100 个样本、前 80 训练后 20 测试；</li>
+  <li>案例 B（手写体数字识别）：图像是 28×28 = 784 个像素值，展成 784 维向量输入，输出 10 维向量表示十种可能性；MNIST 共 70000 张，训练 60000、测试 10000；</li>
+  <li>直接在输入输出之间接一层效果不好，方案是加隐藏层（如 784 → 512 → 256 → 10）；</li>
+  <li>但若不加激活函数，多层线性层的复合仍等价于一次线性变换（Y₁ = W₂(W₁X₁ + b₁) + b₂），加到 100 层也一样，网络就失去了意义——这就是激活函数不可省的根本原因；</li>
+  <li>训练的目标是调整权重矩阵，让网络的预测值接近目标值；「怎么知道该往哪调」需要损失函数，这是下一节的内容。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-4.html">‹ 5.4 前馈神经网络</a>
+      <a class="next" href="5-6.html">5.6 损失函数 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

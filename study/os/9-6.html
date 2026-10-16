@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.6 文件共享与安全 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.6 文件共享与安全：课件第 80–87 张 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html" aria-current="page"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.6 文件共享与安全</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">文件放进目录、有了名字和物理位置之后，紧接着的问题是「谁能用、能怎么用」。这一节先界定文件共享与文件安全这两个概念的关系——安全问题是共享带来的，再给出用户对文件的几种存取权限，最后梳理验证用户存取权限的五种方法。</p>
+
+<h2>1. 文件共享与文件安全</h2>
+<p><strong>文件共享</strong>是指某一个或某一部分文件可以让事先规定的某些用户共同使用。共享让文件的使用价值大大提高，但也把一个新的问题带进了文件系统：<strong>文件安全</strong>。安全问题是文件共享引发出来的，所谓文件安全，就是文件的<strong>保护</strong>问题。</p>
+<p>文件的保护有明确的双重要求：文件本身<strong>不得被未经文件主授权的任何用户存取</strong>；而对于授权用户，也只能<strong>在允许的存取权限内</strong>使用文件。也就是说，保护不只是「拦住外人」，还要对「自己人」区分读、写、执行、删除等不同动作。</p>
+
+<h2>2. 存取权限的验证与权限类型</h2>
+<p>要做到上面这一点，就需要对用户的权限进行验证。所谓<strong>存取权限的验证</strong>，是指用户存取文件之前，系统先检查该用户的存取权限是否符合规定：符合者允许使用，否则拒绝。</p>
+<p>验证的依据是权限的种类。文件系统把用户对文件的操作归纳为以下几种存取权限：</p>
+<table>
+  <caption>用户存取权限的类型（原课件第 82 张）</caption>
+  <thead>
+    <tr><th>权限</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>EXECUTE</td><td>执行文件（x）</td></tr>
+    <tr><td>READ</td><td>读文件内容（r）</td></tr>
+    <tr><td>UPDATE</td><td>修改文件内容</td></tr>
+    <tr><td>WRITE</td><td>修改、删除、增加文件内容（w）</td></tr>
+    <tr><td>DELETE</td><td>删除文件</td></tr>
+    <tr><td>CHANGE</td><td>改变文件属性</td></tr>
+  </tbody>
+</table>
+<p>可以看到，权限是一格一格划开的：能读不等于能改，能改内容也不等于能删除文件或改变文件属性。系统在目录项中保存的存取控制信息，正是按这些权限，分别记录文件主与核准的其他用户各自被允许做什么。</p>
+<p>注记：其中的 x、r、w 三种权限，在 UNIX/Linux 等系统中就是文件权限位最常见的三组取值，分别对应这里的 EXECUTE、READ、WRITE。</p>
+
+<h2>3. 验证用户存取权限的五种方法</h2>
+<p>权限怎么记、记在哪里，直接决定了验证的开销和灵活性。常见的做法有以下五种，前三种是「记权限」的不同组织方式，后两种走的是「验证身份 / 加密内容」的路子。</p>
+
+<h3>（1）访问控制矩阵</h3>
+<p>最直观的做法是列一张二维矩阵：一个方向对应系统中的<strong>用户</strong>，另一个方向对应<strong>文件</strong>，矩阵中交叉位置上的元素给出「这个用户对这个文件拥有什么权限」。它的表达能力最完整，但矩阵通常非常稀疏（绝大多数用户与绝大多数文件无关），全量存下来空间开销大，所以实际系统往往对它做压缩，衍化出下面两种表。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-6/p0083.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-6/p0083.webp" alt="图 1　访问控制矩阵" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　访问控制矩阵：以用户为行、文件为列，矩阵元素登记该用户对该文件的存取权限，同时也就给出了存取权限验证的依据（原课件第 83 张）</figcaption>
+</figure>
+
+<h3>（2）存取控制表</h3>
+<p>访问控制矩阵按<strong>文件</strong>的方向压缩，就得到<strong>存取控制表</strong>：某一文件只与特定的少数几个用户有关，于是只记录「一个文件」与「不同用户、用户组」的权限。每个文件带一张自己的小表，表里列出被授权者及其权限，验证时比较的是「这个文件的这张表」。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-6/p0084.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-6/p0084.webp" alt="图 2　存取控制表" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　存取控制表：按文件组织权限，只记录该文件与不同用户、用户组之间的权限关系，适用于「一个文件只与少数用户有关」的情形（原课件第 84 张）</figcaption>
+</figure>
+
+<h3>（3）用户权限表</h3>
+<p>换个方向压缩，就得到<strong>用户权限表</strong>：把<strong>一个用户或用户组</strong>的所有相关文件集中存放在一起，验证时先找到这个用户，再在他名下的文件清单里查权限。用户权限表适合「一个用户要用很多文件」的场景，与存取控制表正好互补。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-6/p0086.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-6/p0086.webp" alt="图 3　用户权限表" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　用户权限表：按用户（或用户组）组织，把该用户名下所有相关文件的权限集中存放，便于一次查出这个用户能访问哪些文件（原课件第 86 张）</figcaption>
+</figure>
+
+<h3>（4）口令</h3>
+<p>前面的三种办法都要维护并检索权限表；<strong>口令</strong>走的是另一条路：给文件（或文件的一部分）配上一个口令，用户必须给出口令才能存取。它的优点是开销小、实现简单，缺点是口令一旦泄露保护就失效，而且口令本身也需要妥善保管。</p>
+
+<h3>（5）密码</h3>
+<p><strong>密码</strong>则从内容本身入手：文件以密文形式存放，只有掌握密钥的用户才能把它还原成可读的明文。与口令只「守门」不同，密码即使文件被别的途径拿走，内容仍然不可读，因此保护强度更高，代价是加解密带来的时间开销。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li><strong>文件共享</strong>是让事先规定的某些用户共同使用某些文件；它引发了<strong>文件安全</strong>问题，而文件安全说到底就是文件的保护。</li>
+  <li>保护的要求有两面：未授权的用户不得存取文件；已授权的用户也只能在允许的权限范围内使用文件。</li>
+  <li>实现保护的机制是<strong>存取权限的验证</strong>：存取之前检查用户权限是否符合规定，符合则允许，否则拒绝。</li>
+  <li>权限被细分为 EXECUTE（x）、READ（r）、UPDATE、WRITE（w）、DELETE、CHANGE 等类型，读、写、执行、删除、改属性彼此独立。</li>
+  <li>验证权限的五种方法中，<strong>访问控制矩阵</strong>最完整但稀疏；按文件压缩成<strong>存取控制表</strong>，按用户压缩成<strong>用户权限表</strong>；<strong>口令</strong>用「答对才放行」换取低开销，<strong>密码</strong>用加密内容换取更高强度。</li>
+  <li>共享与安全是同一件事的两面：本节讲的是「谁可以访问」，下一节讲的是「文件本身如何操作、以及如何在意外损坏后恢复」——文件操作与文件备份。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="9-5.html">‹ 9.5 文件目录及其结构</a>
+      <a class="next" href="9-7.html">9.7 文件操作与文件备份 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

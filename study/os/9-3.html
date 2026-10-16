@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.3 文件的物理结构 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章 9.3 文件的物理结构：课件第 22–47 张 · 11 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html" aria-current="page"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 9 章 文件系统</p>
+      <h1>9.3 文件的物理结构</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讨论的是文件在用户眼里的样子——逻辑结构；这一节换到系统实现的视角，看文件的数据究竟以什么方式摆放在辅存上。先立起块与磁盘地址这两个基本概念，再依次考察三种经典的物理结构：连续文件、串联文件（以及它的改进形式文件映照与文件分配表 FAT）、索引文件，最后把三者放在一起比较。物理结构决定了文件能不能随机访问、存取一次要花多少次 I/O、以及辅存空间好不好利用。</p>
+
+<h2>1. 基本概念：块与磁盘地址</h2>
+<p>文件系统与辅存之间交换信息的最小单位是<strong>块</strong>（block），也叫<strong>物理记录</strong>：它是存储介质上一段连续信息所组成的区域。块是主存储器与辅助存储设备之间信息交换的物理单位，每次交换一块或整数块。</p>
+<p>块的大小不能随便定，要综合考虑用户的使用方式、数据传输效率和存储设备的类型等多种因素。不同类型的存储介质，块的长短常常各不相同；同一类型的存储介质，块的长短也可以不同。此外，块与块之间还可能存在不记录信息的<strong>间隙</strong>。</p>
+<h3>（1）物理块的位置怎么表示</h3>
+<p>磁盘上所有盘片的相同磁道组成一个<strong>柱面</strong>。因此，磁盘上每个物理块的位置都可以用<strong>柱面号、磁头号、扇区号</strong>这三个坐标表示出来，这些地址与物理块号一一对应——上层软件只要拿着块号，就能换算出它在磁盘上的确切位置。</p>
+<p>磁盘以扇区为单位读写，扇区的定位方式随着容量增长不断演进：早期用 CHS 寻址（10 位柱面号、8 位磁头号、6 位扇区号，可寻址约 8 GB），后来改用 LBA 线性地址，28 位可寻址约 137 GB，48 位可寻址约 144 PB。分区表的容量上限也随之变化：MBR 分区表最大约 2 TB，GPT 分区表可达约 18 EB（容量单位由小到大为 GB、TB、PB、EB，相邻两级相差 1024 倍）。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0025.webp" alt="图 1　物理块的位置与扇区定位方式" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　物理块的位置由柱面号、磁头号、扇区号表示，与物理块号一一对应；图中还列出了 CHS、LBA 与 MBR、GPT 分区表的寻址容量上限（原课件第 25 张）</figcaption>
+</figure>
+<p>概括地说，<strong>文件的物理结构描述了文件在辅存上安置、链接和编目的方法</strong>。常用的文件物理结构有三种：<strong>连续文件、串联文件、索引文件</strong>——它们依次回答了「块怎么排、怎么串、怎么查」这三个问题，下面逐一来看。</p>
+
+<h2>2. 连续文件</h2>
+<p><strong>连续文件</strong>结构由一组分配在磁盘<strong>连续区域</strong>的物理块组成——文件占哪些块是连成一片的，文件目录项里只要记下首块号和文件长度就够了。</p>
+<p>课件给的例子是：文件 A 有三个逻辑记录 r0、r1、r2，逻辑记录与物理块大小相等，都是 512 B，其中 r0 存放在第 100 号磁盘块上。由于块是连续分配的，三个记录分别落在 100、101、102 三个块上，目录项中记录首块号 100 与记录个数 3。</p>
+<p>在这种结构下存取第 i 个记录 r<sub>i</sub> 很方便：由目录项得到首块号，用「首块号 + i」即可算出目标块号，再做一次 I/O 把该块读入主存就行。也就是说，无论顺着读还是跳着随机读，都能一次定位到目标块，不必经过中间的块。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0028.webp" alt="图 2　连续文件结构例" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　连续文件结构例：文件 A 的 r0、r1、r2 依次存放在第 100、101、102 号连续磁盘块上，文件目录项记录首块号与记录数（原课件第 28 张）</figcaption>
+</figure>
+<h3>（1）连续文件的特点</h3>
+<ul>
+  <li>连续存取时速度较快，随机存取效率高；</li>
+  <li>文件长度一经固定便不易改变；</li>
+  <li>文件的增长和扩充不易。</li>
+</ul>
+
+<h2>3. 串联文件</h2>
+<p><strong>串联文件</strong>结构按顺序由串联的块组成：文件的信息存放在若干物理块中，每个物理块的<strong>最末一个字</strong>作为<strong>链接字</strong>，它指出后继块的物理地址；文件最后一块的链接字为结束标记「^」，表示文件到本块结束。目录项里只需要记录文件的首块号。</p>
+<p>课件给出的例子是：文件 A 的目录项登记首块号 100；100 号块的链接字指向 150，150 号块的链接字指向 57，57 号块是最后一块，链接字为「^」。于是文件的数据块顺序是 r0 在 100 号、r1 在 150 号、r2 在 57 号——它们在磁盘上并不连续。</p>
+<p>要存取第 i 个记录 r<sub>i</sub>，问题就来了：目录里只有首块号，目标块的位置藏在链上，只能从首块开始沿着链接字逐块读下去，读到第 i 个记录要经历 i+1 次 I/O，无法直接跳到目标块。这正是串联文件不适合随机访问的根本原因。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0029.webp" alt="图 3　串联文件结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　串联文件结构：每个物理块的最末一个字是链接字，指向后继块；最后一块用「^」结束（原课件第 29 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0030.webp" alt="图 4　串联文件结构例" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　串联文件结构例：文件 A 从 100 号块开始，链接字依次指向 150、57，最后一块以「^」结束（原课件第 30 张）</figcaption>
+</figure>
+<h3>（1）串联文件的特点</h3>
+<ul>
+  <li>能较好地利用辅存空间；</li>
+  <li>易于对文件进行增长和扩充；</li>
+  <li>连续存取时速度较快。</li>
+</ul>
+
+<h2>4. 文件映照与文件分配表 FAT</h2>
+<p>串联文件最大的毛病是存取效率低：链接字散落在各个数据块里，为了找到一个块，不得不把链上前面的块统统读一遍。改进的思路是<strong>文件映照</strong>：把链接文件中的链接字集中到一个结构中，这样既保持了链接文件空间利用好、易于扩充的优点，也克服了它的缺点。DOS、Windows 采用的就是这种结构，它的具体形式就是<strong>文件分配表 FAT（File Allocation Table）</strong>。</p>
+<p>FAT 是以链接方式存储文件的系统中，用来记录磁盘分配情况、跟踪空闲块（簇）的数据结构。它在文件系统格式化后建立，表的序号就是簇号，从 0 一直到 N−1（N 为簇的总数），每个表项的内容是存放文件数据的下一个簇号；文件的首地址（第一个簇号）记在目录中。这样一来，只要从目录里拿到首簇号，顺着 FAT 查下去就能得到文件在磁盘上的全部存放地址，不必再读数据块去取链接字——链还在，但「链」已经集中到一张表里了。</p>
+<p>FAT 有两个相同的副本，从分区的第二个扇区开始；表中第 0、1 两项留作专门用途。表项的取值有约定的含义：</p>
+<table>
+  <caption>FAT 表项取值约定（原课件第 33、34 张）</caption>
+  <thead>
+    <tr><th>表项取值</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>000H</td><td>空闲簇</td></tr>
+    <tr><td>001H</td><td>保留簇</td></tr>
+    <tr><td>FFFH</td><td>文件的结尾簇（链到此结束）</td></tr>
+    <tr><td>FF7H</td><td>坏簇</td></tr>
+    <tr><td>XXXH</td><td>文件的下一簇</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0032.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0032.webp" alt="图 5　FAT 文件系统的磁盘布局" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　FAT 文件系统的磁盘布局：文件数据分散在磁盘各簇中，簇与簇之间的链接关系集中记录在文件分配表里（原课件第 32 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0034.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0034.webp" alt="图 6　FAT 表在分区中的位置与表项取值" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　FAT 表从分区的第二个扇区开始、有两个相同副本，表中第 0、1 项专用；表项以 000H、FFFH、FF7H 等取值分别表示空闲簇、结尾簇与坏簇（原课件第 34 张）</figcaption>
+</figure>
+
+<h2>5. 索引文件</h2>
+<p>无论连续文件还是串联文件，都没有同时处理好「空间利用」与「随机访问」这对矛盾：连续文件能随机访问，但要求成片的连续空间、且不易扩充；串联文件空间利用好、易扩充，却只能顺链找块。索引文件的思路是把数据和「块号对照关系」分开存放：把逻辑文件顺序地划分成长度与物理存储块长度相同的逻辑块，为每个文件分别建立一张「逻辑块号 → 物理块号」的对照表，这张表称为该文件的<strong>索引表</strong>；文件由数据和索引表两部分构成，这样构造的文件称为<strong>索引文件</strong>。</p>
+<p>课件给出的例子是：文件 A 的索引表把逻辑块 0、1、2、3 分别映射到物理块 23、19、26、29；文件目录项中存放的不是数据块号，而是<strong>索引表指针</strong>，指向索引表所在的块。数据块则散布在磁盘各处，彼此不需要连续，也不需要在块内留链接字。</p>
+<p>索引文件在存储区中占两个区：<strong>索引区</strong>存放索引表，<strong>数据区</strong>存放文件数据。相应地，访问一个记录要分两步：先查文件索引，由逻辑块号查得物理块号；再由这个物理块号读入所要求的信息。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0038.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0038.webp" alt="图 7　索引文件结构例" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　索引文件结构例：文件 A 的目录项指向索引表，索引表把逻辑块 0–3 分别映射到物理块 23、19、26、29，数据块可以任意分散（原课件第 38 张）</figcaption>
+</figure>
+<h3>（1）索引文件的特点</h3>
+<ul>
+  <li>可以直接读写任意记录，随机访问方便；</li>
+  <li>易于文件的增删。</li>
+</ul>
+
+<h2>6. 索引表的组织：直接索引与多级索引</h2>
+<p>索引文件把「随机访问」这件事解决了，但索引表本身也要占空间：文件越大，索引表越长。于是索引表也不是只有一种组织方式——它可以放在目录项里直接使用，也可以本身再分块、分级，由此形成<strong>直接索引</strong>与<strong>多级索引</strong>。</p>
+<h3>（1）直接索引</h3>
+<p>文件目录项中直接放一组表项，每一个表项登记的是某个逻辑记录所在的磁盘块号。设一个物理块的大小为 512 B，若目录项中有 n 个这样的表项，那么直接索引能表示的文件长度最大就是 n × 512 B——文件长度的上限由目录项中能容纳的表项数决定。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0040.webp" alt="图 8　直接索引文件结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　直接索引：文件目录项中有一组表项，每个表项直接登记逻辑记录所在的磁盘块号（原课件第 40 张）</figcaption>
+</figure>
+<h3>（2）一级间接索引</h3>
+<p>目录项中的表项不再直接登记数据块号，而是登记<strong>第一级索引表块的块号</strong>；第一级索引表块中的表项，才登记文件逻辑记录所在的磁盘块号。这样目录项本身不必很长，索引表却能随文件增大而增大。</p>
+<p>课件给了一个可估算的例子：设一个物理块的大小为 512 B、一个索引项占 2 个字节，则一个索引块最多可容纳 256 个索引项，也就是能指向 256 个数据块，覆盖 256 × 512 B = 128 KB 的文件数据。目录项里若有 k 个这样的表项，文件长度上限就是 k × 128 KB；课件示例中目录项有两个这样的表项（分别覆盖 r0–r255 与 r256–r511），文件可长达 256 KB。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0041.webp" alt="图 9　一级间接索引文件结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　一级间接索引：目录项登记第一级索引表块的块号，索引块中的表项再登记数据块的块号；一块 512 B、每项 2 B 时可容纳 256 项（原课件第 41 张）</figcaption>
+</figure>
+<h3>（3）二级间接索引</h3>
+<p>再进一层：目录项中的表项登记的是<strong>第二级索引表块的块号</strong>，第二级索引表块中的表项登记第一级索引表块的块号，第一级索引表项中登记的才是文件逻辑记录所在的磁盘块号。每多一级，索引能覆盖的范围就成倍扩大，代价是访问一个记录要多读一次索引块。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0042.webp" alt="图 10　二级间接索引文件结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　二级间接索引：目录项 → 第二级索引块 → 第一级索引块 → 数据块，层层登记块号，可覆盖的文件长度成倍扩大（原课件第 42 张）</figcaption>
+</figure>
+
+<h2>7. 几种文件物理结构的比较</h2>
+<p>把三种结构放在一起看，各自的取舍非常清楚。</p>
+<ul>
+  <li><strong>连续文件</strong>：优点是不需要额外的空间开销，只要在文件目录中指出文件的大小和首块的块号即可，对顺序的访问效率很高，适应于顺序存取和随机存取。缺点是动态地增长和缩小系统开销很大；文件创建时要求用户提供文件的大小；存储空间浪费较大。</li>
+  <li><strong>串联文件</strong>：克服了连续文件的不足之处，但文件的随机访问系统开销较大，适应于顺序访问的文件。</li>
+  <li><strong>索引文件</strong>：既适应于顺序访问，也适应于随机访问，是一种比较好的文件物理结构；但要有用于索引表的空间开销和文件索引的时间开销，因此要考虑如何有效地存储和访问索引表。UNIX 文件系统是使用索引结构的成功例子。</li>
+</ul>
+<div style="overflow-x:auto">
+<table>
+  <caption>三种文件物理结构的比较（原课件第 44–46 张）</caption>
+  <thead>
+    <tr><th>物理结构</th><th>额外空间开销</th><th>随机访问</th><th>增长与扩充</th><th>适用场合</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>连续文件</td><td>无（目录项记首块号与文件大小）</td><td>效率高，一次定位</td><td>开销很大，创建时须给出文件大小</td><td>顺序存取与随机存取</td></tr>
+    <tr><td>串联文件</td><td>每个数据块的最末一个字作链接字</td><td>须顺链逐块读，开销大</td><td>容易</td><td>顺序访问的文件</td></tr>
+    <tr><td>索引文件</td><td>索引表的空间开销</td><td>查索引得物理块号，方便</td><td>容易，增删方便</td><td>顺序访问与随机访问都可以</td></tr>
+  </tbody>
+</table>
+</div>
+<figure class="fig">
+  <a href="../../assets/course-os/9-3/p0043.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/9-3/p0043.webp" alt="图 11　文件物理结构总览示意" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　文件物理结构总览示意（原课件第 43 张，该页只有一张整页图、没有文字说明）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>块（物理记录）是主存与辅存交换信息的物理单位，块的大小要兼顾使用方式、传输效率与设备类型；物理块的位置由柱面号、磁头号、扇区号表示，与块号一一对应。</li>
+  <li><strong>连续文件</strong>把文件放在成片的连续块里，目录项只要首块号和长度，随机访问最快，但长度固定、增长扩充困难、空间浪费大。</li>
+  <li><strong>串联文件</strong>用每个块末尾的链接字串起文件，空间利用好、易扩充，但只能顺链查找，读第 i 个记录要 i+1 次 I/O，不适合随机访问。</li>
+  <li><strong>文件映照</strong>把链接字从数据块里集中到一张表中，就是 DOS/Windows 的文件分配表 FAT：表项登记下一个簇号，目录项里的首簇号是查找的起点。</li>
+  <li><strong>索引文件</strong>为每个文件建立索引表（逻辑块号 → 物理块号），访问分「查索引、读数据」两步，随机访问与增删都方便；索引表本身可以按块分级，形成直接索引、一级间接索引和二级间接索引，文件长度上限随之成倍扩大。</li>
+  <li>三种结构没有绝对优劣：连续文件胜在速度，串联文件胜在空间与扩充，索引文件胜在随机访问——UNIX 文件系统用的就是索引结构。下一节要讲的存储空间管理，解决的正是这些结构下「空闲块怎么找、怎么分配」的问题。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="9-2.html">‹ 9.2 文件的逻辑结构与存取方法</a>
+      <a class="next" href="9-4.html">9.4 文件存储空间的管理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

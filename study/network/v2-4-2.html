@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.2 多路访问链路和协议 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 4 章 局域网 4.2 多路访问链路和协议：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html" aria-current="page"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 4 章 局域网</p>
+      <h1>4.2 多路访问链路和协议</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">多台设备共用一条传输介质，必须有规则决定谁在什么时候发送，否则信号会在介质上叠加。本节先说明广播链路上的碰撞，再交代多址访问协议的目标与分类，然后依次展开信道划分（TDMA、FDMA、CDMA）、随机访问（ALOHA、时隙 ALOHA、CSMA、CSMA/CD）与轮流协议（轮询、令牌传递），最后比较三者的取舍。</p>
+
+<h2>1. 广播链路上的碰撞</h2>
+<p>4.1 节区分过广播链路与点到点链路：前者的特征是<strong>多台设备共享同一条通信信道，发送的消息会被所有设备收到</strong>，总线型以太网和无线局域网都属于这一类。共享介质带来两件麻烦事：节点发送数据时还会收到其它节点的数据；两个或更多节点同时发送，它会收到多个信号叠加的结果。</p>
+<p>这种情况称为<strong>碰撞</strong>：两个或多个节点同时向介质发送数据，信号在物理链路中相互叠加、干扰，接收端无法正确识别数据。因此广播链路还要回答「谁有权在什么时候发送」「碰撞怎样发现、发现后怎么办」。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0013.webp" alt="图 1　多个节点共享同一传输介质时，两个节点的信号叠加造成碰撞" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　多个节点共享同一条传输介质，两个或多个节点同时发送时信号叠加、干扰，接收端无法正确识别数据（原课件第 13 张）</figcaption>
+</figure>
+
+<h2>2. 多址访问协议：定义、目标与分类</h2>
+<p><strong>多址访问协议（Multiple Access Protocol）</strong>是为规避数据传输碰撞而设计的协议，本质上是一个分布式算法：决定节点如何使用共享信道，即决定节点何时可以传输数据。它有一个决定问题难度的前提——有关共享信道的通信（协商）也必须使用信道本身，没有额外的信道可以协调。</p>
+<h3>（1）理想的多址访问协议</h3>
+<p>假定信道是速率为 R b/s 的广播信道，理想情况应当是：当 M 个节点有数据发送时，每个节点的吞吐量为 R/M；当只有一个节点有数据发送时，该节点的吞吐量为 R。前者要求<strong>公平</strong>，后者要求<strong>不浪费</strong>。协议还要简单、全分散控制：没有特定节点调整传输，也无须时钟同步。</p>
+<h3>（2）三类多址访问协议</h3>
+<p>按处理碰撞的思路，多址访问协议分为三类：</p>
+<ul>
+  <li>信道划分协议：把信道划分成小的「片」（时隙、频率、编码）分给节点使用；</li>
+  <li>随机访问协议：信道没有被分割，允许碰撞，需要碰撞恢复；</li>
+  <li>轮流协议：节点轮流传送，但数据量大的节点轮流更长时间。</li>
+</ul>
+
+<h2>3. 信道划分协议：时分、频分与码分</h2>
+<p>信道划分协议把信道资源切成互不重叠的「片」分给各节点，<strong>每个节点只在自己分到的那一片里发送</strong>，原理上不会与他人同时占用信道。</p>
+<h3>（1）时分多址 TDMA</h3>
+<p><strong>时分多址 TDMA（Time Division Multiple Access）</strong>从时间上切分信道：节点循环访问信道，每个节点在每轮循环中得到一个固定长度的时隙，时隙长度等于传输单个分组的时间。课件以 6 节点局域网 LAN（Local Area Network）为例：一轮 6 个时隙构成一个 6-slot 帧。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0017.webp" alt="图 2　TDMA 的时隙分配：6 个时隙组成一个循环帧，按节点固定分配" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　TDMA：6 个时隙构成一个循环的 6-slot 帧，每个节点固定占用一个；示例中 1、3、4 号时隙有数据发送，2、5、6 号时隙空闲（原课件第 17 张）</figcaption>
+</figure>
+<p>这样可以规避冲突：用户仅在自身分配的时隙发送，发送时间完全错开，理想情况下可实现 100% 的利用率；代价是节点没有数据发送时，它的时隙空着，造成浪费。</p>
+<h3>（2）频分多址 FDMA</h3>
+<p><strong>频分多址 FDMA（Frequency Division Multiple Access）</strong>从频率上切分信道：信道按频谱分成若干频段，每个节点分配一个固定频段，在自己的频段上发送。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0019.webp" alt="图 3　FDMA 把信道按频谱划分成若干频段，每个节点固定占有一段" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　FDMA：信道按频谱分成若干频段（frequency bands），每个节点固定分配一个频段，横轴为时间、纵轴为频率（原课件第 19 张）</figcaption>
+</figure>
+<p>FDMA 同样可以规避冲突，因为各用户的信号在不同频率范围内传输，互不干扰；利用率与 TDMA 类似，理想情况可达 100%。代价是节点没有数据要发时，分给它的频段被闲置。</p>
+<h3>（3）码分多址 CDMA</h3>
+<p><strong>码分多址 CDMA（Code Division Multiple Access）</strong>的思路不同：所有节点在整个频段、所有时间上传输，通过编码设计区分不同节点的信号，因此完全无冲突，前提是各节点信号同步得很好且在信道上线性叠加。</p>
+
+<h2>4. 随机访问协议之一：ALOHA 与时隙 ALOHA</h2>
+<p>随机访问协议不切分信道：节点有数据就<strong>以信道的全部速率 R 传输</strong>，没有主节点起协调作用。因为不预先分配，两个或多个节点同时传送就会碰撞，所以它必须解决两个问题：如何检测碰撞，如何从碰撞中恢复（最常用的办法是延时后重传）。代表协议有 ALOHA、时隙 ALOHA、CSMA、CSMA/CD 与 CSMA/CA。</p>
+<h3>（1）ALOHA 网的由来与特征</h3>
+<p>ALOHA 是 Additive Link On-Line HAwaii system 的缩写，恰好也是夏威夷方言里的「你好」。ALOHA 网是计算机网络早期发展中一个著名的网络，也是第一个无线计算机网络，至今仍在运行。</p>
+<p>群岛的位置散布在广阔海域上，为了让各站点都能与主机通信，网络拓扑采用星型结构；为了节省费用和易于组网，站点之间使用无线传输介质；无线电信道无法申请更多频率点，所有站点只能使用统一频率通过主机交换信息——都挤在同一个频率上说话，冲突自然难以避免。</p>
+<h3>（2）纯 ALOHA 的工作过程与效率</h3>
+<p>最早的 ALOHA 后来被称为纯 ALOHA：任一节点有帧需要传输就马上传输，协议完全分布式、简单，无需任何同步。</p>
+<p>碰撞之后，当冲突被检测到时，节点在完全传完碰撞帧以后，以概率 p 重传该帧；否则等待一个帧的传输时间，再以概率 p 传输、以概率 1-p 继续等待一个帧的时间……直到成功。</p>
+<p>设节点数为 N，任一节点在某时刻以概率 p 发送。给定节点要成功，必须同时满足三个条件：它自己在发送；它开始发送前的一个帧时间里没有其它节点开始发送；之后的一个帧时间里也没有。即：</p>
+<pre><code>P(给定节点成功) = P(给定节点传送)
+                 · P(在 [t0-1, t0] 没有其它节点传送)
+                 · P(在 [t0, t0+1] 没有其它节点传送)
+               = p · (1-p)^(N-1) · (1-p)^(N-1)
+               = p · (1-p)^(2(N-1))</code></pre>
+<p>前后各留一个帧，是因为纯 ALOHA 没有时隙约束：任何在 t0 前后一个帧时间内开始发送的帧都会与它部分重叠，易损期长达两个帧。选择最合适的 p、让 N 趋于无穷取极限，效率为：</p>
+<pre><code>效率 = 1/(2e) ≈ 0.18</code></pre>
+<p>也就是说，纯 ALOHA 最多只能把信道利用到 18% 左右。</p>
+<h3>（3）时隙 ALOHA</h3>
+<p>既然浪费来自长达两个帧的易损期，自然的改进就是把它缩短。时隙 ALOHA（Slotted ALOHA，课件中也写作 S-ALOHA）假设：所有帧等长；时间划分成相等的时隙，每个时隙可发送一帧；节点只在时隙开始时发送帧；节点在时钟上同步；两个或多个节点在一个时隙传输时，所有节点都能检测到冲突。</p>
+<p>执行过程是：节点获取新帧后在下一个时隙传输；没有检测到冲突即成功，可在下一时隙发送新帧；检测到冲突则失败，节点在每一个随后的时隙以概率 p 重新传帧，直到成功。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0029.webp" alt="图 4　时隙 ALOHA 的帧到达、冲突与重发时序" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　时隙 ALOHA：帧只能在时隙开始时到达，同一时隙内到达的两个帧必然冲突，冲突的节点在随后的时隙中以概率 p 重发（原课件第 29 张）</figcaption>
+</figure>
+<p>帧的发送时刻被对齐到时隙边界，于是易损期从一个帧时间的两倍缩短为一个时隙，成功概率提高为：</p>
+<pre><code>P(给定节点成功) = P(给定节点传送) · P(没有其它节点传送)
+               = p · (1-p)^(N-1)</code></pre>
+<p>同样选择最合适的 p、让 N 趋于无穷取极限，效率 = 1/e ≈ 0.37，正好是纯 ALOHA 的两倍；代价是全网需要共同时钟，即课件所说的「节点在时钟上同步」。</p>
+
+<h2>5. 随机访问协议之二：载波侦听多路访问 CSMA</h2>
+<p>时隙 ALOHA 利用了时钟对齐，却没有利用另一条更容易获得的信息：信道此刻是否被占用。<strong>载波侦听多路访问 CSMA（Carrier Sense Multiple Access）</strong>补上的正是这一点：传输前先监听——信道空闲就传送整个帧，信道忙就推迟传送。</p>
+<h3>（1）监听之后怎么办：三种坚持方式</h3>
+<p><strong>非坚持 CSMA（nonpersistent CSMA）</strong>：一旦监听到信道忙（发现有其它站在发送数据），就不再坚持听下去，而是按协议算法延迟一个随机的时间后重新监听；若发现空闲，就把准备好的帧发送出去。它的变体是时隙非坚持 CSMA，只能在每个时隙开始时发送。</p>
+<p><strong>1 坚持 CSMA</strong>：站点要发送数据时首先侦听信道，信道正忙就持续等待，直到侦听空闲便将数据送出；若发生冲突，就等待一个随机长的时间后重新开始。「1 坚持」得名于它在信道空闲时以概率 1 发送。</p>
+<p><strong>P 坚持 CSMA</strong>：前半段与 1 坚持相同，区别在信道空闲时——以概率 P 发送数据，以概率 1-P 延迟一段时间 τ 后重新监听，τ 取网络中最远的端到端传播时延；若冲突，同样等待一个随机长的时间后重新开始。</p>
+<p>三者可以直接对比：非坚持 CSMA 一旦退让，即使信道已转入空闲，它可能还在随机延时中等待，不能充分利用这段刚空闲的时间；1 坚持 CSMA 正相反，多个站点都一直听着信道，信道一空闲就可能同时发送，容易产生冲突；P 坚持 CSMA 能一定程度上克服这些缺点，但很难选择适用于各种通信量强度的 P 值，所以实际网络中常选择 1 坚持。</p>
+<h3>（2）有了载波侦听，为什么还会碰撞</h3>
+<p>答案是会，原因在于「听」本身需要时间。课件用一条 1 km 的链路说明：单程端到端传播时延记为 τ。t = 0 时 A 检测到信道空闲，开始发送；t = τ-δ 时，B 还没听到 A 的信号，判断信道空闲也开始发送；t = τ-δ/2 附近两个信号相遇，碰撞发生。碰撞之后双方还要再等一段时间才能察觉——A 直到 t = 2τ-δ 才检测到碰撞。</p>
+<p>可见<strong>有了 CSMA，冲突仍然可能发生，根源是传播时延：节点可能侦听不到正在进行的传输</strong>。信道越长，端到端最长传播延迟越大，越容易冲突，所以局域网要规范节点的最大距离，通常在数公里之内。CSMA 可以减少冲突，但无法避免冲突。</p>
+
+<h2>6. 带冲突检测的载波侦听 CSMA/CD 与争用期</h2>
+<p>带冲突检测的载波侦听 CSMA/CD（Carrier Sense Multiple Access with Collision Detection）在载波侦听之上增加了一个动作：边发边听，在短时间内检测碰撞，一旦发现就立即停止传输，以减少信道浪费。它对应的生活规则是：如果他人开始说话，则停止说话。</p>
+<p>冲突检测在不同介质上难度差别很大。有线局域网中比较容易：测量信号强度，比较收、发的信号；无线局域网中比较困难：节点传输时接收器是关闭的，没法一边发一边听。</p>
+<p>仅仅停止发送还不够。发送数据的站发现碰撞后，除了立即停止发送数据，还要继续发送若干比特的人为干扰信号（jamming signal），这就是<strong>强化碰撞</strong>，目的是让所有用户都知道已经发生了碰撞。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0040.webp" alt="图 5　CSMA/CD 的碰撞检测与强化碰撞时序" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　CSMA/CD 的碰撞检测与强化碰撞：A 与 B 的数据帧在中途相撞，A 检测到冲突后立即停止发送数据帧，转而发送若干比特的干扰信号（图中标为 TJ）；B 也能检测到冲突并停止发送，图中只画出了 A 发送干扰信号的情况（原课件第 40 张）</figcaption>
+</figure>
+<p>从碰撞发生到发送方确知碰撞，有一个时间界限：最先发送数据帧的站，发送后至多经过 2τ（两倍的端到端往返时延）就能知道数据帧是否遭受碰撞。以太网把这个 2τ 称为<strong>争用期</strong>，也称碰撞窗口；反过来读就是，经过争用期还没有检测到碰撞，才能肯定这次发送不会碰撞。争用期由端到端的传播时延决定。</p>
+
+<h2>7. 轮流协议：轮询与令牌传递</h2>
+<p>信道划分与随机访问各自解决了一半问题，轮流协议试图把两者的长处合到一起。课件对前两类的总结是：信道划分协议重负荷时有效、公平、利用率高，轻负荷时却连一个活动节点也只能分到 1/N 带宽，还要承受访问延时；随机访问协议相反，轻负荷时只有一个节点也能充分利用信道，重负荷下碰撞开销却越来越大。轮流协议要在两者之间寻求最佳方案。</p>
+<p>其一是<strong>轮询协议</strong>：主节点邀请从节点轮流传输，得到邀请的从节点才能发送。它避免了碰撞，但要关注三个问题——轮询本身的开销、等待时间，以及单点失效：主节点一旦故障，整个网络的协调就无从谈起。</p>
+<p>其二是<strong>令牌传递协议</strong>：让令牌（token）报文依次通过各个结点，只有持有令牌的结点才能发送数据，没有数据可发的结点把令牌传给下一个。它同样要关注令牌的开销、等待时间和单点失效，只不过关键变成了令牌本身：令牌丢失或损坏，网络就会失去秩序。</p>
+
+<h2>8. 三类多址访问协议总览</h2>
+<p>对于共享介质能做些什么？本节讲过的协议按处理碰撞的思路可以归成三条路线，课件用一句话总结了它们：信道划分基于时间、频率和编码，随机划分是动态的，轮流则靠主节点轮询或令牌传递。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-2/p0049.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-2/p0049.webp" alt="图 6　共享介质的技术路线之一：随机划分（动态）及其代表协议" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　共享介质的技术路线之一——随机划分（动态）：ALOHA、S-ALOHA、CSMA 与 CSMA/CD；其中 CSMA/CA 用于 802.11，CSMA/CD 用于以太网（原课件第 49 张）</figcaption>
+</figure>
+<p>三条路线各有定位：信道划分适合重负荷，随机访问适合轻负荷，轮流协议试图兼顾两者。课件还点出了两种随机访问协议的去向——CSMA/CD 用于以太网，无线局域网用的则是 CSMA/CA（Carrier Sense Multiple Access with Collision Avoidance，冲突避免），因为无线环境中传输时接收器关闭、冲突检测困难；载波侦听在有线中「易行」，在无线中「困难」。</p>
+<div class="tbl-wrap"><div class="tbl-wrap"><table>
+  <caption>三类多址访问协议的对照，依课件第 43、44、48–50 张整理。</caption>
+  <thead>
+    <tr><th>类别</th><th>资源怎样分配</th><th>轻负荷时</th><th>重负荷时</th><th>主要代价</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>信道划分协议</td><td>静态切成时隙、频段或编码</td><td>只有 1/N 带宽，空闲的「片」浪费</td><td>有效、公平，理想可达 100%</td><td>空闲资源浪费、访问延时</td></tr>
+    <tr><td>随机访问协议</td><td>不划分，全速率 R 发送，碰撞后恢复</td><td>单节点时充分利用信道</td><td>碰撞开销大</td><td>碰撞检测与重传</td></tr>
+    <tr><td>轮流协议</td><td>主节点轮询或令牌传递</td><td>效率高</td><td>有序，避免碰撞</td><td>开销、等待、单点失效</td></tr>
+  </tbody>
+</table></div></div>
+
+<h2>本节小结</h2>
+<ul>
+  <li>广播链路上多台设备共享同一条信道，两个或多个节点同时发送就会碰撞：信号叠加、干扰，接收端无法正确识别；因此需要多址访问协议规定节点何时发送，而节点之间的「协商」也只能用这条信道；</li>
+  <li>理想的多址访问协议既要公平（M 个节点有数据时各得 R/M），又不浪费（只有一个节点有数据时用满 R），还要简单、全分散控制——没有中心节点与时钟同步；</li>
+  <li>信道划分协议用静态分配避免碰撞：TDMA 切时间、FDMA 切频率、CDMA 靠编码区分信号；理想利用率可达 100%，但空闲资源被浪费，只有一个活动节点时也只有 1/N 带宽；</li>
+  <li>随机访问协议不划分信道，节点以全部速率 R 发送：纯 ALOHA 随时发送，效率 1/(2e) ≈ 0.18；时隙 ALOHA 把易损期缩短为一个时隙，效率提高到 1/e ≈ 0.37，代价是时钟同步；CSMA 先听后发，但传播时延使它仍无法避免碰撞，节点最大距离因此限制在数公里之内；</li>
+  <li>CSMA/CD 边发边听，短时间内检测到碰撞就立即停止发送并发出干扰信号强化碰撞；最先发送的站至多经过 2τ 就能确知是否碰撞，以太网把 2τ 称为争用期（碰撞窗口）。冲突检测有线易、无线难，无线改用 CSMA/CA：它用于 802.11，CSMA/CD 用于以太网，二者分别在 4.3 与 4.4 节展开；</li>
+  <li>轮流协议在重负荷与轻负荷之间取折中：轮询由主节点邀请从节点轮流传输，令牌传递让令牌依次经过各结点；两者都有额外开销与单点失效风险。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-4-1.html">‹ 4.1 局域网概述</a>
+      <a class="next" href="v2-4-3.html">4.3 以太网 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

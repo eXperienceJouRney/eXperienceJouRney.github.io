@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.2 资源的分配机制和策略 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章 5.2 资源的分配机制和策略：课件第 9–24 张 · 11 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html" aria-current="page"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 5 章 资源分配与调度</p>
+      <h1>5.2 资源的分配机制和策略</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说明了资源管理要做哪四件事，这一节进入前两件——资源用什么数据结构来描述，以及按什么策略把资源分出去。前半部分讲分配机制，即资源描述器与资源信息块；后半部分讲分配策略，先给出「先请求先服务」与「优先调度」两条通用原则，再以磁盘为例讲针对设备特性的调度，也就是寻道时间的优化。</p>
+
+<h2>1. 资源分配机制</h2>
+<h3>（1）资源描述器</h3>
+<p>要把资源分配出去，首先得把资源本身表示成数据结构。描述各类资源<strong>最小分配单位</strong>的数据结构称为<strong>资源描述器 rd（resource descriptor）</strong>。这里的关键词是「最小分配单位」：不同的资源，最小分配单位并不相同——磁盘的最小分配单位是磁盘面中的一个扇区；文件系统以一个文件为分配单位；主存储器以页为分配单位。</p>
+<p>资源描述器中要记录的信息，可以理解成「关于这个最小分配单位，系统需要知道的一切」：</p>
+<ul>
+  <li>资源名、资源类型；</li>
+  <li>最小分配单位的大小、最小分配单位的地址；</li>
+  <li>分配标志、描述器链接信息；</li>
+  <li>存取权限、密级；</li>
+  <li>最后一次存取时间、记账信息；</li>
+  <li>其他信息。</li>
+</ul>
+<p>前几项用于定位和分配，中间几项用于把同类资源的描述器串成队列，后面几项用于安全保护与计费，它们与上一节「资源管理的任务」中提到的四件事正好一一对应。</p>
+<h3>（2）资源信息块</h3>
+<p>资源描述器管的是「一个最小分配单位」，而资源信息块管的是「一类资源」。<strong>资源信息块</strong>是描述某类资源的请求者、可用资源以及该类资源分配程序等必要信息的数据结构。它由三部分组成：</p>
+<ul>
+  <li><strong>请求者队列</strong>：由等待队列头指针引导，队列中的元素是需要该类资源而暂时得不到的进程，即各个 PCB；</li>
+  <li><strong>可利用资源队列</strong>：由可利用资源队列头指针引导，队列中的元素是当前空闲的资源描述器 rd；</li>
+  <li><strong>资源分配程序</strong>：由资源分配程序入口地址指出，被调用时负责从可利用资源队列中取出资源、分配给请求者队列中的进程。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0011.webp" alt="图 1　资源信息块的组成" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　资源信息块：请求者队列、可利用资源队列与资源分配程序（原课件第 11 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0012.webp" alt="图 2　资源信息块的内容" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　资源信息块的内容：等待队列头指针指向 pcb1…pcbk，可利用资源队列中挂着 rd1…rdn，二者由资源分配程序联系（原课件第 12 张）</figcaption>
+</figure>
+<p>把资源信息块具体到处理机，就是<strong>中央处理机资源信息块 cpu-rib</strong>：它的请求者队列是就绪队列（由 ready-q-start 引导，挂着 pcb1…pcbk），可用资源信息记录着处理机是否空闲，资源分配程序的入口地址 scheduler-addr 指向进程调度程序。也就是说，第 6 章要讲的进程调度，本质上就是「处理机」这类资源的资源分配程序在运行。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0013.webp" alt="图 3　中央处理机资源信息块 cpu-rib" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　cpu-rib：就绪队列、可用处理机信息与进程调度程序入口（原课件第 13 张）</figcaption>
+</figure>
+
+<h2>2. 资源分配策略</h2>
+<p>有了数据结构，还要有从队列中挑人的规则。通用的分配策略有两条。</p>
+<h3>（1）先请求先服务 FIFO</h3>
+<p><strong>先请求先服务 FIFO（First In First Out）</strong>的排序原则是：按请求的先后次序排序。每一个新产生的请求均排在队尾；当资源可用时，资源分配程序从队列中选取第一个请求，并满足其需要。队列按自然顺序排列，公平、简单，缺点是先到的请求即使很费时也要先做，后面短小的请求只能陪着等。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0014.webp" alt="图 4　按请求先后次序排列的资源请求队列" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　先请求先服务：按请求的先后次序排列的队列，表头指针指向最早的请求（原课件第 14 张）</figcaption>
+</figure>
+<h3>（2）优先调度</h3>
+<p>在<strong>优先调度</strong>策略下，为每一个进程指定一个优先级，优先级反映进程要求处理的紧迫程度。排序原则变成：按优先级的高低排序。每一个新产生的请求，按其优先级的高低插到队列中相应的位置上；当资源可用时，仍然选取队列中的第一个请求并满足其需要。可以看出两种策略的差别只在「插到哪儿」这一点上，其余完全相同。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0015.webp" alt="图 5　按优先级高低排列的资源请求队列" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　优先调度：新请求按优先级高低插入相应位置，队列按优先级排列（原课件第 15 张）</figcaption>
+</figure>
+
+<h2>3. 针对设备特性的调度</h2>
+<h3>（1）磁盘的物理组织与访问时间</h3>
+<p>对有些设备，光考虑「谁先来」或「谁更急」还不够，还得考虑设备本身怎么动才省时间，最典型的就是磁盘。磁盘的物理结构可以自外向内分为若干层：<strong>磁头 head（对应盘面）→ 柱面 cylinder → 磁道 track → 扇区 sector</strong>。各盘面上位置相同的磁道构成一个柱面；读写数据时，磁头要先移到指定柱面（即指定磁道），再等所需的扇区转到磁头下面。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0016.webp" alt="图 6　磁盘的磁头、柱面、磁道与扇区" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　磁盘的物理组织：磁头（盘面）、柱面、磁道、扇区（原课件第 16 张）</figcaption>
+</figure>
+<p>由此，磁盘访问时间由两段构成，它们分别对应上面两个动作：</p>
+<ul>
+  <li><strong>寻道时间 Ts</strong>：把磁臂（磁头）移动到指定磁道上所经历的时间。它是启动磁臂的时间 s 与磁头移动 n 条磁道所花费的时间之和，即 <strong>Ts = m × n + s</strong>。其中 m 是一常数，与磁盘驱动器的速度有关：对一般磁盘 m = 0.2，对高速磁盘 m ≤ 0.1，磁臂的启动时间约为 2 ms；</li>
+  <li><strong>旋转延迟时间 T<sub>τ</sub></strong>：指定扇区移动到磁头下面所经历的时间。对于硬盘，典型的旋转速度大多为 5400 r/min，每转需时 11.1 ms，平均旋转延迟时间 T<sub>τ</sub> 为 5.55 ms。</li>
+</ul>
+<p>寻道时间与磁头移动的距离成正比，因此「先做哪个请求」会直接改变总的寻道时间——这就是<strong>移臂调度</strong>要优化的问题。而扇区转到磁头下面需要多久，与请求的先后次序关系不大，对应的优化叫<strong>旋转调度</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0019.webp" alt="图 7　移臂调度与旋转调度" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　移臂调度与旋转调度：磁头当前在 1 号柱面，图中给出请求所在的柱面与扇区位置（原课件第 19 张）</figcaption>
+</figure>
+<h3>（2）四种移臂调度算法</h3>
+<p><strong>先来先服务 FCFS</strong>：按进程请求访问磁盘的先后次序进行调度。特点是简单、较合理，但未对寻道进行优化。课件给出的例子是：请求序列 98, 183, 37, 122, 14, 124, 65, 67，磁头当前位置在 53，此时磁头只能按请求到达的顺序依次往返，寻道距离很长。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0020.webp" alt="图 8　先来先服务 FCFS 的磁头移动轨迹" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　FCFS：请求序列 98, 183, 37, 122, 14, 124, 65, 67，磁头初始位置 53，按请求先后次序依次访问（原课件第 20 张）</figcaption>
+</figure>
+<p><strong>最短寻道时间优先 SSTF</strong>：选择从当前磁头位置所需寻道时间最短的请求。特点是寻道性能比 FCFS 好，但不能保证寻道时间最短，且有可能引起某些请求的「饥饿」——如果不断有新到的请求落在磁头附近，远处的请求就一直轮不到。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0021.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0021.webp" alt="图 9　最短寻道时间优先 SSTF 的磁头移动轨迹" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　SSTF：每次选离当前磁头最近的请求，本序列的访问次序为 65, 67, 37, 14, 98, 122, 124, 183（原课件第 21 张）</figcaption>
+</figure>
+<p><strong>扫描算法 SCAN</strong>：磁头从磁盘的一端开始向另一端移动，沿途响应访问请求，直到到达了磁盘的另一端，此时磁头反向移动并继续响应服务请求，所以它有时也称为<strong>电梯算法</strong>。特点是寻道性能较好，避免了饥饿，但不利于远离磁头一端的访问请求——刚被扫过的那一端要等磁头跑完一个来回。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0022.webp" alt="图 10　扫描算法 SCAN 的磁头移动轨迹" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　SCAN（电梯算法）：磁头单向扫过后反向，沿途响应请求（原课件第 22 张）</figcaption>
+</figure>
+<p><strong>循环扫描算法 CSCAN</strong>：在扫描算法的基础上规定磁头只能单向移动。磁头移到最外的被访问磁道时，立即返回到最里的欲访问磁道。这样，各磁道的等待时间比较均匀，代价是返回途中不做任何服务。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/5-2/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/5-2/p0023.webp" alt="图 11　循环扫描算法 CSCAN 的磁头移动轨迹" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　CSCAN：磁头单向移动，移到最外被访问磁道后立即返回最里欲访问磁道（原课件第 23 张）</figcaption>
+</figure>
+
+<h2>4. 课件留下的练习</h2>
+<p>这一节的末尾，课件给出了四道练习，其中第一道附带了解答提示，值得记下来：</p>
+<ul>
+  <li><strong>什么是虚拟资源？对主存储器而言，用户使用的虚拟资源是什么？</strong>虚拟资源是用户使用的逻辑资源，是经过操作系统改造的、使用方便的虚资源，而不是物理的、实际的资源；对主存储器而言，用户使用的虚拟资源就是虚拟存储器，即逻辑地址空间——用户用逻辑地址编程，操作系统和硬件为用户实现逻辑地址到物理地址的映射（这部分内容在第 7 章主存管理中展开）；</li>
+  <li><strong>常用的资源分配策略有哪两种？资源请求队列的排序原则是什么？</strong>即先请求先服务（按请求的先后次序排序）与优先调度（按优先级的高低排序）；</li>
+  <li>另两道练习围绕<strong>移臂调度、旋转调度以及两种移臂调度算法</strong>展开，与本节的第 3 部分对应。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>资源分配机制由两个层次的数据结构组成：资源描述器 rd 描述一个最小分配单位（含资源名、类型、大小、地址、分配标志、链接信息、权限、密级、存取时间、记账信息等），资源信息块描述一类资源；</li>
+  <li>资源信息块的三要素是请求者队列（等待队列头指针）、可利用资源队列（及头指针）和资源分配程序（入口地址）；cpu-rib 是它在处理机上的实例，其中的分配程序就是进程调度程序；</li>
+  <li>通用分配策略有两种：先请求先服务（按请求先后次序排序，新请求排队尾）与优先调度（按优先级高低排序，新请求按优先级插入），两者都是「资源可用时取队首请求」；</li>
+  <li>对磁盘这类设备还要考虑设备特性：访问时间＝寻道时间 Ts（Ts = m×n + s，与移动磁道数成正比）＋旋转延迟时间 T<sub>τ</sub>（5400 r/min 时平均 5.55 ms），分别对应移臂调度与旋转调度；</li>
+  <li>四种移臂调度算法：FCFS（简单但不优化寻道）、SSTF（寻道性能好但可能饥饿）、SCAN/电梯算法（避免饥饿，对远离磁头一端不利）、CSCAN（单向移动，等待时间均匀）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-1.html">‹ 5.1 资源管理概述</a>
+      <a class="next" href="5-3.html">5.3 死锁的概念与产生原因 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

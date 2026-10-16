@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.3 面向连接的可靠服务—TCP协议 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 3 章 网络服务及应用 3.3 面向连接的可靠服务—TCP协议：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html" aria-current="page"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 3 章 网络服务及应用</p>
+      <h1>3.3 面向连接的可靠服务—TCP协议</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">运输层有两类服务：UDP 把可靠性留给应用负责，TCP 把可靠性做进协议内部。TCP（Transmission Control Protocol，传输控制协议）为两个应用进程提供一条可靠有序的字节流通道，为此必须一并解决连接管理、流量控制、确认与超时判断。下面依次看它承诺什么、用哪些字段兑现，连接怎样建立与释放，最后落到重传与超时的计算。</p>
+
+<h2>1. TCP 的目标与能力</h2>
+<p>课件把 TCP 的目标和能力列为七条：<strong>面向连接</strong>、全双工服务、点对点连接、可靠有序的字节流、流量控制、拥塞控制与流水线。</p>
+<p>面向连接指交换数据前先建立逻辑连接、传完再释放；全双工指两个方向的数据可同时流动，确认也能随数据捎带回去；点对点限定一条连接只连接两个端点。交付给应用的是可靠有序的字节流：TCP 把数据看成无边界、按字节编号的流，不丢、不重、不乱序，应用两次写入的数据到了对方可能被合并或拆开。流量控制针对接收方，防止发得太快撑爆对方缓存；拥塞控制针对网络，按拥塞程度调整注入速率；流水线允许连续发出多个报文段而不必逐个等确认。课件列出相关 RFC：793、1122、2018、5681、7323。</p>
+<p>与 3.2 节的 UDP 对照：UDP 无连接、不保证可靠、不做流量与拥塞控制。<strong>TCP 的可靠是用状态、编号、确认、重传和定时器换来的</strong>，代价是时延与开销，逐项对照见第一版讲义 5.3 UDP和TCP的对比。</p>
+
+<h2>2. TCP 报文段的首部结构</h2>
+<p>首部按 32 bit（4 字节）一行排列，图中标出第 0、8、16、24、31 位。固定部分共 20 字节：源端口与目的端口各占 16 位，序号与确认号各占整整一行 32 bit，然后是首部长度、保留位与六个控制位，以及窗口、检验和、紧急指针；其后是可变的选项字段，最后用填充补齐到 4 字节的整数倍。</p>
+<p>字段分工要与后面的机制对应：窗口字段承载接收方的接收窗口，检验和用于检出比特差错。控制位中 SYN 建立连接、FIN 释放连接、RST 复位连接、PSH 提示尽快上交数据、ACK 表示确认号有效、URG 与紧急指针配合。课件备注补充的 ECE（明确拥塞通告回显）与 CWR（拥塞窗口缩减）服务于网络辅助的拥塞控制（第一版讲义 5.5 TCP的拥塞控制）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0040.webp" alt="图 1　TCP 报文段首部的字段布局" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　TCP 报文段首部的字段布局：每行 32 bit，固定首部 20 字节，其后是可变长度的选项与填充（原课件第 40 张）</figcaption>
+</figure>
+
+<h2>3. 序列号与确认号</h2>
+<p>TCP 的可靠性建立在一条约定上：字节流里的每个字节都有编号。<strong>序号 SEQ</strong> 是本报文段数据部分第一个字节在字节流中的编号，数的是字节而非报文段。<strong>确认号 ACK</strong> 是「期待得到的下一个字节的序号」，它一次完成两件事：累积确认已经正确收到的字节，并告诉对方自己还在等哪一个字节。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0041.webp" alt="图 2　序号与确认号的含义，以及发送端序列号空间的三个区间" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　序号与确认号的含义，以及发送端序列号空间的三个区间：已确认、已发送尚未确认、可用但尚未发送（原课件第 41 张）</figcaption>
+</figure>
+<p>发送方的序列号空间任意时刻分成三段：已确认的字节（ACKed）、已发出但未被确认的字节（sent, not yet ACKed）、可用但尚未发送的字节；确认不断回来，第一段向右推进、后两段随之滑动，这就是滑动窗口。对乱序到达的报文段，课件特别指出：TCP 规范没有规定接收方应该如何处理，由实现者自行决定——可以先缓存等缺口补齐，也可以直接丢弃。</p>
+<p>最简单的 telnet 场景：</p>
+<div class="tbl-wrap"><table>
+  <caption>简单的 telnet 场景（依课件第 42 张整理）：A 侧用户输入 C，字符送到 B 回显。</caption>
+  <thead>
+    <tr><th>报文段</th><th>方向</th><th>作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Seq = 42, ACK = 79, data = 'C'</td><td>A → B</td><td>发送 1 个字节的 C</td></tr>
+    <tr><td>Seq = 79, ACK = 43, data = 'C'</td><td>B → A</td><td>回显 C，同时确认收到</td></tr>
+    <tr><td>Seq = 43, ACK = 80</td><td>A → B</td><td>确认回显，A 侧显示 C</td></tr>
+  </tbody>
+</table></div>
+<p>确认号即「收到的最后一个字节编号加 1」；确认可单独成段，也可像主机 B 那样捎带在回显数据上。</p>
+
+<h2>4. TCP 的流量控制</h2>
+<p>TCP 接收方有一个接收缓存 RcvBuffer，从 IP 层上交的数据全部先缓存在里面再由应用进程取走，而应用进程读取数据可能很慢，发送方只顾发就会把缓存写满。流量控制的<strong>目标</strong>是：发送方不会因为传得太多太快而使得接收方缓存溢出。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0044.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0044.webp" alt="图 3　接收方把缓存空闲空间填入窗口字段通知发送方" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　流量控制的手段：接收方把接收缓存 RcvBuffer 的空闲空间填入窗口字段通知发送方，即接收窗口 RcvWindow，发送窗口随之构成可变滑动窗口（原课件第 44 张）</figcaption>
+</figure>
+<p>接收方填入窗口字段的这个值就是<strong>接收窗口 RcvWindow</strong>——接收缓存总量减去已缓存但尚未被应用取走的数据量。发送方据此调整发送窗口：应用读得快窗口就张大，读得慢就收窄。第一版讲义 5.4 TCP的流量控制 有更细的讨论。</p>
+<p>特殊情况是：接收方通知发送方 RcvWindow 为 0，而接收方又没有任何数据要传送给发送方。此时发送方无从得知窗口何时重新张开，课件的办法是让它持续发送只有一个字节数据的报文段去试探。窗口为 0 并不表示连接结束。</p>
+
+<h2>5. TCP 连接的建立与释放</h2>
+<p>面向连接体现在数据交换前后的两次「仪式」上：三次握手与四次挥手。</p>
+<h3>（1）建立连接：三次握手</h3>
+<p>主机 B 先创建监听套接字（被动打开），主机 A 主动打开发出连接请求，三个报文段依次是：</p>
+<ul>
+  <li>A → B：SYN, SEQ = x。SYN 置 1 请求建立连接，x 为 A 选定的初始序号；</li>
+  <li>B → A：SYN, ACK, SEQ = y, ACK = x + 1。B 确认 A 的请求（SYN 占去一个序号），同时发出自己的请求；</li>
+  <li>A → B：ACK, SEQ = x + 1, ACK = y + 1。A 确认 B 的请求。</li>
+</ul>
+<p>课件把这三步标为「连接请求—确认—确认」；第三步完成后，双方才确知对方的初始序号已被接收。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0046.webp" alt="图 4　三次握手：主动打开、被动打开与连接确认" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　三次握手：A 主动打开并发出 SYN, SEQ = x，B 被动打开并回送 SYN, ACK, SEQ = y, ACK = x + 1，A 再确认（原课件第 46 张）</figcaption>
+</figure>
+<h3>（2）释放连接：四次挥手</h3>
+<p>TCP 是全双工的，两个方向必须分别关闭。A 的应用进程决定不再发送数据时：</p>
+<ul>
+  <li>A → B：FIN, SEQ = x。FIN 置 1 表示「我没有数据要发送了」；</li>
+  <li>B → A：ACK, SEQ = y, ACK = x + 1。B 确认收到并通知应用进程，此时从 A 到 B 的连接已经释放，处于<strong>半关闭</strong>状态——相当于 A 向 B 说：「我已经没有数据要发送了，但你如果还发送数据，我仍接收。」</li>
+  <li>B → A：FIN, ACK, SEQ = y, ACK = x + 1。B 的应用进程也决定释放连接；</li>
+  <li>A → B：ACK, SEQ = x + 1, ACK = y + 1。至此整个连接全部释放。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0047.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0047.webp" alt="图 5　四次挥手与半关闭状态" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　四次挥手：A 发出 FIN，B 确认后连接进入半关闭状态；B 的应用进程释放连接时再发 FIN，A 最后确认，连接全部释放（原课件第 47 张）</figcaption>
+</figure>
+
+<h2>6. TCP 连接管理的状态序列</h2>
+<p>把建立与释放连起来看，一条连接要走一串状态，客户机与服务器各维护一份状态机：</p>
+<div class="tbl-wrap"><table>
+  <caption>TCP 连接管理的状态序列（依课件第 48 张整理）。</caption>
+  <thead>
+    <tr><th>客户机 TCP 状态序列</th><th>服务器 TCP 状态序列</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CLOSED —（启动连接，发送 SYN）→ SYN_SENT —（接收 SYN &amp; ACK，发送 ACK）→ ESTABLISHED —（启动关闭连接，发送 FIN）→ FIN_WAIT1 —（接收 ACK，不发送）→ FIN_WAIT2 —（接收 FIN，发送 ACK）→ TIME_WAIT —（等待 30 s）→ CLOSED</td>
+      <td>CLOSED —（创建监听套接字）→ LISTEN —（接收 SYN，发送 SYN &amp; ACK）→ SYN_RCVD —（接收 ACK，不发送）→ ESTABLISHED —（接收 FIN，发送 ACK）→ CLOSE_WAIT —（释放连接，发送 FIN）→ LAST_ACK —（接收 ACK，不发送）→ CLOSED</td>
+    </tr>
+  </tbody>
+</table></div>
+<p>其中 TIME_WAIT 需要留意：主动关闭的一方发出最后一个 ACK 后并不立即回到 CLOSED，而要等待一段时间（课件标为 30 s），为「最后一个 ACK 丢失、对方重传 FIN」留出再次确认的机会。服务器的 CLOSE_WAIT 恰好对应客户机的 FIN_WAIT2。</p>
+
+<h2>7. 超时重传与 RTT 的估算</h2>
+<p>TCP 有两种重传机制：超时重传与快速重传。超时重传在发出报文段后启动定时器，超时间隔内没有收到确认就重传，于是关键问题变成：这个间隔该设多长。</p>
+<p>直观的答案是应该略大于往返时间 RTT（Round-Trip Time，往返时间）。课件提醒两个方向：设得太短，确认还没回来就重传，造成不必要的重传；设得太长，则对丢包反应太慢。而 RTT 随链路拥塞、路由与排队时延波动，不能取固定值，只能估计。</p>
+<p>估计先要测量。<strong>样本 RTT SampleRTT</strong> 是对报文段被发出到收到该报文段确认之间的时间进行测量，测量时忽略重传——重传过的报文段无法判断确认对应哪一次发送，测出来只会偏大。逐次测量很不平稳，所以要取最近几次测量的平均、越近的权重越大，即指数加权移动平均：</p>
+<pre><code>EstimatedRTT = (1 - α) * EstimatedRTT + α * SampleRTT</code></pre>
+<p>α 的参考值是 0.125，第一次计算时令 EstimatedRTT = SampleRTT。课件给出的实测示例中，SampleRTT 上下跳动，而 EstimatedRTT 平稳得多。</p>
+<p>只有基准还不够，还要估计 RTT 的波动幅度，课件用 DevRTT 刻画估算值与样本值之间的偏差：</p>
+<pre><code>DevRTT = (1 - β) * DevRTT + β * | SampleRTT - EstimatedRTT |</code></pre>
+<p>β 的参考值为 0.25，第一次计算时取 DevRTT = 0.5 * SampleRTT。偏差越大说明 RTT 越不稳定，超时就要留更多余量，于是有：</p>
+<pre><code>TimeoutInterval = EstimatedRTT + 4 * DevRTT</code></pre>
+<p>超时间隔由 EstimatedRTT 和 DevRTT 共同决定，一个给基准、一个给余量；同一题目见第一版讲义 5.6 TCP超时重传时间的选择。</p>
+
+<h2>8. 快速重传与超时间隔加倍</h2>
+<p>超时重传有一个天生的缺陷：超时周期往往太长。它按 RTT 的统计规律设定，本就留了余量，一旦真的丢包就要等到定时器到期才重传，增加了重发丢失分组的延时。TCP 因此又加了一条不依赖定时器的路径。</p>
+<p>依据仍然在确认号上。发送方常要连续发送大量报文段，若某一个丢失，接收方收到的后续报文段都带着同样的确认号，等于在反复说「我还在等那个字节」——说明后面的数据还在到达，只是中间缺了一块。课件的规则是：<strong>如果发送方收到同一个数据的 3 个重复 ACK，它会认为确认数据之后的报文段丢失</strong>，于是立即重传，不等超时到来，这就是快速重传：在超时到来之前重传报文段。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-3/p0056.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-3/p0056.webp" alt="图 6　快速重传示例：丢失的报文段引发重复 ACK" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　快速重传示例：A 发送 Seq = 92（8 字节数据）与 Seq = 100（20 字节数据）两个报文段，后者丢失，B 连续回送 ACK = 100，A 据此重传 Seq = 100 的报文段（原课件第 56 张）</figcaption>
+</figure>
+<p>配套的还有一条保守措施：每一次 TCP 重传均将下一次超时间隔设为先前值的两倍；而一旦收到上层应用的数据或对未确认数据的 ACK，说明通信重新有了进展，超时间隔就按 EstimatedRTT + 4 * DevRTT 重新计算。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>TCP 提供面向连接、全双工、点对点的可靠有序字节流服务，配有流量控制、拥塞控制与流水线，与 3.2 节的 UDP 恰好对照。</li>
+  <li>报文段首部固定 20 字节，序号与确认号各占一行 32 bit；序号数的是字节，确认号是期待收到的下一个字节的序号，采用累积确认，乱序报文段如何处理由实现者决定。</li>
+  <li>流量控制靠接收窗口 RcvWindow 实现：接收方把缓存剩余空间填入窗口字段通知发送方，窗口为 0 时发送方用单字节报文段试探。</li>
+  <li>连接建立是三次握手（SYN、SYN &amp; ACK、ACK），释放是四次挥手（FIN、ACK、FIN &amp; ACK、ACK），中间经过半关闭状态；两端各有一套状态序列，TIME_WAIT 需等待 30 s。</li>
+  <li>超时间隔由 RTT 的统计量决定：SampleRTT 忽略重传，EstimatedRTT 与 DevRTT 都用指数加权移动平均计算，TimeoutInterval = EstimatedRTT + 4 * DevRTT。</li>
+  <li>快速重传靠 3 个重复 ACK 在超时之前重传丢失的报文段；每发生一次重传就把超时间隔加倍，直到收到新数据或新的确认才重新按公式计算。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-3-2.html">‹ 3.2 面向无连接的不可靠服务—UDP协议</a>
+      <a class="next" href="v2-3-4.html">3.4 万维网（World Wide Web） ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

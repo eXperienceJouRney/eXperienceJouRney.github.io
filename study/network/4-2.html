@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.2 网络层提供的两种服务 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.2 网络层提供的两种服务：讲义第 757–767 页 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html" aria-current="page"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.2 网络层提供的两种服务</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">网络层向上面的运输层提供什么质量的服务，是网络层设计中最根本的一个选择：把「可靠」交给网络本身，还是交给两端的主机？这一节把两种服务——面向连接的虚电路服务与无连接的数据报服务——讲清楚，并逐项对比。理解了这个分歧，才能理解为什么因特网的网际层要做成「尽力而为」，也才能明白后面几节为什么都在围绕 IP 数据报的传送展开。</p>
+
+<h2>1. 两种服务：可靠通信由谁负责</h2>
+<p>网络层位于网络的核心，它向上为运输层提供分组传送服务。这种服务可以按「谁对可靠性负责」分成截然不同的两种设计思路：一种是<strong>面向连接的虚电路服务</strong>，可靠通信由网络来保证；另一种是<strong>无连接的数据报服务</strong>，可靠通信由用户主机自己来保证。两者的分层结构完全相同，差别在于网络层内部是否先建立一条连接、以及分组沿什么路径走。</p>
+
+<h2>2. 面向连接的虚电路服务</h2>
+<p>虚电路服务的核心思想是：在通信之前，先在网络层建立一条连接。这条连接称为<strong>虚电路 VC（Virtual Circuit）</strong>——「虚」意味着它并不是一条独占的物理线路，而是沿途各段链路上的一组逻辑信道串起来的通路。它的要点是：</p>
+<ul>
+  <li><strong>可靠通信由网络来保证</strong>，这是整个设计的前提；</li>
+  <li>通信双方必须<strong>先建立网络层的连接</strong>，也就是建立虚电路，然后沿着这条已建立的虚电路<strong>按序发送分组</strong>；</li>
+  <li>目的主机的地址<strong>只在连接建立阶段使用</strong>。连接建好之后，每个分组首部不必再携带长长的完整地址，只需携带一个短的<strong>虚电路编号</strong>；构成虚电路的每一段链路都各自有一个虚电路编号，分组每经过一个结点就按该段链路的编号转发出去；</li>
+  <li>如果在这种通信方式上再使用可靠传输的网络协议，就可以使所发送的分组最终正确到达接收方，即做到<strong>无差错、按序到达、不丢失、不重复</strong>；</li>
+  <li>通信结束后，需要<strong>释放</strong>之前所建立的虚电路，把沿途资源交还网络。</li>
+</ul>
+<p>历史上不少广域分组交换网都采用面向连接的虚电路服务，例如曾经的 X.25 网，以及后来逐渐过时的帧中继 FR（Frame Relay）、异步传输模式 ATM（Asynchronous Transfer Mode）等。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-2/p0760.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-2/p0760.webp" alt="图 1　虚电路服务：两端主机经网络建立虚电路后沿同一条通路传送分组" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　虚电路服务：两端主机的网络层先建立虚电路，分组沿同一条通路逐段转发，首部只需带虚电路编号（原讲义第 760 页）</figcaption>
+</figure>
+
+<h2>3. 无连接的数据报服务</h2>
+<p>数据报服务走的是另一条路：网络层不为通信双方建立任何连接，只负责把一个个分组尽力送出去。它的要点与虚电路服务几乎处处相反：</p>
+<ul>
+  <li><strong>可靠通信应当由用户主机来保证</strong>，网络只提供「尽最大努力」的交付；</li>
+  <li><strong>不需要建立网络层连接</strong>，有分组就发；</li>
+  <li>每个分组<strong>可以走不同的路径</strong>，由沿途各路由器各自独立地为它选择下一跳；</li>
+  <li>正因为分组独立选路、且中间结点可能出故障，所以每个分组的<strong>首部必须携带目的主机的完整地址</strong>；</li>
+  <li>这种通信方式所传送的分组<strong>可能误码、丢失、重复和失序</strong>——这些差错由用户主机的运输层去发现和处理。</li>
+</ul>
+<p>数据报服务的价值在于「简单换来的便宜与灵活」：由于网络本身不提供端到端的可靠传输服务，网络中的路由可以做得比较简单，价格也低廉（与电信网的交换机相比）。因特网采用了这种设计思想，它的分工是——把复杂的网络处理功能置于因特网的<strong>边缘</strong>（用户主机和其内部的运输层），而把相对简单的、尽最大努力的分组交付功能置于因特网的<strong>核心</strong>。边缘复杂、核心简单，这正是 IP 网络能够不断扩张、容纳各种新技术的原因。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-2/p0765.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-2/p0765.webp" alt="图 2　数据报服务：每个分组独立选路，首部携带目的主机的完整地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　数据报服务：不建立网络层连接，每个分组独立选路，首部必须携带目的主机的完整地址（原讲义第 765 页）</figcaption>
+</figure>
+
+<h2>4. 虚电路服务与数据报服务的对比</h2>
+<p>把两者的差异逐项排开，可以看出它们不是「哪个更先进」的问题，而是把可靠性、有序性、服务质量这些责任放在哪一层的问题。下表是两种服务的逐项比较。</p>
+<table>
+  <caption>数据来源：原讲义第 766 页「虚电路服务与数据报服务比较」表。</caption>
+  <thead>
+    <tr><th>对比方面</th><th>虚电路服务</th><th>数据报服务</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>思路</td><td>可靠通信应当由网络来保证</td><td>可靠通信应当由用户主机来保证</td></tr>
+    <tr><td>连接的建立</td><td>必须建立网络层连接</td><td>不需要建立网络层连接</td></tr>
+    <tr><td>终点地址</td><td>仅在连接建立阶段使用，每个分组使用短的虚电路号</td><td>每个分组都有终点的完整地址</td></tr>
+    <tr><td>分组的转发</td><td>属于同一条虚电路的分组均按照同一路由进行转发</td><td>每个分组可走不同的路由</td></tr>
+    <tr><td>当结点出故障时</td><td>所有通过出故障的结点的虚电路均不能工作</td><td>出故障的结点可能会丢失分组，一些路由可能会发生变化</td></tr>
+    <tr><td>分组的顺序</td><td>总是按发送顺序到达终点</td><td>到达终点时不一定按发送顺序</td></tr>
+    <tr><td>服务质量保证</td><td>可以将通信资源提前分配给每一个虚电路，容易实现</td><td>很难实现</td></tr>
+  </tbody>
+</table>
+<p>由于 TCP/IP 体系结构的因特网的网际层提供的是<strong>简单灵活、无连接的、尽最大努力交付的数据报服务</strong>，本章后续内容就围绕一个主题展开：网际层如何传送 IP 数据报。这也解释了上一节 4.1 中「网络层向上只提供简单灵活的服务」这句话的分量——网络层不做的事，全交给了用户主机的运输层，第 5 章讲 TCP 时还会回到这个分工上。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>网络层可提供两种服务：面向连接的虚电路服务（可靠通信由网络保证）与无连接的数据报服务（可靠通信由用户主机保证）。</li>
+  <li>虚电路服务要先建立网络层连接即虚电路 VC，分组沿同一条虚电路按序转发；目的地址只在连接建立阶段使用，之后每个分组首部只带短的虚电路编号，通信结束还要释放虚电路。</li>
+  <li>数据报服务不建立连接，每个分组独立选路、首部带目的主机的完整地址，分组可能误码、丢失、重复、失序，网络只尽最大努力交付。</li>
+  <li>因特网选择了数据报服务：复杂功能放在边缘的用户主机，核心只做简单的分组交付，因而网络简单、灵活、价廉；也正因为网际层只提供尽最大努力的服务，本章余下各节都在讨论 IP 数据报怎样被传送。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-1.html">‹ 4.1 网络层概述</a>
+      <a class="next" href="4-3-1.html">4.3.1 IPv4地址概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

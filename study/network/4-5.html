@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5 静态路由配置及其可能产生的路由环路问题 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.5 静态路由配置及其可能产生的路由环路问题：讲义第 894–931 页 · 20 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html" aria-current="page"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.5 静态路由配置及其可能产生的路由环路问题</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">路由表里的条目有两条来源：直连网络由路由器自动得出，其余的要靠人工配置或路由协议学习。这一节讲人工配置的那一类——静态路由，以及它最容易引发的麻烦：路由环路。配置错误、聚合了不存在的网络、网络故障，是三种植得警惕的成因；把它们逐一摆开，也就顺带讲清了默认路由、特定主机路由和黑洞路由这三种特殊的静态路由条目。</p>
+
+<h2>1. 什么是静态路由配置</h2>
+<p><strong>静态路由配置是指用户或网络管理员使用路由器的相关命令给路由器人工配置路由表。</strong>它的优点是<strong>简单、开销小</strong>——不用跑路由协议、不占额外的带宽和处理器资源；缺点也很明确：<strong>不能及时适应网络状态（流量、拓扑等）的变化</strong>，网络一旦发生变化，必须靠人工修改。因此它<strong>一般只在小规模网络中采用</strong>。</p>
+<p>路由表中的条目按其来源可分为三类：</p>
+<ul>
+  <li><strong>直连网络</strong>——路由器接口所在的网络，由路由器<strong>自动得出</strong>；</li>
+  <li><strong>静态路由</strong>——由管理员<strong>人工配置</strong>；</li>
+  <li><strong>动态路由</strong>——由路由选择协议自动学习得到（详见 4.6 节）。</li>
+</ul>
+<p>静态路由条目中有三种特殊形态，后面都会用到：<strong>默认路由</strong>（目的网络为 0.0.0.0，地址掩码为 0.0.0.0）、<strong>特定主机路由</strong>（目的网络为特定主机的 IP 地址，地址掩码为 255.255.255.255，即 /32）、<strong>黑洞路由</strong>（下一跳为 null0，即丢弃）。</p>
+<p>使用静态路由配置，可能出现以下导致<strong>路由环路</strong>的错误：</p>
+<ul>
+  <li><strong>配置错误</strong>——人工写错了下一跳；</li>
+  <li><strong>聚合了不存在的网络</strong>——把没有实际存在的地址块也聚合进了一条路由；</li>
+  <li><strong>网络故障</strong>——接口或链路故障使某条路由消失，剩下的路由互相指向对方。</li>
+</ul>
+
+<h2>2. 静态路由配置举例</h2>
+<p>先看一个最简单的两路由器拓扑：R1 的接口 0 连接网络 192.168.1.0/24（接口地址 192.168.1.254/24），接口 1（10.0.0.1/30）与 R2 的接口 0（10.0.0.2/30）相连；R2 的接口 1 连接网络 192.168.2.0/24（接口地址 192.168.2.254/24）。</p>
+<p>配置之前，两台路由器的路由表里只有自己直连的网络，因为直连网络条目是自动得出的：</p>
+<table>
+  <caption>数据来源：原讲义第 897、898 页 R1、R2 的路由表（仅含直连网络）。</caption>
+  <thead>
+    <tr><th>路由器</th><th>目的网络</th><th>下一跳</th><th>类型</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>R1</td><td>192.168.1.0/24</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R1</td><td>10.0.0.0/30</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R2</td><td>10.0.0.0/30</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R2</td><td>192.168.2.0/24</td><td>接口 1</td><td>直连</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0898.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0898.webp" alt="图 1　R1 与 R2 互连的拓扑及两台路由器各自的路由表（仅含直连网络）" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　配置静态路由之前的拓扑与路由表：R1、R2 都只知道自己的直连网络 192.168.1.0/24、10.0.0.0/30、192.168.2.0/24（原讲义第 898 页）</figcaption>
+</figure>
+<p>这样两台路由器都无法把数据报送进对方的网络。要让 R1 能把数据报转发到 192.168.2.0/24，就必须人工加一条静态路由，下一跳填 R2 接口 0 的地址 10.0.0.2；对称地，R2 要加一条到 192.168.1.0/24 的静态路由，下一跳填 R1 接口 1 的地址 10.0.0.1。加上这两条之后，两张表就完整了：</p>
+<table>
+  <caption>数据来源：原讲义第 899、900 页配置静态路由后的 R1、R2 路由表。</caption>
+  <thead>
+    <tr><th>路由器</th><th>目的网络</th><th>下一跳</th><th>类型</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>R1</td><td>192.168.1.0/24</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R1</td><td>10.0.0.0/30</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R1</td><td>192.168.2.0/24</td><td>10.0.0.2</td><td>静态</td></tr>
+    <tr><td>R2</td><td>10.0.0.0/30</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R2</td><td>192.168.2.0/24</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R2</td><td>192.168.1.0/24</td><td>10.0.0.1</td><td>静态</td></tr>
+  </tbody>
+</table>
+
+<h2>3. 默认路由</h2>
+<p>如果 R2 还通过另一个接口接入因特网，R1 要转发去往「包含众多网络的因特网」的数据报该怎么办？逐个网络写静态路由显然不现实。这时用<strong>默认路由</strong>：目的网络写 0.0.0.0、地址掩码写 0.0.0.0，也就是 0.0.0.0/0，下一跳填 10.0.0.2（R2 的接口 0）。它的含义是「凡是路由表里没有更具体匹配的所有目的网络，都交给这个下一跳」。加上默认路由后，R1 的路由表如下。</p>
+<table>
+  <caption>数据来源：原讲义第 902、903 页 R1 配置默认路由后的路由表。</caption>
+  <thead>
+    <tr><th>目的网络</th><th>下一跳</th><th>类型</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>192.168.1.0/24</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>10.0.0.0/30</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>192.168.2.0/24</td><td>10.0.0.2</td><td>静态</td></tr>
+    <tr><td>0.0.0.0/0</td><td>10.0.0.2</td><td>静态（默认路由）</td></tr>
+  </tbody>
+</table>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0903.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0903.webp" alt="图 2　R1 通过 R2 接入因特网，并配置默认路由 0.0.0.0/0" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　R2 一侧接入因特网，R1 用默认路由 0.0.0.0/0（下一跳 10.0.0.2）把去往因特网的数据报全部交给 R2（原讲义第 903 页）</figcaption>
+</figure>
+<p>对于本例来说，配置了默认路由之后，甚至连 192.168.2.0/24 那条静态路由都可以删除——因为去往 192.168.2.0/24 的分组同样会落进默认路由、同样被交给 10.0.0.2。这也说明默认路由的作用是「兜底」：写一条就能覆盖大量目的网络。</p>
+
+<h2>4. 特定主机路由与最长前缀匹配</h2>
+<p>反过来，如果只想给<strong>某一台主机</strong>指定一条专门的路径，就用<strong>特定主机路由</strong>：目的网络写该主机的完整 IP 地址，掩码写 255.255.255.255，也就是 /32。例如在 R1 上配置一条目的网络为 192.168.2.1/32、下一跳为 10.0.0.2 的静态路由，R1 的路由表就变成这样。</p>
+<table>
+  <caption>数据来源：原讲义第 904、905 页 R1 同时配置特定主机路由与默认路由后的路由表。</caption>
+  <thead>
+    <tr><th>目的网络</th><th>下一跳</th><th>类型</th><th>备注</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>192.168.1.0/24</td><td>接口 0</td><td>直连</td><td></td></tr>
+    <tr><td>10.0.0.0/30</td><td>接口 1</td><td>直连</td><td></td></tr>
+    <tr><td>192.168.2.1/32</td><td>10.0.0.2</td><td>静态</td><td>特定主机路由，网络前缀最长、路由最具体</td></tr>
+    <tr><td>0.0.0.0/0</td><td>10.0.0.2</td><td>静态</td><td>默认路由，网络前缀最短、路由最模糊</td></tr>
+  </tbody>
+</table>
+<p>此时若有一个目的地址为 192.168.2.1 的数据报，它既能匹配 /32 的特定主机路由，也能匹配 /0 的默认路由。规则是：<strong>网络前缀最长，路由最具体；网络前缀最短，路由最模糊；多条路由可选时，选最长前缀匹配。</strong>因此它会走 192.168.2.1/32 这一条。这也正是 4.3.4 节讲过的<strong>最长前缀匹配</strong>原则在路由表中的体现。</p>
+
+<h2>5. 配置错误导致路由环路</h2>
+<p>把拓扑扩大成三个路由器：R1 接口 0 连接 192.168.1.0/24；R1 与 R2 之间是 10.0.0.0/30（R1 接口 1 为 10.0.0.1，R2 接口 0 为 10.0.0.2）；R2 与 R3 之间是 10.0.1.0/30（R2 接口 1 为 10.0.1.1，R3 接口 0 为 10.0.1.2）；R3 接口 1 连接 192.168.2.0/24。三台路由器上都人工配置了静态路由。</p>
+<table>
+  <caption>数据来源：原讲义第 906～910 页 R1、R2、R3 的路由表（其中 R2 到 192.168.1.0/24 的下一跳配置错误）。</caption>
+  <thead>
+    <tr><th>路由器</th><th>目的网络</th><th>下一跳</th><th>类型</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>R1</td><td>192.168.1.0/24</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R1</td><td>10.0.0.0/30</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R1</td><td>192.168.2.0/24</td><td>10.0.0.2</td><td>静态</td></tr>
+    <tr><td>R2</td><td>10.0.0.0/30</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R2</td><td>10.0.1.0/30</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R2</td><td>192.168.1.0/24</td><td><strong>10.0.1.2</strong>（应配置为 10.0.0.1）</td><td>静态</td></tr>
+    <tr><td>R2</td><td>192.168.2.0/24</td><td>10.0.1.2</td><td>静态</td></tr>
+    <tr><td>R3</td><td>10.0.1.0/30</td><td>接口 0</td><td>直连</td></tr>
+    <tr><td>R3</td><td>192.168.2.0/24</td><td>接口 1</td><td>直连</td></tr>
+    <tr><td>R3</td><td>192.168.1.0/24</td><td>10.0.1.1</td><td>静态</td></tr>
+  </tbody>
+</table>
+<p>问题出在 R2 那一条：去往 192.168.1.0/24 的下一跳本应指向 R1 的接口 1（10.0.0.1），却被错配成了 R3 的接口 0（10.0.1.2）。于是 R2 认为 192.168.1.0/24 要从 R3 走，而 R3 认为 192.168.1.0/24 要从 R2 走（下一跳 10.0.1.1）——两个路由器互相把对方当作下一跳，去往 192.168.1.0/24 的分组就在 R2 与 R3 之间来回转发，形成<strong>路由环路</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0908.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0908.webp" alt="图 3　R2 到 192.168.1.0/24 的下一跳配置错误，导致 R2 与 R3 之间形成路由环路" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　静态路由配置错误：R2 到 192.168.1.0/24 的下一跳被错误地指向 R3，而 R3 又指回 R2，分组在两者之间兜圈（原讲义第 908 页）</figcaption>
+</figure>
+<p>为了防止 IP 数据报在路由环路中永久兜圈，IP 数据报首部设有<strong>生存时间 TTL</strong> 字段：IP 数据报进入路由器后，TTL 字段的值减 1；若 TTL 值不等于 0，则被路由器转发，否则被丢弃。环路虽然会形成，但分组不会永远留在网络里。</p>
+
+<h2>6. 聚合了不存在的网络导致路由环路</h2>
+<p>第二种成因更隐蔽——路由本身没写错，但聚合把「不存在」的地址也涵盖了进来。拓扑是：R1 接口 0 连接 192.168.1.0/24，接口 2 连接 192.168.2.0/24，接口 1（10.0.0.1/30）与 R2 的接口 0（10.0.0.2/30）相连；R2 的接口 1 连接 172.16.0.0/24。两台路由器的路由表如下。</p>
+<table>
+  <caption>数据来源：原讲义第 912、913 页 R1、R2 的路由表（R1 配置默认路由，R2 配置聚合路由）。</caption>
+  <thead>
+    <tr><th>路由器</th><th>目的网络</th><th>下一跳</th><th>类型</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>R1</td><td>192.168.1.0/24</td><td>接口 0</td><td>直连（自动得出）</td></tr>
+    <tr><td>R1</td><td>10.0.0.0/30</td><td>接口 1</td><td>直连（自动得出）</td></tr>
+    <tr><td>R1</td><td>192.168.2.0/24</td><td>接口 2</td><td>直连（自动得出）</td></tr>
+    <tr><td>R1</td><td>0.0.0.0/0</td><td>10.0.0.2</td><td>静态（默认路由，人工配置）</td></tr>
+    <tr><td>R2</td><td>10.0.0.0/30</td><td>接口 0</td><td>直连（自动得出）</td></tr>
+    <tr><td>R2</td><td>172.16.0.0/24</td><td>接口 1</td><td>直连（自动得出）</td></tr>
+    <tr><td>R2</td><td>192.168.0.0/22</td><td>10.0.0.1</td><td>静态（聚合路由，人工配置）</td></tr>
+  </tbody>
+</table>
+<p>R2 上那条 192.168.0.0/22 是由 192.168.1.0/24 与 192.168.2.0/24 聚合而成的：把两者的第三个字节写成二进制，192.168.<strong>00000001</strong>.0 与 192.168.<strong>00000010</strong>.0 的共同前缀是 22 位，所以聚合网络为 192.168.0.0/22。但一个 /22 地址块包含四个 /24：</p>
+<pre><code>聚合路由：192.168.0.0/22
+  192.168.0.0/24   ← 不存在
+  192.168.1.0/24   ← 存在
+  192.168.2.0/24   ← 存在
+  192.168.3.0/24   ← 不存在</code></pre>
+<p>于是环路出现了：若有一个分组要发往 192.168.<strong>3</strong>.0/24（这个网络实际并不存在），R1 在自己的表中找不到匹配条目，只能走默认路由把它交给 R2；R2 一查表，192.168.3.0/24 落在聚合路由 192.168.0.0/22 里，于是按该条目把分组送回 R1（下一跳 10.0.0.1）；R1 又一次交给 R2……分组就在两台路由器之间来回兜圈。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0916.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0916.webp" alt="图 4　聚合路由 192.168.0.0/22 覆盖的四个 /24 网络中，192.168.0.0/24 与 192.168.3.0/24 并不存在" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　聚合路由 192.168.0.0/22 覆盖 192.168.0.0/24～192.168.3.0/24 四个网络，其中 192.168.0.0/24 和 192.168.3.0/24 实际不存在，去往它们的分组会在 R1、R2 之间形成环路（原讲义第 916 页）</figcaption>
+</figure>
+<p>解决办法是给这些不存在的网络配上<strong>黑洞路由</strong>——下一跳写 null0，意思是「直接丢弃」。在 R2 上增加两条：192.168.3.0/24 → null0 与 192.168.0.0/24 → null0。由于<strong>最长前缀匹配</strong>，这两个 /24 的具体条目优先于 /22 的聚合路由，去往这两个不存在网络的分组会被 R2 直接丢弃，环路随之消失。这也提示了一条经验：<strong>做路由聚合时，要为聚合块中不存在的网络配置黑洞路由</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0920.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0920.webp" alt="图 5　为不存在的网络配置下一跳为 null0 的黑洞路由，靠最长前缀匹配优先于聚合路由" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　在 R2 上为 192.168.3.0/24 和 192.168.0.0/24 配置下一跳为 null0 的黑洞路由，最长前缀匹配使其优先于聚合路由 192.168.0.0/22，分组被直接丢弃（原讲义第 920 页）</figcaption>
+</figure>
+
+<h2>7. 网络故障导致路由环路</h2>
+<p>第三种成因是网络故障。仍然用上一节的拓扑与路由表：R1 有指向 R2 的默认路由 0.0.0.0/0，R2 有指向 R1 的聚合路由 192.168.0.0/22，另外 R2 上已经配好了两条黑洞路由。</p>
+<p>现在 R1 连接 192.168.2.0/24 的接口发生故障。直连网络条目是路由器自动得出的，接口一旦失效，这条路由条目也就<strong>自动删除</strong>——R1 的路由表中不再有 192.168.2.0/24。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0924.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0924.webp" alt="图 6　与 192.168.2.0/24 相连的接口故障后，R1 的直连路由条目被自动删除" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　网络故障：R1 连接 192.168.2.0/24 的接口故障后，该直连路由条目自动删除，R1 的路由表中不再有 192.168.2.0/24（原讲义第 924 页）</figcaption>
+</figure>
+<p>这一删就出了新问题：此时去往 192.168.2.0/24 的分组在 R1 上只能匹配默认路由 0.0.0.0/0，被交给 R2；而 R2 的聚合路由 192.168.0.0/22 恰恰覆盖 192.168.2.0/24，于是又被送回 R1——R1 再交给 R2……又形成环路。</p>
+<p>为此，R1 上应预先配置一条指向 192.168.2.0/24 的<strong>黑洞路由</strong>（下一跳 null0）。平时它不生效，因为直连路由更「具体」；接口故障、直连路由条目被自动删除之后，<strong>这条黑洞路由就自动生效</strong>，去往 192.168.2.0/24 的分组被 R1 直接丢弃，不再被默认路由引到 R2 去绕圈。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-5/p0925.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-5/p0925.webp" alt="图 7　故障后黑洞路由自动生效，去往 192.168.2.0/24 的分组被丢弃，避免环路" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　预先配置的黑洞路由在故障后自动生效：R1 把去往 192.168.2.0/24 的分组丢弃（null0），从而不会与 R2 的聚合路由构成环路（原讲义第 925 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>静态路由配置是管理员用命令人工给路由器配置路由表，简单、开销小，但不能及时适应网络状态变化，一般只用于小规模网络。</li>
+  <li>路由条目按来源分三类：直连网络（自动得出）、静态路由（人工配置）、动态路由（路由选择协议学习）。</li>
+  <li>三种特殊静态路由条目：默认路由（0.0.0.0/0）用于兜底，转发所有无更具体匹配的分组；特定主机路由（掩码 255.255.255.255，即 /32）为单台主机指定路径；黑洞路由（下一跳 null0）用于丢弃分组。</li>
+  <li>多条路由可选时按最长前缀匹配：网络前缀越长、路由越具体，越优先。</li>
+  <li>静态路由可能引发路由环路的三种情况：配置错误（下一跳写错，两台路由器互指）、聚合了不存在的网络（聚合块中不存在的地址被兜回）、网络故障（直连路由自动删除后由默认路由与聚合路由构成环路）。</li>
+  <li>对应的防范手段：写错就改正；聚合时为不存在的网络配置 null0 黑洞路由；故障场景下预先配置黑洞路由，使其在直连路由失效后自动生效。此外 IP 数据报首部的 TTL 字段会在每经过一台路由器时减 1，为 0 即被丢弃，可防止分组在环路中永久兜圈。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-4.html">‹ 4.4 IP数据报的发送和转发过程</a>
+      <a class="next" href="4-6-1.html">4.6.1 路由选择协议概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

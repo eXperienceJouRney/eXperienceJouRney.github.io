@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.6 进程互斥与同步的实现 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.6 进程互斥与同步的实现：课件第 82–112 张 · 12 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html" aria-current="page"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.6 进程互斥与同步的实现</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讲了两种同步机构——锁与信号灯，这一节把它们落到具体的程序描述上：先用上锁/开锁原语和信号灯的 P、V 操作实现进程互斥，再归纳两类同步问题（合作进程的执行次序、共享缓冲区的合作进程）的解法，最后给出生产者—消费者问题的一般解答。这一节的内容是第 4 章的核心，也是第 5 章讨论死锁的直接背景。</p>
+
+<h2>1. 用上锁原语和开锁原语实现进程互斥</h2>
+<p>4.5 节给出的上锁原语 lock 与开锁原语 unlock，是互斥最直接的实现手段。按那里的约定，锁变量 w 的初值为 0：进程进入临界区前先执行上锁原语，它检测 w，若 w 已被置 1 说明临界资源正被占用，进程就原地等待（自旋锁）或进入 w 的等待队列（普通锁 mutex）；若 w 为 0，则把 w 置 1，表示自己占用了资源，然后进入临界区。临界区执行完毕后执行开锁原语，把 w 置 0，交还资源。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0083.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0083.webp" alt="图 1　两个进程利用上锁、开锁原语实现互斥" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　进程 pa、pb 各自以「上锁原语 → 进入临界区 → 开锁原语」的顺序使用同一临界资源，二者互斥（原课件第 83 张）</figcaption>
+</figure>
+<p>把这一过程写成程序描述，就是程序 task1：锁变量 w 定义为主程序中的共享变量，初值为 0；两个进程 pa、pb 并发执行，各自的临界区 csa、csb 被上锁原语和开锁原语夹在中间。</p>
+<pre><code>/* 程序 task1 */
+main( )
+{   int w = 0;      /* 互斥锁，初值为 0 */
+    cobegin
+        pa( );   pb( );
+    coend
+}
+
+pa( )
+{   lock(w);
+    csa;
+    unlock(w);
+}
+
+pb( )
+{   lock(w);
+    csb;
+    unlock(w);
+}</code></pre>
+<p>两个进程对同一个锁变量 w 施加原语操作，而原语是不可分割的，因此同一时刻只可能有一个进程完成「测试 w → 置 w 为 1」这一步，也就只有一个进程能进入自己的临界区：<strong>上锁原语负责阻止后来的进程，开锁原语负责把资源交出去</strong>。这就是互斥的实现机制。</p>
+
+<h2>2. 用信号灯的 P、V 操作实现互斥</h2>
+<p>更常用的做法是用信号灯。只要为临界资源设一个互斥信号灯 mutex，初值为 1（表示资源可用），每个进程在进入临界区之前做一次 P 操作、离开临界区之后做一次 V 操作，就实现了互斥。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0085.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0085.webp" alt="图 2　两个进程利用信号灯的 P、V 操作实现互斥" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　进程 pa、pb 各自以「p(mutex) → 进入临界区 → v(mutex)」的顺序使用临界资源（原课件第 85 张）</figcaption>
+</figure>
+<p>对应的程序描述是：主程序中定义互斥信号灯 mutex 并置初值 1，然后由 cobegin…coend 并发启动 pa 与 pb；pa 执行 p(mutex)、csa、v(mutex)，pb 执行 p(mutex)、csb、v(mutex)。P 操作把 mutex 减 1，减到负数就把自己挂到该信号灯的等待队列上；V 操作把 mutex 加 1，并负责唤醒等待队列上的进程。</p>
+<h3>（1）互斥信号灯的可能取值</h3>
+<p>信号灯的取值范围能反过来告诉我们系统此刻处在什么状态。对于 <strong>两个并发进程</strong>共用一把互斥锁的情形，互斥信号灯的值只可能取 1、0、−1 三个值：</p>
+<ul>
+  <li>mutex = 1：没有进程进入临界区，资源空闲；</li>
+  <li>mutex = 0：已有一个进程进入临界区，但没有别的进程在等待；</li>
+  <li>mutex = −1：一个进程已进入临界区，另一个进程正在等待进入，其绝对值就是等待队列中的进程数。</li>
+</ul>
+<p>把并发进程数推广到 n 个（课件中的习题 4-12 正是这个一般化的问题：n 个并发进程共用一个公共变量，要求写出用信号灯实现互斥的程序描述并说明取值含义），互斥信号灯的取值可能是 1, 0, −1, …, −(n−1)。由此可以总结出三条常用推论：</p>
+<ul>
+  <li><strong>推论 1</strong>：若信号灯 s 为正值，则该值等于在挂起进程之前对 s 可施行的 P 操作次数，也等于 s 所代表的、实际还可以使用的物理资源数；</li>
+  <li><strong>推论 2</strong>：若 s 为负值，则其绝对值等于登记在该信号灯等待队列中的进程个数，也就是对 s 实施 P 操作而被挂起并进入等待队列的进程数；</li>
+  <li><strong>推论 3</strong>：通常，P 操作意味着请求一个资源，V 操作意味着释放一个资源；在一定条件下，P 操作代表挂起进程的操作，V 操作代表唤醒被挂起进程的操作。</li>
+</ul>
+<h3>（2）共享变量的例子：互斥</h3>
+<p>临界资源不一定是设备，共享变量同样需要保护。设 x 是被两个进程共同修改的共享变量，初值为 0，互斥信号灯 mutex 初值为 1，则 pa 与 pb 都要用「p(mutex) → x := x + 1 → v(mutex)」的方式访问它。如果去掉 P、V 操作，两个进程对 x 的「读—加—写」就可能交错执行，结果不再等于两者各加一次；加上 P、V 之后，对 x 的修改成为不可分割的临界区。</p>
+<h3>（3）看病化验的例子：同步</h3>
+<p>互斥是「争用同一资源」，同步则是「按约定的先后次序协作」。课件的例子是医生的看病活动与化验室的化验活动之间的同步约束，它有两条：</p>
+<ul>
+  <li>看病进程开出化验单并发送给化验进程后，化验进程才能开始工作，否则化验进程必须等待；</li>
+  <li>化验进程化验完毕得到化验结果并发送给看病进程后，看病进程才能根据化验结果确定医疗方案，否则看病进程必须等待。</li>
+</ul>
+<p>这里流转的是两类「资源」：化验单和化验结果。于是设两个同步信号灯，s1 表示有无化验单（化验单资源的个数），s2 表示有无化验结果（化验结果资源的个数），初值都为 0——因为一开始既没有化验单，也没有化验结果。</p>
+<pre><code>main( )
+{   int s1 = 0;      /* 化验单资源的个数 */
+    int s2 = 0;      /* 化验结果的个数 */
+    cobegin
+        化验( );  看病( );
+    coend
+}
+
+看病( )
+{   while(没下班) {
+        看病;
+        v(s1);
+        p(s2);
+        诊断;
+    }
+}
+
+化验( )
+{   while(没下班) {
+        p(s1);
+        化验;
+        v(s2);
+    }
+}</code></pre>
+<p>看病进程每看完一位病人就执行 v(s1)，相当于「发出一张化验单」；化验进程用 p(s1) 取走这张化验单，于是两张单子一一对应。化验完成后化验进程执行 v(s2) 发出化验结果，看病进程用 p(s2) 取到结果再作诊断。两个进程就是这样靠一对信号灯把各自的节奏对齐的。</p>
+
+<h2>3. 两类同步问题的解法</h2>
+<p>把前面这些例子归纳一下，同步问题大体分为两类：一类是<strong>合作进程的执行次序</strong>问题——几个进程必须按规定的先后关系推进；另一类是<strong>共享缓冲区的合作进程</strong>问题——进程之间通过缓冲区交换数据，既要「有数据可取」，又要「有空位可放」。两类问题的解法都是「先画进程流图分析同步关系，再设信号灯，最后写出程序描述」。</p>
+<h3>（1）合作进程的执行次序</h3>
+<p>描述执行次序的工具是<strong>进程流图</strong>：图中的节点表示进程，s 表示任务的开始，f 表示任务的终止，节点之间的有向边表示「前一个进程结束后后一个进程才能开始」的同步关系。课件先用一组进程流图示例说明这种表示法，再给出具体的合作进程例子。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0092.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0092.webp" alt="图 3　进程流图示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　用进程流图描述合作进程的执行次序：s 为开始、f 为终止，节点之间的边表示先后约束（原课件第 92 张）</figcaption>
+</figure>
+<p>设 pa、pb、pc 为一组合作进程，其进程流图表明：任务启动后 <strong>pa 先执行</strong>；pa 结束后 pb、pc 可以开始执行；pb、pc 都执行完毕后任务终止。分析同步关系之后设置两个同步信号灯 sb、sc，分别表示进程 pb 和 pc 能否开始执行，初值均为 0（一开始都不允许开始）。于是同步描述非常简短：pa 在执行完自己的工作后连做 v(sb)、v(sc) 两次 V 操作，pb、pc 则各自在开始处做一次 p(sb)、p(sc)。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0093.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0093.webp" alt="图 4　三个合作进程 pa、pb、pc 的进程流图" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　三个合作进程的进程流图：pa 执行结束后 pb、pc 才能开始，两者都结束后任务终止（原课件第 93 张）</figcaption>
+</figure>
+<p>写成程序 task4 就是下面的样子。主程序定义 sb、sc 两个信号灯，初值都为 0，然后并发启动三个进程。</p>
+<pre><code>/* 程序 task4 */
+main( )
+{   int sb = 0;      /* pb 能否开始 */
+    int sc = 0;      /* pc 能否开始 */
+    cobegin
+        pa( );   pb( );   pc( );
+    coend
+}
+
+pa( )
+{   ……
+    v(sb);
+    v(sc);
+}
+
+pb( )
+{   p(sb);
+    ……
+}
+
+pc( )
+{   p(sc);
+    ……
+}</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0094.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0094.webp" alt="图 5　程序 task4 及其对应的进程流图" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　程序 task4：pa 用两次 V 操作分别启动 pb、pc；课件在此还留了一个思考题——能否只用 1 个信号灯实现（原课件第 94 张）</figcaption>
+</figure>
+<p>课件随后给出了两组练习题，用于检验是否掌握了由进程流图反推同步描述的方法：习题 4-13 要求用信号灯实现两组进程之间的同步并写出程序描述，作业题则在更复杂的流图上作同样的练习。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0095.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0095.webp" alt="图 6　习题 4-13 给出的两组进程流图" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　习题 4-13 的两组进程流图 (a)、(b)：要求用信号灯实现其中的同步关系（原课件第 95 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0096.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0096.webp" alt="图 7　作业题给出的进程流图" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　作业题的进程流图：含有 p1～p5 五个进程，需要按图中次序约束设置信号灯（原课件第 96 张）</figcaption>
+</figure>
+<h3>（2）共享缓冲区的合作进程的同步</h3>
+<p>第二类同步问题的场景是：计算进程 cp 经过计算把结果送入缓冲区 buf，打印进程 iop 再从 buf 中把数据取出打印，两者通过 buf 交换数据。这类问题的同步关系是双向的——cp 必须先送、iop 才能取；iop 取走之前缓冲区不能覆盖，cp 必须等空位置。</p>
+<p>据此设置两个同步信号灯：sa 表示缓冲区中是否有可供打印的计算结果，初值为 0；sb 表示缓冲区有无空位置存放新的信息，初值为 1。程序描述如下。</p>
+<pre><code>main( )
+{   int sa = 0;      /* buf 中有无信息 */
+    int sb = 1;      /* buf 中有无空位 */
+    cobegin
+        cp( );   iop( );
+    coend
+}
+
+cp( )
+{   while(计算未完成) {
+        得到一个计算结果;
+        p(sb);
+        将数送到缓冲区中;
+        v(sa);
+    }
+}
+
+iop( )
+{   while(打印工作未完成) {
+        p(sa);
+        从缓冲区中取一数;
+        v(sb);
+        从打印机上输出;
+    }
+}</code></pre>
+<p>对照着看：cp 在送数之前用 p(sb) 申请一个空位置，送完用 v(sa) 通知「有数据了」；iop 用 p(sa) 等待数据，取走后用 v(sb) 归还空位置。sa 与 sb 一个代表满、一个代表空，正好把缓冲区的两种状态管起来。</p>
+<p>课件进一步把这种结构推广到两个缓冲区的情形（习题 4-15）：get 进程把数据读入缓冲区 s，copy 进程把 s 中的数据搬到缓冲区 t，put 进程再把 t 中的数据取出输出，需要为相邻的两对进程分别设置同步信号灯。习题 4-18 则给出另一组三进程并发活动的流程图与同步算法描述（其中信号灯 s 的初值取 −1，由 p1、p2 各做一次 V 操作、p3 做一次 P 操作），并要求判断下面这段两进程访问临界资源的算法是否有错、错在哪里、如何改正：</p>
+<pre><code>a 进程                          b 进程
+while(1)                        while(1)
+{   CSa;                        {   P(s1);
+    V(s1);                          CSb;
+    P(s2);                          V(s2);
+}                               }
+/* 注：信号灯 s1、s2 的初值为 0 */</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0103.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0103.webp" alt="图 8　习题 4-15：get、copy、put 三个进程与两个缓冲区" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　习题 4-15：get 把数据读入缓冲区 s，copy 把数据从 s 搬到 t，put 从 t 取出输出（原课件第 103 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0104.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0104.webp" alt="图 9　习题 4-18：三个进程并发活动的流程图与同步算法" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　习题 4-18：p1、p2、p3 三个进程并发活动的流程图 (b) 及对应的同步算法描述（原课件第 104 张）</figcaption>
+</figure>
+
+<h2>4. 生产者—消费者问题</h2>
+<h3>（1）问题的由来</h3>
+<p>前面两类问题的共同结构，其实是一个更一般的模型。课件举了两个来源：其一是<strong>计算进程与打印进程</strong>——多个计算进程 cp 不断产生数据，是生产者；多个打印进程 iop 不断打印数据，是消费者；两者之间有多个缓冲区。其二是<strong>通信问题</strong>——发消息进程 send 不断产生消息，是生产者；收消息进程 receive 不断接收消息，是消费者。把「生产者把产品放进有界缓冲区、消费者从有界缓冲区取走产品」这一结构抽象出来，就是<strong>生产者—消费者问题</strong>。</p>
+<h3>（2）生产者—消费者问题的一般解答</h3>
+<p>设有 m 个生产者 p1, p2, …, pm 和 k 个消费者 c1, c2, …, ck，它们共享一个有 n 个位置的有界缓冲区。同步关系有两方面：</p>
+<ul>
+  <li><strong>生产者</strong>：当有界缓冲区中没有空位置时，要等待；向有界缓冲区放入物品后，要发消息（通知消费者）；</li>
+  <li><strong>消费者</strong>：当有界缓冲区中没有物品时，要等待；从有界缓冲区取出物品后，要发消息（通知生产者）。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0108.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0108.webp" alt="图 10　生产者—消费者问题示意图" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　生产者—消费者问题：m 个生产者 p1…pm、k 个消费者 c1…ck 共享同一个有界缓冲区（原课件第 108 张）</figcaption>
+</figure>
+<p>据此设置三个信号灯：两个同步信号灯 sb（表示空缓冲区的数目，初值 = n）与 sa（表示满缓冲区，即信息的数目，初值 = 0），再加一个互斥信号灯 mutex（表示有界缓冲区是否被占用，初值 = 1）。同步描述为：生产者先生产，再 p(sb) 申请空位置、p(mutex) 申请缓冲区使用权，把数据放入有界缓冲区后 v(mutex) 释放缓冲区、v(sa) 通知有数据可取；消费者的次序正好相反，先 p(sa) 等数据、p(mutex) 申请缓冲区，取出数据后 v(mutex)、v(sb)，最后消费。</p>
+<pre><code>main( )
+{   int sa = 0;       /* 满缓冲区的数目 */
+    int sb = n;       /* 空缓冲区的数目 */
+    int mutex = 1;    /* 缓冲区的互斥灯 */
+    cobegin
+        p1( );  p2( );  …  pm( );
+        c1( );  c2( );  …  ck( );
+    coend
+}
+
+pi( )
+{   while(生产未完成) {
+        生产一个产品;
+        p(sb);
+        p(mutex);
+        送一个产品到有界缓冲区;
+        v(mutex);
+        v(sa);
+    }
+}
+
+cj( )
+{   while(还要继续消费) {
+        p(sa);
+        p(mutex);
+        从有界缓冲区中取产品;
+        v(mutex);
+        v(sb);
+        消费一个产品;
+    }
+}</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/4-6/p0110.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0110.webp" alt="图 11　生产者与消费者的同步描述" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　生产者 pi 与消费者 cj 的同步描述：sb、sa 分别管空位与产品，mutex 管缓冲区的互斥访问（原课件第 110 张）</figcaption>
+</figure>
+<p>这里 sa、sb、mutex 的分工要分清：<strong>sa 与 sb 管的是「有没有东西可拿／有没有地方可放」</strong>，是同步；<strong>mutex 管的是「同一时刻只能有一个人动缓冲区」</strong>，是互斥。三者在两个进程里的先后次序不能随意交换——下一章 5.3 节讲死锁时，会拿生产者—消费者问题为例说明 P 操作次序颠倒的后果。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>互斥的两种实现：锁变量 w 加上锁/开锁原语（初值 0，进入临界区前上锁、离开后开锁），以及互斥信号灯 mutex（初值 1，临界区前后各做一次 P、V 操作）；</li>
+  <li>信号灯的取值可读出系统状态：两进程互斥时只取 1、0、−1；n 个进程互斥时可取 1, 0, −1, …, −(n−1)。正值表示还可使用的资源数，负值的绝对值表示等待队列中的进程数；</li>
+  <li>同步问题的解法是「画进程流图 → 分析同步关系 → 设信号灯 → 写程序描述」。执行次序问题的信号灯初值为 0，靠前驱进程的 V 操作启动后继进程；</li>
+  <li>共享缓冲区问题要设两个同步信号灯（一个管满、一个管空）；生产者—消费者问题在此之上再加一个互斥信号灯管缓冲区本身，即 sa（满，初值 0）、sb（空，初值 n）、mutex（互斥，初值 1）三者的配合；</li>
+  <li>这一节的所有例子——共享变量、看病化验、pa/pb/pc 合作进程、cp/iop、get/copy/put、生产者—消费者——都是同一套机构在不同场景下的应用，看懂一个就要能迁移到其余几个。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-5.html">‹ 4.5 进程同步机构</a>
+      <a class="next" href="4-7.html">4.7 进程通信 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

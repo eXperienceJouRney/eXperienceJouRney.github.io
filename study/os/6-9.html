@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.9 习题 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.9 习题：课件第 28–29 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html" aria-current="page"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.9 习题</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">本节是第 6 章的习题课。前七节把处理机调度的概念与算法依次讲完，这一节用两道教材习题把它们串起来练一遍：第一题给出一张进程状态变迁图，练的是「变迁由什么引起」以及「某种因果变迁到底能不能发生」——判断的关键是调度方式；第二题给三个进程的计算与 I/O 序列，练的是不可抢占的优先级调度下，处理机究竟按什么次序、各占用多长时间。两道题都要求把「调度方式」这条前提放在最前面看。</p>
+
+<h2>1. 习题 6-3：非剥夺方式下的进程状态变迁</h2>
+<p><strong>题目</strong>：某系统的进程状态变迁图如图 1 所示（设该系统的进程调度方式为非剥夺方式）。</p>
+<ul>
+  <li>（1）说明一个进程发生变迁 3 的原因是什么？发生变迁 2、变迁 4 的原因又是什么？</li>
+  <li>（2）下述因果变迁是否会发生，如果有可能的话，在什么情况下发生？① 2→5；② 2→1；③ 4→5；④ 4→2；⑤ 3→5；</li>
+  <li>（3）根据此进程状态变迁图叙述该系统的调度策略、调度效果。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/6-9/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/6-9/p0028.webp" alt="图 1　习题 6-3 的进程状态变迁图" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　习题 6-3 的进程状态变迁图：五个状态（运行、高优先就绪、低优先就绪、因 I/O 而等待）由编号 1～5 的变迁连成循环，两个就绪队列分别标注时间片 100 ms 与 500 ms（原课件第 28 张）</figcaption>
+</figure>
+<p>先把图读懂。图上有四个进程状态——运行、高优先就绪、低优先就绪、因 I/O 而等待，五个编号的变迁分别是：</p>
+<ul>
+  <li><strong>变迁 1（其次选择）</strong>：低优先就绪 → 运行，时间片 500 ms；</li>
+  <li><strong>变迁 2（时间片到）</strong>：运行 → 低优先就绪；</li>
+  <li><strong>变迁 3（请求 I/O）</strong>：运行 → 因 I/O 而等待；</li>
+  <li><strong>变迁 4（I/O 完成）</strong>：因 I/O 而等待 → 高优先就绪；</li>
+  <li><strong>变迁 5（首先选择）</strong>：高优先就绪 → 运行，时间片 100 ms。</li>
+</ul>
+<p>其中变迁 1 与变迁 5 都是「就绪 → 运行」，区别只在于从哪个就绪队列里挑：高优先就绪队列非空时先挑它（变迁 5），只有它空了才轮到低优先就绪队列（变迁 1）。</p>
+<p><strong>（1）变迁发生的原因</strong></p>
+<ul>
+  <li>发生<strong>变迁 3</strong> 的原因：当运行进程在执行过程中，需要等待某事件的发生才能继续向下执行时（提出 I/O 请求），会发生变迁 3。</li>
+  <li>发生<strong>变迁 2</strong> 的原因：运行进程在分得的时间片 100 ms 或 500 ms 内未完成，当其时间片到时将发生变迁 2。</li>
+  <li>发生<strong>变迁 4</strong> 的原因：当等待进程等待的事件发生了（I/O 完成），将会发生变迁 4。</li>
+</ul>
+<p><strong>（2）因果变迁是否会发生的判断</strong></p>
+<ul>
+  <li>① <strong>2→5 可能发生</strong>。条件是：高优先就绪队列非空。变迁 2 把进程送回低优先就绪队列，处理机空闲下来后，只要高优先就绪队列里有进程，就会先发生变迁 5。</li>
+  <li>② <strong>2→1 可能发生</strong>。当运行进程的时间片到时发生变迁 2，若此时高优先就绪队列为空，就必然引起低优先就绪队列中的一个就绪进程被调度执行，即发生变迁 1。</li>
+  <li>③ <strong>4→5 不可能发生</strong>。因为采用的是非剥夺调度方式：变迁 4 只把进程放进高优先就绪队列，正在运行的进程不会被它打断，它必须等到当前进程自己让出处理机之后才有机会运行。</li>
+  <li>④ <strong>4→2 不可能发生</strong>。变迁 4 的起点是因 I/O 而等待状态，而变迁 2 的起点是运行状态，二者没有共同的起点。</li>
+  <li>⑤ <strong>3→5 可能发生</strong>。条件是：高优先就绪队列非空。变迁 3 让运行进程转入等待，处理机空出来，此时若高优先就绪队列非空就发生变迁 5。</li>
+</ul>
+<p>把这五问放在一起看，判断的诀窍是两条：一看<strong>前一个变迁把进程送进了哪个队列</strong>（送进低优先就绪还是高优先就绪），二看<strong>调度方式是否允许抢占</strong>——非剥夺方式下，「就绪队列里来了新进程」这一件事本身不构成变迁 5 的理由，所以 4→5 不可能发生；而 2→5 之所以可能，是因为变迁 2 发生后处理机确实空出来了，此时再按规则挑选，才轮到变迁 5。</p>
+<p><strong>（3）调度策略与调度效果</strong></p>
+<p><strong>调度策略</strong>：首先调度高优先就绪队列中的进程（一般是 I/O 型进程）投入运行，给高优先就绪队列中的进程分配的时间片大小为 100 ms；只有当高优先就绪队列中的所有进程全部运行完，或因等待某事件发生而处于阻塞状态、高优先就绪队列中没有进程可运行时，才调度低优先就绪队列中的进程（一般是计算型进程），给低优先就绪队列中的进程分配的时间片大小为 500 ms。若一个运行进程的时间片 100 ms 或 500 ms 到时未完成，就进入低优先就绪队列；若某进程在运行期间因等待某事件发生而进入阻塞队列，则当所等待事件完成后，它将进入高优先就绪队列。</p>
+<p><strong>调度效果</strong>：这种算法优先照顾了 I/O 量大的进程（高优先级），但通过给计算型进程分配更长的时间片，也适当照顾了计算型进程，从而提高了系统资源利用率。</p>
+
+<h2>2. 习题 6-11：不可抢占的优先级调度</h2>
+<p><strong>题目</strong>：一实时系统采用不可抢占的优先级调度算法，进程的基本状态为运行、就绪和等待。</p>
+<ul>
+  <li>（1）给出进程的状态变迁图及变迁的原因。</li>
+  <li>（2）如果有 3 个进程 A、B、C 同时创建，优先级 A&gt;B&gt;C，执行过程如下：A：计算 30 ms，I/O 20 ms，计算 10 ms；B：计算 30 ms，I/O 30 ms，计算 10 ms；C：计算 20 ms，I/O 10 ms，计算 20 ms。给出 3 个进程的调度次序及每次占用 CPU 的时间。</li>
+</ul>
+<p><strong>（1）状态变迁图及变迁原因</strong></p>
+<p>系统有运行、就绪、等待三种基本状态，变迁及原因如下：<strong>就绪 → 运行</strong>：调度程序选中一个就绪进程，把处理机交给它；<strong>运行 → 就绪</strong>：进程的时间片用完，被重新排到就绪队列；<strong>运行 → 等待</strong>：进程请求 I/O 或等待某一事件发生，主动让出处理机；<strong>等待 → 就绪</strong>：所等待的事件完成（I/O 完成或事件发生），进程被唤醒重新参与处理机的竞争；<strong>运行 → 完成</strong>：进程正常结束，退出系统。因为采用<strong>不可抢占</strong>方式，不存在「有更高优先级的进程就绪就把运行进程打断」这类变迁——处理机只在运行进程主动让出（请求 I/O、时间片用完或运行结束）时才重新分配。</p>
+<p><strong>（2）调度次序及每次占用 CPU 的时间</strong></p>
+<p>三者的第一段计算分别是 30 ms、30 ms、20 ms，先在时间轴上排一遍即可：0 ms 时三者同时就绪，A 的优先级最高，先运行第一段计算；此后每逢一个进程请求 I/O 或运行结束，就在就绪进程里挑优先级最高者。</p>
+<div class="table-scroll" style="overflow-x:auto">
+  <table>
+    <caption>习题 6-11 的调度次序（不可抢占的优先级调度，A&gt;B&gt;C）</caption>
+    <thead>
+      <tr><th>次序</th><th>时间区间</th><th>占用 CPU 的进程</th><th>占用 CPU 的时间</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>0–30 ms</td><td>A</td><td>30 ms</td><td>三者同时就绪，A 优先级最高，先运行第一段计算</td></tr>
+      <tr><td>2</td><td>30–60 ms</td><td>B</td><td>30 ms</td><td>A 在 30 ms 处请求 I/O（20 ms，到 50 ms 完成）；处理机交给就绪队列中优先级最高的 B</td></tr>
+      <tr><td>3</td><td>60–70 ms</td><td>A</td><td>10 ms</td><td>60 ms 处 B 请求 I/O（30 ms，到 90 ms 完成）；此时 A 早在 50 ms 就已完成 I/O 处于就绪，优先级最高，运行第二段计算后结束</td></tr>
+      <tr><td>4</td><td>70–90 ms</td><td>C</td><td>20 ms</td><td>就绪进程只剩 C，运行第一段计算</td></tr>
+      <tr><td>5</td><td>90–100 ms</td><td>B</td><td>10 ms</td><td>90 ms 处 B 的 I/O 完成、C 请求 I/O（10 ms，到 100 ms 完成）；B 优先级高于 C，运行第二段计算后结束</td></tr>
+      <tr><td>6</td><td>100–120 ms</td><td>C</td><td>20 ms</td><td>100 ms 处 C 的 I/O 完成，运行第二段计算后结束</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>校对一下：A 占用处理机 30 + 10 = 40 ms，B 占用 30 + 10 = 40 ms，C 占用 20 + 20 = 40 ms，三者合计 120 ms，恰好等于三段计算时间之和，说明<strong>处理机全程没有空闲</strong>，也没有出现重复计算或漏算。</p>
+<p>这道题最值得留意的是第 3 步：A 在 50 ms 就已经完成 I/O、转入就绪，但当时 B 正在处理机上运行，而系统是<strong>不可抢占</strong>的，A 只能等到 B 在 60 ms 处请求 I/O、主动让出处理机之后才能运行。如果是抢占式调度，A 在 50 ms 就绪的那一刻就会立即打断 B，调度次序随之改变——做题时先确认「抢占还是不抢占」，再往后排时间轴。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>看进程状态变迁图，第一步是分清每个编号变迁的<strong>起点、终点和触发原因</strong>：由运行进程自己发起的是请求 I/O（运行 → 等待）与时间片到（运行 → 就绪），由外部事件引起的是 I/O 完成（等待 → 就绪），由调度程序引起的是选择（就绪 → 运行）；</li>
+  <li>判断「某种因果变迁会不会发生」，关键看两条：前一个变迁把进程送进了<strong>哪个队列</strong>（高优先就绪还是低优先就绪），以及调度方式是<strong>剥夺还是非剥夺</strong>——非剥夺方式下，就绪队列里来了新进程并不构成「立即抢占运行」的理由，所以习题 6-3 中 4→5 不可能发生；</li>
+  <li>习题 6-3 的调度策略可以概括为「高优先就绪队列优先、时间片 100 ms；高优先就绪队列空了才轮到低优先就绪队列、时间片 500 ms」，效果是优先照顾 I/O 量大的进程、同时适当照顾计算量大的进程；</li>
+  <li>不可抢占的优先级调度中，高优先级的进程即便已经就绪，也不能打断正在运行的进程；调度只发生在运行进程请求 I/O、时间片用完或运行结束之后，这是习题 6-11 中 A 在 50 ms 就绪却要等到 60 ms 才能运行的原因；</li>
+  <li>做时间轴类题目时用一张「次序—时间区间—进程—占用 CPU 时间」的表格逐步推算，最后用「各进程占用时间之和 = 各段计算时间之和（且处理机无空闲）」来校验，能有效避免漏算。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-8.html">‹ 6.8 时间片与优先级混合调度算法</a>
+      <a class="next" href="7-1.html">7.1 主存管理概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

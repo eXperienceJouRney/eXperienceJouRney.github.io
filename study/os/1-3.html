@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.3 操作系统的基本类型 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.3 操作系统的基本类型：课件第 35–43 张 · 2 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html" aria-current="page"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.3 操作系统的基本类型</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节按时间顺序讲了操作系统是怎么长出来的，这一节换成按类型来看它的现状。三类系统各有各的立身之本：批量操作系统追求吞吐率，分时操作系统追求交互性，实时操作系统追求在截止期限之前完成。弄清了这三类的取舍，后面章节里那些具体的机制和策略才有落脚点。</p>
+
+<h2>1. 批量操作系统</h2>
+<p><strong>批量操作系统</strong>把用户提交的程序组织成<strong>作业</strong>的形式：作业成批送入计算机，然后由作业调度程序自动选择作业，在系统内多道运行。早期的代表有 FMS（FORTRAN Monitor System），以及 IBM 7094 机上配备的 IBMSYS。</p>
+<p>批量操作系统的特点是一优一劣，正好互为因果：</p>
+<ul>
+  <li><strong>系统吞吐率高</strong>：靠三件事达成的——脱机操作（I/O 不占用主机）、多道运行（主存中同时放几道作业）、合理搭配作业（把 I/O 量大的作业与计算量大的作业搭配在一起）；</li>
+  <li><strong>作业周转时间长，用户使用不方便</strong>：作业成批提交、排队等待，用户既不能在运行中干预，也拿不到及时反馈。这一条缺点，正是分时操作系统要解决的问题。</li>
+</ul>
+
+<h2>2. 分时操作系统</h2>
+<p><strong>分时操作系统</strong>面向多个联机用户，一般采用时间片轮转的方式，把处理机时间轮流分配给各终端上的用户程序，使每个用户都感到自己在一台计算机上独占操作。它的特点是：</p>
+<ul>
+  <li><strong>并行性</strong>：多个用户同时使用一台计算机，各自的作业在宏观上并行推进；</li>
+  <li><strong>独占性</strong>：用户感觉自己独占了全机资源，察觉不到别的用户也在使用；</li>
+  <li><strong>交互性</strong>：用户通过终端以会话方式与系统交互，可以随时输入命令、观察结果、调整下一步操作。</li>
+</ul>
+<p>把这三条和批量操作系统对照：批量系统的长处是吞吐率高，短处是用户不方便；分时系统恰恰相反，用轮转与交互换来了良好的使用体验。</p>
+
+<h2>3. 实时操作系统</h2>
+<p>在计算机的发展过程中，还形成了一类特殊的系统：<strong>系统必须在一个给定的时间期限之前完成计算任务，否则就会发生灾难性的后果</strong>。这类系统通常是嵌入式系统，用于监视、响应和控制外部环境，比如生产制造、汽车控制系统、飞行控制、核能设备监控。对它们来说，计算的正确性不仅取决于程序的结果正确，也取决于结果产生的时间。配备在这类系统中的操作系统称为<strong>实时操作系统</strong>（RTOS，Real-Time Operating System）。</p>
+<p>实时操作系统的特点有三条：</p>
+<ul>
+  <li><strong>实时响应</strong>：对外部输入的实时信号，能够在规定的时间（<strong>截止期限</strong>，deadline）之内处理完毕并作出反应；</li>
+  <li><strong>高可靠性和安全性</strong>：系统一旦失控后果严重，可靠性与安全性必须优先保证；</li>
+  <li><strong>可预测性</strong>：实时系统采用各种算法和策略来保证行为可预测——不是「通常很快」，而是「最坏情况下也能按时完成」。</li>
+</ul>
+<p>由此引出一个常见疑问：常用的个人计算机操作系统 Windows 为什么不是实时操作系统？回答要从两点入手：一是实时操作系统与非实时操作系统的区别——后者只追求平均意义上的快，不承诺最坏情况下的期限；二是实时系统必须能够<strong>理论证明</strong>其任务集合一定可调度，而不是靠实测「看起来来得及」。</p>
+
+<h3>（1）实时系统参考模型：硬实时周期任务</h3>
+<p>要谈「可证明」，就得先把任务模型写清楚。实时系统的参考模型是<strong>硬实时周期任务</strong>：某个计算任务以固定的时间间隔反复不断地执行，适用于确定性的工作负荷。描述这样一个任务需要三个参数：</p>
+<ul>
+  <li><strong>周期 T</strong>：作业释放的固定时间间隔；</li>
+  <li><strong>执行时间 C</strong>：作业的最大执行时间；</li>
+  <li><strong>截止时间 D</strong>：作业必须在释放时间点之后多久完成。</li>
+</ul>
+<p>于是一个硬实时周期任务的第 j 次执行，最迟必须在（j × T + D）时刻完成。一般情况下 0 &lt; C &lt; D = T，也就是说：<strong>第 j 次执行最迟必须在第 j + 1 次到来之前完成</strong>——上一份活没干完，下一份活就到期了，这就是「硬」字的含义。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-3/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-3/p0041.webp" alt="图 1　硬实时周期任务的参数与释放时刻" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　实时系统参考模型：周期 T、执行时间 C、截止时间 D 三个参数及其在时间轴上的关系，第 j 次执行最迟在 j × T + D 完成（原课件第 41 张）</figcaption>
+</figure>
+<p>模型给定之后，课件留下一个问题：针对这样的任务集合，可以提出哪些调度方案？下面两类算法就是回答。</p>
+
+<h3>（2）实时任务调度算法</h3>
+<p><strong>静态优先级调度算法</strong>在系统运行前就把各任务的优先级定下来，运行中不再改变。其中的代表是<strong>速率单调调度算法</strong>（RM，Rate Monotonic）：任务周期越短（释放越频繁），优先级越高。RM 在静态优先级算法中是最优的，其可调度利用率上界为 U ≤ ln 2 ≈ 69.3%（n 个任务时精确上界为 n(2<sup>1/n</sup> − 1)，随 n 增大趋于 ln 2）。原始出处是 Liu C L 与 Layland J W 的论文《Scheduling algorithms for multiprogramming in a hard-real-time environment》（Journal of the ACM，1973，20(1)：174–189）。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/1-3/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/1-3/p0042.webp" alt="图 2　实时任务调度算法：静态优先级与动态优先级" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　实时任务调度算法：静态优先级的速率单调调度算法 RM（最优，U ≤ ln 2 ≈ 69.3%）与动态优先级的最早截止期优先调度算法 EDF（最优，U ≤ 100%）（原课件第 42 张）</figcaption>
+</figure>
+<p><strong>动态优先级调度算法</strong>的优先级在运行过程中随任务状态变化。其中的代表是<strong>最早截止期优先调度算法</strong>（EDF，Earliest Deadline First）：谁的截止期最近，谁先执行。EDF 在动态优先级算法中是最优的，可调度利用率上界提高到 U ≤ 100%。</p>
+<p>两个上界的差别值得记住：RM 用固定的优先级换来实现简单、行为可预测，代价是浪费了一部分处理机能力；EDF 把处理机能力用得更满，但优先级频繁变化，实现与验证都更复杂。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>批量操作系统把用户程序组织成作业成批送入、多道运行，由作业调度程序自动选择作业；吞吐率高（脱机操作、多道运行、合理搭配作业），但作业周转时间长、用户使用不方便；代表系统有 FMS、IBMSYS；</li>
+  <li>分时操作系统面向联机用户，以时间片轮转使用户感到独占，特点是并行性、独占性、交互性；</li>
+  <li>实时操作系统（RTOS）必须在截止期限（deadline）之前完成任务，否则后果灾难性，多用于嵌入式环境的监视、响应与控制；特点是实时响应、高可靠性和安全性、可预测性；与 Windows 这类非实时系统的区别在于「能不能在最坏情况下守约」，而且必须能被理论证明；</li>
+  <li>硬实时周期任务用周期 T、执行时间 C、截止时间 D 三个参数描述，通常 0 &lt; C &lt; D = T，第 j 次执行必须在第 j + 1 次释放之前完成；</li>
+  <li>静态优先级算法以速率单调调度算法 RM 为代表（周期越短优先级越高，最优，U ≤ ln 2 ≈ 69.3%）；动态优先级算法以最早截止期优先算法 EDF 为代表（最优，U ≤ 100%）；两者都是「最优」，但最优的范围不同。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-2.html">‹ 1.2 操作系统的形成与发展</a>
+      <a class="next" href="1-4.html">1.4 操作系统的定义和特性 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.6 长短期记忆网络 LSTM · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.6 长短期记忆网络 LSTM：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html" aria-current="page"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.6 长短期记忆网络 LSTM</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节把出路指向了门控机制，本节讲其中最有名的一个：<strong>长短期记忆网络（Long Short-Term Memory，LSTM）</strong>。它的思路是给网络配一份专门的「长期账本」——内部状态 c<sub>t</sub>，让信息沿一条<strong>线性的</strong>通道传递，再用三扇门（遗忘门、输入门、输出门）决定往里写什么、从里面删什么、往外读什么。本节先讲它为什么能缓解梯度消失，再逐个讲清三扇门各自管什么。</p>
+
+<h2>1. 短期记忆加上长期记忆</h2>
+<p>课件对 LSTM 的定位只有一句话，但把动机说得很清楚：<strong>RNN 由于梯度消失的原因只能有短期记忆，LSTM 通过精妙的门控制将短期记忆与长期记忆结合起来，并在一定程度上解决了梯度消失问题。</strong></p>
+<p>对照 7.5 节的分析就能理解这句话的分量：梯度消失的根源是隐状态之间的每一次传递都要乘上一个矩阵和一次激活函数的导数，距离一长就衰减殆尽。LSTM 的办法是另开一条通道，让「记忆」在其中<strong>以近似线性的方式</strong>传递，从而绕开连乘带来的衰减。这条通道就是内部状态 c<sub>t</sub>。</p>
+<p>（补充一条课件之外的背景：这一结构由 Hochreiter 与 Schmidhuber 在 1997 年提出，是循环神经网络发展史上被引用最多的工作之一。）</p>
+
+<h2>2. 内部状态与外部状态</h2>
+<p>LSTM 的单元里同时存在两个状态，课件对它们的分工有明确说明：<strong>内部状态 c<sub>t</sub> 专门进行线性的循环信息传递，同时非线性地输出信息给隐藏层的外部状态 h<sub>t</sub></strong>。也就是说，c<sub>t</sub> 负责「记」，h<sub>t</sub> 负责「用」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-6/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-6/p0041.webp" alt="图 1　LSTM 单元结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　LSTM 单元结构：记忆细胞贯穿时间轴，三扇门（遗忘门、输入门、输出门）配上一个候选记忆细胞，共同决定内部状态的更新与隐藏状态的输出（原课件第 41 张）</figcaption>
+</figure>
+<p>课件进一步说明：<strong>c<sub>t</sub> 记录了到当前时刻为止的历史信息</strong>，而在每个时间点，都可以通过调节权重去修正 c<sub>t</sub> 的状态。这份「历史账本」并不直接对外露面，它要经过一次非线性变换才变成对外可见的隐藏状态 h<sub>t</sub>。图 1 的图例也交代了读图方式：方块表示全连接层和激活函数，圆圈里的运算符表示按元素运算，带箭头的连线表示信息的流向。</p>
+
+<h2>3. 三扇门与两条更新公式</h2>
+<p>接下来是最核心的部分。LSTM 在每个时刻都会算出三个门的输出和一个候选状态，再用它们更新内部状态与隐藏状态。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-6/p0043.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-6/p0043.webp" alt="图 2　LSTM 的状态更新与候选状态" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　LSTM 的两条更新公式：内部状态 c<sub>t</sub> = f<sub>t</sub> ⊙ c<sub>t−1</sub> + i<sub>t</sub> ⊙ c̃<sub>t</sub>，外部状态 h<sub>t</sub> = o<sub>t</sub> ⊙ tanh(c<sub>t</sub>)；候选状态 c̃<sub>t</sub> = tanh(W<sub>c</sub>x<sub>t</sub> + U<sub>c</sub>h<sub>t−1</sub> + b<sub>c</sub>)（原课件第 43 张）</figcaption>
+</figure>
+<p>课件在这里给出了三个门的记号——f<sub>t</sub> 是遗忘门的输出，i<sub>t</sub> 是输入门的输出，o<sub>t</sub> 是输出门的输出，而 c̃<sub>t</sub> 是通过非线性得到的候选状态。它们共同构成两条更新公式：</p>
+<ul>
+  <li>内部状态：<strong>c<sub>t</sub> = f<sub>t</sub> ⊙ c<sub>t−1</sub> + i<sub>t</sub> ⊙ c̃<sub>t</sub></strong>；</li>
+  <li>外部状态：<strong>h<sub>t</sub> = o<sub>t</sub> ⊙ tanh(c<sub>t</sub>)</strong>。</li>
+</ul>
+<p>第一式是 LSTM 的关键：它在 c<sub>t−1</sub> 与 c<sub>t</sub> 之间建立了一条「乘一个系数再加一项」的通路，而不是像简单 RNN 那样每次都过一遍权重矩阵和激活函数。正是这条平缓的通道让梯度可以传得更远。第二式则说明内部状态要先经过 tanh 压到 −1 到 1 之间，再按输出门的比例对外输出。</p>
+
+<h3>（1）遗忘门：决定 c<sub>t−1</sub> 忘掉多少</h3>
+<p><strong>遗忘门</strong>控制上一时刻的内部状态 c<sub>t−1</sub> 需要遗忘多少信息，它的输出是 <strong>f<sub>t</sub> = σ(W<sub>f</sub>x<sub>t</sub> + U<sub>f</sub>h<sub>t−1</sub> + b<sub>f</sub>)</strong>。
+<p>因为 σ 是取值在 0 到 1 之间的 sigmoid 函数，f<sub>t</sub> 的每一个分量都可以读作「这一维的历史信息保留多少」：接近 1 就几乎全留，接近 0 就基本清空。它乘在 c<sub>t−1</sub> 上，起到的是「按比例遗忘」的作用。</p>
+
+<h3>（2）输入门：决定新的信息写进去多少</h3>
+<p><strong>输入门</strong>控制当前时刻的候选状态 c̃<sub>t</sub> 有多少信息需要保存，输出为 <strong>i<sub>t</sub> = σ(W<sub>i</sub>x<sub>t</sub> + U<sub>i</sub>h<sub>t−1</sub> + b<sub>i</sub>)</strong>。
+<p>与遗忘门对称，它决定「新内容写多少进去」。而候选状态本身由 tanh 生成：c̃<sub>t</sub> = tanh(W<sub>c</sub>x<sub>t</sub> + U<sub>c</sub>h<sub>t−1</sub> + b<sub>c</sub>)。一个负责「内容」，一个负责「比例」，两者相乘再与保留下来的旧内容相加，就得到了新的内部状态。</p>
+
+<h3>（3）输出门：决定对外说出多少</h3>
+<p><strong>输出门</strong>控制当前时刻的内部状态 c<sub>t</sub> 有多少信息需要输出给外部状态 h<sub>t</sub>，其输出为 <strong>o<sub>t</sub> = σ(W<sub>o</sub>x<sub>t</sub> + U<sub>o</sub>h<sub>t−1</sub> + b<sub>o</sub>)</strong>，于是 h<sub>t</sub> = o<sub>t</sub> ⊙ tanh(c<sub>t</sub>)。这一扇门把「内部记了什么」与「此刻要对外表现什么」分开：账本可以记得很满，但对外只说当前该说的部分。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-6/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-6/p0046.webp" alt="图 3　输出门" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　输出门：o<sub>t</sub> = σ(W<sub>o</sub>x<sub>t</sub> + U<sub>o</sub>h<sub>t−1</sub> + b<sub>o</sub>)，内部状态 c<sub>t</sub> 经 tanh 后与 o<sub>t</sub> 按元素相乘，得到对外输出的 h<sub>t</sub>（原课件第 46 张）</figcaption>
+</figure>
+<p>三扇门合起来看，LSTM 的每一步都在做三次「按比例取舍」：先决定旧账忘多少，再决定新账记多少，最后决定此刻对外报多少。这三处的比例都由当前输入和上一时刻的隐藏状态共同算出，因此是<strong>随内容而变</strong>的——这正是门控比固定结构更灵活的地方。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>LSTM 的动机：简单 RNN 因梯度消失只有短期记忆，LSTM 用门控把短期记忆与长期记忆结合起来，在一定程度上解决了梯度消失问题。</li>
+  <li>两个状态分工不同：<strong>内部状态 c<sub>t</sub></strong> 专门做线性的循环信息传递，记录到当前时刻为止的历史信息；<strong>外部状态 h<sub>t</sub></strong> 由 c<sub>t</sub> 非线性变换后对外输出。</li>
+  <li>两条核心公式：c<sub>t</sub> = f<sub>t</sub> ⊙ c<sub>t−1</sub> + i<sub>t</sub> ⊙ c̃<sub>t</sub> 与 h<sub>t</sub> = o<sub>t</sub> ⊙ tanh(c<sub>t</sub>)，其中 ⊙ 表示按元素相乘。</li>
+  <li>三扇门各司其职：<strong>遗忘门</strong> f<sub>t</sub> = σ(W<sub>f</sub>x<sub>t</sub> + U<sub>f</sub>h<sub>t−1</sub> + b<sub>f</sub>) 控制 c<sub>t−1</sub> 忘掉多少；<strong>输入门</strong> i<sub>t</sub> = σ(W<sub>i</sub>x<sub>t</sub> + U<sub>i</sub>h<sub>t−1</sub> + b<sub>i</sub>) 控制候选状态 c̃<sub>t</sub> = tanh(W<sub>c</sub>x<sub>t</sub> + U<sub>c</sub>h<sub>t−1</sub> + b<sub>c</sub>) 保存多少；<strong>输出门</strong> o<sub>t</sub> = σ(W<sub>o</sub>x<sub>t</sub> + U<sub>o</sub>h<sub>t−1</sub> + b<sub>o</sub>) 控制 c<sub>t</sub> 有多少输出给 h<sub>t</sub>。</li>
+  <li>门的值由 sigmoid 给出，落在 0 到 1 之间，可以读作「通过比例」：0 表示完全阻断，1 表示完全放行。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-5.html">‹ 7.5 长程依赖问题与改进方案</a>
+      <a class="next" href="7-7.html">7.7 门控循环单元 GRU ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

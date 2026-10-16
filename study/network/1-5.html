@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.5 计算机网络的性能指标（1） · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 1 章 1.5 计算机网络的性能指标（1）：讲义第 47–67 页 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html" aria-current="page"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 1 章 概述</p>
+      <h1>1.5 计算机网络的性能指标（1）</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节讲的是「网络是什么、怎么交换」。但要真正评价一个网络好不好，还需要一把尺子 —— 这就是性能指标。本节先列出最常用的八个性能指标，再逐个讲清其中的速率、带宽、吞吐量和时延；时延带宽积、往返时间、利用率和丢包率留到下一节。</p>
+
+<h2>1. 常用的八个性能指标</h2>
+<p>计算机网络的性能可以从不同方面来度量。教材给出了最常用的八个指标：</p>
+<ul>
+  <li><strong>速率</strong>；</li>
+  <li><strong>带宽</strong>；</li>
+  <li><strong>吞吐量</strong>；</li>
+  <li><strong>时延</strong>；</li>
+  <li><strong>时延带宽积</strong>；</li>
+  <li><strong>往返时间</strong>；</li>
+  <li><strong>利用率</strong>；</li>
+  <li><strong>丢包率</strong>。</li>
+</ul>
+<p>这八个指标不是孤立的，它们回答的问题各不相同：速率和带宽说的是「理论上能有多快」，吞吐量说的是「实际上有多快」，时延和往返时间说的是「要等多久」，利用率和丢包率则刻画网络「忙不忙、稳不稳」。本节先讲前四个。</p>
+
+<h2>2. 速率</h2>
+<p>要讲速率，得先从最小的单位说起。<strong>比特（bit）</strong>是计算机中数据量的单位，也是信息论中信息量的单位：<strong>一个比特就是二进制数字中的一个 1 或 0</strong>。常用的数据量单位是：</p>
+<ul>
+  <li>8 bit = 1 Byte（字节）；</li>
+  <li>1 KB = 2<sup>10</sup> B；</li>
+  <li>1 MB = K · KB = 2<sup>10</sup> · 2<sup>10</sup> B = 2<sup>20</sup> B；</li>
+  <li>1 GB = K · MB = 2<sup>10</sup> · 2<sup>20</sup> B = 2<sup>30</sup> B；</li>
+  <li>1 TB = K · GB = 2<sup>10</sup> · 2<sup>30</sup> B = 2<sup>40</sup> B。</li>
+</ul>
+<p>数据量单位有一个容易踩的坑：这里的 K、M、G、T 都是 <strong>2 的整数次幂</strong>（1024 进制），而硬盘等存储设备的厂商习惯按 1000 进制标注容量。所以一块标称 250 GB 的固态硬盘，在操作系统里看到的容量是 250 × 10<sup>9</sup> / 2<sup>30</sup> ≈ 232.8 GB —— 差的不是硬盘缩水，而是两种进制。</p>
+<p>有了数据量，就可以定义<strong>速率（Rate）</strong>了：它指连接在计算机网络上的主机在数字信道上传送比特的速率，也称为<strong>比特率</strong>或<strong>数据率</strong>。常用的数据率单位是：</p>
+<ul>
+  <li>bit/s（b/s、bps）；</li>
+  <li>1 kb/s = 10<sup>3</sup> bit/s；</li>
+  <li>1 Mb/s = k · kb/s = 10<sup>3</sup> · 10<sup>3</sup> bit/s = 10<sup>6</sup> bit/s；</li>
+  <li>1 Gb/s = k · Mb/s = 10<sup>9</sup> bit/s；</li>
+  <li>1 Tb/s = k · Gb/s = 10<sup>12</sup> bit/s。</li>
+</ul>
+<p>请注意对比：<strong>数据量单位是 1024 进制，数据率单位却是 1000 进制</strong>（k = 10<sup>3</sup>）。一个说 Byte，一个说 bit，一个按 1024，一个按 1000 —— 换算时稍不留神就会算错一个数量级。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-5/p0052.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-5/p0052.webp" alt="图 1　数据量单位与数据率单位" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　常用的数据量单位（8 bit = 1 Byte，各级按 1024 进）与数据率单位（各级按 1000 进）（原讲义第 52 页）</figcaption>
+</figure>
+
+<h2>3. 带宽</h2>
+<p><strong>带宽（Bandwidth）</strong>这个词在两个领域里含义不同，必须分清：</p>
+<ul>
+  <li>在<strong>模拟信号系统</strong>中，带宽指信号所包含的各种不同频率成分所占据的<strong>频率范围</strong>，单位是 Hz（kHz、MHz、GHz）。例如一路电话信号的带宽是 3.1 kHz，即 300 Hz ~ 3.4 kHz；</li>
+  <li>在<strong>计算机网络</strong>中，带宽用来表示网络的通信线路所能传送数据的能力，因此网络带宽表示在单位时间内从网络中的某一点到另一点所能通过的<strong>最高数据率</strong>，单位是 bit/s（kb/s、Mb/s、Gb/s、Tb/s），与速率的单位相同。</li>
+</ul>
+<p>两种表述之间并非毫不相干：一条通信线路的「频带宽度」越宽，它所传输数据的「最高数据率」也就越高 —— 这一点在 2.5 节讲信道的极限容量时会从公式上得到印证。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-5/p0056.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-5/p0056.webp" alt="图 2　带宽在模拟信号系统与计算机网络中的两种含义" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　带宽的两种含义：模拟信号中指频率范围（如电话信号 300 Hz ~ 3.4 kHz），计算机网络中指最高数据率（原讲义第 56 页）</figcaption>
+</figure>
+
+<h2>4. 吞吐量</h2>
+<p><strong>吞吐量（Throughput）</strong>表示在单位时间内通过某个网络（或信道、接口）的数据量。它经常被用来对现实世界中的网络进行测量，以便知道实际上到底有多少数据量能够通过网络。</p>
+<p>吞吐量与带宽的关系是：<strong>吞吐量受网络的带宽或额定速率的限制</strong>。带宽是「上限」，吞吐量是「实测值」。比如一台带宽 1 Gb/s 的以太网交换机，在真实流量下能达到的吞吐量往往只有几百 Mb/s，因为它还要受线路质量、CPU 处理能力、其他流量竞争等因素的影响。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-5/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-5/p0057.webp" alt="图 3　吞吐量受带宽限制：带宽 1 Gb/s 的以太网" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　吞吐量表示单位时间内实际通过的数据量，它受带宽或额定速率限制，常被用于测量真实网络的性能（原讲义第 57 页）</figcaption>
+</figure>
+
+<h2>5. 时延</h2>
+<p><strong>时延（Delay）</strong>指数据（一个报文或一个分组）从网络的一端传送到另一端所需的时间。它不是一个单一的量，而是由几部分叠加而成的。</p>
+<figure class="fig">
+  <a href="../../assets/course/1-5/p0058.webp" target="_blank" rel="noopener"><img src="../../assets/course/1-5/p0058.webp" alt="图 4　发送时延：主机把分组的所有比特推上链路所需要的时间" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　发送时延：主机把分组的所有比特发送到链路上所需要的时间（原讲义第 58 页）</figcaption>
+</figure>
+<h3>（1）发送时延</h3>
+<p><strong>发送时延</strong>（又称传输时延）是主机或路由器把分组的所有比特发送到链路上所需要的时间，它取决于分组有多长、网卡发得有多快：</p>
+<p>发送时延 = 分组长度（bit） ÷ 发送速率（bit/s）</p>
+<p>注意分母是<strong>发送速率</strong>，即网卡把比特推向链路的速率，而不是信号在线路上跑的速度。</p>
+
+<h3>（2）传播时延</h3>
+<p><strong>传播时延</strong>是电磁波在信道中传播一定距离所需要的时间：</p>
+<p>传播时延 = 信道长度（m） ÷ 电磁波在信道上的传播速率（m/s）</p>
+<p>电磁波的传播速率取决于介质：自由空间约 3 × 10<sup>8</sup> m/s，铜线约 2.3 × 10<sup>8</sup> m/s，光纤约 2.0 × 10<sup>8</sup> m/s。请注意区分「发送」和「传播」：前者是比特离开网卡的速度，由设备决定；后者是比特在介质中前进的速度，由介质和距离决定，与带宽无关。</p>
+
+<h3>（3）处理时延与排队时延</h3>
+<p><strong>处理时延</strong>是主机或路由器收到分组后，对分组首部进行分析、查表、检错等所花费的时间。它取决于设备的处理能力和协议的开销，<strong>一般不便直接计算</strong>。</p>
+<p>此外，分组在结点的缓存队列中等待转发还会产生<strong>排队时延</strong>。它与当时的通信量密切相关：网络空闲时几乎为零，网络繁忙时可能急剧增大，因此也通常通过测量而非计算得到。</p>
+<p>于是有：<strong>总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延</strong>。在具体问题中如果某几项相对很小（比如忽略处理时延和排队时延），就可以只算剩下的一两项。</p>
+
+<h3>（4）几个典型计算的辨析</h3>
+<p>原讲义用几个计算把这几个时延区分开来，结论很值得记住。</p>
+<p><strong>其一：单位换算不能想当然。</strong>有一个待发送的数据块大小为 100 MB，网卡的发送速率为 100 Mb/s，则发送完该数据块所需的时间是 100 MB ÷ 100 Mb/s。严格来说 MB 与 Mb 不能直接约掉，要先把 100 MB 化为 100 × 2<sup>20</sup> × 8 bit，于是时间为 100 × 2<sup>20</sup> × 8 ÷ 10<sup>8</sup> = 8.388608 s；平时估算时把 M 直接约掉、只看 8 倍的 Byte/bit 关系，得到 8 s，量级上是对的。</p>
+<p><strong>其二：数据块大时，发送时延占绝对主导。</strong>数据块长度 100 MB、信道带宽 1 Mb/s、传送距离 1000 km 时：发送时延 = 100 × 2<sup>20</sup> × 8 ÷ 10<sup>6</sup> ≈ 838.86 s，而传播时延 = 1000 × 10<sup>3</sup> ÷ (2 × 10<sup>8</sup>) = 0.005 s。发送时延比传播时延大了五个数量级。</p>
+<p><strong>其三：数据块极小时，传播时延反而不可忽略。</strong>若把数据块换成一个 1 B 的数据，其余条件不变：发送时延 = 1 × 8 ÷ 10<sup>6</sup> = 8 × 10<sup>-6</sup> s，而传播时延仍是 0.005 s —— 传播时延反过来成了主导项。</p>
+<p>这三个计算说明的是同一件事：<strong>发送时延与数据量成正比，传播时延只与距离和介质有关</strong>，因此「哪个时延更大」完全取决于具体场景，不能一概而论。</p>
+<p><strong>其四：交换方式不同，总时延也不同。</strong>原讲义还比较过这样一个场景：主机甲通过 1 个路由器（存储转发方式）与主机乙互联，两段链路的数据传输速率均为 10 Mb/s，要发送一个 8 Mb 的报文，分组大小为 10 kb，忽略链路传播时延、分组头开销和分组拆装时间。若采用<strong>报文交换</strong>，整个报文必须在路由器完整收到后才能开始转发，共需 0.8 s × 2 = 1.6 s，即 1600 ms；若采用<strong>分组交换</strong>，报文被切成 800 个分组，每个分组的发送时间为 1 ms，由于各分组可以流水线式地连续转发，总时间约为 (800 + 1) × 1 ms = 801 ms。这正是 <a href="1-3.html">1.3 节</a>所说的「分组交换加速传输」在时延上的体现。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>常用的八个性能指标是速率、带宽、吞吐量、时延、时延带宽积、往返时间、利用率、丢包率；本节讲前四个；</li>
+  <li>速率（比特率、数据率）指主机在数字信道上传送比特的速率，基本单位 bit/s；数据量单位按 1024 进（8 bit = 1 Byte，1 KB = 2<sup>10</sup> B ……），数据率单位按 1000 进（1 kb/s = 10<sup>3</sup> bit/s）；</li>
+  <li>带宽在模拟信号系统中指频率范围（Hz），在计算机网络中指线路所能通过的最高数据率（bit/s），两者密切相关；</li>
+  <li>吞吐量指单位时间内实际通过某个网络、信道或接口的数据量，它受带宽或额定速率限制，是「实测」而非「理论」；</li>
+  <li>时延 = 发送时延（分组长度 ÷ 发送速率）＋ 传播时延（信道长度 ÷ 电磁波传播速率）＋ 处理时延 ＋ 排队时延；发送时延与数据量成正比，传播时延只与距离和介质有关；</li>
+  <li>其余四个指标（时延带宽积、往返时间 RTT、利用率、丢包率）见下一节。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-4.html">‹ 1.4 计算机网络的定义和分类</a>
+      <a class="next" href="1-5-2.html">1.5 计算机网络的性能指标（2） ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

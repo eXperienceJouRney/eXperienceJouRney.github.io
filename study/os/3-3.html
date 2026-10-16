@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.3 用户接口 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 3 章 3.3 用户接口：课件第 24–39 张 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html" aria-current="page"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 3 章 用户接口</p>
+      <h1>3.3 用户接口</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">环境建好、程序也能跑了，接下来的问题是：用户和用户程序究竟通过什么与操作系统打交道？答案就是操作系统的<strong>用户接口</strong>。这一节先给用户接口下定义、把它分成命令接口和程序接口两大类，再看命令接口的三种形态（作业控制语言、键盘命令、图形用户界面）各自服务于哪类操作系统，最后分别展开它们的具体内容。</p>
+
+<h2>1. 什么是操作系统的用户接口</h2>
+<p>操作系统的用户接口是<strong>操作系统提供给用户与计算机打交道的外部机制</strong>。用户借助这种机制和系统提供的手段，来控制用户所在的系统。它处在用户（含用户程序）与操作系统之间，是用户能看到、能使用的操作系统的「门面」。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0025.webp" alt="图 1　用户通过操作系统使用计算机" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　用户通过操作系统使用计算机：用户经由操作系统的用户接口下达命令、提出请求，操作系统再去管理和使用计算机资源（原课件第 25 张）</figcaption>
+</figure>
+
+<h2>2. 操作系统提供的两类用户接口</h2>
+<p>用户接口按使用者的身份分成两类，它们对应两种完全不同的使用场景：</p>
+<ul>
+  <li><strong>操作接口（命令接口）</strong>：包括作业控制语言、键盘命令、图形界面。用户使用操作接口来<strong>组织工作流程和控制程序的运行</strong>。</li>
+  <li><strong>程序接口（系统功能调用）</strong>：用户程序在其运行过程中，使用系统功能调用<strong>请求操作系统的服务</strong>。</li>
+</ul>
+<p>前者面向人，后者面向程序。需要强调的是：<strong>任何操作系统都必须同时提供操作接口和程序接口</strong>——只给人用而程序无法请求服务，或只给程序调用而用户无法组织作业，都不成其为一个完整的操作系统。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0026.webp" alt="图 2　操作系统提供的用户接口" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　操作系统提供的用户接口：操作接口（命令接口）之下分作业控制语言、键盘命令、图形界面，程序接口即系统功能调用（原课件第 26 张）</figcaption>
+</figure>
+
+<h2>3. 命令接口与操作系统类型的关系</h2>
+<p>三种命令接口并不是任意搭配的，它们与操作系统的类型一一对应，背后的原因是各类系统对「用户如何介入」的要求不同：</p>
+<ul>
+  <li><strong>作业控制语言</strong>——脱机批处理操作系统；</li>
+  <li><strong>键盘命令</strong>——联机分时操作系统、个人计算机操作系统；</li>
+  <li><strong>图形用户界面</strong>——个人计算机操作系统。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0027.webp" alt="图 3　命令接口与操作系统类型的对应关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　命令接口与操作系统类型的关系：作业控制语言服务于脱机批处理，键盘命令服务于联机分时与个人计算机，图形用户界面服务于个人计算机（原课件第 27 张）</figcaption>
+</figure>
+
+<h2>4. 作业控制语言</h2>
+<p>在脱机方式下，操作系统提供<strong>作业控制语言 JCL</strong>（Job Control Language）。之所以是它，是因为批处理系统中用户不在机器旁，只能用事先写好的一叠控制语句把「先做什么、再做什么」交代清楚。</p>
+<h3>（1）什么是作业控制语言</h3>
+<p>它是一种命令语言，包括了对作业处理的命令和资源请求命令。</p>
+<h3>（2）批处理系统中作业的组织</h3>
+<p>一个完整的作业由三部分组成：</p>
+<ul>
+  <li><strong>作业申请</strong>：作业名、需用 CPU 时间、最迟完成时间、资源请求（主存、外部设备）等；</li>
+  <li><strong>操作说明书</strong>：编辑命令、编译命令、连接命令、运行命令等；</li>
+  <li><strong>程序与数据</strong>。</li>
+</ul>
+<p>下面是 IBM 系列机器上 JCL 的一个例子，可以从中看出它「一行一条控制语句、以 // 开头」的写法：</p>
+<pre><code>// HAROLD JOB,WILSON,MSGLEVEL=(2,0),PRTY=6,CLASS=b
+// COMP EXEC PGM=IEYFORT
+// SYSPRINT DD SYSOUT=A
+// SYSIN DD *
+...（源程序卡片）...
+/*
+// GO EXEC PGM=FORTLINK
+// FTOTF001 DD UNIT=SYSCP
+// GO SYSIN DD *
+...（数据卡片）...
+/*
+//</code></pre>
+
+<h2>5. 键盘命令</h2>
+<p>系统为<strong>联机用户</strong>（交互作业的用户）提供键盘命令。</p>
+<h3>（1）什么是键盘命令</h3>
+<p>它是操作系统为联机用户提供的一种操作命令，用户通过这组命令<strong>直接控制和干预程序的运行</strong>。与 JCL 相比，键盘命令最大的特点是「即时」：输入一条，系统立刻响应。</p>
+<h3>（2）键盘命令的功能</h3>
+<ul>
+  <li>分时操作系统——用于注册、通信、注销的各类命令；</li>
+  <li>个人计算机操作系统——用于通信的各类命令。</li>
+</ul>
+<h3>（3）一个实例：DOS 系统的键盘命令</h3>
+<p>DOS 的键盘命令按管理对象分成几组，是理解命令接口分类的好例子：</p>
+<table>
+  <caption>表 1　DOS 系统键盘命令的分类（据原课件整理）</caption>
+  <thead>
+    <tr><th>类别</th><th>命令</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>文件管理</td><td>COPY、COMP、TYPE、DEL、REN</td></tr>
+    <tr><td>磁盘管理</td><td>FORMAT、CHKDSK、DISKCOPY、DISKCOMP</td></tr>
+    <tr><td>目录管理</td><td>DIR、CD、MD、RD、TREE</td></tr>
+    <tr><td>日期、时间、系统设置</td><td>DATE、TIME、VER、VOL</td></tr>
+    <tr><td>应用程序</td><td>MASM、LINK、DEBUG</td></tr>
+  </tbody>
+</table>
+<p>可以看到，这些命令覆盖的正是操作系统管理的几类资源——文件、磁盘、目录、系统状态，最后一行则是启动应用程序（汇编器、连接器、调试器）的命令。下面分别是 DOS 和 UNIX 的命令行界面：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0032.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0032.webp" alt="图 4　DOS 命令行用户界面" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　DOS 命令行用户界面：提示符下逐条键入命令，系统立即执行并回显结果（原课件第 32 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0038.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0038.webp" alt="图 5　UNIX 命令行用户界面" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　UNIX 命令行用户界面：同为交互式键盘命令，但命令更短小、可组合，配合重定向与管道组织工作流程（原课件第 38 张）</figcaption>
+</figure>
+
+<h2>6. 图形用户界面</h2>
+<p>图形化用户界面是良好的用户交互界面，它把<strong>菜单驱动、图符驱动、面向对象技术</strong>集成在一起，形成一个图文并茂的视窗操作环境。它的发展脉络大致是：1984 年苹果公司推出 Macintosh；1986 年首款用于 UNIX 的窗口系统 X Window System 发布；1992 年微软公司发布 Windows 3.1。</p>
+<h3>（1）菜单驱动方式</h3>
+<p>这是面向屏幕的交互方式，把键盘命令改成用屏幕来体现：命令和系统能完成的操作，用菜单分类、分窗口地在屏幕上列出；用户像点菜一样选择命令或某种操作，控制系统去完成指定的工作。菜单系统的类型有多种，如<strong>下拉式菜单、上推式菜单和随机弹出式菜单</strong>。</p>
+<h3>（2）图符驱动方式</h3>
+<p>这是一种面向屏幕的图形菜单选择方式。<strong>图符</strong>（Icon）也称图标，是一个小小的图形符号，它代表操作系统中的命令、系统服务、操作功能、各种资源。当需要启动系统命令、请求系统资源或操作功能时，可以选择代表它的图符，并借助标记输入设备（鼠标器），用鼠标的点击和拖拽功能，完成命令和操作的选择及执行。</p>
+<h3>（3）图形化用户界面的特点</h3>
+<ul>
+  <li>所有程序以统一的窗口形式出现；</li>
+  <li>提供统一的菜单格式；</li>
+  <li>系统资源、系统命令、操作功能以图标表示；</li>
+  <li>统一的操作方法。</li>
+</ul>
+<p>Microsoft 公司的 Windows 就是这种图形化用户界面的代表。下面是 Windows 3.11 的界面和 UNIX 的图形用户界面：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0037.webp" alt="图 6　Windows 3.11 的界面" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Windows 3.11 的界面：统一的窗口、菜单与图标，把命令和操作功能图形化地组织在视窗环境中（原课件第 37 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-os/3-3/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-3/p0039.webp" alt="图 7　UNIX 图形用户界面" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　UNIX 图形用户界面：在 X Window System 之上构建的桌面环境，同样以窗口、菜单和图标为操作对象（原课件第 39 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>用户接口是操作系统提供给用户与计算机打交道的外部机制，用户借助它控制系统。</li>
+  <li>用户接口分两类：操作接口（命令接口，含作业控制语言、键盘命令、图形界面）用于组织工作流程、控制程序运行；程序接口（系统功能调用）供用户程序在运行中请求操作系统服务。任何操作系统都必须同时提供这两类接口。</li>
+  <li>命令接口与系统类型对应：作业控制语言对应脱机批处理，键盘命令对应联机分时和个人计算机，图形用户界面对应个人计算机。</li>
+  <li>作业控制语言是脱机方式下的命令语言，兼顾作业处理命令与资源请求命令；一个作业由作业申请、操作说明书、程序与数据组成，IBM JCL 是它的典型写法。</li>
+  <li>键盘命令面向联机用户，直接控制和干预程序运行；分时系统用它完成注册、通信、注销，DOS 的文件、磁盘、目录、系统设置与应用命令是常见实例。</li>
+  <li>图形用户界面集成菜单驱动、图符驱动与面向对象技术：菜单驱动把命令分类列在屏幕上供选择，图符驱动用图标代表命令与资源、靠鼠标点击和拖拽操作；统一窗口、统一菜单、图标表示资源、操作统一是它的四个特点。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-2.html">‹ 3.2 应用程序的处理</a>
+      <a class="next" href="3-4.html">3.4 系统功能调用 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.4.4 可靠传输的实现机制 —— 选择重传协议 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.4.4 可靠传输的实现机制 —— 选择重传协议：讲义第 382–412 页 · 5 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html" aria-current="page"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.4.4 可靠传输的实现机制 —— 选择重传协议</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">回退N帧协议要求接收窗口只能为 1，一个分组的误码就会连累它后面所有正确到达的分组一起被丢弃重传。本节的选择重传协议 SR（Selective Repeat）把接收窗口放大到大于 1，让接收方先把失序但无误码的分组暂存起来，发送方因此只需要重传真正出错的那一个分组。</p>
+
+<h2>1. 为什么需要选择重传</h2>
+<p>回退N帧协议的接收窗口尺寸 W<sub>R</sub> 只能等于 1，因此接收方只能按序接收正确到达的数据分组。只要有一个数据分组出现误码，它后续那些本来没有误码、也没有乱序的数据分组，就会因为「前面缺一个」而无法被按序接收、统统丢弃。发送方随后不得不把这些分组也全部超时重传——显然是对通信资源的极大浪费。</p>
+<p>要进一步提高性能，就得设法<strong>只重传出现误码的那个数据分组</strong>。为此接收窗口的尺寸 W<sub>R</sub> 不应再等于 1，而应大于 1：这样接收方就能先收下失序到达但无误码、且序号落在接收窗口内的那些数据分组暂存起来，等所缺的分组重传到达、收齐之后再一并按序送交上层。这就是<strong>选择重传协议 SR（Selective Request）</strong>。</p>
+<p>有一点必须注意：既然要精确定位「哪一个分组出了错」，接收方就<strong>不能再采用累积确认</strong>，而必须对每个正确接收到的数据分组逐一确认。这是选择重传协议与回退N帧协议最本质的区别之一。</p>
+
+<h2>2. 选择重传协议的基本规定</h2>
+<p>选择重传协议同样用窗口来约束收发双方，可以概括为三条：</p>
+<ul>
+  <li>（1）采用 <strong>3 个比特</strong>给数据分组编序号，即序号为 0～7（一般地，序号比特数为 n 时序号为 0～2<sup>n</sup> − 1）；</li>
+  <li>（2）发送窗口尺寸 W<sub>T</sub> 的取值范围是 <strong>1 &lt; W<sub>T</sub> ≤ 2<sup>n−1</sup></strong>，本例取 W<sub>T</sub> = 4；</li>
+  <li>（3）接收窗口尺寸 W<sub>R</sub> 的取值范围是 <strong>1 &lt; W<sub>R</sub> ≤ W<sub>T</sub></strong>，本例取 W<sub>R</sub> = W<sub>T</sub> = 4。</li>
+</ul>
+<p>和回退N帧协议相比，接收窗口从「恒为 1」变成了「可以大于 1，最多取到与发送窗口一样大」。W<sub>T</sub> = 4 时，序号落在发送窗口内的 0～3 号分组允许发送，窗口之外的暂时不允许发送；接收方也允许接收落在接收窗口内的若干分组，窗口之外的同样不予接收。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-4-4/p0384.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-4-4/p0384.webp" alt="图 1　选择重传协议的序号、发送窗口与接收窗口" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　选择重传协议用 3 比特序号，发送窗口与接收窗口尺寸都取 4（原讲义第 384 页）</figcaption>
+</figure>
+<p>收发窗口配合工作的过程如图 2 所示：接收方把失序到达但无误码、且序号落在接收窗口内的数据分组先收下暂存，同时逐一回确认；发送方根据收到的确认按序滑动窗口，等所缺的那个分组被重传并由接收方按序收下之后，暂存的分组才连同它一起按序交付上层。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-4-4/p0408.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-4-4/p0408.webp" alt="图 2　选择重传协议中发送方与接收方窗口的滑动" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　选择重传协议的工作过程：接收方暂存失序但无误码的分组，发送方只重传出错的那个分组（原讲义第 408 页）</figcaption>
+</figure>
+
+<h2>3. 窗口尺寸为什么这样取</h2>
+<p>先说发送窗口。它的上界是 2<sup>n−1</sup> 而不是回退N帧协议里的 2<sup>n</sup> − 1，这是由接收窗口可以大于 1 决定的：接收方会暂存错序分组，新旧分组在序号空间上「撞车」的风险比回退N帧协议更大，因此发送窗口必须收得更紧。</p>
+<ul>
+  <li>若 W<sub>T</sub> = 1：与停止-等待协议相同；</li>
+  <li>若 W<sub>T</sub> &gt; 2<sup>n−1</sup>：会造成接收方无法分辨新、旧数据分组的问题。</li>
+</ul>
+<p>讲义中把发送窗口和接收窗口都故意设成 5（即超过 2<sup>n−1</sup> = 4）来演示这个后果：发送方 0～4 号分组连同新一轮的 0～7 号分组会依次发出，而接收方那边的序号也早已转过一圈，<strong>接收方无法分辨新、旧数据分组</strong>，于是失去可靠传输的能力。</p>
+<p>再说接收窗口。它的上界是发送窗口 W<sub>T</sub>：</p>
+<ul>
+  <li>若 W<sub>R</sub> = 1：与回退N帧协议相同，接收方只能按序接收；</li>
+  <li>若 W<sub>R</sub> &gt; W<sub>T</sub>：没有意义——发送方根本不会发送序号落在发送窗口之外的分组，接收方留出比它更宽的窗口纯属浪费。</li>
+</ul>
+
+<h2>4. 发送方与接收方的工作规则</h2>
+<h3>（1）发送方</h3>
+<ul>
+  <li>发送窗口尺寸满足 1 &lt; W<sub>T</sub> ≤ 2<sup>n−1</sup>，n 是构成分组序号的比特数量；</li>
+  <li>在未收到接收方确认分组的情况下，可以把序号落在发送窗口内的多个数据分组全部发送出去；</li>
+  <li>只有<strong>按序</strong>收到对已发送数据分组的确认时，发送窗口才能向前相应滑动；若收到未按序到达的确认分组，则对它进行记录，以免其相应的数据分组被超时重发，但发送窗口不能向前滑动。</li>
+</ul>
+<h3>（2）接收方</h3>
+<ul>
+  <li>接收窗口尺寸满足 1 &lt; W<sub>R</sub> ≤ W<sub>T</sub>；</li>
+  <li>可以接收未按序到达、但没有误码、并且序号落在接收窗口内的数据分组，把它们暂存起来；</li>
+  <li>为了使发送方仅重传出现差错的分组，<strong>不能再采用累积确认</strong>，而需要对每个正确接收到的数据分组进行逐一确认；</li>
+  <li>只有在按序接收数据分组之后，接收窗口才能向前相应滑动。</li>
+</ul>
+
+<h2>5. 用一道考题检验「不累积确认」</h2>
+<p>原讲义的这道真题，考的就是选择重传协议不使用累积确认这一点：数据链路层采用选择重传协议传输数据，发送方已发送了 0～3 号数据帧，现已收到 1 号帧的确认，而 0、2 号帧依次超时，则此时需要重传的帧数是多少？</p>
+<figure class="fig">
+  <a href="../../assets/course/3-4-4/p0411.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-4-4/p0411.webp" alt="图 3　选择重传协议中确认帧与超时的情形" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　发送方只收到 1 号帧的确认，0、2 号帧先后超时（原讲义第 411 页）</figcaption>
+</figure>
+<p>分析时抓住两点：其一，与回退N帧协议不同，选择重传协议不支持累积确认，接收方每正确接收一个数据帧就发回相应的确认帧，所以「收到 1 号帧的确认」<strong>只说明 1 号帧正确到达</strong>，并不代表 0 号帧也被确认了；其二，题目说 0、2 号帧依次超时，因此需要重传的就是 0 号和 2 号帧，至于已经发送的 3 号帧，题目没有给出任何其他线索，无须考虑。共需重传 <strong>2 个帧</strong>，对应选项 B。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>回退N帧协议的接收窗口只能为 1，一个分组的误码会连累后续多个正确到达的分组被丢弃、重传，浪费通信资源；选择重传协议把接收窗口放大，只重传真正出错的分组；</li>
+  <li>三条基本规定：n 比特序号、1 &lt; W<sub>T</sub> ≤ 2<sup>n−1</sup>、1 &lt; W<sub>R</sub> ≤ W<sub>T</sub>（本例 W<sub>T</sub> = W<sub>R</sub> = 4）；W<sub>T</sub> = 1 时退化为停止-等待协议，W<sub>T</sub> 超过 2<sup>n−1</sup> 或 W<sub>R</sub> 超过 W<sub>T</sub> 都会出问题；</li>
+  <li>接收方可以暂存失序到达但无误码的分组，但必须逐一确认、<strong>不能累积确认</strong>；接收窗口只在按序接收后才向前滑动；</li>
+  <li>发送方收到未按序到达的确认时只做记录（避免该分组被超时重发），窗口不滑动；只有按序到达的确认才能推动窗口前移；</li>
+  <li>三种可靠传输机制的对比：停止-等待协议（W<sub>T</sub> = 1、W<sub>R</sub> = 1）、回退N帧协议（W<sub>T</sub> &gt; 1、W<sub>R</sub> = 1、累积确认）、选择重传协议（W<sub>T</sub> &gt; 1、W<sub>R</sub> &gt; 1、逐一确认）；三者的序号空间与窗口取值的约束也各不相同。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-4-3.html">‹ 3.4.3 可靠传输的实现机制 —— 回退N帧协议</a>
+      <a class="next" href="3-5.html">3.5 点对点协议PPP ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

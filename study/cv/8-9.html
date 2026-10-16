@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.9 代码示例：face_recognition 库 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.9 代码示例：face_recognition 库：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html" aria-current="page"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.9 代码示例：face_recognition 库</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">理论讲完了，最后一节落地：用 Python 的 face_recognition 库，把检测、对齐、识别三步各写一遍。这一节的代码都很短，重点看两件事——库函数把哪些算法细节封装掉了，以及人脸对齐那段代码里「算角度、绕中心旋转」的几何过程是怎么落到几行 NumPy、OpenCV 调用上的。</p>
+
+<h2>1. face_recognition 库</h2>
+<p>课件推荐的入门库是 <strong>Face Recognition</strong>（GitHub 仓库：<a href="https://github.com/ageitgey/face_recognition">ageitgey/face_recognition</a>）。它的定位是：<strong>主要封装了 C++ 图形库，通过 Python 语言将它封装为一个非常简单就可以实现人脸识别的 API 库，屏蔽了人脸识别的算法细节，大大降低了人脸识别功能的开发难度。</strong></p>
+<p>这句话值得拆开看。「封装了 C++ 图形库」指的是底层那些真正吃算力的部分（人脸检测、关键点、特征编码）还是 C++ 实现的，Python 层只是接口；「屏蔽算法细节」意味着<a href="8-2.html">8.2</a>到<a href="8-8.html">8.8</a>讲的那一整套网络，使用者一行都不用写。所以这一节的意义不是「学会调库」，而是<strong>亲手验证一遍前面每个环节的输入输出到底是什么样子</strong>。</p>
+
+<h2>2. 人脸检测</h2>
+<p>检测只要三行：读图、定位。</p>
+<pre><code>import face_recognition
+
+image = face_recognition.load_image_file("your_file.jpg")
+face_locations = face_recognition.face_locations(image)</code></pre>
+<p>返回的 <code>face_locations</code> 就是每张人脸的矩形框——正是 <a href="8-2.html">8.2</a> 节里讲的 bounding box。课件用「Input → Output」的形式给出了它的效果：输入一张照片，输出把人脸框出来的结果。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-9/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-9/p0063.webp" alt="图 1　人脸检测：Input 与 Output" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　人脸检测示例：调用 <code>face_locations()</code>，输入一张照片，输出人脸矩形框的位置（原课件第 63 张）</figcaption>
+</figure>
+
+<h2>3. 人脸对齐（一）：识别关键点</h2>
+<p>对齐的第一步是拿到关键点。课件给出的脚本如下（<code>model</code> 参数决定关键点的数量）：</p>
+<pre><code>import face_recognition
+import cv2
+
+img_name = './test-data/test3.jpg'
+image_array = cv2.imread(img_name)
+Image.fromarray(image_array)
+
+# model="large" 时返回 68 个关键点，
+# model="small" 时返回 5 个关键点
+face_landmarks_list = face_recognition.face_landmarks(
+    image_array, model="large")
+face_landmarks_dict = face_landmarks_list[0]
+print(face_landmarks_dict, end=" ")
+
+# 关键点可视化
+def visualize_landmark(image_array, landmarks):
+    origin_img = Image.fromarray(image_array)
+    draw = ImageDraw.Draw(origin_img)
+    for facial_feature in landmarks.keys():
+        draw.point(landmarks[facial_feature], "#FF0000")
+    imshow(origin_img)
+
+visualize_landmark(image_array=image_array,
+                   landmarks=face_landmarks_dict)
+plt.show()</code></pre>
+<p>这里有两个细节呼应前面的理论。一是<strong>关键点的数量是可选的</strong>：<code>model="large"</code> 给 68 个点，<code>model="small"</code> 给 5 个点——后者正是 DCNN、MTCNN 用的那五个（两眼、鼻尖、两嘴角）。二是返回的是一个字典，按五官部位分组，所以画点时遍历 <code>landmarks.keys()</code> 就能把每个部位的坐标点批量画出来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-9/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-9/p0064.webp" alt="图 2　识别人脸关键点的代码" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　识别人脸关键点：<code>face_landmarks()</code> 返回按部位分组的坐标字典，再按部位把点画到原图上（原课件第 64 张）</figcaption>
+</figure>
+<p>把这段代码跑出来，就能看到课件给出的三张对比图：原图、68 个关键点、5 个关键点。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-9/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-9/p0065.webp" alt="图 3　原图、68 个关键点与 5 个关键点" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　关键点识别的结果：原图、68 个关键点、5 个关键点——点数越多越贴合五官轮廓，5 个点足以支撑对齐（原课件第 65 张）</figcaption>
+</figure>
+
+<h2>4. 人脸对齐（二）：旋转的几何过程</h2>
+<p>拿到关键点之后，对齐的思路只有四步，课件写得很清楚：</p>
+<ul>
+  <li>分别计算左、右眼中心坐标；</li>
+  <li>计算左右眼中心坐标连线与水平方向的夹角 θ；</li>
+  <li>计算左右两眼整体中心坐标；</li>
+  <li>以左右两眼整体中心坐标为基点，将图片 array 逆时针旋转 θ。</li>
+</ul>
+<p>为什么用两只眼睛？因为<strong>两眼连线是头部姿态最稳定、最容易定位的一条基准线</strong>：只要把这条线转到水平，头部的滚转（roll）就被校正了。旋转中心取两眼中心的中点，是为了让脸在旋转后仍然大致居中，不至于转出画面。</p>
+<p>课件还给了两条提示。第一，<strong>将图片旋转后同时也要将关键点做旋转</strong>——关键点和图像必须待在同一个坐标系里，否则后续按关键点做的裁剪、变换都会错位。第二，前一张对比图就是对这一步的验证：<strong>对齐前、对齐后</strong>，同一张侧倾的脸被摆正了。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-9/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-9/p0066.webp" alt="图 4　对齐前与对齐后" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　对齐前与对齐后：按两眼连线把图像（连同关键点）旋转同一个角度，人脸被摆正到统一姿态（原课件第 66 张）</figcaption>
+</figure>
+<p>把这个思路写成代码就是下面这个函数：</p>
+<pre><code>def align_face(image_array, landmarks):
+    # 计算左、右眼中心坐标
+    left_eye = landmarks['left_eye']
+    right_eye = landmarks['right_eye']
+    left_eye_center = np.mean(left_eye, axis=0).astype("int")
+    right_eye_center = np.mean(right_eye, axis=0).astype("int")
+    dy = right_eye_center[1] - left_eye_center[1]
+    dx = right_eye_center[0] - left_eye_center[0]
+
+    # 计算左右眼中心坐标连线与水平方向夹角 θ
+    angle = math.atan2(dy, dx) * 180. / math.pi
+
+    # 左右两眼整体中心坐标
+    eye_center = ((left_eye_center[0] + right_eye_center[0]) // 2,
+                  (left_eye_center[1] + right_eye_center[1]) // 2)
+
+    rotate_matrix = cv2.getRotationMatrix2D(
+        eye_center, angle, scale=1)
+    rotated_img = cv2.warpAffine(
+        image_array, rotate_matrix,
+        (image_array.shape[1], image_array.shape[0]))
+    return rotated_img, eye_center, angle</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-9/p0068.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-9/p0068.webp" alt="图 5　人脸对齐的代码实现" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　人脸对齐的实现：用 <code>np.mean</code> 求两眼中心、<code>atan2</code> 求夹角 θ，再用 <code>getRotationMatrix2D</code> + <code>warpAffine</code> 绕两眼中点旋转图像（原课件第 68 张）</figcaption>
+</figure>
+<p>三处细节对应前面讲的几何：</p>
+<ul>
+  <li><code>np.mean(left_eye, axis=0)</code>：眼睛在字典里是一组轮廓点，取均值得到「眼中心」这一个点——这也解释了为什么 68 点比 5 点更适合做这种平均；</li>
+  <li><code>math.atan2(dy, dx)</code>：用 <code>atan2</code> 而不是 <code>atan(dy/dx)</code>，可以正确处理 dx 为 0 和各种象限的情况，再乘 <code>180./math.pi</code> 转成角度制；</li>
+  <li><code>cv2.getRotationMatrix2D(eye_center, angle, scale=1)</code> 加 <code>cv2.warpAffine</code>：先由中心点和角度构造二维旋转矩阵（<code>scale=1</code> 表示不缩放），再把它作用到整幅图像上，得到对齐后的图。</li>
+</ul>
+<p>注意最后返回了 <code>eye_center</code> 和 <code>angle</code>——这两个量正是「把关键点也一起旋转」所需要的：对每一个关键点施加同一个旋转矩阵即可。</p>
+
+<h2>5. 人脸识别</h2>
+<p>最后一步是识别。做法是先把两张脸各自编码成特征向量，再比较它们的距离：</p>
+<pre><code>import face_recognition
+
+known_image = face_recognition.load_image_file("biden.jpg")
+unknown_image = face_recognition.load_image_file("unknown.jpg")
+
+biden_encoding = face_recognition.face_encodings(known_image)[0]
+unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+results = face_recognition.compare_faces(
+    [biden_encoding], unknown_encoding)</code></pre>
+<p>这段代码几乎就是 <a href="8-8.html">8.8</a> 节 FaceNet 的直译：<code>face_encodings()</code> 对应「把人脸映射到欧几里得空间」，得到的一维向量就是身份编码；<code>compare_faces()</code> 对应「用空间距离判断相似性」，返回是否同一个人。课件给出的运行结果是：输入一张 unknown 图片，输出判定为「Picture contains "Joe Biden"」。</p>
+<p>把整章串起来看，这几行代码背后是：检测（找到脸）→ 关键点（对齐，摆正脸）→ 特征编码（映射到向量空间）→ 距离比较（判定身份）。<strong>库把这条链路封装成了一两个函数，但每一环为什么会存在、失败时会怎样，正是本章前面八节要讲的东西。</strong></p>
+
+<h2>本节小结</h2>
+<ul>
+  <li><strong>face_recognition</strong> 库封装了 C++ 图形库，用 Python 提供极简的人脸识别 API，屏蔽了算法细节；底层的检测、关键点与特征编码正是本章前面讲的那些网络。</li>
+  <li><strong>人脸检测</strong>：<code>load_image_file()</code> 读图，<code>face_locations()</code> 返回人脸矩形框。</li>
+  <li><strong>人脸对齐</strong>：<code>face_landmarks(image_array, model="large")</code> 返回 68 个关键点、<code>model="small"</code> 返回 5 个；对齐思路是算左右眼中心 → 用 <code>atan2</code> 求连线与水平方向夹角 θ → 求两眼整体中心 → 以该中心为基点逆时针旋转 θ，旋转图像时<strong>关键点必须一起旋转</strong>；代码用 <code>getRotationMatrix2D</code> 构造旋转矩阵、<code>warpAffine</code> 施加到图像上。</li>
+  <li><strong>人脸识别</strong>：<code>face_encodings()</code> 把人脸编码成特征向量，<code>compare_faces()</code> 比较向量距离给出「是否同一个人」——这就是 FaceNet 思路的库调用形式。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-8.html">‹ 8.8 经典网络：FaceNet 与 Triplet Loss</a>
+      <span></span>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

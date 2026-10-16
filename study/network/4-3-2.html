@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3.2 分类编址的IPv4地址 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.3.2 分类编址的IPv4地址：讲义第 782–803 页 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html" aria-current="page"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.3.2 分类编址的IPv4地址</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">IPv4 最早的编址方法是分类编址：把 32 位地址按最高几位划成 A、B、C、D、E 五类，各给不同长度的网络号。这一节要弄清三件事——五类地址的位结构、A/B/C 三类各自能指派多少网络号和多少主机地址、以及哪些地址是特殊的、不能随便指派。分类编址虽然已被无分类编址取代，但它是后面理解子网掩码、地址块和特殊地址的起点。</p>
+
+<h2>1. 分类编址把地址分成五类</h2>
+<p>分类编址的做法是：把 32 位 IPv4 地址划分为<strong>网络号</strong>和<strong>主机号</strong>两部分，并根据地址最高几位（称为<strong>类别位</strong>）的取值把地址分成五类。类别位不同，网络号和主机号各占多少位也就不同。</p>
+<table>
+  <caption>数据来源：原讲义第 783、784 页「分类编址的 IPv4 地址」示意图。</caption>
+  <thead>
+    <tr><th>类别</th><th>类别位</th><th>网络号</th><th>主机号</th><th>用途</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A 类</td><td>0</td><td>8 位（去掉 1 位类别位，可用 7 位）</td><td>24 位</td><td>可分配给网络中的主机或路由器各接口</td></tr>
+    <tr><td>B 类</td><td>10</td><td>16 位（去掉 2 位类别位，可用 14 位）</td><td>16 位</td><td>同上</td></tr>
+    <tr><td>C 类</td><td>110</td><td>24 位（去掉 3 位类别位，可用 21 位）</td><td>8 位</td><td>同上</td></tr>
+    <tr><td>D 类</td><td>1110</td><td>——</td><td>——</td><td>多播（组播）地址</td></tr>
+    <tr><td>E 类</td><td>1111</td><td>——</td><td>——</td><td>保留为今后使用</td></tr>
+  </tbody>
+</table>
+<p>用类别位来划分的好处是：拿到一个地址，看一眼最左边的十进制数就能判断它属于哪一类，网络号和主机号的分界也随之确定。但使用时有两条必须记牢的注意事项：</p>
+<ul>
+  <li>只有 <strong>A 类、B 类和 C 类</strong>地址可以分配给网络中主机或路由器的各接口；</li>
+  <li>主机号为<strong>「全 0」</strong>的地址是<strong>网络地址</strong>，主机号为<strong>「全 1」</strong>的地址是<strong>广播地址</strong>，这两种地址都不能分配给主机或路由器接口。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/4-3-2/p0785.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-3-2/p0785.webp" alt="图 1　A 类地址的结构：8 位网络号（首位固定为 0）与 24 位主机号" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　以 A 类地址为例：8 位网络号（最高位固定为 0）加 24 位主机号，网络号 0 保留不指派、127 用作本地环回测试（原讲义第 785 页）</figcaption>
+</figure>
+
+<h2>2. A、B、C 类地址的可指派范围</h2>
+<p>每一类地址的网络号都有「最小」和「最大」两个边界，边界上的网络号往往有特殊用途，因此可指派的网络数量并不等于网络号字段能表示的全部组合。下面逐类来看。</p>
+<h3>（1）A 类地址</h3>
+<ul>
+  <li>最小网络号 0，<strong>保留不指派</strong>；第一个可指派的网络号为 1，网络地址为 1.0.0.0；</li>
+  <li>最大网络号 127，作为<strong>本地环回测试地址</strong>，不指派。最小的本地环回测试地址为 127.0.0.1，最大的本地环回测试地址为 127.255.255.254；</li>
+  <li>最后一个可指派的网络号为 126，网络地址为 126.0.0.0；</li>
+  <li>可指派的网络数量为 2<sup>7</sup> − 2 = <strong>126</strong>（减 2 的原因是除去最小网络号 0 和最大网络号 127）；</li>
+  <li>每个网络中可分配的 IP 地址数量为 2<sup>24</sup> − 2 = <strong>16777214</strong>（减 2 的原因是除去主机号为全 0 的网络地址和全 1 的广播地址）。</li>
+</ul>
+<h3>（2）B 类地址</h3>
+<ul>
+  <li>最小网络号也是第一个可指派的网络号 128.0，网络地址为 128.0.0.0；</li>
+  <li>最大网络号也是最后一个可指派的网络号 191.255，网络地址为 191.255.0.0；</li>
+  <li>可指派的网络数量为 2<sup>14</sup> = <strong>16384</strong>；</li>
+  <li>每个网络中可分配的 IP 地址数量为 2<sup>16</sup> − 2 = <strong>65534</strong>（减 2 的原因同样是除去全 0 的网络地址和全 1 的广播地址）。</li>
+</ul>
+<p>这里有一个容易被教材差异绊住的地方，原讲义专门作了说明：有些教材指出 128.0 是保留网络号，B 类第一个可指派的网络号应为 128.1；但根据 2002 年 9 月发表的 RFC 3330 文档，128.0 这个网络号已经可以分配了。</p>
+<h3>（3）C 类地址</h3>
+<ul>
+  <li>最小网络号也是第一个可指派的网络号 192.0.0，网络地址为 192.0.0.0；</li>
+  <li>最大网络号也是最后一个可指派的网络号 223.255.255，网络地址为 223.255.255.0；</li>
+  <li>可指派的网络数量为 2<sup>21</sup> = <strong>2097152</strong>；</li>
+  <li>每个网络中可分配的 IP 地址数量为 2<sup>8</sup> − 2 = <strong>254</strong>。</li>
+</ul>
+<p>与 B 类类似，也有教材认为 192.0.0 是保留网络号、C 类第一个可指派网络号是 192.0.1；原讲义指出，按 RFC 3330 的规定 192.0.0 已经可以分配，只不过目前还没有分配出去。可见 C 类网络的规模很小——一个网络最多只容纳 254 台主机，这正是「C 类地址数量多但每个都太小」的由来，也是后来要划分子网、改用无分类编址的现实动因。</p>
+
+<h2>3. D 类和 E 类地址</h2>
+<p>五类地址中还剩下两类，它们不再区分网络号和主机号，也不用于普通的主机寻址：</p>
+<ul>
+  <li><strong>D 类地址</strong>（类别位 1110）：第一个地址为 224.0.0.0，最后一个地址为 239.255.255.255，共 2<sup>28</sup> 个地址，用作<strong>多播地址</strong>，即一对多的组通信；</li>
+  <li><strong>E 类地址</strong>（类别位 1111）：第一个地址为 240.0.0.0，最后一个地址为 255.255.255.255，共 2<sup>28</sup> 个地址，<strong>保留为今后使用</strong>。</li>
+</ul>
+<p>D 类和 E 类各占整个地址空间的 1/16，都不能分配给主机或路由器接口。</p>
+
+<h2>4. 分类编址信息汇总</h2>
+<p>把五类地址的边界与容量集中列在下面两张表里，便于对照记忆。先看 A、B、C 三类可指派的网络号范围与网络数量（D 类和 E 类不划分网络号，见第二张表）：</p>
+<table>
+  <caption>数据来源：原讲义第 802 页「分类编址的 IPv4 地址」汇总表。</caption>
+  <thead>
+    <tr><th>类别</th><th>可指派网络号范围</th><th>可指派网络数</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td>1 ～ 126（0 和 127 不指派）</td><td>126（2<sup>7</sup> − 2）</td></tr>
+    <tr><td>B</td><td>128.0 ～ 191.255</td><td>16384（2<sup>14</sup>）</td></tr>
+    <tr><td>C</td><td>192.0.0 ～ 223.255.255</td><td>2097152（2<sup>21</sup>）</td></tr>
+  </tbody>
+</table>
+<p>再看各类地址的容量与占整个地址空间的比例。注意 A 类占 1/2，B 类占 1/4，C 类占 1/8，D 类和 E 类各占 1/16，加起来正好是整个 IPv4 地址空间。</p>
+<table>
+  <caption>数据来源：原讲义第 802 页「分类编址的 IPv4 地址」汇总表。</caption>
+  <thead>
+    <tr><th>类别</th><th>单网主机数</th><th>占比</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td>16777214（2<sup>24</sup> − 2）</td><td>1/2</td></tr>
+    <tr><td>B</td><td>65534（2<sup>16</sup> − 2）</td><td>1/4</td></tr>
+    <tr><td>C</td><td>254（2<sup>8</sup> − 2）</td><td>1/8</td></tr>
+    <tr><td>D</td><td>——（多播地址，共 2<sup>28</sup> 个）</td><td>1/16</td></tr>
+    <tr><td>E</td><td>——（保留为今后使用，共 2<sup>28</sup> 个）</td><td>1/16</td></tr>
+  </tbody>
+</table>
+
+<h2>5. 几类特殊的 IPv4 地址</h2>
+<p>除了上面按类划分的常规地址，还有几种网络号或主机号取特殊值的地址，它们在协议运行中承担着固定的含义，不能当作普通的单播地址来用。</p>
+<table>
+  <caption>数据来源：原讲义第 796 页「一般不使用的特殊 IP 地址」表；源地址、目的地址两列表示该地址可否作为分组的源地址或目的地址。</caption>
+  <thead>
+    <tr><th>网络号</th><th>主机号</th><th>源地址</th><th>目的地址</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>可以</td><td>不可</td><td>在本网络上的本主机（DHCP 协议使用）</td></tr>
+    <tr><td>0</td><td>host-id</td><td>可以</td><td>不可</td><td>在本网络上的某台主机 host-id</td></tr>
+    <tr><td>全 1</td><td>全 1</td><td>不可</td><td>可以</td><td>只在本网络上进行广播（各路由器均不转发）</td></tr>
+    <tr><td>net-id</td><td>全 1</td><td>不可</td><td>可以</td><td>对 net-id 上的所有主机进行广播</td></tr>
+    <tr><td>127</td><td>非全 0 或全 1</td><td>可以</td><td>可以</td><td>用于本地软件环回测试</td></tr>
+  </tbody>
+</table>
+<p>把这几种地址放在一起比较，可以更清楚地看出「源地址」和「目的地址」的限制从何而来。原讲义用一道 2017 年的真题来检验这个判断：<strong>下列 IP 地址中，只能作为 IP 分组的源 IP 地址但不能作为目的 IP 地址的是</strong>——A. 0.0.0.0，B. 127.0.0.1，C. 20.10.10.3，D. 255.255.255.255。答案是 A。理由分别是：</p>
+<ul>
+  <li>地址 0.0.0.0 是一个特殊 IPv4 地址，只能作为源地址使用，表示「在本网络上本主机」；封装有 DHCP Discovery 报文的 IP 分组的源地址就使用 0.0.0.0；</li>
+  <li>以 127 开头且后面三个字节非「全 0」或「全 1」的地址是一类特殊的 IPv4 地址，既可以作为源地址使用，也可以作为目的地址使用，用于本地软件环回测试，例如常用的 127.0.0.1；</li>
+  <li>地址 255.255.255.255 也是特殊的 IPv4 地址，只能作为目的地址使用，表示「只在本网络上进行广播（各路由器均不转发）」。</li>
+</ul>
+
+<h2>6. 怎样判断一个分类地址能否指派给主机</h2>
+<p>综合上面的规则，拿到一个分类编址的 IPv4 地址，可以按三步判断它能不能指派给主机或路由器接口：</p>
+<ul>
+  <li>第一步，<strong>看地址左起第一个十进制数的值判断类别</strong>：小于 127 的是 A 类，128～191 的是 B 类，192～223 的是 C 类；</li>
+  <li>第二步，<strong>按类别划分网络号和主机号</strong>：A 类地址的网络号是左起第一个字节，B 类地址的网络号是左起前两个字节，C 类地址的网络号是左起前三个字节；</li>
+  <li>第三步，<strong>排除三种不能指派的情况</strong>：A 类网络号 0 和 127；主机号为「全 0」（这是网络地址）；主机号为「全 1」（这是广播地址）。</li>
+</ul>
+<p>按这三条规则判断，几个典型地址的结论是：0.1.2.3 是 A 类，因网络号 0 保留而不能指派；126.255.255.255 是 A 类，主机号全 1 是广播地址，不能指派；127.0.0.1 是 A 类，是本地环回测试地址，不能指派；128.0.255.255 和 172.18.255.255 都是 B 类，主机号全 1 是广播地址，不能指派；192.0.0.255 是 C 类，主机号全 1 是广播地址，不能指派；而 1.2.3.4、166.16.18.255、191.255.255.252、196.2.3.8、218.75.230.30、223.255.255.252 的网络号和主机号都不落入上述三种情况，可以指派给主机。</p>
+<p>分类编址还需要考虑「按需分配、节约地址」：如果给出若干个规模不同的网络，应先找出图中有哪些网络，再根据每个网络中主机和路由器接口的总数量决定该分配哪一类的网络号，最后在该类的可指派网络号范围内为每个网络各挑选一个<strong>互不相同</strong>的网络号。原讲义的例子中，拥有 65534 台主机的网络分配 A 类网络号，拥有 254 台主机的网络分配 B 类网络号，只有 16 台和 24 台主机的两个网络分配 C 类网络号——类别选得刚刚够用，才不会浪费地址。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-3-2/p0798.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-3-2/p0798.webp" alt="图 2　分类编址的地址分配练习：不同规模的网络分别分配 A、B、C 类网络号" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　地址分配练习的网络结构：65534 台主机、254 台主机、16 台主机与 24 台主机的网络分别按需分配不同类别的网络号（原讲义第 798 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>分类编址按类别位把 32 位地址分成五类：A 类（0）网络号 8 位、主机号 24 位；B 类（10）16 + 16；C 类（110）24 + 8；D 类（1110）为多播地址；E 类（1111）保留。</li>
+  <li>只有 A、B、C 类地址可指派给主机或路由器接口；主机号全 0 是网络地址、全 1 是广播地址，都不能指派。</li>
+  <li>A 类可指派网络号 1～126（网络号 0 保留、127 用作本地环回测试），共 126 个网络、每网 16777214 个地址；B 类 128.0～191.255，共 16384 个网络、每网 65534 个地址；C 类 192.0.0～223.255.255，共 2097152 个网络、每网 254 个地址。</li>
+  <li>各类占地址空间的比例依次是 A 类 1/2、B 类 1/4、C 类 1/8、D 类和 E 类各 1/16。</li>
+  <li>0.0.0.0 只能作源地址（DHCP 场景，表示本网络上的本主机），255.255.255.255 只能作目的地址（只在本网络广播），net-id 加全 1 主机号是对该网络的广播地址，127 开头的地址用于本地软件环回测试。</li>
+  <li>判断某地址能否指派：先由第一个字节定类别，再按类别分出网络号和主机号，最后排除 A 类网络号 0 与 127、主机号全 0、主机号全 1 这三种情况。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-3-1.html">‹ 4.3.1 IPv4地址概述</a>
+      <a class="next" href="4-3-3.html">4.3.3 划分子网的IPv4地址 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

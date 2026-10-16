@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.4 万维网（World Wide Web） · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 3 章 网络服务及应用 3.4 万维网（World Wide Web）：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html" aria-current="page"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 3 章 网络服务及应用</p>
+      <h1>3.4 万维网（World Wide Web）</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">万维网 WWW（World Wide Web）是网络服务里最贴近日常生活的那个：输入网址，页面就出现了。它能成立靠三样东西——用 HTML（HyperText Markup Language，超文本标记语言）描述内容、用 URL（Uniform Resource Locator，统一资源定位符）定位对象、用 HTTP（HyperText Transfer Protocol，超文本传输协议）把对象搬到浏览器。本节先看它在通信史上的位置与组成，再顺着内容的表达与传输，讲清 HTTP/1.0 到 HTTP/3 的演进，最后讨论 Cookie 与隐私。</p>
+
+<h2>1. 从电话、广播到万维网</h2>
+<p>课件先把万维网放回通信技术的时间线：19 世纪 70 年代电话的发明，扩展了人类通信的范围，增强了通信的实效性；20 世纪 20 年代广播收音机和电视的发明，极大丰富了人类可获取的信息；20 世纪 90 年代 WEB 的发明，则极大提高了人类主动获取信息的能力——前两次是把信息送到人面前，这一次是人自己去取。</p>
+<p>三者的共同点是「广播和按需操作」，差别在发布权：<strong>你不能发布电视节目，但可以发布 WEB 内容</strong>。</p>
+
+<h2>2. WEB 的构成</h2>
+<p>客户端是<strong>浏览器（Browser）</strong>，课件列举 IE、Maxthon、Firefox 等；服务器端是 <strong>Web 服务器</strong>，课件列举 IIS、Apache、TomCat 等。课件用运行 Firefox 的 PC、运行 Safari 的 iPhone 和运行 Apache 的 Web 服务器示意这个场景。两边交换的是 <strong>HTTP 请求（HTTP request）</strong>与 <strong>HTTP 响应（HTTP response）</strong>。</p>
+<p>支撑这套交互的是两种协议：<strong>信息传输的协议是 HTTP</strong>（课件标注了 HTTP/1.0、HTTP1.1……各版本），<strong>信息表达的协议是 HTML</strong>——前者管「怎么传」，后者管「长什么样」。课件特别说明：<strong>WEB 属于 C/S（客户/服务器）模式</strong>，这与第一版讲义 6.2 客户—服务器方式和对等方式的划分一致。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0062.webp" alt="图 1　WEB 的构成：浏览器与 Web 服务器之间交换 HTTP 请求与响应" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　WEB 的构成：浏览器一侧有 IE、Maxthon、Firefox 等，Web 服务器一侧有 IIS、Apache、TomCat 等，二者用 HTTP request 与 HTTP response 交互（原课件第 62 张）</figcaption>
+</figure>
+
+<h2>3. WEB 内容的表达：对象与 URL</h2>
+<p>网页看似一个整体，实际由许多零件拼成：<strong>Web 页面由一些对象（object）组成</strong>，对象可以是 HTML 文件、JPEG 图片、音频文件、Java Applet……其中 <strong>HTML 文件是 Web 页面的基础，是一个容器对象</strong>——它本身是文本，又指出页面里还嵌了哪些对象。</p>
+<p>零件虽多，寻址只有一个办法：<strong>任何一个对象都可以用 URL 来定位</strong>。课件给的例子是 <code>www.hust.edu.cn/cs/pic.gif</code>，其中 <code>www.hust.edu.cn</code> 是主机名、<code>cs/pic.gif</code> 是路径名。主机名要变成 IP 地址还得靠域名解析，见 3.7 域名解析服务（DNS），第一版讲义 6.4 域名系统DNS 也讲过同一件事。</p>
+
+<h2>4. WEB 内容的传输：HTTP 与 TCP</h2>
+<p>取回对象靠 HTTP 协议，课件给出了它的版本依据：<code>http1.0: RFC 1945</code>、<code>http1.1: RFC 2068</code>。HTTP 工作在客户端/服务器模式下：客户端（浏览器）请求、接收、展示 Web 对象，服务器发送对象、对请求进行响应；<strong>HTTP 报文是应用层协议报文，在浏览器（http client）和 Web 服务器（http server）之间交换</strong>。</p>
+<p>报文本身不负责可靠传输，这件事交给下面的 TCP：客户端启动 TCP 连接（创建套接字）到服务器，端口 80；服务器接受来自客户端的 TCP 连接；HTTP 报文在连接上往返交换；最后关闭 TCP 连接。端口 80 是 HTTP 服务器的默认端口，与第一版讲义 5.2 运输层端口号、复用与分用的概念相呼应；TCP 提供面向连接的可靠服务，见 3.3 节。</p>
+
+<h2>5. HTTP/1.0 的非持久连接</h2>
+<p>HTTP/1.0 采用<strong>非持久连接（non-persistent connection）</strong>：一个对象用完，连接就断。课件用一个具体场景说明：假设用户键入了 URL <code>www.hust.edu.cn/cs/home.index</code>，该网页包含文本并引用了 10 个 jpeg 图片，取回这个页面要走以下步骤：</p>
+<ul>
+  <li>1a. http 客户端启动 TCP 连接到 www.hust.edu.cn 上的 http 服务器（进程）；Port 80 是 http 服务器的默认端口；</li>
+  <li>1b. 服务器在 port 80 等待 TCP 的连接请求，「接受」连接并通知客户端；</li>
+  <li>2. http 客户端发送 http 请求报文（包括 URL）进入 TCP 连接插口（socket）；</li>
+  <li>3. http 服务器接收到请求报文，形成响应报文（包含了所请求的对象 cs/home.index），将报文送入插口（socket）；</li>
+  <li>4. http 服务器关闭 TCP 连接；</li>
+  <li>5. http 客户端接收到了包含 html 文件的响应报文，分析 html 文件，发现 10 个引用的 jpeg 对象；</li>
+  <li>6. 对 10 个 jpeg objects 逐个重复 1–5 步。</li>
+</ul>
+<p>第 4 步和第 6 步是这套机制的关键：每取一个对象都要重新建一次连接。课件把代价算成时间——<strong>取一个对象需要 2 个 RTT</strong>：一个 RTT 用于建立 TCP 连接，一个 RTT 用于请求文件并等文件送达，再加<strong>文件传输时间</strong>，所以每个对象的总时间 = 2RTT + 文件传输时间；页面里嵌了 10 张图片，这 2 个 RTT 就要重复 11 次。实际中的补救办法是许多浏览器同时打开多个并行的连接来改善性能。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0069.webp" alt="图 2　非持久性连接的工作机制：建立 TCP 连接与请求传送对象各占一个 RTT" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　非持久性连接的工作机制：建立 TCP 连接占一个 RTT，对象请求与传送再占一个 RTT，取一个对象共需 2 RTT（原课件第 69 张）</figcaption>
+</figure>
+
+<h2>6. HTTP/1.1 引入的持久连接</h2>
+<p>消除上述浪费的办法是让连接活下来。<strong>持久连接（persistent connection）</strong>的做法是：服务器在发送响应后，不再断开 TCP 连接，而是保持该连接用于后续对象的传送，直至该连接「休息」了一个较长的时间后，方断开该连接。同一个页面里的 10 张图片，便可以共用这条已建好的连接。</p>
+<p>好处不止省时间：持久连接<strong>减少了对服务器端连接数的需要，从而减少了对服务器端套接字资源的占用，提高了服务器的负载能力</strong>。它又分为两种方式——<strong>非流水线方式</strong>，一个对象传输完成方能传输下一个；<strong>流水线方式</strong>，可以一次性发送所有请求，慢慢接收。</p>
+
+<h2>7. HTTP 请求报文的格式与方法</h2>
+<p>HTTP 报文分两类：<strong>HTTP 请求报文</strong>与 <strong>HTTP 响应报文</strong>，都是纯 ASCII 文本。请求报文的一般格式由四段构成：</p>
+<pre><code>请求行：  方法  sp  URL  sp  版本  cr  lf
+首部行：  首部字段名：值  cr  lf
+          ……
+空行：    cr  lf
+实体主体：……</code></pre>
+<p>请求行里的方法有 GET、POST、HEAD 等命令；首部行由「首部字段名：值」构成；<strong>单独一行回车、换行表示报文首部结束</strong>，空行之后才是实体主体。课件给了一段典型的 HTTP 请求报文（ASCII）：</p>
+<pre><code>GET /index.html HTTP/1.1\r\n
+Host: www-net.cs.umass.edu\r\n
+User-Agent: Firefox/3.6.10\r\n
+Accept: text/html,application/xhtml+xml\r\n
+Accept-Language: en-us,en;q=0.5\r\n
+Accept-Encoding: gzip,deflate\r\n
+Accept-Charset: ISO-8859-1,utf-8;q=0.7\r\n
+Keep-Alive: 115\r\n
+Connection: keep-alive\r\n
+\r\n</code></pre>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0072.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0072.webp" alt="图 3　HTTP 请求报文的一般格式：请求行、首部行、空行与实体主体" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　HTTP 请求报文的一般格式：请求行由方法、URL、版本加 cr lf 组成，下面是若干首部行，单独一行 cr lf 表示首部结束（原课件第 72 张）</figcaption>
+</figure>
+<p>请求行支持的方法及其含义，课件逐条给出：</p>
+<div class="tbl-wrap"><table>
+  <caption>请求行支持的方法依课件「请求行支持的方法」整理。</caption>
+  <thead>
+    <tr><th>方法</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>GET</td><td>向服务器请求指定 URL 的对象</td></tr>
+    <tr><td>POST</td><td>用于向服务器提交表单数据，也可以同时请求一个 WEB 页面</td></tr>
+    <tr><td>HEAD</td><td>返回响应报文，不包含请求的对象</td></tr>
+    <tr><td>PUT</td><td>上传的文件放在实体主体字段中，目标路径由 URL 字段标明</td></tr>
+    <tr><td>DELETE</td><td>删除 URL 字段中指定的文件</td></tr>
+  </tbody>
+</table></div>
+<p>除了用 PUT 把数据放进实体主体，还有<strong>另一种上传数据的方式</strong>：使用 GET 方法，将需要上传的数据放到 URL 中。课件给的例子是：</p>
+<pre><code>www.somesite.com/animalsearch?monkeys&amp;banana</code></pre>
+<p>两种做法的区别在于数据放在哪里：GET 写法把数据直接拼进 URL，URL 会变长，也会留在浏览器的历史记录和服务器日志里。</p>
+
+<h2>8. HTTP 响应报文的格式与常见状态码</h2>
+<p>响应报文的结构与请求报文对称，只是第一行换成了<strong>状态行</strong>：由协议版本、状态编码和短语三部分组成；之后同样是首部行、空行，最后是实体主体，里面装着数据。</p>
+<pre><code>状态行：  版本  状态编码  短语  cr  lf
+首部行：  首部字段名：值  cr  lf
+          ……
+空行：    cr  lf
+实体主体：数据</code></pre>
+<p>课件给了一段典型的 HTTP 响应报文（ASCII）：</p>
+<pre><code>HTTP/1.1 200 OK\r\n
+Date: Sun, 26 Sep 2010 20:09:20 GMT\r\n
+Server: Apache/2.0.52 (CentOS)\r\n
+Last-Modified: Tue, 30 Oct 2007 17:00:02 GMT\r\n
+ETag: "17dc6-a5c-bf716880"\r\n
+Accept-Ranges: bytes\r\n
+Content-Length: 2652\r\n
+Keep-Alive: timeout=10, max=100\r\n
+Connection: Keep-Alive\r\n
+Content-Type: text/html; charset=ISO-8859-1\r\n
+\r\n
+data data data data data ...</code></pre>
+<p>上例中的 <code>Content-Length: 2652</code> 与 <code>Content-Type: text/html</code>，正说明实体主体是长度 2652 字节的 html 数据。状态行里的状态编码则告诉客户端发生了什么，课件列出了几种最常见的：</p>
+<div class="tbl-wrap"><table>
+  <caption>常见响应状态码和短语依课件「常见的HTTP响应状态码和短语」整理。</caption>
+  <thead>
+    <tr><th>状态码与短语</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>200 OK</td><td>请求成功，被请求的对象在报文中</td></tr>
+    <tr><td>301 Moved Permanently</td><td>被请求的对象被移动过，新的位置在报文中有说明（Location:）</td></tr>
+    <tr><td>400 Bad Request</td><td>服务器不懂请求报文</td></tr>
+    <tr><td>404 Not Found</td><td>服务器上找不到请求的对象</td></tr>
+    <tr><td>505 HTTP Version Not Supported</td><td>服务器不支持请求报文使用的 HTTP 协议版本</td></tr>
+  </tbody>
+</table></div>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0075.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0075.webp" alt="图 4　HTTP 响应报文的一般格式：状态行、首部行、空行与实体主体" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　HTTP 响应报文的一般格式：状态行由版本、状态编码、短语组成，随后是若干首部行、一个空行，实体主体里是被请求的数据（原课件第 75 张）</figcaption>
+</figure>
+
+<h2>9. HTTP/2：用报文分帧消除队首阻塞</h2>
+<p>HTTP/1.1 的持久连接解决了建连开销，却留下一个新麻烦。课件说的 <strong>HTTP/1.1 存在的问题</strong>是：存在多个对象时，小对象会被排在前面的大对象阻塞——这就是<strong>队首阻塞 HOL（Head-Of-Line blocking）</strong>——用户体验极差；用多 TCP 连接并发可以规避，但课件指出这等于<strong>回到了 HTTP/1.0</strong>。课件用一条时间线演示：客户端先后发出 GET O1、GET O2、GET O3、GET O4，服务器<strong>按请求的顺序发送对象</strong>，于是 O2、O3、O4 不得不在 O1 后面排队。</p>
+<p>HTTP/2 的目标是<strong>减少多对象访问时的感知时延</strong>，方案 [RFC7540, 2015] 有四条：</p>
+<ul>
+  <li>方法、状态短码和大多数首部字段与 HTTP 1.1 相同；</li>
+  <li>根据客户指定的对象优先级（不一定是 FCFS）确定请求对象的传输顺序；</li>
+  <li>将未请求的对象推送给客户端——服务器推；</li>
+  <li>将对象划分为帧，对帧的传输进行规划以减少 HOL 阻塞。</li>
+</ul>
+<p>第四条是核心技术。课件专门用一张图讲<strong>报文分帧</strong>：对象不再整块排队，而是切成小帧交叉发送，于是 O2、O3、O4 快速交付，O1 则有些许延时——用一点对 O1 的延迟，换来其余对象的及时到达。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0079.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0079.webp" alt="图 5　HTTP/2 的报文分帧：对象被切成帧交叉传输，O2、O3、O4 快速交付，O1 有些许延时" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　HTTP/2 的解决方案——报文分帧：客户端并发请求 O1、O2、O3、O4，服务器把对象划分为帧交叉传输，O2、O3、O4 快速交付，O1 则有些许延时（原课件第 79 张）</figcaption>
+</figure>
+
+<h2>10. 从 HTTP/2 到 HTTP/3</h2>
+<p>HTTP/2 仍然跑在 TCP 之上，而 TCP 遇丢包会把后续数据一并压住，队首阻塞没有被彻底消除，课件因此把话题引向下一代协议。课件第 81 张用一张层次图给出这条路线：上方并列着 <strong>TCP</strong> 与 <strong>UDP</strong>，其下是 <strong>QUIC</strong>，再往上是 <strong>HTTP over QUIC</strong>，最上面写着 <strong>HTTP/3</strong>——也就是说，<strong>HTTP/3 就是 HTTP over QUIC，支撑它的运输层从 TCP 换成了基于 UDP 的 QUIC</strong>。换用 UDP 并不等于放弃可靠：QUIC 自身实现了可靠传输与多路复用，HTTP/2 的分帧也因此得以继续使用。</p>
+
+<h2>11. Cookie：让 HTTP 记住用户</h2>
+<p>HTTP 本身是无状态的：服务器处理完一个请求，并不记得那位用户是谁，可很多服务必须记住。课件先讲 <strong>WEB 站点使用 Cookie 的目的</strong>：一是<strong>限制用户的访问</strong>，二是<strong>把内容和用户身份关联起来</strong>。Cookie 技术由四个部分组成，缺一不可：</p>
+<ul>
+  <li>在 HTTP 响应报文中有一个 Cookie 首部行；</li>
+  <li>在 HTTP 请求报文中也有一个 Cookie 首部行；</li>
+  <li>在用户的端系统中保留了一个 Cookie 文件，由用户浏览器负责管理；</li>
+  <li>在 Web 站点有一个后端数据库。</li>
+</ul>
+<p>课件用完整的例子演示流程：用户第一次访问时浏览器发出 http 请求报文；服务器为用户创建 ID: 1678，并在后端数据库中留下记录；服务器返回 http 响应报文 + <code>Set-cookie: 1678</code>；浏览器把这组对应关系写进本机的 Cookie file，文件里按站点分别记录：</p>
+<pre><code>amazon: 1678
+ebay: 8734</code></pre>
+<p>一周以后用户再次访问该站点，http 请求报文里会自动带上 <code>cookie: 1678</code>，服务器凭编号在数据库中查出身份，按 Cookie 标明的动作作出响应。那么 Cookies 能带来什么好处呢？课件列了四类用途：<strong>认证</strong>、<strong>「推荐」</strong>、<strong>「购物车」</strong>，以及维持<strong>用户会话状态</strong>（例如 Web e-mail）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-4/p0085.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-4/p0085.webp" alt="图 6　Cookie 的工作流程：服务器分配 ID，响应带 Set-cookie，此后请求带 cookie" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Cookie 的工作流程：第一次请求时服务器在后端数据库为用户创建 ID（1678），响应报文用 Set-cookie: 1678 告知浏览器，浏览器存进 Cookie file；一周以后再次访问，请求报文带上 cookie: 1678（原课件第 85 张）</figcaption>
+</figure>
+
+<h2>12. 新的问题：WEB 中的隐私</h2>
+<p>Cookie 的便利是有代价的。课件把「Cookies 和私密性」单列出来讨论：Cookies 允许网站获得相当多的用户信息；你可能会向网站提供你的姓名和 E-mail 地址；搜索引擎也可以使用 cookie 和重定向技术获得很多的信息；广告公司也可以通过用户访问过的网站来获得用户的相关信息。单看一个站点，Cookie 记录的也许只是一次会话；把这些记录拼起来，就能勾出浏览轨迹与偏好。</p>
+<p>课件最后把问题直接抛了出来：<strong>WEB 中如何保护隐私呢？</strong>同一份 Cookie 既是「购物车还在」的功臣，也是跟踪用户的工具，技术方案、商业惯例与法规需要一起回答它。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>万维网是继电话、广播与电视之后的又一次通信革命，区别在于它把发布权交给了普通用户；它属于 C/S 模式，由浏览器、Web 服务器与 HTTP、HTML 构成；</li>
+  <li>Web 页面由对象组成，HTML 文件是容器对象，每个对象用 URL 定位——主机名指明服务器，路径名指明文件；</li>
+  <li>HTTP 报文是应用层协议报文，靠 TCP 交换，服务器默认端口 80：HTTP/1.0 每个对象要 2 个 RTT（总时间 = 2RTT + 文件传输时间），HTTP/1.1 的持久连接复用同一条连接，分非流水线与流水线两种方式；</li>
+  <li>请求报文由请求行（方法、URL、版本）、首部行、空行与实体主体组成，常用方法有 GET、POST、HEAD、PUT、DELETE；响应报文把请求行换成状态行，常见状态码有 200、301、400、404、505；</li>
+  <li>HTTP/2 针对队首阻塞，用对象优先级、服务器推和报文分帧减少感知时延；HTTP/3 把支撑换成基于 UDP 的 QUIC；</li>
+  <li>Cookie 靠报文中的 Cookie 首部行、浏览器端的 Cookie 文件与服务器端数据库，把无状态的 HTTP 变成能记住用户的会话，也因此带来隐私问题。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-3-3.html">‹ 3.3 面向连接的可靠服务—TCP协议</a>
+      <a class="next" href="v2-3-5.html">3.5 文件传输协议（FTP） ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

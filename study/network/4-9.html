@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.9 虚拟专用网VPN与网络地址转换NAT · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.9 虚拟专用网VPN与网络地址转换NAT：讲义第 1108–1133 页 · 17 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html" aria-current="page"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.9 虚拟专用网VPN与网络地址转换NAT</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">IPv4 地址空间即将耗尽，是第 4 章一条贯穿始终的暗线。本节讲在地址紧缺背景下出现的两种技术：让机构内部各个专用网借助公用因特网互连的虚拟专用网 VPN，以及让大量使用专用地址的主机共享少量全球地址访问因特网的网络地址转换 NAT。我们先把「专用（私有）地址」这套内部可用、公网不可路由的地址看清楚，再看 VPN 怎样用加密隧道把两个专用网连起来，最后看 NAT 与 NAPT 怎样改写 IP 地址和端口号，以及它们带来的两个后果。</p>
+
+<h2>1. 虚拟专用网 VPN</h2>
+<h3>（1）从「租专线」到「借道因特网」</h3>
+<p>先看一个具体的场景。一个机构在北京和上海各有一个部门：北京的部门 A 和上海的部门 B 都有自己的内部网络，现在要让这两个网络里的主机互相通信。最直接的办法是租用电信公司的通信线路把两个网络连起来——简单方便，但租金太高（图 1）。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1110.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1110.webp" alt="图 1　租用电信公司的通信线路连接北京与上海的两个部门网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　租用电信公司的通信线路把北京与上海的两个部门网络连起来：简单方便，但租金太高（原讲义第 1110 页）</figcaption>
+</figure>
+<p>更经济的思路是：<strong>利用公用的因特网作为本机构各专用网之间的通信载体</strong>，这样的专用网就称为<strong>虚拟专用网 VPN（Virtual Private Network）</strong>（图 2）。说它「虚拟」，是因为两个部门之间并没有真的拉一条专线，而是借用了人人可用的因特网；说它「专用」，是因为这条通道只对本机构（以及被机构允许的合作伙伴）的主机开放。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1111.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1111.webp" alt="图 2　利用公用因特网作为各专用网之间的通信载体，即虚拟专用网 VPN" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　两个部门网络借道公用因特网互连，这样构成的专用网就是虚拟专用网 VPN（原讲义第 1111 页）</figcaption>
+</figure>
+
+<h3>（2）专用（私有）地址：VPN 中的主机分配什么地址</h3>
+<p>接下来必须回答一个问题：虚拟专用网中的各主机应该分配怎样的 IP 地址？由于 IPv4 地址的紧缺，一个机构能够申请到的 IPv4 地址数量往往远小于本机构所拥有的主机数量。因此，虚拟专用网中的各主机所分配的地址，应该是<strong>本机构可自由分配的专用地址</strong>，而不是需要申请的、在因特网上使用的公有地址。</p>
+<p>专用地址又称私有地址，就是下面这三段（表 1）。它们在因特网上不可路由，因此可以反复地、互不干扰地在无数个机构内部使用。</p>
+<table>
+  <caption>三段专用（私有）地址（原讲义第 1114 页；由 RFC 1918 规定为 Private-Use）</caption>
+  <thead>
+    <tr><th>地址块</th><th>地址范围</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10/8</td><td>10.0.0.0 ~ 10.255.255.255</td></tr>
+    <tr><td>172.16/12</td><td>172.16.0.0 ~ 172.31.255.255</td></tr>
+    <tr><td>192.168/16</td><td>192.168.0.0 ~ 192.168.255.255</td></tr>
+  </tbody>
+</table>
+<p>这三段只是因特网号码分配管理局 IANA 特殊用途地址登记表中的一项，登记表里还登记了环回地址、链路本地地址、文档举例地址等其他用途的地址块，本课程需要记住的是上面这三段。要留意的代价是：使用专用地址的主机不能直接和因特网上的主机通信，如果它要访问因特网，就必须借助本节后半部分讲的 NAT。这就把 VPN 和 NAT 两个话题联系起来了。</p>
+
+<h3>（3）一个例子：两个部门各用一段专用地址</h3>
+<p>用图 3 把上面的想法画出来。北京部门 A 的内部网络是 10.1.0.0/24，其中主机的地址为 10.1.0.1、10.1.0.2、10.1.0.3；上海部门 B 的内部网络是 10.2.0.0/24，其中主机的地址为 10.2.0.1、10.2.0.2、10.2.0.3。两个部门各有一台路由器 R1、R2 接入因特网，它们在因特网一侧的全球地址分别是 125.1.2.3 和 194.4.5.6。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1118.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1118.webp" alt="图 3　部门 A（10.1.0.0）与部门 B（10.2.0.0）通过路由器 R1（125.1.2.3）和 R2（194.4.5.6）接入因特网" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　部门 A 与部门 B 各自使用一段专用地址，靠路由器 R1（125.1.2.3）、R2（194.4.5.6）接入因特网（原讲义第 1118 页）</figcaption>
+</figure>
+<p>请注意这两段专用地址在因特网上是不可路由的：因特网上的路由器根本不知道 10.1.0.0 和 10.2.0.0 在哪里，也不知道 10.1.0.3 指的是哪台主机。所以两个部门的专用网只能靠 R1 和 R2 之间的配合打通，这正是下面要讲的隧道技术要做的事。</p>
+
+<h3>（4）IP 隧道技术：把内部数据报加密后穿过因特网</h3>
+<p>假设部门 A 中地址为 10.1.0.3 的主机要向部门 B 中地址为 10.2.0.3 的主机发送数据。它构造出来的 IP 数据报，源地址是 10.1.0.3，目的地址是 10.2.0.3，我们称之为<strong>内部 IP 数据报</strong>。这样的数据报直接交给因特网是送不到的，于是 R1 把它整个加密，再当作数据部分封装上一层新的 IP 首部，构成在因特网上传输的<strong>外部 IP 数据报</strong>：源地址是 R1 的全球地址 125.1.2.3，目的地址是 R2 的全球地址 194.4.5.6（图 4）。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1121.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1121.webp" alt="图 4　内部 IP 数据报被加密封装成外部 IP 数据报穿过因特网，R2 收到后解密还原" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　IP 隧道技术：内部 IP 数据报（10.1.0.3 → 10.2.0.3）被加密后封装成外部 IP 数据报（125.1.2.3 → 194.4.5.6），R2 收到后解密还原（原讲义第 1121 页）</figcaption>
+</figure>
+<p>外部数据报在因特网上转发时，沿途的路由器只能看到 125.1.2.3 和 194.4.5.6，看不到里面装的原始地址和原始数据，这就是加密的意义所在。R2 收到外部数据报后，剥去外面的首部并解密，还原出源地址为 10.1.0.3、目的地址为 10.2.0.3 的内部 IP 数据报，再按目的地址把它交给部门 B 中的主机。这种把原始数据报整个当作数据部分、再封装一层的方式，叫作 <strong>IP 隧道技术</strong>。</p>
+<p>由此可以看出 VPN 中的通信与普通因特网通信的不同：普通通信只有一个 IP 数据报首部，VPN 里则「首部套首部」——外面那层负责在因特网上寻址，里面那层才是真正的源地址和目的地址。关于 IP 数据报首部各字段的含义，可以回看 4.7 节。</p>
+
+<h3>（5）内联网 VPN、外联网 VPN 与远程接入 VPN</h3>
+<p>按照参与通信的双方是谁，VPN 可以分为三类：</p>
+<ul>
+  <li><strong>内联网 VPN</strong>：同一机构内不同部门的内部网络所构成的虚拟专用网，图 3 的例子就属于这一类；</li>
+  <li><strong>外联网 VPN</strong>：有时一个机构的 VPN 需要有某些外部机构（通常就是合作伙伴）参加进来，这样的 VPN 就称为外联网 VPN；</li>
+  <li><strong>远程接入 VPN</strong>：在外地工作的员工需要访问公司内部的专用网络时，只要在任何地点接入到因特网，运行驻留在员工 PC 中的 VPN 软件，在员工的 PC 和公司的主机之间建立 VPN 隧道，即可访问专用网络中的资源。</li>
+</ul>
+<p>三类 VPN 有一个共同点：VPN 要保证传输数据的安全性，会把原始的内部数据报进行加密，然后再把它封装成为在因特网上发送的外部数据报。</p>
+
+<h2>2. 网络地址转换 NAT</h2>
+<h3>（1）为什么又提出 NAT</h3>
+<p>虽然因特网采用了无分类编址方式来减缓 IPv4 地址空间耗尽的速度（无分类编址见 4.3.4 节），但由于因特网用户数目激增，特别是大量小型办公室网络和家庭网络接入因特网的需求不断增加，IPv4 地址空间即将面临耗尽的危险仍然没有被解除。1994 年提出了一种<strong>网络地址转换 NAT（Network Address Translation）</strong>的方法，再次缓解了 IPv4 地址空间即将耗尽的问题。它的作用可以概括成一句话：NAT 能使大量使用内部专用地址的专用网络用户<strong>共享少量外部全球地址</strong>来访问因特网上的主机和资源。</p>
+
+<h3>（2）基本 NAT 的工作过程</h3>
+<p>先看最简单的场合（图 5）。专用网是 192.168.0.0，里面有两台主机 192.168.0.2 和 192.168.0.3；专用网通过一台 NAT 路由器接入因特网，这台路由器上配有全球 IP 地址，图中给出的是 172.38.1.5 和 172.38.1.6；因特网上另有一台主机 218.75.230.30。由于专用地址不能在因特网上路由，进出专用网的数据报都必须经过 NAT 路由器做地址转换。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1125.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1125.webp" alt="图 5　专用网 192.168.0.0 通过配有全球 IP 地址的 NAT 路由器接入因特网" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　专用网 192.168.0.0 通过 NAT 路由器接入因特网，路由器上配有全球 IP 地址 172.38.1.5 与 172.38.1.6（原讲义第 1125 页）</figcaption>
+</figure>
+<p>设 192.168.0.2 要访问因特网上的 218.75.230.30。NAT 路由器对往外发送的 IP 数据报做三件事（图 6）：</p>
+<p>① 把 IP 数据报的源地址 192.168.0.2 修改为分配给它的全球地址 172.38.1.5；② 记录 172.38.1.5 与 192.168.0.2 的对应关系；③ 转发这个 IP 数据报。于是因特网上的主机 218.75.230.30 收到数据报时，看到的是源地址 172.38.1.5、目的地址 218.75.230.30。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1126.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1126.webp" alt="图 6　NAT 出方向的地址转换：源地址 192.168.0.2 被改写为全球地址 172.38.1.5" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　出方向的地址转换：源地址 192.168.0.2 被改写为全球地址 172.38.1.5，并记录两者的对应关系，目的地址 218.75.230.30 不变（原讲义第 1126 页）</figcaption>
+</figure>
+<p>回程的数据报同样要经过转换。218.75.230.30 发出的数据报，源地址是 218.75.230.30、目的地址是 172.38.1.5；NAT 路由器收到后，按照刚才记录的对应关系把目的地址 172.38.1.5 改回 192.168.0.2，再交给专用网中的主机。NAT 路由器上保存的就是「内网地址 192.168.0.2 ↔ 外网地址 172.38.1.5」这样的对应关系，通信双方各自使用自己以为的地址，中间的转换对它们都是透明的。</p>
+
+<h3>（3）基本 NAT 的局限：全球地址有多少，能上网的主机就有多少</h3>
+<p>这种只转换 IP 地址的方法存在一个问题：如果 NAT 路由器具有 N 个全球 IP 地址，那么至多只能有 N 个内网主机能够同时和因特网上的主机通信（图 7）。图中的对应关系是 192.168.0.2 对应 172.38.1.5、192.168.0.3 对应 172.38.1.6，两台主机就把两个全球地址占满了，第三台主机想通信就没有地址可用。而一个机构里同时上网的主机往往成百上千，靠给每台主机配一个全球地址来解决显然不现实。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1128.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1128.webp" alt="图 7　基本 NAT 的局限：N 个全球 IP 地址至多支持 N 台内网主机同时通信" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　基本 NAT 的局限：NAT 路由器只有 N 个全球 IP 地址时，至多只有 N 台内网主机能同时与因特网上的主机通信（原讲义第 1128 页）</figcaption>
+</figure>
+
+<h3>（4）网络地址与端口号转换 NAPT</h3>
+<p>出路在于把运输层的端口号也用起来。由于绝大多数的网络应用都是使用运输层协议 TCP 或 UDP 来传送数据（端口号、复用与分用的概念见 5.2 节），因此可以利用运输层端口号和 IP 地址一起进行转换。这样，用一个全球 IP 地址就可以使多个拥有本地地址的主机同时和因特网上的主机进行通信。这种将端口号和 IP 地址一起进行转换的技术，叫作<strong>网络地址与端口号转换 NAPT（Network Address and Port Translation）</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1129.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1129.webp" alt="图 8　NAPT 用 IP 地址加端口号区分内网主机，多台主机共用一个全球 IP 地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　NAPT：把 IP 地址和运输层端口号一起转换，一个全球 IP 地址就能让多台内网主机同时与因特网上的主机通信（原讲义第 1129 页）</figcaption>
+</figure>
+<p>图 8 中的 NAPT 转换表说明了它是怎么区分内网主机的（表 2）：起作用的不仅是 IP 地址，还有端口号。</p>
+<table>
+  <caption>NAPT 转换表（原讲义第 1129 页）</caption>
+  <thead>
+    <tr><th>字段</th><th>旧 IP 地址和端口号</th><th>新的 IP 地址和端口号</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>源 IP 地址：TCP 源端口</td><td>192.168.0.2:30000</td><td>172.38.1.5:40001</td></tr>
+    <tr><td>源 IP 地址：TCP 源端口</td><td>192.168.0.3:30000</td><td>172.38.1.5:40002</td></tr>
+    <tr><td>目的 IP 地址：TCP 目的端口</td><td>172.38.1.5:40001</td><td>192.168.0.2:30000</td></tr>
+    <tr><td>目的 IP 地址：TCP 目的端口</td><td>172.38.1.5:40002</td><td>192.168.0.3:30000</td></tr>
+  </tbody>
+</table>
+<p>表中前两行是出方向。192.168.0.2:30000 和 192.168.0.3:30000 这两条连接，本来用的源端口号都是 30000，经过 NAPT 路由器后被分别改写成全球地址 172.38.1.5 上的 40001 和 40002——正是靠端口号不同，一台路由器的一个全球 IP 地址才能同时代表多台内网主机。后两行是入方向。外网主机发来的数据报，目的地址和目的端口是 172.38.1.5:40001（或 40002），NAPT 路由器查表后改回 192.168.0.2:30000（或 192.168.0.3:30000），再交给对应的内网主机。这样一来，就不必再给每台内网主机单独配一个全球地址了。</p>
+
+<h3>（5）NAT 带来的两个后果</h3>
+<p>第一，外网主机不能首先发起通信。站在 NAPT 路由器上看很容易明白：外网主机发来的 IP 数据报，目的地是 172.38.1.5 上的某个端口，如果此前没有内网主机主动访问过它，NAPT 转换表里就找不到相应的记录，路由器不知道该把数据报交给哪台内网主机，只能丢弃（图 9）。所以使用 NAT 的专用网内主机不能直接充当因特网服务器。对于一些 P2P 网络应用，需要外网主机主动与内网主机进行通信，在通过 NAT 时会遇到问题，需要网络应用自己使用一些特殊的 NAT 穿越技术来解决问题。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1131.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1131.webp" alt="图 9　外网主机不能首先发起通信：NAPT 转换表中找不到相应记录，数据报只能丢弃" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　外网主机首先发起通信时会失败：收到来自外网的 IP 数据报后，在 NAPT 转换表中找不到相应的记录，因此内网主机不能直接充当因特网服务器（原讲义第 1131 页）</figcaption>
+</figure>
+<p>第二，NAT 对外网屏蔽了内网主机的网络地址，能为内网主机提供一定的安全保护。外网主机只知道 172.38.1.5，并不知道内网里究竟有多少台主机、地址是怎么分配的，这在客观上形成了一道屏障。不过在实际网络中做路径实测时，仍然可以从返回结果里看出内网的痕迹：如果路径中出现了私有地址，很可能内网出外网的路由器使用了 NAT，且内网中还有一台使用私有 IP 地址的路由器（图 10）。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-9/p1132.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-9/p1132.webp" alt="图 10　命令行实测输出：路径中出现私有地址，说明内网出外网的路由器使用了 NAT" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　命令行的实测输出：路径中出现私有地址，很可能内网出外网的路由器使用了 NAT，且内网中还有一台使用私有 IP 地址的路由器（原讲义第 1132 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IPv4 地址紧缺是本节所有技术的出发点：一个机构能申请到的 IPv4 地址往往远少于自己的主机数，因此内部主机使用本机构可自由分配的专用（私有）地址，即 10/8（10.0.0.0 ~ 10.255.255.255）、172.16/12（172.16.0.0 ~ 172.31.255.255）、192.168/16（192.168.0.0 ~ 192.168.255.255）三段；它们能在机构内部反复使用，但在因特网上不可路由。</li>
+  <li>虚拟专用网 VPN 的做法是利用公用因特网作为本机构各专用网之间的通信载体，省掉昂贵的专线租金；关键技术是 IP 隧道技术——把原始的内部 IP 数据报加密后整个当作数据部分，再封装成源、目的地址为两端路由器全球地址的外部 IP 数据报，对端解密后还原出内部数据报。</li>
+  <li>VPN 按参与者分三类：同一机构不同部门之间的是内联网 VPN，有合作伙伴等外部机构参加的是外联网 VPN，员工在外地通过 PC 上的 VPN 软件建立隧道访问公司资源的是远程接入 VPN。</li>
+  <li>NAT 于 1994 年提出，让大量使用内部专用地址的用户共享少量外部全球地址访问因特网。基本 NAT 只转换 IP 地址：出方向把源地址改写为全球地址并记录对应关系，入方向按对应关系把目的地址改回内网地址；它的局限是 N 个全球地址最多只支持 N 台内网主机同时通信。</li>
+  <li>NAPT 把运输层端口号与 IP 地址一起转换，于是一个全球 IP 地址就能支持多台内网主机同时通信（如 192.168.0.2:30000 与 192.168.0.3:30000 分别换成 172.38.1.5:40001 与 172.38.1.5:40002）。代价是外网主机不能首先发起通信，内网主机不能直接充当因特网服务器，P2P 应用需要使用 NAT 穿越技术；好处是 NAT 屏蔽了内网地址，为内网主机提供了一定的安全保护。</li>
+  <li>本节把「IPv4 地址不够用」这条线索收束起来：专用地址的编址细节见 4.3 节，NAT 与 NAPT 中登场的端口号将在下一章运输层展开（见 5.2 节）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-8.html">‹ 4.8 网际控制报文协议ICMP</a>
+      <a class="next" href="5-1.html">5.1 运输层概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

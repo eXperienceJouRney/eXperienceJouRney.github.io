@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.7 IPv4数据报的首部格式 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 4 章 4.7 IPv4数据报的首部格式：讲义第 1041–1075 页 · 21 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html" aria-current="page"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 4 章 网络层</p>
+      <h1>4.7 IPv4数据报的首部格式</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">网络层的工作最终都落在 IP 数据报上，而数据报长什么样、每个字段管什么，全都写在它的首部里。本节把 IPv4 数据报的首部拆开：先看 20 字节固定部分和最多 40 字节可变部分的整体结构，再逐个字段讲清楚长度、作用和取值，最后用「数据报分片」和「生存时间 TTL」两个例子把字段之间的关系串起来，并借两道真题练习读首部、算分片。这一节是后面 ICMP、NAT 以及运输层各节的基础，字段记不牢，后面每讲一个协议都要回头补课。</p>
+
+<h2>1. 首部由 20 字节固定部分和最多 40 字节可变部分组成</h2>
+<p>IPv4 数据报由<strong>首部</strong>和<strong>数据载荷</strong>两部分组成。首部的前 20 个字节是所有 IPv4 数据报都必须有的，称为<strong>固定部分</strong>，里面依次排列着 12 个字段；固定部分后面是<strong>可变部分</strong>，由可选字段和填充字段构成，长度最多 40 字节。换句话说，一个 IPv4 数据报的首部最短 20 字节、最长 60 字节。</p>
+<p>看首部图时要注意两件事。第一，整个首部是按 32 位（即 4 字节）一行画的，图上方的 0、16、19、24、31 是比特位的编号，字段从第 0 位开始依次排列。第二，各字段的长度都以比特计，而且不少字段的长度不是 8 的整数倍——版本 4 比特、标志 3 比特、片偏移 13 比特，它们必须拼在一起才凑满一行。这种「按位掐着算」的排布，正是后面计算片偏移时最容易出错的地方。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1044.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1044.webp" alt="图 1　IPv4 数据报首部的结构：固定部分 20 字节与可变部分最多 40 字节" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　IPv4 数据报首部的结构：上方数字是比特位编号，前 20 字节为固定部分，随后是长度可变的可选字段与填充字段（原讲义第 1044 页）</figcaption>
+</figure>
+<p>先把固定部分的 12 个字段连同长度和作用列成一张表，当作后面逐字段讲解的地图。读表时请留意每个字段的长度，尤其是那几个不足 8 比特的字段。</p>
+<table>
+  <caption>数据来源：原讲义第 1042—1074 页「IPv4 数据报的首部格式」逐字段说明。</caption>
+  <thead>
+    <tr><th>字段</th><th>长度</th><th>作用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>版本</td><td>4 比特</td><td>指明 IP 协议版本，IPv4 取 4</td></tr>
+    <tr><td>首部长度</td><td>4 比特</td><td>首部的长度，以 4 字节为单位，取值 5～15</td></tr>
+    <tr><td>区分服务</td><td>8 比特</td><td>期望获得更好的服务，一般情况下不使用</td></tr>
+    <tr><td>总长度</td><td>16 比特</td><td>首部加数据载荷的总字节数，最大 65535</td></tr>
+    <tr><td>标识</td><td>16 比特</td><td>同一个数据报的各分片取值相同，用于重组</td></tr>
+    <tr><td>标志</td><td>3 比特</td><td>DF 位、MF 位与保留位</td></tr>
+    <tr><td>片偏移</td><td>13 比特</td><td>本片数据载荷在原数据报中的位置，以 8 字节为单位</td></tr>
+    <tr><td>生存时间</td><td>8 比特</td><td>数据报还能存活多久，现在以跳数为单位</td></tr>
+    <tr><td>协议</td><td>8 比特</td><td>指明数据部分是何种协议数据单元</td></tr>
+    <tr><td>首部检验和</td><td>16 比特</td><td>检验首部在传输过程中是否出现差错</td></tr>
+    <tr><td>源 IP 地址</td><td>32 比特</td><td>发送该数据报的源主机的 IP 地址</td></tr>
+    <tr><td>目的 IP 地址</td><td>32 比特</td><td>接收该数据报的目的主机的 IP 地址</td></tr>
+    <tr><td>可选字段（可变部分）</td><td>1～40 字节</td><td>支持排错、测量及安全等措施，很少使用</td></tr>
+    <tr><td>填充（可变部分）</td><td>凑满 4 字节的整数倍</td><td>用全 0 填充，保证首部长度能被 4 整除</td></tr>
+  </tbody>
+</table>
+
+<h2>2. 版本与首部长度</h2>
+<h3>（1）版本</h3>
+<p><strong>版本（Version）</strong>字段占 4 比特，表示 IP 协议的版本。通信双方使用的 IP 协议版本必须一致，目前广泛使用的版本号为 4，也就是 IPv4。这个字段虽然短，却是整段首部的「解释开关」：不同版本的 IP 协议，首部格式完全不同，收到一串比特后先看这 4 位，才知道后面该按哪套规则去读。</p>
+<h3>（2）首部长度</h3>
+<p><strong>首部长度</strong>字段占 4 比特，表示 IP 数据报首部的长度，该字段的取值以 4 字节为单位。最小十进制取值为 5，表示首部只有 20 字节固定部分（5 × 4 = 20 字节）；最大十进制取值为 15，表示首部包含 20 字节固定部分和最大 40 字节可变部分（15 × 4 = 60 字节）。</p>
+<p>把「以 4 字节为单位」这句话记住，遇到首部长度字段等于 5 时就不必再换算：它正好是没有可选字段的普通数据报。也正因为这个字段的单位是 4 字节，首部的长度必须凑成 4 字节的整数倍，这就直接引出了可变部分的两个字段。</p>
+<h3>（3）可变部分：可选字段与填充字段</h3>
+<p><strong>可选字段</strong>的长度从 1 个字节到 40 个字节不等，用来支持排错、测量及安全等措施。它增加了 IP 数据报的功能，但同时也使得 IP 数据报的首部长度成为可变的，这就增加了每一个路由器处理 IP 数据报的开销；实际上可选字段很少被使用。</p>
+<p><strong>填充字段</strong>的作用很单纯：确保首部长度为 4 字节的整数倍，使用全 0 进行填充。可选字段长度不定，凑不满 4 字节整数倍时，就由填充字段补足，这样首部长度字段用一个整数就能表示整个首部的长度了。</p>
+
+<h2>3. 区分服务与总长度</h2>
+<h3>（1）区分服务</h3>
+<p><strong>区分服务</strong>字段占 8 比特，用来获得更好的服务。该字段在旧标准中叫作服务类型，但实际上一直没有被使用过；1998 年，因特网工程任务组 IETF（Internet Engineering Task Force）把这个字段改名为区分服务，利用该字段的不同数值可提供不同等级的服务质量。只有在使用区分服务时，该字段才起作用，一般情况下都不使用该字段。</p>
+<h3>（2）总长度</h3>
+<p><strong>总长度</strong>字段占 16 比特，表示 IP 数据报的总长度，也就是首部加数据载荷的长度，最大取值为十进制的 65535，以字节为单位。这里要分清两个「长度」：首部长度字段说的是首部自己有多长，总长度字段说的是整个数据报有多长，两者相减才是数据载荷的长度。</p>
+<p>原讲义用一个例子把这三个量串了起来：首部长度字段的值是 (0101)<sub>2</sub>，乘以 4 得 20 字节；总长度字段的值是 (0000001111111100)<sub>2</sub>，即十进制的 1020 字节；于是数据载荷长度 = 总长度 − 首部长度 = 1020 − 20 = 1000 字节。也就是说，这个 IPv4 数据报一共 1020 字节，由 20 字节首部和 1000 字节数据载荷拼成。</p>
+<p>16 比特带来的上限是 65535 字节，但实际网络中数据报很少接近这个值，因为它的长度还要受下层链路的最大传输单元限制，这就是下一个主题要讲的问题。</p>
+
+<h2>4. 标识、标志与片偏移：与分片有关的三个字段</h2>
+<p>接下来这三个字段是要配合使用的，它们共同用于 IP 数据报的<strong>分片</strong>。先说为什么需要分片：IPv4 数据报最终要封装成链路层的帧来传输，而各种链路层协议对帧能承载的数据长度都有上限，这个上限称为<strong>最大传输单元 MTU（Maximum Transfer Unit）</strong>，例如以太网规定 MTU 值为 1500 字节。当 IPv4 数据报的长度超过 MTU 时，无法封装进一个帧，就必须进行分片。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1050.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1050.webp" alt="图 2　IPv4 数据报超过 MTU 时无法封装进一个帧，需要进行分片" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　帧的数据载荷长度受最大传输单元 MTU 限制，以太网的 MTU 为 1500 字节；数据报超长时只能分片后再封装（原讲义第 1050 页）</figcaption>
+</figure>
+<h3>（1）标识</h3>
+<p><strong>标识</strong>字段占 16 比特，属于同一个数据报的各分片数据报应该具有相同的标识。IP 软件维持一个计数器，每产生一个数据报，计数器值加 1，并将此值赋给标识字段。这样做的目的是让接收方能凭标识判断哪些分片来自同一个原始数据报——分组在网中可能乱序到达，甚至几个数据报的分片混在一起，有了标识才不会拼错。</p>
+<h3>（2）标志</h3>
+<p><strong>标志</strong>字段占 3 比特，各比特含义如下：</p>
+<ul>
+  <li><strong>DF 位</strong>：1 表示不允许分片；0 表示允许分片；</li>
+  <li><strong>MF 位</strong>：1 表示「后面还有分片」；0 表示「这是最后一个分片」；</li>
+  <li><strong>保留位</strong>：必须为 0。</li>
+</ul>
+<p>DF 位是给发送方和沿途路由器的一个硬性约束：如果 DF 置 1 而数据报又超过了 MTU，路由器就只能丢弃它，并向源主机报告差错（这个报告工作由 4.8 节的 ICMP 承担）。</p>
+<h3>（3）片偏移</h3>
+<p><strong>片偏移</strong>字段占 13 比特，指出分片数据报的数据载荷部分偏移其在原数据报的位置有多少个单位，片偏移以 8 个字节为单位。这句话有两层意思：一是偏移量记的是「本片数据载荷的首字节」在原数据报数据载荷中的位置；二是填进字段的值是字节位置除以 8 之后的结果，因此除最后一片外，每个分片的数据载荷长度都必须是 8 的整数倍。</p>
+<h3>（4）分片举例</h3>
+<p>原讲义用一个数据载荷为 3800 字节的 IPv4 数据报来说明分片过程。第一次分片把它切成 1400、1400、1000 字节三片，每一片都加上自己 20 字节的首部（图 3）。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1052.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1052.webp" alt="图 3　分片举例：3800 字节数据载荷被分成 1400、1400、1000 字节三片" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　分片举例（第一次分片）：3800 字节的数据载荷被切成三片，三片各有自己的首部（原讲义第 1052 页）</figcaption>
+</figure>
+<p>三片的标识字段都填 12345，总长度分别是 1400 + 20、1400 + 20、1000 + 20 字节，片偏移量则要把字节偏移除以 8 之后再填入字段。</p>
+<table>
+  <caption>数据来源：原讲义第 1052—1053 页「对 IPv4 数据报进行分片」举例。表中数值单位为字节；四片的标识字段都填 12345，总长度 = 本片数据载荷 + 20 字节首部，片偏移 = 本片数据载荷在原数据报中的字节位置 ÷ 8。</caption>
+  <thead>
+    <tr><th>数据报</th><th>数据载荷</th><th>总长度</th><th>片偏移</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>原始数据报</td><td>3800</td><td>3820</td><td>0</td></tr>
+    <tr><td>分片 1</td><td>1400</td><td>1420</td><td>0</td></tr>
+    <tr><td>分片 2</td><td>1400</td><td>1420</td><td>175</td></tr>
+    <tr><td>分片 3</td><td>1000</td><td>1020</td><td>350</td></tr>
+  </tbody>
+</table>
+<p>故事还没有结束：分片 2 在转发途中又遇到一段 MTU 更小的链路，它那 1400 字节的数据载荷被再次切成 800 字节和 600 字节两片，标识仍然是 12345（图 4）。这说明分片可以发生多次，一个原始数据报可以变成好几个分片。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1054.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1054.webp" alt="图 4　分片举例：分片 2 的数据载荷又被分成 800 字节和 600 字节两片" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　分片举例（第二次分片）：分片 2 的 1400 字节数据载荷再被切成 800 字节和 600 字节两片（原讲义第 1054 页）</figcaption>
+</figure>
+<table>
+  <caption>数据来源：原讲义第 1054 页「对 IPv4 数据报进行分片」举例（分片 2 的再次分片）。表中数值单位为字节，片偏移的单位是 8 字节。</caption>
+  <thead>
+    <tr><th>数据报</th><th>数据载荷</th><th>总长度</th><th>片偏移</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>原始数据报</td><td>3800</td><td>3820</td><td>0</td></tr>
+    <tr><td>分片 2-1</td><td>800</td><td>820</td><td>175</td></tr>
+    <tr><td>分片 2-2</td><td>600</td><td>620</td><td>275</td></tr>
+  </tbody>
+</table>
+<p>把两次分片放在一起看，可以总结出三条规律，它们就是后面做分片题的依据：每一片都要带自己的首部，首部中的标识必须与原数据报相同；总长度只统计「本片的首部 + 本片的数据载荷」，而不是原数据报的总长度；片偏移量记的是本片数据载荷在原数据报中的字节位置除以 8 之后的结果（分片 2-1 的偏移量 175 与第一次分片时分片 2 的偏移量相同，正说明它承接的就是同一段数据）。至于 MF 位：第一次分片后，分片 1、分片 2 后面还有分片，MF 置 1，分片 3 是最后一片，MF 置 0；分片 2 再被分成两片后，分片 2-1、分片 2-2 后面都还有分片 3，所以它们的 MF 位仍然为 1，整个数据报中只有最后一片的 MF 才为 0。这些分片的 DF 位都为 0，表示允许分片。</p>
+
+<h2>5. 生存时间 TTL：防止数据报在网络中永久兜圈</h2>
+<p><strong>生存时间 TTL（Time To Live）</strong>字段占 8 比特，表示 IP 数据报的生存时间。它的用法前后有过一次变化：最初以秒为单位，最大生存周期为 255 秒，路由器转发 IP 数据报时，要把该字段的值减去 IP 数据报在本路由器上所耗费的时间，若结果不为 0 就转发，否则就丢弃；现在以「跳数」为单位，路由器转发 IP 数据报时，把该字段值减 1，若不为 0 就转发，否则就丢弃。</p>
+<p>不论按秒还是按跳数，这个字段的作用始终是<strong>防止 IP 数据报在网络中永久兜圈</strong>。数据报每经过一个路由器就被减掉一次，一旦减到 0 立刻被丢弃，这样即使某台路由器的路由表配错了，也不会有数据报永远在网络里转下去。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1057.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1057.webp" alt="图 5　TTL 举例：R2 的路由表中去往 N2 的下一跳被配置成 R1，与 R1 的表项互相指向" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　TTL 举例：R1 的路由表规定去往 N2 的下一跳是 R2，而 R2 的路由表里去往 N2 的下一跳却是 R1，两台路由器互相指向（原讲义第 1057 页）</figcaption>
+</figure>
+<p>原讲义用三台路由器 R1、R2、R3 和网络 N1、N2 的例子说明这个机制。正常情况下，R1 把去往 N2 的数据报交给 R2，R2 再从 R3 一侧转发出去；可是当 R2 的路由表中去往 N2 的下一跳被错配成 R1 时（图 5），源主机发往 N2 的数据报就会在 R1 和 R2 之间被来回转发：R1 交给 R2，R2 又交回 R1……这就是<strong>路由环路</strong>。这类故障的成因和判断方法，4.5 节「静态路由配置及其可能产生的路由环路问题」已经专门讨论过，这里关心的是它的后果。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1059.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1059.webp" alt="图 6　TTL 举例：数据报在路由环路中兜圈，直到 TTL 减到 0 被丢弃" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　TTL 举例：IP 数据报将在路由环路中兜圈，直到 TTL 的值减少到 0 时被路由器丢弃（原讲义第 1059 页）</figcaption>
+</figure>
+<p>图 6 给出的结论正是 TTL 的价值所在：数据报在 R1 与 R2 之间兜圈的过程中，每经过一个路由器 TTL 就减 1，等它减到 0，路由器就把数据报丢弃，环路不会无休止地进行下去。</p>
+
+<h2>6. 协议字段：数据部分装的是什么</h2>
+<p><strong>协议</strong>字段占 8 比特，指明 IPv4 数据报的数据部分是何种协议数据单元。常用的一些协议和相应的协议字段值如下表。</p>
+<table>
+  <caption>数据来源：原讲义第 1060 页「协议字段的常用取值」表。</caption>
+  <thead>
+    <tr><th>协议名称</th><th>协议字段值</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ICMP</td><td>1</td></tr>
+    <tr><td>IGMP</td><td>2</td></tr>
+    <tr><td>TCP</td><td>6</td></tr>
+    <tr><td>UDP</td><td>17</td></tr>
+    <tr><td>IPv6</td><td>41</td></tr>
+    <tr><td>OSPF</td><td>89</td></tr>
+  </tbody>
+</table>
+<p>原讲义用两个例子说明这个字段怎么用：若协议字段的值为 1，则数据部分封装的是 ICMP 报文；若协议字段的值为 6，则数据部分封装的是 TCP 报文段（TCP 报文段的首部格式在 5.9 节讨论）。可以看出，IP 层只负责把数据报送到目的地，至于数据部分该交给谁处理，完全由协议字段指定：收方读到 6 就交给 TCP，读到 17 就交给 UDP，读到 1 就交给 ICMP。下一节要讲的网际控制报文协议 ICMP，正是靠协议字段取值 1 与 IP 数据报区分开的。</p>
+
+<h2>7. 首部检验和与源、目的 IP 地址</h2>
+<h3>（1）首部检验和</h3>
+<p><strong>首部检验和</strong>字段占 16 比特，用来检测首部在传输过程中是否出现差错。它比 CRC 检验码简单，称为因特网检验和。顾名思义，它只对首部做检验；此外，IP 数据报每经过一个路由器，路由器都要重新计算首部检验和，因为某些字段（生存时间、标志、片偏移等）的取值可能发生变化——字段变了，检验和自然也必须跟着变。</p>
+<p>原讲义还交代了它的去向：由于 IP 层本身并不提供可靠传输的服务，并且计算首部校验和是一项耗时的操作，因此在 IPv6 中，路由器不再计算首部校验和，从而更快转发 IP 数据报。</p>
+<h3>（2）源 IP 地址和目的 IP 地址</h3>
+<p><strong>源 IP 地址</strong>和<strong>目的 IP 地址</strong>各占 32 比特，用来填写发送该 IP 数据报的源主机的 IP 地址和接收该 IP 数据报的目的主机的 IP 地址。这两个字段在数据报沿途转发时一般保持不变，与要不断被改写的 TTL 和首部检验和形成对比；当然也有例外，4.9 节要讲的网络地址转换 NAT 就会改动它们。地址怎样编址、怎样分组，是 4.3 节的内容；路由器如何根据目的 IP 地址查表转发，则是 4.4 节的内容。</p>
+
+<h2>8. 真题解析：读首部、算分片</h2>
+<h3>（1）2018 年题 47 第（2）问：MTU = 800 B 时怎样分片</h3>
+<p>题 47 描述的网络如图 7 所示：IP 地址空间 192.168.1.0/24 被均分给销售部和技术部两个子网，并已分别为部分主机和路由器接口分配了 IP 地址，销售部子网的 MTU = 1500 B，技术部子网的 MTU = 800 B。</p>
+<p>第（2）问是：假设主机 192.168.1.1 向主机 192.168.1.208 发送一个总长度为 1500 B 的 IP 分组，IP 分组头部长度为 20 B，路由器在通过接口 F1 转发该 IP 分组时进行了分片。若分片时尽可能分为最大片，则一个最大 IP 分片封装数据的字节数是多少？至少需要分为几个分片？每个分片的片偏移量是多少？</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1065.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1065.webp" alt="图 7　2018 年题 47 的网络：192.168.1.0/24 均分为销售部与技术部两个子网" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　2018 年题 47 的网络：销售部子网 MTU = 1500 B，技术部子网 MTU = 800 B，路由器经接口 F0、F1 分别连接两个子网（原讲义第 1065 页）</figcaption>
+</figure>
+<p>解析（原讲义第 1066—1068 页）分四步：</p>
+<ul>
+  <li>主机 192.168.1.1 发出的 IP 分组总长度为 1500 B，减去 20 B 首部，数据载荷是 1480 B；</li>
+  <li>路由器经接口 F1 把它转发到技术部子网，该子网的 MTU = 800 B，所以每个分片的最大总长度为 800 B，最多能封装 800 − 20 = 780 B 数据；</li>
+  <li>但片偏移量必须为整数，而片偏移以 8 字节为单位，要求每个分片的数据载荷长度能被 8 整除；780 ÷ 8 = 97.5 不是整数，所以「每片装 780 B」这种分片方案不行；</li>
+  <li>应取小于 780 且能被 8 整除的最大整数，即 776 B（776 ÷ 8 = 97）：分片 1 封装 776 B 数据，片偏移量 = 0 ÷ 8 = 0；分片 2 封装剩下的 1480 − 776 = 704 B 数据，片偏移量 = 776 ÷ 8 = 97。</li>
+</ul>
+<p>776 + 704 = 1480 B 正好分完，两片也都没有超过 780 B。所以答案是：一个最大 IP 分片封装数据 <strong>776 字节</strong>；至少需要分为 <strong>2 个分片</strong>；两个分片的片偏移量分别是 <strong>0</strong> 和 <strong>97</strong>。</p>
+<h3>（2）2011 年题 47：从以太网帧内容读出首部字段</h3>
+<p>题 47-a 图是网络拓扑，题 47-b 图是主机进行 Web 请求的 1 个以太网数据帧前 80 个字节的十六进制及 ASCII 码内容。问题是：（1）Web 服务器 IP 地址是什么？该主机的默认网关的 MAC 地址是什么？（4）该帧所封装的 IP 分组经过路由器 R 转发时，需修改 IP 分组头中的哪些字段。</p>
+<figure class="fig">
+  <a href="../../assets/course/4-7/p1070.webp" target="_blank" rel="noopener"><img src="../../assets/course/4-7/p1070.webp" alt="图 8　2011 年题 47：网络拓扑、以太网帧前 80 字节内容与 IP 分组头结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　2011 年题 47：主机 10.2.128.100 经默认网关 10.2.128.1（路由器 R）接入 Internet，图中同时给出帧前 80 字节的十六进制内容、以太网帧结构与 IP 分组头结构（原讲义第 1070 页）</figcaption>
+</figure>
+<p>拓扑中，主机 10.2.128.100 通过默认网关 10.2.128.1（路由器 R 的接口）接入 Internet，MTU = 1500 B，Internet 一侧还标注了一个地址 101.12.123.15。把题 47-b 图这一帧的前 80 个字节按每行 8 字节列出来，行首是帧内的字节偏移量（十六进制）：</p>
+<pre><code>0000  00 21 27 21 51 ee 00 15
+0008  c5 c1 5e 28 08 00 45 00
+0010  01 ef 11 3b 40 00 80 06
+0018  ba 9d 0a 02 80 64 40 aa
+0020  62 20 04 ff 00 50 e0 e2
+0028  00 fa 7b f9 f8 05 50 18
+0030  fa f0 1a c4 00 00 47 45
+0038  54 20 2f 72 66 63 2e 68
+0040  74 6d 6c 20 48 54 54 50
+0048  2f 31 2e 31 0d 0a 41 63</code></pre>
+<p>以太网帧头占 14 字节：前 6 字节 00-21-27-21-51-ee 是目的 MAC 地址，接着 6 字节 00-15-c5-c1-5e-28 是源 MAC 地址，最后 2 字节 08 00 是类型字段，表示上层封装的是 IPv4 数据报。从偏移量 000e 开始是 IP 分组头，按本节讲的字段排布，可以逐项读出：</p>
+<table>
+  <caption>数据来源：原讲义第 1069—1071 页题 47-b 图的十六进制内容，按「IPv4 数据报的首部格式」逐字段读出。</caption>
+  <thead>
+    <tr><th>字段</th><th>帧中的十六进制值</th><th>读出的含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>版本、首部长度</td><td>45</td><td>版本为 4，首部长度为 5 × 4 = 20 字节</td></tr>
+    <tr><td>区分服务</td><td>00</td><td>未使用区分服务</td></tr>
+    <tr><td>总长度</td><td>01 ef</td><td>495 字节（首部 + 数据载荷）</td></tr>
+    <tr><td>标识</td><td>11 3b</td><td>标识值为 0x113b</td></tr>
+    <tr><td>标志、片偏移</td><td>40 00</td><td>DF = 1（不允许分片）、MF = 0、片偏移量 = 0</td></tr>
+    <tr><td>生存时间 TTL</td><td>80</td><td>128，即还可经过 127 个路由器</td></tr>
+    <tr><td>协议</td><td>06</td><td>数据部分是 TCP 报文段</td></tr>
+    <tr><td>首部检验和</td><td>ba 9d</td><td>供沿途路由器检验首部</td></tr>
+    <tr><td>源 IP 地址</td><td>0a 02 80 64</td><td>10.2.128.100，即发出该请求的主机</td></tr>
+    <tr><td>目的 IP 地址</td><td>40 aa 62 20</td><td>64.170.98.32，即 Web 服务器</td></tr>
+  </tbody>
+</table>
+<p>第（1）问由此得到答案：Web 服务器的 IP 地址十六进制形式是 40 aa 62 20，点分十进制形式是 64.170.98.32。至于默认网关的 MAC 地址，原讲义的解析是：从图可知主机的默认网关就是路由器 R，主机会将 Web 请求发送给默认网关，由默认网关将 Web 请求转发到因特网，因此以太网帧头中的目的 MAC 地址字段封装的正是默认网关的 MAC 地址，具体为 00-21-27-21-51-ee。（帧的数据部分以 ASCII 的「GET /rfc.html HTTP/1.1」开头，目的端口 80，也印证了这是一个 Web 请求。）</p>
+<p>第（4）问针对路由器 R 的转发动作：IP 分组经过路由器 R 时，生存时间字段被减 1；首部检验和会被重新计算；若 IP 分组的总长度大于 MTU，则需要进行分片，此时总长度字段、标志字段、片偏移字段都需要修改。就本题这一帧而言，它的总长度是 495 字节，远小于 MTU = 1500 B，并不发生分片，所以实际被修改的只有生存时间和首部检验和这两个字段。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IPv4 数据报的首部 = 20 字节固定部分 + 可变部分。固定部分依次是版本、首部长度、区分服务、总长度、标识、标志、片偏移、生存时间、协议、首部检验和、源 IP 地址、目的 IP 地址共 12 个字段；可变部分由 1～40 字节的可选字段和全 0 的填充字段构成。首部最短 20 字节、最长 60 字节，首部长度字段以 4 字节为单位，取值 5～15。</li>
+  <li>三个「不足 8 比特」的字段要单独记：版本 4 比特（IPv4 取 4，双方版本必须一致）、标志 3 比特（DF 位 1 表示不允许分片，MF 位 1 表示后面还有分片，保留位必须为 0）、片偏移 13 比特（以 8 字节为单位）；总长度 16 比特，是首部加数据载荷的总字节数，最大 65535。</li>
+  <li>数据报长度超过链路 MTU（以太网为 1500 字节）时必须分片：同一数据报的各分片标识相同，各自带自己的首部，总长度只算本片，片偏移量是本片数据载荷在原数据报中的字节位置除以 8；除最后一片外，各片的数据载荷长度必须是 8 的整数倍，只有最后一片的 MF 为 0。</li>
+  <li>生存时间 TTL 现在以跳数为单位，路由器转发时减 1，不为 0 就转发、为 0 就丢弃，用来防止数据报在路由环路中永久兜圈——这与 4.5 节的路由环路问题正好衔接。</li>
+  <li>协议字段指明数据部分的协议数据单元，常用值：ICMP = 1、IGMP = 2、TCP = 6、UDP = 17、IPv6 = 41、OSPF = 89；首部检验和只检验首部，每经过一个路由器都要重新计算，IPv6 中已取消这一计算。</li>
+  <li>路由器转发时要修改的字段是生存时间和首部检验和；若发生分片，还要修改总长度、标志和片偏移。源、目的 IP 地址在转发中一般不变，NAT 是例外（见 4.9 节）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-6-4.html">‹ 4.6.4 边界网关协议BGP的基本工作原理</a>
+      <a class="next" href="4-8.html">4.8 网际控制报文协议ICMP ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

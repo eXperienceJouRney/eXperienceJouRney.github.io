@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2 网络中的数据传输 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 2 章 网络中的数据通信 2.2 网络中的数据传输：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html" aria-current="page"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 2 章 网络中的数据通信</p>
+      <h1>2.2 网络中的数据传输</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">2.1 节说明了信息、数据与信号的关系。接下来的问题是：数据怎样被装进信号、沿着信道送出去，一条信道又能送多快。本节先看数据通信系统的组成，再按数字—数字、数字—模拟、模拟—数字、模拟—模拟四条线索讲编码与调制，随后讨论信道的极限速率、通信方式与物理层的常见设备。</p>
+
+<h2>1. 数据通信系统的组成</h2>
+<p>计算机内部的数据是数字形式的，承载它的信号却既可能是数字信号，也可能是模拟信号。数据要在信道上传输，先得转换成合适的信号，这个转换就是编码与调制。</p>
+<p>一次通信由三部分组成：源系统、传输系统与目的系统。源系统中，<strong>信源</strong>（如一台 PC 机）产生信息，发送设备（如调制解调器）把它转换成适合传输的信号；传输系统是中间的传输信道，图 1 中用的是公用电话网；目的系统中，接收设备把信号还原成数据，交给<strong>信宿</strong>显示。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0017.webp" alt="图 1　数据通信系统的组成：源系统、传输系统与目的系统" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　数据通信系统的组成：源系统（信源 PC 机与发送设备调制解调器）、传输系统（公用电话网）与目的系统（接收设备与信宿），数字比特流与模拟信号在两端相互转换（原课件第 17 张）</figcaption>
+</figure>
+<p>两端各有一个<strong>调制解调器（modem）</strong>：发送端把数字比特流调制成模拟信号送进电话网，接收端再把模拟信号解调回数字比特流。数据在两端是数字的，在信道里却是模拟的——<strong>数据的形式与信号的形式可以不同</strong>。</p>
+
+<h2>2. 编码：把信息装进信号的四种方式</h2>
+<p><strong>编码</strong>是信息（数据）用信号来表示的方法。按数据的数字/模拟与信号的数字/模拟两两组合，共有四种方式，分别应付比特在导线上直传、比特借模拟信道传输、模拟量送进计算机，以及电话与电视这类模拟数据用模拟信号传输的场合。</p>
+<div class="tbl-wrap"><div class="tbl-wrap"><table>
+  <caption>四种编码方式总览，依课件第 18—37 张整理。</caption>
+  <thead>
+    <tr><th>编码方式</th><th>数据形式</th><th>信号形式</th><th>本节涉及的方法</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>数字—数字</td><td>数字</td><td>数字</td><td>单极性编码；极化编码（NRZ、RZ、双相位）；双极性编码</td></tr>
+    <tr><td>数字—模拟</td><td>数字</td><td>模拟</td><td>ASK、FSK、PSK、QAM</td></tr>
+    <tr><td>模拟—数字</td><td>模拟</td><td>数字</td><td>采样、量化、编码三步的 A/D 数据采集</td></tr>
+    <tr><td>模拟—模拟</td><td>模拟</td><td>模拟</td><td>传统电话系统与有线电视系统的调制</td></tr>
+  </tbody>
+</table></div></div>
+
+<h2>3. 数字—数字编码：用脉冲电压表示比特</h2>
+<p>数字—数字编码用数字信号表示数字信息：计算机产生的 0、1 比特序列被转换成一串可以在导线上传输的脉冲电压。常见方案分三类——<strong>单极性编码</strong>、<strong>极化编码</strong>与<strong>双极性编码</strong>，差别在于用几个电平、比特与电平怎样对应，以及接收方能不能从信号本身提取同步信息。</p>
+
+<h3>（1）单极性编码</h3>
+<p>只用一个极性的电压：高电平表示 1，低电平表示 0。缺点是含有<strong>直流分量</strong>、要求带宽较高，而且连续的 1 或 0 使电平长时间不变，接收方<strong>无法同步</strong>，只能依赖附加线。</p>
+
+<h3>（2）极化编码</h3>
+<p>极化编码采用正、负两个电压，减轻了单极性编码的直流分量问题。常见的有<strong>非归零编码 NRZ（Non-Return-to-Zero）</strong>、<strong>归零编码 RZ（Return-to-Zero）</strong>与双相位编码。</p>
+<p>非归零编码在比特间隙内电平不变，分两种：非归零电平编码 NRZ-L 用电平代表比特，非归零反相编码 NRZ-I 看电平是否翻转——下一比特为 1 就翻转，否则保持不变。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0022.webp" alt="图 2　非归零电平编码 NRZ-L 与非归零反相编码 NRZ-I 的波形对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　非归零编码的两种方式：NRZ-L 用电平高低代表比特，NRZ-I 在下一比特为 1 时发生电平翻转，否则保持不变（原课件第 22 张）</figcaption>
+</figure>
+<p>归零编码用正电平、负电平和零三个电平，并让信号在每个比特间隙的中间归零：正电压到零的跳变代表 1，负电压到零的跳变代表 0。每个比特至少跳变一次，接收方可以据此同步。</p>
+<p>双相位编码让信号在每比特间隙的<strong>中间</strong>改变，但不归零，而是转为相反的一极，中间的跳变同样可用于同步。它有两种方式：<strong>曼彻斯特编码 MPE</strong> 用间隙中间的跳变同时表示比特与同步信息，负电平到正电平的跳变代表 1，正电平到负电平的跳变代表 0；<strong>差分曼彻斯特编码 DME</strong> 的中间跳变只携带同步信息，比特的取值看间隙开始处——有跳变代表 0，没有跳变代表 1（图 3）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0025.webp" alt="图 3　曼彻斯特编码 MPE 与差分曼彻斯特编码 DME 的波形对照" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　MPE 与 DME 的波形对照：MPE 用比特间隙中间的跳变方向区分 0 与 1，DME 的中间跳变只携带同步信息，比特间隙开始时刻有跳变代表 0（原课件第 25 张）</figcaption>
+</figure>
+
+<h3>（3）双极性编码</h3>
+<p>双极性编码也用正、负、零三个电平，规则是：<strong>电平 0 代表比特 0，正、负电平交替代表比特 1</strong>。它和归零编码都用三个电平，区别在归零编码每个比特的中间都要回到零，而双极性编码的关键是「零电平表示 0」。</p>
+
+<h2>4. 数字—模拟编码：用模拟信号承载比特</h2>
+<p>数字—模拟编码利用模拟信号表示数字信息：取一个高频的<strong>载波</strong>作基础波形，用数字 1、0 去改变它的某个参数，这种技术称为<strong>调制</strong>。</p>
+<p>2.1 节已说明正弦信号由振幅、频率、相位三个参数决定，因此有三种基本调制方式，常用机制有四种：幅移键控 ASK（Amplitude Shift Keying）、频移键控 FSK（Frequency Shift Keying）、相移键控 PSK（Phase Shift Keying）与正交调幅 QAM（Quadrature Amplitude Modulation）。</p>
+<p><strong>ASK</strong> 用载波的不同幅度代替 0 和 1，例如高幅表示 0、低幅表示 1，实现简单但<strong>抗干扰能力差</strong>。<strong>FSK</strong> 用不同频率表示 0 和 1，例如高频表示 0、低频表示 1，比 ASK 耐干扰。</p>
+<p><strong>PSK</strong> 调制载波的相位，例如相位 0 表示 0、相位 180 表示 1。它还可以用更多状态表示二进制位，是调制技术主要应用的技术：用 0 相位代表 00、90 相位表示 01、180 相位代表 10、270 相位表示 11，这样每种相位的正弦信号就能表示两位二进制信息。把可用的码元状态画在平面上，用方位与距离表示相位和振幅，就得到<strong>星座图</strong>：2-PSK、4-PSK、8-PSK 的每个码元分别携带 1、2、3 比特。</p>
+<p><strong>QAM</strong> 把 ASK 与 PSK 结合起来，同时改变载波的振幅和相位，同样一段频带里能容纳更多的码元状态。图 4 是两种 16 相位 QAM 星座图，16 个状态意味着每个码元可以携带 4 比特。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0035.webp" alt="图 4　两种 16 相位正交调幅 QAM 的星座图" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　两种 16 相位正交调幅 QAM 的星座图：16 个码元状态同时利用载波的振幅与相位来区分（原课件第 35 张）</figcaption>
+</figure>
+
+<h2>5. 模拟—数字编码与模拟—模拟编码</h2>
+<p>模拟—数字编码把连续变化的模拟量变成数字比特，课件称为 A/D 数据采集，主要用于自动控制系统，分三步：<strong>采样</strong>，把连续的模拟信号离散化；<strong>量化</strong>，把离散的采样值用二进制位数量化；<strong>编码</strong>，对量化后的数据用二进制编码。采样定理要求采样频率大于信号最高频率的 2 倍，才能无失真地还原原来的模拟信号。</p>
+<p>模拟—模拟编码是模拟数据用模拟信号来传，传统的有线电视、电话系统都属此类。声音信号的频率范围约 20 Hz~20 kHz，主要能量集中在 300 Hz~3000 Hz 之间，电话线只要保证这一段通过即可，其带宽通常按 3.5 kHz 估算。</p>
+
+<h2>6. 基带信号与带通信号</h2>
+<p><strong>基带信号</strong>（基本频带信号）是来自信源的信号，未进行频谱搬移和变换，计算机输出的代表各种文字、图像文件的数据信号都属于基带信号。它包含较多低频成分，甚至有直流成分，而许多信道并不能传输这种低频分量或直流分量。</p>
+<p>解决办法是让发送设备产生一个高频信号作为基波来承载信息信号，这个基波称为<strong>载波信号</strong>；使用载波信号传输基带信号的过程称为<strong>调制（modulation）</strong>，经过载波调制后的信号称为<strong>带通信号</strong>。前面讲的 ASK、FSK、PSK、QAM，做的都是把基带信号搬到信道能通过的那段频带上。</p>
+
+<h2>7. 奈氏准则：无噪声信道的极限速率</h2>
+<p>讨论速率之前先明确两个词。<strong>码元</strong>是携带数据信息的信号单元：数字通信用时间间隔相同的符号表示二进制数字，这样一个单位时间间隔内的信号就是一个二进制码元，这一间隔称为码元长度；<strong>码元速率</strong>指每秒通过信道传输的码元数，也叫信号速率或<strong>波特率</strong>，单位是波特（Baud）。</p>
+<p>奈氏准则给出无噪声（理论状态）情况下波特率 B 与信道带宽 W 的关系：<strong>B = 2 × W（Baud）</strong>。也就是说，带宽为 W 赫兹的信道每秒最多只能传输 2W 个码元；码元速率有上限，不能靠一味加快码元来提高比特率。</p>
+<p>比特率还取决于一个码元能取多少种状态。设码元状态数为 N，则 <strong>S = B × log₂N = 2 × W × log₂N（bps）</strong>，即<strong>比特率 = 波特率 × 每个码元携带的比特数</strong>（图 5）；N = 2 时比特率与波特率数值相等，状态数增加，比特率随之成倍提高。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0040.webp" alt="图 5　比特率、波特率与码元状态数的关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　比特率、波特率与码元状态数的关系：波特率受信道带宽限制，每个码元携带的比特数由状态数决定，两者相乘得到比特率（原课件第 40 张）</figcaption>
+</figure>
+<p>课件给出的第一个例子：电话线的带宽为 3.5 kHz，每个码元可能取 16 个值，求最大的数据传输率。这是无噪声条件下的问题，用奈氏准则：S = 2 × W × log₂N = 2 × 3.5 kHz × log₂16 = 2 × 3.5 kHz × 4 = 28 kbps。</p>
+
+<h2>8. 香农定理：有噪声信道的极限速率</h2>
+<p>奈氏准则假定信道没有噪声，而实际的信道总要受到噪声的干扰。香农（Shannon）定理给出噪声环境中有限带宽介质信道的最大传输速率：<strong>C = W × log₂(1 + S/N)（bps）</strong>，其中 W 是信道带宽，S 是平均信号功率，N 是平均噪声功率。信噪比的单位是分贝（dB），换算关系为<strong>信噪比 = 10 × log₁₀(S/N)</strong>。信噪比越高，信号相对噪声越强，信道能达到的极限速率也越高。</p>
+<p>课件的第二个例子：电话系统模拟部分的典型参数是信噪比为 30 dB、带宽为 3.5 kHz，求最大数据传输率。由 30 = 10 × log₁₀(S/N) 得 S/N = 1000，代入香农定理，C = 3.5 kHz × log₂(1 + 1000) ≈ 3.5 kHz × 10 = 35 kbps（log₂1001 约为 10）。</p>
+<p>两个例子对照起来看：同一条带宽 3.5 kHz 的电话线，无噪声、每码元 16 个值时奈氏准则给出的上限是 28 kbps，计入 30 dB 信噪比后香农定理给出的上限约为 35 kbps；两个上限必须同时满足，实际速率取其中较小的那个。</p>
+
+<h2>9. 信道上的通信方式</h2>
+<p>按信息交互的方向，通信方式分三类：<strong>单工</strong>通信只能单向传输，广播电视就是这样；<strong>半双工</strong>通信双方都能发送但不能同时发送，对讲机说完一句要切换方向；<strong>全双工</strong>通信双方可以同时发送和接收，最典型的例子是电话。</p>
+<p>按通信双方的对应关系，又可分为<strong>点到点通信</strong>与<strong>广播通信</strong>：前者一对一，例如拨号上网；后者一对多，一份信号同时送达多个接收方，例如无线广播。图 6 把这两组分类画在同一张图上。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-2-2/p0043.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-2-2/p0043.webp" alt="图 6　信道上的通信方式：单工、半双工、全双工与点到点通信、广播通信" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　信道上的通信方式：按信息交互方向分为单工（广播电视）、半双工（对讲机）、全双工（电话），按双方对应关系分为点到点通信（拨号上网）与广播通信（无线广播）（原课件第 43 张）</figcaption>
+</figure>
+
+<h2>10. 物理层的功能与常见设备</h2>
+<p>把上面这些收在一起，就是<strong>物理层</strong>要解决的问题：如何在介质上传输比特。它不关心比特代表文字、图像还是声音，只负责把 0、1 准确地送出去、收回来。为此，接口必须规定四个方面，即接口的四个特性：</p>
+<ul>
+  <li><strong>机械特性</strong>：插头、线缆的规格与针脚的排列；</li>
+  <li><strong>电气特性</strong>：接口上电压、电流的规格；</li>
+  <li><strong>功能特性</strong>：接口中各条线路上电压电平的含义；</li>
+  <li><strong>规程特性</strong>：发送与接收的时序规则。</li>
+</ul>
+<p>物理层的常见设备有两类。<strong>中继器（repeater）</strong>对信号进行再生和还原，把衰减的信号放大并保持与原数据相同，以增强信号传输距离、延长网络长度；它的两端各是一个网段而不是子网，适用于完全相同的两类网络互联，两个网段的速率要相同，两端可以是相同或不同的媒体，但一定要是同一个协议。</p>
+<p><strong>集线器（hub）</strong>同样对信号进行再生、放大、转发，把衰减的信号放大后转发到其他所有处于工作状态的端口上（输入端口除外），以增强信号传输距离、延长网络长度；它<strong>不具备定向传送数据的能力</strong>，是共享式设备，收到的信号会送到其余每一个工作端口，而不是只送给目标那一台。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>网络通信的基本三要素是<strong>信源、信道、信宿</strong>：数据在信道中以信号形式传输，靠的就是编码与调制；数据是数字形式，承载它的信号却可以是数字的或模拟的；</li>
+  <li>编码按数据与信号各自的形式分为四类：数字—数字（单极性、极化、双极性编码）、数字—模拟（ASK、FSK、PSK、QAM）、模拟—数字（采样、量化、编码，采样频率须大于信号最高频率的 2 倍）、模拟—模拟（传统电话与有线电视）；</li>
+  <li>数字—数字编码主要看两点：有无直流分量、能否从信号本身提取同步。归零编码与双相位编码用比特中间的跳变解决同步，极化与双极性编码用正负电压减轻直流分量；</li>
+  <li>基带信号含较多低频甚至直流成分，许多信道传不了，需用载波把它搬到合适频段，调制后的信号称为带通信号；</li>
+  <li>速率受物理条件限制：无噪声时用奈氏准则，B = 2 × W、S = 2 × W × log₂N，带宽 3.5 kHz、每码元 16 个值时上限为 28 kbps；有噪声时用香农定理，C = W × log₂(1 + S/N)，30 dB 信噪比下同一条电话线的上限约 35 kbps，实际速率取两者中较小者；</li>
+  <li>传输方式和效率还受信道通信方式限制：按方向分单工（广播电视）、半双工（对讲机）、全双工（电话），按双方关系分点到点通信与广播通信；物理层只关注「怎么传」，不管「传什么」，常见设备是中继器与集线器。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-2-1.html">‹ 2.1 网络中的信号及传输介质</a>
+      <a class="next" href="v2-2-3.html">2.3 数据可靠传输的基本需求 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

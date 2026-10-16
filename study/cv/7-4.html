@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.4 参数学习：BPTT 与 RTRL · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.4 参数学习：BPTT 与 RTRL：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html" aria-current="page"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.4 参数学习：BPTT 与 RTRL</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">结构与用法都清楚了，接下来是训练环节：参数怎么学。循环神经网络里存在一个<strong>递归调用的函数</strong>——每一时刻的计算都要用到上一时刻的状态，所以求梯度的方式与前馈网络并不相同。课件给出了两种计算梯度的算法：<strong>随时间反向传播</strong>与<strong>实时循环学习</strong>，前者沿时间反向递推，后者沿时间前向递推。本节把两者的思路、公式与代价讲清楚，为下一节讨论长程依赖问题埋下伏笔。</p>
+
+<h2>1. 递归结构带来的新问题</h2>
+<p>课件开门见山地点出差别：循环神经网络中存在一个递归调用的函数，因此<strong>计算参数梯度的方式和前馈神经网络不太相同</strong>。在前馈网络里，每一层的参数只影响它之后的层，误差反着传一遍就能算完；而在 RNN 里，同一个参数（比如 W）在每一个时刻都被用到，它的梯度自然要把所有时刻的贡献累加起来。</p>
+<p>课件指出，在循环神经网络中主要有两种计算梯度的方式：</p>
+<ul>
+  <li><strong>随时间反向传播（BackPropagation Through Time，BPTT）</strong>：把网络按时间展开，再按前馈网络的误差反向传播来算；</li>
+  <li><strong>实时循环学习（Real-Time Recurrent Learning，RTRL）</strong>：不展开，直接在时间上前向递推偏导数。</li>
+</ul>
+
+<h2>2. 损失函数与梯度</h2>
+<p>先约定记号。给定一个训练样本 (x, y)，其中 x = (x<sub>1</sub>, …, x<sub>T</sub>) 为长度是 T 的输入序列，y = (y<sub>1</sub>, …, y<sub>T</sub>) 是长度为 T 的标签序列——即在每一时刻 t 都存在一个监督信息 y<sub>t</sub>。这正是 7.3 节里人名识别那种「每一时刻都有输出、都要比对」的设定。</p>
+<p>在这个前提下，课件定义<strong>时刻 t 的损失函数</strong>为 <strong>L<sub>t</sub> = L(y<sub>t</sub>, g(h<sub>t</sub>))</strong>。</p>
+<p><strong>整个序列的损失函数</strong>为各时刻损失之和：<strong>L = Σ<sub>t=1</sub><sup>T</sup> L<sub>t</sub></strong>。</p>
+<p>于是<strong>损失关于参数 U 的梯度</strong>可以写成各时刻梯度之和：<strong>∂L/∂U = Σ<sub>t=1</sub><sup>T</sup> ∂L<sub>t</sub>/∂U</strong>。</p>
+<p>这个「求和」不是技巧，而是<strong>权值共享</strong>的必然结果：同一个 U 在 T 个时刻都被使用，它的总梯度就是各时刻贡献的叠加。前面 7.2 节讲的「时间维度上权值共享」，代价就体现在这里——梯度计算要把整条时间链都走一遍。</p>
+
+<h2>3. 随时间反向传播 BPTT</h2>
+<p>BPTT 的<strong>基本思想</strong>是：把 RNN 看作一个<strong>展开的多层前馈网络</strong>，其中「每层」对应 RNN 中的「每一时刻」。这样一来，RNN 就可以直接套用前馈网络中的 BP 算法计算参数梯度。课件特别提醒了一句：在「展开」的前馈网络中，所有层的参数是共享的，因此<strong>参数的梯度是所有「展开层」的梯度之和</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-4/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-4/p0029.webp" alt="图 1　BPTT：把 RNN 展开成多层前馈网络" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　随时间反向传播的基本思想：把 RNN 按时间展开成多层前馈网络，误差沿时间反向传递，各层（各时刻）的参数共享（原课件第 29 张）</figcaption>
+</figure>
+<p>具体怎么算？课件引入了一个中间量：<strong>δ<sub>t,k</sub> 为第 t 时刻的损失对第 k 步隐藏神经元的净输入 z<sub>k</sub> 的导数</strong>，即误差项。有了它，各参数的梯度都可以写成两层求和的形式：</p>
+<ul>
+  <li>∂L/∂U = Σ<sub>t=1</sub><sup>T</sup> Σ<sub>k=1</sub><sup>t</sup> δ<sub>t,k</sub> · h<sub>k−1</sub><sup>T</sup>；</li>
+  <li>∂L/∂W = Σ<sub>t=1</sub><sup>T</sup> Σ<sub>k=1</sub><sup>t</sup> δ<sub>t,k</sub> · x<sub>k</sub><sup>T</sup>。</li>
+</ul>
+<p>公式的含义是：求 t 时刻损失的梯度时，需要把从 k = 1 到 k = t 的每一个时刻（展开网络里的每一层）都算进来。而误差项 δ<sub>t,k</sub> 本身要靠<strong>沿时间反向递推</strong>得到：<strong>δ<sub>t,k</sub> = ∏<sub>i=k</sub><sup>t−1</sup> (diag(f′(z<sub>i</sub>)) U<sup>T</sup>) · δ<sub>t,t</sub></strong>。</p>
+<p>也就是说，从当前时刻往回走，每经过一个时刻就要乘上一次「激活函数的导数」与「权重矩阵 U<sup>T</sup>」。这个连乘在后面 7.5 节会变成关键：连乘的项数越多，结果越容易趋于 0 或趋于无穷。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-4/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-4/p0030.webp" alt="图 2　误差项沿时间反向累积" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　误差项 δ<sub>t,k</sub> 沿时间链反向累积：t 时刻的损失要逐层（逐时刻）回传到 k 时刻，参与各权重的梯度求和（原课件第 30 张）</figcaption>
+</figure>
+<p>课件还指出了一个例外：<strong>求 V 的梯度比较直观，不涉及时序和之前的状态</strong>，直接使用链式求导法则即可。原因也简单——V 只把当前隐状态映射到当前输出，不参与跨时刻的传递。</p>
+<p>把上面的步骤串起来，就是使用 BPTT 训练 RNN 的完整流程：</p>
+<ol>
+  <li>前向计算每个神经元的输出值，如 h<sub>t+1</sub> = f(z<sub>t+1</sub>) = f(U h<sub>t</sub> + W x<sub>t+1</sub> + b)；</li>
+  <li>反向计算每个神经元的误差项；</li>
+  <li>计算每个权重的梯度；</li>
+  <li>用梯度下降算法更新权重。</li>
+</ol>
+<p>这与前馈网络的训练流程在形式上完全一致，区别只在于第 2 步的误差要沿着时间轴往回传。</p>
+
+<h2>4. 实时循环学习 RTRL</h2>
+<p>另一条路线是<strong>实时循环学习（RTRL）</strong>，它的基本思想是：<strong>通过前向传播的方式来计算梯度</strong>。既然参数在每一时刻都会被用到，那就在前向计算的同时，把「隐状态对参数的偏导数」也一并递推出来。</p>
+<p>课件从第 t+1 时刻的状态入手。设 h<sub>t+1</sub> = f(z<sub>t+1</sub>) = f(U h<sub>t</sub> + W x<sub>t+1</sub> + b)，那么它关于参数 u<sub>ij</sub> 的偏导数由两部分叠加而成：一部分是「h<sub>t</sub> 对 u<sub>ij</sub> 的偏导数经权重矩阵 U 传到当前时刻」，另一部分是「u<sub>ij</sub> 直接作用于当前时刻」带来的贡献，两部分再统一乘上当前时刻激活函数的导数。这样一来，只要知道上一时刻的偏导数，就能算出这一时刻的偏导数。</p>
+<p>于是实时循环算法从第 1 个时刻开始，除了计算 RNN 的隐状态之外，还利用上述公式依次前向计算 ∂h<sub>1</sub>/∂u<sub>ij</sub>、∂h<sub>2</sub>/∂u<sub>ij</sub>、∂h<sub>3</sub>/∂u<sub>ij</sub>、…。这样，假设第 t 个时刻存在一个监督信息，其损失函数为 L<sub>t</sub>，就可以由链式法则同时计算损失函数对 u<sub>ij</sub> 的偏导数：<strong>∂L<sub>t</sub>/∂u<sub>ij</sub> = (∂h<sub>t</sub>/∂u<sub>ij</sub>) · (∂L<sub>t</sub>/∂h<sub>t</sub>)</strong>。</p>
+<p>两者的方向恰好相反：BPTT 是「先跑完整条序列，再回头算梯度」，RTRL 是「一边往前走，一边把梯度带在身边」。</p>
+
+<h2>5. 两种算法的取舍</h2>
+<p>课件把两者的比较总结为三点。首先，<strong>BPTT 和 RTRL 都是基于梯度下降的算法</strong>，分别通过<strong>反向模式</strong>和<strong>前向模式</strong>应用链式法则来计算梯度——这一点与自动微分里反向模式、前向模式的区别是一回事。</p>
+<p>其次，<strong>BPTT 算法计算量小</strong>，但它需要保存所有时刻的中间梯度，<strong>空间复杂度较高</strong>：序列有多长，就要存多长的中间结果。这也解释了为什么训练长序列时显存会成为瓶颈。</p>
+<p>最后，<strong>RTRL 算法不需要梯度回传</strong>，因此非常适合用于需要在线学习或无限序列的任务：数据一边来一边学，不必等整条序列结束；代价则是每一步都要维护并更新偏导数，计算量随参数量的平方增长，通常远大于 BPTT。</p>
+<p>正因为 BPTT 在实际中更常用，下一节讨论长程依赖问题时，我们看的就是它——那条「沿时间反向连乘」的路径。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>RNN 存在递归调用的函数，参数的梯度必须把各时刻的贡献累加起来：L = Σ<sub>t</sub> L<sub>t</sub>，∂L/∂U = Σ<sub>t</sub> ∂L<sub>t</sub>/∂U。</li>
+  <li>每时刻的损失定义为 L<sub>t</sub> = L(y<sub>t</sub>, g(h<sub>t</sub>))；训练样本的标签序列与输入序列等长，每一时刻都有监督信息。</li>
+  <li><strong>BPTT</strong> 把 RNN 展开成多层前馈网络，「每层」对应「每一时刻」，按 BP 算法求梯度；误差项 δ<sub>t,k</sub> 需要沿时间反向递推，∂L/∂U、∂L/∂W 都是「对所有时刻的两重求和」；V 的梯度不涉及时序，直接用链式法则。</li>
+  <li><strong>RTRL</strong> 用前向传播求梯度：在前向计算隐状态的同时递推 ∂h<sub>t</sub>/∂u<sub>ij</sub>，适合在线学习与无限序列。</li>
+  <li>两者分别对应反向模式与前向模式的链式法则：BPTT 计算量小而空间复杂度高（要存所有时刻的中间梯度），RTRL 无需回传但计算量大。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-3.html">‹ 7.3 RNN 的三种序列建模模式</a>
+      <a class="next" href="7-5.html">7.5 长程依赖问题与改进方案 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

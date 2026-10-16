@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.6 Linux系统的特权级与中断处理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 2 章 2.6 Linux系统的特权级与中断处理：课件第 60 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html" aria-current="page"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 2 章 结构与硬件支持</p>
+      <h1>2.6 Linux系统的特权级与中断处理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前两节分别讲了处理机的特权级和中断处理的一般原理，这一节看它们在真实系统中的样子。内容不长，但很关键：一般操作系统（包括 Linux）对中断的支持可以归结为两点——至少支持两个特权级，以及把中断处理切成上半部和下半部。这两条正是 2.4、2.5 两节原理在 Linux 上的落地。</p>
+
+<h2>1. Linux 的两个特权级</h2>
+<p>一般操作系统（包括 Linux）对中断的支持，第一条就是<strong>至少支持两个特权级别</strong>。Linux 系统使用两个级别：</p>
+<ul>
+  <li><strong>特权级 0 —— 核态</strong>（内核模式）；</li>
+  <li><strong>特权级 3 —— 用户态</strong>（用户模式）。</li>
+</ul>
+<p>对照 2.4 节讲的 80386 特权级标识可以看出，这就是 CS 段选择字低 2 位（CPL）取 00 与 11 的两种情形：核态是最高特权级，用户态是最低特权级。Linux 只用这两级，没有使用 01、10 两个中间级——内核代码全部运行在特权级 0，用户程序全部运行在特权级 3，两者之间只能通过受控的入口（系统调用、中断、异常）往来。这也解释了为什么 2.4 节要强调「进入特权态必须经过受控的入口」：真实系统的安全边界就建立在这一条上。</p>
+
+<h2>2. 中断处理的两半：上半部与下半部</h2>
+<p>第二条是<strong>中断处理一般分为两部分</strong>，即上半部和下半部。这样划分的原因，是中断处理对时间的要求极不一致：有些工作必须马上做（否则硬件状态会丢失或设备无法继续工作），有些工作则可以稍后再做。</p>
+
+<h3>（1）上半部（top half）</h3>
+<p>上半部是中断响应后<strong>必须立即处理</strong>的工作，是中断处理中有严格时间限制的工作，是关键而紧迫的部分。它的一个重要性质是：<strong>上半部的工作是不可被打断的</strong>，即在屏蔽所有中断的情况下进行。典型例子是与硬件设备应答或使硬件复位的工作——这类动作拖不得，也不允许中途被别的中断插进来。</p>
+
+<h3>（2）下半部（bottom half）</h3>
+<p>下半部是那些<strong>可以稍后完成</strong>的工作。与上半部相反，下半部的执行是可以打断的，即在开中断的情况下执行。原则上是把更多的处理工作向后推迟到下半部执行：中断响应阶段只做最要紧的事，尽快退出以重新开放中断，让系统恢复对其他事件的响应能力。</p>
+
+<h3>（3）这样划分的好处</h3>
+<p>把两半放在一起看，就能明白这种设计的取舍：上半部<strong>用屏蔽中断换取确定性和及时性</strong>，代价是这期间系统无法响应其他中断；下半部<strong>用可打断换取吞吐量与响应性</strong>，把耗时的收尾工作（如数据搬移、缓冲区处理、唤醒等待的进程）挪出临界区。两半的分界线，本质上是「时间紧迫程度」与「中断屏蔽时长」之间的一条折中线。这条折中线索在第 8 章设备管理、特别是 8.4 节设备控制中还会继续展开。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>一般操作系统（包括 Linux）对中断的支持包括：至少支持两个特权级别；中断处理分为上半部和下半部两部分；</li>
+  <li>Linux 使用两个特权级：特权级 0 为核态（内核模式），特权级 3 为用户态（用户模式）；对应 2.4 节中 CPL 的 00 与 11；</li>
+  <li>上半部是中断响应后必须立即处理、有严格时间限制、关键而紧迫的工作，在屏蔽所有中断（不可被打断）的情况下进行，例如与硬件设备应答或使硬件复位；</li>
+  <li>下半部是可以稍后完成的工作，在开中断（可被打断）的情况下执行；原则上把更多的处理工作推迟到下半部；</li>
+  <li>划分两半的实质是：上半部以保证及时性为先，下半部以恢复系统响应能力、提高吞吐量为先。下一章转入用户接口，看用户如何通过操作命令与系统调用使用这台操作系统虚拟机。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-5.html">‹ 2.5 中断及其处理</a>
+      <a class="next" href="2-7.html">2.7 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

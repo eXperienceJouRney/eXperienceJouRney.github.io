@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.7 域名解析服务（DNS） · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 3 章 网络服务及应用 3.7 域名解析服务（DNS）：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html" aria-current="page"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 3 章 网络服务及应用</p>
+      <h1>3.7 域名解析服务（DNS）</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">在浏览器里敲下一个网址，网络真正认识的却是一串 IP 地址，把域名翻译成 IP 地址的正是域名系统 DNS（Domain Name System）——它不直接和用户打交道，却是因特网的核心功能。本节先说明 DNS 的由来，再讲域名的层次结构、四类域名服务器、递归与迭代两种解析过程、缓存与资源记录，最后看它为什么会成为攻击的目标。</p>
+
+<h2>1. 为什么需要域名系统</h2>
+<p>人类社会里我们记的是姓名，而不是身份证号。<strong>域名（Domain Name）</strong>是网络社会里的姓名，给人看、便于记忆；MAC 地址、IP 地址这类数字标识则像身份证号，机器认得出，人记不住。</p>
+<p>DNS 有四个特点：它不直接和用户打交道，却是因特网的核心功能；它是一个分布式数据库，由很多 DNS 服务器按层次结构组织起来，这正是它区别于「一台服务器包办」的地方；它运行在端到端系统上，使用 UDP 协议、53 号端口传输报文（见 3.2 节），因此是应用层协议；它以客户—服务器（C/S）模式工作，发出查询的是客户，回答查询的是服务器（第一版讲义 6.2 客户—服务器方式和对等方式）。</p>
+
+<h2>2. 一次最简单的 DNS 解析过程</h2>
+<p>先用一次最简单的解析认清各个角色。主机要在浏览器里打开 www.hust.edu.cn/index.html，过程只有五步：</p>
+<ul>
+  <li>浏览器从网址中取出主机名 www.hust.edu.cn，交给本机的 DNS 客户机；</li>
+  <li>DNS 客户机向 DNS 服务器发送包含该域名的查询请求报文；</li>
+  <li>DNS 服务器返回响应报文，其中含有对应的 IP 地址 202.114.0.245；</li>
+  <li>DNS 客户机把获得的 IP 地址交给浏览器；</li>
+  <li>浏览器向该 IP 地址所在的 Web 服务器发起 TCP 连接（见 3.3 节），再按 3.4 节万维网的方式取回页面。</li>
+</ul>
+<p>其中属于域名解析的是中间三步：客户机发问、服务器作答、把结果交回；取回网页是万维网的事。</p>
+
+<h2>3. 从单台服务器到层次树状的名字空间</h2>
+<p>最省事的想法是只放一台 DNS 服务器，但它会同时带来四个问题：</p>
+<ul>
+  <li>单点故障：服务器一旦崩溃，整个因特网都受影响；</li>
+  <li>数据流通量：全球的查询涌向同一处，服务器不堪重负；</li>
+  <li>远程的集中式数据库：查询跨越很远的距离，带来严重的延时；</li>
+  <li>维护量巨大：服务器不得不拼命更新，才能跟上因特网上主机的增删。</li>
+</ul>
+<p>可行的办法是把名字<strong>按级划分</strong>，组织成一棵<strong>层次树状结构</strong>的域树：树根在最上面，往下依次是顶级、二级、三级、四级域名，越往右级别越高，越往左越具体——例如 www.tsinghua.edu.cn 中，cn 是顶级域名，edu 是二级域名，tsinghua 是三级域名，www 是四级域名。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-7/p0116.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-7/p0116.webp" alt="图 1　域名系统的层次树状名字空间：从树根到顶级、二级、三级、四级域名" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　域名系统的层次树状名字空间：树根之下是 com、net、edu、cn、uk 等顶级域名，再往下是二级、三级、四级域名，每个结点的名字都从属于上一级（原课件第 116 张）</figcaption>
+</figure>
+<p>这样组织出来的名字就是域名，它由若干分量组成，分量之间用小数点「.」隔开，<strong>总长不超过 255 个字符，每个分量不超过 63 个字符</strong>，点的个数至少为一个。书写时把级别低的分量放在左边，形如「… .三级域名.二级域名.顶级域名」；点对应的英文单词是 dot，也可以读作 point。</p>
+
+<h2>4. 顶级域名 TLD</h2>
+<p>域树的最上面一级是<strong>顶级域名 TLD（Top Level Domain）</strong>，它分为三类，见表 1。</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「顶级域名 TLD（Top Level Domain）」整理（原课件第 118 张）。</caption>
+  <thead>
+    <tr><th>类别</th><th>说明</th><th>举例</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>国家或地区顶级域 nTLD，也记为 ccTLD（cc 表示 country code）</td><td>每个国家或地区一个，目前有 300 多个</td><td>.cn 表示中国，.us 表示美国，.uk 表示英国</td></tr>
+    <tr><td>基础设施域 .arpa（Address and Routing Parameter Area）</td><td>专用于 Internet 基础设施目的</td><td>二级域有 ip6.arpa、iris.arpa、in-addr.arpa、uri.arpa、urn.arpa、home.arpa、as112.arpa、in-addr-servers.arpa、ipv4only.arpa 等</td></tr>
+    <tr><td>通用顶级域 gTLD</td><td>早期规定了 20 个；2011 年批准新通用顶级域名（New Generic Top-level Domain，New gTLD），截至 2020 年已注册有 1200 多个</td><td>见表 2</td></tr>
+  </tbody>
+</table></div>
+<p>通用顶级域名最贴近普通用户，其用途在早期就已逐一定下，见表 2。</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「早期的通用顶级域名」整理（原课件第 119 至 121 张）。</caption>
+  <thead>
+    <tr><th>域名</th><th>用途</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>.com</td><td>公司企业（commerce）</td></tr>
+    <tr><td>.net</td><td>网络服务机构，例如 NIC 和 NOC（network）</td></tr>
+    <tr><td>.org</td><td>非赢利性组织（organization）</td></tr>
+    <tr><td>.edu</td><td>教育机构（美国专用）（education）</td></tr>
+    <tr><td>.gov</td><td>政府部门（美国专用）（government）</td></tr>
+    <tr><td>.mil</td><td>军事部门（美国专用）（military）</td></tr>
+    <tr><td>.int</td><td>政府间国际合约建立的国际性组织（international）</td></tr>
+    <tr><td>.mobi</td><td>提供移动产品和服务的用户和供应商（mobile）</td></tr>
+    <tr><td>.aero</td><td>航空运输企业</td></tr>
+    <tr><td>.biz</td><td>商业（business）</td></tr>
+    <tr><td>.cat</td><td>（西班牙）加泰罗尼亚语言和文化团体</td></tr>
+    <tr><td>.coop</td><td>合作团体</td></tr>
+    <tr><td>.info</td><td>适用于各种情况</td></tr>
+    <tr><td>.jobs</td><td>人力资源管理者</td></tr>
+    <tr><td>.museum</td><td>博物馆</td></tr>
+    <tr><td>.name</td><td>个人</td></tr>
+    <tr><td>.pro</td><td>有资质的专业人员及其实体，例如会计、律师和医师等自由职业者</td></tr>
+    <tr><td>.tel</td><td>商业和个人公布其联系方式</td></tr>
+    <tr><td>.travel</td><td>旅游业实体</td></tr>
+  </tbody>
+</table></div>
+<p>名单并没有停在早期那 20 个上。2012 年开始，公司名可以作为新的顶级域名（18 万美元），也可以注册 .中国、.公司、.网络 等顶级域名，这类多语种域名的国际标准是 RFC 3454、RFC 3490、RFC 3491、RFC 3492。</p>
+
+<h2>5. 我国的二级域名与域名的管理</h2>
+<p>顶级域名之下是二级域名。以国家顶级域名 .cn 为例，它下面的二级域名分三类：类别域名 7 个（表 3）、行政区域名 34 个、无类别域名。</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「国家顶级域名 .cn 下的二级域名」整理，类别域名共 7 个（原课件第 122 张）。</caption>
+  <thead>
+    <tr><th>二级域名</th><th>含义</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>.edu.cn</td><td>教育</td></tr>
+    <tr><td>.gov.cn</td><td>政府</td></tr>
+    <tr><td>.org.cn</td><td>非营利组织</td></tr>
+    <tr><td>.net.cn</td><td>网络服务</td></tr>
+    <tr><td>.com.cn</td><td>工商金融等企业</td></tr>
+    <tr><td>.ac.cn</td><td>科研</td></tr>
+    <tr><td>.mil.cn</td><td>国防机构</td></tr>
+  </tbody>
+</table></div>
+<p>行政区域名取省、直辖市、自治区、特区等名称，每个写成两个字母，例如北京 bj、河北 he；无类别域名直接注册在 .cn 之下，例如 www.google.cn、www.tianya.cn。</p>
+<p>域名由域名管理机构分级负责注册：因特网的域名管理机构是 ICANN（Internet Corporation for Assigned Names and Numbers，网址 www.icann.org）；ccTLD 下的二级域名由该国自行确定；三级域名的注册由其所属的二级域名机构负责，以此类推。在我国，.edu.cn 下的三级域名注册由 CERNET（中国教育和科研计算机网）负责，其它二级域名的注册由 CNNIC（中国互联网络信息中心）负责。</p>
+
+<h2>6. 域名服务器的层次结构</h2>
+<p>名字空间分了层，回答查询的服务器也按同样的层次组织起来：最上面是根 DNS 服务器，往下是顶级域服务器（.com、.cn、.edu 等），再往下是各组织的权威 DNS 服务器（如 hust.edu.cn、baidu.com.cn 等）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-7/p0124.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-7/p0124.webp" alt="图 2　按层次组织起来的域名服务器：根 DNS 服务器、顶级域服务器与权威 DNS 服务器" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　域名服务器的层次：根 DNS 服务器之下是 .com、.cn、.edu 等顶级域服务器，再往下是各组织的权威 DNS 服务器（原课件第 124 张）</figcaption>
+</figure>
+<p>根 DNS 服务器共有 13 个，用字母 a 到 m 编号，由不同机构在世界各地分散运营，见表 4。</p>
+<div class="tbl-wrap"><table>
+  <caption>13 个根 DNS 服务器的代号、运营机构与所在地，依课件第 125 张整理。</caption>
+  <thead>
+    <tr><th>代号</th><th>运营机构</th><th>所在地</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>a</td><td>NSI</td><td>Herndon, VA</td></tr>
+    <tr><td>b</td><td>USC-ISI</td><td>Marina del Rey, CA</td></tr>
+    <tr><td>c</td><td>PSInet</td><td>Herndon, VA</td></tr>
+    <tr><td>d</td><td>U Maryland</td><td>College Park, MD</td></tr>
+    <tr><td>e</td><td>NASA</td><td>Mt View, CA</td></tr>
+    <tr><td>f</td><td>Internet Software C.</td><td>Palo Alto, CA</td></tr>
+    <tr><td>g</td><td>DISA</td><td>Vienna, VA</td></tr>
+    <tr><td>h</td><td>ARL</td><td>Aberdeen, MD</td></tr>
+    <tr><td>i</td><td>NORDUnet</td><td>Stockholm</td></tr>
+    <tr><td>j</td><td>NSI（TBD）</td><td>Herndon, VA</td></tr>
+    <tr><td>k</td><td>RIPE</td><td>London</td></tr>
+    <tr><td>l</td><td>ICANN</td><td>Marina del Rey, CA</td></tr>
+    <tr><td>m</td><td>WIDE</td><td>Tokyo</td></tr>
+  </tbody>
+</table></div>
+<p>顶级域 DNS 服务器负责顶级域名和所有国家的顶级域名的解析工作，例如 com、org、net、gov、uk、cn、jp 等；它们并不都由同一家机构维护：edu 顶级域服务器由 EDUCAUSE 维护，com 顶级域服务器由 VeriSign 维护。</p>
+<p><strong>权威 DNS 服务器</strong>属于某个组织，为该组织的服务器提供权威的域名到 IP 地址映射服务，例如 Web 服务器和 mail 服务器，一般由所属组织或者服务提供商负责维护。</p>
+<p><strong>本地 DNS 服务器</strong>的行为像一个代理：它接收本网内主机的查询，再向域名的层次体系中进一步查询。它并不属于 DNS 层次结构中的一层，却是每次查询的入口：主机做域名查询时，请求首先被发送到本地域名服务器；每个网络服务提供商都会提供一个，所以它也常被称为「默认 DNS 服务器」。</p>
+
+<h2>7. 域名解析过程：递归与迭代</h2>
+<p>把这几类服务器串起来就是一次完整的解析，图 3 是递归加迭代的过程。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-7/p0129.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-7/p0129.webp" alt="图 3　DNS 解析过程：主机到本地 DNS 服务器的递归查询，加上本地 DNS 服务器到各级服务器的迭代查询" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　递归加迭代的 DNS 解析过程：请求主机的查询先交给本地 DNS 服务器 dns.hust.edu.cn（第 1 步），再由它依次向根、顶级域服务器 dns.com 与权威服务器 dns.baidu.com 迭代查询（第 2 至 7 步），最后把 www.baidu.com 的地址返回主机（第 8 步）（原课件第 129 张）</figcaption>
+</figure>
+<p>两种查询方式的区别在于「谁继续往下问」。<strong>递归查询</strong>要求被查询的服务器代为查到底，把最终结果返回；<strong>迭代查询</strong>只回答「下一步该问谁」，不代为继续查询。图 3 中，主机与本地 DNS 服务器之间的一问一答是递归查询（第 1、8 步）；本地 DNS 服务器与根、顶级域、权威服务器之间的往来都是迭代查询（第 2 至 7 步）：根服务器只告诉它该去问哪个顶级域服务器，最终由权威服务器给出 www.baidu.com 的 IP 地址。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-7/p0130.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-7/p0130.webp" alt="图 4　纯递归的 DNS 解析过程：8 个步骤全部是递归查询" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　纯递归的 DNS 解析过程：同样由请求主机、本地 DNS 服务器、根、顶级域与权威服务器参与，但 8 个步骤全部是递归查询，结果逐级原路返回（原课件第 130 张）</figcaption>
+</figure>
+<p>图 4 是同一条链路的另一种走法：8 个步骤全部是递归查询，由各级服务器依次代替下一级去问，结果逐级原路返回。这样请求主机最省事，繁重的逐级查询却被压在根、顶级域这些上层服务器身上，所以实际的因特网采用图 3 的组合。</p>
+
+<h2>8. DNS 缓存</h2>
+<p>如果每次查询都要从根服务器问起，根服务器很快会被压垮。解决办法是<strong>缓存</strong>：任何域名服务器一旦得知了某个映射就把它保存下来，下次再有人问同一个名字，直接用缓存作答；缓存条目不是永久的，经过一定的时间间隔就会过期并被自动消除。</p>
+<p>缓存对上层的减负很直接：顶级域 DNS 服务器的地址通常被缓存在本地 DNS 服务器中，大量查询在本地就能得到答案，这样就减少了根 DNS 的负载。</p>
+
+<h2>9. DNS 可提供的服务</h2>
+<p>DNS 能做的事情不止「域名换地址」一件，它至少提供三类服务：</p>
+<ul>
+  <li><strong>域名到 IP 地址的转换</strong>：最基本的一项，把用户输入的域名换成机器使用的 IP 地址；</li>
+  <li><strong>主机／邮件服务器别名</strong>：为不好记的规范主机名或邮件服务器名提供一个易记的别名，例如 www.hotmail.com 就是 www.hotmail.aate.nsatc.net 的别名（邮件服务见 3.6 节）；</li>
+  <li><strong>负载均衡</strong>：让一个域名对应多个 IP 地址，DNS 服务器在多个 IP 之间轮转，把访问分散到多台服务器上。</li>
+</ul>
+
+<h2>10. DNS 资源记录的格式</h2>
+<p>这些服务最终都要靠<strong>资源记录 RR（Resource Record）</strong>表达，一条 RR 写成一个四元组：RR 格式 (name, value, type, ttl)。name 与 value 的含义随 type 而变，ttl 则决定这条记录能被缓存多久，正是「条目过期自动消除」的依据。表 5 是四种常见的记录类型。</p>
+<div class="tbl-wrap"><table>
+  <caption>依课件「DNS 记录的格式」整理，RR 格式为 (name, value, type, ttl)（原课件第 134 张）。</caption>
+  <thead>
+    <tr><th>类型</th><th>name</th><th>value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Type=A</td><td>主机名</td><td>IP 地址</td></tr>
+    <tr><td>Type=NS</td><td>域，如 foo.com</td><td>该域权威域名服务器的主机名</td></tr>
+    <tr><td>Type=CNAME</td><td>别名，如 www.ibm.com</td><td>真名，如 servereast.backup2.ibm.com</td></tr>
+    <tr><td>Type=MX</td><td>—</td><td>与 name 相关的邮件服务器域名</td></tr>
+  </tbody>
+</table></div>
+
+<h2>11. 针对 DNS 服务器的攻击</h2>
+<p>DNS 是因特网的核心功能，打掉它就让大量用户上不了网，因此它一直是攻击重点。针对 DNS 服务器的<strong>分布式拒绝服务 DDoS（Distributed Denial of Service）</strong>攻击有两种常见形式：用 DNS 请求报文洪泛攻击顶级域 DNS 服务器，用 ICMP Ping 洪泛攻击根 DNS 服务器。后者难以成功，因为根服务器通常配备分组过滤器；前者则难以过滤。此外要注意，大多数本地 DNS 服务器都缓存了顶级域 DNS 服务器的地址。</p>
+<p>更麻烦的是，DNS 服务器还会被利用去攻击别人，这就是<strong>反射攻击</strong>：攻击者向 DNS 服务器发出查询，却把请求伪装成来自目标主机，服务器给出的回答便全部涌向目标主机。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-3-7/p0136.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-3-7/p0136.webp" alt="图 5　利用 DNS 服务器对目标主机发起 DDoS 攻击（反射攻击）" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　利用 DNS 服务器对目标主机采用 DDoS 攻击，即反射攻击：攻击者把查询请求引向 DNS 服务器，由 DNS 服务器产生的大量回答报文去打目标主机（原课件第 136 张）</figcaption>
+</figure>
+<p>同类手法还有重定向攻击、DNS 毒害攻击与中间人攻击：毒害攻击是向 DNS 服务器发送伪造的回答，诱使服务器把伪造记录收进缓存；中间人攻击是截获来自主机的请求，再返回伪造的回答。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>DNS 把域名映射为 IP 地址，把名字翻译成机器认得的地址，不直接和用户打交道却是因特网的核心功能；它是运行在端到端系统上、使用 UDP 53 号端口的应用层协议，以 C/S 模式工作（与第一版讲义 6.4 域名系统 DNS 同题）；</li>
+  <li>名字空间按级划分成层次树状结构：顶级域名（国家或地区顶级域 nTLD／ccTLD、基础设施域 .arpa、通用顶级域 gTLD）、二级、三级、四级域名；域名各分量用点隔开，总长不超过 255 个字符，每个分量不超过 63 个字符；</li>
+  <li>回答查询的服务器同样分层：根（13 个，a 至 m）、顶级域、权威三级构成层次结构，本地 DNS 服务器严格讲不属于其中一层，却是每次查询的入口；主机到本地服务器用递归查询，本地服务器到各级服务器用迭代查询，缓存则让大量查询不必每次从根问起；</li>
+  <li>域名到 IP 地址的转换、主机／邮件服务器别名与负载均衡，都由资源记录表达，常见类型有 A、NS、CNAME、MX；DNS 既是 DDoS 攻击的目标（洪泛顶级域服务器、ICMP Ping 洪泛根服务器），也会被用于反射攻击，此外还有重定向攻击、毒害攻击与中间人攻击。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-3-6.html">‹ 3.6 电子邮件服务</a>
+      <a class="next" href="v2-3-8.html">3.8 P2P文件分发 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.2 作业调度 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.2 作业调度：课件第 4–6 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html" aria-current="page"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.2 作业调度</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">6.1 节把处理机调度分成宏观与微观两层，这一节讲宏观的那一层——作业调度。它管的是「哪些作业有资格进入系统」，所以先要看清一个作业从提交到退出会经历哪些状态，再看作业调度程序为此必须完成哪四件事，最后交代它的数据结构：作业控制块 JCB。</p>
+
+<h2>1. 作业的状态及其变迁</h2>
+<p>作业调度负责作业一级的处理器。要理解它做什么，先要看一个作业在系统里的处境会怎样变化。作业有三种状态：</p>
+<ul>
+  <li><strong>后备状态</strong>：作业进入到磁盘后备作业队列，等待调度；</li>
+  <li><strong>执行状态</strong>：作业进入主存开始运行，到作业计算完成；</li>
+  <li><strong>完成状态</strong>：从作业计算完成，到善后处理完毕退出系统。</li>
+</ul>
+<p>这三个状态串起来就是一个作业的完整生命周期。用户提交的作业先被放进磁盘上的<strong>后备作业队列</strong>：它虽然已经到了系统里，却还不能运行，因为主存、外部设备等资源未必腾得出来，只能排队等待。作业调度的作用就发生在这一站——从后备队列里挑出作业，为它分配资源、建立对应的进程，把它送进主存。作业一旦进入主存开始运行，就从后备状态转入<strong>执行状态</strong>。计算完成后作业还没有真正离开系统：系统要输出执行信息、回收它占用的资源，这一段收尾工作做完，作业才进入<strong>完成状态</strong>退出系统。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/6-2/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/6-2/p0004.webp" alt="图 1　作业的状态及其变迁：后备状态 → 执行状态 → 完成状态" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　作业的状态及其变迁：作业以后备作业的形式在后备队列中排队，被作业调度选中后进入主存，经就绪等待、执行，计算完成后做善后处理并退出系统（原课件第 4 张）</figcaption>
+</figure>
+<p>对照这张图还能看清一件事：执行状态这一段里其实含着「就绪等待」和「执行」两个环节。作业进了主存并不等于马上就能占用处理机，它还要等进程调度把处理机分给它——这正是 6.1 节所说的宏观调度与微观调度的分工：<strong>作业调度决定作业进不进得来，进程调度决定已经进来的进程谁先运行</strong>。所以作业调度只需把作业送到「可以运行」的位置，剩下的竞争处理机的事交给下一层。</p>
+
+<h2>2. 作业调度的功能</h2>
+<p>作业调度的主要任务是完成作业从后备状态到执行状态、以及从执行状态到完成状态的转变。为了完成这个任务，作业调度程序应包括以下四项功能：</p>
+<ul>
+  <li>（1）<strong>确定数据结构</strong>：为每一个进入系统的作业分配作业控制块 JCB（Job Control Block）；</li>
+  <li>（2）<strong>确定调度算法</strong>：按照一定的调度策略从磁盘后备队列中挑选一个或多个作业投入运行；</li>
+  <li>（3）<strong>分配资源</strong>：为作业创建相应的进程，并为这些进程提供所需资源；</li>
+  <li>（4）<strong>善后处理</strong>：输出执行信息，回收资源，撤销全部进程和作业控制块。</li>
+</ul>
+<p>这四项功能恰好对应作业状态的三次变化：第（1）项是作业进入系统时的准备，先把描述这个作业的数据结构立起来；第（2）（3）项合起来把作业从后备状态推进到执行状态——先挑中它，再给它资源、建好进程；第（4）项则把作业从执行状态送到完成状态，连同它的进程和作业控制块一起撤销，系统才算把这个作业彻底了结。</p>
+<p>从这四项功能还能看出作业调度的双重身份：它一方面要「挑选」，是调度者；另一方面要负责资源的分配与回收，又是资源管理者。这也是为什么它被称为<strong>宏观调度</strong>——它处理的是整个系统里一批作业的进出，动作的粒度比进程调度粗得多。</p>
+
+<h2>3. 作业控制块 JCB</h2>
+<p>作业控制块 JCB（Job Control Block）是作业调度赖以工作的数据结构：作业进入系统时创建，退出系统时销毁，<strong>JCB 是一个作业存在的标志</strong>。换句话说，系统里有多少个 JCB，就有多少个作业在系统中；作业被撤销时 JCB 一并销毁，作业的痕迹才完全消失。</p>
+<p>JCB 记录该作业的相关信息，主要包括：作业名、作业类型、作业状态、优先级、资源需求情况、进入系统时间、估计执行时间等。这些字段各有各的用途：作业名、作业类型标识它是什么；作业状态对应上面说的后备、执行、完成三种状态；优先级、资源需求情况是调度算法挑选作业时的依据；进入系统时间和估计执行时间则用来衡量它等了多久、还要运行多久——6.3 节的周转时间、带权周转时间等指标，正是拿这些字段算出来的。</p>
+<p>把 JCB 与第 4 章 4.2 节的进程控制块 PCB（Process Control Block）放在一起看，两者的地位是对应的：JCB 描述一个作业，PCB 描述一个进程，而作业在执行状态下会对应一个或多个进程，于是 JCB 与 PCB 之间也就有了对应关系——第（4）项功能里「撤销全部进程和作业控制块」说的正是这种连带关系。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>作业调度负责作业一级的处理器，是<strong>宏观调度</strong>：它决定哪些作业有资格进入系统，与 6.1 节所说的微观调度（进程调度）分工配合；</li>
+  <li>作业有三种状态：<strong>后备状态</strong>（在磁盘后备作业队列中等待调度）、<strong>执行状态</strong>（进入主存开始运行，到计算完成）、<strong>完成状态</strong>（计算完成后做善后处理直到退出系统）；</li>
+  <li>执行状态里含「就绪等待」与「执行」两个环节：作业进入主存后仍要等进程调度分配处理机，作业调度只负责把它送到可以运行的位置；</li>
+  <li>作业调度的主要任务是完成作业在后备、执行、完成三个状态之间的转变，为此要有四项功能：确定数据结构（分配 JCB）、确定调度算法（从后备队列挑选作业）、分配资源（创建进程并提供资源）、善后处理（输出信息、回收资源、撤销全部进程和 JCB）；</li>
+  <li>作业控制块 JCB 是作业存在的标志，在作业进入系统时创建、退出系统时销毁，记录作业名、作业类型、作业状态、优先级、资源需求情况、进入系统时间、估计执行时间等信息；它的地位与描述进程的 PCB 相对应，下一节 6.3 节的周转时间与带权周转时间正是靠 JCB 中的进入系统时间、估计执行时间等字段算出来的。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-1.html">‹ 6.1 处理机的多级调度</a>
+      <a class="next" href="6-3.html">6.3 作业调度算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

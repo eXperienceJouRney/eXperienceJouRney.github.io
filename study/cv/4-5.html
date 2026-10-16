@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5 特征匹配与性能评价 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 4 章 特征检测与匹配 4.5 特征匹配与性能评价：以「4-特征检测与匹配.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html" aria-current="page"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 4 章 特征检测与匹配</p>
+      <h1>4.5 特征匹配与性能评价</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">有了关键点和描述子，最后一步是把两幅图里的点对起来。课件这一节开头同样先摆出那张 <strong>Main questions</strong> 过渡页，而四个问题里只剩最后一个还没回答：<strong>如何建立特征点之间的对应关系，也就是如何计算匹配</strong>。这一节先把「最佳匹配」定义清楚——距离最小的那个就是——然后讨论三件事：距离用什么量（<strong>SSD</strong>）、怎么压掉错误匹配（<strong>ratio distance</strong>）、怎么客观评价一套匹配方法的好坏（<strong>阈值、true/false positives、ROC 与 AUC</strong>）。这一节也是全章唯一给出「评价指标」的地方，考的就是能不能把指标的含义说准。最后课件抛出速度问题，直接引出 4.6 节的 FAST 与 ORB。</p>
+
+<h2>1. 什么叫「最佳匹配」</h2>
+<p>课件的提问方式很明确：给定图像 1 中的一个特征点及其特征向量，如何在图像 2 中找到最佳匹配？答案是两步：</p>
+<ol>
+  <li><strong>定义特征向量距离函数</strong>；</li>
+  <li><strong>对于图 1 中的每一个特征点，与图 2 中所有特征点的特征向量计算距离函数，距离最小的特征点为最佳匹配。</strong></li>
+</ol>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0064.webp" alt="图 1　特征匹配的两个步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　特征匹配：先定义特征向量距离函数，再对图 1 中每个特征点与图 2 中所有特征点计算距离，距离最小者为最佳匹配（原课件第 64 张）</figcaption>
+</figure>
+<p>这就是最朴素的<strong>最近邻</strong>思路。它的代价是<strong>暴力搜索</strong>：图 1 有 m 个特征、图 2 有 n 个特征，就要算 m×n 次距离。当特征成千上万时，这一步往往比检测和描述加起来还慢——所以后面要讲速度优化。</p>
+
+<h2>2. 距离函数：从 SSD 到 ratio distance</h2>
+<h3>（1）最简单的度量：平方差和 SSD</h3>
+<p>课件给出的第一种度量是<strong>平方差和（Sum of Squared Differences, SSD）</strong>：<strong>特征向量对应维度计算平方差，而后求和</strong>，即</p>
+<p><strong>SSD(f<sub>1</sub>, f<sub>2</sub>) = Σ<sub>i</sub> ( f<sub>1</sub>[i] − f<sub>2</sub>[i] )²</strong></p>
+<p>它的<strong>缺点</strong>是：可能存在错误匹配。原因不难理解——SSD 只关心「两个向量有多像」，却不关心「有多像才够」。当图像 2 里存在某个与 f<sub>1</sub> 稍微相似、但并非同一个物理点的特征时，它照样会得到一个很小的距离，于是被当成最佳匹配。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0065.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0065.webp" alt="图 2　用 SSD 度量特征向量距离及其缺点" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　最简单的度量方式：平方差和（SSD）——特征向量对应维度计算平方差再求和；缺点是可能存在错误匹配（原课件第 65 张）</figcaption>
+</figure>
+<h3>（2）更好的方式：ratio distance</h3>
+<p>改进的办法是<strong>不只问「谁最近」，还要问「最近的那个比第二近的领先多少」</strong>。课件给出的量是：</p>
+<p><strong>ratio distance = SSD(f<sub>1</sub>, f<sub>2</sub>) / SSD(f<sub>1</sub>, f<sub>2</sub>′)</strong></p>
+<p>其中 <strong>SSD(f<sub>1</sub>, f<sub>2</sub>) 为最佳匹配对应的最小距离</strong>，<strong>SSD(f<sub>1</sub>, f<sub>2</sub>′) 为次优匹配对应的次接近距离</strong>。课件给出的判读规则是：</p>
+<ul>
+  <li><strong>如果 ratio distance 很大</strong>，意味着「最近的那个」并没有比「第二近的那个」好多少——把 f<sub>2</sub> 作为最佳匹配的<strong>可信度不高</strong>，可以选择<strong>舍弃</strong>；</li>
+  <li>反之，如果 ratio distance 很小，说明最佳匹配有明显的领先优势，这个匹配就比较可靠。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0066.webp" alt="图 3　ratio distance：用次优匹配来检验最佳匹配" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　更好的方式：ratio distance = SSD(f<sub>1</sub>, f<sub>2</sub>) / SSD(f<sub>1</sub>, f<sub>2</sub>′)，其中 SSD(f<sub>1</sub>, f<sub>2</sub>) 为最佳匹配的最小距离、SSD(f<sub>1</sub>, f<sub>2</sub>′) 为次优匹配的次接近距离；ratio 很大说明可信度不高，可以舍弃（原课件第 66 张）</figcaption>
+</figure>
+<p>这个判据之所以有效，是因为它<strong>用「相对差距」代替了「绝对距离」</strong>：真正独特的特征点，在另一幅图里只有一个位置与之相似；而那些长得像很多地方的特征（比如一片树叶上的点），最近邻和次近邻的距离差不多，ratio 就接近 1，于是被筛掉。这正是 4.1 节所说的「描述子必须可靠且独特」在匹配阶段的体现。</p>
+
+<h2>3. 怎么评价匹配的好坏</h2>
+<p>匹配算法最后都要设一个<strong>阈值</strong>：距离小于它的匹配就保留，大于它的就丢掉。课件把候选匹配按<strong>特征距离</strong>排在一条轴上（图上标出了 50、75、200、300、320 等距离值），一眼就能看出一个重要现象：<strong>正确匹配（true match）集中在距离小的一端，错误匹配（false match）则散布在距离大的一端</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0067.webp" alt="图 4　候选匹配按特征距离排列" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　把候选匹配按特征距离排开（图中标出 50、75、200、300、320 等距离值）：正确与错误的匹配在距离上的分布位置明显不同（原课件第 67 张）</figcaption>
+</figure>
+<p>由此得到两个基本指标（课件在图上用蓝色、红色分别标记了两类点）：</p>
+<ul>
+  <li><strong>True positives</strong>（真阳性）＝ 所得匹配中<strong>正确匹配</strong>的数量（如蓝色标记特征点）；</li>
+  <li><strong>False positives</strong>（假阳性）＝ 所得匹配中<strong>错误匹配</strong>的数量（如红色标记特征点）。</li>
+</ul>
+<p>课件强调：<strong>阈值的设置直接影响匹配的性能</strong>——阈值放松，正确的匹配留得多，错误的也跟着进来；阈值收紧，错配少了，但正确的匹配也会被误杀。这是一个典型的<strong>权衡</strong>，没有「一律取某个数就最好」的答案。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0068.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0068.webp" alt="图 5　阈值决定保留哪些匹配，以及真阳性与假阳性" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　通过设置特征距离阈值确定保留哪些互相匹配的特征点；True positives 为正确匹配的数量（蓝色标记），False positives 为错误匹配的数量（红色标记）（原课件第 68 张）</figcaption>
+</figure>
+<h3>ROC 曲线与 AUC</h3>
+<p>既然任何单一阈值都不够公平，就把<strong>所有阈值</strong>都试一遍，把结果连成曲线。课件的评价流程是：</p>
+<ol>
+  <li>计算<strong>不同阈值下</strong>的真阳率与假阳率，连成 <strong>ROC 曲线</strong>（Receiver Operator Characteristic）；</li>
+  <li>计算不同特征匹配方法<strong>曲线下的面积 AUC</strong>；</li>
+  <li><strong>AUC 面积越大性能越好</strong>——课件的例子里方法 A 优于方法 B。</li>
+</ol>
+<p>两个坐标的定义是：</p>
+<ul>
+  <li><strong>true positive rate</strong> = # true positives / # matching features (positives)，即「本该匹配上的特征里，真正匹配上了的比例」；</li>
+  <li><strong>false positive rate</strong> = # false positives / # unmatched features (negatives)，即「本不该匹配的特征里，被错误匹配上的比例」。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/4-5/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/4-5/p0069.webp" alt="图 6　ROC 曲线与 AUC" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　特征匹配方法性能评价：横轴为假阳率 false positive rate、纵轴为真阳率 true positive rate，不同阈值连成 ROC 曲线；曲线下面积 AUC 越大性能越好（图中方法 A 优于方法 B）（原课件第 69 张）</figcaption>
+</figure>
+<p>用 ROC 的好处是它<strong>把「阈值」这个人为选择的参数消掉了</strong>：比较两种匹配方法时，不必纠结「各自取什么阈值才公平」，直接比整条曲线或曲线下的面积即可。这也是机器学习里评价二分类器的标准做法——课件在这里提前把它的思路用上了。</p>
+
+<h2>4. 下一个问题：速度</h2>
+<p>质量评价讲完，课件以一张纯文字的过渡页抛出最后一个问题：<strong>如何提高检测速度，保证实时性？</strong>前面这套流程（DoG 金字塔 + 128 维描述子 + 暴力最近邻）精度好，但计算量大：实时视觉、移动机器人、AR 这类场景根本等不及。下一节给出的答案是<strong>牺牲一部分不变性，换取数量级的速度</strong>——FAST 与 ORB。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>特征匹配两步：<strong>定义特征向量的距离函数</strong>；对图 1 的每个特征点，与图 2 所有特征点算距离，<strong>距离最小者为最佳匹配</strong>（暴力最近邻，代价是 m×n 次距离计算）。</li>
+  <li><strong>SSD（平方差和）</strong>：特征向量对应维度算平方差再求和；缺点是<strong>可能存在错误匹配</strong>。</li>
+  <li><strong>ratio distance = SSD(f<sub>1</sub>, f<sub>2</sub>) / SSD(f<sub>1</sub>, f<sub>2</sub>′)</strong>：分母是次优匹配的次接近距离；ratio 很大说明最佳匹配可信度不高，可以舍弃。</li>
+  <li>阈值直接决定性能：<strong>True positives</strong> 是正确的匹配数（蓝色标记），<strong>False positives</strong> 是错误的匹配数（红色标记）。</li>
+  <li>性能评价用 <strong>ROC 曲线与 AUC</strong>：横轴 false positive rate = #false positives / #unmatched features，纵轴 true positive rate = #true positives / #matching features；<strong>AUC 越大性能越好</strong>（方法 A 优于方法 B）。</li>
+  <li>遗留问题：这套流程精度高但慢，如何提高检测速度、保证实时性——下一节由 FAST 与 ORB 回答。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-4.html">‹ 4.4 特征描述子与 SIFT</a>
+      <a class="next" href="4-6.html">4.6 快速检测：FAST 与 ORB ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

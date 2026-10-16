@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.7 UNIX系统 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章 1.7 UNIX系统：课件第 71–75 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html" aria-current="page"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 1 章 绪论</p>
+      <h1>1.7 UNIX系统</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节把镜头对准第一个真正意义上的现代操作系统——UNIX。它的价值不只是一套代码：从 Multics 的失败中得出的设计教训，C 语言与可移植性的结合，以及 shell、树形目录、文件与设备统一处理这些沿用至今的做法，都是操作系统这门课绕不开的源头。</p>
+
+<h2>1. UNIX 是什么</h2>
+<p>一句话概括：<strong>UNIX 是一个交互式的、多用户的分时操作系统</strong>。这三个定语分别对应它的三种能力——用户能通过终端与系统会话（交互式），多个用户可以同时使用同一台机器（多用户），而这些用户是靠时间片轮转共享处理机的（分时）。上一节讲 MULTICS 时提到的分时处理、远程联机、文件系统、多级反馈调度等概念雏形，在 UNIX 这里变成了可用、可移植、可传播的现实。</p>
+
+<h2>2. 从 Multics 到 UNIX</h2>
+
+<h3>（1）Multics：宏大的目标与失败的教训</h3>
+<p>故事从 1965 年开始。麻省理工大学、BELL 实验室和通用电器公司组成 MAC 课题组，联合研制 Multics 操作系统，设计目标是：向大的用户团体提供对计算机的同时访问，支持强大的计算能力与数据存储，并且允许用户在需要的时候容易地共享他们的数据。</p>
+<p>1969 年 Multics 在 GE645 计算机上运行了，但结果并不理想：它既没有能提供预定的综合计算服务，甚至连项目组自己也不清楚究竟什么时候才算达到开发目标。BELL 实验室退出了该课题组。</p>
+<p>课件把失败的原因归结到当时操作系统设计的<strong>指导思想</strong>上——「<strong>满足所有用户的所有要求</strong>」。目标定得越全，系统就越复杂，越难以实现和交付；这也从反面提示了后面几章反复出现的主题：操作系统的设计本质上是在诸多目标之间做取舍。</p>
+
+<h3>（2）UNIX 的诞生</h3>
+<p>UNIX 的作者给出的判断与 Multics 相反：操作系统的设计不应也不可能做到「满足所有用户的所有要求」，而应为广大的计算机用户提供一种<strong>良好的程序设计环境</strong>。</p>
+<p>1969 年，K. Thompson 和 D. Ritchie 为了改善自己的程序设计环境，设计了一个纸面的文件系统方案，这个设计后来演化成 UNIX 系统的早期版本，并在 PDP-11 计算机上实现。随后 D. Ritchie 创造了 <strong>C 语言</strong>，并用 C 语言改写了早期的 UNIX 系统——这一步的意义极大：用高级语言写操作系统，使它易读、易懂、易修改，也第一次让操作系统具备了良好的可移植性。1974 年，他们在《ACM 通信》上发表了论文《The UNIX Time-Sharing System》，UNIX 正式公布于世。</p>
+
+<h2>3. UNIX 的传播与流派</h2>
+<p>由于 UNIX 生逢其时、品质优秀，很快风靡全球，成为各种计算机系统的主流操作系统，并在传播中分化出多个流派。课件把它分为三大类：</p>
+<ul>
+  <li><strong>BSD UNIX</strong>；</li>
+  <li><strong>AT&amp;T UNIX SVR 4.X</strong>（System V Release 4）；</li>
+  <li><strong>SCO UNIX</strong>。</li>
+</ul>
+<p>各厂商也在自己的硬件平台上发布了各自的 UNIX 版本：惠普计算机上的 HP-UX、IBM 小型机上的 AIX、苹果 Mac 上的 AUX、SUN 工作站的 Solaris。</p>
+<p>注记：苹果那一支通常写作 A/UX；今天的 macOS 同样基于 UNIX 血统（Darwin 内核），而 Linux 则是遵循 UNIX 设计思想、但独立实现的类 UNIX 系统，本课程后面的章节会以 Linux 为主要实例。</p>
+
+<h2>4. UNIX 操作系统的主要特点</h2>
+<p>UNIX 之所以能长期占据主流地位，靠的是几条一以贯之的设计特点：</p>
+<ul>
+  <li><strong>用 C 语言编写</strong>：易读、易懂、易修改，也容易移植到别的计算机上；</li>
+  <li><strong>简单的用户界面——shell</strong>：用户通过 shell 输入命令、组织命令，与系统交互；</li>
+  <li><strong>树形目录结构</strong>组织文件系统：层次清晰，便于分类管理大量文件；</li>
+  <li><strong>文件与设备统一处理</strong>：把外部设备也当作文件来对待，用户可以用同一套操作去读写文件或操作设备，这正体现了 1.4 节所说的「屏蔽硬件差别、提供一致的接口」；</li>
+  <li><strong>多任务、分时系统</strong>：多个任务并发推进，多个用户共享机器；</li>
+  <li><strong>虚拟内存</strong>：在有限的主存上提供更大的编程空间。</li>
+</ul>
+<p>这六条恰好把第 1 章讲过的几个关键词都落到了实处：一致的用户接口、并发、虚拟技术、文件管理。第 9 章 9.8 节还会专门剖析 UNIX 文件系统的主要结构与实现。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>UNIX 是一个交互式的多用户分时操作系统；</li>
+  <li>前史是 1965 年 MIT、BELL、GE 组成 MAC 课题组研制的 Multics：目标是为大用户团体提供同时访问、强大计算与存储能力以及方便的数据共享；1969 年在 GE645 上运行，但未达预定目标、开发进度失控，BELL 退出；失败根源是「满足所有用户的所有要求」这一设计指导思想；</li>
+  <li>UNIX 的作者主张操作系统应为用户提供良好的程序设计环境。1969 年 K. Thompson 与 D. Ritchie 从纸面的文件系统设计出发，做出 UNIX 早期版本并在 PDP-11 上实现；D. Ritchie 创造 C 语言并重写 UNIX；1974 年论文《The UNIX Time-Sharing System》发表于《ACM 通信》，UNIX 正式公布；</li>
+  <li>UNIX 传播中形成 BSD UNIX、AT&amp;T UNIX SVR 4.X、SCO UNIX 三大分类，以及 HP-UX、AIX、A/UX、Solaris 等厂商版本；</li>
+  <li>UNIX 的主要特点：用 C 语言编写（易读易改易移植）、shell 用户界面、树形目录结构的文件系统、文件与设备统一处理、多任务分时、虚拟内存。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-6.html">‹ 1.6 操作系统采用的关键技术</a>
+      <a class="next" href="1-8.html">1.8 小结 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

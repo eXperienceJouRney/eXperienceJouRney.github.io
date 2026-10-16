@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.4 处理机的特权级 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 2 章 2.4 处理机的特权级：课件第 38–44 张 · 2 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html" aria-current="page"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 2 章 结构与硬件支持</p>
+      <h1>2.4 处理机的特权级</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节末尾留下一个问题：虚拟技术要落地，硬件必须提供哪些支持？第一个答案就是特权级。这一节讲清三件事：为什么要给处理机分状态、管态与用户态各能做什么、这两种状态靠什么硬件机制区分和切换。它是理解后面中断处理、系统调用和存储保护的前提。</p>
+
+<h2>1. 为什么要区分处理机的状态</h2>
+<p>系统中的程序可以分成两类，它们的职责完全不同：<strong>管理程序</strong>（操作系统）负责管理系统资源、控制程序运行；<strong>用户程序</strong>使用资源、提出申请，并接受控制。一个是管理者，一个是被管理者，如果两者拥有同样的权限，被管理者就可能破坏管理者。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-4/p0039.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-4/p0039.webp" alt="图 1　系统中两类程序的职责和区别" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　系统中两类程序的职责和区别：管理程序管理系统资源、控制程序运行；用户程序使用资源、提出申请并被控制（原课件第 39 张）</figcaption>
+</figure>
+<p>因此，<strong>区分处理机状态的目的就是保护操作系统</strong>——让用户程序无法直接触碰系统的关键资源和关键指令。</p>
+
+<h2>2. 处理机的状态及分类</h2>
+
+<h3>（1）什么是处理机的态</h3>
+<p><strong>处理机的态（模式）</strong>，又称为<strong>处理机的特权级</strong>，是中央处理机的工作状态。判断依据很直接：<strong>当前处理机正在执行哪类程序，就决定处理机处于哪种态</strong>——执行管理程序时是管态，执行用户程序时是用户态。</p>
+
+<h3>（2）管态与用户态</h3>
+<p>处理机的状态至少需要区分两种：</p>
+<ul>
+  <li><strong>管态</strong>（Supervisor mode，又称系统态）：操作系统的管理程序执行时机器所处的状态。在此状态下，处理机可使用全部指令（包括一组<strong>特权指令</strong>），使用全部系统资源（包括整个存储区域）；</li>
+  <li><strong>用户态</strong>（User mode，又称目态）：用户程序执行时机器所处的状态。在此状态下禁止使用特权指令，不能直接取用资源与改变机器状态，并且只允许用户程序访问自己的存储区域。</li>
+</ul>
+<table>
+  <caption>表 1　管态与用户态的对比（数据来源：原课件第 40 张）</caption>
+  <thead>
+    <tr><th>比较项</th><th>管态（系统态）</th><th>用户态（目态）</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>何时处于该态</td><td>操作系统的管理程序执行时</td><td>用户程序执行时</td></tr>
+    <tr><td>可使用的指令</td><td>全部指令，包括一组特权指令</td><td>禁止使用特权指令</td></tr>
+    <tr><td>资源使用</td><td>使用全部系统资源，包括整个存储区域</td><td>不能直接取用资源与改变机器状态</td></tr>
+    <tr><td>存储访问范围</td><td>不受限制</td><td>只允许访问自己的存储区域</td></tr>
+  </tbody>
+</table>
+
+<h3>（3）靠什么区分：状态位与特权级编码</h3>
+<p>区分处理机的工作状态需要<strong>硬件支持</strong>：在计算机的特定寄存器中设置一个<strong>系统状态位</strong>，1 个 bit 就足以区分两态。若用户程序执行时超出了权限，都将产生<strong>中断</strong>（程序性中断或保护性中断），系统由用户态转为管态，操作系统由此得到 CPU 控制权，来处理这一非法事件。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/2-4/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/2-4/p0041.webp" alt="图 2　管态与用户态的转换" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　管态与用户态：用户程序越权或请求服务时产生中断，系统由用户态转入管态、操作系统取得 CPU 控制权处理，处理完毕再返回用户态（原课件第 41 张）</figcaption>
+</figure>
+<p>真实处理器用若干位来标识特权级，位宽越大，可区分的级数越多。课件举了两个例子：</p>
+<ul>
+  <li><strong>80386 保护模式</strong>：用 CS 段选择字的低 2 位表示当前特权级 CPL——00 表示 system（最高特权，即内核），11 表示 user，01 和 10 留给中间特权级；</li>
+  <li><strong>ARM</strong>：用 CPSR 状态寄存器中的低 5 位 M[4:0] 表示处理器模式，编码如下表。</li>
+</ul>
+<table>
+  <caption>表 2　ARM CPSR 寄存器 M[4:0] 的处理器模式编码（数据来源：原课件第 42 张）</caption>
+  <thead>
+    <tr><th>M[4:0]</th><th>处理器模式</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10000</td><td>user</td></tr>
+    <tr><td>10001</td><td>FIQ</td></tr>
+    <tr><td>10010</td><td>IRQ</td></tr>
+    <tr><td>10011</td><td>supervisor</td></tr>
+    <tr><td>10111</td><td>abort</td></tr>
+    <tr><td>11011</td><td>undefined</td></tr>
+    <tr><td>11111</td><td>system</td></tr>
+  </tbody>
+</table>
+<p>注记：上表是 32 位 ARM（ARMv7 及其以前）的模式编码。到 64 位 AArch64，处理器模式被简化为 EL0～EL3 四个异常级别，FIQ、IRQ、abort、undefined 等不再作为独立模式存在，但「用户级与特权级分离」这一思想没有变。</p>
+
+<h2>3. 特权指令</h2>
+<p><strong>处理机的特权指令</strong>是只能在管态下执行、不允许用户程序使用的指令，课件把它们归为三类：</p>
+<ul>
+  <li>涉及外部设备的<strong>输入/输出指令</strong>，以及<strong>允许/禁止中断</strong>的指令；</li>
+  <li><strong>修改特殊寄存器的指令</strong>；</li>
+  <li><strong>改变机器状态的指令</strong>。</li>
+</ul>
+<p>这三类指令有一个共同点：它们都会影响整个机器的状态或全体程序的运行环境。让用户程序随意执行，就等于把系统的控制权交了出去——这正是必须把特权级与特权指令成对设计的原因。</p>
+
+<h2>4. 处理机状态的切换</h2>
+<p>两态之间如何来回切换，课件给出了明确的清单。</p>
+<h3>（1）用户态转到核态（管态）</h3>
+<ul>
+  <li>用户程序要求操作系统提供服务，执行<strong>系统功能调用</strong>（中断或系统调用指令）；</li>
+  <li>用户程序运行时，偶然发生一次<strong>硬件中断</strong>；</li>
+  <li>用户程序产生<strong>错误</strong>（程序性中断）；</li>
+  <li>用户程序<strong>企图执行特权指令</strong>（处理方式同上一条）。</li>
+</ul>
+<h3>（2）核态转到用户态</h3>
+<p><strong>中断返回</strong>——注意，这条指令本身也是特权指令。</p>
+<p>把两张清单放在一起看，能看出一个重要的不对称：从用户态进入管态的入口有好几个（请求服务、中断、出错、越权），而且绝大多数是「事件驱动」的；而从管态回到用户态只有一条路——中断返回，并且必须由操作系统主动执行。这种不对称正是保护机制的落脚点：进入特权态必须经过受控的入口，离开特权态则要由系统自己决定时机。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>系统中有两类程序：管理程序管理系统资源、控制程序运行；用户程序使用资源、提出申请并被控制。区分处理机状态的目的是保护操作系统；</li>
+  <li>处理机的态（又称特权级）是中央处理机的工作状态，由当前正在执行哪类程序决定；至少区分两态：管态（系统态，可使用全部指令包括特权指令、使用全部系统资源）与用户态（目态，禁止特权指令、不能直接取用资源与改变机器状态、只能访问自己的存储区域）；</li>
+  <li>区分两态需要硬件支持：特定寄存器中的系统状态位（1 bit 即可）；用户程序越权将产生程序性中断或保护性中断，系统由用户态转为管态，操作系统取得 CPU 控制权处理非法事件；</li>
+  <li>特权级标识的实例：80386 保护模式用 CS 段选择字低 2 位（CPL），00 为 system、11 为 user，01/10 为中间级；ARM 用 CPSR 的 M[4:0]，user、FIQ、IRQ、supervisor、abort、undefined、system 各有编码；</li>
+  <li>特权指令包括：涉及外部设备的 I/O 指令与允许/禁止中断的指令、修改特殊寄存器的指令、改变机器状态的指令；</li>
+  <li>状态切换：用户态转管态的途径是系统功能调用、硬件中断、程序出错、企图执行特权指令；管态转用户态只有中断返回一条路，且该指令本身也是特权指令。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-3.html">‹ 2.3 操作系统的结构</a>
+      <a class="next" href="2-5.html">2.5 中断及其处理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

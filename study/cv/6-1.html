@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.1 卷积 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 6 章 卷积神经网络 6.1 卷积：以「6-卷积神经网络.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html" aria-current="page"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 6 章 卷积神经网络</p>
+      <h1>6.1 卷积</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">卷积是卷积神经网络的基本运算，但它的出身并不在神经网络，而在信号处理。这一节要回答两件事：一是全连接网络处理图像到底卡在哪里、为什么非要用卷积；二是卷积本身怎么算——从一维信号上的卷积讲到图像上的二维卷积，再补上步长与零填充这两个「旋钮」，最后按输出长度把卷积分成窄卷积、宽卷积和等宽卷积三类。</p>
+
+<h2>1. 从全连接网络的困境说起</h2>
+<p>先看反面。如果把一幅图像直接展平成一个向量送进全连接前馈神经网络，会立刻遇到两个绕不开的困难。</p>
+<p>第一个困难是<strong>权重矩阵的参数非常多</strong>。图像展平之后维度是「高 × 宽 × 通道数」，一幅中等大小的彩色图像就是一个十万量级的向量；哪怕第一层只放几百个神经元，这一层的权重矩阵也会膨胀到千万甚至上亿个参数。参数一多，训练效率就低，而且很容易过拟合——网络会把训练集里那些偶然的细节也一并记住。</p>
+<p>第二个困难是<strong>很难提取局部不变性特征</strong>。自然图像中的物体都具有局部不变性：把物体稍微平移、缩放或者旋转一下，它的语义信息并没有变，还是同一只猫、同一辆车。但全连接网络把图像展平成一个长长的向量，每个像素落在向量的哪个位置上就被固定死了；图像一旦平移几个像素，整个输入向量就面目全非，网络看到的是一个「全新的样本」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0002.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0002.webp" alt="图 1　全连接前馈神经网络处理图像时的两个困难" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　全连接前馈神经网络的两个困难：权重矩阵的参数非常多，且很难提取局部不变性特征（原课件第 2 张）</figcaption>
+</figure>
+<p><strong>卷积神经网络（Convolutional Neural Networks，CNN）</strong>就是针对这两点提出的。它本质上仍是一种前馈神经网络，但受生物学上<strong>感受野（Receptive Field）</strong>机制的启发：一个神经元并不需要「看到」整幅图像，它只接受自己所支配的那一小块刺激区域内的信号。在视觉神经系统中，一个神经元的感受野就是视网膜上的一个特定区域，只有落在这个区域里的刺激才能激活它。</p>
+<p>把这条生物学线索翻译成网络结构，就得到卷积神经网络的三个结构特性：</p>
+<ul>
+  <li><strong>局部连接</strong>：每个神经元只与前一层中一个局部窗口内的神经元相连，而不是与所有神经元相连；</li>
+  <li><strong>权重共享</strong>：同一个卷积核在整幅图像上滑动，图像不同位置共用同一组权重；</li>
+  <li><strong>汇聚</strong>：在空间或时间上进行次采样，把相邻位置的响应合并起来。</li>
+</ul>
+<p>这三个特性直接换来了两个结果：网络参数更少，并且具有一定程度上的平移、缩放和旋转不变性。局部连接和权重共享把参数量压了下来，汇聚则进一步把「位置上的细微差别」抹平——这正是后面 6.2 节要展开的内容。</p>
+
+<h2>2. 卷积的定义</h2>
+<p>卷积（Convolution）是通过两个函数 f 和 g 生成第三个函数的一种<strong>数学算子</strong>，它表征的是函数 f 与经过翻转和平移的 g 的乘积函数所围成的曲边梯形的面积。写成积分就是</p>
+<p>(f ∗ g)(x) = ∫ f(τ) g(x − τ) dτ</p>
+<p>式子里有两个动作值得盯住：先把 g 翻转成 g(−τ)，再把它平移 x，然后与 f 逐点相乘、求面积。也就是说，卷积描述的是「一个函数在另一个函数上滑动并叠加」的过程——滑动、相乘、求和，这三个动作正是后面一维卷积和二维卷积的全部内容。</p>
+<p>在不同的场景下，卷积的维数不同：<strong>在信号处理中经常使用一维卷积，在图像处理中经常使用二维卷积</strong>。这一节先看一维，再看二维，思路是完全一样的。</p>
+
+<h2>3. 一维卷积：信号上的滑动加权</h2>
+<p>一维卷积经常用在信号处理中，用来计算<strong>信号延迟累积</strong>。课件给了一个直观的设定：假设一个信号发生器在每个时刻 t 产生一个信号 X<sub>t</sub>，而这个信号的信息衰减率为 w<sub>k</sub>——经过 k − 1 个时间步长之后，信息只剩下原来的 w<sub>k</sub> 倍。若取 w<sub>1</sub> = 1、w<sub>2</sub> = 1/2、w<sub>3</sub> = 1/4，那么在时刻 t 收到的信号 V<sub>t</sub>，就是「当前时刻产生的信息」与「以前各时刻延迟过来的信息」的叠加：</p>
+<p>V<sub>t</sub> = w<sub>1</sub>X<sub>t</sub> + w<sub>2</sub>X<sub>t−1</sub> + w<sub>3</sub>X<sub>t−2</sub> = Σ<sub>k=1</sub><sup>K</sup> w<sub>k</sub>X<sub>t−k+1</sub></p>
+<p>把这个式子一般化：假设滤波器长度为 K，它和一个信号序列 X<sub>1</sub>, X<sub>2</sub>, … 做卷积，结果就是上面那个求和式，其中 V<sub>t</sub> 的下标 t 从 K 开始——因为滤波器长度是 K，它至少要「盖住」K 个输入才能算出第一个有效输出。这里的 w<sub>1</sub>, w<sub>2</sub>, …, w<sub>K</sub> 就称为<strong>滤波器</strong>或<strong>卷积核</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0007.webp" alt="图 2　一维信号与卷积核的滑动计算" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　一维卷积的计算过程：卷积核在一维信号上逐个位置滑动，每个位置做一次「对应位置相乘再求和」（原课件第 7 张）</figcaption>
+</figure>
+<p>请注意这里的两个关键词。一是<strong>滑动</strong>：同一个卷积核在信号的不同位置上重复使用，这正是 6.1 节开头所说的权重共享。二是<strong>加权求和</strong>：卷积核里的每个数字就是一个权重，它决定了这个位置上的输入对输出贡献多少。</p>
+<p>换一个卷积核，就换了一种「看法」。课件用两个滤波器做了一维卷积的对比示例：</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0008.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0008.webp" alt="图 3　两个滤波器的一维卷积示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　两个滤波器的一维卷积示例：滤波器 [1/3, 1/3, 1/3] 提取低频信息，滤波器 [1, −2, 1] 提取高频信息；下层为输入信号序列，上层为卷积结果，连线上的数字为滤波器的权重（原课件第 8 张）</figcaption>
+</figure>
+<p>滤波器 [1/3, 1/3, 1/3] 把相邻三个时刻的信号取平均，信号中缓慢变化的趋势被保留下来，因此它<strong>提取低频信息</strong>；滤波器 [1, −2, 1] 则把中间时刻的信号减去两侧信号，只有信号「变化剧烈」的地方才会得到较大的响应，因此它<strong>提取高频信息</strong>。这里的高频和低频，指的就是信号变化的强烈程度。这一点非常关键：<strong>卷积核的内容决定了它提取什么特征</strong>，而卷积核的具体数值是网络自己学出来的。</p>
+
+<h2>4. 二维卷积：图像上的特征提取</h2>
+<p>图像是二维的，所以图像处理中更常用的是二维卷积。给定一个图像 X ∈ R<sup>M×N</sup> 和一个滤波器 W ∈ R<sup>U×V</sup>，一般 U ≪ M、V ≪ N，它们的卷积为</p>
+<p>V<sub>ij</sub> = Σ<sub>u=1</sub><sup>U</sup> Σ<sub>v=1</sub><sup>V</sup> w<sub>uv</sub> X<sub>i−u+1, j−v+1</sub></p>
+<p>与一维情形完全对应：滤波器在图像上从左到右、从上到下滑动，每到一个位置就把滤波器与它覆盖的那一小块图像对应位置相乘、再全部相加，得到输出特征图上的一个值。公式里 V<sub>ij</sub> 的下标 (i, j) 从 (U, V) 开始，原因和一维卷积中 V<sub>t</sub> 的下标从 K 开始一样——滤波器至少要完整盖住 U 行 V 列，才能算出第一个有效输出。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0009.webp" alt="图 4　二维卷积的公式与卷积核翻转" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　二维卷积：给定图像 X ∈ R<sup>M×N</sup> 与滤波器 W ∈ R<sup>U×V</sup>（U ≪ M、V ≪ N），卷积核在图像上滑动并做对应位置相乘求和；图中同时标出了卷积定义里「卷积核翻转」这一步（原课件第 9 张）</figcaption>
+</figure>
+<p>回过头看定义就会明白「卷积核翻转」是怎么来的：卷积的定义要求 g 先翻转再平移，所以严格意义上的卷积要把卷积核上下、左右各翻转一次再做加权求和。在信号处理里这个翻转是定义的一部分；而到了卷积神经网络里，由于卷积核的数值本来就是学出来的，翻不翻转只会得到一组「镜像」的权重，因此工程实现中常常省略这一步，只做局部加权求和——习惯上仍然把它叫做卷积。</p>
+<p>二维卷积经常作为<strong>特征提取</strong>的有效方法。课件举了两个方向相反的例子：</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0010.webp" alt="图 5　高斯滤波器与边缘提取" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　同一个二维卷积的两种用法：高斯滤波器对图像做平滑（保留低频），边缘提取算子则突出灰度突变处（保留高频），输出都是特征映射（原课件第 10 张）</figcaption>
+</figure>
+<p>高斯滤波器的权重按二维高斯分布排列，中心大、四周小，相当于对邻域做加权平均，因此它<strong>平滑图像、抑制噪声</strong>；边缘提取算子则是中心为正、四周为负，只有灰度发生突变的地方（也就是边缘）才会得到较大的响应。这与一维卷积中 [1/3, 1/3, 1/3] 与 [1, −2, 1] 的分工是同一回事：<strong>低通滤波器管平滑，高通滤波器管边缘</strong>。第 3 章的边缘检测用到的正是这一类算子。</p>
+
+<h2>5. 卷积的变种：步长与零填充</h2>
+<p>在卷积的标准定义基础上，还可以引入卷积核的<strong>滑动步长</strong>和<strong>零填充</strong>来增加卷积的多样性，从而更灵活地进行特征提取。</p>
+<ul>
+  <li><strong>步长（Stride）</strong>：卷积核在滑动时的时间间隔。步长为 1 表示每次移动一格，步长为 2 表示每次跳过一格。步长越大，卷积核在图像上停留的位置越少，输出尺寸越小。</li>
+  <li><strong>零填充（Zero Padding）</strong>：在输入向量两端（图像则是四周）进行补零。补零让滤波器的中心能够落在图像的边缘像素上，从而保住边缘信息，同时也用来调节输出尺寸。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0011.webp" alt="图 6　步长与零填充" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　卷积的两个变种：左图（a）步长 S = 2，卷积核每次滑动跳过一格；右图（b）零填充 P = 1，在输入序列两端各补一个 0（原课件第 11 张）</figcaption>
+</figure>
+<p>这两个「旋钮」的直接后果是输出尺寸变了。记输入序列长度为 M、卷积核大小为 K、步长为 S、两端各填补 P 个 0，那么卷积后的输出长度是</p>
+<p>⌊(M − K + 2P) / S⌋ + 1</p>
+<p>其中 ⌊·⌋ 表示向下取整。二维情形与之相同，只是两个方向各算一次：输入矩阵为 W × H、卷积核大小为 K × K、步长为 S、四周各填补 P 个 0，那么输出矩阵就是 ⌊(W − K + 2P) / S + 1⌋ × ⌊(H − K + 2P) / S + 1⌋。这个公式在后面的网络结构里会反复用到——每一层的特征图尺寸都可以由它推出来。</p>
+
+<h2>6. 窄卷积、宽卷积与等宽卷积</h2>
+<p>固定步长 S = 1，只让零填充 P 变化，卷积结果按输出长度不同可以分为三类，这也是卷积神经网络里最常用的一组概念：</p>
+<table>
+  <caption>表 1　三类卷积（步长 S = 1）的零填充与输出长度对照</caption>
+  <thead>
+    <tr><th>卷积类型</th><th>步长 S</th><th>零填充 P</th><th>输出长度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>窄卷积</td><td>1</td><td>0</td><td>M − K + 1</td></tr>
+    <tr><td>宽卷积</td><td>1</td><td>K − 1</td><td>M + K − 1</td></tr>
+    <tr><td>等宽卷积</td><td>1</td><td>(K − 1) / 2</td><td>M</td></tr>
+  </tbody>
+</table>
+<p>三者的名字恰好说明了它们的输出有多「宽」：<strong>窄卷积</strong>不补零，输出比输入短，是最直观的卷积；<strong>宽卷积</strong>两端各补 K − 1 个零，输出比输入还长，相当于让卷积核在输入之外也「走」一遍；<strong>等宽卷积</strong>的填充量取 (K − 1)/2，输出长度与输入相同，因此在需要保持特征图尺寸不变的网络（例如后面要讲的残差网络）里用得最多。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-1/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-1/p0013.webp" alt="图 7　窄卷积与等宽卷积在不同步长下的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　二维卷积的四种组合：窄卷积（步长 = 1、零填充 = 0）、步长 = 2、零填充 = 0、等宽卷积（步长 = 1、零填充 = 1）以及步长 = 2、零填充 = 1；步长和填充共同决定了输出特征图的尺寸（原课件第 13 张）</figcaption>
+</figure>
+<p>把这两节连起来看：<strong>卷积核决定「提取什么」，步长和零填充决定「在哪些位置提取、输出多大」</strong>。前者是学出来的参数，后者是设计网络时人为选定的超参数——这也是为什么后面讲各种经典网络时，总要逐个交代每一层的卷积核大小、步长和填充。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>全连接前馈神经网络处理图像有两个困难：<strong>权重矩阵的参数非常多</strong>（训练效率低、易过拟合），以及<strong>很难提取局部不变性特征</strong>（平移、缩放、旋转会彻底改变展平后的输入向量）。</li>
+  <li>卷积神经网络受生物学上<strong>感受野</strong>机制启发，具有三个结构特性：局部连接、权重共享、汇聚（空间或时间上的次采样），因此参数更少，并具有一定程度上的平移、缩放和旋转不变性。</li>
+  <li>卷积是用两个函数 f 和 g 生成第三个函数的数学算子，表征 f 与「经过翻转和平移的 g」的乘积所围成的曲边梯形面积；信号处理中常用一维卷积，图像处理中常用二维卷积。</li>
+  <li>一维卷积 V<sub>t</sub> = Σ<sub>k=1</sub><sup>K</sup> w<sub>k</sub>X<sub>t−k+1</sub>（t 从 K 开始）；二维卷积 V<sub>ij</sub> = Σ<sub>u</sub> Σ<sub>v</sub> w<sub>uv</sub>X<sub>i−u+1, j−v+1</sub>（(i, j) 从 (U, V) 开始）。<strong>卷积核的内容决定它提取什么特征</strong>：[1/3, 1/3, 1/3] 一类的低通核做平滑，[1, −2, 1]、边缘提取算子一类的高通核取边缘。</li>
+  <li>步长（Stride）控制卷积核滑动的时间间隔，零填充（Zero Padding）在输入两端补零；输出长度为 ⌊(M − K + 2P) / S⌋ + 1，二维时两个方向各算一次。</li>
+  <li>步长取 1 时按零填充把卷积分成三类：<strong>窄卷积</strong>（P = 0，输出 M − K + 1）、<strong>宽卷积</strong>（P = K − 1，输出 M + K − 1）、<strong>等宽卷积</strong>（P = (K − 1)/2，输出 M）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="5-9.html">‹ 5.9 优化问题与课后练习</a>
+      <a class="next" href="6-2.html">6.2 卷积神经网络 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

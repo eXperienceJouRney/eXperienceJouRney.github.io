@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.6.2 媒体接入控制 —— 静态划分信道 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.6.2 媒体接入控制 —— 静态划分信道：讲义第 441–472 页 · 5 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html" aria-current="page"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.6.2 媒体接入控制 —— 静态划分信道</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">3.6.1 节把媒体接入控制分成静态划分信道和动态接入控制两大类，本节专门讲静态划分信道。所谓「静态划分」，本质上就是<strong>信道复用</strong>：把一条物理线路的传输容量划分成多条互不干扰的通信信道。我们将依次看频分复用、时分复用、波分复用和码分复用四种方法，其中码分复用 CDMA 的码片序列与内积运算需要重点掌握。</p>
+
+<h2>1. 信道复用：为什么要复用</h2>
+<p><strong>复用（Multiplexing）</strong>是通信技术中的一个重要概念：复用就是通过一条物理线路同时传输多路用户的信号。当网络中传输媒体的传输容量大于多条单一信道传输的总通信量时，就可以利用复用技术在一条物理线路上建立多条通信信道，从而充分利用传输媒体的带宽。</p>
+<p>它的现实意义很直观：如果每一对用户都独占一条物理线路，线路数量会随用户数迅速膨胀，而每条线路的容量大多闲置着。改用一条共享的物理线路，在两端分别加上<strong>复用器</strong>和<strong>分用器</strong>，多路信号就能合并传输、到达后又各自分开，媒体带宽得到充分利用。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-2/p0443.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-2/p0443.webp" alt="图 1　独立物理线路与共享物理线路的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　三对用户各自使用一条独立的物理线路，与三对用户共享一条物理线路（经复用器合路、分用器分路）的对比（原讲义第 443 页）</figcaption>
+</figure>
+
+<h2>2. 四种基本的信道复用方法</h2>
+<p>复用可以从「分什么资源」的角度分成四类，它们也是本节和后续内容的骨架：</p>
+<ul>
+  <li><strong>频分复用 FDM（Frequency Division Multiplexing）</strong>：把频带资源切给不同用户；</li>
+  <li><strong>时分复用 TDM（Time Division Multiplexing）</strong>：把时间资源切给不同用户；</li>
+  <li><strong>波分复用 WDM（Wavelength Division Multiplexing）</strong>：光的频分复用，把不同的光波长分给不同用户；</li>
+  <li><strong>码分复用 CDM（Code Division Multiplexing）</strong>：用不同的码型区分用户。</li>
+</ul>
+<p>值得注意的是，FDM 与 TDM 要求各子信道之间留出隔离频带或保护时间，而 CDM 的用户可以在同样的时间、同样的频带上通信，靠码型的正交性把彼此分开。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-2/p0445.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-2/p0445.webp" alt="图 2　复用器、传输媒体与分用器" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　信道复用的基本结构：多路信号经复用器合路送入传输媒体，再由分用器还原为各路信号（原讲义第 445 页）</figcaption>
+</figure>
+
+<h2>3. 频分复用 FDM</h2>
+<p>频分复用的做法是把传输媒体的总频带划分成若干个<strong>子频带</strong>，每个子频带构成一条子信道，相邻子频带之间留出一段<strong>隔离频带</strong>（保护频带），以免各路信号相互干扰。每个用户分到一条子信道后，在整个通信过程中一直占用它。</p>
+<p>因此频分复用的特点是：<strong>所有用户同时占用不同的频带资源并行通信</strong>。原讲义给出的示意图中，画有子信道 1（子频带 1）、子信道 2（子频带 2）、子信道 3（子频带 3），它们之间用隔离频带隔开（原讲义第 446 页）。</p>
+
+<h2>4. 时分复用 TDM</h2>
+<p>时分复用的做法是把时间划分成一段段等长的<strong>时分复用帧（TDM 帧）</strong>，每一个 TDM 帧再划分为若干个<strong>时隙</strong>，每个用户固定占用每个 TDM 帧中某个序号的时隙。也就是说，各用户轮流使用整条频带：轮到自己的时隙时才发送，其余时间信道让给别人。</p>
+<p>它的特点正好与频分复用相对：<strong>时分复用的所有用户在不同的时间占用同样的频带宽度</strong>。原讲义示意图中的 TDM 帧里标出了「与 a 使用的时隙」「与 b 使用的时隙」「与 c 使用的时隙」等，一眼就能看出用户是按时间轮换的（原讲义第 450 页）。</p>
+<p>把两种复用放在一起比较：FDM 是「同一时间、不同频带」，TDM 是「不同时间、同一频带」，两者都要求用户在整个通信过程中持续占用分配给自己的那份资源，属于前面 3.6.1 节所说的静态划分信道。</p>
+
+<h2>5. 波分复用 WDM</h2>
+<p>波分复用本质上是<strong>光的频分复用</strong>：在一根光纤上同时传输多个不同波长（即不同频率）的光载波，每个波长承载一路信号。因为光波的频率极高，通常用波长而不是频率来标记各路光载波，所以叫「波分」。</p>
+<p>原讲义的示意图给出的是一条典型的密集波分复用系统：8 路光载波的波长集中在 1550 nm 附近、相邻间隔 1.6 nm（1550.0 nm、1551.6 nm、1553.2 nm、1554.8 nm、1556.4 nm、1558.0 nm、1559.6 nm、1561.2 nm），每路的速率约为 2.5 Gb/s，8 路合起来总容量约 20 Gb/s；长距离传输时每隔 120 km 设置一个<strong>掺铒光纤放大器 EDFA（Erbium Doped Fiber Amplifier）</strong>对光信号进行中继放大，两端分别由光调制器和光解调器完成电光、光电转换（原讲义第 451 页）。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-6-2/p0451.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-6-2/p0451.webp" alt="图 3　密集波分复用系统：多路不同波长的光载波共用一根光纤" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　波分复用（光的频分复用）：8 路波长间隔 1.6 nm、每路约 2.5 Gb/s，用掺铒光纤放大器 EDFA 每隔 120 km 中继（原讲义第 451 页）</figcaption>
+</figure>
+
+<h2>6. 码分复用 CDM 与码分多址 CDMA</h2>
+<p><strong>码分复用 CDM</strong> 是另一种共享信道的方法。实际上由于该技术主要用于多址接入，人们更常用的名词是<strong>码分多址 CDMA（Code Division Multiple Access）</strong>。同理，频分复用 FDM 和时分复用 TDM 同样可用于多址接入，相应的名词是<strong>频分多址 FDMA（Frequency Division Multiple Access）</strong>和<strong>时分多址 TDMA（Time Division Multiple Access）</strong>。</p>
+<p>本课程不严格区分复用与多址的概念，可以这样简单理解：</p>
+<ul>
+  <li><strong>复用</strong>是把单一媒体的频带资源划分成很多子信道，这些子信道之间相互独立、互不干扰。从媒体的整体频带资源上看，每个子信道只占用该媒体频带资源的一部分；</li>
+  <li><strong>多址</strong>（更确切地应该称为多点接入）处理的是动态地把信道分配给用户。这在用户仅仅暂时性地占用信道的应用中是必需的，所有的移动通信系统基本上都属于这种情况；相反，在信道永久性地分配给用户的应用中，多址是不需要的（无线广播或电视广播站就是这样）；</li>
+  <li>某种程度上，FDMA、TDMA、CDMA 可以分别看成是 FDM、TDM、CDM 的应用。</li>
+</ul>
+<p>与 FDM、TDM 都不同，<strong>CDM 的每一个用户可以在同样的时间使用同样的频带进行通信</strong>。之所以不会互相干扰，是因为各用户使用了经过特殊挑选的<strong>不同码型</strong>。CDM 最初用于军事通信，因为这种系统所发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现；随着技术的进步，CDMA 设备的价格和体积都大幅度下降，因而现在已广泛用于民用的移动通信中。</p>
+
+<h2>7. CDMA 的工作原理</h2>
+<h3>（1）码片与码片序列</h3>
+<p>在 CDMA 中，每一个比特时间再划分为 m 个短的间隔，称为<strong>码片（Chip）</strong>。通常 m 的值是 64 或 128；为了简单起见，后续举例中我们假设 m 为 8。</p>
+<p>使用 CDMA 的每一个站被指派一个唯一的 <strong>m bit 码片序列（Chip Sequence）</strong>，发送时按下面的规则进行<strong>直接序列扩频 DSSS（Direct Sequence Spread Spectrum）</strong>：</p>
+<ul>
+  <li>一个站如果要发送比特 <strong>1</strong>，则发送它自己的 m bit 码片序列；</li>
+  <li>一个站如果要发送比特 <strong>0</strong>，则发送它自己的 m bit 码片序列的<strong>二进制反码</strong>。</li>
+</ul>
+<p>原讲义的例子：指派给某个站点的码片序列为 00011011，则发送比特 1 时发送 00011011，发送比特 0 时发送它的反码 11100100。为了方便运算，按惯例把码片序列中的 0 记为 −1、把 1 记为 +1，于是该站点的码片序列写成向量形式就是（−1 −1 −1 +1 +1 −1 +1 +1）。注意：一个比特被扩展成了 m 个码片，这也是「扩频」二字的由来——信号占用的频带被展宽了，换来的是很强的抗干扰能力。</p>
+<h3>（2）码片序列的挑选原则</h3>
+<p>码片序列不能随便分配，必须遵守两条原则：</p>
+<ol>
+  <li>分配给每个站的码片序列必须<strong>各不相同</strong>，实际常采用伪随机码序列；</li>
+  <li>分配给每个站的码片序列必须<strong>相互正交</strong>（规格化内积为 0）。</li>
+</ol>
+<p>令向量 S 表示站 S 的码片序列，向量 T 表示其他任何站的码片序列，则不同站 S 和 T 的码片序列正交，就是向量 S 和 T 的规格化内积为 0：</p>
+<p><strong>S · T = (1/m) Σ<sub>i=1</sub><sup>m</sup> S<sub>i</sub>T<sub>i</sub> = 0</strong></p>
+<p>此外还有两条常用的结果：任何一个码片向量与<strong>自己</strong>的规格化内积都是 1，即 S · S = 1；与<strong>自己反码</strong>的规格化内积都是 −1，即 S · S̅ = −1。（原讲义把这些结果一并列在「参考公式」中。）</p>
+<h3>（3）接收方怎样判断</h3>
+<p>假设所有站所发送的码片序列都是同步的，接收站 D 知道其他各站所特有的码片序列。设站 A 发送比特 1（发的是 A 的码片序列 A）、站 B 发送比特 0（发的是 B 的反码，内积须为 −1）、站 C 未发送，则接收站 D 收到的是叠加信号 <strong>A + B</strong>。它用收到的信号分别与各站的码片序列做规格化内积：</p>
+<ul>
+  <li><strong>(A + B) · A = A · A + B · A = 1 + 0 = 1</strong>，计算结果为数值 1，说明被判断方（A）发送了<strong>比特 1</strong>；</li>
+  <li><strong>(A + B) · B = A · B + B · B = 0 + (−1) = −1</strong>，计算结果为数值 −1，说明被判断方（B）发送了<strong>比特 0</strong>；</li>
+  <li><strong>(A + B) · C = A · C + B · C = 0 + 0 = 0</strong>，计算结果为数值 0，说明被判断方（C）<strong>未发送</strong>。</li>
+</ul>
+<p>这就是 CDMA 的巧妙之处：接收方不必把叠加在一起的信号「拆开」，只要拿它和自己关心的那个站的码片序列做一次内积，就能单独取出该站的数据，而其他站的信号在正交性下自动抵消为零。</p>
+
+<h2>8. 用几道题目检验码片序列的内积运算</h2>
+<h3>（1）码片序列的分配是否合法</h3>
+<p>原讲义的习题 1：假设给站 S 分配的码片序列为 01011101，给站 T 分配的码片序列为 10111000，这样的分配正确吗？</p>
+<ul>
+  <li>检查码片序列是否各不相同：<strong>满足</strong>；</li>
+  <li>检查码片序列是否相互正交：<strong>不满足</strong>。</li>
+</ul>
+<p>验证过程：用向量 S 表示站 S 的码片序列（−1 +1 −1 +1 +1 +1 −1 +1），用向量 T 表示站 T 的码片序列（+1 −1 +1 +1 +1 −1 −1 −1），逐项相乘后求和，结果为 −2，不是 0，所以两者不正交，这样的分配是不正确的。</p>
+<h3>（2）四个站同时通信时谁发了什么</h3>
+<p>原讲义的习题 2：共有 4 个站进行 CDMA 通信，这 4 个站的码片序列分别为</p>
+<ul>
+  <li>A：（−1 −1 −1 +1 +1 −1 +1 +1）</li>
+  <li>B：（−1 −1 +1 −1 +1 +1 +1 −1）</li>
+  <li>C：（−1 +1 −1 +1 +1 +1 −1 −1）</li>
+  <li>D：（−1 +1 −1 −1 −1 −1 +1 −1）</li>
+</ul>
+<p>现收到码片序列（−1 +1 −3 +1 −1 −3 +1 +1），问是哪些站发送了数据？发送的是比特 1 还是 0？</p>
+<p>解析思路：用收到的码片序列分别与各站的码片序列求内积。若计算结果为数值 1，则被判断的站发送了比特 1；若为数值 −1，则发送了比特 0；若为数值 0，则该站未发送数据。逐个判断（码片长度为 8，因此乘以 8 求和后除以 8 做规格化）：</p>
+<ul>
+  <li>A：求和结果为 8，规格化后为 <strong>1</strong>，即 A 发送了<strong>比特 1</strong>；</li>
+  <li>B：求和结果为 −8，规格化后为 <strong>−1</strong>，即 B 发送了<strong>比特 0</strong>；</li>
+  <li>C：求和结果为 <strong>0</strong>，即 C <strong>未发送</strong>数据；</li>
+  <li>D：求和结果为 8，规格化后为 <strong>1</strong>，即 D 发送了<strong>比特 1</strong>。</li>
+</ul>
+<h3>（3）从 12 位接收序列中还原一个站发送的比特串</h3>
+<p>原讲义的 2014 年真题：站点 A、B、C 通过 CDMA 共享链路，A、B、C 的码片序列（chipping sequence）分别是（1, 1, 1, 1）、（1, −1, 1, −1）和（1, 1, −1, −1）。若 C 从链路上收到的序列是（2, 0, 2, 0, 0, −2, 0, −2, 0, 2, 0, 2），则 C 收到 A 发送的数据是什么？</p>
+<p>解析：由于题目所给各站的码片序列为 4 位，因此把站点 C 收到的 12 位序列也按 4 位一组分成三部分：（2, 0, 2, 0）、（0, −2, 0, −2）、（0, 2, 0, 2）。再用站点 A 的码片序列（1, 1, 1, 1）分别与这三个部分做规格化内积：</p>
+<ol>
+  <li>（1, 1, 1, 1）·（2, 0, 2, 0）÷ 4 =（1×2 + 1×0 + 1×2 + 1×0）÷ 4 = 1，A 发送的是<strong>比特 1</strong>；</li>
+  <li>（1, 1, 1, 1）·（0, −2, 0, −2）÷ 4 =（1×0 + 1×(−2) + 1×0 + 1×(−2)）÷ 4 = −1，A 发送的是<strong>比特 0</strong>；</li>
+  <li>（1, 1, 1, 1）·（0, 2, 0, 2）÷ 4 =（1×0 + 1×2 + 1×0 + 1×2）÷ 4 = 1，A 发送的是<strong>比特 1</strong>。</li>
+</ol>
+<p>所以 C 收到 A 发送的数据是 <strong>101</strong>，对应选项 B。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>静态划分信道的方法统称信道复用：复用就是通过一条物理线路同时传输多路用户的信号，两端分别用复用器与分用器完成合路与分路；</li>
+  <li>频分复用 FDM：所有用户同时占用不同的频带资源并行通信，子频带之间需要隔离频带；时分复用 TDM：所有用户在不同的时间占用同样的频带宽度，时间划分为 TDM 帧、帧内分为时隙；</li>
+  <li>波分复用 WDM 是光的频分复用，用不同波长的光载波承载多路信号，长距离传输靠掺铒光纤放大器 EDFA 中继；</li>
+  <li>码分复用 CDM 主要用于多址接入，因而常称码分多址 CDMA：每个站被指派唯一的、相互正交的 m bit 码片序列，发比特 1 发码片序列本身、发比特 0 发其反码（直接序列扩频 DSSS）；复用的三种对应多址形式是 FDMA、TDMA、CDMA；</li>
+  <li>规格化内积是 CDMA 的核心运算：S · T = (1/m)Σ S<sub>i</sub>T<sub>i</sub>，不同站之间为 0（正交），自己与自己为 1，自己与自己反码为 −1；接收方用收到的叠加序列与某站的码片序列做内积，结果为 1 说明该站发了比特 1，为 −1 说明发了比特 0，为 0 说明该站未发送。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-6-1.html">‹ 3.6.1 媒体接入控制的基本概念</a>
+      <a class="next" href="3-6-3.html">3.6.3 媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

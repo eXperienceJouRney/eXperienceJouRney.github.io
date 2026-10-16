@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.5 计算机网络的体系结构 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 1 章 计算机网络概述 1.5 计算机网络的体系结构：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html" aria-current="page"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 1 章 计算机网络概述</p>
+      <h1>1.5 计算机网络的体系结构</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">两台计算机之间传送一个文件，看上去只是「发」与「收」两件事，真正做起来却要同时处理许多问题：用什么信号、怎样找到对方、数据丢了怎么办、两个程序之间如何约定格式。这些问题无法一次解决，网络设计者因此采用了一个古老而有效的办法——分层。本节先说明为什么要把通信分层，再集中交代分层中反复出现的术语：实体、协议、服务、接口与协议栈；然后看数据怎样沿协议栈逐层传递；最后比较 OSI 参考模型、TCP/IP 参考模型与因特网采用的五层模型。</p>
+
+<h2>1. 为什么要把通信分成层次</h2>
+<p>先看一个流传很广的比喻。两位哲学家想讨论问题，一位会讲乌尔都语和英语，另一位会讲法语和汉语，两人语言不通，于是各自请了一位翻译；两位翻译商定用荷兰语交流，语言转换的问题便解决了。可翻译之间隔着距离，说话要靠人送，两人又各配了一位秘书，由秘书把内容实际递送过去。这样，一次沟通被拆成了三层：哲学家负责表达意思，翻译负责语言转换，秘书负责传递。任何一层换人或者换语言，其他层都不必跟着改，只要相邻两层之间的约定不变。</p>
+<p>通信协议面对的是同样的困境。两个应用程序交换数据，牵扯到的功能太多，无法由一段程序一次做完。分层的做法是把它分解成若干相对独立的子问题，每一层只解决其中一类，并且只使用下层提供的功能、向上层提供自己的功能。<strong>同一层的两个实体之间才需要遵守本层的约定</strong>，上下层之间通过明确的接口打交道。这样一来，每一层都可以独立设计、独立修改，也便于把功能定义成国际标准化的协议。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0081.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0081.webp" alt="图 1　今天的因特网中两台主机的五层协议栈" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　今天的因特网中，主机 A 与主机 B 各有自己的协议栈：应用层用 HTTP、FTP 等，传输层用 TCP、UDP，网络层用 IP，链路层用 PPP、以太网等，最下面是物理层（原课件第 81 张）</figcaption>
+</figure>
+<p>今天的因特网正是这样组织起来的。<strong>协议栈（Protocol Stack）</strong>是分层最直观的样子：两台主机各自拥有一套层次，每层使用自己的协议。从功能上看，仿佛是两台主机的同一层在对话；实际的数据却要沿着本方协议栈逐层向下，穿过物理媒体，再到对方主机逐层向上。</p>
+
+<h2>2. 分层结构中的常用术语</h2>
+<p>分层里只有两种基本关系：对等与相邻。前者靠协议维系，后者靠服务与接口维系。下面这些术语在各层反复出现，先集中交代清楚。</p>
+<h3>（1）实体与对等体</h3>
+<p><strong>实体（Entity）</strong>是任何可以发送和接收信息的硬件和软件进程，通常就是一个特定的软件模块。<strong>对等体（Peer）</strong>则是不同机器上包含对应层的实体：主机 A 的应用层进程与主机 B 的应用层进程互为对等体。</p>
+<h3>（2）协议及其三要素</h3>
+<p><strong>协议（Protocol）</strong>是通信双方关于如何进行通信的一种约定。约定要完整到可以直接执行，必须包含三个方面：</p>
+<ul>
+  <li>语法：数据与控制信息的结构或格式，相当于规定「怎么说」；</li>
+  <li>语义：需要发出何种控制信息、完成何种动作以及做出何种应答，相当于规定「说什么」；</li>
+  <li>同步：事件实现顺序的详细说明，相当于规定「先说什么、后说什么」。</li>
+</ul>
+<p>三者缺一不可。只有格式而没有动作规定，收到数据也不知道该做什么；只有动作而没有先后顺序，双方就可能一直等着对方先开口。</p>
+<h3>（3）服务、服务原语、接口与服务访问点</h3>
+<p>同一台机器上相邻两层之间的关系，用另一组词来描述。<strong>服务（Service）</strong>是为保证上层对等体之间能互相通信，下层向上层提供的功能；相邻两层交互时所要交换的一些必要命令，称为<strong>服务原语</strong>。</p>
+<p><strong>接口（Interface）</strong>位于每一对相邻层之间，定义下层向上层提供的原语操作和服务；<strong>服务访问点 SAP（Service Access Point）</strong>则是同一系统中相邻两层的实体进行交互的地方。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0089.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0089.webp" alt="图 2　协议与服务的关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　协议与服务的关系：服务是下层向上层提供的功能（垂直方向），协议是同层对等实体之间如何实现该服务的约定（水平方向）（原课件第 89 张）</figcaption>
+</figure>
+<p>协议与服务是分层里最容易混淆的一对概念。服务讲的是「做什么」，即下层向上层承诺提供的能力；协议讲的是「怎么做」，即同层对等实体为实现这些服务而约定的规则。二者的方向也不同：服务发生在上下相邻层之间，是垂直的；协议发生在两台机器的同层对等体之间，是水平的。<strong>协议对上层是隐蔽的</strong>：上层只需要知道自己能用什么服务，不必了解下层用什么协议去实现，所以只要服务不变，下层尽可以更换协议或改进实现。</p>
+<h3>（4）PDU 与 SDU</h3>
+<p>数据在层间传递时也要有名字。<strong>协议数据单元 PDU（Protocol Data Unit）</strong>是对等层次上传送数据的单位；<strong>服务数据单元 SDU（Service Data Unit）</strong>是层与层之间交换数据的单位。通俗地说，本层从上层收下来的数据是 SDU，本层给它加上自己的控制信息（首部，有的层还有尾部）之后就变成 PDU，交给下一层，随后又成为下层的 SDU——数据的「身份」随所在的层次而变化。</p>
+<h3>（5）网络体系结构与协议栈</h3>
+<p>把这些内容放到整体上看，就得到两个总结性的概念。<strong>网络体系结构（Network Architecture）</strong>是层和协议的集合：它规定分几层、每层做什么、层间如何交互，是抽象的定义，不涉及具体的实现技术。协议栈则是一个特定的系统所使用的一组协议，每层一个协议。体系结构相当于图纸，协议栈相当于按图纸配齐的一整套具体协议。</p>
+
+<h2>3. 数据在体系结构中怎样流动</h2>
+<p>把协议栈竖起来看，一次通信的全程就是数据沿本方协议栈下行、再沿对方协议栈上行的过程。以计算机 1 上的应用进程 AP1 向计算机 2 的应用进程 AP2 发送数据为例，发送方一侧的动作是：</p>
+<ul>
+  <li>应用进程数据先传送到第 5 层，第 5 层加上首部（H5），成为第 5 层 PDU；</li>
+  <li>第 5 层 PDU 再传送到第 4 层，第 4 层加上首部（H4），成为第 4 层 PDU；</li>
+  <li>第 4 层 PDU 传送到第 3 层，第 3 层加上首部（H3），成为第 3 层 PDU；</li>
+  <li>第 3 层 PDU 传送到第 2 层，第 2 层加上首部和尾部（H2 与 T2），成为第 2 层 PDU；</li>
+  <li>第 2 层 PDU 传送到第 1 层，最下面的第 1 层把比特流传送到物理媒体。</li>
+</ul>
+<p>比特流以电信号或光信号的形式在物理媒体中传播，从发送端的第 1 层送到接收端的第 1 层。计算机 2 一侧的动作正好相反，是一层层「剥」出来的：第 1 层接收到比特流后上交给第 2 层；第 2 层剥去首部和尾部，把数据部分交给第 3 层；第 3 层剥去首部，把数据部分交给第 4 层；第 4 层再剥去首部，交给第 5 层；第 5 层剥去 PDU 首部，取出应用程序数据交给应用进程 AP2。至此，AP2 收到了 AP1 发来的应用程序数据。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0105.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0105.webp" alt="图 3　数据在体系结构中的流动：逐层加首部与逐层剥去" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　数据在计算机 1 与计算机 2 的协议栈之间的流动：发送端逐层加上首部（第 2 层还加尾部），接收端逐层剥去，最后把应用程序数据交给应用进程（原课件第 105 张）</figcaption>
+</figure>
+<p>这一过程有两点值得留意。其一，<strong>首部和尾部只在对等层之间有意义</strong>：第 N 层加上的首部，正是由对端的第 N 层来阅读并剥去，其他层次既不添加也不解释它。其二，真正在物理媒体上传送的只有最下面那一层的比特流，中间各层的「数据块」只是本机内部的处理形态。发送端逐层套上外衣的过程称为封装，接收端逐层脱去外衣的过程称为解封装；第 2 层之所以除了首部还要加一个尾部，正是因为成帧与差错检测需要这些字段。</p>
+
+<h2>4. OSI 参考模型：分层原则与七层功能</h2>
+<h3>（1）分层的原则</h3>
+<p>层次不能随便划分。国际标准化组织在提出 OSI 参考模型时，给出了几条划分层次的原则：</p>
+<ul>
+  <li>当需要一个不同抽象体的时候，应该创建一层；</li>
+  <li>每一层都应该执行一个明确定义的功能；</li>
+  <li>选择每一层功能的时候，应该考虑到定义国际标准化的协议；</li>
+  <li>选择层边界的时候，应该使「跨接口所需要的信息流」尽可能小；</li>
+  <li>层数应该足够多，以保证不同的功能不会被混杂在同一层中；同时层数也不能太多，以免整个体系结构变得过于庞大。</li>
+</ul>
+<p>这几条原则里分量最重的是「跨接口所需要的信息流尽可能小」：接口两侧的往来越少，两层就越容易各自独立地修改。最后一条则点出了分层的分寸——层太少会把不相干的功能挤在一起，层太多又会让系统臃肿、开销增加。</p>
+<h3>（2）七层及各层的功能</h3>
+<p>按照这些原则，OSI 参考模型把网络功能划分为七层，自下而上是物理层、数据链路层（课件中简称为链路层）、网络层、传输层、会话层、表示层和应用层。各层的职责可以概括如下：</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0114.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0114.webp" alt="图 4　OSI 参考模型七层及各层的功能" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　OSI 参考模型七层及各层的功能：越往上越贴近应用程序，网络层及其以下三层构成通信子网（原课件第 114 张）</figcaption>
+</figure>
+<div class="tbl-wrap"><table>
+  <caption>各层功能依课件「ISO OSI/RM 模型—各层功能」整理。</caption>
+  <thead>
+    <tr><th>层次</th><th>主要功能</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>应用层</td><td>应用程序的通信规程，如 FTP、E-mail、Telnet</td></tr>
+    <tr><td>表示层</td><td>数据结构表示、数据格式转换、加密、压缩</td></tr>
+    <tr><td>会话层</td><td>管理通信会话，提供同步和恢复功能</td></tr>
+    <tr><td>传输层</td><td>将数据传给正确的应用程序，提供可靠的数据传输</td></tr>
+    <tr><td>网络层</td><td>逻辑地址分配、路由选择</td></tr>
+    <tr><td>链路层</td><td>可靠数据传输、成帧，差错检测与纠正、物理地址寻址</td></tr>
+    <tr><td>物理层</td><td>规定物理信号、接口、信号形式、速率</td></tr>
+  </tbody>
+</table></div>
+<p>这张表里有几条线索。网络层及其以下的三层关心数据怎样一站一站地传过去，合起来构成通信子网，通常由路由器、交换机等设备承担；课件按关注点把各层标为「面向应用」「面向服务」「面向通信」几档，越靠上离应用程序越近，越靠下离物理传输越近。传输层处在两者中间，既是通信子网的使用者，又是上面各层的服务提供者，因而成为两个部分的交界；正因为各层职责清晰，OSI 参考模型才成为讨论网络问题的通用框架。</p>
+
+<h2>5. TCP/IP 参考模型及其与 OSI 的比较</h2>
+<p>OSI 参考模型是国际标准化组织制定的国际标准，而实际网络中真正被广泛使用的是另一个模型——TCP/IP 参考模型。它把网络功能划分为四层：应用层、运输层、网际层和网络接口层（又称主机至网络层）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0116.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0116.webp" alt="图 5　TCP/IP 参考模型的四层结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　TCP/IP 参考模型的四层结构：应用层、运输层、网际层与网络接口层（主机至网络层）（原课件第 116 张）</figcaption>
+</figure>
+<p>四层与 OSI 的七层可以大致对应：网络接口层承担了 OSI 物理层与数据链路层的任务，不过 TCP/IP 并没有把这两层区分开；网际层相当于 OSI 的网络层，但它只提供无连接的通信；运输层同时支持面向连接的 TCP 和无连接的 UDP；应用层则把 OSI 会话层、表示层与应用层的功能合并在一起，HTTP、FTP 等熟知的协议都属于这一层。</p>
+<h3>（1）两个模型的相同点</h3>
+<ul>
+  <li>两者都是以协议栈的概念为基础，而且协议栈中的协议彼此独立；</li>
+  <li>两个模型中各个层的功能大体相似；</li>
+  <li>在两个模型中，传输层之上的各层都是传输服务的用户，并且是面向应用的用户。</li>
+</ul>
+<h3>（2）两个模型的差别</h3>
+<ul>
+  <li>服务、接口和协议这三个概念是 OSI 模型的核心，并被非常明确地区别开来；TCP/IP 模型没有明确区分这三者，因此 OSI 模型中的协议具有更好的隐蔽性；</li>
+  <li>OSI 模型先于其协议出现，TCP/IP 模型后于其协议出现。这使得 OSI 模型虽然具有通用性，却与实际出现了脱钩；TCP/IP 模型虽然不通用，却与现实吻合得很好；</li>
+  <li>两者面向连接和面向无连接的通信范围不同：OSI 模型的网络层同时支持面向连接和面向无连接的通信，传输层则只支持面向连接的通信；TCP/IP 模型的网络层只支持面向无连接的通信，传输层则同时支持两种通信模式。</li>
+</ul>
+<h3>（3）TCP/IP 参考模型的不足</h3>
+<ul>
+  <li>该模型没有清楚地区分服务、接口和协议的概念；</li>
+  <li>TCP/IP 模型并不通用，不适合用来描述 TCP/IP 之外的任何其他协议；</li>
+  <li>在分层协议环境中，主机至网络层并不是常规意义上的层的概念，只是一个位于网络层和数据链路层之间的接口；</li>
+  <li>TCP/IP 模型并没有区分物理层和数据链路层；</li>
+  <li>一些特定的协议（如 Telnet）正在被广泛使用，难以被取代，从某种意义上成了技术进步的阻碍。</li>
+</ul>
+
+<h2>6. 因特网采用的五层模型</h2>
+<p>OSI 的七层与 TCP/IP 的四层各有短长，教学中常把两者折中，采用五层模型：保留 TCP/IP 的应用层、运输层和网络层，把网络接口层重新拆成数据链路层与物理层。这样既照顾了实际网络的组成，又能把物理层和数据链路层的分工讲清楚。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-5/p0120.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-5/p0120.webp" alt="图 6　因特网采用的五层模型及各层的传送单位" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　因特网采用的五层模型：物理层传比特流，数据链路层传帧，网络层传分组，运输层传报文，应用层为应用进程提供信息交换和远地操作（原课件第 120 张）</figcaption>
+</figure>
+<p>五层模型里，每一层都有自己的数据传送单位，术语随层次逐级变化：</p>
+<ul>
+  <li>物理层传送<strong>比特流（bit）</strong>；</li>
+  <li>数据链路层传送<strong>帧（frame）</strong>；</li>
+  <li>网络层传送<strong>分组（packet）</strong>；</li>
+  <li>运输层传送<strong>报文（message）</strong>；</li>
+  <li>应用层为应用进程提供信息交换和远地操作。</li>
+</ul>
+<p>把这些单位与前面讲的 PDU 对照起来看会更清楚：帧、分组、报文分别是数据链路层、网络层和运输层的 PDU，到了物理层就变成没有内部结构的比特流。后面各章基本沿着这五层展开：第 2 章网络中的数据通信讲比特怎样在媒体上传输，第 3 章网络服务及应用介绍应用层协议，第 4 章局域网讲帧与链路，第 5 章网络互联讲分组怎样被转发与路由。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>分层是解决复杂通信问题的基本办法：把通信分解成职责单一的层次，同层对等实体遵守本层协议，相邻层通过服务与接口交互；</li>
+  <li>基本术语成对出现：实体与对等体、协议与服务、接口与服务访问点 SAP、PDU 与 SDU；网络体系结构是层和协议的集合，协议栈是一个系统所用的一组协议，每层一个；</li>
+  <li>协议与服务方向不同：服务是垂直的，发生在上下相邻层之间；协议是水平的，发生在两台机器的同层对等体之间。协议对上层隐蔽，更换下层实现不影响上层；</li>
+  <li>数据靠封装与解封装流动：发送端逐层加首部（第 2 层另加尾部），接收端逐层剥去，首部只在对应层的对等体之间有意义，物理媒体上传输的始终是比特流；</li>
+  <li>OSI 参考模型分七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层；分层原则要求每层功能明确、跨接口信息流尽量小、层数适中，网络层及其以下三层构成通信子网；</li>
+  <li>TCP/IP 参考模型分四层，通用性差但贴合实际，且没有清楚区分服务、接口与协议；因特网的五层模型是两者的折中，各层传送单位依次是比特流、帧、分组、报文，这正是后面各章的分工线索。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-1-4.html">‹ 1.4 计算机网络的评价指标</a>
+      <a class="next" href="v2-1-6.html">1.6 网络中的法律和社会问题 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

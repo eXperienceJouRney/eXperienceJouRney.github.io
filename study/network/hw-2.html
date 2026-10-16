@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 2 章 作业 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 2 章作业（物理层）：香农公式与信噪比、GBN 协议的窗口与 ACK、SR 协议接收窗口改造、数字信号编码波形，共 4 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../network.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · <a href="homework.html">作业</a> · 第 2 章 物理层</p>
+      <h1>第 2 章 作业 · 物理层</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>香农公式与信噪比</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>用香农公式计算一下，假定信道带宽为 3100 Hz，最大信息传输速率为 35 kbit/s，那么若想使最大信息传输速率增加 60%，问信噪比 S/N 应增大到多少倍？如果在刚才计算的基础上将信噪比 S/N 再增加 10 倍，问最大信息传输速率能否再增加 20%？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）把最大信息传输速率提高 60% 所需的信噪比倍数</h3>
+                <div class="hw-calc">
+                  <p>香农容量：C = B·log<sub>2</sub>(1 + SNR)，B = 3100 Hz。</p>
+                  <p>现有 C<sub>0</sub> = 35 kbit/s = 35000 bit/s。</p>
+                  <p>SNR<sub>0</sub> = 2^(C<sub>0</sub>/B) − 1 = 2^(35000/3100) − 1 ≈ 2^11.2903 − 1 ≈ 2.50×10^3。</p>
+                  <p>增加 60% 后 C<sub>1</sub> = 1.6C<sub>0</sub> = 56000 bit/s。</p>
+                  <p>SNR<sub>1</sub> = 2^(C<sub>1</sub>/B) − 1 = 2^(56000/3100) − 1 ≈ 2^18.0645 − 1 ≈ 2.74×10^5。</p>
+                  <p>需要把信噪比提高的倍数：SNR<sub>1</sub>/SNR<sub>0</sub> ≈ 2.74×10^5 / 2.50×10^3 ≈ 1.10×10^2 ≈ 110 倍。</p>
+                </div>
+
+                <h3>（2）在此基础上再把 S/N 增加 10 倍，速率能否再增加 20%</h3>
+                <div class="hw-calc">
+                  <p>在此基础上再把 SNR 乘以 10：</p>
+                  <p>r<sub>1</sub> = C<sub>1</sub>/B = 18.0645 bits/s/Hz。</p>
+                  <p>r<sub>2</sub> = log<sub>2</sub>(1 + 10·SNR<sub>1</sub>) ≈ r<sub>1</sub> + log<sub>2</sub>(10) ≈ 18.0645 + 3.3219 = 21.3864。</p>
+                  <p>速率提升比例：C<sub>2</sub>/C<sub>1</sub> = r<sub>2</sub>/r<sub>1</sub> ≈ 21.3864/18.0645 ≈ 1.1839，即约 18.4%。</p>
+                </div>
+
+                <h3>结论</h3>
+                <ul>
+                  <li>要把最大信息传输速率提高 60%，S/N 需提高约 110 倍。</li>
+                  <li>在此基础上即使再把 S/N 增加 10 倍，最大信息传输速率也只能再提高约 18.4%，达不到 20%。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>GBN 协议的窗口与 ACK</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>考虑一个 GBN 协议，发送方窗口大小为 4，序号空间为 1024。时刻 t，接收方「期待的下一个有序分组」的序号为 k（信道不重排）。请问：</p>
+              <ol class="hw-ask">
+                <li>发送方窗口内的报文序号</li>
+                <li>正在回传途中的 ACK 字段的可能值</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）发送方窗口内的报文序号</h3>
+                <p>发送方可能仍没收到最近 0~4 个累计 ACK，因此其窗口起点可能为 k−4…k。</p>
+                <p>窗口内的序号必为下面 5 种连续的 4 个序号之一（按 1024 取模）：</p>
+                <ul>
+                  <li>[k−4, k−1]</li>
+                  <li>[k−3, k]</li>
+                  <li>[k−2, k+1]</li>
+                  <li>[k−1, k+2]</li>
+                  <li>[k, k+3]</li>
+                </ul>
+
+                <h3>（2）正在回传途中的 ACK 字段的可能值</h3>
+                <p>接收方当前期待的是 k，因此网络中向发送方传播的 ACK 可能是它此前发出的最近 4 个累计确认：</p>
+                <p>ACK ∈ {k−4, k−3, k−2, k−1}（按 1024 取模）</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>SR 协议接收窗口改造</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>现在我们对 SR 协议做一个简单的改造，接收方可以将自己的接收窗口大小 X 通知发送方，发送方在收到该通知后，将自己的发送窗口大小设置为 X。现在 A 准备发送 20K 字节的数据，B 初始化得到了一个大小为 6K 字节的接收缓冲区，并通知了 A。假设 A 和 B 在传送数据时，分组大小为 1K 字节，分组编号从 0 开始。现在 AB 之间发生了以下事件：</p>
+              <ol class="hw-ask">
+                <li>A 发送了 3K 字节的数据；</li>
+                <li>A 又发送了 2K 字节的数据；</li>
+                <li>B 收到了 5K 字节的数据，经过校验，2K-3K 字节间的数据出错，此时 B 的接收缓冲区被系统收回 3K 字节，B 向 A 发送了选择性否认应答（NACK 2 buf 3K），A 收到了 B 发出的该应答；</li>
+                <li>A 发送完此时缓冲区中需要发送的所有数据；</li>
+                <li>B 正确收到了 A 发送的上述数据，并又从系统额外申请了 1K 字节的接收缓冲区，B 对 A 发送的上述数据做确认应答（ACK），A 收到了 B 发出的确认应答；</li>
+              </ol>
+              <p>现在请画图描述 A 在每一步骤后的变化情况，包括：发送窗口数据序号区域、发送并被确认的数据序号区间、发送但未被确认的数据序号区间、可以发送的数据序号区间和不能发送的数据序号区间。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）A 发送了 3K 字节的数据后</h3>
+                <div class="hw-calc">
+                  <p>发送窗口区域：0-5；已确：无；已发未确：0–2；可发：3–5；不可发：6–19</p>
+                </div>
+
+                <h3>（2）A 又发送了 2K 字节的数据后</h3>
+                <div class="hw-calc">
+                  <p>发送窗口区域：0-5；已确：无；已发未确：0–4；可发：5；不可发：6–19</p>
+                </div>
+
+                <h3>（3）B 收回 3K 缓冲区并发出 NACK 2 buf 3K，A 收到该应答后</h3>
+                <div class="hw-calc">
+                  <p>发送窗口区域：2-4；已确：0、1、3、4；已发未确：2；可发：2（只有可重传 2；新数据不可发）；不可发：5–19。（NACK 2 buf 3K）</p>
+                </div>
+
+                <h3>（4）A 把需要发的都发完后</h3>
+                <div class="hw-calc">
+                  <p>A 把需要发的都发完 → 仅重传编号 2。</p>
+                  <p>已确：0–1、3、4；已发未确：2；可发：无；不可发：5–19。</p>
+                </div>
+
+                <h3>（5）B 额外申请 1K 缓冲区并发出 ACK，A 收到该确认应答后</h3>
+                <div class="hw-calc">
+                  <p>发送窗口区域：5-8；已确：0–4；已发未确：无；可发：5–8；不可发：9–19。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>数字信号编码波形</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>数字信号和数位化编码的数据之间存在着自然的联系。信号编码在执行中伪装了数据，并且能够有效地承载数据，某种程度上增强了信息的安全性。按照要求表示数字信号编码波形，初始状态为高电平，严格使用尺子和铅笔作图。</p>
+              <figure class="fig">
+                <a href="../../assets/homework/hw-2/fig1.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig1.png" alt="题目 4　数字信号编码波形作图要求" loading="lazy" decoding="async"></a>
+                <figcaption>图 1　数字信号编码波形作图要求</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>不归零编码和归零编码每一种都有单极脉冲和双极脉冲 2 种形式，下图是双极脉冲。</p>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-2/fig2.jpeg" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig2.jpeg" alt="图 2　双极脉冲编码波形" loading="lazy" decoding="async"></a>
+                  <figcaption>图 2　双极脉冲编码波形</figcaption>
+                </figure>
+
+                <h3>补充说明：展示单极脉冲和双极脉冲的差别</h3>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-2/fig3.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig3.png" alt="图 3　(a) NRZ 波形" loading="lazy" decoding="async"></a>
+                  <figcaption>图 3　(a) NRZ</figcaption>
+                </figure>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-2/fig4.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig4.png" alt="图 4　(b) NRZ 波形" loading="lazy" decoding="async"></a>
+                  <figcaption>图 4　(b) NRZ</figcaption>
+                </figure>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-2/fig5.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig5.png" alt="图 5　(c) RZ 波形" loading="lazy" decoding="async"></a>
+                  <figcaption>图 5　(c) RZ</figcaption>
+                </figure>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-2/fig6.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-2/fig6.png" alt="图 6　(d) RZ 波形" loading="lazy" decoding="async"></a>
+                  <figcaption>图 6　(d) RZ</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="hw-1.html">‹ 第 1 章 作业</a>
+      <a class="next" href="hw-3.html">第 3 章 作业 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

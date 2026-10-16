@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.1 计算机中的数字图像 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.1 计算机中的数字图像：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html" aria-current="page"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.1 计算机中的数字图像</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节先回答一个最基础的问题：图像在计算机里到底长什么样。答案是一串有位置、有幅值的像素，写成数学形式就是一个二维函数 f(x, y)。课件沿「数字图像与像素 → 灰度图像 → 彩色图像与颜色模型 → 采样与量化」的顺序展开，把像素的两种表示方式（单值、多值）和颜色模型的适用场合说清楚，最后留下一个接口：连续图像是怎么变成数字图像的。</p>
+
+<h2>1. 数字图像与像素</h2>
+<p>计算机里的图像不是一幅连续的画，而是由<strong>有限数量</strong>的元素组成的集合：每个元素都拥有一个特定的位置和一个特定的幅值，这样的元素称为<strong>像素</strong>（pixel）。位置和幅值这两件事，正好对应一个二维函数：</p>
+<p>把图像记作 f(x, y)，其中 (x, y) 是空间坐标，f(x, y) 是点 (x, y) 处的幅值。坐标是二维的，说明图像是平面上的量；幅值是该点的取值，在灰度图像里就是那一点的明暗程度。区分不同的图像类型，关键只在于「一个像素用几个值表示」：<strong>灰度图像</strong>中每个像素只用一个值表示，<strong>彩色图像</strong>中每个像素用多个值表示。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-1/p0003.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-1/p0003.webp" alt="图 1　数字图像与二维函数 f(x, y)" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　数字图像由有限数量的像素组成，每个像素有特定的位置和幅值，可以用二维函数 f(x, y) 描述（原课件第 3 张）</figcaption>
+</figure>
+<p>这个定义看上去很朴素，却决定了后面所有的操作方式：既然图像是一个有限元素的集合，处理图像就只能是逐点、逐邻域地对这些幅值做运算；本章后面的采样、量化、滤波，处理的都是同一组 f(x, y) 的取值。</p>
+
+<h2>2. 灰度图像：一个像素一个值</h2>
+<p><strong>灰度图像</strong>（grayscale image）是每个像素只有一个采样颜色的图像。它的幅值取在一维的灰度轴上，实践中通常分成 <strong>256 个灰度等级</strong>：<strong>255 代表全白，0 代表全黑</strong>，中间的值对应从暗到亮的不同深浅。</p>
+<p>为什么是 256 级？因为一个像素的灰度值正好用一个字节（8 位）就能放下，取值范围 0 到 255，既够表现明暗过渡，存取时又整齐。这也解释了灰度图像与黑白图像的差别：后者一个像素只区分黑与白两种状态，而灰度图像保留了一整条明暗连续的刻度，因此能表达轮廓的过渡和表面的起伏。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-1/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-1/p0004.webp" alt="图 2　灰度图像与黑白图像的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　灰度图像的每个像素只有一个采样颜色，通常有 256 个灰度等级（255 全白、0 全黑）；图中把它与黑白图像作了对比（原课件第 4 张）</figcaption>
+</figure>
+
+<h2>3. 彩色图像与常用颜色模型</h2>
+<p>彩色图像里，每个像素要用多个值表示，具体用几个值、每个值是什么含义，由<strong>颜色模型</strong>决定。课件给出了三种最常用的模型：RGB、CMYK 与 HSV，它们的差别主要在于「为谁服务」——给机器、给印刷机，还是给人的眼睛。</p>
+<p><strong>RGB 颜色模型</strong>是最典型、最常用的三基色模型，它把颜色表示成红（Red）、绿（Green）、蓝（Blue）三个分量的组合。这个模型之所以流行，是因为设备就长这样：电视、摄像机、彩色扫描仪都是根据 RGB 模型工作的，它们的成像或显示直接建立在三基色的混合之上。但它的短处也很明显——<strong>不直观，不符合人对颜色的认知</strong>：即使给出三个分量的数值，人也很难立刻判断那是什么颜色。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-1/p0005.webp" alt="图 3　彩色图像的常用颜色模型：RGB、CMYK 与 HSV" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　彩色图像的三种常用颜色模型：RGB 是三基色模型但不直观，HSV 更接近人的颜色感知，CMYK 主要用于彩色打印（原课件第 5 张）</figcaption>
+</figure>
+<p><strong>HSV 颜色模型</strong>换了一套描述方式：H 是色调（Hue）、S 是饱和度（Saturation）、V 是亮度值（Value），它<strong>与人类对颜色的感知更接近</strong>。「偏红还是偏蓝」「鲜艳还是灰暗」「明亮还是深暗」，这三句日常描述恰好各对应一个分量，所以需要按人的直觉调色时用 HSV 会顺手得多。</p>
+<p><strong>CMYK 颜色模型</strong>则<strong>主要用于彩色打印</strong>。它由青（Cyan）、品红（Magenta）、黄（Yellow）、黑（Black）四种油墨构成，描述的是纸张上油墨叠印的结果，而不是屏幕上光线的混合。正因为它是为印刷输出设计的，课件对它的另一句说明是「<strong>图像处理中几乎不用</strong>」——图像处理面对的主要是屏幕上的光与采集到的信号，CMYK 的用武之地留在输出环节。</p>
+<p>同一幅彩色图像可以同时用这几个模型描述，只是坐标不同。第 6 张把一幅 RGB 图像拆成了 R、G、B 三个分量来看：所谓「一个像素用多个值表示」，实际上就是每个分量各自构成一层单通道的图像，每个通道上的取值仍然是一个灰度值。这一点很重要，因为它意味着本章后面讲的滤波、卷积，都可以先在一个个通道上分别做，再合起来看。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-1/p0006.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-1/p0006.webp" alt="图 4　一幅 RGB 图像及其 R、G、B 三个分量" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　按 RGB 颜色模型拆解的一幅彩色图像：除原始图像外，还有 R、G、B 三个分量各自构成的图（原课件第 6 张）</figcaption>
+</figure>
+
+<h2>4. 从连续到离散：采样与量化</h2>
+<p>到此为止讲的都是「数字图像长什么样」，还剩一个更靠前的问题：它为什么是数字的。传感器获取的图像其实是平面上的<strong>连续函数</strong>——光强随位置连续变化，坐标和幅值都没有最小刻度。要产生一幅数字图像，就必须把这种连续的感知数据转换为数字形式，这包括<strong>采样</strong>（Sampling）和<strong>量化</strong>（Quantization）两个基本步骤。</p>
+<p>两个步骤的分工可以用前面的 f(x, y) 一句话点明：采样管的是自变量 (x, y)，量化管的是函数值 f(x, y)。前者决定图像上有多少个像素，后者决定每个像素能取多少个不同的值。也就是说，本节前面反复出现的「像素」「灰度等级」这两个词，正是这两个步骤的产物——下一节会把它们各自展开。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-1/p0007.webp" alt="图 5　连续图像经采样与量化转换为数字图像" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　传感器获取的图像是平面上的连续函数，转换为数字形式需要经过采样与量化两个基本步骤（原课件第 7 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>数字图像由有限数量的元素组成，每个元素有特定的位置和幅值，这些元素称为像素；用二维函数表示即 f(x, y)，(x, y) 是空间坐标，f(x, y) 是点 (x, y) 的幅值。</li>
+  <li>灰度图像每个像素只用一个值表示，通常有 256 个灰度等级，255 代表全白、0 代表全黑；彩色图像每个像素用多个值表示，这些值按颜色模型组织。</li>
+  <li>三种常用颜色模型各有分工：RGB 是最典型的三基色模型，电视、摄像机、彩色扫描仪都按它工作，但不直观；HSV 用色调、饱和度、亮度值描述，更接近人的颜色感知；CMYK 主要用于彩色打印。</li>
+  <li>彩色像素的「多个值」可以看成各分量通道上的灰度值——这为后面逐通道做滤波与卷积留好了接口。</li>
+  <li>传感器输出的图像是平面上的连续函数，转换为数字形式要经过采样与量化两个基本步骤，分别对应空间坐标与幅值的数字化，是下一节的主题。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-5.html">‹ 1.5 课程安排与学习资源</a>
+      <a class="next" href="2-2.html">2.2 图像的采样与量化 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

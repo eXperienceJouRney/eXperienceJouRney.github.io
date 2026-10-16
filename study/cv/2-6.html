@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.6 互相关与卷积 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.6 互相关与卷积：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html" aria-current="page"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.6 互相关与卷积</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节把均值、中值、高斯滤波都做过一遍了，但一直没有给那个反复出现的动作正式命名——「把滤波矩阵盖在图像上，按位相乘再求和」。这一节补上这一步：先定义互相关，再定义卷积（比互相关多一次 180° 旋转），然后说明为什么深度学习里说的「卷积」其实是互相关；最后回到动机，看滤波如何从一种去噪手段变成提取特征的手段。</p>
+
+<h2>1. 互相关：按位相乘再求和</h2>
+<p><strong>互相关</strong>（cross-correlation）的定义是：对图像矩阵和滤波矩阵按位进行逐个元素相乘再求和的操作。这里参与运算的那个小矩阵就是<strong>卷积核</strong>，也叫滤波矩阵——上一节的 1/9 均值核、高斯核，都是它。</p>
+<p>按这个定义回头看，前面几节里的均值滤波和高斯滤波做的都是互相关：核的九个位置与原图上被盖住的九个像素一一相乘，再把九个乘积加起来，结果写进中心像素的位置；核滑过整幅图，就得到滤波后的图像。以 3×3 的均值核为例：</p>
+<pre><code>核（滤波矩阵）          核盖住的图像小块
+1/9  1/9  1/9          a  b  c
+1/9  1/9  1/9          d  e  f
+1/9  1/9  1/9          g  h  i
+
+输出 = (a + b + c + d + e + f + g + h + i) / 9</code></pre>
+<p>因为核里九个权重都是 1/9，这个式子的结果就是九个像素的算术平均——「按位相乘求和」正是上一节滑窗动画每一步在算的东西。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-6/p0033.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-6/p0033.webp" alt="图 1　用 1/9 均值核做互相关" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　互相关运算：3×3 的 1/9 均值核与图像矩阵按位逐个元素相乘再求和，得到滤波结果（原课件第 33 张）</figcaption>
+</figure>
+
+<h2>2. 卷积：先把核顺时针旋转 180°</h2>
+<p><strong>卷积</strong>（convolution）与互相关的差别只有一步：先对滤波矩阵顺时针旋转 180°（由下到上、由右到左），而后再按位点乘求和。所谓旋转 180°，就是把行序和列序同时倒过来，原先在右下角的元素转到左上角：</p>
+<pre><code>核 K                      顺时针旋转 180°
+a  b  c                   i  h  g
+d  e  f         ──→       f  e  d
+g  h  i                   c  b  a</code></pre>
+<p>这一步在前面的例子里其实看不出来，因为常用的核都是对称的：均值核九个权重全是 1/9，高斯核也关于中心对称，转不转都还是同一个矩阵，所以那些结果用互相关和卷积解释都成立。只有当核本身不对称时，两者才会算出不同的结果——这也是判断一个「滤波」到底该叫互相关还是卷积的关键。</p>
+<p>课件在这里专门加了一条注记：<strong>深度学习中的卷积可以看作互相关运算，因为深度学习中的卷积核的参数是可学习的</strong>。既然核里每个权重都是训练出来的，那么「先旋转 180°」与否只相当于参数以另一种顺序排列，网络完全可以把这点差别学进参数里；因此框架中名为卷积（conv）的层，实际执行的往往是互相关。判断一次运算在数学上该叫互相关还是卷积，只看滤波矩阵有没有先翻转 180°。</p>
+
+<h2>3. 滤波与卷积的动机：从去噪到提取特征</h2>
+<p>最后一张课件把视角拉高了一层，标题就是<strong>图像滤波与卷积的动机——提取特征</strong>：一开始，是将滤波看作一种去除噪声的方式；现在，考虑滤波器如何提取高层特征。课件给出两条理由：一是把原始像素映射到某种表示，以便后续处理；二是减少数据量，丢弃冗余，保留有用的内容（如边缘信息）。</p>
+<p>换个角度说，同一个「按位相乘求和」的动作，核换成什么，目的就变成什么：用 1/9 的均值核是在和邻居求平均，目的是平滑；如果换成衡量相邻像素灰度差的核，输出反映的就不再是「平均」，而是灰度变化的快慢——边缘信息就是这么被保留下来的，这正是下一节图像梯度与边缘检测接着要展开的内容；再往后，第 6 章讲卷积神经网络时，那些核里的权重不再由人手工写死，而是从数据里学出来，用以逐层提取从边缘到物体的高层特征。去噪是这套运算的起点，特征提取是它真正的野心。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>互相关是对图像矩阵和滤波矩阵按位逐元素相乘再求和；参与运算的小矩阵叫卷积核或滤波矩阵。前面几节的均值滤波与高斯滤波，在「乘以权重再求和」这一层都可以用互相关来理解（中值滤波取的是排序后的中位数，不属于这类加权求和）。</li>
+  <li>卷积比互相关多一步：先把滤波矩阵顺时针旋转 180°（由下到上、由右到左），再按位点乘求和，也就是行序、列序都倒过来。</li>
+  <li>对称核（如 1/9 均值核、3×3 高斯核）旋转后不变，因此两者结果相同；只有非对称核才会让结果出现差别。</li>
+  <li>深度学习中的卷积可以看作互相关运算，因为卷积核的参数是可学习的，180° 旋转带来的差别会被参数吸收。</li>
+  <li>滤波的动机已从去噪扩展到特征提取：把原始像素映射为便于后续处理的表示，减少数据量、丢弃冗余、保留边缘等有用信息——这条线索通向下节的图像梯度与边缘检测，也通向第 6 章的卷积神经网络。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-5.html">‹ 2.5 高斯滤波</a>
+      <a class="next" href="2-7.html">2.7 图像梯度与边缘检测 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.2 应用程序的处理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 3 章 3.2 应用程序的处理：课件第 18–23 张 · 2 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html" aria-current="page"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 3 章 用户接口</p>
+      <h1>3.2 应用程序的处理</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讲的是系统怎么把环境准备好，这一节转到用户的另一侧：应用程序从一段源码变成能跑的程序，中间要经过哪些步骤？把这条链条看清楚，才能理解「编译时间」「连接装配时间」「运行时间」三者的分工，也才能理解静态连接和动态连接为什么会有不同的代价。</p>
+
+<h2>1. 处理应用程序的步骤</h2>
+<p>一个应用程序从源程序到得出计算结果，要经过编译、连接、运行三个环节，对应的三个时段分别是<strong>编译时间</strong>、<strong>连接装配时间</strong>和<strong>运行时间</strong>。以最常见的 C 程序为例，源程序 <code>hello.c</code> 由编译器或汇编器处理，生成目标模块 <code>hello.o</code>；连接装配程序再把目标模块与所需的其他模块装配起来，形成可执行文件 <code>hello</code>；最后由加载程序把它装入主存运行。整个过程可以画成下面这条流水线：</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-2/p0020.webp" alt="图 1　应用程序处理步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　应用程序处理步骤：源程序经编译器或汇编器得到目标模块，连接装配程序把主程序、子程序与例行程序装配成可执行文件，加载后进入主存运行；图中还标出了其他目标模块与动态装入的系统库（原课件第 20 张）</figcaption>
+</figure>
+<p>这条流水线用 gcc 的命令链看得更清楚，四个命令正好对应四个阶段：</p>
+<pre><code>gcc -E          gcc -S           gcc -c            gcc
+hello.c ------&gt; hello.i -------&gt; hello.s --------&gt; hello.o --------&gt; hello</code></pre>
+<p>其中 <code>gcc -E</code> 做预处理、<code>gcc -S</code> 生成汇编程序、<code>gcc -c</code> 汇编成目标模块、<code>gcc</code> 完成连接。前面两步合并起来就是「编译时间」里做的事，产出的是目标模块。</p>
+<h3>（1）连接：把目标模块装配成主存映像文件</h3>
+<p>把主程序和其他所需要的子程序、例行程序连接装配在一起，使之成为一个<strong>可执行的、完整的主存映像文件</strong>。这一步由连接装配程序完成，是整个链条中承上启下的环节：没有它，编译器产出的目标模块还只是一堆各自独立的代码和数据。</p>
+<h3>（2）运行：调入主存，得出结果</h3>
+<p>把连接得到的主存映像文件调入主存，启动运行，得出计算结果。这一步就是运行时间，也是应用程序真正在操作系统管理之下使用处理器、内存和设备资源的阶段。</p>
+
+<h2>2. 连接类型：静态连接与动态连接</h2>
+<p>连接的方式决定了外部函数是什么时候、以什么形式进入可执行文件的，由此分为两类。</p>
+<h3>（1）静态连接</h3>
+<p>把所有外部调用的函数都连接到目标文件中，形成一个完整的可执行文件，这样运行时就不再需要其他的链接库。</p>
+<p>静态连接有明显的缺点：既然所需的外部函数已经被链接进目标文件，那么当多个应用程序调用了同一个库中的外部函数时，<strong>每个应用程序的目标文件里都会包含一份这个外部函数的代码</strong>，主存和磁盘上因此出现大量重复。</p>
+<h3>（2）动态连接</h3>
+<p>动态连接不需要把外部函数链接到目标文件中，而是在应用程序中需要调用外部函数的地方<strong>作记录，并说明要使用的外部函数名</strong>；真正加载依赖的动态链接库发生在<strong>运行时</strong>。这样同一个库可以被多个程序共享，代价是运行时多了一次装入和地址绑定的开销。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/3-2/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/3-2/p0022.webp" alt="图 2　应用程序处理中的连接与装入" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　应用程序的处理：目标模块经连接装配成为可执行文件，动态链接库中的外部函数在运行时才被装入主存（原课件第 22 张）</figcaption>
+</figure>
+<p>把两者放在一起看，区别就清楚了：<strong>静态连接用「多占空间」换「运行时省事」，动态连接用「运行时装入的开销」换「多个程序共享同一份库代码」</strong>。这也是为什么同一份库函数的代码在静态连接下会随程序数量成倍增加，而在动态连接下始终只有一份。</p>
+
+<h2>3. 从基础到方向：Linux 下的学习路线</h2>
+<p>上面这些只是应用程序开发的基础，选定自己的方向后还要继续深入：图形界面开发 GUI（X11、SDL2、GTK、QT）；数据库、多媒体、网络安全、3D、图像处理、人工智能，乃至操作系统本身等领域。每个方向或领域都有 1～2 个代表性的开源软件，学习的路径是<strong>读开源软件、学算法、看论文，并动手把它实现出来</strong>。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>处理应用程序分三个时段：编译时间（源程序经编译器或汇编器得到目标模块）、连接装配时间（连接装配程序把主程序、子程序、例行程序装配成完整的主存映像文件）、运行时间（调入主存启动运行，得出结果）。</li>
+  <li>gcc 命令链把这条流水线落实为 <code>hello.c → hello.i → hello.s → hello.o → hello</code>，依次对应预处理、编译、汇编、连接四个命令。</li>
+  <li>静态连接把所有外部调用的函数都并入目标文件，运行时不再需要链接库；代价是多个程序重复包含同一份外部函数代码。</li>
+  <li>动态连接只在调用处记录外部函数名，运行时才加载依赖的动态链接库，多个程序共享同一份库代码。</li>
+  <li>基础之上还要选方向深入（GUI、数据库、多媒体、网络安全、3D、图像处理、人工智能、操作系统本身等），路径是学开源软件、算法与论文，并动手实现。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-1.html">‹ 3.1 用户工作环境</a>
+      <a class="next" href="3-3.html">3.3 用户接口 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

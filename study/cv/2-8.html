@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.8 图像锐化 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.8 图像锐化：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html" aria-current="page"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.8 图像锐化</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">平滑与锐化是同一件事的两面：平滑把像素之间的差异压平，锐化把差异重新拉开。这一节只有三张课件，内容很短，却是前面滤波知识的直接出口——锐化不需要新的数学，它只是「用原图减去平滑图得到细节，再把细节加回原图」，与均值、中值、高斯滤波的作用正好相反。</p>
+
+<h2>1. 锐化的基本思路</h2>
+<p>课件用一句话把锐化说完了：<strong>找到图像的边缘，然后把边缘加到原本的图像上，这样就强化了图像的边缘。</strong>这里的「边缘」不限于用差分检测出来的那条边界，而是所有被平滑抹掉的快速变化——轮廓、纹理，这些通常统称为<strong>细节</strong>。平滑滤波把细节压低，锐化把细节抬回来。</p>
+<p>值得留意的是，锐化并没有引入新的运算：取细节要用平滑，加回细节要用加法，整个过程仍然是卷积与逐点运算的组合。理解了平滑滤波为什么能抹掉细节，锐化的做法就是把同一件事倒过来写。</p>
+
+<h2>2. 从原图里取出细节</h2>
+<p>要把细节加回去，先得把它单独取出来。课件第 49 张用一张流程图给出了取法：先对原图做一次平滑，图中标注的核尺寸是 5×5，得到 smoothed 图；再用原图减去这张平滑图，得到的就是 detail。整条流程可以写成两行式子：</p>
+<pre><code>detail    = original − smoothed
+sharpened = original + α · detail</code></pre>
+<p>上面一行之所以成立，是因为平滑图保留的是图像里缓慢变化的部分；把它从原图里减掉，剩下的正是被平滑抹去的东西——像素值快速变化的那些位置，也就是边缘与纹理。下面一行是锐化要用的结论：把细节按系数 α 加权之后加回原图。课件第 49 张的流程图把这条链画全了，图中依次出现了 original、smoothed（5×5）、detail、标注为 +α 的加权以及最终的 sharpened。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-8/p0049.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-8/p0049.webp" alt="图 1　图像锐化的流程" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　图像锐化的流程：原图减去平滑图（5×5 的核）得到细节 detail，detail 按系数 α 加权后与 original 相加，得到 sharpened（原课件第 49 张）</figcaption>
+</figure>
+
+<h2>3. 把细节加回去：系数 α 与最终结果</h2>
+<p>整条流程里唯一需要人来定的量是系数 α，它决定细节被放大到多少。α 越大，边缘两侧的明暗对比被拉开得越明显，图像看起来越「锐」。但细节里不只有边缘，噪声同样属于快速变化的内容，所以按同一个 α 放大细节，也会把噪声一起放大——顺着上面两行式子就能看出来：加法对 original 与 detail 一视同仁，而 detail 里同时装着结构与噪声。</p>
+<p>课件第 50 张把同一句结论又写了一遍，并配上一组图例：<strong>找到图像的边缘，然后把边缘加到原本的图像上，这样就强化了图像的边缘。</strong>到这里，锐化的全部内容就只有这么多——它不是一套新算法，而是「平滑取细节、加权加回去」这两步的组合。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-8/p0050.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-8/p0050.webp" alt="图 2　把边缘加到原本的图像上" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　图像锐化：找到图像的边缘，再把边缘加到原本的图像上，边缘因此被强化（原课件第 50 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>图像锐化就是<strong>找到图像的边缘，然后把边缘加到原本的图像上</strong>，从而强化图像的边缘；它和均值、中值、高斯等平滑滤波的作用相反。</li>
+  <li>细节的取法是「原图减去平滑图」：detail = original − smoothed，课件中平滑核标注为 5×5；减掉缓慢变化的部分，剩下的就是被抹掉的快速变化。</li>
+  <li>锐化的结果是 sharpened = original + α · detail，α 决定细节被放大的倍数，也就是锐化的强度。</li>
+  <li>细节里同时装着边缘与噪声，所以 α 放大的不只是边缘；这也是锐化通常安排在降噪之后的原因。</li>
+  <li>整个过程没有新的运算：取细节靠平滑（前面讲过的卷积），加回去靠逐点加法，它和 2.4、2.5 节的平滑滤波是一对相反的操作。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-7.html">‹ 2.7 图像梯度与边缘检测</a>
+      <a class="next" href="2-9.html">2.9 边界处理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

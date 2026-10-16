@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2 计算机网络的演化 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 1 章 计算机网络概述 1.2 计算机网络的演化：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html" aria-current="page"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 1 章 计算机网络概述</p>
+      <h1>1.2 计算机网络的演化</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">电话网用电路交换，因特网用分组交换，这个差别几乎是整部计算机网络技术史的起点。本节沿「先有电路交换、再演化出分组交换」这条线索走：电路交换怎样建立连接、怎样靠复用把一条线路分给多对用户，为什么应付不了计算机之间突发、间歇的数据传送；分组交换把报文切成小块之后又付出了什么代价。最后延伸到网络与网络之间的互联，以及内容为什么要被送到离用户更近的地方。</p>
+
+<h2>1. 历史的回顾</h2>
+<p>在网络出现之前，计算机彼此孤立。最早的使用方式带点体力活：<strong>程序员扛着麻袋往返计算中心跑程序</strong>——把打孔卡片或纸带送到机房，排队等机器运行，再把结果取回来，人与机器之间的信息往来靠人搬运介质完成。</p>
+<p>1953 年前后出现的<strong>收发器终端</strong>改变了这一点：终端通过线路连到主机，人可以在远端敲入数据、看到输出，但主机与主机之间仍然各自为政。再往前一步，就是<strong>早期电路交换网络</strong>——把电话网成熟的交换技术搬来传送数据：先接通一条端到端的通路，再在上面传数据，计算机通信就此继承了电话网的全部假设。</p>
+
+<h2>2. 电路交换网络的工作原理</h2>
+<p><strong>电路交换（Circuit Switching）</strong>的思想是「先接通，再说话」，一次通信分三步：建立连接，在收发双方之间逐段接通一条物理通路；交换数据，报文沿这条通路从头传到尾；释放连接，把沿途占用的线路资源交还网络。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0021.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0021.webp" alt="图 1　电路交换的三个阶段：建立连接、交换数据、释放连接" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　电路交换的三个阶段：沿时间轴 t 依次完成连接建立、数据传送与连接释放，A、B、C、D 是通路上的结点（原课件第 21 张）</figcaption>
+</figure>
+<p>由此得到三条特性：数据交换前必须建立起从发端到收端的物理通路；在数据交换的全部时间内，用户<strong>始终占用端到端的固定传输信道</strong>；交换双方可实时进行数据交换，不会存在延迟。最后一条要打个折扣：通路上仍有传播时延和传输时延，「没有延迟」指的是没有存储转发带来的排队等待，通路一旦接通，数据就像水流过管道一样连续前行。</p>
+
+<h2>3. 电路交换网络中的复用</h2>
+<p>如果一对用户通话就占满整条线路，电路交换的成本将高得无法承受。解决办法是<strong>复用</strong>：让多对用户共享同一条链路的传输能力，4 对用户共用一条链路就是常见的例子。</p>
+<ul>
+  <li><strong>频分复用 FDM（Frequency Division Multiplexing）</strong>：把链路可用的频带划分成若干互不重叠的频段，每对用户固定占用一段，可以同时发送；</li>
+  <li><strong>时分复用 TDM（Time Division Multiplexing）</strong>：把时间划分成周期性的帧，每帧再分成若干时隙，每对用户固定占用其中一个时隙，轮流发送。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0023.webp" alt="图 2　4 对用户共享一条链路：FDM 与 TDM" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　4 对用户共享一条链路：FDM 按频率把线路切成互不重叠的频段，TDM 按时间让每对用户轮流占用固定的时隙（原课件第 23 张）</figcaption>
+</figure>
+<p>复用把一条昂贵的线路「批发」给多对用户，摊薄了成本，同时定下规矩——用户拿到的是<strong>固定份额</strong>，用与不用，那份资源都留在那里。</p>
+
+<h2>4. 电路交换的传输时间：一个 TDM 电路算例</h2>
+<p>一个具体场景：把 640,000 比特长的文件从主机 A 传送到主机 B，所有链路速率都是 1.536 Mbps，每条链路使用有 24 个时隙的 TDM，建立端到端的电路需要 500 毫秒。</p>
+<p>1.536 Mbps 被 24 个时隙平分，每个时隙 1.536 Mbps ÷ 24 = 64 kbps，这就是这对用户占到的固定份额；传送 640,000 比特需要 640,000 比特 ÷ 64 kbps = 10 秒，加上 0.5 秒的电路建立时间，共约 <strong>10.5 秒</strong>。</p>
+<p>建立时间只有半秒，却发生在数据传送之前、与文件大小无关，数据量越小越划不来；那 64 kbps 是事先分配的份额，这 10 秒里即使 A 只发了一半数据，空出的时隙也不会分给别人。</p>
+
+<h2>5. 电路交换网络存在的问题</h2>
+<p>把电话网的思路用在计算机数据上，两个矛盾很快暴露出来。</p>
+<p>第一是<strong>突发性与收费方式不匹配</strong>。计算机之间的数据交换往往具有突发性和间歇性：敲一下回车，网络忙一阵，随后长时间空闲；而电路交换按用户占用线路的时间收费，空闲时线路不能给别人用，用户却要付钱，利用率很低。</p>
+<p>第二是<strong>不够灵活</strong>：只要通路中的任何一点出了故障，就必须重新建立新的连接，这对紧急和重要的通信很不利。</p>
+
+<h2>6. 从电路交换到分组交换：动机与演化</h2>
+<p>针对数据的突发特征与电路交换的局限，美国军方提出，真正意义上的计算机网络必须满足五条要求：</p>
+<ul>
+  <li>不是为了打电话，而是用于计算机之间的数据传送；</li>
+  <li>能够连接不同类型的计算机；</li>
+  <li>所有的网络结点同等重要，不能有特别重要的结点；</li>
+  <li>必须有冗余路由；</li>
+  <li>网络结构尽可能简单，能够可靠传送数据。</li>
+</ul>
+<p>这五条要求其实是一次重新设计：不要端到端通路，不要中心结点，也不要一条必须永远可用的固定路径。把它落成技术，就是<strong>分组交换（Packet Switching）</strong>——数据切成小块，每块自己找路，结点坏了就绕道走。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0027.webp" alt="图 3　电路交换向分组交换的演化" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　电路交换向分组交换的演化：同一份报文被切成 P1～P4，上半部是电路交换的连接建立、数据传送与连接释放，下半部是分组在 A、B、C、D 各结点之间存储转发（原课件第 27 张）</figcaption>
+</figure>
+<p>图 3 中两排箭头的推进方式不同：电路交换的报文整体沿通路前进；分组交换的 P1～P4 一段一段向前挪，每个结点把分组收全了再送出去，这就是<strong>存储转发</strong>。存储转发并非分组交换的发明——把一整份报文收全再转发，是更早的报文交换（Message Switching）的做法；分组交换真正的改动是把报文切小，等待随之从一整份报文缩短到一个分组。</p>
+
+<h2>7. 分组交换网络的工作流程</h2>
+<p>分组交换的特性可以先用四句话概括：将要发送的报文分解成若干个小部分，称为<strong>分组</strong>；每个交换结点采用存储转发技术；每个分组可能传送的路径不同；结点之间存在冗余路由。</p>
+<h3>（1）报文切片</h3>
+<p>在发送端，先把较长的报文划分成较短的、固定长度的<strong>数据段</strong>。数据块越小，中间结点「收全再转发」的等待越短，多个分组也更容易在同一条链路上像流水线一样首尾相接。</p>
+<h3>（2）加上首部，生成分组</h3>
+<p>每一个数据段前面都要添加上<strong>首部</strong>，构成分组。首部里可能包括地址信息、切片控制信息、数据长度信息、差错校验码等：数据段是用户要送的内容，首部是网络为把它送到位而必须携带的说明，也是额外开销的来源。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0030.webp" alt="图 4　数据段加上首部构成分组" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　报文先被切成若干个数据段，每个数据段前面加上首部，就构成分组 1、分组 2、分组 3；首部可能包括地址信息、切片控制信息、数据长度信息和差错校验码（原课件第 30 张）</figcaption>
+</figure>
+<p>剩下三步发生在网络两端：以分组为数据传输单元，依次把各分组发送到接收端；接收端收到分组后剥去首部，还原出数据；最后把数据恢复成原来的报文。对用户来说，报文还是那份报文，中间的切片、加首部、逐站转发都由网络完成。</p>
+
+<h2>8. 分组在网络中的路径与存储转发</h2>
+<p>把视角挪到网络内部。图中主机 H1～H6 分布在边缘，结点交换机 A～E 构成中间的网状结构。H1 向 H5 发送分组时，分组先到达结点交换机 A。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0035.webp" alt="图 5　分组在结点交换机中的存储转发" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　分组在结点交换机中的存储转发：分组到达 A 后先暂存、查找转发表、找到转发的端口，再依次经 C、E 抵达目的主机 H5（原课件第 35 张）</figcaption>
+</figure>
+<p>A 并不「接通」一条通往 H5 的线路，它做三件事：把分组<strong>暂存</strong>下来；用首部里的目的地址<strong>查找转发表</strong>；找到应该使用的转发端口，把分组送出去。每个结点交换机都重复这套动作，分组就一站一站向前。同一幅图里，H2 向 H6 发送分组走的是另一条路径——没有预先定好的路，只有每个结点当下算出的下一跳，这正是分组交换与电路交换最直观的区别。</p>
+<p>路径可变有好处：冗余路由让网络在结点或链路故障时仍能把数据绕送过去，网状拓扑降低了拥塞或故障的影响，也不存在「一出问题就全网瘫痪」的中心。代价落在接收端：同一报文的不同分组可能走不同路径、以不同顺序到达，把它们拼回原样是网络要负责的事。</p>
+
+<h2>9. 分组交换的特征与不足</h2>
+<p>把前面的内容收拢，分组交换的特征有几条：被传送的数据分成若干分组分别传送；数据传输前不必预先确定传输路径；网络中每个交换结点均为共享结点；数据传输采用存储／转发模式；各结点均具有选择合适路由的能力；网络断续动态地分配传输带宽，通信线路的利用率大大提高。</p>
+<p>代价同样清楚。分组在各结点存储转发时因要排队，总会造成一定的时延，网络通信量过大时这种时延可能很大；每个分组都必须携带控制信息，这是纯粹的开销，数据切得越碎，首部占的比重越高；分组交换网的管理和控制也比较复杂——结点要维护转发表、处理拥塞、应对分组丢失与乱序。</p>
+
+<h2>10. 电路交换与分组交换的对比：三个案例</h2>
+<p>两种交换方式谁更好，要看具体的负载。三个案例分别给出了各自的适用面。</p>
+<h3>（1）案例 1：同样一条链路能支持多少用户</h3>
+<p>链路速率 1 Mbps，每个用户需要 100 kbps。电路交换必须为每个用户预留固定的 100 kbps，因此最多支持 1 Mbps ÷ 100 kbps = <strong>10 个用户</strong>，第 11 个用户永远接不进来，哪怕前 10 个人都沉默着。</p>
+<p>分组交换不预留，按需使用。设 1 个用户活跃的概率为 0.1，让 35 个用户共享这条链路：11 个及以上用户同时活动的概率只有 0.0004，即 10 个及 10 个以内用户同时活跃的概率为 0.9996。在相同条件下，分组交换能够比电路交换支持更多的用户。这种「用户数远多于链路容量、但用户不一定同时活跃」的做法通常称为统计复用。</p>
+<h3>（2）案例 2：只有一个用户时的速度</h3>
+<p>假设同一时刻仅有一个用户传输 1 M 的数据，电路建立时间可忽略不计：电路交换传完要 10 s，分组交换只要 1 s。当用户数较少时，分组交换能够获得比电路交换更好的性能——电路交换给用户的是一份预先分配好的固定带宽，链路上其余容量即使空着也不能借给他；分组交换没有这个约束，链路上没有别人，他就能把整条链路用满。</p>
+<h3>（3）案例 3：数据量大时的时延</h3>
+<p>把 L 长的分组推送出去到速率为 R bps 的链路上，要花费 L/R 秒。现在让数据从一台主机经三段链路、两个路由器送到另一台主机。</p>
+<p>电路交换在发送数据之前已经建立好通路，数据沿通路连续向前流动，时延是 L/R；分组交换必须遵循存储转发的规矩——整个分组到达路由器之后才能向下一条链路传输，同一个分组经历三段链路，时延是 3L/R。可见数据量大时，分组交换的传输时延比电路交换大。</p>
+<p>三个案例是同一件事的两面：分组交换靠共享换来更高的用户容量（案例 1、案例 2），代价是存储转发带来的时延与首部开销（案例 3）。所以，若要连续传送大量数据，且其传送时间远大于呼叫建立时间，采用预先分配传输带宽的电路交换较为合适；分组交换不需要预先分配传输带宽，在传送突发数据时可提高整个网络的信道利用率。第一版讲义 1.3 三种交换方式 用另一条线索讲了同一组概念。</p>
+<div class="tbl-wrap"><table>
+  <caption>依据原课件第 21、22、25、28、36、40～42 张整理。</caption>
+  <thead>
+    <tr><th>对比项</th><th>电路交换</th><th>分组交换</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>是否建立连接</td><td>需要，先建立端到端的物理通路</td><td>不需要，传输前不必预先确定路径（虚电路除外）</td></tr>
+    <tr><td>带宽分配</td><td>预先分配，全程独占固定传输信道</td><td>断续（动态）分配，按需使用</td></tr>
+    <tr><td>选路与转发</td><td>建立连接时定好，结点直通转发</td><td>每个分组独立选路，结点存储转发、查转发表</td></tr>
+    <tr><td>时延（三段链路）</td><td>没有排队时延，时延为 L/R</td><td>有排队时延，存储转发时延为 3L/R</td></tr>
+    <tr><td>可靠性与拓扑</td><td>通路中任一点故障都要重建连接</td><td>有冗余路由，网状拓扑降低拥塞或故障的影响</td></tr>
+    <tr><td>开销与适用场景</td><td>按占用线路的时间收费；适合传送时间远大于呼叫建立时间的连续大批量数据</td><td>分组携带控制信息、有额外开销；适合突发数据，可提高信道利用率</td></tr>
+  </tbody>
+</table></div>
+<p>值得想一想的是：「东数西算」这类跨地域算力调度、大模型训练带来的海量数据搬运，更接近「连续传送大量数据」还是「突发的数据流」？按上面的判据，前者的分量更重，而真实系统里的流量往往两种成分混在一起。</p>
+
+<h2>11. 分组交换的两种实现：虚电路网络与数据报网络</h2>
+<p>分组交换还可以再分。<strong>数据报网络（Datagram Network）</strong>完全按照分组交换网络的原理工作，是纯粹的分组交换：每个分组独立选路，同一报文的各个分组可能走不同的路径。而<strong>虚电路网络（Virtual Circuit Network）</strong>在分组交换网上模拟一些电路交换的特点，以取得电路交换的一部分优点：</p>
+<ul>
+  <li>虚电路需要建立连接，即建立虚电路链路；</li>
+  <li>在建立连接时决定链路的路由，在整个连接过程中保持不变；</li>
+  <li>在链路通过的每个节点，预留一定的资源；</li>
+  <li>每个分组携带一个标识（虚电路号），根据该标识知道该从哪个虚电路传输数据；</li>
+  <li>虚电路如果不使用了，需要释放相关的资源。</li>
+</ul>
+<p>计算机网络的数据传输方法由此可以整理成一棵树：<strong>电路交换网络</strong>按资源划分方式分为 FDM 和 TDM；<strong>分组交换网络</strong>按是否建立连接分为数据报网络和虚电路网络。虚电路恰好站在两者中间：它像电路交换一样有连接、路由固定、预留资源，又像分组交换一样以分组为单位传输、链路可以被多对用户共享。</p>
+
+<h2>12. 网络之间的互联：主干 ISP、IXP 与区域网络</h2>
+<p>网络内部的交换方式解决了「怎么把数据从一台主机送到另一台主机」，接下来的问题是「网络与网络之间怎么连」。最直接的想法是把每个网络都与其他所有网络连起来，但采用直接连接每个网络的方法是极其愚笨的：N 个网络需要 O(N²) 条连接，成本和管理都无法承受。</p>
+<p>可行的做法是构建主干网络连接各个网络：各地的接入网先连到主干 ISP，再由主干 ISP 把它们彼此连通。由于反垄断的需要，现实中存在多个主干网络（例如 ISP A、ISP B、ISP C），它们之间必须互联互通，于是出现了 <strong>NAP（Network Access Point，网络接入点）</strong>和 <strong>IXP（Internet eXchange Point，因特网交换点）</strong>这样的设施；主干 ISP 之间也可以建立对等链路，直接交换流量。此外，<strong>区域网络是主干网络的有效补充</strong>，它把一片区域内的接入网聚拢起来接入主干 ISP，减少了主干上的连接数量。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-1-2/p0051.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-1-2/p0051.webp" alt="图 6　ISP 与因特网主干" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　ISP 与因特网主干：Tier 1 ISP 之间经 IXP 互联，向下连接区域 ISP 与各 access ISP，内容提供商（如 Google）也接入 IXP，使内容离用户更近（原课件第 51 张）</figcaption>
+</figure>
+<p>这也解释了内容分发为什么有文章可做：如果内容只放在某个角落的服务器上，其他所有用户都得穿过主干、跨过若干个 ISP 去取，距离和拥塞都会拖慢访问。</p>
+
+<h2>13. 从网络瓶颈到 CDN</h2>
+<p>互联网的早期带宽有限，限制了数据传输的速度；视频和音频等多媒体内容兴起后，带宽需求急剧增加，高峰时段用户经常无法流畅访问内容。这种困境可以归到四重瓶颈上。</p>
+<p><strong>带宽限制</strong>：多媒体内容把带宽需求推高。<strong>传输距离</strong>：内容位于遥远的源服务器时，数据要穿越多个网络节点，传输延迟随之增加，也更容易受到网络拥塞的影响。</p>
+<p><strong>用户访问量增长</strong>：传统集中式服务器架构难以满足大规模的用户请求，服务响应缓慢甚至瘫痪。<strong>网络拥堵</strong>：在节假日或重大事件期间，用户访问热门网站往往需要等待很长时间。</p>
+<p>内容分发网络 CDN（Content Delivery Network）就是针对这四重瓶颈提出的方案，它的架构由四个角色组成：</p>
+<ul>
+  <li><strong>源服务器</strong>：存储网站原始内容的中央服务器，内容更新时把新版本推送到边缘服务器；</li>
+  <li><strong>边缘服务器</strong>：部署在全球各地的服务器节点，存储内容的副本，以便快速响应用户请求；</li>
+  <li><strong>负载均衡器</strong>：在多个边缘服务器之间分配流量，避免单一服务器过载，优化内容分发效率；</li>
+  <li><strong>DNS 系统</strong>：解析用户请求的域名，把它映射到最近的边缘服务器，确保用户能快速访问所需内容。</li>
+</ul>
+<p>一次典型的访问沿着四步走：用户通过浏览器请求访问内容；DNS 系统解析域名，把请求映射到最近的边缘服务器；负载均衡器根据负载情况选择合适的服务器，把内容分发到用户请求的节点；用户从最近的边缘服务器获取内容，实现快速访问。</p>
+<p>关键技术有四项。<strong>缓存技术</strong>把内容存储在边缘服务器上，以便快速响应用户请求；<strong>负载均衡</strong>在多个边缘服务器之间均匀分配流量，提高服务可用性和稳定性；<strong>智能路由</strong>根据用户位置和网络状况选择最佳路径；网络优化通过优化网络路径和协议，减少延迟、提高传输效率。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>电路交换分三步：建立连接、交换数据、释放连接；接通之后，用户在全部时间内独占端到端的固定传输信道，实时性好，也没有存储转发带来的排队等待。</li>
+  <li>FDM 与 TDM 把一条链路分成固定份额供多对用户共享：1.536 Mbps、24 个时隙的 TDM 链路给每个用户的只有 64 kbps，传送 640,000 比特要 10 秒，加 500 毫秒建立时间约为 10.5 秒。</li>
+  <li>电路交换按占用线路的时间收费，应付不了数据的突发性与间歇性，通路中任何一点故障都要重建连接；这正是「结点同等重要、必须有冗余路由、结构尽可能简单」等要求的由来。</li>
+  <li>分组交换把报文切成数据段、加上首部构成分组，结点存储转发、查转发表逐站选路；好处是动态分配带宽、线路利用率高、网状拓扑有冗余路由，代价是排队时延、首部开销与管理控制复杂。</li>
+  <li>三个案例给出判据：1 Mbps 链路配 100 kbps 用户时，电路交换最多支持 10 个用户，而 35 个用户按 0.1 的活跃概率共享链路时，10 个及以内用户同时活跃的概率为 0.9996；用户少时分组交换更快（1 s 对 10 s）；三段链路上存储转发使分组交换的时延为 3L/R，电路交换为 L/R。连续大批量数据用电路交换，突发数据用分组交换。</li>
+  <li>分组交换有虚电路与数据报两种实现；网络之间靠主干 ISP、IXP 与区域网络互联，而带宽、距离、访问量与拥堵这四重瓶颈，正是 CDN 用源服务器、边缘服务器、负载均衡器和 DNS 系统把内容推向用户近旁的缘由。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-1-1.html">‹ 1.1 通信与计算机网络</a>
+      <a class="next" href="v2-1-3.html">1.3 计算机网络的分类 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

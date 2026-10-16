@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.9 以太网交换机自学习和转发帧的流程 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.9 以太网交换机自学习和转发帧的流程：讲义第 658–679 页 · 12 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html" aria-current="page"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.9 以太网交换机自学习和转发帧的流程</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节提到，以太网交换机的帧交换表是靠<strong>自学习算法</strong>自动建立起来的，这让它成为一台「即插即用」的设备。本节就把这套算法讲透：交换机每收到一个帧先做什么、再根据什么决定怎么转发，为什么有时要盲目泛洪、有时能明确转发、有时干脆丢弃，以及表中的记录为什么会过期失效。最后用两道历年真题检验理解。</p>
+
+<h2>1. 交换机为什么能「即插即用」</h2>
+<p>先把上一节的结论接过来：</p>
+<ul>
+  <li>以太网交换机工作在数据链路层（也包括物理层）；</li>
+  <li>它收到帧后，在<strong>帧交换表</strong>中查找帧的目的 MAC 地址所对应的接口号，然后通过该接口转发帧；</li>
+  <li>它是一种即插即用设备：刚上电启动时，内部的帧交换表是<strong>空的</strong>。随着网络中各主机间的通信，交换机通过<strong>自学习算法</strong>自动逐渐建立起帧交换表。</li>
+</ul>
+<p>「表空的时候怎么转发」乍看有点奇怪，但正是这一点让交换机不需要人工配置。</p>
+
+<h2>2. 自学习与转发帧的流程</h2>
+<p>交换机的动作可以归纳为两步：<strong>先进来的帧一律先登记，再按目的地址决定转发方式</strong>。</p>
+<ol>
+  <li><strong>登记</strong>：收到帧后进行登记，登记的内容为帧的<strong>源 MAC 地址</strong>及该帧<strong>进入交换机的接口号</strong>。道理很简单——既然这个源主机是从这个接口进来的，那么以后要发给它，就应该从这个接口出去。</li>
+  <li><strong>转发</strong>：根据帧的<strong>目的 MAC 地址</strong>和交换机的帧交换表对帧进行转发，有以下三种情况：
+    <ul>
+      <li><strong>明确转发</strong>：交换机知道应当从哪个（或哪些）接口转发该帧（单播、多播、广播）；</li>
+      <li><strong>盲目转发</strong>：交换机不知道应当从哪个端口转发帧，只能将其通过除进入交换机的接口外的其他所有接口转发，也称为<strong>泛洪</strong>；</li>
+      <li><strong>明确丢弃</strong>：交换机知道不应该转发该帧，将其丢弃。</li>
+    </ul>
+  </li>
+</ol>
+<h3>（1）第一步：登记源 MAC 地址与接口号</h3>
+<p>假设各主机已经知道网络中其他主机的 MAC 地址（无需进行 ARP）。主机 A 发送帧给主机 B 时，帧到达交换机，交换机第一件事就是把它「记录在案」：源 MAC 地址 A，进入接口号某口。此时表中并没有 B 的记录，所以还必须盲目泛洪。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0660.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0660.webp" alt="图 1　交换机收到帧后先登记源 MAC 地址与进入的接口号，再查目的地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　交换机收到 A→B 的帧：先登记源 MAC 地址 A 及其进入的接口号，再查找目的地址 B（原讲义第 660 页）</figcaption>
+</figure>
+<h3>（2）盲目泛洪与明确转发</h3>
+<p>目的 MAC 地址 B 在表中查不到，交换机只能<strong>盲目泛洪</strong>，把帧从除进入接口以外的所有接口发出去。多台交换机级联时，每台交换机都各自重复「登记 + 泛洪」的动作，于是帧会扩散到整个广播域。</p>
+<p>接下来 B 要回帧给 A。这一次情况不同了：交换机表中已经有「A——某接口」这条记录，于是交换机可以<strong>明确转发</strong>，只从 A 所连的那个接口把帧发出去，其余接口上的主机<strong>收不到</strong>这个帧。一收一回之后，交换机就学到了两台主机的所在位置。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0662.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0662.webp" alt="图 2　交换机 1 对 B→A 的帧明确转发，其余接口上的主机收不到" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　B 回帧给 A 时，交换机 1 表中已有 A 的记录，于是明确转发；交换机 2 仍按表中信息处理（原讲义第 662 页）</figcaption>
+</figure>
+<h3>（3）明确丢弃</h3>
+<p>第三种情况是<strong>明确丢弃</strong>：当交换机查表后发现，该帧应当从它进入交换机的那同一个接口转发出去——也就是说发送方和接收方在同一侧，帧根本没有必要经过交换机——此时交换机不会把它发回去，而是直接丢弃。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0664.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0664.webp" alt="图 3　多轮通信中三种处理结果的对照：盲目泛洪、明确转发与明确丢弃" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　多轮通信的累积效果：交换机对帧分别作盲目泛洪、明确转发与明确丢弃处理，未涉及的接口上主机收不到帧（原讲义第 664 页）</figcaption>
+</figure>
+<h3>（4）记录为什么会过期</h3>
+<p>帧交换表中的每条记录都有自己的<strong>有效时间，到期自动删除</strong>。原因是 MAC 地址与交换机接口的对应关系并不是永久性的：</p>
+<ul>
+  <li>交换机的接口可能<strong>改接了另一台主机</strong>；</li>
+  <li>主机可能<strong>更换了网卡</strong>，MAC 地址随之改变。</li>
+</ul>
+<p>若记录永不过期，交换机就会把帧发往错误的位置；过期删除之后，交换机重新通过泛洪和登记学习到新的对应关系，网络便自动适应了变化。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0665.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0665.webp" alt="图 4　帧交换表的记录有有效时间，到期自动删除" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　每条帧交换表记录都有有效时间，到期自动删除，以适应接口改接主机或主机更换网卡的变化（原讲义第 665 页）</figcaption>
+</figure>
+<p>掌握这个流程后，就可以处理这类常见练习：给出一张多交换机拓扑（主机 A～H 的 MAC 地址与主机名相同）和一组依次进行的通信，要求写出各交换机每一步学到了什么、最终帧交换表的内容是什么。解题方法始终是同一套——<strong>每收到一个帧都先登记源 MAC 地址与进入接口，再看目的 MAC 地址是查得到（明确转发或丢弃）还是查不到（盲目泛洪）</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0668.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0668.webp" alt="图 5　三台交换机互连的自学习练习拓扑，主机 A～H 的 MAC 地址与主机名相同" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　三台交换机互连、主机 A～H 依次通信的自学习练习拓扑：按「先登记源地址、再看目的地址」逐步推出各交换机的帧交换表（原讲义第 668 页）</figcaption>
+</figure>
+
+<h2>3. 两道历年真题</h2>
+<h3>（1）交换机转发决策使用什么地址</h3>
+<p>2009 年题 36 问：以太网交换机进行转发决策时使用的 PDU 地址是什么？正确答案是<strong>目的物理地址</strong>（即目的 MAC 地址）。解析要点如下：</p>
+<ul>
+  <li>PDU（Protocol Data Unit）的意思是协议数据单元，是计算机网络体系结构中对等实体间逻辑通信的对象；</li>
+  <li>以太网交换机工作在数据链路层（也包括物理层），它接收并转发的 PDU 通常称为帧；收到帧后，交换机在帧交换表中查找帧<strong>目的 MAC 地址</strong>所对应的接口号，再通过该接口转发帧；</li>
+  <li>MAC 地址又称为硬件地址或物理地址。请注意：不要被「物理」二字误导而认为物理地址属于物理层范畴，<strong>物理地址属于数据链路层范畴</strong>。</li>
+</ul>
+<h3>（2）两个帧分别从哪些端口转发</h3>
+<p>2014 年题 34 给出一个交换机拓扑和交换机当前的转发表，主机 <code>00-e1-d5-00-23-a1</code> 向主机 <code>00-31-d5-00-23-c1</code> 发送 1 个数据帧，后者收到该帧后回发 1 个确认帧，问交换机对这两个帧的转发端口分别是哪一组。正确答案是 <code>{2, 3} 和 {1}</code>。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-9/p0672.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-9/p0672.webp" alt="图 6　2014 年题 34 的以太网拓扑与交换机当前转发表" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　2014 年题 34 的拓扑与交换机的当前转发表：表中尚无目的主机 c1 的记录（原讲义第 672 页）</figcaption>
+</figure>
+<p>解析思路正是本节的两步流程：</p>
+<ul>
+  <li>数据帧从端口 1 进入交换机，交换机先登记源地址 a1 与端口 1；再查目的地址 c1，转发表中<strong>查不到</strong>，只能盲目泛洪，从除端口 1 以外的所有端口转发，即 <code>{2, 3}</code>；</li>
+  <li>确认帧从端口 2 或 3 方向回来，其目的地址 a1 此时<strong>已在转发表中</strong>（对应端口 1），因此明确转发，只从端口 1 发出，即 <code>{1}</code>。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>交换机工作在数据链路层（也包括物理层），刚上电时帧交换表为空，靠自学习算法自动建立，因而即插即用；</li>
+  <li>自学习流程分两步：① 收到帧后进行登记，登记内容为帧的源 MAC 地址及进入交换机的接口号；② 根据帧的目的 MAC 地址和帧交换表转发；</li>
+  <li>转发有三种结果：明确转发（知道从哪个或哪些接口转发，适用于单播、多播、广播）、盲目转发（不知道出口，从除进入接口外的所有接口转发，也称泛洪）、明确丢弃（不该转发，直接丢弃）；</li>
+  <li>帧交换表的每条记录都有自己的有效时间，到期自动删除，因为接口可能改接主机、主机可能更换网卡，对应关系并非永久；</li>
+  <li>转发决策依据的是目的 MAC 地址（目的物理地址），它属于数据链路层而不是物理层；掌握「先登记源地址、再看目的地址」这两步，多交换机的学习过程题都可以按部就班地推出来。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-8.html">‹ 3.8 集线器与交换机的区别</a>
+      <a class="next" href="3-10.html">3.10 以太网交换机的生成树协议STP ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

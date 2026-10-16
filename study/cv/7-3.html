@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.3 RNN 的三种序列建模模式 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.3 RNN 的三种序列建模模式：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html" aria-current="page"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.3 RNN 的三种序列建模模式</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">结构清楚了，接下来看它能做什么。课件把循环神经网络要解决的序列任务分成三类：<strong>序列到类别</strong>、<strong>同步的序列到序列</strong>、<strong>异步的序列到序列</strong>。三者的区别在于输入序列和输出序列的对应关系——是不是每个时刻都有输出、两个序列是否等长。本节按这三类逐一展开，每一类都配上课件给出的真实例子。</p>
+
+<h2>1. 三种任务模式</h2>
+<p>课件把待解决的任务种类列成三条：<strong>序列到类别</strong>（输入为序列，输出为一个类别）、<strong>同步的序列到序列模式</strong>（每一时刻都有输入和输出，两个序列长度相同）、<strong>异步的序列到序列模式</strong>（输入与输出没有严格的对应关系，长度也可以不同）。</p>
+<p>这个划分抓住了实际任务的关键差别：有的任务要对整个序列下一个统一结论，有的任务要对序列的每一位分别下结论，还有的任务是把一个序列「翻译」成另一个序列。三类任务的网络接法各不相同，下面依次说明。</p>
+
+<h2>2. 序列到类别</h2>
+<p>最直接的一类是<strong>序列到类别</strong>：输入是一个序列，输出是一个类别。课件给的例子是文本分类——输入数据为单词的序列，输出为该文本的类别。</p>
+<p>这类任务的接法是：把序列按时刻依次送进 RNN，让隐状态一路向后传递，最后拿<strong>末时刻的隐状态</strong>（或各时刻状态的汇总）接一个分类器，输出一个类别标签。序列的长度可以变化，但输出始终只有一个。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0015.webp" alt="图 1　序列到类别" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　序列到类别：序列 X<sub>1</sub>…X<sub>T</sub> 逐时刻送入，隐状态 h<sub>1</sub>…h<sub>T</sub> 一路累积，最后用一个类别输出收口（原课件第 15 张）</figcaption>
+</figure>
+<p>课件用<strong>情感分类</strong>把这一类任务具体化：输入是一条评论，输出是「正面」或「负面」。课件给了三个例子——「带着愉悦的心情看了这部电影」判为 Positive（正面），「这部电影太糟了」判为 Negative（负面），「这部电影很棒」判为 Positive（正面）。可以看到，判定的依据分散在整句话里：「愉悦」「很棒」是正面信号，「糟了」是负面信号，网络必须把它们积累到序列末尾再作判断。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0014.webp" alt="图 2　情感分类的输出类别" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　序列到类别的例子——情感分类：网络的输出落在「正面／中性／负面」这些情感类别上（原课件第 14 张）</figcaption>
+</figure>
+
+<h2>3. 同步的序列到序列</h2>
+<p>第二类是<strong>同步的序列到序列模式</strong>：每一时刻都有输入和输出，输入序列和输出序列的长度相同。课件给的典型例子是<strong>词性标注</strong>——输入是词的序列，输出是与之等长的词性序列，第 i 个输出对应第 i 个输入。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0016.webp" alt="图 3　同步的序列到序列" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　同步的序列到序列：每个时刻的输入 X<sub>i</sub> 都对应一个输出，输入与输出序列等长（原课件第 16 张）</figcaption>
+</figure>
+<p>课件随后给了三个同属这一类的例子，一个比一个复杂。</p>
+
+<h3>（1）自动寻找语句中的人名</h3>
+<p>第一个例子是在英文句子里自动标出人名。句子是「The courses are taught by Tom Zhao and David Chen.」，共 11 个词，对应输入 x<sub>1</sub> 到 x<sub>11</sub>；输出是一个等长的 0/1 序列 <code>0 0 0 0 0 1 1 0 1 1 0</code>，1 表示这个位置是人名。</p>
+<p>对照着看，两个 1 的位置正好是「Tom Zhao」和「David Chen」——人名是由连续两个词组成的，模型必须同时判断「这个词像人名」和「它和上一个词连在一起才构成完整人名」。这正是同步序列到序列任务的味道：答案要落在每一位上，而每一位的判断又依赖上下文。</p>
+<p>要让网络吃下这些词，先得做<strong>词汇数值化</strong>：建立一个词汇—数值一一对应的字典，把输入词汇转化为数值矩阵（课件举例用的是 100、1000、1001……这样的词编号）；输出侧同样用向量表示，第 t 位是哪一类就把哪一维置 1。这样，一句话就变成了一串向量，可以按时刻送进网络。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0020.webp" alt="图 4　人名识别：逐时刻输出判断结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　人名识别的循环网络：11 个时刻各有一个输出 Y<sub>i</sub>，逐位判断该位置的词是否属于人名（原课件第 20 张）</figcaption>
+</figure>
+<p>图 4 还透露了训练的方式：网络的输出不是「整句话一个标签」，而是<strong>每一时刻都有一个预测值</strong>，训练时与真值逐位比对、逐位计算损失。这个「每一时刻都有监督信息」的设定，正是下一节讲参数学习时的前提。</p>
+
+<h3>（2）中文分词</h3>
+<p>第二个例子是<strong>中文分词</strong>：将一个汉字序列切分成一个一个单独的词。它之所以也是同步的序列到序列任务，是因为输入是 n 个汉字，输出就是 n 个标记——每个字标一个位置标签，再按标签把字重新组合成词。</p>
+<p>课件采用的标注方案里，<strong>S 表示单个字的词</strong>，B 与 E 分别表示一个词的开始与结束，于是「他 说 确 实」这类序列会被标成 S、S、B、E 这样的标签串；标签连起来看，词边界就出来了。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0022.webp" alt="图 5　中文分词：逐字给出位置标签" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　中文分词示意：汉字逐字送入网络，每个字对应一个位置标签；课件用 S 表示单个字的词，B、E 分别表示词的开始与结束（原课件第 22 张）</figcaption>
+</figure>
+<p>课件还留了一句关于「建模单位」的提醒：如果改以<strong>字</strong>而不是词作为基本单位，字典会更小，但对模型的要求更高，因为字一级的表示<strong>缺乏单词内部的联系</strong>——同样一个汉字在不同词里的含义差别很大，网络得更费力地去学。这也是后面第 8 章讲词向量时会反复遇到的问题。</p>
+
+<h3>（3）信息抽取</h3>
+<p>第三个例子是<strong>信息抽取（Information Extraction，IE）</strong>：从无结构的文本中抽取结构化的信息，形成知识。课件给的句子是「小米创始人雷军表示，该公司 2015 年营收达到 780 亿元人民币，较 2014 年的 743 亿元人民币增长了 5%。」——人读到的是句子，机器要拿到的是「雷军—创始人—小米」「2015 年—营收—780 亿元」这样的结构化片段。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0023.webp" alt="图 6　信息抽取：BiLSTM 加 CRF 的序列标注" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　信息抽取的典型做法：用双向循环网络（BiLSTM）抽取上下文特征，再用条件随机场（CRF）约束标签之间的转移，输出 B-Person、I-Person 这类实体标签（原课件第 23 张）</figcaption>
+</figure>
+<p>图 6 里出现的 <strong>B-Person、I-Person、B-Organization</strong> 就是实体标签（B 表示实体开头，I 表示实体内部）；<strong>BiLSTM</strong> 是双向长短期记忆网络，它同时看前文和后文，比单向网络更适合标注任务；<strong>CRF（Conditional Random Field，条件随机场）</strong>加在输出层，用来约束相邻标签的合法性。这两个名字——双向结构和 LSTM——分别对应本章 7.8 节和 7.6 节的内容。</p>
+
+<h2>4. 异步的序列到序列</h2>
+<p>第三类是<strong>异步的序列到序列模式</strong>：输入序列和输出序列不需要有严格的对应关系，也不需要保持相同的长度。课件给的例子是<strong>机器翻译</strong>——输入为源语言的单词序列，输出为目标语言的单词序列，两种语言连词序和词数都不一样。</p>
+<p>这类任务一般通过<strong>先编码后解码</strong>的方式实现：先将样本 x 按不同时刻输入一个 RNN（称为<strong>编码器</strong>），并得到它的编码 h<sub>T</sub>；然后再使用另一个 RNN（称为<strong>解码器</strong>），由这个编码出发得到输出序列。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0024.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0024.webp" alt="图 7　异步的序列到序列：编码器与解码器" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　异步的序列到序列：编码器把输入序列压缩成编码 h<sub>T</sub>，解码器再从它出发逐时刻生成输出，直到输出结束符（EOS）（原课件第 24 张）</figcaption>
+</figure>
+<p>图 7 右侧那些 h<sub>T+1</sub>、h<sub>T+2</sub> 与「〈EOS〉」标记说明了解码器的工作方式：它把一个时刻的输出当作下一个时刻的输入，一步一步把目标句子「写」出来，直到写出结束符。这也解释了为什么输入和输出可以不等长——两者的长度分别由各自的序列决定。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-3/p0025.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-3/p0025.webp" alt="图 8　机器翻译的例子" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　异步的序列到序列的例子——机器翻译：源语言的「machine learning」被编码后，解码器逐词生成目标语言的「机 器 学习」（原课件第 25 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>序列任务分三类：<strong>序列到类别</strong>（整个序列对应一个类别）、<strong>同步的序列到序列</strong>（逐时刻对应、两个序列等长）、<strong>异步的序列到序列</strong>（对应关系与长度都不固定）。</li>
+  <li>序列到类别的做法是让隐状态累积整个序列的信息，最后在末时刻接分类器；课件的情感分类就是「整条评论 → 正面／负面」。</li>
+  <li>同步的序列到序列在每一时刻都有输出：人名识别把「The courses are taught by Tom Zhao and David Chen.」标成 0 0 0 0 0 1 1 0 1 1 0，两个 1 恰好落在两个人名上；中文分词用 S、B、E 标注词边界；信息抽取用 BiLSTM + CRF 抽实体。</li>
+  <li>处理文本前要先做词汇数值化：建立词汇—数值对应的字典，把词序列转成数值矩阵（向量序列），输出侧同样用向量表示。</li>
+  <li>异步的序列到序列用「编码器—解码器」结构：编码器把输入序列压成编码 h<sub>T</sub>，解码器从 h<sub>T</sub> 出发逐时刻生成输出序列，直到写下结束符。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-2.html">‹ 7.2 循环神经网络的基本结构</a>
+      <a class="next" href="7-4.html">7.4 参数学习：BPTT 与 RTRL ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

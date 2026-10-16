@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.1 计算机视觉的概念 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 1 章 绪论 1.1 计算机视觉的概念：以「1-绪论.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html" aria-current="page"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><span class="todo">整理中</span></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 1 章 绪论</p>
+      <h1>1.1 计算机视觉的概念</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节要给「计算机视觉」定位：它不是凭空长出来的一门技术，而是人工智能发展到「感知」这一步时必然要解决的核心问题。线索分三步——先由图灵测试讲到人工智能的诞生，看清这门学科是什么、又分哪几个层次；再看人工智能的研究版图里计算机视觉站在哪里；最后落到计算机视觉本身的定义，以及它要处理的是哪几类数据。</p>
+
+<h2>1. 从图灵测试到人工智能</h2>
+<p>要讲清楚计算机视觉，得先讲清楚它的母学科。1950 年，<strong>艾伦·麦席森·图灵（Alan M. Turing）</strong>提出了著名的<strong>图灵测试</strong>：如果一台机器在 5 分钟内回答出人类测试者提出的一系列问题，并且其中<strong>超过 30%</strong> 的回答让测试者误认为是人类所答，那么就认为这台机器具有智能。</p>
+<p>这个判据的巧妙之处在于，它绕开了「智能到底是什么」这个说不清的问题，转而用一个可操作的、外部的行为标准来代替——机器不必长得像人，也不必真的像人那样思考，只要在对话中表现得和人不相上下就够了。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-1/p0004.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-1/p0004.webp" alt="图 1　艾伦·麦席森·图灵" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　艾伦·麦席森·图灵（Alan M. Turing），被誉为计算机之父、人工智能之父（原课件第 4 张）</figcaption>
+</figure>
+<p>六年之后的 1956 年，在<strong>达特茅斯会议</strong>上，麦卡锡、明斯基、罗彻斯特和香农等人<strong>首次提出「人工智能」这一术语</strong>，确立了人工智能作为一门科学的任务和完整路径。这次会议标志着「人工智能」的正式诞生——从此它不再是一句口号，而是一门有目标、有方法、有共同体的学科。</p>
+<p>从那时起到现在，人工智能技术的发展大致走过三个阶段：</p>
+<ul>
+  <li><strong>计算智能</strong>：机器能对信息进行存储和计算；</li>
+  <li><strong>感知智能</strong>：机器能听会说、能认会看；</li>
+  <li><strong>认知智能</strong>：机器能理解、会思考。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-1/p0005.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-1/p0005.webp" alt="图 2　达特茅斯会议与人工智能发展的三个阶段" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　课件以达特茅斯会议为起点，给出人工智能技术发展的三个阶段：计算智能、感知智能与认知智能（原课件第 5 张）</figcaption>
+</figure>
+<p><strong>计算机视觉正处在第二个阶段——感知智能。</strong>它要解决的问题是「能认会看」，也就是把机器从「会算」推进到「会看」。这一步为什么难，后面几节会逐步展开。</p>
+
+<h2>2. 人工智能的研究版图</h2>
+<p>感知智能不是孤立的。按朱松纯《浅谈人工智能》的梳理，人工智能的研究领域大致可以分成六个方向：</p>
+<ul>
+  <li><strong>计算机视觉</strong>；</li>
+  <li><strong>自然语言理解与交流</strong>（如语音的识别、合成）；</li>
+  <li><strong>认知与推理</strong>（包含各种物理和社会常识）；</li>
+  <li><strong>机器人学</strong>（机械、控制、设计、运动规划、任务规划等）；</li>
+  <li><strong>博弈与伦理</strong>（包括对抗与合作、机器人与社会融合等议题）；</li>
+  <li><strong>机器学习</strong>（各种统计的建模、分析工具和计算的方法）。</li>
+</ul>
+<p>这份清单里有两点值得留意。一是<strong>计算机视觉被列在首位</strong>——视觉是人类获取外界信息最主要的通道，机器要进入真实世界，第一步同样是「看得见」。二是<strong>机器学习与其余五个方向不是并列关系</strong>：它提供的是一套建模、分析和计算的方法，这些方法会渗透到包括计算机视觉在内的每一个方向里去。这也是本门课后半程要花大力气讲神经网络的原因。</p>
+<p>如果把人工智能的两大「感知入口」放在一起看，会更清楚计算机视觉的位置：自然语言理解负责把机器与<strong>语言</strong>接通，计算机视觉负责把机器与<strong>图像和场景</strong>接通。二者一左一右，共同构成机器感知外部世界的基础。</p>
+
+<h2>3. 计算机视觉：让机器「看」</h2>
+<p>为什么视觉值得单独拿出来做一门学科？一个常被引用的数字是：<strong>人类获取信息的 83% 来自视觉</strong>。承载视觉信息的媒体类型包括<strong>图像、视频和三维几何</strong>等，它们构成了计算机视觉的输入。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-1/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-1/p0007.webp" alt="图 3　人类获取信息的来源构成与三类视觉媒体" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　人类获取信息的来源构成——视觉 83%、听觉 11%、嗅觉 3.5%、触觉 1.5%、味觉 1%；下方是三类承载视觉信息的媒体：图像、视频与三维几何（原课件第 7 张）</figcaption>
+</figure>
+<p>由此可以给出计算机视觉的定义：<strong>计算机视觉是一门研究如何使机器「看」的科学。</strong></p>
+<p>这句话里的关键词是「看」。对人来说，看是一件毫不费力的事；但对机器来说，它拿到的只是一堆按行列排好的像素数值，既没有物体、也没有边界，更谈不上「这是什么」。计算机视觉要做的，就是从这些数值里一步步恢复出<strong>信息与语义</strong>——图像里有什么、在哪里、在做什么、彼此是什么关系。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-1/p0008.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-1/p0008.webp" alt="图 4　让机器「看」的各种载体" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　课件给出的视觉应用集锦，其中包含可穿戴设备 Google Glass 等——机器「看」的载体早已不限于相机（原课件第 8 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-1/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-1/p0009.webp" alt="图 5　计算机视觉：一门研究如何使机器「看」的科学" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　计算机视觉：一门研究如何使机器「看」的科学（原课件第 9 张）</figcaption>
+</figure>
+<p>这里顺带把一个容易混淆的边界划清楚：<strong>图像处理</strong>关注的是图像本身的变换——去噪、增强、压缩，输入是图像，输出往往还是图像；<strong>计算机图形学</strong>走的是相反的方向——从三维模型和光照参数出发，渲染出图像。计算机视觉夹在两者之间，输入是图像，输出是<strong>对场景的理解</strong>。本课程第 2、3 章讲的基本图像处理与边缘检测，正是这条链路的起点。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>1950 年图灵提出图灵测试，用「5 分钟内超过 30% 的回答骗过测试者」这一可操作标准来判断机器是否具有智能；1956 年达特茅斯会议首次提出「人工智能」这一术语，标志这门学科的正式诞生。</li>
+  <li>人工智能技术发展分三个阶段：计算智能（能存会算）、感知智能（能听会说、能认会看）、认知智能（能理解、会思考）。<strong>计算机视觉属于感知智能</strong>。</li>
+  <li>人工智能的六个研究领域是计算机视觉、自然语言理解与交流、认知与推理、机器人学、博弈与伦理、机器学习；计算机视觉列在首位，机器学习则为其提供方法支撑。</li>
+  <li>人类获取信息的 83% 来自视觉，承载视觉信息的媒体类型包括图像、视频与三维几何。</li>
+  <li>计算机视觉是<strong>一门研究如何使机器「看」的科学</strong>：输入是图像，输出是对场景的理解。它向下区别于图像处理（图像进、图像出），向上区别于计算机图形学（模型进、图像出）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <span></span>
+      <a class="next" href="1-2.html">1.2 计算机视觉发展史 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.10 滤波案例分析 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.10 滤波案例分析：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html" aria-current="page"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.10 滤波案例分析</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节分别讲了三件事：噪声从哪里来，均值、中值、高斯滤波各自怎么算，以及「互相关与卷积」的形式化定义。这一节把定义落回最直观的地方——拿同一张很小的测试图，换四个不同的 3×3 核各滤波一次，看输出图像究竟变成什么样子。四个案例依次回答：什么样的核什么都不改变、什么样的核把图像平移、什么样的核把图像变模糊、什么样的核让图像变锐利。把这四张图看懂，「滤波就是邻域像素的加权和」这句话就不再是抽象的公式。</p>
+
+<h2>1. 实验是怎么做的</h2>
+<p>课件用一张很小的灰度测试图（图 1）：它的像素少到可以逐个观察，课件因此把它放大显示。测试图旁边是一个 3×3 的核，也就是前面讲过的滤波矩阵；提问页上输出图像的位置画着一个问号，下面四个案例就是依次来回答这个问号。</p>
+<p>计算过程与前面完全一样：把核盖在测试图的一个位置上，核的 9 个权重与它盖住的 9 个像素<strong>按位相乘再求和</strong>，得到输出图像上对应位置的像素值；然后让核从左到右、从上到下逐位置滑动，重复同样的计算。所以输出图像上的每一个像素，都只由输入图像上以它为中心的 3×3 邻域决定——换一个核，就是换一套「邻域里各路信息各占多少分量」的规则。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-10/p0054.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-10/p0054.webp" alt="图 1　案例 1 的输入：一张很小的灰度测试图" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　课件用来演示的小测试图（放大显示），也就是案例 1 的输入；输出位置此时还是问号（原课件第 54 张）</figcaption>
+</figure>
+
+<h2>2. 案例 1：单位核——输出与输入完全相同</h2>
+<p>第一个核只在正中心取 1，其余 8 个位置全是 0：</p>
+<pre><code>0 0 0
+0 1 0
+0 0 0</code></pre>
+<p>用它做加权求和时，除了中心像素被乘以 1，邻域里其他像素都被乘以 0，等于根本没参与计算。因此输出图像与原图<strong>逐像素相同</strong>（图 2）。这样的核叫<strong>单位核</strong>（恒等核），它是「什么都不做」的滤波。</p>
+<p>这个案例本身就是一句总结：核的权重决定谁说话、说得多大声；只有中心有权重，结果就等于把原图原样搬运一遍。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-10/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-10/p0055.webp" alt="图 2　案例 1：单位核滤波前后没有变化" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　案例 1 的结果：左边是原图，右边是滤波结果，两者没有变化（原课件第 55 张）</figcaption>
+</figure>
+
+<h2>3. 案例 2：把 1 挪开一位——图像平移</h2>
+<p>第二个核的唯一一个 1 不在中心，而在中心的右边：</p>
+<pre><code>0 0 0
+0 0 1
+0 0 0</code></pre>
+<p>这时输出像素取的是「中心右边那个像素」的值，于是整幅图像<strong>向左平移一个像素</strong>（图 3）：原本位于 (x+1, y) 的像素，滤波后出现在 (x, y) 的位置上。</p>
+<p>课件在提问页上专门注了一句「（假定卷积核已经旋转）」。按卷积的定义，做卷积前要先把核旋转 180°，课件展示的是<strong>已经旋转过</strong>的核，所以这里看到 1 在右边、图像就往左走一位。把这句话和定义对上，就不会再被「卷积要翻转核」这条规则绕晕。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-10/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-10/p0057.webp" alt="图 3　案例 2：图像左移一个像素" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　案例 2 的结果：核里唯一的 1 偏离中心，输出图像整体左移一个像素（原课件第 57 张）</figcaption>
+</figure>
+
+<h2>4. 案例 3：全 1 的核——图像变模糊</h2>
+<p>第三个核把 9 个位置全部取 1：</p>
+<pre><code>1 1 1
+1 1 1
+1 1 1</code></pre>
+<p>输出像素是 3×3 邻域内 9 个像素的和，也就是邻域的<strong>平均</strong>（实际使用时通常还要除以 9，把整体亮度拉回来，课件这里只写出了核的权重）。一个像素原本只代表它自己，现在它必须和 8 个邻居「分摊」，亮暗的突变被抹平，图像因此变得<strong>模糊</strong>（图 4）。</p>
+<p>这正是第 2.4 节的均值滤波，也解释了为什么核越大越模糊：核越大，参与平均的邻居越多，单个像素携带的信息被摊得越开。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-10/p0059.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-10/p0059.webp" alt="图 4　案例 3：全 1 的核使图像变模糊" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　案例 3 的结果：3×3 全 1 的核等价于邻域求平均，图像变模糊（原课件第 59 张）</figcaption>
+</figure>
+
+<h2>5. 案例 4：中心为正、邻域为负——图像变锐利</h2>
+<p>第四个核由两部分相减得到：一个中心为 2 的单位核，减去一个全 1 的核。</p>
+<pre><code> 0 0 0     1 1 1     -1 -1 -1
+ 0 2 0  −  1 1 1  =  -1  1 -1
+ 0 0 0     1 1 1     -1 -1 -1</code></pre>
+<p>合并之后，中心权重为正、周围 8 个权重为负：输出等于「中心像素的两倍减去邻域之和」，等价于<strong>放大中心像素与邻域平均值的差异</strong>。平坦的区域里中心与邻居差别不大，相减之后接近 0；边缘处中心与邻居差别很大，这个差异被放大保留下来，于是边缘被强调，图像看起来<strong>更锐利</strong>（图 5）。</p>
+<p>课件对它的说明只有一句「锐化滤波，注重与平均值的差异」，正好点出这类核的本质：它并不凭空造出细节，而是把原有的差异拉大。下一节的图像锐化用的就是同一思路。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-10/p0061.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-10/p0061.webp" alt="图 5　案例 4：锐化核突出与平均值的差异" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　案例 4 的结果：核由「中心为 2 的单位核减去全 1 的核」得到，突出与平均值的差异，图像变锐利（原课件第 61 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li><strong>滤波 = 用一个核在图上滑动</strong>：每个输出像素是输入图像对应邻域内像素的加权和，核的每个权重决定该位置的信息占多大分量。</li>
+  <li>四个案例是同一套运算换四种权重：单位核（中心为 1）输出与输入相同；把 1 挪到中心旁边就得到平移；全 1 就是邻域平均，结果是模糊；中心为正、邻域为负就是放大与平均值的差异，结果是锐化。</li>
+  <li>卷积要先对核做 180° 旋转。课件展示的核都是「已经旋转过」的，所以看到 1 在右边时，图像是往左移一个像素。</li>
+  <li>同一张图、只换核，就得到四种完全不同的效果——第 6 章讲卷积神经网络时所说的「卷积核参数可学习」，起点正是这里。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-9.html">‹ 2.9 边界处理</a>
+      <a class="next" href="2-11.html">2.11 模板匹配 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

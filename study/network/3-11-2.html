@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.11.2 虚拟局域网VLAN的实现机制 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.11.2 虚拟局域网VLAN的实现机制：讲义第 714–738 页 · 7 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html" aria-current="page"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.11.2 虚拟局域网VLAN的实现机制</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节说明了 VLAN 能做什么，本节回答它是怎么做到的。核心只有两件事：一是给以太网帧加一个 4 字节的 VLAN 标记（IEEE 802.1Q 帧），二是让交换机的端口按不同类型（Access、Trunk、Hybrid）决定什么时候打标签、什么时候去标签、哪些帧该转发。掌握「打标签—去标签」这条主线，三种端口的行为就都能推出来。</p>
+
+<h2>1. IEEE 802.1Q 帧</h2>
+<p><strong>IEEE 802.1Q 帧</strong>（也称 Dot One Q 帧）对以太网的 MAC 帧格式进行了扩展，<strong>插入了 4 字节的 VLAN 标记</strong>。对比下面两张表可以看清这 4 字节插在哪里：</p>
+<table>
+  <caption>数据来源：原讲义第 716 页以太网 V2 MAC 帧格式（最大长度 1518 字节）。</caption>
+  <thead>
+    <tr><th>字段（自左至右）</th><th>长度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>目的 MAC 地址</td><td>6 字节</td></tr>
+    <tr><td>源 MAC 地址</td><td>6 字节</td></tr>
+    <tr><td>类型</td><td>2 字节</td></tr>
+    <tr><td>数据载荷</td><td>46~1500 字节</td></tr>
+    <tr><td>FCS</td><td>4 字节</td></tr>
+  </tbody>
+</table>
+<table>
+  <caption>数据来源：原讲义第 716 页插入 VLAN 标记后的 802.1Q 帧格式（最大长度 1522 字节）；VLAN 标记插在源 MAC 地址与类型字段之间。</caption>
+  <thead>
+    <tr><th>字段（自左至右）</th><th>长度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>目的 MAC 地址</td><td>6 字节</td></tr>
+    <tr><td>源 MAC 地址</td><td>6 字节</td></tr>
+    <tr><td><strong>VLAN 标记</strong></td><td>4 字节</td></tr>
+    <tr><td>类型</td><td>2 字节</td></tr>
+    <tr><td>数据载荷</td><td>46~1500 字节</td></tr>
+    <tr><td>FCS</td><td>4 字节</td></tr>
+  </tbody>
+</table>
+<p>VLAN 标记插在源 MAC 地址与类型字段之间，因此帧的最大长度由 1518 字节增加到 1522 字节。</p>
+<p>VLAN 标记的最后 <strong>12 比特</strong>称为 <strong>VLAN 标识符 VID</strong>，它唯一地标志了以太网帧属于哪一个 VLAN。VID 的取值范围是 0~4095（即 0 ~ 2<sup>12</sup>−1）；其中 <strong>0 和 4095 都不用来表示 VLAN</strong>，因此用于表示 VLAN 的 VID <strong>有效取值范围是 1~4094</strong>。</p>
+<p>有两点需要特别注意：</p>
+<ul>
+  <li>802.1Q 帧是由<strong>交换机</strong>来处理的，<strong>而不是用户主机</strong>来处理的。普通主机发出和收到的仍是普通的以太网帧。</li>
+  <li>当交换机收到普通的以太网帧时，会将其插入 4 字节的 VLAN 标记转变为 802.1Q 帧，简称「<strong>打标签</strong>」；当交换机转发 802.1Q 帧时，可能会删除其 4 字节 VLAN 标记转变为普通以太网帧，简称「<strong>去标签</strong>」。</li>
+</ul>
+
+<h2>2. 交换机的端口类型</h2>
+<p>打标签与去标签的时机由端口类型决定。以太网交换机的端口有<strong>三种类型：Access、Trunk、Hybrid</strong>。</p>
+<p>在此之前还要了解一个共同概念：交换机各端口都有<strong>缺省 VLAN ID</strong>。在思科交换机上称为 Native VLAN，即<strong>本征 VLAN</strong>；在华为交换机上称为 Port VLAN ID，即<strong>端口 VLAN ID，简记为 PVID</strong>。后文统一使用 PVID。</p>
+
+<h3>（1）Access 端口</h3>
+<p>Access 端口是最常见的一种，特点是：</p>
+<ul>
+  <li>一般用于连接<strong>用户计算机</strong>；</li>
+  <li>只能属于<strong>一个</strong> VLAN；</li>
+  <li>端口的 PVID 值与端口所属 VLAN 的 ID <strong>相同</strong>（默认为 1）。</li>
+</ul>
+<p>它的处理规则如下：</p>
+<ul>
+  <li><strong>接收处理</strong>：一般只接受「未打标签」的普通以太网 MAC 帧，并根据接收帧端口的 PVID 给帧「打标签」，即插入 4 字节 VLAN 标记字段，字段中的 VID 取值与端口的 PVID 取值相等；</li>
+  <li><strong>发送处理</strong>：若帧中的 VID 与端口的 PVID 相等，则「去标签」并转发该帧；否则不转发。</li>
+</ul>
+<p>用一句话概括：从用户主机进来的帧一定是「干净」的，交换机替它贴上本端口的标签；发给用户主机的帧必须是「干净」的，交换机在出口把标签撕掉。主机始终感知不到 VLAN 的存在。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0718.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0718.webp" alt="图 1　Access 端口收到未打标签的帧后按 PVID 打标签再转发" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　Access 端口：收到普通以太网帧后按本端口 PVID 打上 VLAN 标记，再在所属 VLAN 内转发（原讲义第 718 页）</figcaption>
+</figure>
+<p>若把不同端口划入不同的 VLAN，各端口的 PVID 也随之不同：例如连接 VLAN2 主机的端口 PVID=2、连接 VLAN3 主机的端口 PVID=3，而仍属 VLAN1 的端口 PVID=1。这样从端口进来的帧被打上各自的标签后，就只会在本 VLAN 内转发。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0721.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0721.webp" alt="图 2　不同 Access 端口分别属于 VLAN1、VLAN2、VLAN3" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　多个 Access 端口分属不同 VLAN：帧按各自端口的 PVID 打标签，广播只在同一 VLAN 内传播（原讲义第 721 页）</figcaption>
+</figure>
+
+<h3>（2）Trunk 端口</h3>
+<p>Trunk 端口用于把 VLAN 延伸到另一台交换机或路由器：</p>
+<ul>
+  <li>一般用于<strong>交换机之间</strong>或<strong>交换机与路由器之间</strong>的互连；</li>
+  <li>可以属于<strong>多个</strong> VLAN，一条链路上同时承载多个 VLAN 的帧；</li>
+  <li>用户可以设置 Trunk 端口的 PVID 值，默认情况下 Trunk 端口的 PVID 值为 <strong>1</strong>。</li>
+</ul>
+<p>处理规则是：</p>
+<ul>
+  <li><strong>接收处理</strong>：接收「未打标签」的帧，根据接收帧端口的 PVID 给帧「打标签」（插入 4 字节 VLAN 标记字段，字段中的 VID 取值与端口的 PVID 取值相等）；同时接收「已打标签的帧」；</li>
+  <li><strong>发送处理</strong>：对 VID <strong>等于</strong> PVID 的帧，「去标签」再转发；对 VID <strong>不等于</strong> PVID 的帧，<strong>直接转发</strong>（保留标签）。</li>
+</ul>
+<p>也就是说，Trunk 链路上传输的帧大多带着标签，只有与 PVID 相同的那个 VLAN 例外——它在链路上以「不打标签」的形式传输，这正是「本征 VLAN」的含义。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0726.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0726.webp" alt="图 3　Trunk 端口连接两台交换机，同时承载 VLAN1 与 VLAN2 的帧" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　Trunk 端口用于交换机之间的互连，可以属于多个 VLAN，默认 PVID 为 1（原讲义第 726 页）</figcaption>
+</figure>
+<p>下面这个例子专门考察 Trunk 端口的 PVID 取值带来的影响。图中两台交换机用 Trunk 端口互连，两端 PVID 的组合不同，问：(1) 主机 A 发送广播帧，帧的传递过程是什么？(2) 主机 C 发送广播帧，帧的传递过程是什么？(3) 从上述过程可以得出什么结论？</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0731.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0731.webp" alt="图 4　互连 Trunk 端口 PVID 值的不同组合，考察广播帧的传递过程" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　两台交换机之间用 Trunk 端口互连时 PVID 的各种组合：主机 A、C 分别发送广播帧，需要判断帧会传到哪些主机（原讲义第 731 页）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0732.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0732.webp" alt="图 5　各种 PVID 组合下广播帧的转发结果与结论" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　各种组合下的转发结果：正确时 A 的广播转发给 B、E、F，C 的广播转发给 D、G、H；PVID 不等时则出现错误转发（原讲义第 732 页）</figcaption>
+</figure>
+<p>结论是：<strong>互连的 Trunk 端口的 PVID 值不等，可能会造成转发错误</strong>——本该留在某个 VLAN 内的广播帧可能被打了错误的标签，从而被转发给别的 VLAN 里的主机（例如 A 的广播被错误地转发给 G、H，或 C 的广播被错误地转发给 E、F）。因此，用 Trunk 端口互连时，两侧的 PVID 应当保持一致。</p>
+
+<h3>（3）Hybrid 端口</h3>
+<p>Hybrid 端口兼有两者的能力：</p>
+<ul>
+  <li>既可用于交换机之间或交换机与路由器之间的互连（同 Trunk 端口），也可用于交换机与用户计算机之间的互连（同 Access 端口）；</li>
+  <li>可以属于多个 VLAN（同 Trunk 端口）；</li>
+  <li>用户可以设置 PVID 值，默认情况下为 1（同 Trunk 端口）。</li>
+</ul>
+<p>处理规则是：</p>
+<ul>
+  <li><strong>接收处理</strong>（同 Trunk 端口）：接收「未打标签」的帧，根据接收帧端口的 PVID 给帧「打标签」；同时接收「已打标签的帧」；</li>
+  <li><strong>发送处理</strong>（与 Trunk 端口<strong>不同</strong>）：查看帧的 VID 是否在端口配置的「去标签」列表中——若<strong>存在</strong>，则「去标签」后再转发；若<strong>不存在</strong>，则<strong>直接转发</strong>（带标签）。</li>
+</ul>
+<p>正是这个可自定义的「去标签列表」让 Hybrid 端口有了 Trunk 做不到的灵活性。看一个应用举例：主机 A、B、C 连接在同一个交换机的不同接口上，要求利用 Hybrid 端口的功能实现「A 和 B 都能与 C 相互通信，但 A 与 B 不能相互通信」。三个端口的配置是：</p>
+<ul>
+  <li>连接 A 的端口：PVID=10，去标签列表为 VID=10、30；</li>
+  <li>连接 B 的端口：PVID=20，去标签列表为 VID=20、30；</li>
+  <li>连接 C 的端口：PVID=30，去标签列表为 VID=10、20、30。</li>
+</ul>
+<p>于是：A 发出的帧在 A 端口被打上 VID=10 的标签，转发到 C 端口时，10 在去标签列表中，去标签后交给 C；B 发出的帧打上 VID=20，同样能在 C 端口去标签后交给 C。而 A 发给 B 的帧带着 VID=10 到达 B 端口时，10 <strong>不在</strong> B 端口的去标签列表（20、30）中，交换机就直接带标签转发出去，而普通主机<strong>无法识别 802.1Q 帧</strong>，因此 A 与 B 之间无法通信——需求得到满足。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-2/p0734.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-2/p0734.webp" alt="图 6　Hybrid 端口应用举例：A、B 都能与 C 通信，但 A 与 B 不能互通" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　利用 Hybrid 端口的去标签列表实现访问控制：A→C、B→C 可在 C 端口去标签，A→B 因 VID=10 不在 B 端口列表中而带标签转发，主机无法识别（原讲义第 734 页）</figcaption>
+</figure>
+
+<h2>3. 三种端口类型对照</h2>
+<p>把三种端口的行为整理在一起，便于比较和记忆：</p>
+<table>
+  <caption>数据来源：原讲义第 737、738 页「交换机的端口类型」总结（此处还原为表格）。</caption>
+  <thead>
+    <tr><th>端口类型</th><th>配置</th><th>收发处理</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Access</td>
+      <td>连接用户计算机；只能属于一个 VLAN；PVID 与端口所属 VLAN 的 ID 相同（默认为 1）</td>
+      <td>接收：一般只收未打标签的普通以太网帧，并按端口 PVID 打标签；发送：帧中 VID 等于端口 PVID 则去标签转发，否则不转发</td>
+    </tr>
+    <tr>
+      <td>Trunk</td>
+      <td>交换机之间或交换机与路由器之间的连接；可以属于多个 VLAN；PVID 可设置，默认为 1</td>
+      <td>接收：接收已打标签的帧，收到未打标签的帧时按端口 PVID 打标签；发送：VID 等于端口 PVID 去标签转发，VID 不等于端口 PVID 则直接转发</td>
+    </tr>
+    <tr>
+      <td>Hybrid</td>
+      <td>交换机之间、交换机与路由器、交换机与用户计算机之间的连接；可以属于多个 VLAN；PVID 可设置，默认为 1</td>
+      <td>接收：同 Trunk 端口；发送：查看 VID 是否在端口「去标签」列表中，存在则去标签再转发，不存在则直接转发</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>本节小结</h2>
+<ul>
+  <li>IEEE 802.1Q 帧（Dot One Q 帧）在源 MAC 地址与类型字段之间插入 4 字节的 VLAN 标记，帧最大长度从 1518 字节变为 1522 字节；标记的最后 12 比特是 VID，取值范围 0~4095，其中 0 与 4095 不表示 VLAN，有效范围是 1~4094；</li>
+  <li>802.1Q 帧由交换机处理而不由用户主机处理：收普通帧时插入标记叫「打标签」，转发 802.1Q 帧时删除标记叫「去标签」；</li>
+  <li>交换机端口分 Access、Trunk、Hybrid 三类；各端口有缺省 VLAN ID，思科称 Native VLAN（本征 VLAN），华为称 PVID；</li>
+  <li>Access 端口连接用户计算机、只属于一个 VLAN、PVID 等于所属 VLAN 的 ID：收到未打标签的帧按 PVID 打标签，发送时 VID 等于 PVID 才去标签转发；</li>
+  <li>Trunk 端口用于交换机之间或交换机与路由器之间，可属于多个 VLAN，默认 PVID 为 1：接收已打标签的帧或给未打标签的帧按 PVID 打标签，发送时 VID 等于 PVID 去标签转发、不等于则直接转发；互连的 Trunk 端口 PVID 值不等可能造成转发错误，应保持一致；</li>
+  <li>Hybrid 端口兼具两者用途，属于多个 VLAN，其发送处理最灵活：看帧的 VID 是否在端口「去标签」列表中，存在则去标签后转发，不存在则直接转发——借此可以实现「A、B 都能与 C 通信而 A 与 B 不能互通」这类访问控制。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-11-1.html">‹ 3.11.1 虚拟局域网VLAN概述</a>
+      <a class="next" href="4-1.html">4.1 网络层概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3 进程控制 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.3 进程控制：课件第 36–56 张 · 6 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html" aria-current="page"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.3 进程控制</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节讲了进程是什么、有哪些状态、用什么数据结构描述它。这一节回答「谁来改变这些状态」：进程从创建到撤销的全过程，都由操作系统提供的<strong>进程控制原语</strong>来完成。原语是执行时不可被中断的过程，创建、撤销、阻塞、唤醒四种原语正好对应进程状态变迁图中的四条路径。下面先看总的概念，再逐个看原语的功能与实现，并落到 UNIX/Linux 的 fork、exec、exit、kill 等系统调用上。</p>
+
+<h2>1. 进程控制的概念与原语</h2>
+<p>进程控制就是对进程的生命周期进行管理。把上一节的状态变迁图换一个角度看，每条变迁路径都由一个控制原语负责，而进程本身的「有无」也由原语决定：</p>
+<ul>
+  <li><strong>创建原语</strong>：让进程从「无」到「有」；</li>
+  <li><strong>撤销原语</strong>：让进程从「有」到「无」，即消亡；</li>
+  <li><strong>阻塞原语</strong>：使进程由运行状态转入等待状态；</li>
+  <li><strong>唤醒原语</strong>：当事件来到时使进程由等待状态转入就绪状态；</li>
+  <li>而就绪到运行的这一步由<strong>进程调度</strong>完成（属于第 6 章的内容）。</li>
+</ul>
+<p>因此，常用的进程控制原语就是<strong>创建原语、撤消原语、阻塞原语、唤醒原语</strong>四种。之所以做成「原语」，是因为它们要修改内核中的关键数据结构（PCB 队列），执行过程中绝不能被中断，否则系统状态会不一致。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0037.webp" alt="图 1　进程控制原语与状态变迁" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　进程控制的概念：创建原语使进程由无到有，撤销原语使其由有到无（消亡），阻塞原语把运行态送入等待态，唤醒原语把等待态送回就绪态（原课件第 37 张）</figcaption>
+</figure>
+
+<h2>2. 进程创建</h2>
+<h3>（1）创建原语的参数与功能</h3>
+<p>创建原语接受两个主要参数：<strong>name</strong> 为被创建进程的标识符，<strong>priority</strong> 为进程优先级。它的功能是：<strong>创建一个具有指定标识符的进程，建立进程的 PCB 结构</strong>。</p>
+<h3>（2）进程创建原语的实现</h3>
+<p>创建原语的实现围绕这张流程图展开，核心是「先拿到一个空 PCB，再把入口信息填进去，然后挂到队列上」：</p>
+<ul>
+  <li>（1）入口；</li>
+  <li>（2）向系统申请一个空的 PCB 结构：若 PCB 池中<strong>没有空 PCB</strong>，则出错返回；</li>
+  <li>（3）将入口信息填入 PCB 的相应项；</li>
+  <li>（4）查 PCB 总链：若<strong>有同名</strong>进程，则出错（返回 −1）；</li>
+  <li>（5）否则将 PCB 入总链队列，再将 PCB 入就绪队列；</li>
+  <li>（6）返回进程 pid。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0040.webp" alt="图 2　进程创建原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　进程创建原语的实现框图：从 PCB 池申请空 PCB，填入入口信息，查总链排除同名后入总链队列与就绪队列，返回 pid（原课件第 40 张）</figcaption>
+</figure>
+<h3>（3）UNIX/Linux 下的进程创建：fork</h3>
+<p>UNIX/Linux 用系统调用 <code>pid_t fork(void)</code> 配合 <code>exec(...)</code> 系列函数来创建并启动进程。调用形式很简单：</p>
+<pre><code>int pid = fork();</code></pre>
+<p>它的功能是创建一个子进程，<strong>被创建的子进程是父进程的进程映像的一个副本（除 PCB 外）</strong>。在 UNIX 系统中，除了 init 进程（pid 等于 1）外，其他进程都是通过调用进程创建系统调用创建的。</p>
+<p>返回值是 fork 最需要留意的设计，同一个调用在两条执行路径上返回不同的值：</p>
+<ul>
+  <li><strong>−1</strong>：创建失败；</li>
+  <li><strong>0</strong>：从子进程返回；</li>
+  <li><strong>&gt; 0</strong>：从父进程返回，且返回值为子进程号。</li>
+</ul>
+<p>正因如此，程序中才能用 <code>if (pid == 0)</code> 区分父子两条通路：</p>
+<pre><code>pid = fork();
+if (pid == -1) { printf("fork fail\n"); return; }
+if (pid == 0)
+    printf("I'm the child process!\n");
+else
+    printf("I'm the parent process!\n");
+printf("I'm common code.\n");</code></pre>
+<h3>（4）系统调用 fork 完成的操作</h3>
+<p>UNIX/Linux 系统的核心为 fork 完成下列操作：</p>
+<ul>
+  <li>① 为子进程分配一个新的 PCB 结构；</li>
+  <li>② 为子进程赋一个唯一的进程标识号（PID）；</li>
+  <li>③ 子进程复制父进程下列属性：权限相关（用户 id、组 id）；当前工作目录、根目录；信号屏蔽设置和动作；所有环境变量；所有内存（代码段、数据段、栈、堆等）；所有已经打开的文件句柄；</li>
+  <li>④ 对父进程返回子进程的进程号，对子进程返回零。</li>
+</ul>
+<h3>（5）fork 程序的执行结构与输出次序</h3>
+<p>fork 之后父子进程并发执行，谁先谁后由调度决定，因此输出次序不可预知。把第二个 fork 放在不同的分支里，得到的进程树就不同：</p>
+<pre><code>main()
+{
+    if (fork() == 0)
+    {   子1的代码段 }
+    else
+    {   if (fork() == 0)
+        { 子2的代码段 }
+        else
+        { 父代码段 }
+    }
+}</code></pre>
+<p>另一种写法是把第二个 fork 放进子进程的分支里：</p>
+<pre><code>main()
+{
+    if (fork() == 0)
+    {   子1的代码段;
+        if (fork() == 0)
+        { 子2的代码段 }
+        else
+        { 子1的代码段 }
+    }
+    else
+    { 父代码段 }
+}</code></pre>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0046.webp" alt="图 3　fork 程序的执行结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　fork 程序的执行结构：第二个 fork 放在父分支还是子分支，决定了「子 1、子 2、父」各自执行哪一段代码（原课件第 46 张）</figcaption>
+</figure>
+<p>原课件在这一页留了两个思考问题：「插入 else 呢？」「去掉这个 else，谁执行这一段？」——这正是理解 fork 的关键：else 的位置决定了某段代码是被父进程执行、被所有子进程执行，还是被父子共同执行。</p>
+<p>同样的道理也适用于带 <code>printf</code> 的程序：由于父子进程都会继续执行 fork 之后的语句，输出既可能按父先子后的次序出现，也可能反过来，可能的排列如 i=5、i=10、i=7（原课件列出了 5-10-7、7-5-10、5-7-10 三种），并且还附有「fork error」与「插入 else 呢？」两个提示。</p>
+<h3>（6）exec：启动一个新程序运行</h3>
+<p><code>exec()</code> 与 fork 配合使用，作用是<strong>更换进程执行代码，更换正文段、数据段</strong>——进程还是同一个（PCB 不变），跑的却已经是另一个程序了。调用格式为 <code>exec(文件名，参数表，环境变量表)</code>，例如：</p>
+<pre><code>execlp("/bin/ls", arg0, arg1, arg2, NULL);
+execvp("ls", arg[]);</code></pre>
+<p>下面的例子能看出 exec 的「替换」性质：</p>
+<pre><code>main()
+{
+    if (fork() == 0)
+    {   printf("a");
+        execlp("file1", 0);
+        printf("b");
+    }
+    printf("c");
+}</code></pre>
+<p>其中 <code>file1</code> 是：</p>
+<pre><code>main()
+{
+    printf("d");
+}</code></pre>
+<p>由于 <code>execlp</code> 成功之后子进程的代码被 <code>file1</code> 完全替换，它后面的 <code>printf("b")</code> <strong>永远不会执行</strong>；而父进程与子进程的输出又会相互交错，所以输出只能是 a、c、d 的各种可能次序（acd、cad、adc），含 b 的组合（abdc、adbcc）不可能出现——原课件正是用这几个候选答案来检查读者是否真的理解了 exec。</p>
+
+<h2>3. 进程撤销</h2>
+<h3>（1）进程撤销的原因</h3>
+<ul>
+  <li>进程正常运行结束；</li>
+  <li>进程运行中出错，如执行了非法指令、在常态下执行了特权指令、运行时间超越了分给的最大时间段、申请的内存超过了系统能提供的最大量、越界错误等；</li>
+  <li>操作员或操作系统干预；</li>
+  <li>父进程撤销其子进程；</li>
+  <li>父进程撤销（子进程随之被撤销）；</li>
+  <li>操作系统终止。</li>
+</ul>
+<h3>（2）进程撤销原语的功能</h3>
+<p>撤消当前运行的进程：将该进程的 PCB 结构归还到 PCB 资源池，所占用的资源归还给父进程，从总链队列中摘除它，然后转进程调度程序。</p>
+<h3>（3）进程撤销原语的实现</h3>
+<ul>
+  <li>（1）入口；</li>
+  <li>（2）由运行指针得当前进程的 pid；</li>
+  <li>（3）释放本进程所占用的资源；</li>
+  <li>（4）将该进程从总链队列中摘下；</li>
+  <li>（5）释放 PCB 结构；</li>
+  <li>（6）转进程调度。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0050.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0050.webp" alt="图 4　进程撤销原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　进程撤销原语的实现：由运行指针取得当前进程 pid，释放资源、从总链摘下、释放 PCB，再转进程调度（原课件第 50 张）</figcaption>
+</figure>
+<h3>（4）Linux 下进程撤销的实现</h3>
+<ul>
+  <li>进程自己正常结束退出：<code>main()</code> 函数返回，或调用 <code>exit()</code>；</li>
+  <li>其他进程撤销的情况都是通过信号（signal）实现，例如 <code>kill</code>。</li>
+</ul>
+
+<h2>4. 进程等待</h2>
+<p>进程等待原语的功能是：<strong>中止调用进程的执行，并加入到等待 chan 的等待队列中，最后使控制转向进程调度</strong>。它的实现步骤是：</p>
+<ul>
+  <li>（1）入口；</li>
+  <li>（2）保护进程的 CPU 现场到 PCB 结构中；</li>
+  <li>（3）置该进程为「等待」状态；</li>
+  <li>（4）将该进程的 PCB 结构插入到等待队列中；</li>
+  <li>（5）转进程调度。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0053.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0053.webp" alt="图 5　进程等待原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　进程等待原语的实现：先把 CPU 现场保护进 PCB，再置为等待状态并挂入等待队列，最后转进程调度（原课件第 53 张）</figcaption>
+</figure>
+<p>注意第（2）步与第（5）步的配合：现场被保存到 PCB 的 CPU 现场保护区里，进程让出处理机；将来它被唤醒并再次获得 CPU 时，正是靠这块现场信息回到断点继续执行。</p>
+
+<h2>5. 进程唤醒</h2>
+<p>进程唤醒原语的功能是：<strong>当进程等待的事件发生时，唤醒等待该事件的进程</strong>。它的实现步骤是：</p>
+<ul>
+  <li>（1）入口；</li>
+  <li>（2）找到该等待队列；</li>
+  <li>（3）将队列首进程移出此等待队列；</li>
+  <li>（4）将该进程置为「就绪」状态，并将 PCB 结构插入到就绪队列中；</li>
+  <li>（5）返回。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-os/4-3/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-3/p0055.webp" alt="图 6　进程唤醒原语流程图" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　进程唤醒原语的实现：找到等待队列，把队首进程移出并置为就绪状态、插入就绪队列后返回（原课件第 55 张）</figcaption>
+</figure>
+<p>把等待与唤醒放在一起看，它们是一对反向操作：<strong>等待把自己从运行队列挪进等待队列并让出 CPU，唤醒把对方从等待队列挪进就绪队列</strong>；前者由进程自己调用，后者由发现事件发生的进程（或中断处理程序）调用。</p>
+
+<h2>6. Linux 下的等待与唤醒</h2>
+<p>Linux 下进程等待／唤醒的情形比较多，每一种情况等待和唤醒的系统调用都不一样，主要有：</p>
+<ul>
+  <li>锁、信号量；</li>
+  <li>等待子进程退出：<code>wait()</code> 或 <code>waitpid()</code>；</li>
+  <li><code>sleep</code>；</li>
+  <li><code>read</code>／<code>write</code>：文件读／写；</li>
+  <li><code>select</code>、<code>poll</code>、<code>epoll</code>。</li>
+</ul>
+<p>这些系统调用对上层程序是不同功能，但在内核里走的都是本节的同一套机制：把进程挂到某个等待队列上、等事件到来再唤醒。第 4.6 节讲进程互斥与同步的实现时，会看到锁与信号量正是建立在这套等待／唤醒原语之上的。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>进程控制由操作系统提供的原语完成：创建原语（由无到有）、撤销原语（由有到无）、阻塞原语（运行→等待）、唤醒原语（等待→就绪）；就绪→运行由进程调度负责。</li>
+  <li>创建原语以 name（标识符）和 priority（优先级）为参数，功能是建立进程的 PCB 结构；实现顺序是申请空 PCB、填入入口信息、查总链排除同名、入总链队列与就绪队列、返回 pid。</li>
+  <li>UNIX/Linux 用 fork 创建进程：子进程是父进程映像的副本（除 PCB 外），返回值为 −1 表示失败、0 表示从子进程返回、大于 0 表示从父进程返回且为子进程号；核心为 fork 分配新 PCB、赋唯一 PID、复制权限与环境等属性。</li>
+  <li>fork 之后父子进程并发执行，输出次序不可预知；else 的位置决定某段代码由谁执行——插入或去掉 else 会改变进程树与执行结果。</li>
+  <li>exec 用新程序替换进程的执行代码（正文段、数据段），调用格式为 exec(文件名，参数表，环境变量表)；exec 成功后的后续语句不会被执行。</li>
+  <li>撤销原语释放资源、从总链摘下 PCB 并归还 PCB 池、转进程调度；撤销原因包括正常结束、运行出错、操作员或系统干预、父进程撤销子进程、父进程撤销、操作系统终止；Linux 下正常退出用 exit，其他撤销靠信号（kill）。</li>
+  <li>等待原语把 CPU 现场保护进 PCB、置等待状态、挂入等待队列后转调度；唤醒原语在事件发生时把等待队列首进程置为就绪并插入就绪队列。Linux 下的锁、信号量、wait/waitpid、sleep、read/write、select/poll/epoll 都是这套机制的应用。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-2.html">‹ 4.2 进程概念</a>
+      <a class="next" href="4-4.html">4.4 进程之间的相互制约关系 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

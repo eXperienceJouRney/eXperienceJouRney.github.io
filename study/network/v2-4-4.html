@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.4 Wi-Fi 802.11无线局域网 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 4 章 局域网 4.4 Wi-Fi 802.11无线局域网：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html" aria-current="page"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 4 章 局域网</p>
+      <h1>4.4 Wi-Fi 802.11无线局域网</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节的以太网跑在双绞线、同轴电缆或光纤上，而这一节要让「最后一跳」由无线电波承担。无线局域网 WLAN（Wireless Local Area Network）必须在共享、开放、随时可能被干扰的信道上让多台主机通信，组网形态、链路特征、介质访问控制与帧格式都与以太网有实质差别。本节依次讲无线网络的元素与组网形态、链路特征、隐藏终端问题与关联过程，再进入 802.11 的协议簇、MAC 帧格式、CSMA/CA 与 RTS/CTS 冲突避免，最后讨论同一子网内的移动性与蓝牙。</p>
+
+<h2>1. 无线网络的组成元素</h2>
+<p>无线主机先与覆盖范围内的固定设备建立联系，再借助它接入更大的网络；无线网络的元素分为硬件与软件两部分。</p>
+<h3>（1）硬件组成</h3>
+<p><strong>无线主机（wireless host）</strong>是运行应用程序的终端设备，可以是笔记本电脑、智能手机或物联网 IoT（Internet of Things）设备，本身既可能固定也可能移动。<strong>基站（base station）</strong>的典型作用是用于连接无线网络：它负责向其覆盖范围内的主机发送和接收分组，在无线网络和无线主机之间起链路层中继作用，蜂窝塔和 802.11 接入点 AP（Access Point）都是基站的具体形态。<strong>无线链路（wireless link）</strong>的典型作用是连接无线主机和基站，也可以用于骨干链路；它必须配上与链路访问相匹配的多址访问协议，并有多种数据传输速率和传输距离。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0096.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0096.webp" alt="图 1　无线网络的元素：无线主机、基站、无线链路与网络基础设施" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　无线网络的硬件组成：无线主机经无线链路连接到基站（AP 或蜂窝塔），再经网络基础设施接入更大的网络（原课件第 96 张）</figcaption>
+</figure>
+<h3>（2）软件组件</h3>
+<p><strong>802.11 是电气和电子工程师协会 IEEE（Institute of Electrical and Electronics Engineers）制定的无线局域网标准</strong>，主要规定两层。物理层 PHY（Physical Layer）定义信道的频率、带宽、调制方式（如直接序列扩频 DSSS、正交频分复用 OFDM、正交幅度调制 QAM）和发射功率，常见标准 802.11a/b/g/n/ac/ax（Wi-Fi 6）的差别很多落在这一层；MAC 层（Medium Access Control，介质访问控制）负责介质访问控制、帧封装、确认与重传、地址管理，使用 CSMA/CA（载波侦听多路访问／冲突避免）机制，并定义了数据帧、管理帧、控制帧三大类。</p>
+
+<h2>2. 两种组网形态：基础设施网络与 Ad hoc 网络</h2>
+<p>基站的有无把无线网络分成两大类。<strong>Ad hoc 网络</strong>是一种没有固定基础设施的自组网络：它无基站，节点（移动主机）仅仅能够在其覆盖范围内向其他节点传送数据，节点之间相互通信组成临时网络，并在内部进行选路和地址分配，所以 Ad hoc 模式下只有终端。<strong>基础设施网络（infrastructure network）</strong>中，无线终端通过基站 AP 进行通信，一个 AP 的服务范围构成<strong>基本服务集 BSS（Basic Service Set）</strong>，多个 BSS 再经集线器、交换机或路由器互连并接入 Internet。每个无线站点都有一个 6 字节的 MAC 地址，每个 AP 的无线接口也有自己的 MAC 地址，这是理解 802.11 帧为何需要四个地址字段的关键。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0101.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0101.webp" alt="图 2　基础设施网络的组网形态：BSS 与 AP 接入 Internet" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　基础设施网络的组网形态：BSS 1 与 BSS 2 各由一个 AP 和与之关联的无线终端构成，AP 经集线器、交换机或路由器接入 Internet；Ad hoc 模式下则只有终端（原课件第 101 张）</figcaption>
+</figure>
+<p>课件还给出第三种形态，即基于蓝牙的主从式：一个主设备与多个从设备组成微微网 Piconet，主设备负责同步时钟、分配时隙、控制跳频，最多可同时连接 7 个活跃从设备（还可以有更多处于寄放或休眠状态），数据交换通过主设备调度，从设备之间不直接通信。</p>
+
+<h2>3. 无线链路的特征</h2>
+<p>无线链路上的信号在开放空间中传播，既会衰减、会被反射，也会遇到别的信号源，因此<strong>比特差错比有线链路中更为常见</strong>，原因主要有三个：递减的信号强度、来自其他源的干扰、多径传播。</p>
+<p>无线电信号在传播过程中会衰减（损失功率），这被称为<strong>自由空间路径损失（free space path loss）</strong>；更高的频率或更长的距离都会带来更多的自由空间路径损失。多径传播则是信号在物体、地面和建筑环境上反射，同一个信号沿多条路径到达接收端，其中既有直线传播的视线路径 LOS（Line of Sight path），也有若干条反射路径（reflected path）；各路径长短不一，到达目的地时会略微不同步，叠加起来造成波形失真，同样推高比特差错率。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0105.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0105.webp" alt="图 3　多径传播：视线路径与反射路径" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　多径传播：信号既沿视线路径 LOS 到达接收端，也经物体、地面等反射后沿若干条反射路径到达，各路径长度不同，到达时略微不同步（原课件第 105 张）</figcaption>
+</figure>
+
+<h2>4. 链路质量的两个度量：信噪比与比特差错率</h2>
+<p>信号的传输会引入噪声，噪声可能造成差错，课件因此给出两个常用的描述链路质量的量：<strong>信噪比 SNR（Signal-to-Noise Ratio）</strong>，即信号功率与噪声功率之比；<strong>比特差错率 BER（Bit Error Rate）</strong>，即接收到的比特中出错的比例。前者说明信号相对噪声有多强，后者说明传错的概率有多大。</p>
+<p>两者的关系有两条结论：对于给定的调制方案，SNR 越高，BER 越低；对于给定的 SNR，具有较高比特传输率的调制技术将具有较高的 BER——要在同一信噪比条件下每秒塞进更多比特，符号之间的区分度就更小，判决更容易出错。两条结论说明速率与可靠性不能同时任意提高，只能按当前链路质量选择调制与速率。</p>
+
+<h2>5. 隐藏终端问题</h2>
+<p><strong>隐藏终端问题（hidden terminal problem）</strong>指两个站点彼此感知不到对方，却都可能与同一个站点通信，于是双方都以为信道空闲而同时发送，在中间那个站点处造成碰撞。</p>
+<p>第一种是存在障碍物：A、B、C 三个站点中 B 在中间，B 与 A 能互相「听见」，B 与 C 也能互相「听见」，但 A 与 C 之间有障碍物而不能互相「听见」，因此 A、C 都不知道自己对 B 的干扰。第二种是信号衰减：A 与 C 之间没有障碍物，只是相距较远，信号强度衰减到对方无法分辨的程度，因而也「听不见」对方。可见<strong>依赖「先听后发」并不能保证没有碰撞</strong>，802.11 因此必须放弃冲突检测、转向冲突避免，并补上确认与重传。</p>
+
+<h2>6. 主机关联 AP 的过程</h2>
+<p>无线主机使用某个无线局域网，第一步是先与某个 AP 建立关系，即<strong>关联（association）</strong>：无线主机位于某个基站的无线通信覆盖范围内，该主机使用该基站中继它与更大网络之间的数据。关联决定了由哪个 AP 转发它的分组，也决定了它加入哪一个子网；每个到达的无线站点都必须与一个 AP 进行关联。</p>
+<p>AP 可发送<strong>信标帧（beacon frame）</strong>，其中包括 AP 的服务集标识 SSID（Service Set Identifier）和 MAC 地址，SSID 就是手机里看到的网络名。以 2.4 GHz 频段为例，主机对 11 个信道进行扫描，获取所有可用 AP 的信标帧，然后选择其中一个 AP 进行关联，加入其所属子网；关联可能需要身份鉴别，鉴别可以基于无线站点的 MAC 地址，也可以要求用户名和口令。关联之后，主机通过关联的 AP 向其所在子网发送动态主机配置协议 DHCP（Dynamic Host Configuration Protocol）发现报文，获取 IP 地址。</p>
+<p>扫描有两种方式。主动扫描是：H1 广播探测请求帧，AP 收到请求帧以后发送探测响应帧（包括 SSID），H1 向选择的 AP 发送关联请求帧，选择的 AP 向 H1 发送关联响应帧。被动扫描（扫描信道和监听信标帧）则是：AP 周期性发送信标帧（包括 SSID 及 MAC），H1 向选择的 AP 发送关联请求帧，选择的 AP 向 H1 发送关联响应帧。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0112.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0112.webp" alt="图 4　主机关联 AP 的过程：主动扫描与被动扫描" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　主机关联 AP 的过程：H1 面对 BSS 1／BSS 2 中的 AP 1 与 AP 2，主动扫描时广播探测请求并接收探测响应，被动扫描时监听信标帧，随后都以关联请求与关联响应完成关联（原课件第 112 张）</figcaption>
+</figure>
+
+<h2>7. 无线局域网的架构：BSS、BSA 与 ESS、ESA</h2>
+<p><strong>基本服务集 BSS（Basic Service Set）</strong>是无线局域网的最小工作单元，由一个接入点 AP 和与之关联的若干无线终端组成，或者在自组网模式下由一组直接互联的终端组成。它有 Infrastructure BSS（由一个 AP 统一管理）和 IBSS（Independent Basic Service Set，独立基本服务集，没有 AP 的自组网模式）两种类型；特点是每个 BSS 有一个唯一的 BSSID，通常是 AP 的 MAC 地址，它是无线网络覆盖和管理的基本单元。<strong>基本服务区 BSA（Basic Service Area）</strong>是由一个 BSS 的无线信号覆盖的物理区域，实际上就是 AP 的有效覆盖范围，在图上表现为一个覆盖圈。</p>
+<p><strong>扩展服务集 ESS（Extended Service Set）</strong>由多个相互连接的 BSS 组成，通过分布式系统（例如有线以太网）互联；所有 BSS 共享同一个 SSID，也就是同一个网络名，允许终端在不同 BSS 间漫游时保持会话不中断，校园网、企业 WLAN、商场 Wi-Fi 都是常见的例子。<strong>扩展服务区 ESA（Extended Service Area）</strong>是 ESS 的无线信号覆盖的总物理区域，本质上是多个 BSA 的总和，可以跨多个楼层、建筑甚至整个园区，大小取决于 AP 的布局与覆盖规划。</p>
+
+<h2>8. 漫游与切换</h2>
+<p><strong>漫游（roaming）</strong>指终端 STA（Station）在同一个 ESS 内从一个 BSS 切换到另一个 BSS，同时保持与网络的连接；<strong>切换（handoff）</strong>则指当一台移动主机移动范围超出一个基站的覆盖范围而到达另一个基站的覆盖范围后，它将改变其接入更大网络的连接点。</p>
+<p>漫游的工作原理（以 802.11 WLAN 为例）分五步：信号质量监测，终端持续监控当前 AP 的信号强度 RSSI（Received Signal Strength Indicator）、信噪比等；扫描其他 AP，当信号弱于设定阈值时，终端主动扫描（被动或主动）周边信道，收集其他 AP 的信息；选择目标 AP，根据信号质量、负载等选择更优的 AP；重新关联与认证，向新 AP 发送关联请求（Association Request），完成 802.11 的认证和关联过程；切换完成，数据路径切换到新 AP，并维持原有 IP 地址，因为新旧 AP 在同一个 ESS 内。</p>
+<p>切换的工作原理更为通用，分六步：触发切换，由终端或网络发起，依据信号质量、负载或策略；目标发现，搜索并选择新的接入点或基站；资源分配，目标接入点或基站预留资源；上下文转移，传递用户的认证信息、会话状态等；链路切换，数据通道切换到新节点；释放旧链路，回收旧接入点或基站的资源。</p>
+
+<h2>9. 802.11 协议簇</h2>
+<p>802.11 是一个不断扩展的协议家族，各成员有两点共同：都可以用于有固定基础设施模式和自组网络模式；都是使用 CSMA/CA 协议实现多路访问。</p>
+<div class="tbl-wrap"><table>
+  <caption>802.11 协议簇各标准的年份、最高数据速率、覆盖范围与工作频段（原课件第 118 张）。</caption>
+  <thead>
+    <tr><th>标准</th><th>年份</th><th>最高数据速率</th><th>覆盖范围</th><th>工作频段</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>802.11b</td><td>1999</td><td>11 Mbps</td><td>30 m</td><td>2.4 GHz</td></tr>
+    <tr><td>802.11g</td><td>2003</td><td>54 Mbps</td><td>30 m</td><td>2.4 GHz</td></tr>
+    <tr><td>802.11n（Wi-Fi 4）</td><td>2009</td><td>600 Mbps</td><td>70 m</td><td>2.4、5 GHz</td></tr>
+    <tr><td>802.11ac（Wi-Fi 5）</td><td>2013</td><td>3.47 Gbps</td><td>70 m</td><td>5 GHz</td></tr>
+    <tr><td>802.11ax（Wi-Fi 6）</td><td>2020（预计）</td><td>14 Gbps</td><td>70 m</td><td>2.4、5 GHz</td></tr>
+    <tr><td>802.11af</td><td>2014</td><td>35～560 Mbps</td><td>1 km</td><td>未使用的电视频段（54～790 MHz）</td></tr>
+    <tr><td>802.11ah</td><td>2017</td><td>347 Mbps</td><td>1 km</td><td>900 MHz</td></tr>
+  </tbody>
+</table></div>
+<p>802.11b 工作在不需要许可证的 2.4～2.485 GHz 无线频谱上，最高数据速率 11 Mbps，采用直接序列扩频 DSSS 这一调制技术；802.11a 采用 OFDM 调制技术，频率范围 5.1～5.8 GHz，最高数据速率 54 Mbps；802.11g 采用 ERP-OFDM（扩展速率物理层 OFDM）调制技术，回到 2.4～2.485 GHz 范围，最高数据速率同样是 54 Mbps。</p>
+<p>802.11n 与 802.11ac 的共性是引入多天线与多流传输。802.11n 采用 HT-OFDM（高吞吐量 OFDM）调制，工作在 2.4～2.485、5.1～5.8 GHz 两个范围，单流最高 150 Mbps、多流最高 600 Mbps；802.11ac 采用 VHT-OFDM（超高吞吐量 OFDM）调制，只工作在 5.1～5.8 GHz，单流最高 433 Mbps@80 MHz 信道带宽、866 Mbps@160 MHz 信道带宽，多流最高 1.73 Gbps 与 3.47 Gbps。速率提升靠更宽的信道、更多的空间流和更高效的调制三者叠加。</p>
+<p>第六代 Wi-Fi 即 802.11ax：单流速率提升至 1.2 Gbps，8×8 模式下高达 9.6 Gbps；支持较窄的子载波间隔以及增加的符号持续时间，更有利于确保信号的健壮性，令 Wi-Fi 覆盖至更远范围；引入曾在 4G LTE 上使用的正交频分多址 OFDMA（Orthogonal Frequency Division Multiple Access）技术，加之同时支持 2.4 GHz 和 5 GHz 频段，能创造出更多可用的数据通道，解决无线网络拥堵问题；通过在多 AP 多用户并发场景中引入很多 LTE 领域的组网特性，让信号的抗干扰性大幅提升。</p>
+
+<h2>10. 802.11 MAC 帧格式</h2>
+<p>802.11 的 MAC 帧由帧首部、有效载荷和帧检验序列构成，其中帧首部的地址字段比以太网帧多得多。</p>
+<div class="tbl-wrap"><table>
+  <caption>802.11 MAC 帧的字段构成与各字段长度（依原课件第 123 张整理）。</caption>
+  <thead>
+    <tr><th>字段</th><th>长度（字节）</th><th>说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>帧控制</td><td>2</td><td>协议版本、帧类型、子类及各种标志位</td></tr>
+    <tr><td>持续期</td><td>2</td><td>预约发送时间（RTS／CTS）的持续期</td></tr>
+    <tr><td>地址 1</td><td>6</td><td>接收该帧的无线主机或 AP 的 MAC 地址</td></tr>
+    <tr><td>地址 2</td><td>6</td><td>发送该帧的无线主机或 AP 的 MAC 地址</td></tr>
+    <tr><td>地址 3</td><td>6</td><td>与 AP 连接的路由器接口的 MAC 地址</td></tr>
+    <tr><td>序号控制</td><td>2</td><td>帧序号，为可靠 ARQ 而设</td></tr>
+    <tr><td>地址 4</td><td>6</td><td>仅仅在 Ad hoc 模式中使用</td></tr>
+    <tr><td>有效载荷</td><td>0～2312</td><td>上层交付的数据</td></tr>
+    <tr><td>CRC</td><td>4</td><td>循环冗余校验 CRC（Cyclic Redundancy Check），即帧检验序列</td></tr>
+  </tbody>
+</table></div>
+<p>为什么需要四个地址字段？因为帧往往要跨越无线和有线两段链路，两段链路的地址含义并不相同：地址 1 是接收该帧的无线主机或 AP 的 MAC 地址，地址 2 是发送该帧的无线主机或 AP 的 MAC 地址，地址 3 是与 AP 连接的路由器接口的 MAC 地址，地址 4 则仅仅在 Ad hoc 模式中使用。地址 1、2 服务于无线这一跳的收发，地址 3 把这一跳与 IP 层的下一跳衔接起来。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0124.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0124.webp" alt="图 5　无线与有线 LAN 帧地址部分的区别" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　无线与有线 LAN 帧地址部分的区别：H1 经 AP 向路由器 R1 发送数据时，802.11 帧的地址 1 是 AP 的 MAC 地址、地址 2 是 H1 的 MAC 地址、地址 3 是 R1 的 MAC 地址；帧进入有线侧后封装成 802.3 帧，源地址为 H1、目的地址为 R1（原课件第 124 张）</figcaption>
+</figure>
+<p>帧控制字段只有 2 字节，却装下了最多信息，课件把它拆到比特一级：协议版本占 2 比特，类型占 2 比特，子类占 4 比特，随后依次是到 AP、从 AP、更多标识、重试、功率管理、更多数据、WEP 和保留位 Rsvd，各占 1 比特。到 AP、从 AP 标明帧的方向，重试标明重传，功率管理标明站点的电源管理状态，WEP 标明是否使用了有线等效保密 WEP（Wired Equivalent Privacy）加密；类型与子类合起来标识帧的种类，课件举出的例子是关联、RTS、CTS、ACK 和数据。</p>
+
+<h2>11. 802.11 的 MAC 协议：CSMA/CA</h2>
+<p>多个无线设备和 AP 若同时经过相同的信道传输数据帧，就会发生碰撞。802.11 CSMA 要求发送之前先监听信道，以防止与其他站点正在进行的传输碰撞。这与 4.2 节讲过的 CSMA 思路一致，接下来的选择却与以太网不同：<strong>802.11 不进行冲突检测（Collision Detection），目标改为冲突避免，即 CSMA/CA（Collision Avoidance）</strong>。</p>
+<p>原因有两条。一是难以进行冲突检测：碰撞检测要求站点边发送边接收，而 802.11 适配器发送信号的强度远大于接收信号的强度（衰减造成），微弱的接收信号会被自己的强信号淹没。二是即使做得到也没有意义：检测不到冲突并不代表没有碰撞发生，隐藏终端问题就说明了这一点，而且同时收发的硬件代价非常大，也无法检测到所有的碰撞。此外，无线信道比特差错率很高且存在隐藏终端问题，还要使用链路层确认／重传（ARQ）方案，这也是帧里要有序号控制字段的原因。</p>
+<p>发送方的工作流程分六步：第 1 步，侦听到信道闲置了 DIFS（Distributed Coordination Function Interframe Space，分布式协调功能帧间间隔）这段时间；第 2 步，传输整个帧，其间不做冲突检测；第 3 步，如果侦听到信道忙，则选择一个随机避退值作为定时器的定时时间，并在侦听信道空闲时递减该值；第 4 步，定时到（随机值减为 0）且信道空闲就发送数据；第 5 步，如果收到确认且站点要继续发送数据，则执行第 1 步；第 6 步，如果没有收到确认 ACK，则在更大范围内选取随机值，重复第 3 步，让连续碰撞的站点逐渐错开。</p>
+<p>接收方的流程只有一步：如果帧收到则 OK，等待 SIFS（Short Interframe Space，短帧间间隔）后返回 ACK。SIFS 比 DIFS 短，ACK 的优先级高于普通数据帧，不会被别的站点抢先；ACK 之所以必须，是因为发送方无法从「听不到碰撞」推断帧已安全到达。</p>
+<p>不过，CSMA/CA 无法完全避免冲突：终端隐藏时，一个站点即使对方正在发送也监听不到，它的随机值还是会不断减少；两个站点也可能选了非常近的随机值，一方的信号还未到达另一方，它的随机值已经减为 0 了。</p>
+
+<h2>12. 冲突避免：RTS/CTS 与 NAV</h2>
+<p>减少碰撞代价的思路是「先预约、再发送」。发送方在发送数据帧之前，首先使用 CSMA 协议发送一个短的请求发送帧 RTS（request-to-send）给 AP；某个站点预约成功后，AP 广播一个允许发送帧 CTS（clear-to-send）响应 RTS，告知周边站点。用意是让发送方以 RTS-CTS「预约」信道而非随机访问，避免长的数据帧冲突，课件注明这是对长帧的可选项。</p>
+<p>机制的关键在 CTS：CTS 被所有节点侦听到，其他站点据此推迟发送，发送方则可以发送数据帧。但 RTS 也可能仍会相互冲突，只是时间很短、代价比较低。课件给出的场景是：A 与 B 同时向 AP 发出 RTS，两个预约帧撞在一起；短帧冲突很快结束，A 的 RTS 重发成功后 AP 广播 CTS(A)，B 收到后推迟发送，A 的数据帧与 AP 回送的 ACK 都顺利完成。课件由此得出结论：使用短的预约帧可以完全避免数据帧发生冲突。</p>
+<p>时间轴上的过程是：发送方在信道空闲 DIFS 之后发出 RTS，目的方等待 SIFS 后回以 CTS，其他站点收到 CTS 后按 NAV（Network Allocation Vector，网络分配矢量）推迟接入；随后发送方再隔 SIFS 发送数据，目的方同样隔 SIFS 返回 ACK。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-4-4/p0134.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-4-4/p0134.webp" alt="图 6　Wi-Fi 冲突避免的过程：RTS／CTS 与 NAV" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Wi-Fi 冲突避免过程的时间轴：发送方在 DIFS 之后发 RTS，目的方隔 SIFS 回 CTS，其他站点按 NAV 推迟接入；数据与 ACK 之间同样隔 SIFS（原课件第 134 张）</figcaption>
+</figure>
+
+<h2>13. 同一子网内的移动性</h2>
+<p>主机在同一 ESS 内换了 AP，交换机还知道把发给它的帧送到哪里吗？课件指出这不会带来麻烦：H1 仍然在同一 IP 子网中，它的 IP 地址在移动中可以保持不变；链路层要解决的是「哪个 AP 与 H1 关联」，这靠交换机的自学习完成——交换机将看到来自 H1 的帧，并「记住」能到达 H1 的哪个交换机端口（详细流程见第一版讲义 3.9 以太网交换机自学习和转发帧的流程）。于是转发表中对应 H1 的端口从旧 AP 一侧更新到新 AP 一侧，后续发给 H1 的帧自然被送到新 AP。</p>
+
+<h2>14. 蓝牙</h2>
+<p>蓝牙（Bluetooth）技术起源于 1994 年，由瑞典电信设备制造商爱立信（Ericsson）开发，目的是替代传统的有线连接，实现设备之间短距离的无线数据传输。管理蓝牙发展的是蓝牙特别兴趣小组（Bluetooth Special Interest Group，Bluetooth SIG），成立于 1998 年，成员包括苹果、英特尔、微软、三星、爱立信等多家企业。</p>
+<p>蓝牙的工作原理包括四点：在 2.4 GHz 频段通信；使用跳频扩频 FHSS（Frequency Hopping Spread Spectrum）技术，将信号快速地在 79 个（或更多）频道之间切换，以减少干扰、提高稳定性；采用主设备和从设备的结构，主设备负责控制通信和管理连接；数据传输支持点对点和点对多点的连接模式，允许多个设备形成小型网络 Piconet。</p>
+<p>设备建立连接前先要配对。<strong>配对</strong>是两个设备首次建立安全连接的过程，目的是实现设备身份验证和加密密钥的生成，包括五步：设备发现，通过广播请求搜索周围可连接的设备；连接请求，发现目标设备后发起连接请求；配对协议，包括身份认证和密钥协商；生成连接密钥，两设备基于配对过程生成共享的连接密钥；存储密钥，以便未来自动连接时使用，避免重复配对。配好之后进入连接：主设备发起连接请求，从设备响应，双方交换参数确定连接间隔、时隙、跳频序列等，再由主从结构管理数据传输。</p>
+<p>蓝牙的功能被组织成一个协议栈，自下而上共八层。第 1 层无线电层（Radio）负责无线信号的发射和接收，工作在 2.4 GHz ISM 频段，用跳频扩频减少干扰。第 2 层基带层（Baseband）处理低层数据包的编码、解码和调度，管理设备地址、连接建立、时隙分配和错误校验，维护主从关系及跳频序列。第 3 层链路管理协议 LMP（Link Manager Protocol）负责链路的建立、维护和控制，管理配对、加密、身份验证和连接参数协商。第 4 层主机控制器接口 HCI（Host Controller Interface）定义主机与蓝牙模块之间的通信接口，提供标准化的命令、事件和数据包格式，便于不同厂商兼容。第 5 层逻辑链路控制和适配协议 L2CAP（Logical Link Control and Adaptation Protocol）为上层提供数据分段、重组和多路复用服务，支持服务质量 QoS。第 6 层 RFCOMM（Radio Frequency Communication，串口仿真协议）模拟传统串口通信以兼容老设备，支持调制解调器等串口应用。第 7 层服务发现协议 SDP（Service Discovery Protocol）使设备能查询和发现对方支持的服务类型和属性。第 8 层应用层运行音频传输 A2DP、文件传输 FTP、健康设备协议等具体应用和服务。</p>
+<p>开放的信道也带来安全问题。课件列出三类风险：中间人攻击，攻击者插入通信链路，窃听或篡改通信内容；窃听，未加密的蓝牙通信易被监听；设备伪装，攻击者冒充合法设备进行非法连接。防护手段有四类：配对加密，配对过程生成共享的连接密钥，通信加密保护；认证机制，用 PIN 码、数字比较、OOB 等方式确认设备身份；跳频扩频，频率快速跳变，降低被窃听或干扰的概率；设备白名单和黑名单，限制设备访问权限。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>无线网络的元素是无线主机、基站与无线链路，再往后是网络基础设施；基站起链路层中继作用，802.11 规定物理层与 MAC 层；</li>
+  <li>无线链路要面对递减的信号强度（自由空间路径损失）、干扰与多径传播，比特差错率高于有线链路；SNR 越高 BER 越低，而给定 SNR 时速率越高的调制技术 BER 越高，速率与可靠性只能折中；</li>
+  <li>按有无固定基础设施可分为基础设施网络与 Ad hoc 网络：前者由 AP 与 BSS 组织并接入 Internet，后者无基站，由节点自行选路和分配地址；隐藏终端问题使「先听后发」不再可靠，802.11 因而放弃冲突检测、选择冲突避免，并补上确认与重传 ARQ；</li>
+  <li>主机接入必须先与某个 AP 关联：扫描（主动扫描发探测请求，被动扫描监听信标帧）得到 SSID 与 AP 信息，经关联请求与关联响应确定归属，再由 DHCP 取得 IP 地址；BSS 与 BSA、ESS 与 ESA 分别对应一组设备与它的覆盖圈、多组设备的联合与覆盖圈的总和；</li>
+  <li>802.11 各标准都使用 CSMA/CA，并都有基础设施与自组网两种版本；其 MAC 帧的帧首部有四个地址字段：地址 1、2 是这一跳的收方与发方，地址 3 是与 AP 连接的路由器接口的 MAC 地址，地址 4 仅用于 Ad hoc 模式，帧控制字段则标识协议版本、帧类型、子类以及到 AP、从 AP、重试、功率管理、WEP 等标志；</li>
+  <li>CSMA/CA 发送前要侦听信道空闲 DIFS，信道忙则退避，随机值减为 0 才发送，收到 ACK 才算成功，接收方等 SIFS 后回 ACK；用 RTS/CTS 预约信道可避免数据帧冲突，其他站点按 NAV 推迟接入；</li>
+  <li>同一子网内换 AP 时 IP 地址保持不变，交换机靠自学习更新端口；蓝牙协议栈共八层，在 2.4 GHz 用 FHSS 抗干扰，以主从结构组成微微网，先配对后连接，并以配对加密、认证、跳频与黑白名单应对安全风险。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-4-3.html">‹ 4.3 以太网</a>
+      <a class="next" href="v2-5-1.html">5.1 网络互联基础 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

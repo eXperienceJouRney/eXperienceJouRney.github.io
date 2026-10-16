@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.2 人脸检测 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.2 人脸检测：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html" aria-current="page"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.2 人脸检测</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">人脸识别的第一步是先在图像里找到脸。这一节把「人脸在哪里」这个问题拆成三件事来讲：先看人脸检测到底要输出什么、为什么它是所有后续分析的前提；再看检测器内部是一个「滑动窗口 + 人脸分类器」的判定过程；最后交代三样必备技术——滑动窗口、图像金字塔、非极大值抑制，以及怎么用 IoU 和准确率来评价一套检测结果。</p>
+
+<h2>1. 人脸检测要解决什么问题</h2>
+<p>作为人脸识别的第一步，<strong>人脸检测主要用于确定人脸在图像中的大小和位置</strong>，也就是解决「人脸在哪里」的问题——把人脸区域从图像中裁剪出来，便于后续的人脸特征分析和识别。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-2/p0008.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-2/p0008.webp" alt="图 1　人脸检测：确定人脸在图像中的大小和位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　人脸检测把人脸区域从整幅图像中框出来并裁剪，作为后续特征分析的输入（原课件第 8 张）</figcaption>
+</figure>
+<p>这里的输出有两层含义：一是<strong>位置</strong>，通常用一个矩形框（bounding box）表示；二是<strong>大小</strong>，因为同一个人脸在图像里可能只占几十个像素，也可能占半张图。检测器要同时把这两件事说清楚，后面的人脸对齐才有东西可对齐。</p>
+
+<h2>2. 为什么人脸检测重要</h2>
+<p>课件把它的地位讲得很高：人脸检测是<strong>围绕自动人脸图像分析的所有应用的基础</strong>，也是<strong>所有现代基于视觉的人与电脑、人与机器人交互系统的初始步骤</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-2/p0009.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-2/p0009.webp" alt="图 2　人脸检测是自动人脸图像分析的基础" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　人脸检测是自动人脸图像分析的基础，也是人机交互系统的初始步骤，应用遍及相机对焦、面部形状重建、表情分析、图像视频检索等（原课件第 9 张）</figcaption>
+</figure>
+<p>课件列出的应用包括：相机内嵌人脸检测，辅助自动对焦；面部形状重建；面部表情分析；图像视频检索等。这些应用的共同点是——只有先知道脸在哪，其余的分析才谈得上开始。所以检测的漏检和误检会一路传到下游：脸没检出来，这个人的识别就彻底失败；框歪了，对齐和特征表征都会跟着偏。</p>
+
+<h2>3. 检测器的核心：滑动窗口加人脸分类器</h2>
+<p>最朴素的检测思路是「枚举 + 判定」：把图像切成一个个窗口，逐个判断窗口里的子图像是不是人脸。判定这一步交给<strong>人脸分类器模型</strong>——它接收一个候选窗口，输出「是人脸」或「非人脸」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-2/p0010.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-2/p0010.webp" alt="图 3　人脸分类器模型" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　人脸分类器模型：候选窗口送入分类器，判断「是否为人脸」，只有判定为人脸的窗口才被保留为检测结果（原课件第 10 张）</figcaption>
+</figure>
+<p>把「整幅图像 → 一个二分类判定」这一步讲清楚，人脸检测的框架就清楚了：检测器不是一次性回归出所有人的脸，而是<strong>把检测问题转化成了大量小窗口上的分类问题</strong>。这也解释了为什么后面几节的深度网络大多仍是分类 + 回归的组合。</p>
+
+<h2>4. 三项主要技术</h2>
+<p>「枚举 + 判定」说起来简单，要落地必须解决三个问题：位置怎么枚举、尺度怎么覆盖、重复框怎么处理。课件给出的答案分别是滑动窗口、图像金字塔和非极大值抑制。</p>
+
+<h3>（1）滑动窗口</h3>
+<p>由于人脸可能出现在图像的任何位置，检测时用一个<strong>固定大小的窗口</strong>在图像上<strong>从上到下、从左到右</strong>扫描，判断窗口里的子图像是否为人脸。这就是滑动窗口技术（sliding window）。</p>
+<p>它的代价是计算量：窗口每移动一个步长就要做一次分类，一张图片上要判定成千上万个窗口。窗口步长越小、定位越精细，计算量也越大——这是检测算法效率问题的根源。</p>
+
+<h3>（2）图像金字塔</h3>
+<p>固定大小的窗口只能覆盖一种人脸尺寸。为了检测不同大小的人脸，还需要对图像进行放大或者缩小，构造<strong>图像金字塔</strong>，对每张缩放后的图像都用上面的滑动窗口方法扫描一遍。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-2/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-2/p0012.webp" alt="图 4　图像金字塔与边界框回归" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　原图经过 resize 构成图像金字塔，在每个尺度上检测得到候选框，再做边界框回归（bounding box regression）使框更贴合人脸（原课件第 12 张）</figcaption>
+</figure>
+<p>课件第 12 张把这条链路画了出来：原图 → resize 构造图像金字塔 → 检测得到候选框 → <strong>边界框回归</strong>（bounding box regression）。最后一步值得单独记一笔：滑动窗口给出的框是按窗口位置切的，未必正好卡在人脸边界上，所以要再回归一次，把框的位置和大小修正到更贴合人脸。这也是「分类 + 回归」这一经典组合的由来。</p>
+
+<h3>（3）非极大值抑制</h3>
+<p>滑动窗口的扫描是稠密的，同一个人的脸附近往往会被<strong>检测出多个高度重叠的候选框</strong>。这些框内容上说的是一件事，必须合并去重，这一步称为<strong>非极大值抑制</strong>（Non-Maximum Suppression，NMS）。</p>
+<p>NMS 的做法是：按置信度高低排列候选框，保留分数最高的那个，再把它与其余框重叠过多的（例如 IoU 超过阈值）一并去掉，如此反复。<strong>它决定了最后每个目标只留一个框</strong>——没有它，同一张脸会变成一串检测结果。</p>
+
+<h2>5. 人脸检测的评价：IoU 与准确率</h2>
+<p>要判断一个检测框「对不对」，需要一个衡量两个框重合程度的指标，这就是 <strong>IoU</strong>（Intersection over Union，交并比）：</p>
+<p><code>IoU = A 与 B 的交集 / A 与 B 的并集</code></p>
+<p>课件给出的判定标准是：<strong>当检测框和实际的人脸框（Ground Truth）的 IoU 大于某个阈值（例如 0.5）时，就认为这个检测框是正确的</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-2/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-2/p0013.webp" alt="图 5　IoU：检测框 A 与实际人脸框 B 的交并比" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　IoU 用「交集面积 / 并集面积」衡量检测框 A 与实际人脸框 B 的重合程度，IoU 大于阈值（如 0.5）即判定检测正确（原课件第 13 张）</figcaption>
+</figure>
+<p>在 IoU 之上，就能统计检测的准确率：<strong>Precision（准确率）＝ 检测正确的个数占检测框总数的比例</strong>。它的含义是「报出来的框里有多少是对的」。实际系统中还需要配合召回率一起看——准确率高但漏掉了大量人脸，同样不能用——这一点课件没有展开，但评价检测器时不能只看一个数。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>人脸检测解决「人脸在哪里」，输出人脸的位置（矩形框）和大小，是后续人脸对齐与识别的第一步，也是所有自动人脸图像分析应用的基础和人机交互系统的初始步骤。</li>
+  <li>基本框架是<strong>滑动窗口 + 人脸分类器</strong>：用固定窗口在图像上逐位置判定「是否为人脸」，把检测问题转成大量小窗口上的分类问题。</li>
+  <li>三项必备技术：<strong>滑动窗口</strong>负责遍历位置，<strong>图像金字塔</strong>负责覆盖尺度（并在检测后做边界框回归修正框的位置），<strong>非极大值抑制</strong>负责把同一张脸的重叠候选框合并去重。</li>
+  <li>评价检测框用 <strong>IoU</strong>（交集/并集）：与真实人脸框的 IoU 超过阈值（如 0.5）即认为检测正确；在此基础上统计 <strong>Precision（准确率）</strong>＝检测正确的个数占检测框总数的比例。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-1.html">‹ 8.1 人脸识别概述与基本流程</a>
+      <a class="next" href="8-3.html">8.3 人脸对齐：原理与 DCNN 网络 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

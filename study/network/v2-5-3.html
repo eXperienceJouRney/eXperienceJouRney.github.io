@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5.3 网络互联中的数据转发 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 5 章 网络互联 5.3 网络互联中的数据转发：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html" aria-current="page"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 5 章 网络互联</p>
+      <h1>5.3 网络互联中的数据转发</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">把两个网络连起来只是第一步。分组真正能从源主机走到目的主机，靠的是沿途每一台路由器上的一次次查表与转发。转发要成立，先得有唯一标识与寻址机制，再得有路由选择和一套封装、转发、解封装的处理流程——载体就是 IPv4 数据报：首部字段决定了地址放在哪里、分片怎么做、生存时间怎么算。以下沿「数据报与分片 → 地址与子网 → CIDR → 主机地址的获取 → 地址解析 → NAT → IPv6」的顺序展开。</p>
+
+<h2>1. 数据转发的基本需求</h2>
+<p>数据转发要解决三件事。第一是<strong>唯一标识和寻址机制</strong>：每个接口都要有一个唯一的名字，分组才能说清自己要去哪里。第二是<strong>路由选择</strong>：知道目标地址之后，还要根据它选出一条路径，决定下一站交给谁。第三是<strong>数据包处理流程</strong>：分组每一站都要经过封装、转发、解封装——加上首部、查表送出、再剥去首部交给上层。</p>
+<p>三件事分别对应网络层的地址、选路与转发：5.1 节的数据报网络把每个分组独立对待，5.2 节的路由器给出查表与交换的硬件过程，本节关心的正是夹在中间的规则——数据报长什么样，地址怎么编，查表怎么查。</p>
+
+<h2>2. IPv4 数据报的格式</h2>
+<p>IPv4 的数据报由首部和数据两部分组成，首部又分为长度固定的固定部分与长度可变的可变部分。固定部分共 20 字节，是所有数据报都必须有的；可变部分即长度可变的可选字段，其后用填充补齐到 4 字节的整数倍。首部之后的数据部分承载上层交下来的报文。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0050.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0050.webp" alt="图 1　IPv4 数据报的首部格式与各字段的位数" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　IPv4 数据报的组成与首部各字段的位数：固定首部 20 字节，其后是长度可变的可选字段与填充，最后是数据部分；字段的位数决定了地址空间、分片能力与差错检测的范围（原课件第 50 张）</figcaption>
+</figure>
+<h3>（1）版本、首部长度与服务类型</h3>
+<p><strong>版本</strong>占 4 比特，标明数据报属于哪个版本的 IP 协议，如 IPv4、IPv5、IPv6；版本协议不同，双方的格式对不上，无法通信。紧随其后的 4 比特是<strong>首部长度</strong>，单位是 4 字节，取值范围 5–15，也就是 20–40 字节：取值为 5 时首部只有固定部分，大于 5 说明带上了可选字段。</p>
+<p>接下来 8 比特是<strong>服务类型</strong>，用于服务质量保证。旧的定义里，每一位分别代表最小延时、最大吞吐量、最高可靠性、最小成本，只选一个；最新的定义用其中 6 位表示区分服务，另 2 位保留。这一字段把「尽力而为」的 IP 与后来的服务质量需求连了起来。</p>
+<h3>（2）总长度与分片用的三个字段</h3>
+<p><strong>总长度</strong>占 16 比特，单位是字节，取值范围 0–65535，指的是首部加数据的总字节数，因此实际的数据长度为总长度减去首部长度。16 位定下了单个 IP 数据报的长度上限，也埋下了分片的伏笔：以太网链路只允许 1500 字节的报文，超过就得分拆。</p>
+<p>与分片直接相关的有三个字段。<strong>标识</strong>占 16 比特，同一次上层报文（可能超过 1500 字节）切出的各个分片使用相同标记，目的主机凭它把分片认回同一家。<strong>标志</strong>占 3 比特，1 位保留，另外 2 位分别表示能否分片、分片是否结束，「是否结束」为 1 表示后面还有分片，为 0 表示这是最后一片。<strong>片偏移</strong>占 13 比特，指出本分片的数据在整个原报文中的位置，度量单位是 8 字节。三者配合，接收端才能把散落的碎片还原成原来的数据报。</p>
+<h3>（3）生存时间、协议与首部检验和</h3>
+<p><strong>生存时间 TTL（Time To Live）</strong>占 8 比特，做的是分组寿命管理：每经过一个节点减 1，减到 0 即被丢弃，从而避免数据报进入循环路由后永远退不出来。它也顺便反映了源、目的主机之间的跳数；不同系统对 TTL 默认最大取值的设定并不相同。</p>
+<p><strong>协议</strong>占 8 比特，标明首部之后的数据属于哪个上层协议，接收端据此决定把数据交给谁。<strong>首部检验和</strong>占 16 比特，用于差错检测，并且只检验首部。</p>
+<div class="tbl-wrap"><table>
+  <caption>IP 首部「协议」字段的常见取值，依课件「IPv4 数据报格式」表整理。</caption>
+  <thead>
+    <tr><th>协议号</th><th>对应的协议</th><th>协议号</th><th>对应的协议</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>ICMP</td><td>8</td><td>EGP</td></tr>
+    <tr><td>2</td><td>IGMP</td><td>17</td><td>UDP</td></tr>
+    <tr><td>4</td><td>IP</td><td>41</td><td>IPv6</td></tr>
+    <tr><td>6</td><td>TCP</td><td>89</td><td>OSPF</td></tr>
+  </tbody>
+</table></div>
+<p>这张表解释了一个常见现象：网络层并不直接认识 TCP 或 UDP 这些名字，它只认识一个号码，收到数据报后按号码把数据「分诊」给对应的上层协议。协议号为 1 的 ICMP 由 5.4 节专门讨论。</p>
+<h3>（4）地址、可选字段与填充</h3>
+<p><strong>源地址</strong>与<strong>目的地址</strong>各占 32 比特，分别是发送端和接收端的标识，数据报的全部寻址能力就落在这 64 位上。首部最后是<strong>可选字段</strong>，长度可变，用于记录路由、时间戳一类不常用的信息，写上之后要用<strong>填充</strong>把首部补成 4 字节的整数倍，因此首部长度有两种可能：20 字节到 60 字节。</p>
+
+<h2>3. 数据报的分片与重组</h2>
+<p>链路层帧的大小是有限的，不同类型的链路这个上限也不一样，它称为<strong>最大传输单位 MTU（Maximum Transmission Unit）</strong>。以太网链路只允许 1500 字节的报文，而 IP 数据报最大可以有 65535 字节，于是问题必然出现：总长度超过链路报文大小的数据报，怎样才能送过去？</p>
+<p>办法是分片：把一个大数据报拆分为几个小数据报，各自封装成帧分别送往目的主机，最后在目的主机上重组。<strong>重组只在目的主机进行</strong>，沿途路由器只拆分、不拼装——各个分片可能沿不同路径到达，中间路由器既没有理由为它们保留缓存，也没有必要为此消耗存储。首部的标识、标志、片偏移三个字段正是为此服务：标识说明「我们出自同一个数据报」，标志说明「后面还有没有分片」，片偏移说明「我在原数据报中位于第几段」。</p>
+<p>课件给出的算例可以看清三者的配合。一个 4000 字节的数据报要通过 MTU 为 1500 字节的链路，首部 20 字节，于是每一片最多携带 1480 字节数据。</p>
+<pre><code>分片      length   ID   fragflag   offset   数据字节数
+第 1 片    1500     x      1          0        1480
+第 2 片    1500     x      1        185        1480
+第 3 片    1040     x      0        370        1020</code></pre>
+<p>几个数字都能对上：每片的总长度等于自己的 20 字节首部加数据，1500 = 20 + 1480，1040 = 20 + 1020；片偏移以 8 字节为单位，所以第 2 片的位置是 1480/8 = 185，第 3 片是 2960/8 = 370。三片的数据合起来 1480 + 1480 + 1020 = 3980 字节，恰好是原数据报去掉 20 字节首部后的全部数据——分片没有丢数据，只是把首部多复制了两份，总长度由 4000 字节变成了 4040 字节。也正因片偏移以 8 字节为单位，除最后一片外，其余各片的数据长度都必须是 8 的整数倍。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0058.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0058.webp" alt="图 2　4000 字节数据报在 MTU 为 1500 字节的链路上分片" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　一个 4000 字节的数据报在 MTU 为 1500 字节的链路上被切成三片：三片共用同一个标识 ID = x，前两片的 fragflag = 1 表示后面还有分片，最后一片为 0；片偏移依次为 0、185、370，到达目的主机后再按规定重组（原课件第 58 张）</figcaption>
+</figure>
+<p>到了目的主机，重组按标识把分片归成一组，再按片偏移排好次序，看到 fragflag 为 0 的那一片就知道收齐了。代价也直接：只要有一片中途丢失，整组分片就无法还原，只能全部丢弃重传，IPv6 因此把这件事改交给端结点。</p>
+
+<h2>4. IP 地址：接口的标识与地址分类</h2>
+<p>数据报首部里的 32 位源地址和目的地址，究竟标识的是什么？课件先抛出一串问题：IP 地址用来表示什么，一台主机、路由器只有 1 个 IP 地址吗，IP 地址是否就表示对应的物理接口？答案的关键在于，<strong>IP 地址与接口有关，而与主机、路由器本身却没有太多关联</strong>。它适用于主机、路由器内部以及它们之间的物理链路和逻辑链路接口，所以一个接口配一个地址；路由器连接多个网络，因而总是具有两个或两个以上的 IP 地址。</p>
+<p>32 位的地址在结构上分成两段：前面的<strong>网络号 net-id</strong> 和后面的<strong>主机号 host-id</strong>。写成二进制时，223.1.1.1 就是 11011111 00000001 00000001 00000001，平时则为便于阅读写成点分十进制。这样分成两段不是随意的：网络号让路由器不必记住每一台主机的具体位置，只要知道「去往某个网络该走哪条路」即可，地址因此具备了层次性。</p>
+<pre><code>32 位 IPv4 地址：  网络号 net-id            主机号 host-id
+223.1.1.1       =  11011111 00000001 00000001 00000001</code></pre>
+<p>那么 IP 地址为什么要分类？课件的回答很直接：地址总数约 40 亿，<strong>分类是为了便于寻址和层次化地构造网络</strong>——不同规模的网络需要不同粒度的地址块，用首部的头几位把地址分成几档，路由器看前几位就知道网络号有多长。五类地址的划分如下。</p>
+<div class="tbl-wrap"><table>
+  <caption>IPv4 地址的分类与首部特征，依课件「IPv4 地址分类」整理。</caption>
+  <thead>
+    <tr><th>类别</th><th>首部特征</th><th>网络号位数</th><th>主机号位数</th><th>适用规模</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A 类</td><td>第 1 位为 0</td><td>8 位</td><td>24 位</td><td>大型网络</td></tr>
+    <tr><td>B 类</td><td>前 2 位为 10</td><td>16 位</td><td>16 位</td><td>中型网络</td></tr>
+    <tr><td>C 类</td><td>前 3 位为 110</td><td>24 位</td><td>8 位</td><td>小型网络</td></tr>
+    <tr><td>D 类</td><td>前 4 位为 1110</td><td colspan="2">组播地址</td><td>——</td></tr>
+    <tr><td>E 类</td><td>前 4 位为 1111</td><td colspan="2">保留为今后使用</td><td>——</td></tr>
+  </tbody>
+</table></div>
+<p>网络号与主机号各占多少位，直接决定了这类地址能装下多少网络、多少主机。课件给出一组数字：A 类 127 个网络、每个 16777214 台主机，B 类 16384 个网络、每个 65534 台主机，C 类 2097150 个网络、每个 254 台主机。主机数都比 2 的整幂次少 2，减掉的是主机号全 0 与全 1 这两个地址：全 0 留作网络地址，全 1 留作本网络的广播地址。</p>
+<div class="tbl-wrap"><table>
+  <caption>类别划分下的容量，依课件「子网划分」表整理。</caption>
+  <thead>
+    <tr><th>类别</th><th>网络数</th><th>每个网络的主机数</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A 类</td><td>127</td><td>16777214</td></tr>
+    <tr><td>B 类</td><td>16384</td><td>65534</td></tr>
+    <tr><td>C 类</td><td>2097150</td><td>254</td></tr>
+  </tbody>
+</table></div>
+<p>类别只有五档，网络规模却千差万别，「粒度太粗」正是后面 CIDR 要解决的问题。</p>
+
+<h2>5. 互联网中的 IP 地址</h2>
+<p>IP 地址的规则在单个网络里好说，放进互联网就要多说一句：<strong>在同一个局域网上的主机或路由器的 IP 地址中的网络号必须是一样的</strong>，它就是地址中的 net-id。课件用一个由三台路由器连接若干网络的图来说明这一点，各网络的地址形如：</p>
+<pre><code>LAN1：222.1.1.1 ~ 222.1.1.4     网络号 222.1.1
+LAN2：222.1.2.1 ~ 222.1.2.5     网络号 222.1.2
+LAN3：222.1.3.1 ~ 222.1.3.3     网络号 222.1.3
+N1 ：222.1.4.1、222.1.4.2       网络号 222.1.4
+N2 ：222.1.5.1、222.1.5.2       网络号 222.1.5
+N3 ：222.1.6.1、222.1.6.2       网络号 222.1.6</code></pre>
+<p>图中 R1、R2、R3 三台路由器把这些网络与互联网连起来：同一网络内部的地址只有最后一段不同，网络号完全相同；路由器处在网络交界处，连接几个网络就有几个网络号互不相同的地址，这正是「IP 地址与接口有关」的落地结果。</p>
+
+<h2>6. 子网划分与子网掩码</h2>
+<p>分类编址遇到的两个现实问题，课件用两个场景摆了出来。第一个场景是「统一分配、集中管理」：一家跨国公司在海外拥有 26 家分支机构，包括总部在内共计 27 家机构，共有 54320 台计算机需要 IP 地址，总部向 ICANN 申请了一个 B 类地址块，要分配给所有机构该怎么分？逐台分配管理量无法承受，可行的做法是<strong>总部管理员把地址分成 27 个子块，每个机构一块，各机构管理员在内部自行分配</strong>。</p>
+<p>第二个场景是单一机构内部的治理：某机构获得 A 类或 B 类的某一类地址块，有数万台机器，如何配置、如何隔离、子网内流量如何管理？办法是<strong>从主机号中借用一部分位数作为子网号</strong>——地址分块、分散管理。借来的这段位数把两级地址变成<strong>三级 IP 地址</strong>：网络号 net-id、子网号 subnet-id 和主机号 host-id。</p>
+<p>那么路由器怎样知道哪几位是网络号、哪几位是子网号？靠<strong>子网掩码</strong>：把网络号和子网号相应的位置全置 1，主机号相应的位置全置 0。把 IP 地址与子网掩码逐比特相「与」就能取出网络地址，此时主机号部分为全 0。</p>
+<pre><code>两级 IP 地址：  网络号 net-id  ｜        主机号 host-id
+三级 IP 地址：  网络号 net-id  ｜ 子网号 subnet-id ｜ 主机号 host-id
+子网掩码：       全 1           ｜ 全 1            ｜ 全 0
+(IP 地址) AND (子网掩码) = 网络地址（主机号为全 0）</code></pre>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0072.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0072.webp" alt="图 3　从两级 IP 地址到三级 IP 地址与子网掩码的构成" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　借主机号的一部分作为子网号 subnet-id 之后，两级 IP 地址变成三级地址；子网掩码把网络号与子网号的位置全置 1、主机号的位置全置 0，IP 地址与子网掩码做 AND 运算即得网络地址（原课件第 72 张）</figcaption>
+</figure>
+<p>课件给出的例子是：某单位从 172.16.0.0 划出 172.16.1.0、172.16.2.0、172.16.3.0、172.16.4.0 四个子网，子网掩码取 255.255.255.0，也就是借主机号的高 8 位当子网号。对因特网上的其他路由器而言，这个单位仍然只是一个网络 172.16.0.0；只有在单位内部，四个子网才各自成立。<strong>子网掩码的作用正在于此：对外隐藏子网的存在，对内指示网络号和子网号的位置</strong>。</p>
+
+<h2>7. 引入子网掩码后的寻址过程</h2>
+<p>子网掩码引入后，路由器的寻址比分类地址时代多了一道手续。课件把它概括为<strong>两级寻址过程</strong>：第一步检查目的 IP 地址的网络号，看分组是不是送往自己所知的某个网络；第二步检查子网号，决定送进哪一个子网——先找到「哪个网络」，再找到「网络中的哪一块」。</p>
+
+<h2>8. 划分子网后分组转发的举例</h2>
+<p>课件用三个子网、两台路由器、三台主机把上面的规则演算了一遍，布局与地址如下。</p>
+<pre><code>子网 1：网络地址 128.30.33.0     子网掩码 255.255.255.128   H1 = 128.30.33.13
+子网 2：网络地址 128.30.33.128   子网掩码 255.255.255.128   H2 = 128.30.33.138
+子网 3：网络地址 128.30.36.0     子网掩码 255.255.255.0     H3 = 128.30.36.12
+R1 的接口 0 在子网 1，接口 1 在子网 2；R2 连接子网 3</code></pre>
+<p>R1 的路由表（课件未给出默认路由器）只有三个项目：</p>
+<div class="tbl-wrap"><table>
+  <caption>R1 的路由表，依课件「划分子网后分组的转发举例」整理。</caption>
+  <thead>
+    <tr><th>目的网络地址</th><th>子网掩码</th><th>下一跳</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>128.30.33.0</td><td>255.255.255.128</td><td>接口 0</td></tr>
+    <tr><td>128.30.33.128</td><td>255.255.255.128</td><td>接口 1</td></tr>
+    <tr><td>128.30.36.0</td><td>255.255.255.0</td><td>R2</td></tr>
+  </tbody>
+</table></div>
+<p>现在主机 H1 要发送一个分组给 H2，目的 IP 地址是 128.30.33.138。这里有一个容易忽略的前提：<strong>H1 并不知道 H2 连接在哪一个网络上，它仅仅知道 H2 的 IP 地址</strong>。所以 H1 先做一次自检——把本子网的子网掩码与目的地址逐比特相与，看结果是不是本子网的网络地址：</p>
+<pre><code>  255.255.255.128  AND  128.30.33.138
+= 128.30.33.128        （H1 所在子网的网络地址是 128.30.33.0）
+结果与 128.30.33.0 不一致  →  目的主机不在本网络
+H1 于是把分组送交路由器 R1，由 R1 逐项查找路由表</code></pre>
+<p>R1 收到分组后，用路由表中第 1 个项目的子网掩码与 128.30.33.138 逐比特相与，得 128.30.33.128，与第 1 项的目的网络地址 128.30.33.0 不一致，不匹配；用第 2 个项目的掩码再算一次，结果仍是 128.30.33.128，与第 2 项的 128.30.33.128 一致，匹配成功，分组从接口 1 送出、直接交付给同一子网上的 H2。一句话概括：主机负责判断「在不在本网络」，路由器负责逐项匹配「该走哪个接口或下一台路由器」。</p>
+<p>这个例子也顺带说明了掩码的分量：掩码不同，同一个目的地址算出的网络地址就不同，这正是子网划分能在同一段地址空间里切出不同网络的原因。</p>
+
+<h2>9. 子网规划的两个问题</h2>
+<p>划分子网的具体算法，课件用两个问题演算了两遍。第一个问题只有一个 C 类地址 201.222.5.0，要求划分 20 个子网、每个子网接 5 台 PC。C 类地址留给主机号的是 8 位，要从中切出子网号：20 个子网至少需要 5 位（2 的 5 次方为 32），剩下 3 位给主机号（2 的 3 次方减 2 等于 6，够 5 台 PC）。于是子网掩码的后 8 位是 11111000，即 255.255.255.248；每个子网 8 个地址，网络地址依次为 201.222.5.0、201.222.5.8、201.222.5.16……课件列出的是 201.222.5.8/255.255.255.248 与 201.222.5.16/255.255.255.248。</p>
+<pre><code>问题 1：C 类地址 201.222.5.0，需 20 个子网、每子网 5 台 PC
+子网号位数：5 位（2^5 = 32 ≥ 20）    主机号位数：3 位（2^3 - 2 = 6 ≥ 5）
+子网掩码：  11111111.11111111.11111111.11111000 = 255.255.255.248
+子网网络地址：201.222.5.0、201.222.5.8、201.222.5.16、201.222.5.24 ……</code></pre>
+<p>第二个问题是从一段现成的地址倒推它的划分形式：某公司获得的地址是 218.103.24.112 ~ 218.103.24.127，问这批地址的网络地址是多少、子网掩码是多少，如果进一步划分子网还能分出多少个子网，并用「网络地址/子网掩码」表示出来。</p>
+<pre><code>218.103.24.112 = … 01110000
+218.103.24.127 = … 01111111
+最后一段前 4 位同为 0111  →  前缀长度为 24 + 4 = 28
+网络地址 218.103.24.112    子网掩码 255.255.255.240</code></pre>
+<p>这段地址共 16 个（112 到 127），最后一段的高 4 位恒定、低 4 位可变，因此它是一个 /28 的地址块：网络地址 218.103.24.112，子网掩码 255.255.255.240。要继续划分就是从剩下的 4 位主机号里再借位：借 1 位分成 2 个子网——218.103.24.112/29（112~119）与 218.103.24.120/29（120~127），每个可容纳 6 台主机；借 2 位分成 4 个子网——218.103.24.112/30、218.103.24.116/30、218.103.24.120/30、218.103.24.124/30，每个只剩 4 个地址、可容纳 2 台主机。可见<strong>子网划得越细，子网数越多，每个子网能容纳的主机数越少</strong>，这是规划时必须权衡的一对矛盾。</p>
+
+<h2>10. 无类别域间路由 CIDR</h2>
+<p>分类编址的粒度问题，课件用一笔账算得很清楚。某单位有 2000 台主机：申请 B 类网段（128.10.0.0）可容纳 65000 台主机，剩下的 63000 个地址被浪费；改用 C 类网段（192.168.0.x 到 192.168.8.x）需要 8 个，申请管理复杂。两头都不合适，结果是<strong>地址空间利用率低、面临耗尽</strong>。出路是取消类别，让地址块大小可以任意规定，这就是<strong>无类别域间路由 CIDR（Classless InterDomain Routing）</strong>。</p>
+<p>CIDR 把地址重新定义为「网络前缀 + 主机号」，格式写成：</p>
+<pre><code>IP 地址 ::= { &lt;网络前缀&gt;, &lt;主机号&gt; }
+斜线记法：192.168.0.1/24        简写记法：10.0.0.0/10 可写成 10/10</code></pre>
+<p>斜线后面的数字就是网络前缀的位数，不再限定为 8、16 或 24 位。这样，连续的一段地址可以按实际需要切成大小合适的块逐级分配。课件用一个 ISP 到院系的层次把这件事画了出来：ISP 拥有 206.0.64.0/18，分给大学 X 的是 206.0.68.0/22；大学再把其中的地址块分给各系，一系 206.0.68.0/23、二系 206.0.70.0/24、三系 206.0.71.0/25、四系 206.0.71.128/25；各系还可以继续往下切：一系分为 206.0.68.0/25、206.0.68.128/25、206.0.69.0/25、206.0.69.128/25，二系分为 206.0.70.0/26、206.0.70.64/26、206.0.70.128/26、206.0.70.192/26，三系分为 206.0.71.0/26、206.0.71.64/26，四系分为 206.0.71.128/26 与 206.0.71.192/26。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0084.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0084.webp" alt="图 4　CIDR 地址块的逐级划分：ISP、大学与各系" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　CIDR 把地址块按需逐级切分：ISP 的 206.0.64.0/18 分给大学 X 206.0.68.0/22，大学再分给一系到四系，各系还可继续细分；表中给出每个地址块的二进制表示与地址数，前缀越长、地址数越少（原课件第 84 张）</figcaption>
+</figure>
+<div class="tbl-wrap"><table>
+  <caption>地址块的逐级划分与规模，依课件「ISP 与 CIDR 地址块」表整理。</caption>
+  <thead>
+    <tr><th>单位</th><th>地址块</th><th>二进制表示</th><th>地址数</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ISP</td><td>206.0.64.0/18</td><td>11001110.00000000.01*</td><td>16384</td></tr>
+    <tr><td>大学</td><td>206.0.68.0/22</td><td>11001110.00000000.010001*</td><td>1024</td></tr>
+    <tr><td>一系</td><td>206.0.68.0/23</td><td>11001110.00000000.0100010*</td><td>512</td></tr>
+    <tr><td>二系</td><td>206.0.70.0/24</td><td>11001110.00000000.01000110.*</td><td>256</td></tr>
+    <tr><td>三系</td><td>206.0.71.0/25</td><td>11001110.00000000.01000111.0*</td><td>128</td></tr>
+    <tr><td>四系</td><td>206.0.71.128/25</td><td>11001110.00000000.01000111.1*</td><td>128</td></tr>
+  </tbody>
+</table></div>
+<p>表里的星号表示「这些位可以任意变化」：前缀每多一位，自由位就少一位，地址数随之减半。这个此消彼长的关系贯穿 CIDR 的全部用法，也让 CIDR 能把按整类分配的地址空间重新拼成大块再逐级切分。</p>
+<p>收益在路由表上最明显。课件给出的这个 ISP 共有 64 个 C 类网络：不采用 CIDR，与该 ISP 交换路由信息的每台路由器都需要 64 个项目；采用地址聚合后，只需<strong>一个项目 206.0.64.0/18</strong> 就能找到它，路由表规模因此成倍缩小。</p>
+
+<h2>11. CIDR 的寻址与最长前缀匹配</h2>
+<p>采用 CIDR 之后，路由表的项目形式也简化了：不再需要「目的网络地址 + 子网掩码」两栏，只留「网络前缀 + 下一跳」两栏。第 8 节 R1 的路由表换成 CIDR 写法就是 128.30.33.0/25 走接口 0、128.30.33.128/25 走接口 1、128.30.36.0/24 交给 R2，信息量完全一样。</p>
+<p>简化带来一个新问题。分类编址时一个目的地址通常只会命中一项；有了 CIDR，前缀长度各不相同，查找时<strong>可能得到不止一个匹配结果</strong>。课件给出的原则是：从匹配结果中选择具有最长网络前缀的那条路由，这就是<strong>最长前缀匹配（longest-prefix matching）</strong>，又称最长匹配或最佳匹配。道理很直观：网络前缀越长，地址块越小，路由越具体，越具体的路由应当优先。</p>
+<p>课件的演算可以看清这个过程。假定收到一个分组，目的地址 D = 206.0.71.142，路由表中有两个项目可选：ISP 的 206.0.68.0/22 和四系的 206.0.71.128/25。把 206.0.71.142 写成二进制，逐项做 AND：</p>
+<pre><code>D = 206.0.71.142 = 11001110 00000000 01000111 10001110
+
+第 1 项  206.0.68.0/22
+M = 11111111 11111111 11111100 00000000
+D AND M = 11001110 00000000 01000100 00000000 = 206.0.68.0
+与 206.0.68.0/22 匹配
+
+第 2 项  206.0.71.128/25
+M = 11111111 11111111 11111111 10000000
+D AND M = 11001110 00000000 01000111 10000000 = 206.0.71.128
+与 206.0.71.128/25 匹配
+
+两项都匹配  →  取前缀更长的 206.0.71.128/25（四系）</code></pre>
+<p>两个项目都能匹配并不奇怪：/22 的范围本来就把 /25 包在里面，只是更粗。选择更长的 /25，分组就被送到四系而不是整个 ISP 的入口，路由更精确。</p>
+<p>课件接着给出一个使用 CIDR 的路由表，要求说明若干地址各自的下一跳：</p>
+<div class="tbl-wrap"><table>
+  <caption>CIDR 路由匹配例题的路由表，依课件「CIDR 路由匹配例题」整理。</caption>
+  <thead>
+    <tr><th>网络／前缀长度</th><th>下一跳点</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>C4.50.0.0/12</td><td>A</td></tr>
+    <tr><td>C4.5E.10.0/20</td><td>B</td></tr>
+    <tr><td>C4.60.0.0/12</td><td>C</td></tr>
+    <tr><td>C4.68.0.0/14</td><td>D</td></tr>
+    <tr><td>80.0.0.0/1</td><td>E</td></tr>
+    <tr><td>40.0.0.0/2</td><td>F</td></tr>
+    <tr><td>0.0.0.0/2</td><td>G</td></tr>
+  </tbody>
+</table></div>
+<p>解法只有一条：把地址写成二进制，与前缀逐位比对，命中多项时取最长的那一项。逐个看过去：</p>
+<ul>
+  <li>(a) C4.5E.13.87：前 12 位是 11000100 0101，命中 C4.50.0.0/12；前 20 位连同第三段的高 4 位是 0001，与 C4.5E.10.0/20 一致，也命中，取更长的 /20，下一跳为 B。</li>
+  <li>(b) C4.5E.22.09：只命中 C4.50.0.0/12——第三段 0x22 的高 4 位是 0010，与 C4.5E.10.0/20 不符，故下一跳为 A。</li>
+  <li>(c) C3.41.80.02：首字节 C3 的最高位为 1，落在 80.0.0.0/1 的范围内，与 C4 开头的各项目都不符，下一跳为 E。</li>
+  <li>(d) 5E.43.91.12：首字节 5E 的前 2 位是 01，落在 40.0.0.0/2 的范围内，下一跳为 F。</li>
+  <li>(e) C4.6D.31.2E：前 12 位命中 C4.60.0.0/12，但第 14 位与 C4.68.0.0/14 不同，只命中 /12，下一跳为 C。</li>
+  <li>(f) C4.6B.31.2E：同时命中 C4.60.0.0/12 与 C4.68.0.0/14，取更长的 /14，下一跳为 D。</li>
+</ul>
+<p>六个地址中没有一个落在 0.0.0.0/2 的范围里，下一跳 G 未被用到；(c)、(d) 能落到 E、F 上，靠的正是长度只有 1 位、2 位的短前缀。长短前缀搭配覆盖整个地址空间，路由表才能同时做到「具体」和「不漏」。</p>
+
+<h2>12. 路由条目的快速查找：二叉线索</h2>
+<p>拿到最长前缀匹配的规则，还有一个工程问题：路由表可能有几万甚至几十万条，逐项做 AND 显然太慢。课件给出的办法是<strong>二叉线索</strong>。</p>
+<p>路由查找的目标是为一个目标 IP 地址找到一个下一跳，即找到一个路由项；路由项的关键字（key）是一个比特前缀，如 192.168.0.0/16、1.2.3.0/28、3.4.5.6/32，它们也是 IP 地址的表达方式，只是只取 32 位中的某些连续位。</p>
+<p>把 32 位地址的所有取值想象成一棵二叉树，每一位选左或选右，走满 32 位就落到一个叶子：前缀长度为 32 的路由项对应最底层叶子的节点，前缀长度小于 32 的路由项则对应中间结点。于是在 IPv4 地址树的基础上就得到一棵带路由节点的地址树，也就是二叉线索。查找时按目的地址的比特逐位下行，沿途记下带路由项的结点，走到叶子后取前缀最长的一个，原本逐项试算的比较因此化成沿树的一次下行。</p>
+
+<h2>13. 地址块的获得与层次编址的路由聚合</h2>
+<p>一个网络怎样获得一块地址？课件的回答是：<strong>从 ISP 的地址空间中获得</strong>。ISP 手里握着一整块地址，再按用户的需要切成大小不一的块分下去。课件给出的例子是一个 ISP 拥有 200.23.16.0/20，它把这块地址切成若干个 /23 分给 Organization 0 到 Organization 7：</p>
+<pre><code>ISP 的地址块     11001000 00010111 00010000 00000000   200.23.16.0/20
+Organization 0  11001000 00010111 00010000 00000000   200.23.16.0/23
+Organization 1  11001000 00010111 00010010 00000000   200.23.18.0/23
+Organization 2  11001000 00010111 00010100 00000000   200.23.20.0/23
+……              ……
+Organization 7  11001000 00010111 00011110 00000000   200.23.30.0/23</code></pre>
+<p>各组织的地址块前 20 位完全相同，差别只在后面的位。这种「同一块地址内部再切分」的做法叫<strong>层次编址</strong>，直接好处是<strong>路由聚合</strong>：ISP 对外只需声明「向我发送以 200.23.16.0/20 开始的任何报文」，其他路由器就只需为它保留一个路由项，不必知道它内部有 8 个组织。</p>
+<p>聚合也不是永远严丝合缝的。课件紧接着演示了一种例外：如果 Organization 1 改接到另一家 ISP（ISPs-R-Us），ISPs-R-Us 对外就要声明「向我发送以 199.31.0.0/16 或 200.23.18.0/23 开始的任何报文」——后一条是从原 ISP 地址块里挖出来的更具体的路由。此时一个目的地址可能同时命中这两条路由，按最长前缀匹配自然选中后者，聚合与具体路由就此共存。</p>
+<p>ISP 的整块地址又从何而来？课件指出，由<strong>ICANN（Internet Corporation for Assigned Names and Numbers，因特网名字与号码分配团体）</strong>负责，其工作包括分配 IP 地址、管理 DNS、分配域名以及解决域名纠纷。地址资源自上而下逐级分配，路由信息自下而上逐级聚合。</p>
+
+<h2>14. 主机如何获得 IP 地址：DHCP</h2>
+<p>地址块分到单位手里，最后一步是配到每一台主机上。最朴素的做法是<strong>手工配置</strong>：系统管理员手工为一台主机配置 IP 地址，Windows 下走「控制面板→网络→配置→TCP/IP→属性」，UNIX 下改 /etc/rc.config。机器一多既费人力又易出错，于是有了<strong>动态主机配置协议 DHCP（Dynamic Host Configuration Protocol）</strong>：从服务器上动态获取 IP 地址，因而被称为「即插即用协议」。它采用客户—服务器模式，使用 UDP，客户端用 68 号端口、服务器用 67 号端口——这也说明<strong>UDP 支持广播报文，而 TCP 不支持</strong>（UDP 见 3.2 节）。</p>
+<p>课件的示例里，一台主机接入 223.1.2.0/24 网络，而 DHCP 服务器 223.1.2.5 就在同一个网络内，所以客户端发出的广播能够被服务器收到。整个交互由四条报文构成：</p>
+<div class="tbl-wrap"><table>
+  <caption>DHCP 的四次报文交互，依课件「DHCP 工作原理示例」整理。</caption>
+  <thead>
+    <tr><th>报文</th><th>源地址与端口</th><th>目的地址与端口</th><th>yiaddr</th><th>事务 ID</th><th>其他</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>DHCP 服务器发现</td><td>0.0.0.0，68</td><td>255.255.255.255，67</td><td>0.0.0.0</td><td>654</td><td>客户端尚无地址，只能广播</td></tr>
+    <tr><td>DHCP 服务器提供</td><td>223.1.2.5，67</td><td>255.255.255.255，68</td><td>223.1.2.4</td><td>654</td><td>租用期 3600 秒</td></tr>
+    <tr><td>DHCP 请求</td><td>0.0.0.0，68</td><td>255.255.255.255，67</td><td>223.1.2.4</td><td>655</td><td>租用期 3600 秒</td></tr>
+    <tr><td>DHCP ACK</td><td>223.1.2.5，67</td><td>255.255.255.255，68</td><td>223.1.2.4</td><td>655</td><td>租用期 3600 秒</td></tr>
+  </tbody>
+</table></div>
+<p>四条报文各有用意：客户端广播「这里有没有 DHCP 服务器」；服务器应答「这个地址你可以用」；客户端再广播一次请求，确认选中该地址，这一广播同时让网段上其他作出过提供的服务器知道结果；最后服务器回 ACK 确认。事务 ID 把请求与应答配成对，地址是「租」来的，租用期 3600 秒到期需要续租，这也是同一台机器在不同时间可能拿到不同地址的原因。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0100.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0100.webp" alt="图 5　DHCP 的四次报文交互与各报文的地址" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　DHCP 客户与服务器之间的四次报文交互：服务器发现、服务器提供、DHCP 请求与 DHCP ACK，每一步都标出源、目的地址与端口以及分配到的地址 223.1.2.4，事务 ID 用于配对（原课件第 100 张）</figcaption>
+</figure>
+<p>还要记住一点：<strong>DHCP 并不仅仅只能获取 IP 地址</strong>，它同时把网关地址、DNS 地址和子网掩码交给主机——缺了这几样，主机同样上不了网。</p>
+
+<h2>15. IP 地址与 MAC 地址</h2>
+<p>数据报在网络层靠 IP 地址寻址，帧在链路层靠 MAC 地址寻址，各管一段。课件把分工说得很清楚：IP 地址是网络层地址，<strong>前 n−1 跳用于使数据报到达目标 IP 子网，最后一跳才到达子网中的目标节点</strong>；MAC 地址是链路层地址，用于使帧从一个网卡传递到与其物理连接的另一个网卡。</p>
+<p>两者性质也不同：跨越不同的网络迁移时，MAC 地址不会改变，就像身份证号；IP 地址则需要改变以适应新的网络配置，就像邮政通信地址。因此课件把 IP 地址称为<strong>层次地址</strong>、把 MAC 地址称为<strong>平面地址</strong>。4.3 节讲过的以太网帧，承载的就是后一种地址。</p>
+
+<h2>16. 地址解析协议 ARP</h2>
+<p>分工明确之后，接口处的难题就冒出来了：IP 协议把数据报交给数据链路层的时候，怎么获得目标主机的 MAC 地址呢？数据报里写的是 IP 地址，帧里要填的却是 MAC 地址，两者之间需要一个翻译。<strong>地址解析协议 ARP（Address Resolution Protocol）</strong>做的就是这件事：根据目标的 IP 地址获取其 MAC 地址。</p>
+<p>做法是让每个节点手里留一本账。局域网节点维护一张<strong>ARP 高速缓存</strong>（ARP 表），表项形如 &lt;IP; MAC; TTL&gt;，记录本网段节点的 IP 与 MAC 地址映射。<strong>超过 TTL 的地址映射会被删除，一般为 20 分钟</strong>，这样主机换了网卡或改了地址，旧记录不会一直留在别人的表里（用 arp -a 可查看、arp -d 可清除）。</p>
+<p>表里没有记录时，就只能当场问。同一个局域网内的工作流程分两步：<strong>ARP 请求广播出去，ARP 应答单播回来</strong>。请求包与应答包的封装方式如下：</p>
+<pre><code>ARP 请求（广播帧）
+  MAC 报头：目的 FF-FF-FF-FF-FF-FF    源 02-60-8C-01-02-03
+  IP  报头：目的 197.15.22.126        源 197.15.22.33
+  报文内容：你的 MAC 地址是什么？
+
+ARP 应答（单播帧，源与目的恰好与请求相反）
+  MAC 报头：目的 02-60-8C-01-02-03    源 08-00-02-89-90-80
+  IP  报头：目的 197.15.22.33         源 197.15.22.126
+  报文内容：我的 MAC 地址是……</code></pre>
+<p>请求之所以要广播，是因为发送方只知道对方的 IP 地址，不知道哪一块网卡对应它；MAC 报头的目的地址写成全 1（FF-FF-FF-FF-FF-FF）就是这个意思。被问到的 197.15.22.126 收到请求后，建立包含自己 MAC 地址的应答包——<strong>应答包与请求包的源、目标恰好相反</strong>——再单播回给 197.15.22.33，请求方收到后更新 ARP 高速缓存。课件用另一组地址又走了一遍：主机 A（209.0.0.5）广播「我想知道主机 209.0.0.6 的硬件地址」，网内的主机 B、X、Y、Z 都收到请求，只有主机 B 回应「我是 209.0.0.6，硬件地址是 08-00-2B-00-EE-0A」。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0110.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0110.webp" alt="图 6　同一局域网内 ARP 请求的广播与应答的单播" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　同一局域网内的 ARP：主机 A 广播 ARP 请求分组询问主机 209.0.0.6 的硬件地址，网内各主机都收到请求，只有目的主机 B 把自己的硬件地址 08-00-2B-00-EE-0A 单播回给 A（原课件第 110 张）</figcaption>
+</figure>
+<p>如果目标主机不在本局域网，情况就不同了：数据报要先交给本网段的路由器，帧的目的 MAC 地址必须是路由器接口的地址，因此 ARP 解析出来的<strong>是本网段路由器接口的 MAC 地址，而不是远方目的主机的 MAC 地址</strong>。课件把这条流程标为「ARP 协议：局域网间工作流程」，与同一局域网内的流程并列。</p>
+<p>把视野放大到整个互联网，就是若干网络与路由器串联起来的样子。课件给出的图里有网络 1、网络 2、网络 3 三段链路和两台路由器，主机 Y 要把数据报送给另一个网络中的主机 Z，逐跳的封装变化如下：</p>
+<div class="tbl-wrap"><table>
+  <caption>互联网环境下 ARP 与逐跳封装的变化，依课件「互联网环境下的 ARP」整理。</caption>
+  <thead>
+    <tr><th>转发的一段</th><th>源 MAC 地址</th><th>目的 MAC 地址</th><th>源 IP 地址</th><th>目的 IP 地址</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>主机 Y → 路由器 1（网络 1）</td><td>主机 Y</td><td>路由器 1</td><td>主机 Y</td><td>主机 Z</td></tr>
+    <tr><td>路由器 1 → 路由器 2（网络 2）</td><td>路由器 1</td><td>路由器 2</td><td>主机 Y</td><td>主机 Z</td></tr>
+    <tr><td>路由器 2 → 主机 Z（网络 3）</td><td>路由器 2</td><td>主机 Z</td><td>主机 Y</td><td>主机 Z</td></tr>
+  </tbody>
+</table></div>
+<p>这张表点出了网络层与链路层最重要的差异：<strong>IP 报头里的源、目的地址从头到尾不变，MAC 报头里的源、目的地址却逐跳改变</strong>；每段链路上 ARP 解析出来的都只是这一跳的下一站地址——这也解释了 5.2 节里路由器的封装与解封装为什么成对出现。</p>
+
+<h2>17. 网络地址转换 NAT</h2>
+<p>家庭上网的场景把地址短缺的压力摆到了明面上。一个家庭网络内部使用 10.0.0.0/24 这样的地址，家庭网关兼作<strong>网络地址转换 NAT（Network Address Translation）</strong>路由器：面向内网一侧是 10.0.0.1，面向因特网一侧是 138.76.29.7。内网主机 10.0.0.1 到 10.0.0.4 之间通信时，报文里的源或目的地址都是 10.0.0.x；一旦报文出网，<strong>所有离开本地网络的报文都拥有同一个源 IP 地址 138.76.29.7，只是源端口号各不相同</strong>。</p>
+<p>原理可以用一次完整的往返说明：</p>
+<pre><code>NAT 转换表
+WAN 端                LAN 端
+138.76.29.7, 5001     10.0.0.1, 3345
+……                    ……
+
+步骤 1  主机 10.0.0.1 发出数据报：S = 10.0.0.1,3345     D = 128.119.40.186,80
+步骤 2  NAT 路由器改写源地址：   S = 138.76.29.7,5001  D = 128.119.40.186,80
+步骤 3  响应报文回来：           S = 128.119.40.186,80  D = 138.76.29.7,5001
+步骤 4  NAT 路由器还原目的地址： S = 128.119.40.186,80  D = 10.0.0.1,3345</code></pre>
+<p>概括成两条规则：发送时把每个外出报文的源 IP 地址和端口号替换为 NAT 的 IP 地址与新端口号，远程主机便以这个地址与端口来响应，同时把这一对转换记入 NAT 转换表；接收时按转换表把进入报文的 NAT 地址与端口还原成内网源地址与端口。<strong>端口号被借来区分内网的不同主机</strong>，这是 NAT 能用一个全球地址支撑一屋子设备的关键。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0114.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0114.webp" alt="图 7　NAT 的实现原理与 NAT 转换表" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　NAT 的实现原理：内网主机 10.0.0.1 的报文以源地址 10.0.0.1、3345 发出，NAT 路由器把它换成 138.76.29.7、5001 并记入转换表；响应报文回来后，再按表还原成 10.0.0.1、3345（原课件第 114 张）</figcaption>
+</figure>
+<p>NAT 引入之后，本地网络只要一个 IP 地址就能和外部网络相连：不必从 ISP 处获得大批 IP 地址，所有设备共用一个地址；可以在不通知外部网络的情况下改变内网主机的 IP 地址；即使更换了 ISP，也无须改变内网地址。附带效果是<strong>内网主机对外网主机不可见、不可寻址</strong>，这被算作一项安全措施。</p>
+<p>具体实现时分两类地址、三种方式。<strong>本地地址</strong>限内部使用，课件列出三个保留地址段——10/8、172.16/12、192.168/16，<strong>全球地址</strong>则是可以在因特网上路由的地址。三种转换方式是：<strong>静态 NAT</strong>，一个本地地址对应一个全球地址；<strong>动态 NAT</strong>，一个全球地址对应多个本地地址；<strong>端口 NAT</strong>，一个本地地址的端口对应到一个全球地址的端口。</p>
+<p>这也回答了「外部主机如何与内网中的 10.0.0.1 服务器通信」：内网服务器不能靠 NAT 自动获得入口，需要<strong>端口映射</strong>——采用端口 NAT，在路由器中静态配置一条记录，使某个全球地址的端口总是指向它，例如 (138.76.29.7, 80) 总是指向 (10.0.0.1, 80)。对 P2P 应用还有两种辅助手段：一是<strong>通用即插即用 UPnP（Universal Plug and Play）</strong>，内网主机通过路由器上的因特网网关设备 IGD 协议了解公共 IP 地址，把（内部 IP，内部端口）注册为（公共 IP，公共端口），主动向外部公开；二是<strong>中继</strong>，Skype 采用这种办法——内网主机先通过 NAT 与中继建立连接，客户端再与中继建立连接，双方数据都经中继转发。</p>
+<p>NAT 的便利也引来了争议，反对意见主要有三点：NAT 协议<strong>违反了端到端原则</strong>，中间节点本不应介入通信双方的约定；端口号用于进程编址，把它挪来编址主机并不合适；路由器仅应当处理高达第三层的分组，而 NAT 却要看第四层的端口号。何况 NAT 只是缓解了地址短缺，并没有真正解决它，长期的办法应当是使用 IPv6。</p>
+
+<h2>18. IPv4 面临的问题与 IPv6</h2>
+<p>综合起来看，IPv4 面临的问题不止一条：地址空间消耗很快，NAT 通过减少 IP 地址的需求量间接扩大了 IP 地址的数量，但只是一时之计；首部长度不定（20–60 字节），中间节点需要消耗相当资源用于分组处理；此外还有安全性不够高、缺少服务质量 QoS（Quality of Service）等问题。这些正是 IPv6 要回答的。</p>
+<p>IPv6 的数据报格式做了取舍：字段更少，长度更整齐。</p>
+<pre><code>版本（4 比特）  流量类型（8 比特）        流标签（20 比特）
+有效载荷长度（16 比特）  下一个首部（8 比特）  跳限制（8 比特）
+源地址（128 比特）
+目的地址（128 比特）
+数据</code></pre>
+<p>它带来的改进有三条最值得记：<strong>中间结点不再负责分片和重组，改由端结点负责</strong>；<strong>取消了首部检验和，中间节点无须计算</strong>；<strong>首部长度固定，加速转发</strong>。除两个地址外的其余字段合计 4 + 8 + 20 + 16 + 8 + 8 = 64 比特，即 8 字节，加上两个 128 比特地址共 32 字节，固定首部恰好 40 字节且不含可选字段与填充——IPv4「首部长度不定」的开销到此被去掉；地址从 32 位扩到 128 位，则是应对地址枯竭的根本办法。</p>
+<p>从 IPv4 到 IPv6 不可能一夜切换，课件给出两种过渡技术。<strong>双协议栈</strong>指新加入的设备同时支持 IPv4 与 IPv6：一段链路上源和目标均支持 IPv6 就用 IPv6，任一方不支持就用 IPv4，其间可能出现信息的丢失。<strong>隧道技术</strong>解决两个 IPv6 结点之间隔着 IPv4 网络的情形：把 IPv6 数据报整个装进 IPv4 数据报的数据部分，穿过 IPv4 网络后再取出来——外层 IPv4 报头的源和目的是两端双栈结点（B 和 E），内层 IPv6 报头的源和目的仍是通信双方（A 和 F）。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-5-3/p0127.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-5-3/p0127.webp" alt="图 8　IPv4 到 IPv6 的迁移：双协议栈与隧道技术" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　IPv4 到 IPv6 的迁移：中间一段是 IPv4 网络，两端结点 A、F 为 IPv6 结点，B、E 为同时支持两种协议的双协议栈结点；IPv6 数据报在 B 与 E 之间被封装进 IPv4 数据报，形成一条穿过 IPv4 网络的「隧道」（原课件第 127 张）</figcaption>
+</figure>
+
+<h2>19. 邻居发现协议 NDP 与 IPv6 地址解析</h2>
+<p>IPv6 里没有 ARP，地址解析的活由<strong>邻居发现协议 NDP（Neighbor Discovery Protocol）</strong>承担。课件指出，NDP 靠 ICMPv6 协议发现，抓包抓不到 NDP 报文、可以抓 ICMPv6；它是 IPv6 的关键协议，<strong>组合了 IPv4 中的 ARP、ICMP 路由器发现和 ICMP 重定向等协议并作了改进</strong>，还提供前缀发现、邻居不可达检测、重复地址监测、地址自动配置等功能。</p>
+<p>落到 IPv6 地址解析这一步，用到的是一对报文：<strong>邻居请求 NS（Neighbor Solicitation）</strong>与<strong>邻居通告 NA（Neighbor Advertisement）</strong>，交互过程与 ARP 的「广播请求、单播应答」神似，只是改成了组播：结点 A 把 NS 报文发到链路上，目的地址是结点 B 对应的被请求节点组播地址，选项字段中携带 A 自己的链路层地址；B 收到后处理该报文，并根据报文中的源地址与源链路层地址更新自己的邻居缓存表项；随后 B 发出 NA 应答，在目标链路层地址选项中带上自己的链路层地址；A 收到 NA 后建立到 B 的邻居缓存表项，双方即可通信。当某结点的链路层地址改变时，它以所有节点组播地址 FF02::1 为目的地址发送 NA，通知链路上其他结点更新邻居缓存。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>转发靠标识与寻址、路由选择、封装转发解封装三件事支撑，载体是 IPv4 数据报：固定首部 20 字节，长度、标识、标志、片偏移、TTL、协议、检验和与两个 32 位地址各司其职；数据报超过链路 MTU 就要分片，按标识归组、按片偏移排序，<strong>重组只在目的主机进行</strong>。</li>
+  <li>地址体系一路演化：分类编址的 A 到 E 五类粒度太粗，子网划分借出子网号形成三级地址、用掩码对外隐藏对内指示，CIDR 再取消类别、任意指定前缀，并用最长前缀匹配保证路由既具体又不漏。</li>
+  <li>主机地址可手工配置，也可由 DHCP 动态租用，并一并取得网关、DNS 与掩码；ARP 负责 IP 到 MAC 的解析，网段内广播请求、单播应答，跨网段解析的是路由器接口地址——<strong>IP 地址端到端不变，MAC 地址逐跳改变</strong>。</li>
+  <li>NAT 用一个全球地址加不同端口号支撑整个内网，却因改动端口、越过第三层而有违端到端原则；IPv6 以 128 位地址、固定首部、无检验和与端结点分片回应地址短缺，过渡靠双协议栈与隧道，地址解析与路由器发现交给 NDP。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-5-2.html">‹ 5.2 网络互联设备—路由器</a>
+      <a class="next" href="v2-5-4.html">5.4 因特网控制报文协议ICMP ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

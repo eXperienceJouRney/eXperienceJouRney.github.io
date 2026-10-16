@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.2 卷积神经网络 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 6 章 卷积神经网络 6.2 卷积神经网络：以「6-卷积神经网络.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html" aria-current="page"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 6 章 卷积神经网络</p>
+      <h1>6.2 卷积神经网络</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">有了 6.1 节的卷积运算，这一节把它组装成一个完整的网络。线索是「结构 → 三种层 → 整体堆叠方式」：先看卷积神经网络由哪几种层构成，再逐一看卷积层怎么提取特征、汇聚层为什么能带来不变性、全连接层最后怎么把特征变成分类结果，最后回到整体，看这些层是如何交叉堆叠成一个深层网络的。</p>
+
+<h2>1. 卷积神经网络由哪些层构成</h2>
+<p>卷积神经网络一般由<strong>卷积层</strong>、<strong>汇聚层</strong>和<strong>全连接层</strong>构成，它的出发点很直接：<strong>用卷积代替全连接</strong>。</p>
+<p>替换之后带来了两个结构上的特性，这也正是 6.1 节末尾提到的那两个：</p>
+<ul>
+  <li><strong>局部连接</strong>：每个神经元都只和前一层中某个局部窗口内的神经元相连，构成一个局部连接网络；一个神经元不再「看」整幅图，只看一个小窗口。</li>
+  <li><strong>权重共享</strong>：作为参数的卷积核对同一层上的所有神经元都是相同的，也就是所有同颜色的连线上的权重是相同的。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0015.webp" alt="图 1　全连接与局部连接、权重共享的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　（a）全连接层没有局部连接与权重共享；（b）卷积层只与局部窗口相连（局部连接），且同一卷积核在所有位置共用同一组权重（权重共享，图中同色连线权重相同）（原课件第 15 张）</figcaption>
+</figure>
+<p>把这两种层按「提取特征 → 压缩特征 → 做出判断」的顺序串起来，就得到卷积神经网络的整体结构：输入图像先经过若干<strong>卷积层</strong>得到<strong>特征图</strong>，再经过<strong>降采样层</strong>（也就是汇聚层）把特征图变小，如此反复，最后接到<strong>全连接层</strong>和<strong>输出层</strong>（全连接 + Softmax 激活）上完成分类。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0016.webp" alt="图 2　卷积神经网络的整体结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　卷积神经网络的整体结构：输入 → 卷积层（得到特征图）→ 降采样层 → 全连接层 → 输出层（全连接 + Softmax 激活）（原课件第 16 张）</figcaption>
+</figure>
+<p>接下来三节分别把这三种层讲清楚。</p>
+
+<h2>2. 卷积层：结构与参数</h2>
+<p><strong>卷积层的作用是提取一个局部区域的特征</strong>，不同的卷积核相当于不同的特征提取器。一个卷积层的结构可以用三组张量描述：</p>
+<ul>
+  <li><strong>输入特征组</strong>：X ∈ R<sup>M×N×D</sup>，M、N 是特征图的高和宽，D 是通道数（输入图像的 D 就是颜色通道数）；</li>
+  <li><strong>输出特征组</strong>：Y ∈ R<sup>M′×N′×P</sup>，P 是这个卷积层输出的特征图个数，也就是卷积核的个数；</li>
+  <li><strong>卷积核</strong>：W ∈ R<sup>U×V×P×D</sup>，U、V 是卷积核的高和宽，P 和 D 分别对应输出通道与输入通道。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0017.webp" alt="图 3　一个卷积层的结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　卷积层的三组张量：输入特征组 X ∈ R<sup>M×N×D</sup>、输出特征组 Y ∈ R<sup>M′×N′×P</sup>、卷积核 W ∈ R<sup>U×V×P×D</sup>（原课件第 17 张）</figcaption>
+</figure>
+<p>注意卷积核是四维的：<strong>每一个输出通道 P 都要配一套完整的 D 个卷积核</strong>，分别对应输入的 D 个通道，最后把这 D 个结果加起来，再加上一个偏置，才得到这个输出通道上的一张特征图。</p>
+
+<h2>3. 一个卷积核的计算</h2>
+<p>先用一个具体例子把上面这套记号落到实处。课件给的是：输入图像大小为 8 × 8、有三个通道；卷积核大小为 3 × 3、也有三个通道，因此这个卷积核本身是一个 3 × 3 × 3 的小立方体。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0018.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0018.webp" alt="图 4　一个卷积核的计算" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　一个卷积核的计算：输入 8 × 8 三通道，卷积核 3 × 3 三通道，卷积核参数个数为 (3 × 3 × 3 + 1) × 1，输出特征只有一个通道（原课件第 18 张）</figcaption>
+</figure>
+<p>计算过程是：卷积核的三个通道分别盖在输入图像的三个通道上，各自做一次 3 × 3 的加权求和，再把三个结果相加，加上<strong>偏置</strong>，得到输出特征图上的一个值；卷积核在 8 × 8 的输入上滑动，就得到一整张输出特征图。因为只有一个卷积核，所以<strong>输出特征只有一个通道</strong>。这个例子里的参数个数是</p>
+<p>(3 × 3 × 3 + 1) × 1 = 28</p>
+<p>其中括号里的「+ 1」是每个卷积核配一个偏置。这里可以顺手体会一下权重共享的收益：无论输入图像多大，这个卷积核始终只有 3 × 3 × 3 = 27 个权重加 1 个偏置——换成全连接层，参数量会随着图像尺寸一起膨胀。</p>
+
+<h2>4. 多个卷积核的计算</h2>
+<p>一个卷积核只能提取一种特征，要提取多种特征就要用多个卷积核，每个卷积核产生输出中的一个通道。课件给了一个多卷积核的例子：输入经过零填充后为 7 × 7 × 3，两个 3 × 3 × 3 的卷积核 W<sub>0</sub>、W<sub>1</sub>（各带一个 1 × 1 × 1 的偏置 b<sub>0</sub>、b<sub>1</sub>），步长为 2，输出是 3 × 3 × 2。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0019.webp" alt="图 5　多个卷积核的计算" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　两个卷积核的计算过程：输入（零填充后）7 × 7 × 3，卷积核 W<sub>0</sub>、W<sub>1</sub> 均为 3 × 3 × 3，各带偏置，输出 3 × 3 × 2——两个卷积核各产生一个输出通道（原课件第 19 张）</figcaption>
+</figure>
+<p>输出尺寸可以用 6.1 节的公式核对：⌊(7 − 3) / 2⌋ + 1 = 3，所以两个方向的输出都是 3；通道数等于卷积核的个数 2。这说明<strong>输出通道数由卷积核个数决定，与输入通道数无关</strong>——输入通道数只影响每个卷积核的「厚度」。</p>
+<p>把「一个卷积核的计算」写成公式，再套上多个输出通道，就得到卷积层的映射关系。记第 d 个输入通道为 X<sub>d</sub>、第 p 个输出通道为 Y<sub>p</sub>，第 p 个输出通道在第 d 个输入通道上的卷积核为 W<sub>p,d</sub>、偏置为 b<sub>p</sub>，则</p>
+<p>Y<sub>p</sub> = f( Σ<sub>d=1</sub><sup>D</sup> W<sub>p,d</sub> ⊗ X<sub>d</sub> + b<sub>p</sub> )</p>
+<p>其中 ⊗ 表示卷积，f 是激活函数。多个卷积核就是把这个过程重复 P 遍，每个 p 得到一个输出通道。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0020.webp" alt="图 6　卷积层的映射关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　卷积层的映射关系：第 p 个输出通道把 D 个输入通道分别与对应的卷积核 W<sub>p,1</sub>…W<sub>p,D</sub> 做卷积、求和、加偏置 b<sub>p</sub>，得到特征映射 Y<sub>p</sub>；多个卷积核就是重复这一过程（原课件第 20 张）</figcaption>
+</figure>
+
+<h2>5. 卷积层到底在提取什么</h2>
+<p>在网络结构中引入卷积层的目的主要是<strong>进行图像的特征提取</strong>。课件特别强调了一句：卷积操作<strong>不是矩阵相乘</strong>，而是将卷积核放在输入矩阵上，对应位置相乘然后再相加，之后在输入矩阵上滑动，这样就得到了提取的特征图。它体现了两个特性：<strong>局部感知</strong>与权重共享。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0021.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0021.webp" alt="图 7　卷积操作的示例" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　卷积操作示例：输入图像（Input Image）与卷积核（Kernel）对应位置相乘再求和，滑动之后得到特征图（Feature Map）（原课件第 21 张）</figcaption>
+</figure>
+<p>「提取特征」听起来抽象，课件用一个能算的例子把它讲明白了——<strong>提取图像中的垂直边缘</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0022.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0022.webp" alt="图 8　以提取垂直边缘为例" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　以提取图像中的垂直边缘为例：输入图像与一个专门设计的卷积核做卷积（原课件第 22 张）</figcaption>
+</figure>
+<p>课件随即给出了这个例子的代码实现，用 PyTorch 定义一个卷积层，把上面那个卷积核的参数直接赋给卷积核，步长取 1、padding 取 0。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0023.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0023.webp" alt="图 9　卷积层的代码实现" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　卷积层代码实现举例：定义一个卷积层，把用于提取垂直边缘的卷积核参数赋给它，步长 1、padding 0（原课件第 23 张）</figcaption>
+</figure>
+<p>这个过程分成几步：先<strong>定义输入灰度图</strong>——它其实就是一幅黑白分明的图像，白色与黑色两部分之间构成了一个垂直的边；再<strong>给定卷积核参数</strong>，使其能够提取出垂直的边缘特征；然后<strong>初始化卷积层</strong>（步长 1、padding 0），把灰度图送进去做卷积；最后把输出的特征图可视化出来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0026.webp" alt="图 10　提取垂直边缘的结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 10　输入灰度图经过卷积层处理后的可视化结果：输入图像的边缘已经被很好地检测出来了（原课件第 26 张）</figcaption>
+</figure>
+<p>结果正如预期：输入图像的边缘被很好地检测了出来。这个例子最重要的启示不是「边缘检测」本身，而是<strong>卷积核的内容决定了它提取什么特征</strong>——手工设计好的卷积核可以提取边缘，那么在深层网络里，这些卷积核的数值完全可以交给网络自己去学，越深的层学到的特征就越抽象。</p>
+
+<h2>6. 汇聚层：特征选择与降采样</h2>
+<p><strong>汇聚层</strong>也叫池化层、下采样层（降采样层），作用是<strong>进行特征选择、降低特征数量</strong>。在卷积神经网络中引入池化层，主要有两个原因：</p>
+<ul>
+  <li><strong>减少运算量</strong>：特征图变小，后续层的计算量和参数量都随之下降；</li>
+  <li><strong>实现不变性</strong>：带来平移不变性、旋转不变性和尺度不变性，从而提高模型的泛化能力。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0027.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0027.webp" alt="图 11　汇聚层的作用" loading="lazy" decoding="async"></a>
+  <figcaption>图 11　汇聚层（池化层、下采样层）的作用是进行特征选择、降低特征数量（原课件第 27 张）</figcaption>
+</figure>
+<p>最常用的是<strong>最大池化</strong>：把一个 2 × 2 的池化核放在特征图上，<strong>取池化核覆盖范围内最大的那个元素</strong>作为输出，然后按步长滑动。课件给出的例子中，池化核大小为 2 × 2、步长为 2，也就是每个 2 × 2 的小块输出一个值，特征图的边长正好减半。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0028.webp" alt="图 12　最大池化的例子" loading="lazy" decoding="async"></a>
+  <figcaption>图 12　最大池化的例子：2 × 2 的池化核在输入上按步长 2 滑动，每块取最大值作为输出（原课件第 28 张）</figcaption>
+</figure>
+<p>把池化核的大小与步长都取 2，效果就是「四格取一」：输入中每 2 × 2 的区域压成一个数，输出尺寸正好是输入的一半。这也解释了后面的例子里 16 × 16 会变成 8 × 8、8 × 8 会变成 4 × 4。</p>
+
+<h2>7. 池化的三种不变性</h2>
+<p>池化之所以能提高泛化能力，关键在于它对输入的小幅扰动不敏感。课件用三组实验分别演示了平移、旋转、尺度三种不变性。</p>
+<h3>（1）平移不变性</h3>
+<p>上下两幅都是 16 × 16 的图片，里面都有一个数字 1，区别只是上面的 1 偏左一点、下面的偏右一点。经过大小为 2 × 2、步长为 2 的最大池化之后，得到的 <strong>8 × 8 特征矩阵是相同的</strong>：主要特征被捕获到了，问题的规模从 16 × 16 降到 8 × 8，同时还具有了平移不变性。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0029.webp" alt="图 13　池化层的平移不变性" loading="lazy" decoding="async"></a>
+  <figcaption>图 13　池化层的平移不变性：16 × 16 的图片中数字 1 偏左或偏右，经过 2 × 2、步长 2 的最大池化后都得到相同的 8 × 8 特征矩阵（原课件第 29 张）</figcaption>
+</figure>
+<p>课件还写了一段代码来验证这件事：定义两幅 8 × 6 的灰度图 a 和 b，其中 b 是 a 向右平移一格得到的；创建一个池化核大小为 2 的最大池化层，把 a、b 送进去，两幅图得到的输出形状都是 4 × 3，而且可视化结果完全一样。这从数值上确认了「平移一格不影响池化后的特征」。</p>
+<h3>（2）旋转不变性</h3>
+<p>以汉字「一」的识别为例：上下两幅图中，「一」相对水平方向有一定的倾斜角，相当于做了一次旋转；但经过两次 2 × 2、步长为 2 的池化操作后，得到的特征矩阵仍然是相同的。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0034.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0034.webp" alt="图 14　池化层的旋转不变性" loading="lazy" decoding="async"></a>
+  <figcaption>图 14　池化层的旋转不变性：倾斜的汉字「一」经过两次 2 × 2、步长 2 的最大池化（16 × 16 → 8 × 8 → 4 × 4）后，特征矩阵相同（原课件第 34 张）</figcaption>
+</figure>
+<p>课件同样给了验证：定义两幅 4 × 4 的灰度图 a 和 b，b 是 a 顺时针旋转 45 度得到的；经过最大池化层后，outA 与 outB 的结果图一样，而且尺寸都变成了 2 × 2。</p>
+<h3>（3）尺度不变性</h3>
+<p>再看数字 0 的识别：上下两幅图的区别在于 0 的<strong>尺度</strong>不一样（一大一小）。经过两次最大池化之后，得到的特征矩阵同样是相同的。课件里的验证用的是两幅 8 × 8 的灰度图，其中 b 的白色圈是 a 的白色圈缩小后形成的；池化之后 outA 与 outB 的特征图变得一样，尺寸都变成 4 × 4。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0037.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0037.webp" alt="图 15　池化层的尺度不变性" loading="lazy" decoding="async"></a>
+  <figcaption>图 15　池化层的尺度不变性：数字 0 的尺度不同，经过两次最大池化后得到相同的特征矩阵（16 × 16 → 8 × 8 → 4 × 4）（原课件第 37 张）</figcaption>
+</figure>
+<p>三组实验讲的是同一件事：<strong>池化保留的是「某个区域内有没有强响应、有多强」，而不关心这个响应具体落在区域内的哪个位置、朝向如何、大小如何</strong>。这正是它能同时带来平移、旋转、尺度三种不变性的原因，也是「特征选择、降低特征数量」这句定义的实际含义。</p>
+<p>当然，这种不变性是有限度的：池化核只有 2 × 2 时，位置的一点点差别是看不出来的；但如果物体移出了整个池化窗口，或者变化幅度远超池化核的覆盖范围，特征还是会变。所以课件说的是「一定程度上的不变性」。</p>
+
+<h2>8. 全连接层：把特征整合成判断</h2>
+<p><strong>全连接层的作用主要是将网络提取到的特征整合到一起</strong>。它的每个节点都与上一层所有的节点相连，所以全连接的参数会特别多——这也是 6.1 节开头那个「参数爆炸」问题在卷积神经网络里的残留部分。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0040.webp" alt="图 16　全连接层与卷积的关系" loading="lazy" decoding="async"></a>
+  <figcaption>图 16　全连接层与卷积的关系：全连接实际上和卷积操作有点类似，只是卷积核的大小与上一层输出的特征图大小相同——上一层输出 5 × 5 的特征图，全连接层的卷积核就是 5 × 5，卷积之后得到一个值（原课件第 40 张）</figcaption>
+</figure>
+<p>课件给了一个很好的对照：<strong>全连接实际上和卷积操作有点类似</strong>，只是全连接时「卷积核」的大小与上一层输出的特征图大小相同——假如上一层的输出特征图是 5 × 5，那么在全连接层中卷积核的大小就是 5 × 5，这样一次卷积就把整张特征图压成了一个值。换句话说，全连接层可以看作一种「卷积核覆盖整个输入」的特例。</p>
+<p>在卷积神经网络中，大部分网络的结构有<strong>两层以上的全连接层</strong>，这是为了更好地拟合非线性数据。它们的分工很清楚：<strong>全连接层之前的网络层主要负责提取特征，全连接层负责分类。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0041.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0041.webp" alt="图 17　全连接层负责分类" loading="lazy" decoding="async"></a>
+  <figcaption>图 17　全连接层的分工：之前的层提取特征，全连接层把特征聚合起来做分类——要判断一幅图像是不是猫，走到全连接层时已经拿到了猫头、猫尾、猫身等特征，聚合之后就能判断这是猫（原课件第 41 张）</figcaption>
+</figure>
+<p>把「整合特征」具体化，就是课件里那只猫：红色的神经元表示对应的特征被找到，经过全连接层把这些特征组合到一起，发现最符合这些特征的是猫，网络就预测当前的输入图片是猫。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0042.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0042.webp" alt="图 18　特征聚合得到判断" loading="lazy" decoding="async"></a>
+  <figcaption>图 18　特征聚合：红色神经元表示对应的特征被找到，全连接层把它们组合起来，最符合的类别是猫（原课件第 42 张）</figcaption>
+</figure>
+<p>再往前一层看，答案更清楚：要得到「猫头」这个特征，就得先找到猫眼、耳朵、鼻子、嘴巴等子特征；而这些子特征（例如猫眼）正是通过前面的<strong>卷积层、池化层</strong>得来的。于是整个网络形成了一个层次结构——<strong>浅层学到边、角、纹理一类的低级特征，中间层把它们组合成眼睛、耳朵一类的部件，深层再组合成猫头甚至整只猫</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0044.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0044.webp" alt="图 19　从子特征到部件" loading="lazy" decoding="async"></a>
+  <figcaption>图 19　子特征与部件的关系：判断能否组成「猫头」，要看猫眼、耳朵、鼻子、嘴巴等子特征是否齐全；这些子特征由前面的卷积层与池化层提供（原课件第 44 张）</figcaption>
+</figure>
+
+<h2>9. 整体的堆叠方式</h2>
+<p>最后把三种层放回整体。一个<strong>卷积块</strong>是连续 M 个卷积层和 b 个汇聚层（M 通常设置为 2 ∼ 5，b 为 0 或 1）；一个卷积网络中可以堆叠 N 个连续的卷积块，再接着 K 个全连接层（N 的取值区间比较大，比如 1 ∼ 100 或者更大；K 一般为 0 ∼ 2）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-2/p0045.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-2/p0045.webp" alt="图 20　卷积网络的堆叠方式" loading="lazy" decoding="async"></a>
+  <figcaption>图 20　卷积网络由卷积层、汇聚层、全连接层交叉堆叠而成：卷积块（卷积 + ReLU + 汇聚层）× N → 全连接层 → Softmax（原课件第 45 张）</figcaption>
+</figure>
+<p>课件还给出了这个结构近些年的三个趋势，它们解释了后面 6.4 节那些经典网络为什么长成那样：</p>
+<ul>
+  <li>趋向于使用<strong>更小的卷积核</strong>（如 1 × 1、3 × 3）以及<strong>更深</strong>的结构（超过 50 层）；</li>
+  <li>由于卷积操作本身越来越灵活（比如可以设置不同步长），<strong>汇聚层的作用越来越小</strong>，因此逐渐趋向于<strong>全卷积网络</strong>——连全连接层也不再需要。</li>
+</ul>
+
+<h2>本节小结</h2>
+<ul>
+  <li>卷积神经网络用卷积代替全连接，一般由<strong>卷积层、汇聚层（池化层/降采样层）和全连接层</strong>构成，整体流程是「卷积 → 降采样 → 全连接 → Softmax 输出」，其中前两种层带来局部连接与权重共享。</li>
+  <li>卷积层的三组张量是输入 X ∈ R<sup>M×N×D</sup>、输出 Y ∈ R<sup>M′×N′×P</sup>、卷积核 W ∈ R<sup>U×V×P×D</sup>；映射关系为 Y<sub>p</sub> = f(Σ<sub>d</sub> W<sub>p,d</sub> ⊗ X<sub>d</sub> + b<sub>p</sub>)。<strong>输出通道数由卷积核个数决定</strong>，与输入通道数无关。</li>
+  <li>单个卷积核的计算示例：输入 8 × 8 × 3、卷积核 3 × 3 × 3，参数个数 (3 × 3 × 3 + 1) × 1 = 28，输出只有一个通道；多个卷积核的例子：零填充后的 7 × 7 × 3 输入、两个 3 × 3 × 3 卷积核、步长 2，输出 3 × 3 × 2。</li>
+  <li>卷积操作不是矩阵相乘，而是把卷积核放到输入上「对应位置相乘再相加」然后滑动；<strong>卷积核的内容决定它提取什么特征</strong>——课件用一个专门设计的卷积核从灰度图中提取出了垂直边缘。</li>
+  <li>汇聚层做特征选择、降低特征数量，引入它有两个原因：减少运算量，以及获得不变性。最大池化取池化核覆盖范围内的最大值；池化核与步长都取 2 时，输出尺寸减半。</li>
+  <li>池化的三种不变性都有实验支撑：平移（数字 1 偏左/偏右，16 × 16 → 8 × 8 特征矩阵相同）、旋转（倾斜的「一」，两次池化后特征相同）、尺度（大小不同的 0，两次池化后特征相同）。它保留的是「区域内有没有强响应」，而不是响应的精确位置。</li>
+  <li>全连接层把特征整合到一起做分类，参数很多；它可以看作卷积核大小等于输入特征图大小的卷积。网络是层次化的：浅层学低级特征，中间层组合成部件，深层组合成物体。</li>
+  <li>堆叠方式是「N 个卷积块 + K 个全连接层」，卷积块为 M 个卷积层加 b 个汇聚层（M 取 2 ∼ 5，b 取 0 或 1）；趋势是小卷积核、更深的结构、以及汇聚层逐渐弱化的全卷积网络。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-1.html">‹ 6.1 卷积</a>
+      <a class="next" href="6-3.html">6.3 其他卷积方式 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2 计算机视觉发展史 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 1 章 绪论 1.2 计算机视觉发展史：以「1-绪论.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html" aria-current="page"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><span class="todo">整理中</span></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 1 章 绪论</p>
+      <h1>1.2 计算机视觉发展史</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节按时间线梳理计算机视觉是从哪儿长出来的。有意思的是，它最早的源头并不在计算机，而在生物学——眼睛怎么进化出来、大脑怎么处理视觉信号，是这门学科最早的问题意识。沿着这条线往下走，才轮到 20 世纪 60 年代机器视觉的起步、70～80 年代 David Marr 建立的理论框架、90 年代的「转向」，以及 21 世纪初传统方法的成熟与 2010 年之后深度学习的爆发。</p>
+
+<h2>1. 源头：生物视觉与成像原理</h2>
+<p>视觉不是人类的专利。地球上最早的眼睛出现在<strong>寒武纪生命大爆发</strong>时期——正是「看得见」这件事，让生物第一次能够主动感知环境、捕食与避险，从而引发了物种的大爆发。视觉对于生命的意义，海伦·凯勒在《假如给我三天光明》里的这段话讲得最透：</p>
+<p>「诸位的眼睛，可以观赏你们喜爱的任何一幕戏。而我不知道，到底会有多少人在观看一幕戏、一场电影或任何一个场面时，意识到让你们可以享受到的色彩、美景与动感的视觉是个奇迹，并对此抱有感激之情呢？」</p>
+<p>——《假如给我三天光明》，[美国] 海伦·凯勒</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0011.webp" alt="图 1　寒武纪生命大爆发与生物视觉的产生" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　生物视觉的产生——寒武纪生命大爆发；课件同时引用了海伦·凯勒《假如给我三天光明》中关于视觉的一段话（原课件第 11 张）</figcaption>
+</figure>
+<p>人类对「看」的原理的追问，则要等到成像规律被搞清楚。达·芬奇研究过<strong>小孔成像原理</strong>，这为后来照相机的诞生提供了基础——有了把三维场景投影到二维平面上的装置，人类才第一次把「看到的景象」固定下来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0012.webp" alt="图 2　达·芬奇与小孔成像原理" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　人类史上第一台照相机与达·芬奇研究过的小孔成像原理（原课件第 12 张）</figcaption>
+</figure>
+<p>真正把视觉从「光学问题」推进到「信息处理问题」的，是 1959 年 <strong>Hubel 和 Wiesel</strong> 的实验：他们<strong>首次从生物学角度研究视觉产生的本质</strong>，发现视觉皮层中的神经元并不是对整幅画面作响应，而是各自负责视野中的一小块区域。这块区域就叫<strong>感受野</strong>（receptive field）——感受器受刺激兴奋时，通过感受器官中的向心神经元将神经冲动（各种感觉信息）传到上位中枢，一个神经元所反应（支配）的刺激区域。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0014.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0014.webp" alt="图 3　Hubel 和 Wiesel 的实验示意图（1959 年）" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　Hubel 和 Wiesel 的实验示意图（1959 年）：视觉皮层神经元只对视野中特定区域的刺激作响应（原课件第 14 张）</figcaption>
+</figure>
+<p>「感受野」这个概念的分量，要到本课程讲卷积神经网络时才会完全显现——卷积核在图像上滑动、每次只看一小块，本质上就是在模拟感受野的工作方式。</p>
+
+<h2>2. 20 世纪 60 年代：机器视觉的起步</h2>
+<p>让机器「看」的第一次认真尝试出现在 1963 年，通常被认为是机器视觉领域的<strong>第一篇博士论文</strong>（Written by Roberts in 1963）。当时的研究者抱有一种非常乐观的信念：</p>
+<p>「人们相信只要提取出物体形状并加以空间关系的描述，那么就可以像「搭积木」般拼出任何复杂的三维场景。」</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0015.webp" alt="图 4　Roberts 1963 年的博士论文" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　机器视觉领域的第一篇博士论文（Roberts，1963）：从「积木世界」出发重建三维结构（原课件第 15 张）</figcaption>
+</figure>
+<p>这种乐观在三年后达到了顶点。1966 年，<strong>麻省理工学院（MIT）</strong>发起了一个夏季项目（Summer Vision Project，属于 Project MAC 的人工智能组，Seymour Papert 主持，1966 年 7 月 7 日的 Vision Memo No. 100），目标是搭建一个机器视觉系统，完成<strong>模式识别</strong>（pattern recognition）等工作。与会人员「雄心勃勃」地希望<strong>在一个暑假的时间里彻底解决计算机视觉问题</strong>。</p>
+<p>结果众所周知：这个活动没能达到预期的目的。但它的意义并不在于成败——随后几十年里，人们对于计算机视觉的热情持续高涨，其影响范围也蔓延到了全世界。这个「一个暑假解决视觉」的失败，后来几乎成了这门学科最著名的一个注脚：<strong>看，比想象中难得多。</strong></p>
+
+<h2>3. 20 世纪 70～80 年代：Marr 的计算理论</h2>
+<p>把计算机视觉从零散尝试变成一门有理论框架的学科，是大卫·马尔（David Marr）的贡献。他在经典著作《Vision》一书中提出，计算机视觉研究应该分成<strong>三个层次</strong>：</p>
+<ul>
+  <li><strong>计算理论层</strong>：要解决什么问题？为什么这个问题可以用计算的方式解决？</li>
+  <li><strong>表达与算法层</strong>：用什么表示信息？用什么算法来实现这个计算？</li>
+  <li><strong>硬件实现层</strong>：这套算法在物理上如何实现？</li>
+</ul>
+<p>这三个层次构成了计算机视觉研究的基本框架。其中的洞见在于：<strong>先问「要算什么」，再问「怎么算」</strong>——把问题的定义和实现手段分开，才不会一上来就陷进具体的算法细节。</p>
+<p>这本书还引起了人们对计算神经科学的兴趣，引领了计算神经科学的复兴。为了纪念大卫·马尔在视觉计算理论上的开创性贡献，<strong>计算机视觉与图像科学领域的最高荣誉被命名为马尔奖</strong>（Marr Prize）。</p>
+
+<h2>4. 20 世纪 90 年代：转向图像分割</h2>
+<p>进入 90 年代，人们逐渐认识到计算机视觉是一个非常难的问题，以往的尝试似乎都过于「复杂」。于是有的学者开始「转向」另一个看上去更简单点儿的方向：<strong>图像分割</strong>（Image Segmentation）。后者的目标在于运用一些图像处理方法将物体分离出来，<strong>以此作为图像识别的第一步</strong>。</p>
+<p>这个转向的思路值得体会：与其一步到位地理解整个场景，不如先做一件相对可控的事——把画面切成一块块有意义的区域。这一步是后面所有识别工作的地基。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0018.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0018.webp" alt="图 5　Shi 与 Malik 的 Normalized Cuts 图像分割工作" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　90 年代图像分割的代表性工作：Shi 与 Malik 的 Normalized Cuts——把图像分割看作图划分问题，用归一化割准则同时度量类间差异与类内相似（原课件第 18 张）</figcaption>
+</figure>
+
+<h2>5. 21 世纪初：手工特征的时代</h2>
+<p>21 世纪初，计算机视觉迎来了一批至今仍有影响的方法，它们共同的特点是：<strong>由人设计特征，再用相对简单的分类器去判别</strong>。</p>
+<ul>
+  <li><strong>Adaboost 实时人脸检测</strong>：Paul Viola 和 Michael Jones 等人利用 Adaboost 算法出色地完成了人脸的实时检测，并被富士公司应用到商用产品中；</li>
+  <li><strong>空间金字塔匹配 SPM</strong>（Spatial Pyramid Matching）：Lazebnik、Schmid 和 Ponce 等人提出，开创性地将图片进行分块和特征提取，以验证图片间的相似度；</li>
+  <li><strong>HoG 特征</strong>（Histogram of Gradient）：Dalal 和 Triggs 等人提出，用于人物识别；</li>
+  <li><strong>可变形部件模型 DPM</strong>（Deformable Parts Model）：Felzenszwalb、McAllester 和 Ramanan 等人提出。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0019.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0019.webp" alt="图 6　HoG 特征示例（Dalal &amp; Triggs, 2005）" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　HoG 特征示例（Dalal &amp; Triggs, 2005）：把图像划分成格子、统计每格的梯度方向直方图作为特征（原课件第 19 张）</figcaption>
+</figure>
+
+<h2>6. 2010 年之后：深度学习大放异彩</h2>
+<p>分水岭是数据。ImageNet 数据集包含了<strong>两万两千种类别、一千四百余万张图片</strong>，这样的规模第一次让「用大数据训练深层网络」成为可能。</p>
+<p>在目标检测任务上，PASCAL VOC 的 mAP（mean Average Precision）曲线清楚地分成了两条：使用深度卷积网络之后，精度出现了台阶式的跃升。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0020.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0020.webp" alt="图 7　PASCAL VOC 目标检测 mAP 的发展（Before deep convnets / Using deep convnets）" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　PASCAL VOC 目标检测的平均精度均值（mAP）随年份的变化：曲线在使用深度卷积网络前后分成明显两段（原课件第 20 张）</figcaption>
+</figure>
+<p>在图像分类任务上，ImageNet 竞赛的 Top-5 错误率的下降更为直观。课件给出的这张图，把每一年的代表模型和成绩都标了出来：</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/1-2/p0021.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/1-2/p0021.webp" alt="图 8　ImageNet 分类 Top-5 错误率的逐年下降" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　ImageNet 分类错误率（Top-5）的逐年下降，横轴为年份与代表模型，图中另标出了人类水平（原课件第 21 张）</figcaption>
+</figure>
+<div class="hw-tbl">
+<table>
+  <caption>图 8 中标注的 ImageNet Top-5 分类错误率（数据来源：原课件第 21 张）</caption>
+  <thead>
+    <tr><th>年份</th><th>代表模型</th><th>Top-5 错误率</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2011</td><td>XRCE</td><td>26.0%</td></tr>
+    <tr><td>2012</td><td>AlexNet</td><td>16.4%</td></tr>
+    <tr><td>2013</td><td>ZF</td><td>11.7%</td></tr>
+    <tr><td>2014</td><td>VGG</td><td>7.3%</td></tr>
+    <tr><td>2014</td><td>GoogLeNet</td><td>6.7%</td></tr>
+    <tr><td>2015</td><td>ResNet</td><td>3.6%</td></tr>
+    <tr><td>2016</td><td>GoogLeNet-v4</td><td>3.1%</td></tr>
+    <tr><td>—</td><td>人类</td><td>5.0%</td></tr>
+  </tbody>
+</table>
+</div>
+<p>短短五年，错误率从 26.0% 降到 3.1%，并且<strong>越过了图中标注的 5.0% 的人类水平</strong>。与此同时，网络的层次也在迅速加深：</p>
+<table>
+  <caption>图 8 同期代表模型的结构规模（数据来源：原课件第 22 张）</caption>
+  <thead>
+    <tr><th>年份</th><th>模型</th><th>规模</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2011</td><td>手工特征流水线（Lin et al., CVPR 2011）</td><td>Dense grid descriptor（HOG、LBP）→ Coding → Pooling → Linear SVM</td></tr>
+    <tr><td>2012</td><td>AlexNet</td><td>8 层</td></tr>
+    <tr><td>2014</td><td>GoogLeNet</td><td>22 层</td></tr>
+    <tr><td>2014</td><td>VGG</td><td>19 层</td></tr>
+    <tr><td>2015</td><td>ResNet</td><td>152 层（含 34 层的残差结构）</td></tr>
+  </tbody>
+</table>
+<p>把这张表和上一张图对照着看，能看到一条清晰的分界线：2011 年的方法还是「人工设计描述子（HOG、LBP）＋编码＋池化＋线性分类器」的手工流水线；从 2012 年 AlexNet 起，特征本身就交给网络去学了。<strong>这正是本课程后半程要重点讲的卷积神经网络所完成的事。</strong></p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>视觉的源头在生物学：寒武纪生命大爆发中眼睛的出现，让生物第一次能主动感知环境；达·芬奇研究的小孔成像原理则解决了几何成像问题。</li>
+  <li>1959 年 Hubel 和 Wiesel 首次从生物学角度研究视觉产生的本质，提出<strong>感受野</strong>概念——一个神经元所反应（支配）的刺激区域。它是后来卷积神经网络的思想来源。</li>
+  <li>1963 年 Roberts 的博士论文通常被视为机器视觉领域的第一篇博士论文，「搭积木」式重建三维场景的信念代表了那个年代的乐观；1966 年 MIT 的夏季视觉项目试图用一个暑假彻底解决计算机视觉问题，虽未成功，却点燃了此后几十年的研究热情。</li>
+  <li>70～80 年代，大卫·马尔在《Vision》中提出计算机视觉的<strong>三个层次</strong>——计算理论层、表达与算法层、硬件实现层，构成这门学科的基本研究框架；该领域的最高荣誉也以他命名为马尔奖。</li>
+  <li>90 年代，研究者认识到问题太难，转向目标更可控的<strong>图像分割</strong>，把它作为图像识别的第一步；21 世纪初则进入了 Adaboost 人脸检测、SPM、HoG、DPM 等<strong>手工特征</strong>的时代。</li>
+  <li>2010 年之后，ImageNet（22000 类、1400 余万张图片）提供了数据基础，深度学习在目标检测（PASCAL VOC mAP）与图像分类（ImageNet Top-5 错误率从 2011 年的 26.0% 降到 2016 年的 3.1%，低于人类的 5.0%）两条战线上同时取得突破；网络规模也从 AlexNet 的 8 层一路加深到 ResNet 的 152 层。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="1-1.html">‹ 1.1 计算机视觉的概念</a>
+      <a class="next" href="1-3.html">1.3 常见研究方向 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

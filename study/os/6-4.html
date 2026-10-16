@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.4 进程调度 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章 6.4 进程调度：课件第 12–16 张 · 1 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html" aria-current="page"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 6 章 处理机调度</p>
+      <h1>6.4 进程调度</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">6.1 节把处理机调度分成宏观的作业调度和微观的进程调度两层，这一节专门讲后一层：当系统中有多个进程同时处于就绪状态时，处理机究竟交给谁、什么时候交、以什么方式交。内容分四步展开——先看清「调度＋分派」这个结构，再列进程调度要完成的三件事，然后回答「什么时候该重新调度」，最后讨论「能不能把正在运行的进程打断」。</p>
+
+<h2>1. 调度 / 分派结构</h2>
+<p>系统中处于就绪状态的进程往往不止一个，它们都盯着同一台处理机，都想占用中央处理器 CPU（Central Processing Unit）运行，这种竞争由<strong>进程调度程序</strong>来协调。从结构上看，进程调度的功能由<strong>调度</strong>和<strong>分派</strong>两部分组成：前者决定「谁排在前面」，后者负责「怎么交出去」。</p>
+<h3>（1）调度</h3>
+<p>依照确定的策略将一批就绪状态的进程排序；当有进程变成就绪时，将它插入到就绪队列，并按一定的策略排序。也就是说，调度负责维护就绪队列的次序，队列头部的那个进程，就是下一个最该运行的进程。</p>
+<h3>（2）分派</h3>
+<p>当调度时机来到时，移出就绪队列中第一个进程，建立它在处理机上的执行环境，使得它在处理机上执行。这一步才是真正把处理机交出去的动作：恢复被选中进程的处理机现场，让它接着上次的位置继续跑。</p>
+<h3>（3）调度 / 分派结构图</h3>
+<p>这张图把上面的分工画成了一条流水线。图的中央是<strong>调度程序</strong>（scheduler），它面对的是<strong>就绪队列</strong>（ready_q），队列上依次挂着各个就绪进程的进程控制块 PCB（Process Control Block，图中标为 pcb1、pcb2、pcb3、pcb4、pcb6，省略号「…」表示队列中还有同类节点）；调度程序按既定策略从队列中选出进程，交给<strong>分派程序</strong>（dispatcher），由分派程序完成处理机现场的切换，最终把 CPU 交给被选中的进程执行。整张图就是「就绪队列 → 调度程序 → 分派程序 → CPU」这条链，标题写作「调度/分派结构示意图」。</p>
+<p>图的外围还标出了驱动进程进出就绪队列的外部事件：挂起（susp）、唤醒（wakeup）、接收消息（receive）等。它们本身不直接分配处理机，而是通过改变进程的状态来改变就绪队列的内容——有新进程变成就绪，调度程序就会被再次触发。可见进程调度是一个持续发生的循环：进程进来、被排序、被选中、被分派，运行中又因各种事件离开或重新排队。</p>
+<figure class="fig">
+  <a href="../../assets/course-os/6-4/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/6-4/p0013.webp" alt="图 1　调度 / 分派结构：调度程序从就绪队列选出进程，分派程序完成处理机切换" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　调度 / 分派结构：调度程序（scheduler）从就绪队列（ready_q，队列上挂着 pcb1、pcb2、pcb3、pcb4、pcb6 等进程控制块）中选出进程，分派程序（dispatcher）完成处理机现场切换，把 CPU 交给被选中的进程；挂起、唤醒、接收消息等外部事件驱动进程进出就绪队列（原课件第 13 张）</figcaption>
+</figure>
+
+<h2>2. 进程调度的功能</h2>
+<p>把上面的结构拆开看，进程调度程序日常要完成三件事。</p>
+<h3>（1）记录进程的状态变化</h3>
+<p>进程会在运行态、就绪态、等待态之间来回迁移，调度程序必须如实记录每一次状态变化，才能随时知道「现在有哪些进程可以参与处理机的竞争」。记录状态是调度和分派的前提，也是第 4 章进程控制里阻塞、唤醒等原语能够生效的基础。</p>
+<h3>（2）决定调度策略</h3>
+<p>策略决定就绪队列按什么次序排列，因而直接决定了下一个被选中的是谁。课件给出两种基本选择：</p>
+<ul>
+  <li>① <strong>优先级调度</strong>：就绪队列按进程优先级高低排序；</li>
+  <li>② <strong>先来先服务</strong>：就绪队列按进程到来的先后次序排序。</li>
+</ul>
+<p>这两种策略的差别在于「插队」的依据——优先级调度关心进程有多重要、多紧迫，所以后来的高优先级进程可以排到前面；先来先服务只关心进程等了多久，先到先得，实现简单、对谁都一视同仁，却照顾不了紧急任务。先来先服务的思路与 6.3 节作业调度中的先来先服务调度算法一致，只是排队的对象从作业换成了进程；优先级调度则会在 6.5 节的进程优先数调度算法中具体展开。</p>
+<h3>（3）实施处理机的分配和回收</h3>
+<p>策略定下来之后总要有动作落地：把处理机分配给被选中的进程，并在进程让出处理机（阻塞、时间片用完、结束）时把它收回来，交给下一个进程。分配与回收是一对，只分配不回收，处理机就再也交不出去。</p>
+
+<h2>3. CPU 调度的时机</h2>
+<p>不是任何时候都能重新分配处理机，只有下面五种情况发生时，才会发生 CPU 调度：</p>
+<ol>
+  <li>当一个进程执行系统调用后，使得该进程从运行态切换成等待态时（等待、延时）；</li>
+  <li>当一个进程从运行态切换成就绪态时（时间片到）；</li>
+  <li>在可剥夺调度方式中，出现更高优先级的就绪进程时（新执行的进程、被唤醒的进程）；</li>
+  <li>当一个进程完成任务、正常中止时；</li>
+  <li>当一个进程异常出错时。</li>
+</ol>
+<p>这五种时机还可以再分一类：第 ①②④⑤ 种是<strong>非剥夺方式与剥夺方式共有的</strong>，它们的共同点是当前进程的状态发生了变化——转入等待、被换回就绪（时间片到）、正常结束或异常终止，处理机空出来了，自然要重新选一个进程；而第 ③ 种<strong>只有剥夺方式才有</strong>，因为它意味着当前进程的状态并没有变，处理机是被「抢」走的。能不能抢，正是下一小节要回答的问题。</p>
+
+<h2>4. 进程调度的方式</h2>
+<h3>（1）什么是调度方式</h3>
+<p>调度方式要回答的是这样一个问题：当一个进程正在处理机上执行时，若有某个更为「重要而紧迫」的进程需要运行，系统如何分配处理机。对这个问题的两种不同回答，就是非剥夺方式与剥夺方式。</p>
+<h3>（2）非剥夺方式</h3>
+<p>当「重要而紧迫」的进程来到时，正在执行的进程继续执行，直到该进程完成、或发生某事件而进入「完成」或「阻塞」状态时，才把处理机分配给那个「重要而紧迫」的进程。也就是说，处理机一旦交出就不再中途收回，非要等到当前进程自己走到一个停顿点为止，这种方式也叫非抢占方式。</p>
+<h3>（3）剥夺方式</h3>
+<p>当「重要而紧迫」的进程来到时，便暂停正在执行的进程，立即把处理机分配给优先级更高的进程，这种方式也叫抢占方式。上一小节说的第 ③ 种调度时机，就是为它准备的；而「暂停旧进程、保存现场、切到新进程」这套动作，仍然由分派程序完成。</p>
+<p>两种方式各有代价，这里补充说明它们的适用场合：非剥夺方式实现简单、切换次数少、系统开销小，但一个长进程可能长时间占着处理机，紧急任务只能干等，响应时间没有保证；剥夺方式响应及时，适合分时系统和对实时性有要求的场合，代价是切换更频繁，现场保护与恢复的开销更大，还要额外处理数据被中途打断带来的一致性问题。选哪一种，取决于系统更看重响应时间，还是更看重吞吐量与开销。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>进程调度协调的是多个就绪进程对处理机的竞争，它由两部分组成：<strong>调度</strong>按策略排序并维护就绪队列，<strong>分派</strong>在时机到来时移出队首进程、建立其执行环境并交给处理机；</li>
+  <li>进程调度的功能有三项：记录进程的状态变化、决定调度策略（优先级调度或先来先服务）、实施处理机的分配和回收；</li>
+  <li>会触发 CPU 调度的五种情况：进程执行系统调用后转入等待态、进程从运行态转入就绪态（时间片到）、可剥夺方式下出现更高优先级的就绪进程、进程正常中止、进程异常出错；其中「出现更高优先级的就绪进程」只有剥夺方式才有，其余四种为两种方式所共有；</li>
+  <li>调度方式分两种：非剥夺方式要等当前进程完成或阻塞才交出处理机，剥夺方式则在更「重要而紧迫」的进程到来时立即暂停当前进程、把处理机交给优先级更高的进程；</li>
+  <li>本节讲的是「按什么结构、在什么时机、以什么方式」调度，具体算法留到后面：6.5 节的进程优先数调度算法实现优先级调度，6.6 节的循环轮转调度算法处理时间片到之后的轮转。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-3.html">‹ 6.3 作业调度算法</a>
+      <a class="next" href="6-5.html">6.5 进程优先数调度算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

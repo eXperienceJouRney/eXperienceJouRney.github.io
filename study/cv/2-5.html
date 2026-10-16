@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.5 高斯滤波 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.5 高斯滤波：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html" aria-current="page"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.5 高斯滤波</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节末尾已经给出了高斯滤波的定义和 3×3 的模拟近似核，这一节补上它剩下的半张脸：两个可以调的参数——核的大小和标准差 σ。课件的讲法很像做实验，固定一个变量、换另一个变量，用并排的结果图说明它们各自把图像推向多模糊。理解了这两个旋钮，才谈得上在实际问题里调出一个合适的平滑力度。</p>
+
+<h2>1. 参数一：高斯核的大小</h2>
+<p>第一个参数是高斯滤波核的大小，也就是邻域取多大。课件的结论很干脆：<strong>σ 固定，核越大图像越模糊</strong>。这跟上节均值滤波的规律是同一条道理——核越大，参与加权的邻域越广，中心像素的取值被越多邻居摊平，相邻像素之间的差异被抹得越平，细节也就越站不住。</p>
+<p>课件用四组结果做对照：先是 σ = 5 时分别取 10×10 和 30×30 的核，这两组只放大了核，可以直接看出核变大带来的模糊；接着把核固定为 30×30，把 σ 换成 2 和 25，与 σ = 5 的那组形成一个 σ 从 2 到 25 的序列。前两组为「核」服务，后三组为下面要讲的「σ」服务。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-5/p0030.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-5/p0030.webp" alt="图 1　高斯滤波核大小与 σ 的四组对照结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　核大小与 σ 的对照实验：σ = 5 时 10×10 核与 30×30 核的结果，以及核固定为 30×30 时 σ = 5、σ = 2、σ = 25 的结果（原课件第 30 张）</figcaption>
+</figure>
+<p>值得一提的是，核大小的影响并不只是「模糊多少」。核越大，一次运算要访问的像素越多、计算量越大，所以实际使用时核的大小要连同计算代价一起权衡；课件把核开到 30×30 这个量级，是为了把参数的影响放大到肉眼可见。</p>
+
+<h2>2. 参数二：标准差 σ</h2>
+<p>第二个参数是高斯分布的标准差 σ，它决定权重的分布形状，也就是「邻居」这个概念被拉得多宽。课件把核大小固定为 30×30，比较了 σ = 1、4、10 三种取值：σ 越小，权重越集中在中心附近，钟形曲线又高又窄，邻域边缘的像素几乎拿不到权重，结果也就越接近原图；σ 越大，曲线越平缓，权重被摊到更大的范围里，远处像素也能分到可观的权重，模糊程度随之上升，结果越来越接近邻域的简单平均。</p>
+<p>这一点正好接上上一节讲噪声时用到的 σ：高斯噪声用均值 μ 和方差 σ² 描述它有多「散」，而滤波核里的 σ 控制的是我们愿意把多大范围内的像素当成邻居。名字相同，都在描述「分布的宽度」，但一个是噪声的性质，一个是我们主动选定的参数。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-5/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-5/p0031.webp" alt="图 2　核固定 30×30 时 σ = 1、4、10 的三组结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　核大小固定为 30×30 时，标准差 σ = 1、4、10 三组结果的对比（原课件第 31 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>高斯滤波的两个可调参数是核的大小和标准差 σ，它们共同决定平滑力度；核小、σ 小则接近原图，核大、σ 大则模糊明显。</li>
+  <li>σ 固定时核越大图像越模糊：邻域越广，中心像素越是被众多邻居摊平，细节丢得越多（与均值滤波「窗口越大越模糊」同理）。</li>
+  <li>核固定（如 30×30）时，σ 越大权重分布越平缓、模糊越强，σ 越小权重越集中在中心、结果越接近原图。</li>
+  <li>课件的对照是控制变量的：σ = 5 用 10×10 与 30×30 比核大小；30×30 用 σ = 2、5、25 和 σ = 1、4、10 比 σ 的大小。</li>
+  <li>权重按距离衰减，是高斯滤波与均值滤波的根本差别——前者更看重中心像素附近的邻居（见 2.4 节的高斯核）。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-4.html">‹ 2.4 平滑滤波——均值滤波与中值滤波</a>
+      <a class="next" href="2-6.html">2.6 互相关与卷积 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

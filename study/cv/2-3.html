@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.3 图像滤波与卷积的动机——图像噪声 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.3 图像滤波与卷积的动机——图像噪声：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html" aria-current="page"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.3 图像滤波与卷积的动机——图像噪声</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前两节把图像看作离散的二维函数，从这一节起要开始处理它，而工具就是滤波与卷积。课件没有一上来就写卷积公式，而是先讲动机：滤波能做平滑、锐化、边缘检测、模板匹配这些事，但它们共同的对手是噪声。于是这一节围绕噪声展开——噪声从哪来、有哪几种、为什么用高斯分布刻画它，以及噪声强度变化时图像会怎样。</p>
+
+<h2>1. 滤波与卷积能做什么</h2>
+<p>先看动机的正面。滤波与卷积是图像处理里最基础的一类运算，课件把它能解决的问题归纳为三件事：<strong>平滑／锐化图像</strong>、<strong>边缘检测</strong>和<strong>模板匹配</strong>。</p>
+<p>三者的目标差别很大：平滑是压掉图像中细微的起伏，让画面更干净；锐化正相反，是把这些起伏放大，让轮廓和纹理更清楚；边缘检测关心的是灰度发生剧烈变化的位置，输出的是边界本身；模板匹配则拿一小块图案到大图里去搜索它出现的位置。尽管目标各异，它们背后的手段是同一个——用一个小模板在图像上逐位置滑动，对每个位置的邻域做加权求和，再把结果写回输出图像。本章后面几节要展开的均值滤波、中值滤波、高斯滤波、互相关与卷积，都是这个手段的具体形态。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0011.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0011.webp" alt="图 1　滤波与卷积的典型用途：平滑／锐化图像、边缘检测、模板匹配" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　滤波与卷积的三个典型用途：平滑／锐化图像、边缘检测、模板匹配（原课件第 11 张）</figcaption>
+</figure>
+
+<h2>2. 降噪：滤波最直接的动机</h2>
+<p>理想情况下，像素的幅值只反映场景本身，但实际过程没有这么干净。在图像的<strong>产生、传输和复制</strong>过程中，常常会因为多方面原因被<strong>噪声</strong>干扰，图像质量因此下降，这就需要对图像做一定的处理，以减小这些缺陷带来的影响。这就是滤波最直接的动机：<strong>降噪</strong>。</p>
+<p>噪声长什么样？它在图像上常表现为引起较强视觉效果的<strong>孤立像素点或者像素块</strong>——周围一片正常，偏偏它跳出来，眼睛很难忽略。落到数字图像上，噪声表现为或大或小的<strong>极值</strong>，这些极值通过加减作用在图像像素的真实灰度值上，于是造成亮、暗点的干扰。这里已经埋下了高斯噪声模型的雏形：噪声不是替换像素值，而是叠加到真实值上。</p>
+<p>噪声的危害也不只是「不好看」。它降低了图像的视觉质量，还会影响<strong>图像复原、分割、特征提取、图像识别</strong>等后继工作的进行——这些任务全都建立在像素的取值之上，输入被污染，输出自然跟着偏。也正因为影响是向下游传播的，降噪通常被安排在整个处理流程的前端。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0012.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0012.webp" alt="图 2　噪声在图像上表现为孤立的亮、暗像素点或像素块" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　噪声在图像上表现为引起较强视觉效果的孤立像素点或像素块，它由极值叠加到真实灰度值上造成（原课件第 12 张）</figcaption>
+</figure>
+
+<h2>3. 常见的噪声类型</h2>
+<p>课件按噪声取值的形态，把常见噪声分成三类：</p>
+<pre><code>椒盐噪声    黑白像素的随机出现
+脉冲噪声    白色像素的随机出现
+高斯噪声    服从高斯分布的噪声
+</code></pre>
+<p>三者的区别可以顺着「取值落在哪里」来理解。<strong>椒盐噪声</strong>在图像上表现为黑白像素的随机出现，即最亮与最暗两种极值同时零星地出现，像撒上了椒盐；<strong>脉冲噪声</strong>只表现为白色像素的随机出现，是单侧的极值干扰；而<strong>高斯噪声</strong>不产生极值，它服从高斯分布，取值围绕真实灰度铺开，扰动的幅度有大有小，但出现过大的偏差的概率很小。</p>
+<p>这个分类直接决定了后面去噪手段的选择：取值越极端、越偏离正常范围的噪声，越容易通过与邻域比较、排序的方式识别并去掉；取值越接近图像自身起伏的噪声，就越难与真实细节区分开，只能靠假设它的统计规律来做平滑。所以看清噪声属于哪一类，是选滤波器的第一步。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0013.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0013.webp" alt="图 3　噪声类型：原图、椒盐噪声、脉冲噪声与高斯噪声" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　噪声类型对比：Original（原图）、Salt and pepper noise（椒盐噪声）、Impulse noise（脉冲噪声）与 Gaussian noise（高斯噪声）（原课件第 13 张）</figcaption>
+</figure>
+
+<h2>4. 高斯分布与高斯噪声模型</h2>
+<p>三类噪声里，高斯噪声被讨论得最多，因为它有成熟的数学模型。它建立在<strong>高斯分布</strong>（Gaussian distribution）之上，也叫<strong>正态分布</strong>（normal distribution），通常记作 𝑋~𝑁(𝜇, 𝜎²)：其中 𝜇 是正态分布的<strong>均值</strong>，𝜎² 是正态分布的<strong>方差</strong>；当 𝜇 = 0、𝜎² = 1 时，这个分布被称作<strong>标准正态分布</strong>。</p>
+<p>正态分布的概率密度函数显示为典型的<strong>钟形曲线</strong>，而两个参数各管一件事：𝜇 描述分布的中心位置，也就是曲线对称轴所在的位置；𝜎² 描述随机变量相对于均值的<strong>偏离程度</strong>。换句话说，𝜇 决定噪声「围绕哪个值波动」，𝜎² 决定噪声「波动得有多厉害」。这一分工后面还会反复用到——图像处理里最关心的往往是 𝜎²，因为它就是噪声强弱的度量。</p>
+<p>把噪声写进图像的模型，就是课件第 15 张给出的那条式子：观测到的图像等于理想图像叠加上一个噪声项。课件把这个噪声项取成服从高斯分布的形式，并且说明它是 <strong>i.i.d.</strong>（independent and identically distributed，独立同分布）的<strong>白噪声</strong>——不同像素上的噪声取值互不影响，而且都来自同一个分布。写成公式是：</p>
+<pre><code>f(x, y) = F(x, y) + m(x, y)
+
+F(x, y)  理想图像
+m(x, y)  噪声项，m(x, y) ~ N(μ, σ²)
+</code></pre>
+<p>这条式子值得多看一眼。它是一个<strong>加性</strong>模型：噪声被直接加到真实灰度值上，而不是替换或乘上去，与第 12 张所说的「极值通过加减作用于图像像素的真实灰度值上」正好对应。同时，正因为假设了噪声服从已知分布，才可能有针对性地设计滤波器——后面讲高斯滤波时，用到的正是这条假设。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0015.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0015.webp" alt="图 4　加性高斯白噪声模型" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　高斯噪声模型：理想图像 Ideal Image 与服从高斯分布的 i.i.d. 白噪声（Noise process）相叠加，得到观测图像 f(x, y)（原课件第 15 张）</figcaption>
+</figure>
+<p>模型里只剩噪声强度一个变量，所以课件用了两页图专门做同一组对比。一页看噪声本身：在 𝜎 = 1 与 𝜎 = 16 两种强度下，噪声图各自是什么样子；另一页看后果：把这两种噪声加到原始图像上，结果又有何不同。按第 14 张的解释，𝜎² 描述的是偏离均值的程度，因此 𝜎 越大，扰动的幅度分布得越开，图像被破坏得也就越明显。这组对比还提示了一件事：评价一个去噪方法的效果，不能脱离噪声强度来谈。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0016.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0016.webp" alt="图 5　高斯噪声图：σ = 1 与 σ = 16 的对比" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　高斯噪声图：𝜎 = 1 与 𝜎 = 16 两种噪声强度的对比（原课件第 16 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-3/p0017.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-3/p0017.webp" alt="图 6　把 σ = 1 与 σ = 16 的高斯噪声加到原始图像上" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　把 𝜎 = 1 与 𝜎 = 16 的高斯噪声加到原始图像上的对比（原课件第 17 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>滤波与卷积的三个典型用途是平滑／锐化图像、边缘检测与模板匹配，它们共用的手段是让一个小模板在图像上滑动，对每个位置的邻域做加权求和。</li>
+  <li>噪声来自图像的产生、传输和复制过程，在数字图像上表现为叠加到真实灰度值上的极值，形成孤立的亮、暗像素点或像素块；它降低视觉质量，并影响图像复原、分割、特征提取与图像识别等后继工作，因此降噪是滤波最直接的动机。</li>
+  <li>常见噪声分三类：椒盐噪声是黑白像素的随机出现，脉冲噪声是白色像素的随机出现，高斯噪声服从高斯分布。取值越极端越容易去掉，越接近真实起伏越难分离，这是选择滤波器的依据。</li>
+  <li>高斯分布也叫正态分布，记作 𝑋~𝑁(𝜇, 𝜎²)：𝜇 是均值、决定曲线的中心位置即对称轴，𝜎² 是方差、描述随机变量对均值的偏离程度；𝜇 = 0、𝜎² = 1 时称为标准正态分布。</li>
+  <li>高斯噪声用加性模型描述：f(x, y) = F(x, y) + m(x, y)，噪声项 m 是独立同分布的白噪声；𝜎 越大噪声越强，课件用「噪声图」与「加噪后的图像」两组 𝜎 = 1 与 𝜎 = 16 的对比展示了这一点，也为 2.4、2.5 节的各种平滑滤波提供了动机。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-2.html">‹ 2.2 图像的采样与量化</a>
+      <a class="next" href="2-4.html">2.4 平滑滤波——均值滤波与中值滤波 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

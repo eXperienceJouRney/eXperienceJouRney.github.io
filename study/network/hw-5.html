@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 5 章 作业 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 5 章作业（运输层）：IP 分组与 TCP 段首部字段分析、VLSM 子网划分、距离向量路由表更新，共 3 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../network.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · <a href="homework.html">作业</a> · 第 5 章 运输层</p>
+      <h1>第 5 章 作业 · 运输层</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>IP 分组与 TCP 段的首部字段分析</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>主机 H 通过快速以太网连接 Internet，IP 地址为 192.168.0.8，服务器 S 的 IP 地址为 211.68.71.80。H 与 S 使用 TCP 通信时，在 H 上捕获的其中 5 个 IP 分组如表 1 所示。</p>
+              <figure class="fig">
+                <a href="../../assets/homework/hw-5/fig1.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig1.png" width="1344" height="616" alt="表 1：5 个 IP 分组前 40B 的内容（十六进制）。每个编号占两行，第一行为 IP 数据报首部，第二行为 TCP 段首部" decoding="async"></a>
+                <figcaption>表 1　IP 分组的前 40B 内容（十六进制）</figcaption>
+              </figure>
+              <p class="hw-ask-label">回答下列问题：</p>
+              <ol class="hw-ask">
+                <li>表 1 中的 IP 分组中，哪几个是由 H 发送的？哪几个完成了 TCP 连接建立过程？哪几个在通过快速以太网传输时进行了填充？</li>
+                <li>根据表 1 中的 IP 分组，分析 S 已经收到应用层数据字节数是多少。</li>
+                <li>若表 1 中的某个 IP 分组在 S 发出时的前 40B 如表 2 所示，则该 IP 分组到达 H 时经过了多少个路由器？</li>
+              </ol>
+              <figure class="fig">
+                <a href="../../assets/homework/hw-5/fig2.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig2.png" width="1460" height="138" alt="表 2：来自 S 的分组前 40B 的内容（十六进制），共两行" decoding="async"></a>
+                <figcaption>表 2　来自 S 分组（前 40B，十六进制）</figcaption>
+              </figure>
+              <p>IP 分组头和 TCP 段头结构分别如图 1 和图 2 所示。</p>
+              <figure class="fig">
+                <a href="../../assets/homework/hw-5/fig3.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig3.png" width="1024" height="472" alt="图 1　IP 分组头结构：版本、首部长度、服务类型、总长度、标识、标志、片偏移、生存时间（TTL）、协议、首部检验和、源 IP 地址、目的 IP 地址各字段的位置" decoding="async"></a>
+                <figcaption>图 1　IP 分组头结构</figcaption>
+              </figure>
+              <figure class="fig">
+                <a href="../../assets/homework/hw-5/fig4.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig4.png" width="1320" height="542" alt="图 2　TCP 段头结构：源端口、目的端口、序号、确认号、数据偏移、保留、检验和、窗口、紧急指针、选项（长度可变）各字段的位置" decoding="async"></a>
+                <figcaption>图 2　TCP 段头结构</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）的第 1 问：表 1 中的 IP 分组中，哪几个是由 H 发送的？</h3>
+                <p>因为 IP 分组的首部固定部分有 20 字节，TCP 的段首部固定部分也是 20 字节，所以表 1 中每个编号的第一行为 IP 数据报首部，第二行为 TCP 段首部。</p>
+                <p>并且根据图 1 IP 分组头结构可知，下图中绿色背景部分为源 IP 地址。</p>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-5/fig5.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig5.png" width="1268" height="576" alt="表 1 中 5 个 IP 分组前 40 字节的内容（十六进制），其中绿色背景部分为源 IP 地址" decoding="async"></a>
+                  <figcaption>表 1 前 40B 内容（绿色背景为源 IP 地址）</figcaption>
+                </figure>
+                <p>编号 1、3、4 的分组源 IP 地址为 c0 a8 00 08，编号 2、5 的分组源 IP 地址为 d3 44 47 50。</p>
+                <p>主机 H 的 IP 地址为 192.168.0.8，转换成十六进制形式为 c0 a8 00 08，所以表 1 中的 IP 分组中，编号为 1、3、4 的分组是由 H 发送的。</p>
+
+                <h3>（1）的第 2 问：哪几个完成了 TCP 连接建立过程？</h3>
+                <p>从图 1 和图 2 可知，黄色背景部分的后 6 位为控制位，分别对应 URG、ACK、PSH、RST、SYN、FIN，如下图所示。</p>
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-5/fig6.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig6.png" width="524" height="327" alt="5 个 IP 分组中控制位（后 6 位）的取值：编号 1 到 5 分别对应 URG、ACK、PSH、RST、SYN、FIN 各位" decoding="async"></a>
+                  <figcaption>5 个 IP 分组的控制位（后 6 位）</figcaption>
+                </figure>
+                <div class="hw-calc">
+                  <p>编号为 1 的分组中，SYN=1、ACK=0、seq=84 6b 41 c5；</p>
+                  <p>编号为 2 的分组中，SYN=1、ACK=1、seq=e0 59 9f ef、ack=84 6b 41 c6；</p>
+                  <p>编号为 3 的分组中，SYN=0、ACK=1、seq=84 6b 41 c6、ack=e0 59 9f f0。</p>
+                </div>
+                <p>seq 为蓝色部分，ack 为紫色部分。</p>
+                <p>符合三报文握手建立连接过程中的状态，所以编号为 1、2、3 的分组完成了 TCP 连接建立过程。</p>
+
+                <h3>（1）的第 3 问：哪几个在通过快速以太网传输时进行了填充？</h3>
+                <p>根据图 1 可知，总长度字段为 IP 分组头的第 3-4 个字节。</p>
+                <div class="hw-calc">
+                  <p>编号为 1 的 IP 分组的总长度为 00 30，转换成十进制为 48；</p>
+                  <p>编号为 2 的 IP 分组的总长度为 00 30，转换成十进制为 48；</p>
+                  <p>编号为 3 的 IP 分组的总长度为 00 28，转换成十进制为 40；</p>
+                  <p>编号为 4 的 IP 分组的总长度为 00 38，转换成十进制为 56；</p>
+                  <p>编号为 5 的 IP 分组的总长度为 00 28，转换成十进制为 40。</p>
+                </div>
+                <p>由于以太网的帧要求数据最小长度为 46 B，编号为 3、5 的 IP 分组长度为 40，40 &lt; 46，所以填充。</p>
+
+                <h3>（2）根据表 1 中的 IP 分组，分析 S 已经收到的应用层数据字节数是多少？</h3>
+                <p>编号为 1、2、3 的 IP 分组是三报文握手建立连接的过程。编号为 4、5 的 IP 分组开始传输数据。</p>
+                <p>在编号为 4 的 IP 分组中，序号为 seq=84 6b 41 c6(H)；在编号为 5 的 IP 分组中，确认号为 ack=84 6b 41 d6(H)。</p>
+                <div class="hw-calc">
+                  <p>所以传输了 ack – seq = 84 6b 41 d6(H) - 84 6b 41 c6(H) = 10(H) = 16(D) 字节的数据。</p>
+                </div>
+
+                <h3>（3）若表 1 中的某个 IP 分组在 S 发出时的前 40 字节如表 2 所示，则该 IP 分组到达 H 时经过了多少个路由器？</h3>
+                <p>根据第一小题的第一问可知，编号为 1、3、4 的 IP 分组为 H 发送给 S 的，编号为 2、5 的 IP 分组为 S 发送给 H 的。</p>
+                <p>其中分组 5 的标识字段（红色部分）为 68 11(H)，与表 2 中收到的分组标识字段一致，所以来自 S 的分组为 5 号分组。</p>
+                <p>从 S 发出时 5 号分组的 TTL 字段值为 40(H)，H 接收到时 5 号分组的 TTL 字段值为 31(H)，因为分组每经过一个路由器，值就减 1，所以两者之差即为路由器个数。</p>
+                <div class="hw-calc">
+                  <p>40(H) - 31(H) = F(H) = 15(D)</p>
+                  <p>所以该 IP 分组到达 H 时经过了 15 个路由器。</p>
+                </div>
+                <p><strong>备注</strong>：十六进制的减法做的时候可能容易出错，也可以分别转成十进制之后再计算。</p>
+                <div class="hw-calc">
+                  <p>40(H) = 64(D)</p>
+                  <p>31(H) = 49(D)</p>
+                  <p>64 – 49 = 15</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>VLSM 子网划分</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>一企业内部网 IP 为 192.168.1.0/24，企业共 4 个部门，A 部门 20 台主机，B 部门 120 台主机，C 部门 30 台主机，D 部门 16 台主机，请问该如何划分？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <figure class="fig">
+                  <a href="../../assets/homework/hw-5/fig7.png" target="_blank" rel="noopener"><img src="../../assets/homework/hw-5/fig7.png" width="1266" height="540" alt="VLSM 划分结果汇总表：B 部门 120 台主机，所需子网 /25，网络地址 192.168.1.0，掩码 255.255.255.128，可用 IP 范围 192.168.1.1–192.168.1.126，广播地址 192.168.1.127；C 部门 30 台主机，/27，192.168.1.128，255.255.255.224，192.168.1.129–192.168.1.158，广播 192.168.1.159；A 部门 20 台主机，/27，192.168.1.160，255.255.255.224，192.168.1.161–192.168.1.190，广播 192.168.1.191；D 部门 16 台主机，/27，192.168.1.192，255.255.255.224，192.168.1.193–192.168.1.222，广播 192.168.1.223" decoding="async"></a>
+                  <figcaption>各子网划分结果汇总</figcaption>
+                </figure>
+
+                <h3>步骤 1：按主机数从大到小排序</h3>
+                <p>这是 VLSM（可变长子网掩码）划分的关键原则，避免地址浪费。</p>
+                <ul>
+                  <li>B 部门：120 台主机 → 最多</li>
+                  <li>C 部门：30 台</li>
+                  <li>A 部门：20 台</li>
+                  <li>D 部门：16 台</li>
+                </ul>
+
+                <h3>步骤 2：为每个部门计算所需子网大小</h3>
+                <p>主机数为 n，需要满足：</p>
+                <div class="hw-calc">
+                  <p>2<sup>h</sup> − 2 ≥ n</p>
+                </div>
+                <p>其中 h 是主机位数，-2 是去掉网络地址和广播地址。</p>
+
+                <p><strong>✅ B 部门（120 台）</strong></p>
+                <div class="hw-calc">
+                  <p>2<sup>7</sup> − 2 = 126 ≥ 120 → 需要 7 位主机位</p>
+                  <p>子网掩码：32 - 7 = /25</p>
+                  <p>网络块大小：128 个 IP（126 可用）</p>
+                  <p>分配：192.168.1.0/25</p>
+                  <p>范围：192.168.1.1 – 192.168.1.126</p>
+                  <p>广播：192.168.1.127</p>
+                </div>
+
+                <p><strong>✅ C 部门（30 台）</strong></p>
+                <div class="hw-calc">
+                  <p>2<sup>5</sup> − 2 = 30 → 刚好，需 5 位主机位</p>
+                  <p>子网掩码：32 - 5 = /27</p>
+                  <p>块大小：32 个 IP（30 可用）</p>
+                  <p>下一个可用地址是 192.168.1.128</p>
+                  <p>分配：192.168.1.128/27</p>
+                  <p>范围：192.168.1.129 – 192.168.1.158</p>
+                  <p>广播：192.168.1.159</p>
+                </div>
+
+                <p><strong>✅ A 部门（20 台）</strong></p>
+                <div class="hw-calc">
+                  <p>2<sup>5</sup> − 2 = 30 ≥ 20 → 也用 /27（/28 只有 14 台不够）</p>
+                  <p>块大小：32</p>
+                  <p>下一个起始地址：192.168.1.160</p>
+                  <p>分配：192.168.1.160/27</p>
+                  <p>范围：192.168.1.161 – 192.168.1.190</p>
+                  <p>广播：192.168.1.191</p>
+                </div>
+
+                <p><strong>✅ D 部门（16 台）</strong></p>
+                <div class="hw-calc">
+                  <p>2<sup>5</sup> − 2 = 30 ≥ 16，但我们可以尝试更小的：</p>
+                  <p>2<sup>4</sup> − 2 = 14 &lt; 16 ❌ → 不够！</p>
+                  <p>所以仍需 /27（30 台）才能满足 16 台</p>
+                  <p>分配：192.168.1.192/27</p>
+                  <p>范围：192.168.1.193 – 192.168.1.222</p>
+                  <p>广播：192.168.1.223</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>距离向量路由表的更新</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>表 3 为路由器 B 路由表，表 4 为收到来自路由器 C 的路由信息，试求更新路由器 B 的路由表信息，并加以说明。<wbr>（具体步骤不能省略）</p>
+              <div class="hw-tbl">
+                <table>
+                  <caption>表 3　路由器 B 的路由表</caption>
+                  <thead>
+                    <tr><th>目的网络</th><th>距离</th><th>下一跳</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>N1</td><td>7</td><td>A</td></tr>
+                    <tr><td>N2</td><td>2</td><td>C</td></tr>
+                    <tr><td>N6</td><td>8</td><td>E</td></tr>
+                    <tr><td>N8</td><td>4</td><td>F</td></tr>
+                    <tr><td>N9</td><td>4</td><td>F</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="hw-tbl">
+                <table>
+                  <caption>表 4　收到来自路由器 C 的路由信息</caption>
+                  <thead>
+                    <tr><th>目的网络</th><th>距离</th><th>下一跳</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>N2</td><td>4</td><td>G</td></tr>
+                    <tr><td>N3</td><td>8</td><td>G</td></tr>
+                    <tr><td>N6</td><td>4</td><td>G</td></tr>
+                    <tr><td>N8</td><td>3</td><td>E</td></tr>
+                    <tr><td>N9</td><td>5</td><td>F</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）修改表 4 从 C 发来的路由</h3>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr><th>目的网络</th><th>距离</th><th>下一跳</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>N2</td><td>5</td><td>C</td></tr>
+                      <tr><td>N3</td><td>9</td><td>C</td></tr>
+                      <tr><td>N6</td><td>5</td><td>C</td></tr>
+                      <tr><td>N8</td><td>4</td><td>C</td></tr>
+                      <tr><td>N9</td><td>6</td><td>C</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>（2）将收到的新路由与表 3 中 B 的原路由进行对比，更新 B 路由</h3>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr><th>目的网络</th><th>距离</th><th>下一跳</th><th>说明操作的理由</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>N1</td><td>7</td><td>A</td><td>无新路由信息，不改变</td></tr>
+                      <tr><td>N2</td><td>5</td><td>C</td><td>相同的下一跳，直接更新</td></tr>
+                      <tr><td>N3</td><td>9</td><td>C</td><td>新加入网络</td></tr>
+                      <tr><td>N6</td><td>5</td><td>C</td><td>不同的下一跳，距离更小，改变</td></tr>
+                      <tr><td>N8</td><td>4</td><td>F</td><td>不同的下一跳，距离相等，不改变</td></tr>
+                      <tr><td>N9</td><td>4</td><td>F</td><td>不同的下一跳，距离更大，不改变</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="hw-4.html">‹ 第 4 章 作业</a>
+      <a class="next" href="hw-6.html">第 6 章 作业 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

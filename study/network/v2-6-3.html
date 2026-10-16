@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.3 路由器上的分组排队规则 · 计算机通信与网络（第二版讲义） · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第二版讲义（PPT 课件）第 6 章 网络中的拥塞控制 6.3 路由器上的分组排队规则：以课件为大纲重写的教师版讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html" aria-current="page"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第二版讲义 · 第 6 章 网络中的拥塞控制</p>
+      <h1>6.3 路由器上的分组排队规则</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">分组在路由器上等待发送的这段时间，决定了拥塞是被悄悄加剧还是被及时抑制。本节先看路由器怎样转发分组、队列为什么会形成，再把排队规则分成两条路线：被动队列管理等队列满了才丢包，主动队列管理在拥塞刚露出苗头时就动手。</p>
+
+<h2>1. 路由器与分组排队</h2>
+<p>路由器工作在网络层，用于互连网络，是互联网中的关键设备。它的主要工作是<strong>转发分组</strong>：把从某个输入端口收到的分组，按照分组要去的目的地（即目的网络），从某个合适的输出端口转发给下一跳路由器。</p>
+<p>转发中有一个绕不开的环节：不同输入端口进来的分组可能都要从同一个输出端口发出去，而输出端口的发送速率有限，它们只能排队等待。队列按什么顺序发送、排满后丢弃谁、要不要在队列没满时就先丢一部分，这组规定就是路由器上的<strong>分组排队规则</strong>，也是 6.2 节所讲拥塞控制方法中落在路由器一侧的那一类措施。</p>
+
+<h2>2. 被动队列管理与主动队列管理</h2>
+<p>排队规则分两条路线。<strong>被动队列管理</strong>是等队列排满才丢包的一类，包括先进先出 FIFO（First In First Out）与公平排队（Fair Queuing）。<strong>主动队列管理 AQM（Active Queue Management）</strong>不等队列满就动手：它把「队列正在变长」当作拥塞的征兆，提前丢弃少量分组提醒发送方，包括 DECbit 算法、随机早期检测 RED（Random Early Detection）与显式拥塞通知 ECN（Explicit Congestion Notification）。</p>
+
+<h2>3. 先进先出与尾部丢弃</h2>
+<p>最简单也最常见的路由器队列采用<strong>先进先出 FIFO</strong> 处理规则：分组按到达先后排队，从队首依次发送。与它配套的是<strong>尾部丢弃策略（tail-drop policy）</strong>：当队列已满时，以后到达的所有分组（如果能够继续排队，这些分组都将排在队列的尾部）将都被丢弃。队列能容纳的分组数由<strong>最大队列长度</strong>决定。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0026.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0026.webp" alt="图 1　先进先出队列与尾部丢弃策略" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　最简情况下的路由器队列：分组按到达顺序排队、从队首发送，达到最大队列长度后，后面到达的分组一律被丢弃（原课件第 26 张）</figcaption>
+</figure>
+<p>代价不只是丢掉的那几个分组：队列满时被丢弃的往往是一连串分组，发送方收不到确认就会<strong>超时重传</strong>，而 TCP 判定超时后便进入拥塞控制的慢开始（慢启动）状态，把发送速率突然降到很小的数值（详见 6.4 节与第一版讲义 5.5 TCP的拥塞控制）。拥塞信号只在队列排满时才发出，发送方的反应又过于剧烈，链路传输率随之大起大落。</p>
+
+<h2>4. 全局同步：尾部丢弃的固有局限</h2>
+<p>尾部丢弃还有更麻烦的后果：丢包时不区分分组属于哪个 TCP 连接，只要队列满了，所有到达的分组都被丢弃。多个连接于是同时超时、同时开始慢开始，速率一起下降，这种现象称为<strong>全局同步（global synchronization）</strong>，它在队列长度上表现为周期性起伏：队列满时一起超时降速，分组离开队列后传输率又增大，队列再次变满又一起降速。链路一会儿空闲、一会儿拥塞，利用率被这种振荡拖了下来；只靠「满了就丢」，缺少的是提前一点、温和一点的调节手段。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0029.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0029.webp" alt="图 2　全局同步：队列长度随时间的周期性振荡" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　全局同步的形成过程：队列长度与时间的关系曲线，队列满时 TCP 重传定时器超时、重新开始慢开始，分组离开队列后传输率又增大（原课件第 29 张）</figcaption>
+</figure>
+
+<h2>5. 公平排队</h2>
+<p>被动队列管理的另一种做法是<strong>公平排队（Fair Queuing）</strong>：为每个数据流维护独立的虚拟队列，输出端口在各队列之间轮流取分组发送。这次该发谁，依据是<strong>虚拟时间戳（Virtual Finish Time）</strong>——为每个到达的分组计算完成时间戳 F = max(当前时间, 上一个分组的 F) + 分组长度/流权重，发送时优先选择时间戳最小的分组。公式里的「分组长度/流权重」决定各流的服务速率：权重大的流分到的带宽份额更大。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0031.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0031.webp" alt="图 3　公平排队：为每个数据流维护独立的虚拟队列" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　公平排队的基本做法：按照虚拟时间戳的大小从各数据流的虚拟队列中选取分组发送，使每个流都有机会使用输出端口（原课件第 31 张）</figcaption>
+</figure>
+<p>好处是每个流都有机会发送，防止带宽独占；代价是实现复杂、需要维护的状态信息多，流一多管理成本就上去了。它还有两点局限：<strong>无法区分流的重要性</strong>，所有流按权重公平分配，无法优先处理关键业务（如紧急控制消息）；<strong>计算复杂度高</strong>，每个分组都要计算时间戳，在高速链路中会成为性能瓶颈。</p>
+
+<h2>6. 主动队列管理</h2>
+<p>既然等队列排满才丢包总归太晚，1998 年提出了<strong>主动队列管理 AQM</strong>。它的「主动」在于：不等队列长度达到最大值、不得不丢弃后面到达的分组时才反应，而是在队列长度达到某个值得警惕的数值、拥塞有了某些征兆时，就主动丢弃到达的分组，把消息提前送给发送方。AQM 可以有不同实现方法，其中曾流行多年的就是随机早期检测 RED。</p>
+
+<h2>7. 随机早期检测 RED</h2>
+<p>RED 路由器在队列上维持两个参数：队列长度<strong>最小门限 THmin</strong> 与<strong>最大门限 THmax</strong>。RED 对每一个到达的分组都先计算<strong>平均队列长度 LAV</strong>，再与两个门限比较：小于最小门限时把分组放入队列排队；超过最大门限时把分组丢弃；介于两个门限之间时按某一概率 p 将它丢弃。换成丢弃概率来说，就是 LAV 小于 Thmin 时 p = 0，LAV 大于 Thmax 时 p = 1，位于两个门限之间时 p 在 0 与 1 之间。用平均队列长度而不是瞬时长度判断，是为了不被短暂的突发流量牵着走。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0035.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0035.webp" alt="图 4　RED 按平均队列长度划分的三个区域" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　RED 用最小门限 Thmin 与最大门限 Thmax 把队列状态分成三个区域：低于最小门限时排队，介于两个门限之间时以概率 p 丢弃，超过最大门限时一律丢弃（原课件第 35 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0036.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0036.webp" alt="图 5　RED 的丢弃概率随平均队列长度的变化" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　RED 丢弃概率 p 与平均队列长度 LAV 的关系：LAV 小于 Thmin 时 p = 0，LAV 大于 Thmax 时 p = 1，介于两个门限之间时 p 在 0 与 1 之间（原课件第 36 张）</figcaption>
+</figure>
+<p>RED 的局限也很清楚：<strong>参数敏感</strong>，阈值与概率需要人工调优；<strong>无响应流问题</strong>，对丢包不作反应的流不受抑制，恶意流尤其如此；<strong>性能波动</strong>，流量突发时效果不稳定。</p>
+
+<h2>8. DECbit：早期显式反馈机制</h2>
+<p>在丢包之外还有一条思路：把拥塞直接告诉发送方。<strong>DECbit 算法</strong>就是这样的早期显式反馈机制：路由器检测拥塞，判据是输出端口的平均队列长度达到或超过 1 个分组；一旦判定拥塞，就在数据包头部设置 1 比特的拥塞位，由接收端通过 ACK 回传，发送端再根据收到的拥塞比例调整自己的窗口。</p>
+<p>「早期」体现在阈值取 1 这个很小的数值上。在每个固定的计算周期结束时（比如，上一个数据包离开到下一个数据包离开的这段时间），路由器计算该周期的平均队列长度；当它达到或超过 1 时，说明数据包到达的速率开始持续超过路由器转发出去的速率，队列正在形成并可能增长，这就是拥塞开始的早期信号。阈值取 1 而不是等队列满了（比如达到 50）才报警，是给发送端一个提前的、温和的警告，让它在下游路由器还没被塞满、开始丢包之前就主动降速，避免更严重的拥塞和全局同步问题。DECbit 的优点是拥塞前提前通知、避免丢包，而且开销低；缺点是只支持特定协议（需要协议能识别这一位），并且阈值固定、适应性差。</p>
+
+<h2>9. 显式拥塞通知 ECN</h2>
+<p>沿着显式通知这条路再往前走，就是<strong>显式拥塞通知 ECN</strong>：路由器在出现拥塞时通知 TCP。当 TCP 段传递时，路由器使用 IP 首部中的 2 位记录拥塞；TCP 段到达后，接收方知道报文段是否在某个位置经历过拥塞，于是用下一个 ACK 通知发送方有拥塞发生，发送方做出响应，缩小自己的拥塞窗口。整个过程不必丢弃任何数据包，这正是 ECN 比尾部丢弃乃至 RED 更温和的地方。</p>
+<figure class="fig">
+  <a href="../../assets/course/v2-6-3/p0040.webp" target="_blank" rel="noopener"><img src="../../assets/course/v2-6-3/p0040.webp" alt="图 6　ECN 在 TCP 首部中占用的两位：CWR 与 ECE" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　ECN 在 TCP 头中占用 2 位：CWR（Congestion Window Reduced，拥塞窗口减少标志）与 ECE（Echo of Congestion Encountered，拥塞响应）（原课件第 40 张）</figcaption>
+</figure>
+<p>在 TCP 一侧，ECN 占用的 2 位分别是 CWR 与 ECE：CWR 表示发送方已经把拥塞窗口减小，ECE 由接收方用来把「经历过拥塞」回送给发送方。两处标记分工不同：路由器在 IP 首部标记，接收方用 TCP 首部的这两位把信息带回发送方。ECN 的特点可以概括为三条：零丢包通知，拥塞时不丢弃数据包；精准控制，支持量化拥塞程度；标准化协议，由 RFC 3168 定义，兼容现代网络。局限同样明显：部署依赖，需要路由器与终端都支持；复杂实现，需要修改 IP/TCP 协议栈；安全风险，可能被恶意节点忽略或伪造。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>路由器工作在网络层，主要工作是转发分组：按分组要去的目的网络，从合适的输出端口把它交给下一跳路由器；多个输入端口争用同一个输出端口时，分组就在输出端口排队；</li>
+  <li>排队规则分两条路线：被动队列管理等队列满了才丢包，包括先进先出 FIFO 与公平排队；主动队列管理在队列长度出现危险征兆时就主动丢弃少量分组，包括 DECbit 算法、RED 与 ECN；</li>
+  <li>先进先出配合尾部丢弃策略最简单，但队列满时成串丢包会引起超时重传、使 TCP 进入慢开始；又因为丢包不区分连接，多个 TCP 连接同时超时、同时慢开始，形成全局同步，队列长度周期性振荡；</li>
+  <li>公平排队为每个流维护独立虚拟队列，按虚拟时间戳 F = max(当前时间, 上一个分组的 F) + 分组长度/流权重 优先发送时间戳最小的分组，能防止带宽独占，代价是状态多、成本高，且无法区分流的重要性、高速链路上计算开销大；</li>
+  <li>RED 用平均队列长度与最小门限 THmin、最大门限 THmax 把队列状态分成三区，按概率丢包以提前通知，但参数敏感、无响应流不受抑制、突发流量下性能波动；DECbit 以平均队列长度达到 1 为阈值，用 1 比特拥塞位经 ACK 回传；ECN 在 IP 首部标记、用 TCP 首部的 CWR 与 ECE 两位回送，做到零丢包通知，代价是需端到端支持、要改协议栈，并可能被恶意节点忽略或伪造。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="v2-6-2.html">‹ 6.2 拥塞控制的基本方法</a>
+      <a class="next" href="v2-6-4.html">6.4 TCP拥塞控制与Reno算法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

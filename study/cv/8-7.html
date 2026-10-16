@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>8.7 经典网络：DeepID 系列 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 8 章 人脸识别 8.7 经典网络：DeepID 系列：以「8-人脸识别.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html" aria-current="page"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 8 章 人脸识别</p>
+      <h1>8.7 经典网络：DeepID 系列</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">从这一节起进入人脸识别算法本身。DeepID 系列是深度学习阶段的第一个代表，它五年里迭代了四代：DeepID1 解决「网络该长什么样」，DeepID2 把注意力转向「目标函数该怎么设计」，DeepID2+ 和 DeepID3 则分别在监督信号的深度和网络的深度上继续加码。一路看下来，LFW 上的验证准确率从 97.45% 被推到 99.53%。</p>
+
+<h2>1. 先分清人脸验证与人脸识别</h2>
+<p>DeepID 所应用的领域是人脸识别的子领域——<strong>人脸验证</strong>，就是判断两张图片是不是同一个人。课件紧接着给了一句很关键的话：<strong>人脸验证问题很容易就可以转成人脸识别问题，人脸识别就是多次人脸验证。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0046.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0046.webp" alt="图 1　人脸验证：判断两张图片是不是同一个人" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　DeepID 应用的子领域是人脸验证——判断两张图片是不是同一个人；人脸识别可以看成多次人脸验证（原课件第 46 张）</figcaption>
+</figure>
+<p>为什么这句话重要？因为它决定了后面所有损失的写法。一张人脸到一个特征向量，两个向量之间的距离小就判为同一个人——<strong>只要特征空间里「同类近、异类远」，验证和识别就都解决了</strong>。整个 DeepID 系列的改进，本质上都是在让这个特征空间更规整。</p>
+
+<h2>2. DeepID1：让网络同时看局部与全局</h2>
+<p>DeepID1 的结构与普通的卷积神经网络结构类似，但它有一处特别的连接：<strong>倒数第二层（DeepID 层）同时与 Convolutional layer 4 和 Max-pooling layer 3 相连</strong>。课件解释了这样做的理由：<strong>鉴于卷积神经网络层数越高感受野越大</strong>，这样的连接方式可以<strong>既考虑局部特征，又考虑全局特征</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0047.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0047.webp" alt="图 2　DeepID1 的网络结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　DeepID1：结构与普通卷积网络类似，但 DeepID 层同时连接 Convolutional layer 4 与 Max-pooling layer 3，从而兼顾局部特征与全局特征（原课件第 47 张）</figcaption>
+</figure>
+<p>这处设计值得对照第 6 章（卷积神经网络）来看：浅层（Max-pooling layer 3）保留的是细节和局部纹理，深层（Convolutional layer 4）看到的是更大范围的语义结构。把两层一起送进同一个特征层，等于让最终的人脸特征同时携带两种粒度的信息。这也是「多尺度特征融合」在人脸识别上的早期形态。</p>
+
+<h2>3. DeepID2：创新点在损失函数</h2>
+<p>DeepID2 的网络结构与 DeepID1 相似，<strong>创新点在于 loss 的设计，使得提取出的特征属于不同类之间的距离更大、同类之间的距离更小</strong>。效果上，相比于 DeepID1，在 LFW 上人脸验证的准确率<strong>从 97.45% 提升到了 99.15%</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0048.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0048.webp" alt="图 3　DeepID2：改进损失函数" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　DeepID2 与 DeepID1 结构相似，创新在损失设计——让不同类的特征距离更大、同类的更小，LFW 上验证准确率从 97.45% 提升到 99.15%（原课件第 48 张）</figcaption>
+</figure>
+<p>注意这次进步的性质：<strong>网络没怎么变，换了个目标函数，准确率就跳了近两个百分点</strong>。这说明在人脸识别这个任务里，「让网络学成什么样的特征空间」和「网络有多深」同样重要，有时更重要。</p>
+
+<h3>（1）问题的根源：类内差异大、类间差异小</h3>
+<p>课件的思考题把动机说得非常清楚：对于人脸识别任务，同一 ID 的人由于人脸角度、光照、表情等会导致图片之间存在较大差异（即<strong>类内差异大</strong>），而不同的人也可能会出现相似的长相（即<strong>类间差异小</strong>）。因此，人脸识别面临的主要挑战就是人脸图片较大的类内变化和较小的类间变化。</p>
+<p>正因如此，单纯用分类损失训出来的特征不够用——分类损失只关心「分对类」，不关心同一类内部是否聚拢、不同类之间是否拉开。</p>
+
+<h3>（2）识别损失：交叉熵</h3>
+<p>DeepID2 的第一项损失是识别损失（identification loss），用的是交叉熵：</p>
+<p><code>Ident(f, t, θ<sub>id</sub>) = −Σ<sub>i=1</sub><sup>n</sup> p<sub>i</sub> log p̂<sub>i</sub> = −log p̂<sub>t</sub></code></p>
+<p>其中 f 代表 DeepID2 向量，t 为目标的类别，θ 为参数，p̂<sub>i</sub> 为预测概率，p<sub>i</sub> 为目标概率，n 表示 ID 的个数。等号右边的化简利用了「目标分布是 one-hot」这一点：只有正确类别 t 的那一项保留下来。课件的结论是：<strong>交叉熵损失主要是为了增大不同 id 的人提取出来的特征的距离</strong>。</p>
+
+<h3>（3）验证损失：把同类的拉近</h3>
+<p>第二项是验证损失（verification loss），它直接作用在两张图的特征距离上：</p>
+<p><code>Veri(f<sub>i</sub>, f<sub>j</sub>, y<sub>ij</sub>) = ½‖f<sub>i</sub> − f<sub>j</sub>‖²  （y<sub>ij</sub> = 1）</code></p>
+<p><code>Veri(f<sub>i</sub>, f<sub>j</sub>, y<sub>ij</sub>) = max(0, m − ‖f<sub>i</sub> − f<sub>j</sub>‖)²  （y<sub>ij</sub> = −1）</code></p>
+<p>课件的解释是：y<sub>ij</sub> = 1 代表两张人脸来自同一 id，则二者特征距离要尽量小；y<sub>ij</sub> = −1 来自不同 id，则二者距离要尽量大于阈值 m（m 表示可接受的最小类间距离）。<strong>验证损失是为了使同一个 id 的人的特征尽可能的聚拢在一起。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0051.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0051.webp" alt="图 4　DeepID2+ 的训练监督" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　DeepID2+：结构与 DeepID2 相似，输出特征从 160 维增大到 512 维，并在 Conv-1、Conv-2 等浅层也加上 Ident 与 Verif 监督信号（原课件第 51 张）</figcaption>
+</figure>
+<p>把两项合起来看，DeepID2 干的事就是：<strong>交叉熵把不同人推开（类间），验证损失把同一个人拉近（类内）</strong>。这也正好对应上一段提出的「类内差异大、类间差异小」两个难点——一个损失管一个。后一项里的 max(0, ·) 是合页形式，意思是「距离只要大于 m 就不再惩罚」，避免把不同人无限制地推远而无谓地消耗模型容量。</p>
+
+<h2>4. DeepID2+：把监督信号铺到浅层</h2>
+<p>DeepID2+ 的网络结构与 DeepID2 相似，改动有三处：</p>
+<ul>
+  <li>输出特征<strong>从 DeepID2 的 160 维增大到了 512 维</strong>；</li>
+  <li>训练数据集进行了扩充；</li>
+  <li>训练的时候，对 <strong>Conv-1、Conv-2 这些浅层也增加了 Ident 与 Verif 监督信号</strong>来训练。</li>
+</ul>
+<p>第三点是最有想法的一处：DeepID2 只在最后的特征层加识别/验证监督，而 DeepID2+ 把这两种监督信号一路铺到浅层。这相当于要求网络的每一层都学出「有判别力」的表示，而不只是最后一层。这个思路后来在很多网络里以「深层监督」的名字反复出现。结果是：<strong>在 LFW 上人脸验证的准确率提升到了 99.47%</strong>。</p>
+
+<h3>两个有趣的发现</h3>
+<p>课件记下了 DeepID2+ 训练完成后观察到的两个现象：</p>
+<ul>
+  <li><strong>特征具有稀疏性和选择性</strong>：对每个人，最后的 DeepID 层都大概有半数的单元是激活的、半数的单元是抑制的；而不同的人，激活或抑制的单元是不同的。换句话说，<strong>每个单元对「是谁」表现出选择性，而身份由一组单元的组合模式编码</strong>——这与生物视觉系统里神经元的稀疏响应很相似。</li>
+  <li><strong>自动获得遮挡鲁棒性</strong>：在训练数据中没有遮挡数据的情况下，DeepID2+ 自动就对遮挡有了很好的鲁棒性；具体地说，<strong>遮挡在 20% 以内、块大小在 30×30 以下时，DeepID2+ 输出向量的验证正确率几乎不变</strong>。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0052.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0052.webp" alt="图 5　DeepID2+ 的两个发现" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　DeepID2+ 的两个发现：特征稀疏且具选择性（约半数单元激活，且不同人激活模式不同）；未见过遮挡数据也能鲁棒，遮挡在 20% 以内、块小于 30×30 时正确率几乎不变（原课件第 52 张）</figcaption>
+</figure>
+<p>第二个发现格外值得琢磨：遮挡在训练集里根本没出现过，模型却自动扛住了。<strong>这说明学到的不是「记住某几个位置长什么样」，而是某种分布式的、可冗余表达的表示</strong>——部分单元被挡住，其余单元仍能还原出身份。这也是为什么科学家们常说「好的特征本身就带鲁棒性」，而不必针对每一种干扰都单独设计一套方法（对照第 1 节早期方法的第一条局限）。</p>
+
+<h2>5. DeepID3：更深的网络，更大的感受野</h2>
+<p>DeepID3 在 DeepID2+ 的基础上，尝试使用<strong>更深的网络和 Inception 层</strong>来提升识别率。它分别借鉴 <strong>VGG 和 GoogLeNet</strong> 提出了两种网络结构（net1 和 net2）。与 DeepID2+ 相比，不同点在于：</p>
+<ul>
+  <li>网络深度加深；</li>
+  <li>出现了<strong>连续两个卷积层直接相连</strong>的情况，这样使得网络具有更大的感受野；</li>
+  <li>DeepID3 Net2 使用了 <strong>Inception 结构</strong>。</li>
+</ul>
+<p>结果：<strong>在 LFW 上人脸验证的准确率提升到了 99.53%</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0054.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0054.webp" alt="图 6　DeepID3 的网络结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　DeepID3 的网络结构：借鉴 VGG 与 GoogLeNet 提出 net1、net2 两种结构，深度加深、连续两层卷积直接相连以扩大感受野（原课件第 54 张）</figcaption>
+</figure>
+<figure class="fig">
+  <a href="../../assets/course-cv/8-7/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/8-7/p0055.webp" alt="图 7　DeepID3 的另一种网络结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　DeepID3 的另一种网络结构（Net2 使用 Inception 结构）——课件第 54、55 张分别给出两种结构（原课件第 55 张）</figcaption>
+</figure>
+<p>「连续两个卷积层直接相连」这一点需要解释：单个 3×3 卷积的感受野只有 3×3，两个 3×3 卷积叠起来感受野就是 5×5，三个叠起来是 7×7。所以<strong>用两层小卷积替代一层大卷积，既能得到同样大的感受野，又减少了参数量、增加了非线性</strong>——这正是 VGG 的核心思想。DeepID3 把这一套搬到了人脸识别上。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>DeepID 做的是<strong>人脸验证</strong>（判断两张图是否同一人）；人脸识别可以看成多次人脸验证。核心是把人脸编码成特征向量，让<strong>同类近、异类远</strong>。</li>
+  <li><strong>DeepID1</strong>：结构类似普通 CNN，但 DeepID 层同时连接 Convolutional layer 4 与 Max-pooling layer 3，兼顾局部特征（浅层、感受野小）与全局特征（深层、感受野大）。</li>
+  <li><strong>DeepID2</strong>：结构不变，创新在损失——<strong>识别损失（交叉熵）</strong><code>Ident = −Σ p<sub>i</sub> log p̂<sub>i</sub> = −log p̂<sub>t</sub></code>把不同 id 推开；<strong>验证损失</strong><code>½‖f<sub>i</sub>−f<sub>j</sub>‖²（同类）/ max(0, m−‖f<sub>i</sub>−f<sub>j</sub>‖)²（异类）</code>把同一 id 拉近，阈值 m 是可接受的最小类间距离。目的正是对付「类内差异大、类间差异小」。LFW 准确率 97.45% → 99.15%。</li>
+  <li><strong>DeepID2+</strong>：特征从 160 维增到 512 维、扩充训练数据、把 Ident 与 Verif 监督加到 Conv-1/Conv-2 等浅层；LFW 达到 99.47%。两个发现：特征稀疏且具选择性（约半数单元激活，不同人模式不同）；训练数据中没有遮挡也能鲁棒，遮挡 20% 以内、块小于 30×30 时正确率几乎不变。</li>
+  <li><strong>DeepID3</strong>：借鉴 VGG 与 GoogLeNet 提出 net1、net2，网络加深、连续两层卷积相连以扩大感受野，Net2 用 Inception 结构；LFW 达到 99.53%。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="8-6.html">‹ 8.6 人脸识别的概念与发展</a>
+      <a class="next" href="8-8.html">8.8 经典网络：FaceNet 与 Triplet Loss ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

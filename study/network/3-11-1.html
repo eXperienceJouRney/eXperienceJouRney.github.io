@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.11.1 虚拟局域网VLAN概述 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 3 章 3.11.1 虚拟局域网VLAN概述：讲义第 698–713 页 · 4 张配图。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=6">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="讲义目录">
+<details class="toc-fold" open>
+<summary>讲义目录</summary>
+<nav class="mod-switch" aria-label="课程模块">
+<a href="../network.html" aria-current="page">讲义</a>
+<a href="homework.html">作业</a>
+</nav>
+<a class="toc-home" href="../../study/network.html">计算机通信与网络</a>
+<p class="toc-ver"><span>第一版讲义</span>PDF 讲义</p>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 概述</h2>
+<ul class="toc-list">
+<li><a href="1-2.html"><span class="num">1.2</span>因特网概述</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>三种交换方式</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机网络的定义和分类</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>计算机网络的性能指标（1）</a></li>
+<li><a href="1-5-2.html"><span class="num">1.5</span>计算机网络的性能指标（2）</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>计算机网络体系结构（1）—常见的计算机网络体系结构</a></li>
+<li><a href="1-6-2.html"><span class="num">1.6</span>计算机网络体系结构（2）—分层的必要性</a></li>
+<li><a href="1-6-3.html"><span class="num">1.6</span>计算机网络体系结构（3）—分层思想举例</a></li>
+<li><a href="1-6-4.html"><span class="num">1.6</span>计算机网络体系结构（4）—专用术语</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 物理层</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>物理层的基本概念</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>物理层下面的传输媒体</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>传输方式</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>编码与调制</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>信道的极限容量</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 数据链路层</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>数据链路层概述</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>封装成帧</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>差错检测</a></li>
+<li><a href="3-4-1.html"><span class="num">3.4.1</span>可靠传输的基本概念</a></li>
+<li><a href="3-4-2.html"><span class="num">3.4.2</span>可靠传输的实现机制- —— -停止-等待协议</a></li>
+<li><a href="3-4-3.html"><span class="num">3.4.3</span>可靠传输的实现机制 —— 回退N帧协议</a></li>
+<li><a href="3-4-4.html"><span class="num">3.4.4</span>可靠传输的实现机制 —— 选择重传协议</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>点对点协议PPP</a></li>
+<li><a href="3-6-1.html"><span class="num">3.6.1</span>媒体接入控制的基本概念</a></li>
+<li><a href="3-6-2.html"><span class="num">3.6.2</span>媒体接入控制 —— 静态划分信道</a></li>
+<li><a href="3-6-3.html"><span class="num">3.6.3</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CD</a></li>
+<li><a href="3-6-4.html"><span class="num">3.6.4</span>媒体接入控制 —— 动态接入控制 —— 随机接入 —— CSMA/CA</a></li>
+<li><a href="3-7.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（1） —— MAC地址</a></li>
+<li><a href="3-7-2.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（2） —— IP地址</a></li>
+<li><a href="3-7-3.html"><span class="num">3.7</span>MAC地址、IP地址以及ARP协议（3） —— ARP协议</a></li>
+<li><a href="3-8.html"><span class="num">3.8</span>集线器与交换机的区别</a></li>
+<li><a href="3-9.html"><span class="num">3.9</span>以太网交换机自学习和转发帧的流程</a></li>
+<li><a href="3-10.html"><span class="num">3.10</span>以太网交换机的生成树协议STP</a></li>
+<li><a href="3-11-1.html" aria-current="page"><span class="num">3.11.1</span>虚拟局域网VLAN概述</a></li>
+<li><a href="3-11-2.html"><span class="num">3.11.2</span>虚拟局域网VLAN的实现机制</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 网络层</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>网络层概述</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>网络层提供的两种服务</a></li>
+<li><a href="4-3-1.html"><span class="num">4.3.1</span>IPv4地址概述</a></li>
+<li><a href="4-3-2.html"><span class="num">4.3.2</span>分类编址的IPv4地址</a></li>
+<li><a href="4-3-3.html"><span class="num">4.3.3</span>划分子网的IPv4地址</a></li>
+<li><a href="4-3-4.html"><span class="num">4.3.4</span>无分类编址的IPv4地址</a></li>
+<li><a href="4-3-5.html"><span class="num">4.3.5</span>IPv4地址的应用规划</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>IP数据报的发送和转发过程</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>静态路由配置及其可能产生的路由环路问题</a></li>
+<li><a href="4-6-1.html"><span class="num">4.6.1</span>路由选择协议概述</a></li>
+<li><a href="4-6-2.html"><span class="num">4.6.2</span>路由信息协议RIP的基本工作原理</a></li>
+<li><a href="4-6-3.html"><span class="num">4.6.3</span>开放最短路径优先OSPF的基本工作原理</a></li>
+<li><a href="4-6-4.html"><span class="num">4.6.4</span>边界网关协议BGP的基本工作原理</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>IPv4数据报的首部格式</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>网际控制报文协议ICMP</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>虚拟专用网VPN与网络地址转换NAT</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 运输层</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>运输层概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>运输层端口号、复用与分用的概念</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>UDP和TCP的对比</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>TCP的流量控制</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>TCP的拥塞控制</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>TCP超时重传时间的选择</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>TCP可靠传输的实现</a></li>
+<li><a href="5-8-1.html"><span class="num">5.8.1</span>TCP的运输连接管理 —— TCP的连接建立</a></li>
+<li><a href="5-8-2.html"><span class="num">5.8.2</span>TCP的运输连接管理 —— TCP的连接释放</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>TCP报文段的首部格式</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 应用层</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>应用层概述</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>客户—服务器方式和对等方式</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>动态主机配置协议DHCP</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>域名系统DNS</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>文件传送协议FTP</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>电子邮件</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>万维网WWW</a></li>
+</ul></div>
+</div>
+<p class="toc-ver"><span>第二版讲义</span>PPT 课件</p>
+<!-- v2-toc -->
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 计算机网络概述</h2>
+<ul class="toc-list">
+<li><a href="v2-1-1.html"><span class="num">1.1</span>通信与计算机网络</a></li>
+<li><a href="v2-1-2.html"><span class="num">1.2</span>计算机网络的演化</a></li>
+<li><a href="v2-1-3.html"><span class="num">1.3</span>计算机网络的分类</a></li>
+<li><a href="v2-1-4.html"><span class="num">1.4</span>计算机网络的评价指标</a></li>
+<li><a href="v2-1-5.html"><span class="num">1.5</span>计算机网络的体系结构</a></li>
+<li><a href="v2-1-6.html"><span class="num">1.6</span>网络中的法律和社会问题</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 网络中的数据通信</h2>
+<ul class="toc-list">
+<li><a href="v2-2-1.html"><span class="num">2.1</span>网络中的信号及传输介质</a></li>
+<li><a href="v2-2-2.html"><span class="num">2.2</span>网络中的数据传输</a></li>
+<li><a href="v2-2-3.html"><span class="num">2.3</span>数据可靠传输的基本需求</a></li>
+<li><a href="v2-2-4.html"><span class="num">2.4</span>数据可靠传输模型及传输协议的设计</a></li>
+<li><a href="v2-2-5.html"><span class="num">2.5</span>数据可靠传输模型的性能优化</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 网络服务及应用</h2>
+<ul class="toc-list">
+<li><a href="v2-3-1.html"><span class="num">3.1</span>网络服务概述</a></li>
+<li><a href="v2-3-2.html"><span class="num">3.2</span>面向无连接的不可靠服务—UDP协议</a></li>
+<li><a href="v2-3-3.html"><span class="num">3.3</span>面向连接的可靠服务—TCP协议</a></li>
+<li><a href="v2-3-4.html"><span class="num">3.4</span>万维网（World Wide Web）</a></li>
+<li><a href="v2-3-5.html"><span class="num">3.5</span>文件传输协议（FTP）</a></li>
+<li><a href="v2-3-6.html"><span class="num">3.6</span>电子邮件服务</a></li>
+<li><a href="v2-3-7.html"><span class="num">3.7</span>域名解析服务（DNS）</a></li>
+<li><a href="v2-3-8.html"><span class="num">3.8</span>P2P文件分发</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 局域网</h2>
+<ul class="toc-list">
+<li><a href="v2-4-1.html"><span class="num">4.1</span>局域网概述</a></li>
+<li><a href="v2-4-2.html"><span class="num">4.2</span>多路访问链路和协议</a></li>
+<li><a href="v2-4-3.html"><span class="num">4.3</span>以太网</a></li>
+<li><a href="v2-4-4.html"><span class="num">4.4</span>Wi-Fi 802.11无线局域网</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 网络互联</h2>
+<ul class="toc-list">
+<li><a href="v2-5-1.html"><span class="num">5.1</span>网络互联基础</a></li>
+<li><a href="v2-5-2.html"><span class="num">5.2</span>网络互联设备—路由器</a></li>
+<li><a href="v2-5-3.html"><span class="num">5.3</span>网络互联中的数据转发</a></li>
+<li><a href="v2-5-4.html"><span class="num">5.4</span>因特网控制报文协议ICMP</a></li>
+<li><a href="v2-5-5.html"><span class="num">5.5</span>网络互联中的选路</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 网络中的拥塞控制</h2>
+<ul class="toc-list">
+<li><a href="v2-6-1.html"><span class="num">6.1</span>网络中的拥塞现象分析</a></li>
+<li><a href="v2-6-2.html"><span class="num">6.2</span>拥塞控制的基本方法</a></li>
+<li><a href="v2-6-3.html"><span class="num">6.3</span>路由器上的分组排队规则</a></li>
+<li><a href="v2-6-4.html"><span class="num">6.4</span>TCP拥塞控制与Reno算法</a></li>
+<li><a href="v2-6-5.html"><span class="num">6.5</span>TCP拥塞控制的演进（New Reno、CUBIC、Vegas、BBR）</a></li>
+<li><a href="v2-6-6.html"><span class="num">6.6</span>数据中心网络中的拥塞控制</a></li>
+</ul>
+</div>
+</div>
+
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · 第 3 章 数据链路层</p>
+      <h1>3.11.1 虚拟局域网VLAN概述</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">交换机能隔离碰撞域，却不会隔离广播域。当交换式以太网越铺越大，整个网络就成了一个巨大的广播域，广播风暴、管理困难和安全隐患随之而来。本节从这些问题出发，说明「用路由器隔离广播域」为什么代价偏高，进而引出虚拟局域网 VLAN——一种把设备按逻辑而非按位置编组的技术。VLAN 的具体实现机制在 3.11.2 节展开。</p>
+
+<h2>1. 巨大的广播域及其弊端</h2>
+<p>先回顾 3.8 节的一条结论：以太网交换机工作在数据链路层（也包括物理层），它能<strong>隔离碰撞域，但不隔离广播域</strong>。因此，使用一个或多个以太网交换机互连起来的交换式以太网，其<strong>所有站点都属于同一个广播域</strong>；随着交换式以太网规模的扩大，广播域相应扩大。</p>
+<p>巨大的广播域会带来很多弊端：</p>
+<ul>
+  <li><strong>广播风暴</strong>：大量广播帧挤占链路带宽，浪费网络资源和各主机的 CPU 资源；</li>
+  <li><strong>难以管理和维护</strong>：所有主机处于同一个逻辑网络，划分与调整都不方便；</li>
+  <li><strong>潜在的安全问题</strong>：广播帧会送到广播域内的每一台主机，信息容易被无关主机获取。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course/3-11-1/p0699.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-1/p0699.webp" alt="图 1　巨大的广播域带来广播风暴、难以管理和维护、潜在的安全问题" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　交换机互连成的交换式以太网属于同一个广播域，广播域越大，广播风暴、管理困难与安全问题越突出（原讲义第 699 页）</figcaption>
+</figure>
+<p>以 ARP 为例：主机要访问另一台主机，首先要发送 ARP 广播请求来获取目的主机的 MAC 地址（详见 3.7.3 节）。这类广播在网络上非常常见，规模一大，广播流量就相当可观。</p>
+
+<h2>2. 网络中频繁出现的广播</h2>
+<p>广播并不是个别现象，许多常用协议都依赖它。TCP/IP 协议栈中的很多协议都会使用广播：</p>
+<ul>
+  <li><strong>地址解析协议 ARP</strong>：已知 IP 地址，找出其相应的 MAC 地址；</li>
+  <li><strong>路由信息协议 RIP</strong>：一种小型内部路由协议，通过广播（或组播）交换路由信息；</li>
+  <li><strong>动态主机配置协议 DHCP</strong>：用于自动配置 IP 地址，主机在尚未获得地址时只能靠广播寻找服务器。</li>
+</ul>
+<p>除 TCP/IP 协议栈之外，还有一些协议同样是广播型的：<strong>NetBEUI</strong>（Windows 下使用的广播型协议）、<strong>IPX/SPX</strong>（Novell 网络协议栈）、<strong>AppleTalk</strong>（Apple 公司的网络协议栈）。协议越多，广播域过大的代价就越高。</p>
+
+<h2>3. 分割广播域：从路由器到 VLAN</h2>
+<p>既然问题出在广播域太大，思路自然就是<strong>把一个大广播域切成若干个小广播域</strong>。传统做法是<strong>使用路由器隔离广播域</strong>：路由器不转发广播帧，因此它连接的每个网段都是独立的广播域，广播被限制在各自网段之内。</p>
+<p>但路由器<strong>成本较高</strong>：一个网段就要占用一个路由器接口，端口数量有限、价格也不便宜，用它来细分局域网并不经济。于是<strong>虚拟局域网 VLAN 技术应运而生</strong>。</p>
+
+<h2>4. 什么是虚拟局域网 VLAN</h2>
+<p><strong>虚拟局域网 VLAN（Virtual Local Area Network）</strong>是一种将局域网内的设备划分成<strong>与物理位置无关的逻辑组</strong>的技术，这些逻辑组具有某些共同的需求。</p>
+<p>关键就在「与物理位置无关」这几个字上。设想一座楼里的三个局域网：一楼的局域网 1、二楼的局域网 2、三楼的局域网 3，它们各自是一个网段，物理上彼此分开。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-1/p0707.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-1/p0707.webp" alt="图 2　按楼层物理划分的三个局域网：1 楼、2 楼、3 楼各一个网段" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　传统的按物理位置划分：一楼局域网 1、二楼局域网 2、三楼局域网 3，各成网段（原讲义第 707 页）</figcaption>
+</figure>
+<p>在未划分 VLAN 的交换式以太网中，某一网段发出的广播会扩散到整个广播域，三个网段的主机会<strong>全都收到</strong>这个广播帧。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-1/p0710.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-1/p0710.webp" alt="图 3　未划分 VLAN 时，广播帧被所有网段的主机收到" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　未划分 VLAN 时，广播帧进入整个广播域，一楼、二楼、三楼的主机都会收到（原讲义第 710 页）</figcaption>
+</figure>
+<p>划分 VLAN 之后，逻辑组不再受楼层限制：例如把一楼的一部分主机与三楼的一部分主机划入 VLAN1，把二楼的主机划入 VLAN2。此后，广播只在本 VLAN 内部传播——<strong>只有同一 VLAN 的成员才会收到</strong>，其他 VLAN 的主机收不到。这样，一个物理网络就被切分成了若干个互不干扰的逻辑网络。</p>
+<figure class="fig">
+  <a href="../../assets/course/3-11-1/p0711.webp" target="_blank" rel="noopener"><img src="../../assets/course/3-11-1/p0711.webp" alt="图 4　划分 VLAN 后，跨楼层的主机被编入同一逻辑组 VLAN1 与 VLAN2" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　划分 VLAN 后：一楼的局域网 1 与三楼的部分主机编入 VLAN1，二楼的主机编入 VLAN2，逻辑组与物理位置无关（原讲义第 711 页）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>交换机能隔离碰撞域但不隔离广播域，交换式以太网的所有站点属于同一个广播域，网络规模扩大意味着广播域扩大；</li>
+  <li>巨大广播域的弊端：广播风暴（浪费网络资源与主机 CPU 资源）、难以管理和维护、潜在的安全问题；</li>
+  <li>广播在网络上很常见：TCP/IP 协议栈中的 ARP、RIP、DHCP 都使用广播，此外还有 NetBEUI、IPX/SPX、AppleTalk 等广播型协议；</li>
+  <li>分割广播域的传统办法是用路由器隔离，但路由器成本较高，于是产生了虚拟局域网 VLAN 技术；</li>
+  <li>VLAN（Virtual Local Area Network）把局域网内的设备划分成与物理位置无关的逻辑组，逻辑组内的主机具有共同需求；划分后广播只在本 VLAN 内传播，只有同一 VLAN 的成员会收到。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-10.html">‹ 3.10 以太网交换机的生成树协议STP</a>
+      <a class="next" href="3-11-2.html">3.11.2 虚拟局域网VLAN的实现机制 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

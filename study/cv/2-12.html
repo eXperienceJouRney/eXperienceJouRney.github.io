@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.12 图像缩小——下采样 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 2 章 图像处理基础 2.12 图像缩小——下采样：以「2-图像处理基础.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html" aria-current="page"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 2 章 图像处理基础</p>
+      <h1>2.12 图像缩小——下采样</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">前面几节的滤波都是为了「让图像变好」——去噪、平滑或者锐化，尺寸始终不变。这一节换一个目的：改变图像的尺寸，而且是往小里改。缩小听起来只是「少留一些像素」，可最省事的做法恰恰是错的：直接丢掉一些行和列会把信息真正扔出去，缩小之后再放大回来就能看得很清楚。正确做法是先把高频滤掉再下采样，而且逐级缩小的时候，滤波核还要一级比一级大。</p>
+
+<h2>1. 最朴素的做法：交替去除行和列</h2>
+<p>图像在计算机里是排成行列的像素网格，所以要缩小它，最直接的想法就是让这张网格变稀：隔一行删一行、隔一列删一列，也就是<strong>交替去除一些行和列</strong>。要缩到一半，就把行和列各去掉一半；同样的操作再做一次得到 1/4，再做一次得到 1/8。这种从原图上按整数倍抽走像素、让网格变稀的做法，就是<strong>下采样</strong>（downsampling），课件里也写作「下（子）采样」。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0067.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0067.webp" alt="图 1　如何将图像缩小" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　课件用「如何将图像缩小？」这个问题引入下采样（原课件第 67 张）</figcaption>
+</figure>
+<p>它的好处是简单、快，几乎不需要计算：新图像里每个像素直接取自原图。代价也要看清楚——<strong>被删掉的那些行列上的像素值，此后再也没有参与过任何运算</strong>，它们携带的信息在这一步就被永久扔掉了。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0068.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0068.webp" alt="图 2　交替去除一些行和列" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　最朴素的做法：交替去除一些行和列，交替做下去就得到 1/4、1/8 的更小图像（原课件第 68 张）</figcaption>
+</figure>
+
+<h2>2. 直接丢行丢列，丢掉的是什么</h2>
+<p>把缩小的动作拆开看，缩到 1/2 只有两步：先去除一半的行，再去除一半的列。这两步之后图像的面积只剩原来的四分之一，而留下的每一个像素都只是原图对应位置上那一个像素的值，被删掉的邻居没有以任何形式被平均进来。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0070.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0070.webp" alt="图 3　缩小 1/2 的两个步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　对原始数据做 1/2 缩小的两个步骤：先去除一半的行（Step 1），再去除一半的列（Step 2）（原课件第 70 张）</figcaption>
+</figure>
+<p>这样得到的结果是什么样？课件的批注很直白：<strong>信息严重丢失</strong>。原因在于图像里细密的内容——纹理、边缘、小目标——本来是靠相邻像素之间的配合才表现出来的：一条边缘要几个像素一起才看得出走向，一片纹理要一片像素一起才看得出规律。直接抽走一半的行列，这种配合被打散，剩下的像素不足以完整表达原来的图像。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0071.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0071.webp" alt="图 4　无滤波直接按 1/2 缩小的结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　不加任何滤波、直接按 1/2 缩小后的结果，课件在此处的批注是「信息严重丢失！」（原课件第 71 张）</figcaption>
+</figure>
+<p>只看缩小后的图，人眼往往还不容易判断损失有多大；把缩小后的图像再放大回原来的尺寸并排一比，问题就暴露了——这就是课件说的<strong>对图像缩小后再放大，图像失真</strong>。放大时并没有新的信息可用（放大靠的是插值，下一节会专门讲），只能根据已有的像素去「猜」，猜出来的结果自然与原图不同。缩得越小、放得越大，这种失真越明显。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0069.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0069.webp" alt="图 5　缩小后再放大的失真对照" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　缩小后再放大回来的对照：三幅依次为 1/2、1/4、1/8，后两幅分别放大 2 倍、4 倍显示，由此可以看出图像失真（原课件第 69 张）</figcaption>
+</figure>
+
+<h2>3. 正确做法：先高斯滤波，再下采样</h2>
+<p>要保住信息，就不能让「丢弃」这一步单独完成。课件的做法是<strong>滤波后下采样</strong>：先对图像进行高斯滤波，然后进行下（子）采样。</p>
+<p>为什么中间要加这一步滤波？下采样相当于在新的、更稀疏的网格上重新取样；取样之前，图像里不应该还存在新网格无法表达的过细内容。直接抽像素等于把这些过细内容一并带进低分辨率网格，在那里它们无法被正确表示，于是相互干扰，变成与原图无关的花纹和锯齿——这类现象称为<strong>混叠</strong>（aliasing）。先做一次高斯滤波，就是把超出新网格表达能力的高频内容先压下去，此时再采样，取到的样本才是对原图相应区域的一个合理概括。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/2-12/p0072.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/2-12/p0072.webp" alt="图 6　滤波后下采样" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　滤波后下采样：先对图像做高斯滤波，再下（子）采样，逐级得到 Gaussian 1/2、G 1/4、G 1/8（原课件第 72 张）</figcaption>
+</figure>
+<p>这样一来，高斯滤波在本章里的角色就多了一层：前面把它当作去除噪声、平滑图像的滤波器，放到尺寸变换的流程里，它承担的职责是抗混叠，保证缩小后的每一个像素都是原图一片区域的代表，而不是某一个像素的幸存者。</p>
+
+<h2>4. 为什么每缩小一半，滤波核要加倍</h2>
+<p>滤波和下采样要交替进行，随之而来的是一个容易被忽略的细节：<strong>每减少 1/2 尺寸，滤波核大小应增加一倍</strong>。理由是，图像每缩小一半，缩小图上的一个像素所对应的原图范围就扩大一倍；滤波核如果始终维持原来的大小，它在缩小图上覆盖到的「原图信息」就与新图的比例对不上了。课件把原因写得很简洁：<strong>滤波核尺寸增加一倍，每个缩小后的图像对应的像素就考虑了多一倍的像素信息</strong>。</p>
+<p>换个说法会更好记：滤波核的大小不是跟着缩小后的图像走，而是跟着它在原图上的覆盖范围走。逐级缩小因此是一个「滤波 → 下采样 → 换一个更大的核再滤波 → 再下采样」的循环：Gaussian 1/2、G 1/4、G 1/8 这样一级级下去，核一级级变大，每一级滤掉的是这一级网格已经无法表达的那些细节。也正因为核在变大，后续几级的计算量并不会因为图像变小而按面积的比例一起降下来。</p>
+
+<h2>5. 两种做法的对照</h2>
+<p>课件把两条路线并排放在一起（第 73 张与第 74 张）：一条是先做高斯滤波再逐级下采样，标注为 Gaussian 1/2、G 1/4、G 1/8；另一条完全不做滤波，标注为 1/2、1/4（放大 2 倍显示）、1/8（放大 4 倍显示）。两组图的缩小倍率相同、放大回来比较的方式也相同，唯一的差别就在中间那一步滤波。</p>
+<p>对照的结论前面已经点明：不做滤波的那一组，缩到 1/2 时就已经信息严重丢失，越往后越明显；而先做高斯滤波的一组，在同样的倍率下仍能保住图像的主要结构。这就是为什么在图像金字塔、缩略图这类需要反复缩小的场合，先滤波再下采样是默认的做法，而不是一个可选的优化。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>缩小图像最朴素的办法是交替去除一些行和列：表面上看只是让像素网格变稀，实际上被删掉的行列上的信息被永久丢弃。</li>
+  <li>这样做的后果是信息严重丢失；只看缩小图不易察觉，把缩小后的图再放大回来对照，就能看到图像失真，而且缩得越小、放得越大越明显。</li>
+  <li>下采样就是按整数倍抽走像素、形成更稀疏的网格；直接抽取会把新网格无法表达的高频内容带进来造成混叠。</li>
+  <li>正确流程是先对图像做高斯滤波再进行下（子）采样：滤波在这里的作用是抗混叠，保证缩小后每个像素都能代表原图的一片区域。</li>
+  <li>逐级缩小要同步放大滤波核：每减少 1/2 尺寸，核大小增加一倍，这样每个缩小后的像素考虑的原图像素信息才跟着翻倍。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="2-11.html">‹ 2.11 模板匹配</a>
+      <a class="next" href="2-13.html">2.13 图像放大——插值方法 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

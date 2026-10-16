@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.2 Canny 边缘检测器 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 3 章 边缘检测与线检测 3.2 Canny 边缘检测器：以「3-边缘检测、线检测.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html" aria-current="page"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 3 章 边缘检测与线检测</p>
+      <h1>3.2 Canny 边缘检测器</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">上一节把边缘检测化归成一次滤波：选一个差分核，与原图卷积，梯度大的地方就是边缘。可真实图像里总有噪声，而噪声恰恰也是「像素值突变」，一样会被差分放大。Canny 检测器给出了一套更讲究的做法。这一节看它的四个步骤，以及它留下的那个问题：边缘检测交出来的是一堆点，不是线。</p>
+
+<h2>1. Canny 边缘检测器</h2>
+<p>Canny 检测器是边缘检测里最经典、也最常用的一种，由 John Canny 在 1986 年提出。它和 Prewitt 这样的单核算子不在一个层次上：Prewitt 是一个 3×3 的滤波器，而 <strong>Canny 是一整条处理流程</strong>——从抑制噪声开始，到最终给出边缘点为止。</p>
+<p>课件用一组结果图来展示它的效果：同一幅图像，经过 Canny 处理之后，只剩下勾勒出物体轮廓的那些边缘点。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/3-2/p0006.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/3-2/p0006.webp" alt="图 1　Canny 边缘检测器的检测结果" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　Canny 边缘检测器的检测结果：图像经过处理后只保留位于边缘上的点，轮廓之外的区域被压成黑色（原课件第 6 张）</figcaption>
+</figure>
+
+<h2>2. 四个步骤：从图像到边缘点</h2>
+<p>课件把 Canny 的流程概括成四步——<strong>高斯函数、高斯平滑、求梯度、边缘点</strong>。四步是串起来的，前一步的输出就是后一步的输入。</p>
+<h3>（1）高斯函数：先定一个尺度</h3>
+<p>第一步是构造一个高斯核。一维高斯函数是</p>
+<p>G(x) = (1 / (√(2π) σ)) · exp(−x² / (2σ²))，</p>
+<p>推广到二维就是 G(x, y) = (1 / (2πσ²)) · exp(−(x² + y²) / (2σ²))。式子里只有一个需要人来定的参数：标准差 <strong>σ</strong>。σ 决定这个核「有多胖」——σ 越大，参与平均的邻域越宽。</p>
+<h3>（2）高斯平滑：把噪声压下去</h3>
+<p>第二步是把这个核与原图做卷积，得到一张被柔化过的图像。噪声表现为相邻像素之间的高频抖动，加权平均正好能把它压下去；代价是边缘也被抹宽了一点。</p>
+<p>这里出现一个绕不开的取舍：<strong>σ 太小，噪声压不住，会冒出一堆假边缘；σ 太大，抗噪是好，但边缘被抹得又粗又模糊，位置也就说不准了。</strong>Canny 之所以要把「定尺度」放在最前面，就是让这四步自始至终在同一个尺度上工作。</p>
+<h3>（3）求梯度：在平滑后的图上做差分</h3>
+<p>第三步是在平滑后的图像上求梯度，做法与上一节的有限差分完全一致：算出每个像素处的水平、垂直方向差分，再合成梯度。得到两样东西——<strong>梯度幅值</strong>（这个点变化有多剧烈）和<strong>梯度方向</strong>（朝哪个方向变化最快）。</p>
+<h3>（4）边缘点：按幅值做取舍</h3>
+<p>最后一步是判决：梯度幅值大的是候选边缘点，再按阈值把够格的留下，输出「位于边缘的点」。</p>
+<p>把这一节和上一节放在一起看，两者的差别就落在第（2）步上：Prewitt 直接对原图差分，噪声被一路放大到结果里；Canny 先做一次高斯平滑再差分，把噪声挡在门外。这正是上一节那句话的实例——<strong>边缘检测本质上是滤波，区别只在滤波器的选择。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/3-2/p0007.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/3-2/p0007.webp" alt="图 2　Canny 边缘检测的四个步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　Canny 边缘检测的四个步骤：高斯函数 → 高斯平滑 → 求梯度 → 边缘点，每一步都以上一步的输出为输入（原课件第 7 张）</figcaption>
+</figure>
+
+<h2>3. 边并不是线</h2>
+<p>Canny 的输出看起来已经很像轮廓了，但课件在这里给了一句提醒：<strong>边并不是线。</strong></p>
+<p>边缘检测给出的信息只有一条——<strong>哪些像素位于边缘上</strong>。它没有说这些点构成了什么形状，也没有说这条边从哪里开始、到哪里结束、是直的还是弯的。<strong>计算机无法判断是否有直线，以及直线的位置。</strong>把边缘图放大看，所谓「线」其实是一串宽度不一的散点。</p>
+<p>于是问题被自然地分成两步：第一步，把边缘点找出来——这一步由边缘检测完成；第二步，从这些散点里判断「这里到底有没有一条直线、它在哪儿」——这一步还没有着落。下一节的霍夫变换就是为解决第二步而提出的。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/3-2/p0008.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/3-2/p0008.webp" alt="图 3　边缘检测只给出位于边缘的点，不给出直线" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　边缘检测只检测出位于边缘的点：边并不是线，从这些点里读不出「有没有直线、直线在哪里」（原课件第 8 张）</figcaption>
+</figure>
+
+<h2>本节小结</h2>
+<ul>
+  <li>Canny 检测器（1986）不是单个滤波器，而是一条完整的处理流程。</li>
+  <li>四个步骤：高斯函数（定尺度 σ）→ 高斯平滑（卷积抑制噪声）→ 求梯度（得到幅值与方向）→ 边缘点（按幅值取舍）。</li>
+  <li>核心取舍在 σ 上：σ 小则噪声多、σ 大则定位粗，所以要先定尺度、后做判决。</li>
+  <li>与 Prewitt 的差别就是「先平滑再差分」：边缘检测本质上是滤波，换算法就是换滤波器。</li>
+  <li>边缘检测的结果是「位于边缘的点」，不是「线」；从点里找出直线是下一节霍夫变换的任务。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="3-1.html">‹ 3.1 图像边缘与梯度</a>
+      <a class="next" href="3-3.html">3.3 霍夫变换 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7.9 循环神经网络的典型应用 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 7 章 循环神经网络 7.9 循环神经网络的典型应用：以「7-循环神经网络.pdf」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html" aria-current="page"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 7 章 循环神经网络</p>
+      <h1>7.9 循环神经网络的典型应用</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">原理讲完，该看它能干什么了。课件的总起句很简洁：<strong>只要涉及到序列数据的处理问题，都可以使用到循环神经网络。</strong> 随后它给出了四个方向——语言建模与文本生成、机器翻译、语音识别、生成图像描述，并逐个配上例子；最后又补充了视觉问答、写字与对话系统。本节按这个顺序走一遍，重点体会每个任务里「序列」体现在哪里。</p>
+
+<h2>1. 总览：序列数据处理</h2>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0055.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0055.webp" alt="图 1　循环神经网络在序列数据处理中的位置" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　课件给出的方法版图：计算机视觉面对的是图像的静态形态（卷积神经网络 CNN、残差网络 ResNet），自然语言处理面对的是文本的时序与语义（循环神经网络 RNN、长短期记忆网络 LSTM），二者共同服务于特征提取与特征分类（原课件第 55 张）</figcaption>
+</figure>
+<p>图 1 把本章的位置摆得很清楚：卷积神经网络擅长处理「静态形态」，而<strong>时序与语义</strong>这一块交给循环神经网络。课件列出的四个应用方向是：</p>
+<ul>
+  <li><strong>语言建模和文本生成</strong>：给出一个词语序列，预测下一个词语的可能性；</li>
+  <li><strong>机器翻译</strong>：将文本内容从一种语言翻译成其他语言；</li>
+  <li><strong>语音识别</strong>：基于输入的声波预测语音片段，从而确定词语；</li>
+  <li><strong>生成图像描述</strong>：理解图像中发生了什么，从而作出合理的描述。</li>
+</ul>
+
+<h2>2. 语言建模：预测下一个词</h2>
+<p>语言建模是循环神经网络最「本色」的应用：给出一串词，预测下一个词出现的可能性。它的输入是一个词序列，输出是词表上每个词的概率，取概率最大的那个就是预测结果。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0057.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0057.webp" alt="图 2　语言建模：从词序列到下一个词的概率" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　语言建模的循环网络：输入 X<sub>1</sub>…X<sub>3</sub> 经权重 W<sub>xh</sub> 进入隐状态 h<sub>1</sub>…h<sub>3</sub>（隐状态之间用 W<sub>hh</sub> 相连），再由 W<sub>hy</sub> 得到每个时刻的输出 Y<sub>1</sub>…Y<sub>3</sub>，即下一个词的概率分布（原课件第 57 张）</figcaption>
+</figure>
+<p>这个任务有个讨巧之处：训练数据不需要人工标注。一段现成的文本，把每个位置的下一个词当作标签即可，文本本身就是答案。这也是它能被大规模训练的原因。</p>
+<p>课件给了两个好玩的例子。第一个是让 RNN「学习」汪峰的全部作品之后自动生成歌词（代码见 <code>https://&#8203;github.com/&#8203;phunterlau/&#8203;wangfeng-rnn</code>），生成的句子像这样：</p>
+<pre><code>我在这里中的夜里
+就像一场是一种生命的意叶
+就像我的生活变得在我一样
+可我们这是一个知道</code></pre>
+<p>这些句子从语法上看并不通顺，但词的搭配、句子的长度和节奏都带上了几分原作的味道。这恰好说明模型学到的是<strong>词与词之间的统计关联</strong>，而不是语法规则。</p>
+<p>第二个例子是作诗（生成结果见 <code>https://&#8203;janvia.github.io/&#8203;2019/&#8203;01/&#8203;13/&#8203;循环神经网络RNN-写诗/</code>）。课件给出了生成的诗句与英文翻译，例如「白鹭窥鱼立，青山照水开」对应 “Egrets stood, peeping fishes. Water was still, reflecting mountains.”——同样是「像那么回事」的生成结果。</p>
+
+<h2>3. 机器翻译</h2>
+<p>机器翻译在 7.3 节已经讲过做法：输入为源语言的单词序列，输出为目标语言的单词序列，两者不等长、也没有严格对应关系，因此用「编码器—解码器」结构实现。这里只把它列入应用清单：它是异步的序列到序列模式最典型的落地场景。</p>
+
+<h2>4. 语音识别</h2>
+<p>语音识别的设定很简单：<strong>输入为语音序列，输出为识别出来的文字序列</strong>。难的地方在于两者的粒度对不上——音频是按帧处理的，一秒钟可能有上百帧，而文字是以词（或字）为单位的，中间并没有「第几帧对应哪个字」的现成标注。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0061.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0061.webp" alt="图 3　语音识别：波形、逐帧标注与 CTC" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　语音识别的流程：从波形（Waveform）出发，先做逐帧（Framewise）预测，再用 CTC 把帧级别的结果对齐成文字序列（如 “of the sound”）（原课件第 61 张）</figcaption>
+</figure>
+<p>图 3 里的 <strong>CTC（Connectionist Temporal Classification，连接时序分类）</strong>就是为解决这个对齐问题而设的：它允许网络在帧一级输出，再通过一套合并规则把重复帧与空白帧折叠成最终的文字序列。这样就不必为每一帧人工标注答案。</p>
+
+<h2>5. 生成图像描述：看图说话</h2>
+<p>这个任务把两章的内容接在了一起：<strong>理解图像中发生了什么，从而作出合理的描述</strong>。做法是先用卷积神经网络「看」——把图像编码成一个特征向量，再用循环神经网络「说」——逐词生成描述句子。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0062.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0062.webp" alt="图 4　看图说话：CNN 提特征、RNN 生成句子" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　看图说话的典型结构：视觉侧用深度卷积网络（Vision Deep CNN）提取图像特征，语言侧用生成式循环网络（Language Generating RNN）逐词写出描述（原课件第 62 张）</figcaption>
+</figure>
+<p>课件还给出了这个任务的评价结果（图 5），按人工评分把生成结果分成四档：<strong>Describes without errors</strong>（描述无误）、<strong>Describes with minor errors</strong>（有轻微错误）、<strong>Somewhat related to the image</strong>（与图像有些关系）、<strong>Unrelated to the image</strong>（与图像无关）。例句如 “A person riding a motorcycle on a dirt road.”、“Two dogs play in the grass.”——可以看出，评价的关键在于句子是否<strong>准确且具体</strong>地描述了画面内容，而不只是语法通顺。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0063.webp" alt="图 5　图像描述结果的评价" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　图像描述结果的评价：按人工评分把生成句子分为「描述无误」「有轻微错误」「与图像有些关系」「与图像无关」四组（原课件第 63 张）</figcaption>
+</figure>
+
+<h2>6. 视觉问答 VQA</h2>
+<p>比「看图说话」更进一步的是<strong>视觉问答（Visual Question Answering，VQA）</strong>。课件的定义是：<strong>给定一幅图像以及一个关于该图像的自然语言问题，任务是给出准确的自然语言答案。</strong></p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0064.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0064.webp" alt="图 6　视觉问答 VQA" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　视觉问答（VQA）：模型要同时读懂图像与问题，再给出简短的自然语言答案，图中例子是回答 “bananas”（图片来源：Antol 等，2015）（原课件第 64 张）</figcaption>
+</figure>
+<p>与「看图说话」相比，VQA 的输入多了一条：问题。图像与问题分别编码后一起送入模型，输出则是一个简短的答案。它要求模型把「看到的东西」与「被问到的东西」对应起来，因此是图像描述任务的进阶版本。</p>
+
+<h2>7. 写字</h2>
+<p>「写字」这个例子最能说明「把任务化成序列」的思路。课件的描述是：<strong>把一个字母的书写轨迹看作是一连串的点。一个字母的「写法」其实是每一个点相对于前一个点的偏移量，记为 (offset x, offset y)；再增加一维取值为 0 或 1 来记录是否应该「提笔」。</strong></p>
+<p>这样一来，写字就变成了一个序列生成问题：网络每步输出一组偏移量与一个提笔标志，把它们依次连起来，轨迹就画出来了。提笔标志的作用是让笔在字母的笔画之间「抬起来」，否则所有笔画会被连成一团。这个例子也说明循环神经网络不只能处理「读进来」的序列，同样能「写出去」。</p>
+
+<h2>8. 对话系统</h2>
+<p>最后一个例子是对话系统。多轮对话本身就是一条序列：用户这句话的意思，往往取决于前面聊过什么。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/7-9/p0066.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/7-9/p0066.webp" alt="图 7　对话系统的编码器—上下文 RNN—解码器结构" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　对话系统的结构：编码器（Encoder）理解当前这句话，上下文循环网络（Context RNN）维护多轮对话的状态，解码器（Decoder）生成回复；图中还标出了情感标签（Happy／Neutral）（原课件第 66 张，实现见 github.com/lukalabs/cakechat）</figcaption>
+</figure>
+<p>课件给出的例子是：问句 “Where should I go tonight？” 得到回复 “Go to the party！”。值得注意的是图中标出的 <strong>Happy、Neutral</strong> 等情感标签——除了「说什么」，系统还要决定「用什么样的语气说」，因此上下文状态里既要有对话内容，也要有情绪这类附加信息。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>总原则：只要涉及序列数据的处理，都可以用循环神经网络。课件给出的四个方向是语言建模与文本生成、机器翻译、语音识别、生成图像描述。</li>
+  <li><strong>语言建模</strong>就是「给出一个词语序列，预测下一个词」：输入词经嵌入变成向量，经隐状态算出词表上的概率分布；训练不需要人工标注，文本本身就是标签。课件举了自动生成汪峰风格歌词与自动作诗两个例子。</li>
+  <li><strong>语音识别</strong>的输入是语音序列、输出是文字序列，由于帧与字没有现成对齐关系，通常借助 CTC（连接时序分类）完成对齐。</li>
+  <li><strong>生成图像描述（看图说话）</strong>把 CNN 与 RNN 接起来：CNN 负责编码图像，RNN 负责逐词生成描述；评价按「描述无误、有轻微错误、与图像有些关系、与图像无关」分档。</li>
+  <li><strong>视觉问答（VQA）</strong>在图像之外再输入一个自然语言问题，要求给出准确的答案；<strong>写字</strong>把书写轨迹表示成偏移量与提笔标志，把生成问题变成序列问题；<strong>对话系统</strong>用编码器、上下文 RNN 与解码器维护多轮对话并生成回复，还能带上情感标签。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="7-8.html">‹ 7.8 深层循环神经网络</a>
+      <a class="next" href="7-10.html">7.10 参考资料与课后作业 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

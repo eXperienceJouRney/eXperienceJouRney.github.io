@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.11 小结 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章 4.11 小结：课件第 148–152 张。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../os.html">操作系统原理</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>操作系统在计算机系统中的地位</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>操作系统的形成与发展</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>操作系统的基本类型</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>操作系统的定义和特性</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>操作系统的资源管理功能</a></li>
+<li><a href="1-6.html"><span class="num">1.6</span>操作系统采用的关键技术</a></li>
+<li><a href="1-7.html"><span class="num">1.7</span>UNIX系统</a></li>
+<li><a href="1-8.html"><span class="num">1.8</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 2 章 结构与硬件支持</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>操作系统虚拟机</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>操作系统的组织结构</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>操作系统的结构</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>处理机的特权级</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>中断及其处理</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>Linux系统的特权级与中断处理</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 3 章 用户接口</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>用户工作环境</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>应用程序的处理</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>用户接口</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>系统功能调用</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 4 章 进程及进程管理</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>进程的引入</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>进程概念</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>进程控制</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>进程之间的相互制约关系</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>进程同步机构</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>进程互斥与同步的实现</a></li>
+<li><a href="4-7.html"><span class="num">4.7</span>进程通信</a></li>
+<li><a href="4-8.html"><span class="num">4.8</span>操作系统的并发机制实例</a></li>
+<li><a href="4-9.html"><span class="num">4.9</span>线程概念及特点</a></li>
+<li><a href="4-10.html"><span class="num">4.10</span>线程的互斥与同步</a></li>
+<li><a href="4-11.html" aria-current="page"><span class="num">4.11</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 5 章 资源分配与调度</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>资源管理概述</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>资源的分配机制和策略</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>死锁的概念与产生原因</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>死锁的预防</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>银行家算法</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>死锁的检测与解除</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 6 章 处理机调度</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>处理机的多级调度</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>作业调度</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>作业调度算法</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>进程调度</a></li>
+<li><a href="6-5.html"><span class="num">6.5</span>进程优先数调度算法</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>循环轮转调度算法</a></li>
+<li><a href="6-7.html"><span class="num">6.7</span>循环轮转调度算法的发展</a></li>
+<li><a href="6-8.html"><span class="num">6.8</span>时间片与优先级混合调度算法</a></li>
+<li><a href="6-9.html"><span class="num">6.9</span>习题</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 7 章 主存管理</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>主存管理概述</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>主存管理的功能</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>分区存储管理</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>页式存储管理</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>页面置换算法</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>段式及段页式存储管理</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>小结</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>课堂练习</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 8 章 设备管理</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>设备管理概述</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>缓冲技术</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>设备分配</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>设备控制</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>小结</a></li>
+</ul></div>
+<div class="toc-ch">
+<h2>第 9 章 文件系统</h2>
+<ul class="toc-list">
+<li><a href="9-1.html"><span class="num">9.1</span>文件系统的基本概念</a></li>
+<li><a href="9-2.html"><span class="num">9.2</span>文件的逻辑结构与存取方法</a></li>
+<li><a href="9-3.html"><span class="num">9.3</span>文件的物理结构</a></li>
+<li><a href="9-4.html"><span class="num">9.4</span>文件存储空间的管理</a></li>
+<li><a href="9-5.html"><span class="num">9.5</span>文件目录及其结构</a></li>
+<li><a href="9-6.html"><span class="num">9.6</span>文件共享与安全</a></li>
+<li><a href="9-7.html"><span class="num">9.7</span>文件操作与文件备份</a></li>
+<li><a href="9-8.html"><span class="num">9.8</span>UNIX文件系统的主要结构及实现</a></li>
+<li><a href="9-9.html"><span class="num">9.9</span>小结</a></li>
+</ul></div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · 第 4 章 进程及进程管理</p>
+      <h1>4.11 小结</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">这一节把第 4 章「进程及进程管理」串一遍。章内的逻辑其实是一条链：为什么要引入进程 → 进程是什么、怎么描述、怎么控制 → 进程之间为什么互相制约 → 用什么机构去协调 → 这些机构怎样落在具体程序里 → 线程带来了什么变化 → Linux 上是怎样实现的。下面按这条链回顾每一环的关键结论，便于把散在各节的知识点重新组织成一张网。</p>
+
+<h2>1. 进程概念</h2>
+<p>进程概念的起点是程序的执行方式。程序<strong>顺序执行</strong>时具有顺序性、封闭性和可再现性；多道程序环境下程序<strong>并发执行</strong>，这三条性质都不再成立——执行过程被走走停停地打断，多个程序共享资源、互相影响，结果与时间有关。为了描述这种并发执行的活动，才引入了进程：<strong>进程是程序在一个数据集合上的一次运行过程，是系统进行资源分配和调度的基本单位</strong>。它与程序的区别在于「动」与「静」：程序是静态的指令集合，可以长期保存；进程是动态的，有创建、运行、消亡的生命周期。</p>
+<p>进程的状态是刻画它动态性的主要工具：三个基本状态——就绪、运行、等待（阻塞），以及三者之间的变迁关系构成了进程的状态变迁图。不同操作系统类型（如批处理系统、分时系统）中，进程的状态划分与变迁图会有所不同，例如分时系统中运行态与就绪态之间的转换更频繁。进程又靠什么来描述？靠<strong>进程控制块 PCB</strong>：它记录了进程的标识、状态、现场信息以及资源清单等，是操作系统感知和控制进程的唯一依据，所以进程的组成可以写作「PCB + 程序 + 数据」。</p>
+
+<h2>2. 进程控制</h2>
+<p>进程的创建、撤销、等待与唤醒都由<strong>进程控制原语</strong>完成，原语的特点是执行不可分割——在执行过程中不允许被中断，否则进程状态会处于中间的不一致状态。基本的进程控制原语包括创建进程、撤销进程、进程等待（阻塞）和进程唤醒，它们的功能可以对照着记：</p>
+<ul>
+  <li>进程创建原语：为进程分配 PCB 及所需资源，把新进程插入就绪队列；</li>
+  <li>进程撤销原语：回收进程占用的资源，撤销其 PCB；</li>
+  <li>进程等待原语：把当前进程由运行态变为等待态，插入相应资源的等待队列，并转调度；</li>
+  <li>进程唤醒原语：把等待队列上的进程移出，置为就绪态，插入就绪队列。</li>
+</ul>
+<p>可以看到，原语的执行与进程状态的变化是严格对应的：创建使新进程进入就绪态，等待使运行态转为等待态，唤醒使等待态回到就绪态，撤销使进程走向终止。</p>
+
+<h2>3. 进程之间的相互制约关系与同步机构</h2>
+<p>并发进程之间存在两种制约关系，它们的来源不同：<strong>互斥</strong>来自对临界资源的争用——一次只允许一个进程使用的资源叫临界资源，访问它的那段程序叫临界区，多个进程不能同时进入自己的临界区，这就是互斥；<strong>同步</strong>来自进程之间的协作——几个进程为了完成共同的任务，必须按某种先后次序推进，例如看病与化验，化验进程必须等看病进程开出化验单才能工作。</p>
+<p>协调这两种关系的是操作系统提供的<strong>同步机构</strong>，本章讲了两类。第一类是<strong>锁</strong>：用一个锁变量 w 记录资源是否被占用，配以上锁原语（测试 w，为 0 则置 1 并进入临界区，为 1 则等待）与开锁原语（把 w 置 0，必要时唤醒等待者），等待方式有自旋与挂起两种，分别对应自旋锁和普通锁 mutex。第二类是 1965 年 Dijkstra 提出的<strong>信号灯</strong>（信号量）：它是一个二元组 (s, q)，s 是带非负初值的整型变量，代表可用资源实体的数量，q 是初态为空的等待队列；对它的两种原语操作是 P 操作（s 减 1，结果为负则挂起调用进程）和 V 操作（s 加 1，结果不大于零则唤醒等待队列上的一个进程）。信号灯的取值本身就是信息：正值表示还可使用的资源数，负值的绝对值表示等待队列中的进程数。</p>
+
+<h2>4. 进程互斥与同步的实现</h2>
+<p>用机构去解决实际问题，第一步总是「设信号灯并说明它的意义和初值」。<strong>互斥</strong>只需一个初值为 1 的互斥信号灯：进程在临界区前后各做一次 p(mutex) 与 v(mutex)；两个并发进程时 mutex 只取 1、0、−1 三个值，n 个进程时则可能取 1, 0, −1, …, −(n−1)。</p>
+<p><strong>同步</strong>问题分两类，解法已经形成了固定套路——先画进程流图分析同步关系，再设信号灯，最后写程序描述：</p>
+<ul>
+  <li><strong>合作进程的执行次序</strong>：同步信号灯初值为 0，由前驱进程在结束时用 V 操作「发放通行证」，后继进程在开始处用 P 操作等待，例如 pa 结束后 pb、pc 才能开始的例子；</li>
+  <li><strong>共享缓冲区的合作进程</strong>：需要两个同步信号灯，一个表示缓冲区中有无信息（初值 0），一个表示有无空位置（初值 1），cp 与 iop 就是这样配合的。</li>
+</ul>
+<p>把后一类推广到多生产者、多消费者，就是本章的压轴内容<strong>生产者—消费者问题的一般解答</strong>：设 sb 表示空缓冲区数目（初值 n）、sa 表示满缓冲区数目（初值 0），两者负责同步；再设 mutex（初值 1）负责对缓冲区本身的互斥访问。生产者「生产 → p(sb) → p(mutex) → 放入 → v(mutex) → v(sa)」，消费者「p(sa) → p(mutex) → 取出 → v(mutex) → v(sb) → 消费」，两条流水正好对称。这一结论在第 5 章还会用到：把其中 P 操作的次序颠倒，就会造成死锁。</p>
+
+<h2>5. 线程与 Linux 的实现实例</h2>
+<p>进程虽然解决了并发问题，但它把「分配资源」和「被调度执行」两件事捆在一起，导致切换开销大、通信代价大、并发粒度粗，难以满足客户/服务器计算的要求。解决办法是把这两项功能分开：<strong>进程作为资源分配单位，线程作为调度执行的基本单位</strong>。线程是进程中的一条执行路径，有自己私用的运行栈和处理机执行环境，与同进程的其他线程共享内存、文件等资源；它同样有创建、就绪、运行、等待、终止等状态；线程之间也需要互斥与同步，除了继续使用信号量，还可以用互斥锁与条件变量（等待时释放锁、被唤醒后重新加锁）。</p>
+<p>最后是 Linux 的实现实例，把本章的概念与真实接口对应起来：用 <code>fork</code> 一类的调用创建进程、用等待调用回收进程；信号量的使用围绕 <code>semget</code>（创建）、<code>semctl</code>（赋初值、删除）、<code>semop</code>（P、V 操作）三个系统调用展开；共享内存用 <code>shmget</code> 取得句柄、用 <code>shmctl</code> 释放；线程则由 pthread 库的 <code>pthread_create</code> 创建、<code>pthread_exit</code> 终止、<code>pthread_join</code> 等待回收。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>本章的主线是「并发带来的问题 → 描述并发的手段 → 协调并发的机构 → 机构的具体应用」：顺序执行与并发执行的差别引出了进程，进程的状态与 PCB 描述它的动态行为，进程控制原语完成它的生老病死；</li>
+  <li>并发进程之间的两种制约关系是互斥（争用临界资源）与同步（协作的先后次序），对应两类同步机构：锁（上锁/开锁原语）与信号灯（P、V 操作）；</li>
+  <li>互斥的解法是一个初值为 1 的互斥信号灯；同步的解法是先画进程流图、再设初值为 0 的同步信号灯；共享缓冲区要一「满」一「空」两个信号灯；</li>
+  <li>生产者—消费者问题把上面的一切合起来：sa（满，初值 0）、sb（空，初值 n）负责同步，mutex（初值 1）负责互斥，其中 P 操作的次序不可颠倒；</li>
+  <li>线程把「资源分配」与「调度执行」分开，成为更细的并发单位，其互斥与同步可用信号量、互斥锁与条件变量实现；</li>
+  <li>Linux 用 semget/semctl/semop 管理信号量，用 shmget/shmctl 管理共享内存，用 pthread_create/exit/join 管理线程——概念与接口一一对应。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="4-10.html">‹ 4.10 线程的互斥与同步</a>
+      <a class="next" href="5-1.html">5.1 资源管理概述 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>

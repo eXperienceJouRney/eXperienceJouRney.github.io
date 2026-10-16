@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 1 章 作业 · 计算机通信与网络 · eXperience JouRney</title>
+<meta name="description" content="计算机通信与网络第 1 章作业（概述）：交换方式选型与网络架构设计、时延带宽与吞吐量计算、协议分层思想、OSI 与 TCP/IP 对比，共 4 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=3">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../network.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../network.html">计算机通信与网络</a> · <a href="homework.html">作业</a> · 第 1 章 概述</p>
+      <h1>第 1 章 作业 · 概述</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>交换方式选型与网络架构设计</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某科技公司计划为西部某偏远地区部署一个新型通信网络，用于同时支持两种关键服务：</p>
+              <ul>
+                <li><strong>紧急语音通信</strong>：要求极低的延迟和通话清晰度，保证指令能实时、可靠传达；</li>
+                <li><strong>环境监测数据传输</strong>：由大量传感器定期上传温度、湿度等小批量数据，允许一定的延迟，但需要高效利用网络带宽。</li>
+              </ul>
+              <p>已知该地区网络基础设施薄弱，链路带宽资源极其宝贵。</p>
+              <p class="hw-ask-label">问题：</p>
+              <ol class="hw-ask">
+                <li>请简述电路交换和分组交换的核心工作机理。</li>
+                <li>从「信道资源共享方式」和「传输可靠性保障」两个角度，对比这两种交换方式的本质区别。</li>
+                <li>如果仅从技术特性出发，上述两种关键服务分别更适合采用哪种交换方式？请阐述你的理由。</li>
+                <li>考虑到带宽资源极其宝贵这一硬性约束，请设计一个合理的网络架构方案，并论证为何分组交换技术最终成为现代互联网（包括你设计的这个网络）的绝对主导方案。</li>
+                <li>如果选择分组交换技术，会为「紧急语音通信」服务带来什么潜在问题？</li>
+                <li>针对上述问题，现代网络是如何在分组交换的架构基础上，通过哪些技术或机制来保障语音服务的质量（QoS）的？（请至少阐述两点）</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）核心工作机理</h3>
+                <ul>
+                  <li><strong>电路交换</strong>：在通信开始前，必须在通信双方之间建立一条专用的端到端物理通路（即「电路」）。在整个通信过程中，该通路一直被独占，即使没有数据传输，其他用户也无法使用，直至连接被释放。典型例子是传统电话网。</li>
+                  <li><strong>分组交换</strong>：将待传输的数据分割成一个个带寻址信息的分组，每个分组独立地在网络中选择路径传输（存储—转发）。网络中的链路和节点资源被所有用户的分组共享（统计复用），而非独占。</li>
+                </ul>
+
+                <h3>（2）本质区别对比</h3>
+                <table>
+                  <thead>
+                    <tr><th>对比角度</th><th>电路交换</th><th>分组交换</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>信道资源共享方式</td>
+                      <td>静态的、预分配的<strong>独占式</strong>共享，资源利用率低。</td>
+                      <td>动态的、按需的<strong>统计复用</strong>式共享，资源利用率高。</td>
+                    </tr>
+                    <tr>
+                      <td>传输可靠性保障</td>
+                      <td>可靠性依赖于已建立的物理通路，通路中断则通信中断。</td>
+                      <td>由终端系统（如使用 TCP 协议）和网络协议共同保障，网络故障可通过路由切换避免，更具鲁棒性。</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3>（3）两种服务分别适合的交换方式</h3>
+                <ul>
+                  <li><strong>紧急语音通信</strong>：从纯技术特性看，更接近<strong>电路交换</strong>。因为其需要固定的带宽和极低的、稳定的延迟，电路交换的独占信道特性天然满足此需求。</li>
+                  <li><strong>环境监测数据传输</strong>：更适合<strong>分组交换</strong>。因为其数据量小、突发、间歇性传输，分组交换的统计复用特性可以高效利用带宽，避免资源浪费。</li>
+                </ul>
+
+                <h3>（4）网络架构方案与论证</h3>
+                <ul>
+                  <li><strong>方案</strong>：整个网络采用<strong>基于 IP 的分组交换网络</strong>作为统一基础架构；对于语音服务，通过在其之上实施一系列<strong>服务质量（QoS）机制</strong>来保障体验。</li>
+                  <li><strong>论证</strong>：选择分组交换作为主导方案的核心原因在于其极高的<strong>带宽利用率</strong>，这完美契合了「带宽资源极其宝贵」的约束。分组交换的统计复用特性允许所有服务（语音和数据）动态共享同一带宽资源，在整体上远比为其分别建立独占的电路更加高效和经济。此外，其鲁棒性、灵活性和易于扩展的特点，也使其成为构建通用全球网络（互联网）的不二之选。</li>
+                </ul>
+
+                <h3>（5）分组交换给语音通信带来的潜在问题</h3>
+                <p>分组交换会为语音通信带来<strong>可变延迟</strong>、<strong>排队延迟</strong>甚至<strong>分组丢失</strong>。因为语音分组需要与其他数据分组在路由器中排队等待转发，网络拥塞时延迟会不稳定，严重影响通话质量。</p>
+
+                <h3>（6）保障语音服务 QoS 的机制</h3>
+                <ul>
+                  <li><strong>① 流量分类与优先级队列</strong>：路由器能够识别语音分组的 IP 头或 TCP/UDP 端口号，将其标记为高优先级。路由器为高优先级分组配置优先队列，使其能够跳过普通数据的排队等待，被优先转发，从而显著降低延迟和抖动。</li>
+                  <li><strong>② 资源预留</strong>：类似于电路交换思想的延伸，网络中的路由器可以为此特定语音流预留一部分带宽和缓冲区资源，确保其传输始终畅通。这可以通过如 RSVP 等协议实现。</li>
+                  <li><strong>③ 使用 UDP 而非 TCP</strong>：语音通话通常采用 UDP 协议传输，因为 TCP 的重传机制会增加延迟（重传一个丢失的语音包可能已经来不及了）。语音应用本身会通过编码技术容忍一定的丢包，而非等待重传，以保证实时性。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>时延、带宽与吞吐量计算</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某网络链路连接两台主机 A 和 B。已知该链路的带宽为 <strong>1 Gbps</strong>，单向传播时延为 <strong>5 ms</strong>。主机 A 要向主机 B 发送一个大小为 <strong>12.5 MB</strong> 的文件。忽略任何处理时延、排队时延和协议开销。</p>
+              <ol class="hw-ask">
+                <li>请计算：
+                  <ul class="hw-sub">
+                    <li>① <strong>比特时间</strong>：计算在该链路上发送 1 个比特所需要的时间。</li>
+                    <li>② <strong>传输时延</strong>：计算将整个文件的数据推送到链路上所需要的时间。</li>
+                    <li>③ <strong>总时延</strong>：计算从主机 A 发送该文件的第一个比特开始，到主机 B 接收到该文件的最后一个比特为止，所经历的总时间。</li>
+                    <li>④ <strong>往返时延</strong>：计算该链路的往返时延。</li>
+                    <li>⑤ <strong>时延带宽积</strong>：计算该链路的时延带宽积，并说明其物理意义。</li>
+                    <li>⑥ <strong>信道利用率</strong>：如果我们将「从开始发送第一个比特到接收完最后一个比特的时间」视为该文件传输任务对信道的占用时间，请计算在此次传输过程中该链路的信道平均利用率。</li>
+                  </ul>
+                </li>
+                <li>请清晰地解释传输时延和传播时延的根本区别。哪一个取决于「数据块的大小」？哪一个取决于「物理距离」？</li>
+                <li>带宽和吞吐量在概念上有何不同？在本题描述的理想场景下，主机 B 接收该文件的实际吞吐量是多少？</li>
+                <li>如果另一个网络链路的时延带宽积很小，这通常意味着什么？</li>
+                <li>假设文件大小和传播时延不变，仅将链路带宽从 1 Gbps 提升到 <strong>10 Gbps</strong>：
+                  <ul class="hw-sub">
+                    <li>① 传输时延将如何变化？是原来的几分之几？</li>
+                    <li>② 总时延将如何变化？</li>
+                    <li>③ 本次文件传输的吞吐量将如何变化？</li>
+                  </ul>
+                </li>
+                <li>假设文件大小和带宽不变，但这是一条卫星链路，<strong>传播时延增大到了 250 ms</strong>：
+                  <ul class="hw-sub">
+                    <li>① 总时延将如何变化？</li>
+                    <li>② 本次文件传输的吞吐量将如何变化？</li>
+                    <li>③ 时延带宽积将如何变化？这一变化对网络设计有何启示？</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）基本量计算</h3>
+                <div class="hw-calc">
+                  <p><strong>① 比特时间</strong><br>带宽 R = 1 Gbps = 1 × 10⁹ b/s<br>比特时间 = 1 / R = 1 / (1 × 10⁹) = <strong>10⁻⁹ 秒</strong>（即 1 纳秒）</p>
+                  <p><strong>② 传输时延</strong><br>文件大小 L = 12.5 MB = 12.5 × 2²⁰ Bytes = 12.5 × 1024 × 1024 × 8 bits = <strong>104,857,600 bits</strong><br>传输时延 D<sub>trans</sub> = L / R = 104,857,600 / (1 × 10⁹) = <strong>0.1048576 秒 ≈ 104.86 ms</strong></p>
+                  <p><strong>③ 总时延</strong><br>传播时延 D<sub>prop</sub> = 5 ms = 0.005 s<br>总时延 = 传输时延 + 传播时延 = 104.86 ms + 5 ms = <strong>109.86 ms</strong></p>
+                  <p><strong>④ 往返时延</strong><br>RTT = 2 × D<sub>prop</sub> = 2 × 5 ms = <strong>10 ms</strong></p>
+                  <p><strong>⑤ 时延带宽积</strong><br>时延带宽积 = R × D<sub>prop</sub> = (1 × 10⁹ b/s) × (0.005 s) = <strong>5,000,000 bits</strong>（5 Mb）<br><strong>物理意义</strong>：它代表了链路的「管道容量」，即从发送方发出第一个比特开始，到该比特到达接收方为止的这段时间内，发送方最多能向链路上注入的比特数量。</p>
+                  <p><strong>⑥ 信道平均利用率</strong><br>信道占用总时间 = 总时延 = 109.86 ms<br>信道实际用于传输数据的时间 = 传输时延 = 104.86 ms<br>平均利用率 =（实际传输时间 / 占用总时间）× 100% =（104.86 ms / 109.86 ms）× 100% ≈ <strong>95.45%</strong></p>
+                </div>
+
+                <h3>（2）传输时延与传播时延的根本区别</h3>
+                <ul>
+                  <li><strong>传输时延</strong>：将数据的所有比特「发射」到链路上所需的时间。它取决于<strong>数据块的大小（L）</strong>和<strong>链路带宽（R）</strong>，即 D<sub>trans</sub> = L / R。</li>
+                  <li><strong>传播时延</strong>：一个比特信号在链路上从起点传播到终点所需的时间。它取决于<strong>链路的物理长度（d）</strong>和<strong>信号传播速度（v）</strong>，即 D<sub>prop</sub> = d / v。</li>
+                </ul>
+
+                <h3>（3）带宽与吞吐量</h3>
+                <ul>
+                  <li><strong>带宽</strong>是链路所能提供的<strong>理论最大</strong>数据传输速率，是链路的物理属性。</li>
+                  <li><strong>吞吐量</strong>是端到端<strong>实际测得</strong>的数据传输速率。</li>
+                  <li>在本题的理想场景（无其他流量、无丢包、无协议开销）下，实际吞吐量等于文件大小除以总时间：104,857,600 bits / 0.10986 s ≈ <strong>954.5 Mbps</strong>。它略低于 1 Gbps 的带宽，原因正是第（1）⑥ 问算出的信道利用率（95.45%）小于 100%。</li>
+                </ul>
+
+                <h3>（4）时延带宽积很小的含义</h3>
+                <p>如果一条链路的时延带宽积很小，通常意味着这是一条<strong>短距离或低带宽</strong>的链路，其「管道」容量有限。</p>
+
+                <h3>（5）带宽提升至 10 Gbps</h3>
+                <ul>
+                  <li><strong>① 传输时延</strong>：D<sub>trans_new</sub> = L / R<sub>new</sub> = 104,857,600 / (10 × 10⁹) = 0.01048576 s ≈ <strong>10.49 ms</strong>，变为原来的约<strong>十分之一</strong>（104.86 ms → 10.49 ms）。</li>
+                  <li><strong>② 总时延</strong>：总时延<sub>new</sub> = D<sub>trans_new</sub> + D<sub>prop</sub> = 10.49 ms + 5 ms = <strong>15.49 ms</strong>，显著降低。</li>
+                  <li><strong>③ 吞吐量</strong>：吞吐量 ≈ 文件大小 / 总时延<sub>new</sub> = 104.86 Mb / 0.01549 s ≈ <strong>6770 Mbps</strong>，显著提高，更接近新的带宽（10 Gbps）。</li>
+                </ul>
+
+                <h3>（6）传播时延增大至 250 ms</h3>
+                <ul>
+                  <li><strong>① 总时延</strong>：总时延<sub>new</sub> = D<sub>trans</sub> + D<sub>prop_new</sub> = 104.86 ms + 250 ms = <strong>354.86 ms</strong>，显著增加。</li>
+                  <li><strong>② 吞吐量</strong>：吞吐量 ≈ 文件大小 / 总时延<sub>new</sub> = 104.86 Mb / 0.35486 s ≈ <strong>295.4 Mbps</strong>，显著下降（相对于 1 Gbps 的带宽），因为传播时延占用了大量时间。</li>
+                  <li><strong>③ 时延带宽积</strong>：时延带宽积<sub>new</sub> = R × D<sub>prop_new</sub> = (1 × 10⁹) × 0.25 = <strong>250,000,000 bits</strong>（250 Mb），变得非常大。</li>
+                  <li><strong>对网络设计的启示</strong>：高时延带宽积链路（如卫星链路、长距离高速光纤）要求发送端和接收端具有非常大的<strong>缓存空间（Buffer）</strong>来存放那些已发出但尚未被确认的数据；同时，它也凸显了开发高效传输协议（如 TCP）来管理这些「在途数据」的重要性。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>协议分层思想</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <ol class="hw-ask">
+                <li>请简要说明协议分层的核心思想及其两个主要优点。</li>
+                <li>在因特网的实际模型结构中，传输层和网络层的核心任务分别是什么？这种职责划分带来了什么好处？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）核心思想与优点</h3>
+                <ul>
+                  <li><strong>核心思想</strong>：将复杂的网络通信过程划分为若干个层次分明、功能相对独立的模块。</li>
+                  <li><strong>优点 1</strong>：各层之间相互独立，层间接口清晰，易于实现和维护。</li>
+                  <li><strong>优点 2</strong>：灵活性好，任何一层的变化只要不影响接口，就不会影响其他层。</li>
+                </ul>
+
+                <h3>（2）传输层与网络层的核心任务及好处</h3>
+                <ul>
+                  <li><strong>网络层</strong>的核心任务是实现数据包<strong>在不同网络之间的逻辑寻址和路由选择</strong>（从源主机到目的主机）。</li>
+                  <li><strong>传输层</strong>的核心任务是提供<strong>进程到进程的端到端</strong>的可靠或不可靠的传输服务。</li>
+                  <li><strong>好处</strong>：这种划分实现了<strong>通信子网（下三层）</strong>与<strong>资源子网（上四层）</strong>的分离，使得网络设计者可以专注于通信基础设施的建设，而应用开发者可以专注于上层服务的实现，二者解耦，大大提升了设计的灵活性。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>OSI 与 TCP/IP 之争</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>尽管 OSI 模型理论清晰完整，但最终未被广泛应用，而 TCP/IP 模型却成为了事实上的国际标准。请从<strong>实践性</strong>和<strong>设计哲学</strong>的角度，分析导致这一结果的至少两个原因。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）实践性</h3>
+                <ul>
+                  <li>TCP/IP 协议先于模型出现，且已在互联网上大规模部署和应用，实践证明了其可行性和有效性，具有「先发优势」。</li>
+                  <li>OSI 模型的协议实现复杂，运行效率较低；而 TCP/IP 协议相对简单高效，更利于推广。</li>
+                </ul>
+
+                <h3>（2）设计哲学</h3>
+                <ul>
+                  <li>OSI 模型概念清晰但理想化，严格的分层在某些情况下（如寻址、流量控制）存在重复，不够实用。</li>
+                  <li>TCP/IP 模型更注重实用主义，允许跨层使用，设计上以「够用」为原则，更能满足实际网络的需求。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="homework.html">‹ 作业目录</a>
+      <a class="next" href="hw-2.html">第 2 章 作业 · 物理层 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

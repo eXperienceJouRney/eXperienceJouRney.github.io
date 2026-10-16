@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6.5 网络训练注意事项 · 计算机视觉 · eXperience JouRney</title>
+<meta name="description" content="计算机视觉第 6 章 卷积神经网络 6.5 网络训练注意事项：以「6-卷积神经网络.pptx」课件为大纲重写的讲义">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc">
+
+  <aside class="doc-toc" aria-label="课件目录">
+<details class="toc-fold" open>
+<summary>课件目录</summary>
+<a class="toc-home" href="../cv.html">计算机视觉</a>
+<div class="toc-body">
+<div class="toc-ch">
+<h2>第 1 章 绪论</h2>
+<ul class="toc-list">
+<li><a href="1-1.html"><span class="num">1.1</span>计算机视觉的概念</a></li>
+<li><a href="1-2.html"><span class="num">1.2</span>计算机视觉发展史</a></li>
+<li><a href="1-3.html"><span class="num">1.3</span>常见研究方向</a></li>
+<li><a href="1-4.html"><span class="num">1.4</span>计算机视觉应用</a></li>
+<li><a href="1-5.html"><span class="num">1.5</span>课程安排与学习资源</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 2 章 图像处理基础</h2>
+<ul class="toc-list">
+<li><a href="2-1.html"><span class="num">2.1</span>计算机中的数字图像</a></li>
+<li><a href="2-2.html"><span class="num">2.2</span>图像的采样与量化</a></li>
+<li><a href="2-3.html"><span class="num">2.3</span>图像滤波与卷积的动机——图像噪声</a></li>
+<li><a href="2-4.html"><span class="num">2.4</span>平滑滤波——均值滤波与中值滤波</a></li>
+<li><a href="2-5.html"><span class="num">2.5</span>高斯滤波</a></li>
+<li><a href="2-6.html"><span class="num">2.6</span>互相关与卷积</a></li>
+<li><a href="2-7.html"><span class="num">2.7</span>图像梯度与边缘检测</a></li>
+<li><a href="2-8.html"><span class="num">2.8</span>图像锐化</a></li>
+<li><a href="2-9.html"><span class="num">2.9</span>边界处理</a></li>
+<li><a href="2-10.html"><span class="num">2.10</span>滤波案例分析</a></li>
+<li><a href="2-11.html"><span class="num">2.11</span>模板匹配</a></li>
+<li><a href="2-12.html"><span class="num">2.12</span>图像缩小——下采样</a></li>
+<li><a href="2-13.html"><span class="num">2.13</span>图像放大——插值方法</a></li>
+<li><a href="2-14.html"><span class="num">2.14</span>图像超分辨率重建</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 3 章 边缘检测与线检测</h2>
+<ul class="toc-list">
+<li><a href="3-1.html"><span class="num">3.1</span>图像边缘与梯度</a></li>
+<li><a href="3-2.html"><span class="num">3.2</span>Canny 边缘检测器</a></li>
+<li><a href="3-3.html"><span class="num">3.3</span>霍夫变换</a></li>
+<li><a href="3-4.html"><span class="num">3.4</span>拓展：霍夫圆检测</a></li>
+<li><a href="3-5.html"><span class="num">3.5</span>参考资料</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 4 章 特征检测与匹配</h2>
+<ul class="toc-list">
+<li><a href="4-1.html"><span class="num">4.1</span>为什么需要局部特征</a></li>
+<li><a href="4-2.html"><span class="num">4.2</span>Harris 角点检测</a></li>
+<li><a href="4-3.html"><span class="num">4.3</span>尺度不变特征：LoG 与 DoG</a></li>
+<li><a href="4-4.html"><span class="num">4.4</span>特征描述子与 SIFT</a></li>
+<li><a href="4-5.html"><span class="num">4.5</span>特征匹配与性能评价</a></li>
+<li><a href="4-6.html"><span class="num">4.6</span>快速检测：FAST 与 ORB</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 5 章 前馈神经网络</h2>
+<ul class="toc-list">
+<li><a href="5-1.html"><span class="num">5.1</span>人工神经元与激活函数</a></li>
+<li><a href="5-2.html"><span class="num">5.2</span>神经网络的结构与发展历程</a></li>
+<li><a href="5-3.html"><span class="num">5.3</span>常用的深度学习框架</a></li>
+<li><a href="5-4.html"><span class="num">5.4</span>前馈神经网络</a></li>
+<li><a href="5-5.html"><span class="num">5.5</span>神经网络的直观理解</a></li>
+<li><a href="5-6.html"><span class="num">5.6</span>损失函数</a></li>
+<li><a href="5-7.html"><span class="num">5.7</span>参数学习与模型训练</a></li>
+<li><a href="5-8.html"><span class="num">5.8</span>反向传播算法</a></li>
+<li><a href="5-9.html"><span class="num">5.9</span>优化问题与课后练习</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 6 章 卷积神经网络</h2>
+<ul class="toc-list">
+<li><a href="6-1.html"><span class="num">6.1</span>卷积</a></li>
+<li><a href="6-2.html"><span class="num">6.2</span>卷积神经网络</a></li>
+<li><a href="6-3.html"><span class="num">6.3</span>其他卷积方式</a></li>
+<li><a href="6-4.html"><span class="num">6.4</span>几种典型的卷积神经网络</a></li>
+<li><a href="6-5.html" aria-current="page"><span class="num">6.5</span>网络训练注意事项</a></li>
+<li><a href="6-6.html"><span class="num">6.6</span>卷积神经网络的应用</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 7 章 循环神经网络</h2>
+<ul class="toc-list">
+<li><a href="7-1.html"><span class="num">7.1</span>为什么需要循环神经网络</a></li>
+<li><a href="7-2.html"><span class="num">7.2</span>循环神经网络的基本结构</a></li>
+<li><a href="7-3.html"><span class="num">7.3</span>RNN 的三种序列建模模式</a></li>
+<li><a href="7-4.html"><span class="num">7.4</span>参数学习：BPTT 与 RTRL</a></li>
+<li><a href="7-5.html"><span class="num">7.5</span>长程依赖问题与改进方案</a></li>
+<li><a href="7-6.html"><span class="num">7.6</span>长短期记忆网络 LSTM</a></li>
+<li><a href="7-7.html"><span class="num">7.7</span>门控循环单元 GRU</a></li>
+<li><a href="7-8.html"><span class="num">7.8</span>深层循环神经网络</a></li>
+<li><a href="7-9.html"><span class="num">7.9</span>循环神经网络的典型应用</a></li>
+<li><a href="7-10.html"><span class="num">7.10</span>参考资料与课后作业</a></li>
+</ul>
+</div>
+<div class="toc-ch">
+<h2>第 8 章 人脸识别</h2>
+<ul class="toc-list">
+<li><a href="8-1.html"><span class="num">8.1</span>人脸识别概述与基本流程</a></li>
+<li><a href="8-2.html"><span class="num">8.2</span>人脸检测</a></li>
+<li><a href="8-3.html"><span class="num">8.3</span>人脸对齐：原理与 DCNN 网络</a></li>
+<li><a href="8-4.html"><span class="num">8.4</span>轻量级关键点检测：PFLD 网络</a></li>
+<li><a href="8-5.html"><span class="num">8.5</span>检测与对齐联合：MTCNN 与 RetinaFace</a></li>
+<li><a href="8-6.html"><span class="num">8.6</span>人脸识别的概念与发展</a></li>
+<li><a href="8-7.html"><span class="num">8.7</span>经典网络：DeepID 系列</a></li>
+<li><a href="8-8.html"><span class="num">8.8</span>经典网络：FaceNet 与 Triplet Loss</a></li>
+<li><a href="8-9.html"><span class="num">8.9</span>代码示例：face_recognition 库</a></li>
+</ul>
+</div>
+</div>
+</details>
+  </aside>
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <p class="crumb"><a href="../cv.html">计算机视觉</a> · 第 6 章 卷积神经网络</p>
+      <h1>6.5 网络训练注意事项</h1>
+    </header>
+
+    <div class="note">
+<p class="lead">网络结构定下来只是开始，能不能训得动、训得好，取决于一批看似琐碎却决定成败的细节。这一节按训练流程把它们串一遍：先看喂给网络的数据该怎么处理（零均值化、归一化、PCA 白化、数据增广），再看参数从什么初值出发（权重初始化），最后看怎样给网络「上约束」以防过拟合（权重正则化、Dropout、批量归一化）。</p>
+
+<h2>1. 为什么训练前要先处理数据</h2>
+<p>神经网络的主要作用是通过数据训练出一个拟合函数，因此<strong>神经网络学习到的是训练数据的分布</strong>。这就带来一个直接后果：如果训练数据和测试数据的分布不同，那么就很难在测试数据上得到很好的效果。所以有必要先对数据进行预处理，把两者拉到同一个「尺度」和「位置」上。</p>
+<p>课件给出了三种常用的数据预处理方法：<strong>零均值化</strong>、<strong>归一化</strong>、<strong>PCA 白化</strong>。</p>
+
+<h2>2. 零均值化与归一化</h2>
+<p><strong>零均值化</strong>的做法很直白：把数据的每一维减去这一维的均值。做完之后，每一维的数据都以 0 为中心，不再有整体偏移。这一步的意义在后面的权重初始化与批量归一化里还会反复出现——输入偏向一侧会让某些权重长期只往一个方向更新。</p>
+<p><strong>归一化</strong>的目标是<strong>将数据归一化到相同的尺度</strong>，让不同维度的数据拥有可比的变化幅度。通常有两种方法：</p>
+<ul>
+  <li><strong>Min-max 标准化</strong>：把数据线性映射到 [0, 1] 区间，最大值变 1、最小值变 0；</li>
+  <li><strong>Z-score 标准化</strong>：把数据减去均值再除以标准差，得到均值 0、方差 1 的分布——它其实就是「零均值化 + 除以标准差」的组合。</li>
+</ul>
+<p>两者的区别在于：Min-max 标准化对极值点非常敏感（一个离群点就会把整个区间压扁），Z-score 标准化则对所有样本一视同仁，更适合后面要讲的批量归一化那种场景。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0086.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0086.webp" alt="图 1　零均值化与归一化" loading="lazy" decoding="async"></a>
+  <figcaption>图 1　数据预处理：零均值化把每一维减去各自的均值；归一化把数据缩放到相同的尺度，课件给出了 Min-max 标准化与 Z-score 标准化两种公式（原课件第 86 张）</figcaption>
+</figure>
+
+<h2>3. PCA 与白化</h2>
+<p>第三种方法是 <strong>PCA 白化</strong>：<strong>将数据降维并去掉数据之间的相关联度</strong>，它的步骤是「首先对数据进行 PCA 处理，而后进行白化」。所以要分两步看。</p>
+<h3>（1）主成分分析（PCA）</h3>
+<p>PCA 主要用来<strong>把特征的主要成分找出来，并去掉基本无关的成分，从而达到降维的目的</strong>。它的标准步骤是：</p>
+<ol>
+  <li><strong>零均值化</strong>：把原始数据集 X 的每一维减去该维均值；</li>
+  <li><strong>计算协方差矩阵 C</strong>：协方差矩阵刻画各维之间的相关性，对角线元素是各维的方差，非对角线元素是两维之间的协方差；</li>
+  <li><strong>求协方差矩阵的特征值与特征向量</strong>：特征值的大小代表对应方向上的数据方差（信息量）；</li>
+  <li><strong>把特征向量按特征值从大到小排列</strong>，取前若干个方向作为新的坐标轴，就完成了降维。</li>
+</ol>
+<p>第 4 步是 PCA 的精髓：<strong>方差大的方向保留，方差小的方向丢弃</strong>。课件用一个具体例子演示了这套计算——原始数据集 X 经过零均值化后求出协方差矩阵 C，再求出它的特征值与特征向量，并按特征值把特征向量从上到下排列。</p>
+<h3>（2）白化（Whitening）</h3>
+<p><strong>白化就是把各个特征轴上的数据除以对应特征值</strong>，从而达到在每个特征轴上都归一化幅度的结果；也就是说，<strong>在 PCA 的基础上再除以每一个特征的特征值，以使其标准化</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0087.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0087.webp" alt="图 2　从原始数据到白化数据" loading="lazy" decoding="async"></a>
+  <figcaption>图 2　白化的三个状态：原始数据（original data）各维尺度不一且彼此相关；去相关（decorrelated data）之后坐标轴已经转正，但各维幅度仍不同；白化（whitened data）再把每个特征轴除以对应特征值，各维幅度也统一了（原课件第 87、90 张）</figcaption>
+</figure>
+<p>这三张图正好对应三个状态，理解顺序是：<strong>原始数据</strong>是一团倾斜、扁长的点云——既相关，各维幅度也不一致；<strong>PCA 去相关</strong>之后点云被「转正」，坐标轴沿数据的主方向，但仍然是扁的（各维方差不同）；<strong>白化</strong>把每个方向再除以它的标准差，点云才被压成一个各向同性的球形。所以 PCA 管「方向」，白化管「幅度」。</p>
+<p>需要提醒的是：PCA 白化属于比较「重」的预处理，它需要在整个训练集上做矩阵分解，而且丢掉小方差方向也意味着丢信息。因此在图像任务里更常用的其实是下一节的批量归一化。</p>
+
+<h2>4. 数据增广</h2>
+<p><strong>数据增广</strong>是深度学习中的一种常见预处理，但它和前面三种不太一样：零均值化、归一化、PCA 白化都是在「改造已有数据」，而数据增广的目的是<strong>增加训练数据集</strong>，让数据集尽可能多样化，从而使训练出来的模型具有更强的泛化能力。它针对的正是过拟合——样本越多、越多样，模型就越难记住训练集的细节。</p>
+<p>课件列出了常见的数据增广手段：</p>
+<ul>
+  <li><strong>Color Jittering</strong>：对颜色进行增强——图像亮度、饱和度、对比度变化，以及彩色变换；</li>
+  <li><strong>Random Scale</strong>：尺度变换，随机缩放；</li>
+  <li><strong>Random Crop</strong>：采用随机图像差值方式对图像进行裁剪、缩放，实现尺度与长宽比增强，也就是随机裁剪；</li>
+  <li><strong>Horizontal / Vertical Flip</strong>：水平、垂直翻转；</li>
+  <li><strong>Shift</strong>：平移变换；</li>
+  <li><strong>Rotation / Reflection</strong>：旋转、仿射变换；</li>
+  <li><strong>Noise</strong>：加入高斯噪声、模糊处理。</li>
+</ul>
+<p>这份清单和 6.2 节讲池化时提到的三种不变性可以直接对照：翻转、平移、旋转、缩放这些操作之所以能当作「新样本」，前提正是模型对它们具有一定程度的不变性。数据增广相当于把这些不变性直接「喂」给网络，让它在训练阶段就见过这些变化。</p>
+
+<h2>5. 权重初始化</h2>
+<p>数据准备好之后，参数要从某个初值出发。权重初始化之所以重要，有三个层面的原因：</p>
+<ul>
+  <li><strong>影响收敛速度</strong>：对收敛的算法适当地初始化能加快收敛速度；</li>
+  <li><strong>影响收敛到哪里</strong>：初始值的选择将影响模型收敛到局部最小值还是全局最小值——课件用一幅示意图说明，初始值不同会收敛到不同的极值点；</li>
+  <li><strong>影响泛化</strong>：初始值过大可能在前向传播或反向传播中产生<strong>梯度爆炸</strong>；如果太小，信号在层层传递中会不断衰减，导致<strong>梯度消失</strong>、学习停滞。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0092.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0092.webp" alt="图 3　初始值不同，收敛到不同的极值点" loading="lazy" decoding="async"></a>
+  <figcaption>图 3　初始值对结果的影响：同一组参数、不同的初始值，会沿不同的路径收敛到不同的极值点（原课件第 92 张）</figcaption>
+</figure>
+<p>具体该取什么初值？课件给出了几种做法及其实践效果：</p>
+<ul>
+  <li><strong>零值初始化</strong>：把权重初始化为 0，可能出现梯度消失，所以不常用。原因也很直观——所有权重相同意味着所有神经元的梯度也相同，网络永远学不出差异。</li>
+  <li><strong>随机初始化</strong>：将随机数赋值给 w，通常倾向于使用<strong>很小的随机数</strong>，防止落在激活函数的平滑区域导致梯度下降变慢。</li>
+  <li><strong>均匀分布、正态分布、正交分布初始化</strong>：同样都属于随机初始化，只不过随机数分别符合均匀分布、正态分布、正交分布。实践表明这三种初始化效果更好。</li>
+</ul>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0093.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0093.webp" alt="图 4　几种权重初始化方法" loading="lazy" decoding="async"></a>
+  <figcaption>图 4　权重初始化方法：零值初始化、随机初始化，以及均匀分布、正态分布、正交分布初始化（原课件第 93 张）</figcaption>
+</figure>
+
+<h2>6. 正则化之一：权重正则化</h2>
+<p>训练过程中最需要提防的是过拟合，而正则化就是给模型加上约束、<strong>用来防止过拟合</strong>的手段。最基础的一种是在损失函数里加一个<strong>正则化项</strong>：</p>
+<p>L(w) = (1/N) Σ<sub>i=1</sub><sup>N</sup> L<sub>i</sub>(x<sub>i</sub>, y<sub>i</sub>, w) + λR(W)</p>
+<p>前一项是原来的经验损失，后一项就是正则化项，λ 控制它的强弱。课件列出了最常见的三个正则化函数：</p>
+<table>
+  <caption>表 1　课件给出的三个常见正则化函数</caption>
+  <thead>
+    <tr><th>名称</th><th>正则化项 R(W)</th><th>特点</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>L2 正则化</td><td>R(W) = (1/2) Σ<sub>i</sub> Σ<sub>j</sub> w<sub>i,j</sub><sup>2</sup></td><td>惩罚权重的平方，让权重整体变小、分布更平滑</td></tr>
+    <tr><td>L1 正则化</td><td>R(W) = Σ<sub>i</sub> Σ<sub>j</sub> |w<sub>i,j</sub>|</td><td>惩罚权重的绝对值，倾向于把不重要的权重压到 0，带来稀疏性</td></tr>
+    <tr><td>Elastic net（L1 + L2）</td><td>R(W) = λ<sub>1</sub> Σ<sub>i</sub> Σ<sub>j</sub> |w<sub>i,j</sub>| + λ<sub>2</sub> Σ<sub>i</sub> Σ<sub>j</sub> w<sub>i,j</sub><sup>2</sup></td><td>两者结合，兼顾稀疏与平滑</td></tr>
+  </tbody>
+</table>
+
+<h2>7. 正则化之二：Dropout</h2>
+<p>Dropout 是 Srivastava 等人在 2014 年发表的论文中提出的一种针对神经网络模型的正则化方法，论文标题就是《A Simple Way to Prevent Neural Networks from Overfitting》（一种防止神经网络过拟合的简单方法）。它的操作步骤是——注意下面描述的是<strong>一轮</strong>迭代里的四步：</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0095.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0095.webp" alt="图 5　Dropout 正则化" loading="lazy" decoding="async"></a>
+  <figcaption>图 5　Dropout：训练时随机关闭一部分隐藏神经元，得到一个「残缺」的网络；测试时使用完整网络（原课件第 95 张）</figcaption>
+</figure>
+<ol>
+  <li>随机删掉网络中一定比例（比例可设置）的<strong>隐藏神经元</strong>，输入输出神经元保持不变；</li>
+  <li>把输入通过修改后的网络前向传播，然后对修改后的神经元进行参数更新；</li>
+  <li>恢复被删掉的神经元——此时被删除的神经元保持原样，而没有被删除的神经元已经有所更新；</li>
+  <li>再从隐藏层神经元中随机选择一定比例的子集临时删除（备份被删除神经元的参数），先前向传播、再通过梯度下降法更新参数。</li>
+</ol>
+<p>换句话说：<strong>每次迭代都换一个「残缺」的网络来训练，没被删掉的参数得到更新，被删掉的参数保持删除前的结果，然后恢复、换一批再删</strong>。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0096.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0096.webp" alt="图 6　Dropout 的训练步骤" loading="lazy" decoding="async"></a>
+  <figcaption>图 6　Dropout 的步骤：随机删除一定比例的隐藏神经元（输入输出保持不变）→ 前向传播并更新参数 → 恢复被删掉的神经元 → 换一批子集重复（原课件第 96 张）</figcaption>
+</figure>
+<p>它为什么能解决过拟合？课件给了两条理由：</p>
+<ul>
+  <li><strong>取平均</strong>。每次 Dropout 都会随机舍弃掉一些神经元，剩下的神经元相当于组成一个新的网络，训练过程会产生很多这样的网络。假设用相同数据训练 5 个不同的神经网络、分别输出 5 个结果，相当于采取「5 个结果取均值」或者「多数取胜的投票策略」，有利于让一些过拟合的网络相互抵消。</li>
+  <li><strong>减少神经元之间复杂的共适应关系</strong>。Dropout 导致两个神经元不一定同时起作用，权值更新不再依赖有固定关系的隐含结点的共同作用，从而增加了网络的鲁棒性。</li>
+</ul>
+
+<h2>8. 正则化之三：批量归一化</h2>
+<p>批量归一化（Batch Normalization，BN）的提出原因与前两者不同：它不是直接针对过拟合，而是针对训练过程中的<strong>分布漂移</strong>。如果把每一层的输入作为一个分布看待，随着训练不断更新参数，会导致每一层的输入分布发生变化，这种问题被称作 <strong>Internal Covariate Shift（ICS，内部协变量偏移）</strong>。网络需要不断适应新的输入数据分布，导致学习速度变慢。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0098.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0098.webp" alt="图 7　Internal Covariate Shift" loading="lazy" decoding="async"></a>
+  <figcaption>图 7　Internal Covariate Shift：同一层面对的多幅输入（image1、image2、image3）分布不一致——课件用一个「输入以 0 为中心、输出变成以 0.5 为中心」的例子说明分布会随层数漂移（原课件第 98 张）</figcaption>
+</figure>
+<p>BN 的本质，<strong>就是在每一层输入的时候又插入了一个归一化处理（归一化至均值 0、方差 1），再进入网络的下一层</strong>。这样一来，不管前面的参数怎么变，每一层收到的输入分布都被拉回标准形态。</p>
+<p>不过只做归一化会损失表达能力——万一「均值 0、方差 1」并不是这一层想要的分布呢？所以 BN 引入了 <strong>γ、β 两个参数</strong>，分别用来调整数值分布的<strong>方差大小</strong>和调整数值分布的<strong>均值位置</strong>。这两个参数是在反向传播过程中学习得到的，γ 的默认值是 1，β 的默认值是 0（此时 BN 退化为纯粹的归一化）。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0099.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0099.webp" alt="图 8　批量归一化的算法" loading="lazy" decoding="async"></a>
+  <figcaption>图 8　批量归一化算法：输入一个 mini-batch B = {x<sub>1…m</sub>}，待学习参数 γ、β；先算 mini-batch 均值 μ<sub>B</sub>，再算 mini-batch 方差 σ<sub>B</sub><sup>2</sup>，然后归一化 x̂<sub>i</sub> = (x<sub>i</sub> − μ<sub>B</sub>) / √(σ<sub>B</sub><sup>2</sup> + ε)，最后做缩放与平移 y<sub>i</sub> = γx̂<sub>i</sub> + β（原课件第 99 张）</figcaption>
+</figure>
+<p>把四步写成式子就是：均值 μ<sub>B</sub> ← (1/m) Σ<sub>i=1</sub><sup>m</sup> x<sub>i</sub>；方差 σ<sub>B</sub><sup>2</sup> ← (1/m) Σ<sub>i=1</sub><sup>m</sup> (x<sub>i</sub> − μ<sub>B</sub>)<sup>2</sup>；归一化 x̂<sub>i</sub> ← (x<sub>i</sub> − μ<sub>B</sub>) / √(σ<sub>B</sub><sup>2</sup> + ε)；缩放平移 y<sub>i</sub> ← γx̂<sub>i</sub> + β。注意这里的均值与方差是在一个 <strong>mini-batch</strong> 上统计的，这也是「批量」二字的由来。课件最后用一个双通道的例子演示了整段计算：分别为通道 feature1、feature2 统计 mini-batch 的均值与方差，再各自做归一化与缩放平移。</p>
+<figure class="fig">
+  <a href="../../assets/course-cv/6-5/p0100.webp" target="_blank" rel="noopener"><img src="../../assets/course-cv/6-5/p0100.webp" alt="图 9　批量归一化的计算举例" loading="lazy" decoding="async"></a>
+  <figcaption>图 9　批量归一化的计算举例：对 channel1、channel2 两个特征分别在一个 mini-batch 内求均值与方差，再按 x̂ = (x − μ)/σ 与 y = γx̂ + β 处理（原课件第 100 张）</figcaption>
+</figure>
+<p>把这一节的三件「注意事项」连起来看，它们其实都围绕同一个目标：<strong>让每一层的输入保持在一个稳定、合适的分布里</strong>。预处理让数据在进入网络前就规范；权重初始化让信号在一开始就能顺畅地前向与反向传播；权重正则化、Dropout 和批量归一化则在训练全程不断把网络往「泛化」而不是「记住」的方向推。</p>
+
+<h2>本节小结</h2>
+<ul>
+  <li>神经网络学到的是训练数据的分布，训练数据与测试数据分布不同就很难有好效果，所以要先做<strong>数据预处理</strong>：零均值化（每一维减去该维均值）、归一化（Min-max 标准化、Z-score 标准化）、PCA 白化。</li>
+  <li><strong>PCA</strong> 用来找出特征的主要成分、去掉基本无关的成分以降维，步骤是零均值化 → 计算协方差矩阵 → 求特征值与特征向量 → 按特征值从大到小排列取主方向；<strong>白化</strong>是在 PCA 基础上再把每个特征轴除以对应特征值，使各维幅度也统一。</li>
+  <li><strong>数据增广</strong>不算「改造数据」，而是增加训练数据集：Color Jittering、Random Scale、Random Crop、水平/垂直翻转、平移、旋转/仿射、加噪声，目的是让模型泛化能力更强。</li>
+  <li><strong>权重初始化</strong>影响收敛速度、收敛到哪个极值点以及泛化能力；初始值过大会梯度爆炸、过小会梯度消失。零值初始化不常用；随机初始化倾向取很小的随机数；均匀分布、正态分布、正交分布初始化实践效果更好。</li>
+  <li><strong>权重正则化</strong>在损失函数上加 λR(W)：L2 惩罚权重平方，L1 惩罚权重绝对值（带来稀疏性），Elastic net 是两者的结合。</li>
+  <li><strong>Dropout</strong>（Srivastava 等，2014）在训练时按比例随机关闭隐藏神经元，被关闭的参数不更新、恢复后换一批再删；它有效的原理是「取平均」（相当于许多子网络投票，让过拟合的网络相互抵消）和「减少神经元之间复杂的共适应关系」。</li>
+  <li><strong>批量归一化</strong>针对 Internal Covariate Shift：在每层输入处插入归一化（均值 0、方差 1），并用可学习的 γ、β 调整方差与均值（默认 γ = 1、β = 0）；四步为求 mini-batch 均值、方差、归一化、缩放平移。</li>
+</ul>
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a class="prev" href="6-4.html">‹ 6.4 几种典型的卷积神经网络</a>
+      <a class="next" href="6-6.html">6.6 卷积神经网络的应用 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/course.js?v=3"></script>
+</body>
+</html>
