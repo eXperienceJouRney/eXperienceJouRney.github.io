@@ -99,6 +99,16 @@
   letter-spacing:.02em;vertical-align:2px;white-space:nowrap;
 }
 
+/* 题型分组标题（复习题页用：填空 / 单项选择 / 简答题 / 问答题）。
+   .note h2 的 scroll-margin 只让开顶栏，这里还要让开吸顶的题目工具条，
+   否则点导航圆片跳过去时标题会被压在工具条下面 */
+.hw .hw-group{
+  margin:44px 0 18px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:20px;line-height:1.4;letter-spacing:-.012em;
+  scroll-margin-top:calc(var(--bar-h) + 92px);
+}
+.hw .hw-group:first-child{margin-top:0;padding-top:0;border-top:0}
+
 /* 两栏容器（宽屏才分栏，见文件末尾的媒体查询） */
 .hw-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
 .hw-col-q{min-width:0}

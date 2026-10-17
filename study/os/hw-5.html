@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 5 章 作业 · 资源分配与调度 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 5 章作业（资源分配与调度）：磁盘 I/O 请求调度算法 FCFS / SSTF / SCAN / CSCAN 的磁头移动序列、三个进程共享四个资源的死锁判断、p 个进程共享 m 个资源的死锁证明、运河吊桥的死锁与 P、V 操作同步方案、银行家算法下的安全序列判断，共 5 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 5 章 资源分配与调度</p>
+      <h1>第 5 章 作业 · 资源分配与调度</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+        <a href="#q5">题目 5</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>磁盘 I/O 请求调度算法的磁头移动</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>5-5　假设一个可移动磁头的磁盘具有 200 个磁道，其编号为 0~199，当它刚刚结束了 125 道的存取后，现正在处理 143 道的服务请求，假设系统当前的请求序列以请求的先后次序排列如下：86、147、91、177、150、102、175、130。试问对以下几种磁盘 I/O 请求调度算法而言，满足以上请求序列，磁头将分别如何移动？</p>
+              <ol class="hw-ask">
+                <li>先来先服务算法（FCFS）</li>
+                <li>最短寻道时间优先调度（SSTF）</li>
+                <li>扫描算法（SCAN）</li>
+                <li>循环扫描算法（CSCAN）</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）先来先服务算法（FCFS）</h3>
+                <div class="hw-calc">
+                  <p>FCFS：143→<wbr>86→<wbr>147→<wbr>91→<wbr>177→<wbr>150→<wbr>102→<wbr>175→<wbr>130；</p>
+                </div>
+
+                <h3>（2）最短寻道时间优先调度（SSTF）</h3>
+                <div class="hw-calc">
+                  <p>SSTF：143→<wbr>147→<wbr>150→<wbr>130→<wbr>102→<wbr>94→<wbr>91→<wbr>86→<wbr>175→<wbr>177；</p>
+                </div>
+
+                <h3>（3）扫描算法（SCAN）</h3>
+                <div class="hw-calc">
+                  <p>SCAN：143→<wbr>147→<wbr>150→<wbr>175→<wbr>177→<wbr>130→<wbr>102→<wbr>94→<wbr>91→<wbr>86；</p>
+                </div>
+
+                <h3>（4）循环扫描算法（CSCAN）</h3>
+                <div class="hw-calc">
+                  <p>C-SCAN：143→<wbr>147→<wbr>150→<wbr>175→<wbr>177→<wbr>86→<wbr>91→<wbr>94→<wbr>102→<wbr>130。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>三个进程共享四个同类资源会死锁吗</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>5-9　三个进程共享四个同类资源，这些资源的分配与释放只能一次一个，已知每一进程最多需要两个资源，试问该系统会发生死锁吗？为什么？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：该系统不会发生死锁。</p>
+                <p>因为最坏情况是每个进程都占有一个资源，申请第二个资源，而此时系统中还剩一个资源，不管这个资源分给哪个进程，都能满足它的资源要求，因此它能在有限时间内运行结束而释放它所占有的两个资源，这两个资源又可以分配给另外两个进程，使它们能够运行结束，所以系统不会发生死锁。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>p 个进程共享 m 个资源不会死锁的证明</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>5-10　p 个进程共享 m 个同类资源，每一个资源在任一时刻只能供一个进程使用，每一进程对任一资源都只能使用一有限时间，使用完便立即释放，并且每个进程对该类资源的最大需求量小于该类资源的数目，设所有进程对资源的最大需求数目之和小于 p+m，试证在该系统中不会发生死锁。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>解：采用「反证法」，假定 max(i) 为第 i 个进程最大资源需求量，need(i) 为第 i 个进程还需要的资源量，alloc(i) 为第 i 个进程已分配的资源量，则</p>
+                <div class="hw-calc">
+                  <p>max(i)&lt;=m</p>
+                  <p>max(i)=need(i)+alloc(i)</p>
+                  <p>max(1)+Λ+ max(p)=(need(1)+ Λ…+need(p))+(alloc(1)+ Λ…+alloc(p))&lt;p+m</p>
+                </div>
+                <p>若发生死锁，则需要满足下面两个条件，</p>
+                <p>① 全部分配，alloc(1)+…+alloc(p)=m；② 所有进程无限等待</p>
+                <p>由①②可得， need(1)+…+need(p)&lt;p</p>
+                <p>则死锁后，p 个进程需要的资源小于 p，则一定存在进程 i，need (i) = 0，进程已获得全部资源，进程 i 可以执行完，同假设发生矛盾，所以不会发生死锁。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>运河吊桥的死锁与 P、V 操作同步</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>5-11　图 5.9 表示一带闸门的运河，其上有两架吊桥，吊桥坐落在一条公路上，为使该公路避开一块沼泽地而其横跨运河两次。运河和公路的交通都是单方向的，运河的基本运输由驳船担负。在一艘驳船接近吊桥 A 时就拉汽笛警告，若桥上无车辆，吊桥就吊起，直到驳船尾部通过该桥为止，对吊桥 B 按同样次序处理。</p>
+              <p><em>（本题原图见教材图 5.9，题源文档里是矢量图形对象，无法导出。）</em></p>
+              <ol class="hw-ask">
+                <li>一艘典型驳船的长度为 200 米，当它在河道航行时是否会产生死锁？若会，其理由是什么？</li>
+                <li>如何能克服一个可能的死锁？请想出一个防止死锁的办法。</li>
+                <li>如何利用信号灯的 P、V 操作实现车辆和驳船的同步？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）驳船在河道航行时是否会产生死锁</h3>
+                <p>答：驳船长 200 米，当驳船通过了 A 桥，其船头到达 B 桥，请求 B 桥吊起，而此时它的尾部占据 A 桥，若这个时候 B 桥及 B 桥到 A 桥之间的公路都被汽车占据，而汽车又要求通过 A 桥。这样驳船和汽车都无法前进，形成死锁的局面。</p>
+
+                <h3>（2）克服死锁的办法</h3>
+                <p>答：方案之一。可规定资源按序申请和分配，从而破坏了死锁的循环等待条件，防止死锁的发生。规定如 B 桥的序号小于 A 桥的序号，驳船和汽车都必须先申请序号小的资源 B 桥，申请得到满足后，再申请序号大的资源 A 桥。</p>
+
+                <h3>（3）用 P、V 操作实现车辆和驳船的同步</h3>
+                <p>答：将每台车的行驶看作是进程，则有 Auto1，Auto2，ΛAutoi i 个汽车进程。将每条驳船的航行看作是进程，则有 Ship1，Ship2，ΛShipj 个驳船进程。桥 A 和桥 B 对车和船为互斥资源。</p>
+                <p><strong>方案 1：</strong></p>
+                <pre><code>main{
+	int SA=1；//A桥的互斥信号量//
+	int SB=1；//B桥的互斥信号量//
+	cobegin
+		Auto1;Auto2;ΛAutoi;
+		Ship1; Ship2; ΛShipj;
+	coend
+}
+
+Autoi(){
+	车在公路上行驶；
+	P（SB）；
+	过B桥；
+	V（SB）；
+	过弯道；
+	P（SA）；
+	过A桥；
+	V（SA）；
+	车在公路上行驶；
+}
+
+Shipj(){
+	运河航行；
+	P（SB）；
+	P（SA）；
+	吊起过A桥；
+	运河航行；
+	吊起过B桥；
+	V（SA）；
+	V（SB）；
+	运河航行；
+}</code></pre>
+
+                <p><strong>方案 2：</strong>方案 1 的缺点是船在过 A 桥前需要先占用 B 桥，使桥的通过率降低，增加交通阻塞的可能。因此方案 2 将弯道作为有界缓中区，基本思想是只要弯道有空，车就可以通过 B 桥，进入弯道。而船则不用先占用 B 桥，使桥的通过率降低。</p>
+                <pre><code>main{
+	int SA=1；//A桥的互斥信号量
+	int SB=1；//B桥的互斥信号量
+	int Sn=n；//弯道可容纳汽车数n
+	cobegin
+		Auto1;Auto2;ΛAutoi;
+		Ship1; Ship2; ΛShipj;
+	coend
+}
+
+Autoi(){
+	车在公路上行驶；
+	P（Sn）；
+	P（SB）；
+	过B桥；
+	V（SB)；
+	过弯道；
+	P（SA）；
+	上A桥；
+	V（Sn）；
+	过A桥；
+	V（SA）；
+	车在公路上行驶；
+}
+
+Shipj(){
+	运河航行；
+	P（SA）；
+	船头行驶至B桥；
+	P（SB）；
+	运河航行；
+	船尾过A桥；
+	V（SA）；
+	船尾过B桥；
+	V（SB）；
+	运河航行；
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q5">
+        <h2><span class="hw-no">题目 5</span>银行家算法下的安全状态与安全序列</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>5-14　在采用银行家算法管理资源分配的系统中，有 A、B、C 三类资源可供 5 个进程 P1、P2、P3、P4、P5 共享。3 类资源的总量为 (17, 5, 20)，即 A 类 17 个，B 类 5 个，C 类 20 个。假设 T0 时刻各进程对资源的需求和分配情况如下表所示。</p>
+              <figure class="fig">
+                <a href="../../assets/homework/os-5/fig1.png" target="_blank" rel="noopener"><img src="../../assets/homework/os-5/fig1.png" alt="T0 时刻各进程对资源的分配和需求情况表，表头为 A、B、C 三类资源，行为 P1、P2、P3、P4、P5" loading="lazy" decoding="async"></a>
+                <figcaption>图 1　T0 时刻各进程对资源的需求和分配情况表（题源 .doc 里抠出的原表图片）</figcaption>
+              </figure>
+              <ol class="hw-ask">
+                <li>现在系统是否处于安全状态？如是，给出一个安全序列。</li>
+                <li>T0 时刻，如果进程 P4 和 P1 依次提出 A、B、C 资源请求（2,0,1）和（0,2,0），系统能否满足它们的请求？请说明原因。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 5 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：（1）系统处于安全状态，如 P4→P2→P3→P5→P1。</p>
+                <p>（2）不能满足。由于 P4 与 P1 提出请求后，A、B、C 剩余（0，1，2），此时 A 类无，只能等待拥有足够 A 类资源的进程结束释放 A 类资源，别的进程才能执行，而此时 P4 需（0，2，0），P3 需（0，0，6），而剩余（0，1，2），不能满足要求，产生死锁。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-4.html">‹ 第 4 章 作业 · 进程及进程管理</a>
+      <a class="next" href="hw-6.html">第 6 章 作业 · 处理机调度 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

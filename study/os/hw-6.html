@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 6 章 作业 · 处理机调度 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 6 章作业（处理机调度）：非剥夺方式下的进程状态变迁与因果变迁判断、Linux 2.6 实现 O(1) 级调度算法复杂度的措施，共 2 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 6 章 处理机调度</p>
+      <h1>第 6 章 作业 · 处理机调度</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>非剥夺方式下的进程状态变迁</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某系统的进程状态变迁图如图 1 所示（设该系统的进程调度方式为非剥夺方式）。</p>
+              <ol class="hw-ask">
+                <li>说明一个进程发生变迁 3 的原因是什么？发生变迁 2、变迁 4 的原因又是什么？</li>
+                <li>下述因果变迁是否会发生，如果有可能的话，在什么情况下发生？
+                  <ul class="hw-sub">
+                    <li>① 2→5；</li>
+                    <li>② 2→1；</li>
+                    <li>③ 4→5；</li>
+                    <li>④ 4→2；</li>
+                    <li>⑤ 3→5</li>
+                  </ul>
+                </li>
+                <li>根据此进程状态变迁图叙述该系统的调度策略、调度效果。</li>
+              </ol>
+              <figure class="fig">
+                <a href="../../assets/course-os/6-9/p0028.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/6-9/p0028.webp" alt="图 1　习题 6-3 的进程状态变迁图" loading="lazy" decoding="async"></a>
+                <figcaption>图 1　讲义《6.9 习题》里的习题 6-3 进程状态变迁图（教材图 6.12，原课件第 28 张）</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）变迁发生的原因</h3>
+                <p>发生变迁 3 的原因：当运行进程在执行过程中，需要等待某事件的发生才能继续向下执行时会发生变迁 3。</p>
+                <p>发生变迁 2 的原因：运行进程在分得的时间片 100 ms 或 500 ms 内未完成，当其时间片到时将发生变迁 2。</p>
+                <p>发生变迁 4 的原因：当等待进程等待的事件发生了，将会发生变迁 4。</p>
+
+                <h3>（2）因果变迁是否会发生</h3>
+                <p>① 2→5 的因果变迁可能发生。条件是：高优先就绪队列非空。</p>
+                <p>② 2→1 的因果变迁可能发生，当运行进程的时间片到时发生的变迁 2，若此时高优先就绪队列为空，必然引起低优先就绪队列中的一个就绪进程被调度执行而发生变迁 1。</p>
+                <p>③ 4→5 的因果变迁不可能发生，因为采用的是非剥夺调度方式。</p>
+                <p>④ 4→2 的因果变迁不可能发生。</p>
+                <p>⑤ 3→5 的因果变迁可能发生，条件是：高优先就绪队列非空。</p>
+
+                <h3>（3）调度策略与调度效果</h3>
+                <p>调度策略：首先调度高就绪队列中的进程（一般是 I/O 型进程）投入运行，给高优先就绪队列中的进程分配的时间片大小为 100 ms。只有当高就绪队列中的所有进程全部运行完或因等待某事件发生处于阻塞状态，高就绪队列中没有进程可运行时，才调度低优先就绪队列中的进程（一般是计算型进程），给低优先就绪队列中的进程分配的时间片大小为 500 ms。若一个运行进程时间片 100 ms 或 500 ms 到时未完成就进入低优先就绪队列。若某进程在运行期间因等待某事件发生而进入阻塞队列，则当所等待事件完成后，它将进入高优先就绪队列。</p>
+                <p>调度效果：这种算法优先照顾了 I/O 量大的进程（高优先级），但通过给计算型进程分配更长的时间片也适当照顾了计算型进程。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>Linux 的 O(1) 调度</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>Linux 2.6 版本为了实现 O(1) 级算法复杂度，采用了什么措施？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>Linux 系统进程调度用的数据结构最重要的是运行队列结构，该结构给出了处理机上可运行进程的链表。该结构中包含一个称为优先级数组的结构数组。每个数组都表示一个可运行进程集合，包括两个重要信息：① 一个优先级位图；② 140 个双向链表头，每个链表对应一个可能的进程优先级队列。</p>
+                <p>Linux 系统采用优先调度策略。在 Linux 2.6 版本的进程调度程序中，基于上述进程调度用数据结构，查找系统中优先级最高的进程这一问题转化为查找优先级位图中第一个置为 1 的位。找到这一位就是找到了最高优先级链表，即可确定优先级最高的、可运行的进程。由于优先级个数是定值，所以查找时间恒定。许多体系结构提供 find_first_bit 指令（字操作指令），找到第一个设置为 1 的位所花费的时间微不足道。这是保证 Linux 系统进程调度具有 O(1) 级算法复杂度的关键所在。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-5.html">‹ 第 5 章 作业 · 资源分配与调度</a>
+      <a class="next" href="hw-7.html">第 7 章 作业 · 主存管理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 8 章 作业 · 设备管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 8 章作业（设备管理）：设备独立性及其好处、缓冲与引入缓冲的原因、双缓冲与环形缓冲和缓冲池、独占设备与共享设备的分配方式、虚拟设备技术与虚拟分配，共 6 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 8 章 设备管理</p>
+      <h1>第 8 章 作业 · 设备管理</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+        <a href="#q5">题目 5</a>
+        <a href="#q6">题目 6</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>设备独立性及其好处</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是设备独立性？引入这一概念有什么好处？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>所谓设备独立性是指，用户在编制程序时所使用的设备同实际使用的设备无关，也就是在用户程序中仅使用逻辑设备。</p>
+                <ul>
+                  <li>引入设备独立性，可使应用程序独立于物理设备。此时，用户编程只需用逻辑设备去请求使用某类设备。当系统中有多台该类设备时，系统将其中的任一台备分配给请求进程，而不必局限于某一指定设备。这样，可以显著地提高资源的利用率和可适应性。</li>
+                  <li>独立性还可以使用户程序独立于设备类型。例如，在进行输出时，既可以利用显示终端进行输出，也可以利用打印机进行输出。有了这种适应性，就可以很方便地实现输出重定向，类似地可以实现输入重定向。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>缓冲及引入缓冲的原因</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是缓冲？引入缓冲的原因是什么？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>缓冲是两种不同速度的设备之间传输信息时平滑传输过程的常用手段。</p>
+                <p>引入缓冲技术的原因有如下几点。</p>
+                <ul>
+                  <li>缓和 CPU 和 I/O 设备之间速度不匹配的矛盾。</li>
+                  <li>减少中断次数和 CPU 的中断处理时间。如果没有缓冲，慢速 I/O 设备每传一个字节就要产生一个中断，CPU 必须处理该中断；如果采用了缓冲，则慢速 I/O 设备将缓冲填满时，才向 CPU 发出中断，减少了中断次数和 CPU 的中断处理时间。</li>
+                  <li>解决 DMA 或通道方式下数据传输的瓶颈问题。DMA 或通道方式都用于成批数据传输，在无缓冲的情况下，慢速 I/O 设备只能一个字节一个字节的传输信息，成了 DMA 或通道方式数据传输的瓶颈。缓冲的设置适应了 DMA 或通道方式的成批数据传输方式，解决了数据传输的瓶颈问题。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>常用的缓冲技术</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>常用的缓冲技术有哪些？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>常用的缓冲技术有双缓冲、环形缓冲和缓冲池。</p>
+                <h3>双缓冲</h3>
+                <p>引入双缓冲以提高处理机与 I/O 设备之间的并行操作程度，例如，输入设备先将第一个缓冲装满数据，在输入设备向第二个缓冲装数据时，处理机就可以从第一个缓冲中取出数据进行处理。第一个缓冲的数据处理完毕，若第二个缓冲已经装满数据，则处理机又可以从第二个缓冲中取出数据进行处理，而输入设备又向第一个缓冲装填数据。</p>
+                <h3>环形缓冲</h3>
+                <p>为了在 CPU 与外设对信息的操作速度相差甚远时仍能得到良好并行效果，可以采用环形缓冲技术。环形缓冲技术是在主存中分配一组大小相等的存储区作为缓存区，并将这些缓存区链接起来，每个缓存区中有一个指向下一个缓存区的指针，最后一个缓存区的指针指向第一个缓存区，这样 n 个缓存区就成了一个环形缓冲外，系统中有个缓冲链首指针指向第一个缓存区。环形缓冲用于输入输出时，需要两个指针 in 和 out，in 指向第一个空缓存区，out 指向第一个装满数据的缓存区。输入时，把数据输入到 in 所指的空缓存区中，然后 in 模取后移一位，指向下一个空缓存区。输出时，从 out 所指的满缓存区中取出数据，然 out 模取后移一位，指向下一个满缓存区。</p>
+                <h3>缓冲池</h3>
+                <p>缓冲池是由若干个大小相等的缓存区组成的。缓冲池中的每一个缓存区都由系统统一管理和动态分配。若某个进程需要使用缓冲时便提出申请，由系统将缓存区分配给它，进程不再使用缓存区时，就将缓存区交还给缓冲池。这样，就可以用少量的缓存区服务更多的进程。缓冲池通常将缓存区排成 3 个队列：空闲缓存区队列、输入缓存区队列和输出缓存区队列。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>独占设备及其分配</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是独占设备？对独占设备如何分配？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>独占设备是指在一段时间内只允许一个用户进程访问的设备。系统一旦把这类设备分配给某进程后，便由该进程独占直到使用完后释放。多数低速 I/O 设备都属于独占设备，如打印机等。</p>
+                <p>独占设备采用独占分配方式，即将一个独占设备分配给某进程后便一直由它独占，直到该进程完成或释放该设备时，系统才能将该设备分配给其他进程。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q5">
+        <h2><span class="hw-no">题目 5</span>共享设备及其分配</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是共享设备？对共享设备如何分配？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 5 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>共享设备是指在一段时间内允许多个进程同时访问的设备，如磁盘。对共享设备可将其同时分配给多个进程，使用共享分配方式显著提高了设备的利用率，但对设备的访问需进行合理的调度。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q6">
+        <h2><span class="hw-no">题目 6</span>虚拟设备技术与虚拟分配</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是虚拟设备技术？什么是虚拟设备？如何进行虚拟分配？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 6 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>所谓虚拟设备技术，是在一类物理设备上模拟另一个物理设备的技术，是将独占设备转换成共享设备的技术。目前广泛流行的虚拟设备技术是 SPOOLing 技术，网络环境中的虚拟打印机。</p>
+                <p>虚拟设备是指通过虚拟技术将一独占设备变换成若干台逻辑设备，供若干个用户进程使用，通常把这种经过虚拟技术处理的设备称为虚拟设备。引入虚拟设备的目的是为了克服独占设备速度较慢、资源利用率较低的缺点，以提高设备的利用率。</p>
+                <p>虚拟分配是针对虚拟设备而言的。当进程申请独占设备时，由系统分配给它共享设备，如磁盘的一部分存储空间。当进程要和设备交换信息，系统就将要交换的信息放到这部分存储空间中，在合适的时候，系统再将存储空间中的信息传到独占设备。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-7.html">‹ 第 7 章 作业 · 主存管理</a>
+      <a class="next" href="hw-9.html">第 9 章 作业 · 文件系统 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

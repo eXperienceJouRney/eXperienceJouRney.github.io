@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 1 章 作业 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 1 章作业（绪论）：批处理与分时系统的特点、实时信息处理系统与分时系统的本质区别、多道程序设计技术及其特征、两道程序并发执行的工作情况，共 4 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 1 章 绪论</p>
+      <h1>第 1 章 作业 · 绪论</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>批处理系统与分时系统的特点</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>批处理系统和分时系统各具有什么特点？为什么分时系统的响应较快？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>在批处理系统中操作人员将作业成批装入计算机，在程序运行期间用户不能干预，用户使用计算机的方式是脱机操作方式。批处理系统中作业成批处理，系统内多道程序是并发执行的，所以其特点是：系统吞吐率高，但作业周转时间长，用户使用不方便。</p>
+                <p>在分时系统中不同用户通过各自的终端以交互方式共同使用一台计算机，计算机以「分时」的方法轮流为每个用户服务，用户使用计算机的方式是联机操作方式。分时系统的主要特点是多个用户同时使用计算机的同时性，人机问答方式的交互性，每个用户独立使用计算机的独占性以及系统快速响应的及时性。</p>
+                <p>分时系统一般采用时间片轮转的方法，使一台计算机同时为多个终端用户服务，因此分时系统的响应较快。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>实时信息处理系统与分时系统的本质区别</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>实时信息处理系统和分时系统从外表看来很相似，它们有什么本质的区别呢？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>实时信息处理系统和分时系统从外表来看，都是一台计算机连接一个或多个终端设备；用户以联机方式直接与计算机交互。二者的本质区别是：</p>
+                <ul>
+                  <li>实时信息处理系统采用的进程调度策略是优先调度策略，而分时系统采用的进程调度策略是时间片轮转调度策略。</li>
+                  <li>实时信息处理系统的终端设备通常只是作为执行装置或咨询装置，不允许用户编写新的程序或修改已有的程序。而分时系统的用户可以通过终端设备修改程序，可以与系统交互以控制程序的运行。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>多道程序设计技术及其特征</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是多道程序设计技术？试述多道程序运行的特征？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>多道程序设计技术是指同时多个作业或程序进入主存并允许它们交替执行和共享系统中的各类资源。当一道程序因某种原因如 I/O 请求而暂停执行时，CPU 立即转去执行另一道程序。多道程序运行具有如下特征：</p>
+                <ul>
+                  <li><strong>多道</strong>：计算机内存中同时存放几道相互独立的程序。</li>
+                  <li><strong>宏观上并行</strong>：同时进入系统的几道程序都处于运行过程中，它们先后开始了各自的运行，但都未运行完毕。</li>
+                  <li><strong>微观上串行</strong>：从微观上看，主存中的多道程序轮流或分时地占有处理机，交替执行。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>两道程序并发执行的工作情况</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>设一计算机系统有输入机一台、打印机两台，现有 A、B 两道程序同时投入运行，且程序 A 先运行，程序 B 后运行。程序 A 的运行轨迹为：计算 50 ms，打印信息 100 ms，再计算 50 ms，打印信息 100 ms，结束。程序 B 运行的轨迹为：计算 50 ms，输入数据 80 ms，再计算 100 ms，结束。回答如下问题。</p>
+              <ol class="hw-ask">
+                <li>用图画出这两道程序并发执行时的工作情况。</li>
+                <li>说明在两道程序运行时，CPU 有无空闲等待？若有，在哪段时间内等？为什么会空闲等待？</li>
+                <li>程序 A、B 运行时有无等待现象？在什么时候会发生等待现象？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）两道程序并发执行时的工作情况</h3>
+                <p>这两道程序并发执行时的工作情况如下图所示。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>时间 / ms</th>
+                        <th>0–50</th>
+                        <th>50–100</th>
+                        <th>100–150</th>
+                        <th>150–200</th>
+                        <th>200–300</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>CPU</td>
+                        <td>A 计算 50 ms</td>
+                        <td>B 计算 50 ms</td>
+                        <td>空闲 50 ms</td>
+                        <td>A 计算 50 ms</td>
+                        <td>B 计算 100 ms</td>
+                      </tr>
+                      <tr>
+                        <td>输入机</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>B 输入 80 ms</td>
+                        <td>—</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td>打印机 1</td>
+                        <td>—</td>
+                        <td>A 打印 100 ms</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>A 打印 100 ms</td>
+                      </tr>
+                      <tr>
+                        <td>打印机 2</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 1</strong>　两道程序并发执行时的工作情况。原答案此处是一张时序草图，其中 CPU 依次为 50 ms、50 ms、50 ms、100 ms 四段，输入机 80 ms 一段，打印机 1 两段各 100 ms，打印机 2 未使用；上表按这张草图和第（2）（3）问的答案重绘，时间轴按各段的首尾相接推算。</p>
+
+                <h3>（2）CPU 的空闲等待</h3>
+                <p>CPU 有空闲等待，当 B 50 ms 计算完后，A 100 ms 打印仍在进行，中间 CPU 空闲 50 ms。</p>
+
+                <h3>（3）程序的等待现象</h3>
+                <p>程序 A、B 运行时有等待现象。当 B 80 ms 输入完成后，需等待 20 ms 后才能进行计算。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="homework.html">‹ 作业目录</a>
+      <a class="next" href="hw-2.html">第 2 章 作业 · 结构与硬件支持 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

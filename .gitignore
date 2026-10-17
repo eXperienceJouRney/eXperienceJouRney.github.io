@@ -5,9 +5,11 @@
 *.log
 __pycache__/
 
+# 开发期素材：构建脚本、题源文本、接手/重写文档、QA 脚本。
+# GitHub Pages 是纯静态直出（见 .nojekyll），这些不参与构建，只留在本地。
+tools/
+
 # QA 自检截图：tools/qa/screenshot.js 切图出来的产物，看完就丢，不需要进版本库
 .cv-qa/
 .os-qa/
 .v2-qa/
-tools/qa/*.png
-tools/qa/*.jpg

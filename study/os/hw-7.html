@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 7 章 作业 · 主存管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 7 章作业（主存管理）：首次适应算法与最佳适应算法处理程序序列、动态分区的分配与空闲区队列结构、页式存储管理的页面映像表与地址变换，共 3 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 7 章 主存管理</p>
+      <h1>第 7 章 作业 · 主存管理</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>首次适应算法与最佳适应算法的分配结果</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>如图 1 所示，主存中有两个空白区。现有如下程序序列：程序 1 要求 50KB；程序 2 要求 60KB；程序 3 要求 70KB。若用首次适应算法和最佳适应算法来处理这个程序序列，试问：哪一种算法可以分配得下？简要说明分配过程（假定分区描述器所占用的字节数已包含在程序所要求的主存容量中）。</p>
+              <figure class="fig">
+                <a href="../../assets/course-os/7-3/p0063.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/7-3/p0063.webp" alt="图 1　习题 7-11 的初始状态：150KB 处 120KB 空闲区、300KB 处 78KB 空闲区" loading="lazy" decoding="async"></a>
+                <figcaption>图 1　习题 7-11 的初始状态：150KB 处有 120KB 空闲区，300KB 处有 78KB 空闲区（即原题图 7.45；讲义《7.3 分区存储管理》里的同一张图，原课件第 63 张）</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>答：（1）首次适应法</h3>
+                <p>程序 1 要求 50KB，在起始地址为 150KB，大小为 120KB 的空白区进行分割。120KB − 50KB = 70KB，分割后剩 70KB 的空白区。</p>
+                <p>程序 2 要求 60KB，在剩余的 70KB 空白区进行分割。70KB − 60KB = 10KB，分割后剩 10KB 的空白区。</p>
+                <p>程序 3 要求 70KB，在起始地址为 300KB，大小为 78KB 的空白区进行分割。78KB − 70KB = 8KB，分割后剩 8KB 的空白区。</p>
+                <p>因此首次适应法可满足该程序序列的需求。</p>
+
+                <h3>答：（2）最佳适应法</h3>
+                <p>程序 1 要求 50KB，在起始地址为 300KB，大小为 78KB 的空白区进行分割。78KB − 50KB = 28KB，分割后剩 28KB 的空白区。</p>
+                <p>程序 2 要求 60KB，在起始地址为 150KB，大小为 120KB 的空白区进行分割。120KB − 60KB = 60KB，分割后剩 60KB 的空白区。</p>
+                <p>程序 3 要求 70KB。此时系统中有大小为 28KB 和 60KB 的两个空白区，它们均不能满足程序 3 的需求。</p>
+                <p>因此最佳适应法不能满足该程序序列的需求。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>动态分区的分配情况与空闲区队列结构</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>已知主存有 256KB 容量，其中 OS 占用低址 20KB，可以有这样的一个程序序列。</p>
+              <p>程序 1 要求 80KB；程序 2 要求 16KB；程序 3 要求 140KB。</p>
+              <p>程序 1 完成；程序 3 完成。</p>
+              <p>程序 4 要求 80KB；程序 5 要求 120KB。</p>
+              <p>试分别用首次适应算法和最佳适应算法分别处理上述程序序列（在存储分配时，从空白区高址处分割作为已分配区），并完成以下各步骤。</p>
+              <ol class="hw-ask">
+                <li>画出程序 1、2、3 进入主存后主存的分配情况。</li>
+                <li>画出程序 1、3 完成后主存分配情况。</li>
+                <li>试用上述两种算法画出程序 1、3 完成后的空闲区队列结构（要求画出分区描述器信息，假定分区描述器所需占用的字节数已包含在程序所要求的主存容量中）。</li>
+                <li>哪种算法对该程序序列而言是适合的？简要说明分配过程。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>下面三张表都按题干的前提重绘：主存容量 256KB，OS 占用低址 20KB（即 0 – 20KB），每次分配都从空白区的<strong>高址处</strong>切分。</p>
+
+                <h3>（1）程序 1、2、3 进入主存后的分配情况</h3>
+                <p>答：程序 1、2 和 3 进入主存后，主存的分配情况如下图所示（图 2）。</p>
+                <table>
+                  <thead>
+                    <tr><th>地址区间</th><th>大小</th><th>使用情况</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0 – 20KB</td><td>20KB</td><td>OS</td></tr>
+                    <tr><td>20KB – 160KB</td><td>140KB</td><td>程序 3</td></tr>
+                    <tr><td>160KB – 176KB</td><td>16KB</td><td>程序 2</td></tr>
+                    <tr><td>176KB – 256KB</td><td>80KB</td><td>程序 1</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>图 2</strong>　程序 1、2、3 进入主存后主存的分配情况（原答案此处是主存分配示意图，按题干数据重绘：程序 1 的 80KB 从空白区高址切出，占 176KB – 256KB，剩 20KB – 176KB；程序 2 再从高址切出 16KB，占 160KB – 176KB；程序 3 的 140KB 正好占满剩下的 20KB – 160KB）。</p>
+
+                <h3>（2）程序 1、3 完成后的分配情况</h3>
+                <p>答：程序 1、3 完成后，主存的分配情况如下图所示（图 3）。</p>
+                <table>
+                  <thead>
+                    <tr><th>地址区间</th><th>大小</th><th>使用情况</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0 – 20KB</td><td>20KB</td><td>OS</td></tr>
+                    <tr><td>20KB – 160KB</td><td>140KB</td><td>空闲区（程序 3 完成后释放）</td></tr>
+                    <tr><td>160KB – 176KB</td><td>16KB</td><td>程序 2</td></tr>
+                    <tr><td>176KB – 256KB</td><td>80KB</td><td>空闲区（程序 1 完成后释放）</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>图 3</strong>　程序 1、3 完成后主存的分配情况（原答案此处是主存分配示意图，按题干数据重绘：程序 1 释放出 176KB – 256KB 的 80KB 空闲区，程序 3 释放出 20KB – 160KB 的 140KB 空闲区，程序 2 仍占 160KB – 176KB）。</p>
+
+                <h3>（3）程序 1、3 完成后的空闲区队列结构</h3>
+                <p>答：首次适应法下，空闲区队列结构如下图所示（图 4）；最佳适应法下，空闲区队列结构同样如下图所示。首次适应法的队列按空闲区地址由低到高排序，最佳适应法的队列按空闲区大小由小到大排序；分区描述器 PD 的标志 flag 为 0 表示空闲，勾链 next 指向下一个空闲区的分区描述器，队尾为 ∧。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr><th>算法</th><th>队列次序</th><th>空闲区起始地址</th><th>大小</th><th>标志 flag</th><th>勾链 next</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>首次适应法</td><td>1</td><td>20KB</td><td>140KB</td><td>0（空闲）</td><td>指向起始地址 176KB 的空闲区</td></tr>
+                      <tr><td>首次适应法</td><td>2</td><td>176KB</td><td>80KB</td><td>0（空闲）</td><td>∧（队尾，空指针）</td></tr>
+                      <tr><td>最佳适应法</td><td>1</td><td>176KB</td><td>80KB</td><td>0（空闲）</td><td>指向起始地址 20KB 的空闲区</td></tr>
+                      <tr><td>最佳适应法</td><td>2</td><td>20KB</td><td>140KB</td><td>0（空闲）</td><td>∧（队尾，空指针）</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 4</strong>　程序 1、3 完成后两种算法下的空闲区队列结构（原答案此处是两张队列结构示意图，按题干数据重绘；队列指针指向队首的分区描述器）。</p>
+
+                <h3>（4）哪种算法对该程序序列而言是适合的</h3>
+                <p>答：程序 4 要求 80KB；程序 5 要求 120KB。</p>
+                <p><strong>首次适应法：</strong></p>
+                <p>程序 4 要求 80KB，在起始地址为 20KB，大小为 140KB 的空白区进行分割。140KB − 80KB = 60KB，分割后剩 60KB 的空白区。</p>
+                <p>程序 5 要求 120KB，此时系统中有大小为 60KB 和 80KB 的两个空白区，它们均不能满足程序 5 的需求。</p>
+                <p>因此首次适应法不能满足该程序序列的需求。</p>
+                <p><strong>最佳适应法：</strong></p>
+                <p>程序 4 要求 80KB，在起始地址为 176KB，大小为 80KB 的空白区进行分割。80KB − 80KB = 0KB，正好装下程序 4。</p>
+                <p>程序 5 要求 120KB，在起始地址为 20KB，大小为 140KB 的空白区进行分割。140KB − 120KB = 20KB，分割后剩 20KB 的空白区。</p>
+                <p>因此最佳适应法能满足该程序序列的需求。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>页面映像表与 3500 号单元的地址变换</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>已知主存容量为 64K 字节，某一程序 A 的地址空间如图 5 所示，它的 4 个页面（页面大小为 1KB 字节）0、1、2、3 被分配到主存的 2、4、6、7 块中。</p>
+              <div class="hw-tbl">
+                <table>
+                  <thead>
+                    <tr><th>页号</th><th>逻辑地址范围</th><th>题图中标出的内容</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0</td><td>0 – 1KB</td><td>200 号单元处是指令「mov r1,[3500]」</td></tr>
+                    <tr><td>1</td><td>1KB – 2KB</td><td>—</td></tr>
+                    <tr><td>2</td><td>2KB – 3KB</td><td>—</td></tr>
+                    <tr><td>3</td><td>3KB – 4KB</td><td>3500 号单元处存放数据 12345</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p><strong>图 5</strong>　程序 A 的地址空间与页面划分（即原题图 7.46；原图在题源里是矢量图形对象，无法导出，这里按题干数据重绘：地址空间共 4KB，页大小 1KB，末地址为 4KB−1）。</p>
+              <ol class="hw-ask">
+                <li>画出 A 的页面映像表；</li>
+                <li>当 200 号单元处有一条指令「mov r1,[3500]」执行时，如何进行正确的地址变换，以使 3500 处的内容 12345 装入 r1 中？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）程序 A 的页面映像表</h3>
+                <p>答：程序 A 的页面映射表如下图所示（图 6）。</p>
+                <table>
+                  <thead>
+                    <tr><th>页号</th><th>主存块号</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0</td><td>2</td></tr>
+                    <tr><td>1</td><td>4</td></tr>
+                    <tr><td>2</td><td>6</td></tr>
+                    <tr><td>3</td><td>7</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>图 6</strong>　程序 A 的页面映像表（原答案此处是页表示意图，按题干数据重绘：页号 0、1、2、3 依次映象到主存第 2、4、6、7 块）。</p>
+
+                <h3>（2）3500 号单元的地址变换</h3>
+                <p>答：每页大小为 1KB = 1024 字节，而 3500 = 3 × 1024 + 428，可知逻辑地址 3500 对应的页号为 3，页内地址为 428，根据页号检索页表可知对应的物理块号为 7，所以物理地址为 7 × 1024 + 428 = 7596。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr><th>步骤</th><th>计算与依据</th><th>结果</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>拆分逻辑地址 3500</td><td>3500 = 3 × 1024 + 428（页面大小 1KB = 1024 字节）</td><td>页号 = 3，页内地址 = 428</td></tr>
+                      <tr><td>检索页面映像表</td><td>页号 3 对应的主存块号见图 6</td><td>主存块号 = 7</td></tr>
+                      <tr><td>合成物理地址</td><td>7 × 1024 + 428</td><td>7596</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 7</strong>　3500 号单元的地址变换过程（原答案此处是地址变换示意图，按题干数据重绘）。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-6.html">‹ 第 6 章 作业 · 处理机调度</a>
+      <a class="next" href="hw-8.html">第 8 章 作业 · 设备管理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

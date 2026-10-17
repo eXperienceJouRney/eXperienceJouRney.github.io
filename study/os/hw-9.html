@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 9 章 作业 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 9 章作业（文件系统）：连续文件与串联文件的结构、重名问题与二级文件目录、共享文件系统的文件组织方案、UNIX 7 版本的索引结构、树型目录下读文件 A 的存取次数、成组链接法的盘块分配与回收，共 7 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 9 章 文件系统</p>
+      <h1>第 9 章 作业 · 文件系统</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+        <a href="#q5">题目 5</a>
+        <a href="#q6">题目 6</a>
+        <a href="#q7">题目 7</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>连续文件的结构</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>设文件 A 按连续文件构造，并由四个逻辑记录组成（每个逻辑记录的大小与磁盘块大小相等，均为 512 B）。若第一个逻辑记录存放在第 100 号磁盘块上，试画出此连续文件的结构。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：连续文件的结构如下图：</p>
+                <p>文件 A 的四个逻辑记录 r0、r1、r2、r3 依次存放在第 100、101、102、103 号磁盘块上，文件占用一段连续的磁盘空间；文件目录中登记文件名 A、文件长度 4（个逻辑记录）和起始块号 100。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>逻辑记录</th>
+                        <th>r0</th>
+                        <th>r1</th>
+                        <th>r2</th>
+                        <th>r3</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>磁盘块号</td>
+                        <td>100</td>
+                        <td>101</td>
+                        <td>102</td>
+                        <td>103</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 1</strong>　文件 A 的连续文件结构：逻辑记录 r0–r3 依次存放在 100–103 号磁盘块上，只要给出起始块号 100 和文件长度，就能算出任何一个逻辑记录所在的磁盘块（题源文档中该图是矢量图形对象，无法导出；上表按题干数据重绘）。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>串联文件的结构与访问次数</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>设文件 B 按串联文件构造，并由四个逻辑记录组成（其大小与磁盘块大小相等，均为 512 B）。这四个逻辑记录分别存放在第 100、157、66、67 号磁盘块上，回答如下问题。</p>
+              <ol class="hw-ask">
+                <li>画出此串联文件的结构。</li>
+                <li>若要读文件 B 第 1560 字节处的信息，问要访问哪一个磁盘块？为什么？</li>
+                <li>读文件 B 第 1560 字节处的信息需要进行多少次 I/O 操作？为什么？</li>
+              </ol>
+              <p><em>（题源原题第（1）问写作「画出此串联文件文件的结构，」，重复的「文件」二字是笔误，页面上已改正。）</em></p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）串联文件的结构</h3>
+                <p>答：此串联文件结构如下图所示。文件目录中登记文件名 B 和起始块号 100；每个磁盘块中除存放逻辑记录外还设有链接字，登记下一个逻辑记录所在磁盘块的块号，最后一个磁盘块的链接字是结束标志。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>磁盘块号</th>
+                        <th>逻辑记录</th>
+                        <th>链接字（下一块）</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>100</td>
+                        <td>r0</td>
+                        <td>157</td>
+                      </tr>
+                      <tr>
+                        <td>157</td>
+                        <td>r1</td>
+                        <td>66</td>
+                      </tr>
+                      <tr>
+                        <td>66</td>
+                        <td>r2</td>
+                        <td>67</td>
+                      </tr>
+                      <tr>
+                        <td>67</td>
+                        <td>r3</td>
+                        <td>∧（结束）</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 2</strong>　文件 B 的串联文件结构：文件目录指向首块 100，各块的链接字把 100 → 157 → 66 → 67 号磁盘块依次串成一条链，逻辑记录并不按块号顺序存放，要读某个逻辑记录只能从首块起沿链逐块追踪（按题干数据重绘）。</p>
+
+                <h3>（2）第 1560 字节处的信息所在的磁盘块</h3>
+                <p>答：1560/512 = 3 余 24，因此文件第 1560 逻辑字节在 r3 逻辑块上，该逻辑块被分配在 67 号磁盘块上。</p>
+
+                <h3>（3）需要的 I/O 操作次数</h3>
+                <p>答：要访问 67 号磁盘块，需要先找到文件目录，然后依次访问 100、157 和 66 号磁盘块，最后读取 67 号磁盘块。因此若文件已打开（文件目录信息已在内存中）需要 4 次 I/O 操作，文件未打开需要 5 次 I/O 操作。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>重名问题与二级文件目录</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是「重名」问题？二级文件目录结构如何解决这一问题？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：重名是指不同用户对不同文件起了相同的名字。在二级文件目录结构中，每个用户建立用户文件目录，系统建立主目录，登记所有用户目录的信息，用目录名加文件名唯一标识每个文件解决重名问题。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>共享文件系统的文件组织方案</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>假设两个用户共享一个文件系统，用户甲要用到文件 a、b、c、e，用户乙要用到文件 a、d、e、f。已知：用户甲的文件 a 与用户乙的文件 a 实际上不是同一文件；用户甲的文件 c 与用户乙的文件 f 实际上是同一文件；甲、乙两用户的文件 e 是同一文件。试拟定一个文件组织方案，使得甲、乙两用户能共享该文件系统而不致造成混乱。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：如下图所示。用户甲的主目录名为 jia，有四个文件，文件名为 a、b、c、e。</p>
+                <p>用户乙的主目录名为 yi，有四个文件，文件名为 a、d、e、f。</p>
+                <p>整理成下表：两个主目录下的 a 是各自不同的文件；甲的 c 与乙的 f 实际上是同一个文件；甲、乙两边的 e 也是同一个文件。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>主目录 jia（用户甲）</th>
+                        <th>主目录 yi（用户乙）</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>a（甲自己的文件 a）</td>
+                        <td>a（乙自己的文件 a，与甲的 a 不是同一文件）</td>
+                      </tr>
+                      <tr>
+                        <td>b</td>
+                        <td>d</td>
+                      </tr>
+                      <tr>
+                        <td>c（与乙的 f 是同一文件）</td>
+                        <td>f（与甲的 c 是同一文件）</td>
+                      </tr>
+                      <tr>
+                        <td>e（与乙的 e 是同一文件）</td>
+                        <td>e（与甲的 e 是同一文件）</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 3</strong>　甲、乙两用户共享文件系统的文件组织方案：jia、yi 两个主目录下各登记四个文件名，甲的 c 与乙的 f 指向同一个文件，两边的 e 是同一个文件（按答案文字整理）。</p>
+                <p><em>（题源文档中本题的目录示意图是 Word 绘图对象，导出稿里只留下「SHAPE \* MERGEFORMAT」占位标记，图形本身无法导出；上表按答案文字整理。）</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q5">
+        <h2><span class="hw-no">题目 5</span>UNIX 7 版本的索引结构</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>设某文件 A 有 10 个逻辑块，另一文件 B 有 500 个逻辑块，试分别用 UNIX 7 版本的索引结构画出这两个文件的索引结构图。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 5 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）文件 A 的索引结构</h3>
+                <p>答：文件 A 有 10 个逻辑块：按 UNIX 7 版本的索引结构则要构造大型文件结构。这时数组 i_addr[ ] 用作一级间接索引。</p>
+                <p>文件 A 的文件索引结构如下图所示（磁盘块号随意设置）。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>i 节点中的表项</th>
+                        <th>指向的索引块</th>
+                        <th>索引块中的表项 → 数据块</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>i_addr[0]</td>
+                        <td>180 号磁盘块（一级间接索引表）</td>
+                        <td>表项给出数据块的块号（题源图中为首项 98、末项 60），依次对应逻辑块 r0–r9，10 个逻辑块的块号全部登记在这一个索引块中</td>
+                      </tr>
+                      <tr>
+                        <td>i_addr[1]–i_addr[7]</td>
+                        <td>未使用</td>
+                        <td>文件只有 10 个逻辑块，一个索引块（可容纳 256 项）已足够，不必再构造间接索引</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 4</strong>　文件 A 的大型文件结构（题源原图注：文件A 的大型文件结构）：i 节点中的 i_addr[ ] 用作一级间接索引，i_addr[0] 指向 180 号索引块，索引块中的每个表项再登记一个数据块的块号（如 98 → r0、…、60 → r9）；题源文档中该图是矢量图形对象，上表按题源答案重绘。</p>
+
+                <h3>（2）文件 B 的索引结构</h3>
+                <p>文件 B 有 500 个逻辑块：按 UNIX 7 版本的索引结构则要构造大型文件结构。这时数组 i_addr[ ] 用作一级间接索引。</p>
+                <div class="hw-calc">
+                  <p>500/256 = 1，余 244</p>
+                </div>
+                <p>文件 B 的文件索引结构如下图所示（磁盘块号随意设置）。</p>
+                <div class="hw-tbl">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>i 节点中的表项</th>
+                        <th>指向的索引块</th>
+                        <th>索引块中的表项 → 数据块</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>i_addr[0]</td>
+                        <td>180 号磁盘块（一级间接索引表）</td>
+                        <td>表项给出数据块的块号（题源图中为首项 98、末项 60），依次对应逻辑块 r0–r255，256 项正好把这个索引块填满</td>
+                      </tr>
+                      <tr>
+                        <td>i_addr[1]</td>
+                        <td>398 号磁盘块（一级间接索引表）</td>
+                        <td>表项给出数据块的块号（题源图中为 560、70 等），依次对应余下的 244 个逻辑块 r256–r499</td>
+                      </tr>
+                      <tr>
+                        <td>i_addr[2]–i_addr[7]</td>
+                        <td>未使用</td>
+                        <td>500 = 256 + 244，两个索引块即可容纳，不必再构造间接索引</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>图 5</strong>　文件 B 的大型文件结构（题源原图注：文件B 的大型文件结构）：500 个逻辑块要占用两个一级间接索引块——i_addr[0] 指向的索引块登记 r0–r255，i_addr[1] 指向的索引块登记余下的 r256–r499（500/256 = 1，余 244）；题源文档中该图是矢量图形对象，上表按题源答案重绘。</p>
+                <p><em>（题源原图中第二个索引表的末项标作「r243」，与答案 500/256 = 1 余 244 的算式不符；244 个逻辑块应为 r256–r499，页面上按答案的算式写出 r499。）</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q6">
+        <h2><span class="hw-no">题目 6</span>树型目录下读文件 A 的存取次数</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某文件系统中，辅存为硬盘，物理块大小为 512 B。有文件 A，包含 590 个逻辑记录，每个记录占 255 B，每个物理块存放 2 个逻辑记录。文件 A 所在的目录如图 9.32 所示，此树型目录结构由根目录节点、作为目录文件的中间节点和作为信息文件的叶节点组成。每个目录项占 127 B，每个物理块放 4 个目录项，根目录的第一块常驻主存。回答如下问题：</p>
+              <ol class="hw-ask">
+                <li>若文件采用串连结构，链接字占 2 B，那么，要将 A 读入主存，至少要存取几次硬盘？为什么？</li>
+                <li>若文件采用连续结构，那么，要将 A 的第 480 号记录读入主存，至少要存取几次硬盘？为什么？</li>
+              </ol>
+              <figure class="fig">
+                <a href="../../assets/homework/os-9/fig1.png" target="_blank" rel="noopener"><img src="../../assets/homework/os-9/fig1.png" alt="图 6　文件 A 所在的树型目录（教材图 9.32）" loading="lazy" decoding="async"></a>
+                <figcaption>图 6　文件 A 所在的树型目录结构：根目录 → usr → you → dir1，文件 A 登记在 dir1 目录中；图中还可见 dev、etc、boot、dir2 等其他目录（教材图 9.32，从题源文档中提取）。</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 6 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）采用串连结构时读文件 A 的存取次数</h3>
+                <p>答：第一次读根目录的第二块，获得 usr 的地址；第二次读 usr 目录的第一块，获得 you 的地址；第三次读 you 目录的第一块，获得 dir1 的地址；第四次读 dir1 目录的第一块，获得 A 的地址；第五次开始遍历串联的 A 的逻辑记录，590 个逻辑记录占用 295 个磁盘块，需要存取 295 次。</p>
+                <div class="hw-calc">
+                  <p>590 ÷ 2 = 295（个磁盘块）</p>
+                  <p>4 + 295 = 299（次）</p>
+                </div>
+
+                <h3>（2）采用连续结构时读第 480 号记录的存取次数</h3>
+                <p>答：连续结构可随机访问，第四次获得 A 的地址后就可计算得到 A 的第 480 号记录的地址，然后直接第五次访问该记录。</p>
+                <div class="hw-calc">
+                  <p>480 ÷ 2 = 240（每个物理块存放 2 个逻辑记录）</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q7">
+        <h2><span class="hw-no">题目 7</span>成组链接法的盘块分配与回收</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某系统采用成组链接法来管理系统盘的空闲存储空间，目前，磁盘的状态如图 9.33 所示。回答如下问题：</p>
+              <ol class="hw-ask">
+                <li>该磁盘中目前还有多少个空闲盘块？</li>
+                <li>系统需要给文件 F 分配 3 个磁盘块，试给出将被分配出去的磁盘块号。</li>
+                <li>接着（在创建文件 F 之后），系统要删除另一个文件，并回收它所占的 5 个盘块，它们的盘块号依次为 700、711、703、788、701，试给出回收后的盘块链接情况。</li>
+              </ol>
+              <figure class="fig">
+                <a href="../../assets/homework/os-9/fig2.png" target="_blank" rel="noopener"><img src="../../assets/homework/os-9/fig2.png" alt="图 7　成组链接法管理的系统盘空闲盘块状态（教材图 9.33）" loading="lazy" decoding="async"></a>
+                <figcaption>图 7　系统盘空闲盘块的成组链接状态：图中给出一串空闲盘块号（201、301、401、299、399 等）（教材图 9.33，从题源文档中提取）。</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 7 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）空闲盘块数</h3>
+                <p>301 个空闲盘块。</p>
+
+                <h3>（2）给文件 F 分配的磁盘块号</h3>
+                <p>100，200，299。</p>
+
+                <h3>（3）回收 5 个盘块后的链接情况</h3>
+                <p>s_free=4, s_free[0]=711, s_free[1]=703 s_free[2]=788 s_free[3]=701, 原 299 所在位置存放盘块号 700。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-8.html">‹ 第 8 章 作业 · 设备管理</a>
+      <span class="todo">已是最后一章</span>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 4 章 作业 · 进程及进程管理 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 4 章作业（进程及进程管理）：进程与程序的区别、程序段执行的先后次序与并发、进程状态变迁的原因与因果变迁、增加三种新状态后的变迁、n 个进程互斥访问公共变量、两组进程流图与两个缓冲区的同步、互斥与同步的概念、线程与进程的区别、Linux 系统的进程状态变迁、长凳和地下停车场的 P、V 操作描述，共 14 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 4 章 进程及进程管理</p>
+      <h1>第 4 章 作业 · 进程及进程管理</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+        <a href="#q5">题目 5</a>
+        <a href="#q6">题目 6</a>
+        <a href="#q7">题目 7</a>
+        <a href="#q8">题目 8</a>
+        <a href="#q9">题目 9</a>
+        <a href="#q10">题目 10</a>
+        <a href="#q11">题目 11</a>
+        <a href="#q12">题目 12</a>
+        <a href="#q13">题目 13</a>
+        <a href="#q14">题目 14</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>进程与程序的区别</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是进程？进程与程序的主要区别是什么？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：进程是一个具有一定独立功能的程序关于某个数据集合的一次活动。进程与程序的主要区别是：</p>
+                <ul>
+                  <li>程序是指令的有序集合，是一个静态概念。进程是程序在处理机的一次执行过程，是一个动态概念。进程是有生命期的，因创建而产生，因调度而执行，因得到资源而暂停，因撤消而消亡；</li>
+                  <li>进程是一个独立的运行单元，是系统进行资源分配和调度的独立单元，而程序则不是。</li>
+                  <li>进程与程序之间无一一对应关系。一个程序可以对应多个进程，一个进程至少包含一个程序。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>程序段执行的先后次序与并发</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>图 4.2 标明程序段执行的先后次序。其中：I 表示输入操作，C 表示计算操作，P 表示打印操作，下角标说明是对哪个程序进行上述操作。请指明：</p>
+              <ol class="hw-ask">
+                <li>哪些操作必须有先后次序？其原因是什么？</li>
+                <li>哪些操作可以并发执行？其原因又是什么？</li>
+              </ol>
+              <p><em>（本题原图见教材图 4.2，题源文档里是矢量图形对象，无法导出。）</em></p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）必须有先后次序的操作</h3>
+                <ul class="hw-sub">
+                  <li>① I<sub>n</sub>、C<sub>n</sub>和 P<sub>n</sub> 之间有先后顺序要求，这是由于程序本身的逻辑要求。</li>
+                  <li>② 使用同一设备的不同的程序段，如 C<sub>1</sub>…C<sub>n</sub>，I<sub>1</sub>…I<sub>n</sub>，P<sub>1</sub>…P<sub>n</sub>，之间有先后顺序要求，这是由于设备某一时刻只能为一个程序服务。</li>
+                </ul>
+
+                <h3>（2）可以并发执行的操作</h3>
+                <p>不同程序使用不同设备时，占用不同设备，无逻辑关系，可以并发执行，如 I<sub>2</sub>和 C<sub>1</sub>；I<sub>3</sub>、C<sub>2</sub>和 P<sub>1</sub>。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>进程状态变迁的原因与因果变迁</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某系统进程调度状态变迁图如图 4.31 所示，请说明：</p>
+              <ol class="hw-ask">
+                <li>什么原因会导致发生变迁 2、变迁 3、变迁 4？</li>
+                <li>在什么情况下，一个进程的变迁 3 能立即引起另一个进程发生变迁 1？</li>
+                <li>下列因果变迁是否可能发生？若可能，需要什么条件？
+                  <p>a. 2→1；　b. 3→2；　c. 4→1</p>
+                </li>
+              </ol>
+              <figure class="fig">
+                <a href="../../assets/course-os/4-2/p0032.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-2/p0032.webp" alt="图 1　进程状态变迁图（含变迁条件）" loading="lazy" decoding="async"></a>
+                <figcaption>图 1　讲义《进程及进程管理》里的进程状态变迁图：运行、就绪、等待三种状态之间的四条变迁，变迁条件为服务请求（如请求 I/O 等）、服务完成／事件来到、进程调度、时间片到（教材图 4.31，原课件第 32 张）</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）变迁 2、变迁 3、变迁 4 发生的原因</h3>
+                <p>答：发生变迁 2 的原因：时间片到。</p>
+                <p>发生变迁 3 的原因：请求 I/O 或其他系统调用。</p>
+                <p>发生变迁 4 的原因：I/O 完成或其他系统调用完成。</p>
+                <p><em>（图 4.31 中四条变迁的编号依次为：1 就绪→运行、2 运行→就绪、3 运行→等待、4 等待→就绪。）</em></p>
+
+                <h3>（2）变迁 3 立即引起另一进程变迁 1 的条件</h3>
+                <p>答：一个进程的变迁 3 能立即引起另一个进程发生变迁的条件是，就绪队列非空。</p>
+
+                <h3>（3）因果变迁是否可能发生</h3>
+                <p>答：a. 2→1　不需要条件，一定会发生。</p>
+                <p>b. 3→2　不可能发生。</p>
+                <p>c. 4→1　可能发生，条件：就绪队列为空，或在可剥夺调度方式下，转变为就绪状态的进程优先级最高。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>增加三种新状态后的进程状态变迁</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某系统进程状态除了 3 个最基本状态外，又增加了创建状态、完成状态、因等消息而转变为等待状态 3 种新的状态，试画出增加新状态后的进程状态变迁图，并说明发生每一个变迁的原因。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：进程状态变迁图：</p>
+                <p><em>（本题的进程状态变迁图在题源文档里是矢量图形对象，无法导出；变迁关系见下面的「进程状态变迁原因」。）</em></p>
+                <p>进程状态变迁原因：</p>
+                <p>运行—&gt;等待：请求 I/O；　等待—&gt;就绪：请求完成；</p>
+                <p>运行—&gt;就绪：时间片到；　就绪—&gt;运行：CPU 空闲，进程调度程序工作；</p>
+                <p>创建—&gt;就绪：进程创建；　运行—&gt;等消息：等待消息；</p>
+                <p>等消息—&gt;就绪：收到消息；运行—&gt;完成：任务完成</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q5">
+        <h2><span class="hw-no">题目 5</span>n 个进程互斥访问公共变量</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>n 个并发进程共用一个公共变量 Q，写出用信号灯实现 n 个进程互斥时的程序描述，给出信号灯值的取值范围，并说明每个取值的物理意义。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 5 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>（1）程序描述</h3>
+                <pre><code>main ( ){
+	int mutex=1;  //公共变量Q的互斥信号灯
+	cobegin
+		P1; 	P2;	… 	Pn; 
+	coend                 
+}
+Pi(){
+	…
+	P(mutex);
+	使用Q；
+	V(mutex);
+	…
+}</code></pre>
+
+                <h3>（2）信号灯值的取值范围</h3>
+                <p>信号灯值的取值范围：[− (n–1)，1]</p>
+
+                <h3>（3）mutex 每个取值的物理意义</h3>
+                <ul>
+                  <li>mutex = 1　说明没有进程进入临界段执行；</li>
+                  <li>mutex = 0　说明有一个进程进入临界段执行；</li>
+                  <li>mutex = −1　说明有一个进程进入临界段执行，另有一个进程正在等待进入；</li>
+                  <li>mutex = − (n–1)　说明有一个进程进入临界段执行，另有 (n–1) 个进程正在等待进入。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q6">
+        <h2><span class="hw-no">题目 6</span>两组进程流图的同步实现</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>图 4.32(a)、(b) 分别给出了两个进程流图。试用信号灯的 p、v 操作分别实现图 4.32(a)、(b) 所示的两组进程之间的同步，并写出程序描述。</p>
+              <figure class="fig">
+                <a href="../../assets/course-os/4-6/p0095.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0095.webp" alt="图 2　习题 4-13 的两组进程流图 (a)、(b)" loading="lazy" decoding="async"></a>
+                <figcaption>图 2　讲义《进程互斥与同步的实现》里的习题 4-13 进程流图：图 (a) 中 P1 完成后 P2、P3、P4 才能执行，图 (b) 中 P1、P2 都完成后 P3 才能执行（教材图 4.32，原课件第 95 张）</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 6 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <h3>图 (a) 解</h3>
+                <pre><code>main(){
+	int s12=0,s13=0,s14=0;  // s12 表示进程P2可否执行；s13表示进程P3可否执行；s14表示进程P4可否执行//
+	cobegin
+		P1; P2; P3; P4; 
+	coend
+}
+P1(){
+	p1  execute;
+	V(s12);
+	V(s13);
+	V(s14);
+}
+P2(){
+	P(s12);
+	p2  execute;
+}
+P3(){
+	P(s13);
+	p3  execute;
+}
+P4(){
+	P(s14);
+	p4  execute;
+}</code></pre>
+
+                <h3>图 (b) 解</h3>
+                <pre><code>main(){
+	int s13=0,s23=0; // s13 表示进程P1执行完成否；s23表示进程P2执行完成否 //
+	cobegin
+		P1; P2; P3;
+	coend
+}
+P1(){
+	P1  execute;
+	V(s13);
+}
+P2(){
+	P2  execute;
+	V(s23);
+}
+P3(){
+	P(s13);
+	P(s23);
+	P3  execute;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q7">
+        <h2><span class="hw-no">题目 7</span>两个缓冲区的 get、copy、put 同步</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>如图 4.34 所示，get、copy 和 put 三个进程共用两个缓冲区 s 和 t（其大小每次存放一个记录），get 进程负责不断地把输入记录输入缓冲区 s 中，copy 进程负责从缓冲区 s 中取出记录复制到缓冲区 t 中，而 put 进程负责从缓冲区 t 中取出记录打印。试用 PV 操作实现这三个进程之间的同步，并写出程序描述。</p>
+              <figure class="fig">
+                <a href="../../assets/course-os/4-6/p0103.webp" target="_blank" rel="noopener"><img src="../../assets/course-os/4-6/p0103.webp" alt="图 3　习题 4-15：get、copy、put 三个进程与两个缓冲区 s、t" loading="lazy" decoding="async"></a>
+                <figcaption>图 3　讲义《进程互斥与同步的实现》里的习题 4-15 图：get 把记录送入缓冲区 s，copy 把记录从 s 搬到 t，put 把记录从 t 取出打印（教材图 4.34，原课件第 103 张）</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 7 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>解：</p>
+                <pre><code>main(){
+	int s1=1,s2=0; // s1 表示缓冲区S 是否为空，s2 表示是否已满//
+	int s3=1, s4=0; // s3 表示缓冲区T 是否为空，s4 表示是否已满//
+	cobegin
+		get;
+		copy;
+		put;
+	coend
+}
+
+get(){
+	while(1){
+		P(s1);
+		input data to buffer S;
+		V(s2);
+	}
+}
+
+copy (){
+	while(1){
+		P(s2);
+		copy data from buffer S;
+		V(s1);
+		P(s3);
+		input copy-data to buffer T;
+		V(s4);
+	}
+}
+
+put(){
+	while(1){
+		P(s4);
+		output data to buffer S;
+		V(s3);
+	}
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q8">
+        <h2><span class="hw-no">题目 8</span>进程的互斥与同步</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是进程的互斥与同步？同步和互斥这两个概念有什么联系和区别？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 8 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <ul>
+                  <li><strong>互斥</strong>：在操作系统中，当某一进程正在访问某一存储区域时，就不允许其他进程读出或者修改该存储区的内容，否则，就会发生后果无法估计的错误。进程之间的这种相互制约关系称为互斥。</li>
+                  <li><strong>同步</strong>：所谓同步，就是并发进程在一些关键点上可能需要互相等待与互通消息，这种相互制约的等待与互通信息称为进程同步。</li>
+                </ul>
+                <p>同步和互斥这两个概念都属于同步范畴，描述并发进程相互之间的制约关系。同步是指并发进程按照他们之间的约束关系，在执行的先后次序上必须满足这种约束关系。而互斥是同步的一种特例，是指并发进程按照他们之间的约束关系，在某一点上一个时刻只允许一个进程执行，一个进程做完了，另一个进程才能执行，而不管谁先做这个操作。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q9">
+        <h2><span class="hw-no">题目 9</span>线程与进程的区别</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是线程？线程和进程有什么区别？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 9 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：线程也称为轻量级进程，它是比进程更小的活动单位，它是进程中的一个执行路径，一个进程可能有多个执行路径，即线程。</p>
+                <p>线程和进程的主要区别如下。</p>
+                <ul>
+                  <li>线程是进程的一个组成部分，一个进程可以有多个线程，而且至少有一个可执行的线程。</li>
+                  <li>进程是资源分配的基本单位，它拥有自己的地址空间和各种资源；线程是处理机调度的基本单位，它只能和其他线程共享进程的资源，而本身并没有任何资源。</li>
+                  <li>进程的多个线程都在进程的地址空间内活动。这样，在以线程为单位进行处理机调度和切换时，切换时间较短；而以进程为单位进行处理机调度和切换时，由于涉及到资源转移及现场保护等问题，将导致切换时间变长和资源利用率下降。</li>
+                  <li>线程和进程一样，都有自己的状态和相应的同步机制，但是，由于线程没有自己单独的程序和数据空间，因而不能像进程那样将程序和数据交换到外存去。</li>
+                  <li>进程的调度和控制大多由操作系统的内核完成，而线程的控制既可以由操作系统内核完成，也可以由用户控制完成。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q10">
+        <h2><span class="hw-no">题目 10</span>Linux 系统的进程状态变迁</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>试画出 Linux 系统的进程状态变迁，并说明这些变迁可能的原因。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 10 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：画出 Linux 系统的进程状态变迁如图所示。</p>
+                <p><em>（原答案此处是一张 Linux 进程状态变迁图，题源文档里是矢量图形对象，无法导出；讲义页里也没有找到同一张图。下面照录答案给出的 6 条变迁，并列出原图中标出的状态名称。）</em></p>
+                <p>原图里标出的状态名称：运行（TASK_RUNNING）、就绪（TASK_RUNNING）、等待（TASK_INTERRUPTIBLE 或 TASK_UNINTERRUPTIBLE）、创建（TASK_RUNNING）、终止（TASK_ZOMBIE）。</p>
+
+                <h3>（1）进程创建</h3>
+                <p>当系统或用户需要创建一个新进程时，调用 fork() 系统调用，被创建的新进程被置为就绪状态 TASK_RUNNING。</p>
+
+                <h3>（2）进程调度</h3>
+                <p>当调度时机来到时，进程调度程序从进程运行队列中选择优先级最高的进程，将其投入运行，设置状态为运行状态。</p>
+
+                <h3>（3）被抢占</h3>
+                <p>正在 CPU 上运行的进程，当其优先级低于处于就绪状态的某一个进程的优先级时，它被抢占而被迫让出 CPU 的控制权，此时，该进程的状态转为就绪状态。</p>
+
+                <h3>（4）进程等待</h3>
+                <p>若正在运行的进程因等待某一事件而暂时不能运行下去时，进入相应的等待队列，设置为等待状态。</p>
+
+                <h3>（5）进程唤醒</h3>
+                <p>当某个进程等待的原因撤销时，该进程被唤醒，将其从等待队列中移出，进入就绪队列。</p>
+
+                <h3>（6）进程终止</h3>
+                <p>当正在运行的进程完成其任务时，通过 exit() 系统调用终止自己而进入终止状态。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q11">
+        <h2><span class="hw-no">题目 11</span>公园长凳的 P、V 操作描述</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某公园有一个长凳，其上最多可以坐 5 个人。公园里的游客遵循以下规则使用长凳：</p>
+              <ol class="hw-ask">
+                <li>如果长凳还有空间可以坐，就坐到长凳上休息，直到休息结束，离开长凳。</li>
+                <li>如果长凳上没有空间，就转身离开。</li>
+              </ol>
+              <p>试用信号灯的 P、V 操作描述这一场景。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 11 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：</p>
+                <pre><code>main(){
+	int count=5; // 长凳上可坐的人数
+	int mutex=0; // 访问count的互斥信号灯
+	cobegin
+		guesti;	// i =1,2,3,4……
+	coend
+}
+guesti {
+	P(mutex);
+	if (count == 0) {
+		V(mutex);
+		return;
+	}
+	count--;
+	V(mutex);
+	休息；
+	P(mutex);
+	Count++;
+	V(mutex);
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q12">
+        <h2><span class="hw-no">题目 12</span>六个进程合作计算 z 的最终结果</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>6 个进程合作完成一项计算任务的并发描述如图 4-38 所示，程序中，s1、s2、s3、s4、s5、s6 分别是同步信号灯，x、y、z 是共享数据变量。试给出变量 z 的最终结果，并画出 6 个进程合作的进程流图。</p>
+              <p><em>（本题原图见教材图 4.38，题源文档里是矢量图形对象，无法导出；图中所给 6 个进程的并发描述在题源文档里是可提取的文字，照录如下。）</em></p>
+              <pre><code>int s1=s2=s3=0;
+int s4=s5=0;
+int x=y=z=0;
+main()
+{
+	Cobegin
+		P1();P2();P3();
+		P4();P5();P6();
+	Coend
+}
+
+P3(){
+	P(s1);
+	y=y*2;
+	V(s3); V(s3);
+}
+
+P2() {
+	P(s1);
+	x=x+2; z=x;
+	V(s2) ;V(s2);
+}
+
+P1() {
+	x=1;y=1;
+	V(s1);
+	V(s1);
+}
+
+P6(){
+	P(s5);
+	P(s4);
+	z=x+y+z;
+}
+
+}
+
+P5(){
+	P(s2);
+	P(s3);
+	z=z+y;
+	V(s5);
+}
+
+P4(){
+	P(s2);
+	P(s3);
+	x=x+y;
+	V(s4); 
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 12 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：变量 z 的最终结果 <strong>Z = 12</strong>。</p>
+                <p><em>（原答案只给出了变量 z 的结果，没有给出 6 个进程合作的进程流图。）</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q13">
+        <h2><span class="hw-no">题目 13</span>三进程两缓冲区的同步算法</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>现有 3 个并发进程 P1、P2 和 P3，如图 4.39 所示。3 个并发进程共享两个单缓冲区 B1 和 B2。进程 P1 负责不断从输入设备读数据，若读入的数据为正数，则直接送入 B2，否则应先将数据送入 B1，经 P2 取出加工后再送入 B2，P3 从 B2 中取信息输出。请使用信号灯和 P、V 操作描述进程 P1、P2、P3 实现同步的算法。</p>
+              <p><em>（本题原图见教材图 4.39，题源文档里是矢量图形对象，无法导出。）</em></p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 13 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：缓冲区 B1 设置信号灯 s1、t1，s1 表示缓冲区 B1 是否空闲，t1 表示缓冲区 B1 是否有数据，缓冲区 B2 设置信号灯 s2、t2，s2 表示缓冲区 B2 是否空闲，t2 表示缓冲区 B2 是否有数据。</p>
+                <pre><code>Main()
+{
+	Int s1=s2=1;
+	Int t1=t2=0;
+	Cobegin
+		P1();p2();p3();
+	Coend
+}
+
+P1() {
+	While (未结束）
+	读取数据；
+	If (数据&gt;0) {
+		P(s2);
+		数据放入B2;
+		V(t2);
+	} else {
+		P(s1);
+		数据放入B1;
+		V(t1);
+	}
+}
+
+P2()
+{
+	While (未结束) {
+		P(t1);
+		取B1数据；
+		V(s1);
+		P(s2);
+		数据放入B2;
+		V(t2);
+	}
+}
+
+P3()
+{
+	While (未结束) {
+		P(t2);
+		取B2数据；
+		V(s2);
+		输出数据；
+	}
+}</code></pre>
+                <p><em>（题源文档里 P1() 的函数体没有给出结束的右花括号，此处照录。）</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q14">
+        <h2><span class="hw-no">题目 14</span>地下停车场进出的 P、V 操作</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>某商场有一个地下停车场，有 N 个停车位，车辆只能通过一个指定的通道进出停车场，通道处只能容一辆车通过，请设计信号灯和 P、V 操作给出进、出车辆两种进程的程序描述。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 14 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>答：</p>
+                <pre><code>main()
+{
+	int count1=count2=0;/*计数器*/
+	int mutex1=mutex2=1;/*两个计数器的互斥访问信号灯*/
+	int mutex=1; /*通道互斥访问信号灯*/
+	cobegin
+		in();
+		out();
+	coend
+}
+
+in()
+{
+	P(empty);
+	P(mutex1);
+	Count1++;
+	if  count1==0  P(mutex);
+	V(mutex1);
+	开车进地下停车场；
+	P(mutex1);
+	count1--;
+	if count1==0 V(mutex);
+	V(mutex1);
+}
+
+out()
+{
+	P(mutex2);
+	Count2++;
+	if  count2==0  P(mutex);
+	V(mutex2);
+	开车出地下停车场；
+	P(mutex2);
+	Count2--;
+	if count2==0 V(mutex);
+	V(mutex2);
+	V(empty);
+}</code></pre>
+                <p><em>（题源答案里没有给出 empty 信号灯的初值，此处照录。）</em></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-3.html">‹ 第 3 章 作业 · 用户接口</a>
+      <a class="next" href="hw-5.html">第 5 章 作业 · 资源分配与调度 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/course.js?v=3"></script>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>

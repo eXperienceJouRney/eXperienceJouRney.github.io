@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 3 章 作业 · 操作系统原理 · eXperience JouRney</title>
+<meta name="description" content="操作系统原理第 3 章作业（用户接口）：处理应用程序的步骤及其关系、用户与操作系统的接口、系统调用与子程序调用的区别、系统调用的执行过程、Linux 中增加一个新的系统调用需要做的工作，共 5 题。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="../../assets/course.css?v=5">
+<link rel="stylesheet" href="../../assets/homework.css?v=4">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);if(localStorage.getItem('hw-show-answers')==='1')d.classList.add('hw-show');}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html" aria-current="page">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+
+<main id="main">
+<div class="doc doc-wide">
+
+  <article class="doc-body">
+    <header class="doc-head">
+      <nav class="mod-switch" aria-label="课程模块">
+        <a href="../os.html">讲义</a>
+        <a href="homework.html" aria-current="page">作业</a>
+      </nav>
+      <p class="crumb"><a href="../os.html">操作系统原理</a> · <a href="homework.html">作业</a> · 第 3 章 用户接口</p>
+      <h1>第 3 章 作业 · 用户接口</h1>
+    </header>
+
+    <div class="hw-toolbar">
+      <nav class="hw-nav" aria-label="题目导航">
+        <a href="#q1" aria-current="true">题目 1</a>
+        <a href="#q2">题目 2</a>
+        <a href="#q3">题目 3</a>
+        <a href="#q4">题目 4</a>
+        <a href="#q5">题目 5</a>
+      </nav>
+      <p class="hw-tip">鼠标移入答案即显示，移开自动隐藏；<kbd>Tab</kbd> 聚焦同样有效。</p>
+      <button class="hw-toggle" id="hwToggle" type="button" aria-pressed="false" title="当前：鼠标移入显示（点击改为始终显示）"><span class="ico" aria-hidden="true">◉</span><span class="hw-toggle-txt">始终显示答案</span></button>
+    </div>
+
+    <div class="note hw">
+
+      <section class="hw-q" id="q1">
+        <h2><span class="hw-no">题目 1</span>处理应用程序的步骤及其关系</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>处理应用程序分为哪几个步骤？这些步骤之间有什么关系？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 1 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>处理应用程序分为四个步骤：编辑，编译，连接和运行。这些步骤是相互关联、顺序执行的。具体表现为：</p>
+                <ul>
+                  <li>每个步骤处理的结果产生下一个步骤所需要的文件；</li>
+                  <li>每一个步骤能否正确地执行，依赖于前一个步骤是否成功地完成。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q2">
+        <h2><span class="hw-no">题目 2</span>用户与操作系统的接口</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>用户与操作系统的接口是什么？一个分时系统提供什么接口？一个批处理系统又提供什么接口？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 2 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>用户与操作系统的接口是操作系统提供给用户与计算机打交道的外部机制。</p>
+                <p>一个分时系统提供的接口有系统功能调用和键盘操作命令。</p>
+                <p>一个批处理系统提供的接口有系统功能调用和作业控制语言。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q3">
+        <h2><span class="hw-no">题目 3</span>系统调用及其与一般子程序调用的区别</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>什么是系统调用？对操作系统的服务请求与一般的子程序调用有什么区别？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 3 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>系统调用是用户在程序一级请求操作系统服务的一种手段。编程人员利用系统调用，在源程序一级动态请求和释放系统资源，调用系统中已有的系统功能来完成那些与机器硬件部分相关的工作以及控制程序的执行等。因此，系统调用像一个黑箱子那样，对用户屏蔽了操作系统的具体动作而只提供有关的功能。</p>
+                <p>系统调用与一般过程调用的主要区别如下：</p>
+                <h3>（1）程序的性质不同</h3>
+                <p>系统调用服务例程是操作系统程序的一部分，它在核态下执行。而用户子程序是用户程序的一部分，它在用户态下执行。</p>
+                <h3>（2）调用方式不同</h3>
+                <p>系统调用是通过陷入到操作系统内核来实现的，调用它们需要中断处理机制来提供系统服务。而子程序调用是在用户程序中直接调用。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q4">
+        <h2><span class="hw-no">题目 4</span>系统调用的执行过程</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>简述系统调用的执行过程。</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 4 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>系统调用命令的具体格式因系统而异，但由用户程序进入系统调用的步骤及执行过程大体相同。其执行过程如下：</p>
+                <ol>
+                  <li>保护用户程序的现场信息，同时把系统调用命令的编号等参数放入指定的存储单元；</li>
+                  <li>根据系统调用命令的编号查找系统调用入口表，找到相应系统功能调用子程序的入口地址；</li>
+                  <li>转到该子程序执行，当系统调用命令执行完毕，相应的结果通常返回给参数，这些参数放在指定的存储单元里；</li>
+                  <li>系统调用命令执行完毕后恢复用户程序执行的现场信息，同时把系统调用命令的返回参数或参数区首址放入指定的寄存器中，供用户程序使用。</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hw-q" id="q5">
+        <h2><span class="hw-no">题目 5</span>Linux 中增加一个新的系统调用</h2>
+        <div class="hw-cols">
+          <div class="hw-col-q">
+            <p class="hw-tag">题目</p>
+            <div class="hw-stem">
+              <p>在 Linux 系统中，增加一个新的系统调用需要做哪些工作？</p>
+            </div>
+          </div>
+
+          <div class="hw-col-a">
+            <div class="hw-a" tabindex="0" role="group" aria-label="题目 5 参考答案">
+              <p class="hw-a-tag">参考答案<span class="hw-a-hint"></span></p>
+              <div class="hw-a-body">
+                <p>在 Linux 系统中，增加一个新的系统调用需要做的工作包括如下几个方面。</p>
+                <h3>（1）编写一个新增加的功能的服务例程</h3>
+                <p>编写新增的服务例程，并加到内核中去，即在 <code>/usr/src/linux/kernel/sys.c</code> 文件中增加一个新的函数。</p>
+                <h3>（2）增加一个新的系统调用号</h3>
+                <p>在 linux 中，每个系统调用被赋予一个唯一的系统调用号。找到 linux 中定义系统调用号定义的文件（在 <code>include/asm-i386/unistd.h</code> 头文件中）。在此文件中按其规定的格式添加一项。</p>
+                <h3>（3）在系统调用表中登记新的系统调用号以及对应的服务例程</h3>
+                <p>系统调用表记录了内核中所有已注册过的系统调用，它是系统调用的跳转表，实际上是一个函数指针数组，表中依次保存所有系统调用的函数指针。找到 linux 中的系统调用表（Linux 系统调用表保存在 <code>arch/i386/kernel/</code> 下的 <code>entry.S</code> 中）。在此文件中按其规定的格式增加一个新的系统调用号以及对应的服务例程。</p>
+                <h3>（4）重新编译内核</h3>
+                <p>新增加的服务例程要为 Linux 系统接受，必须重新编译内核，生成新的包含新增服务例程的内核。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="pager" aria-label="翻页">
+      <a href="hw-2.html">‹ 第 2 章 作业 · 结构与硬件支持</a>
+      <a class="next" href="hw-4.html">第 4 章 作业 · 进程及进程管理 ›</a>
+    </nav>
+  </article>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+<script src="../../assets/homework.js?v=2"></script>
+</body>
+</html>
