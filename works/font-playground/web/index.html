@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f6f2" />
+    <meta name="description" content="Font Playground：把文字变成画面的排版实验台，支持排版预设、字号、字距、行距、倾斜、取色与 PNG 导出。" />
+    <title>Font Playground — Type, your way</title>
+    <link rel="icon" href="../../../favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="../../../assets/favicon.svg?v=4" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../../../apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css?v=1" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <a class="back-link" href="../" aria-label="返回 Font Playground 项目页"><span aria-hidden="true">←</span> 项目页</a>
+          <a class="brand" href="#explore" aria-label="Font Playground 首页" data-page-link="explore">
+            <span class="brand-mark" aria-hidden="true">F<span>.</span></span>
+            <span class="brand-name">FONT<br />PLAYGROUND</span>
+          </a>
+        </div>
+        <nav class="main-nav" aria-label="主导航">
+          <button class="nav-link active" type="button" data-page-link="explore"><span>01</span> Explore</button>
+          <button class="nav-link" type="button" data-page-link="create"><span>02</span> Create</button>
+          <button class="nav-link" type="button" data-page-link="gallery"><span>03</span> Gallery</button>
+        </nav>
+        <button class="top-cta" type="button" data-page-link="create">开始创作 <span aria-hidden="true">↗</span></button>
+      </header>
+
+      <main>
+        <section class="page explore-page active" id="explore" aria-labelledby="explore-title">
+          <div class="explore-grid">
+            <div class="explore-copy">
+              <p class="eyebrow"><span class="live-dot"></span> A TYPE EXPERIMENT STUDIO</p>
+              <h1 id="explore-title">TYPE,<br />YOUR <span class="outline-word">WAY.</span></h1>
+              <p class="hero-description">把文字变成画面。试试字号、色彩和节奏，做出只属于你的排版实验。</p>
+              <button class="button button-dark" type="button" data-page-link="create">进入创作台 <span aria-hidden="true">↗</span></button>
+              <div class="hero-footnote"><span>01 / 03</span><span>从一个词开始，也可以。</span></div>
+            </div>
+
+            <div class="hero-art" aria-label="MAKE ROOM FOR TYPE 排版作品预览">
+              <div class="art-topline"><span>STUDY NO. 024</span><span>FORM / 2025</span></div>
+              <div class="art-stamp" aria-hidden="true">TYPE<br />IS<br />ALIVE</div>
+              <div class="art-copy">MAKE<br />ROOM<br /><span>FOR</span><br />TYPE<span class="art-period">.</span></div>
+              <div class="art-bottomline"><span>AN EXERCISE IN EXPRESSION</span><span>FP®</span></div>
+            </div>
+          </div>
+
+          <div class="section-heading explore-section-heading">
+            <div><p class="eyebrow">A FEW WAYS IN</p><h2>从灵感开始。</h2></div>
+            <button class="text-link" type="button" data-page-link="gallery">浏览全部风格 <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="featured-grid">
+            <button class="feature-card feature-blue" type="button" data-open-preset="brutalist" data-sample="MAKE\nIT LOUD">
+              <span class="feature-index">A / 01</span><span class="feature-visual brutal-preview">MAKE<br />IT LOUD<span>.</span></span><span class="feature-caption"><b>BRUTALIST</b><span>强烈 · 直接</span></span>
+            </button>
+            <button class="feature-card feature-paper" type="button" data-open-preset="editorial" data-sample="A GOOD\nSTORY">
+              <span class="feature-index">B / 02</span><span class="feature-visual editorial-preview">A good<br /><i>story</i></span><span class="feature-caption"><b>EDITORIAL</b><span>克制 · 有故事</span></span>
+            </button>
+            <button class="feature-card feature-ink" type="button" data-open-preset="playful" data-sample="STAY\nCURIOUS!">
+              <span class="feature-index">C / 03</span><span class="feature-visual playful-preview">STAY<br /><span>CURIOUS!</span></span><span class="feature-caption"><b>PLAYFUL</b><span>轻快 · 出其不意</span></span>
+            </button>
+          </div>
+          <footer class="page-footer"><span>FONT PLAYGROUND © 2025</span><span>DESIGNED TO BE PLAYED WITH <span class="footer-star">✳</span></span></footer>
+        </section>
+
+        <section class="page create-page" id="create" aria-labelledby="create-title" hidden>
+          <div class="page-intro create-intro">
+            <div><p class="eyebrow"><span class="live-dot"></span> YOUR CREATIVE SPACE</p><h1 id="create-title">Make it <span>yours.</span></h1></div>
+            <div class="create-intro-actions">
+              <p>每个改变都会即时出现在画布上。<br />试着调整，再找到你的节奏。</p>
+              <div class="work-actions">
+                <button class="work-button" id="save-work" type="button">保存作品 <span aria-hidden="true">↗</span></button>
+                <button class="work-button style-button" id="save-style" type="button">存为风格 <span aria-hidden="true">✳</span></button>
+                <button class="work-button primary" id="download-work" type="button">下载 PNG <span aria-hidden="true">↓</span></button>
+              </div>
+              <span class="save-status" id="save-status" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="create-layout">
+            <div class="canvas-column">
+              <div class="canvas-toolbar"><span><i class="canvas-status"></i> LIVE CANVAS</span><span id="canvas-preset-label">BRUTALIST / 01</span></div>
+              <div class="artboard" id="artboard" aria-label="实时排版预览">
+                <span class="artboard-meta">FONT PLAYGROUND <span>STUDY 001</span></span>
+                <div class="text-object" id="text-object" tabindex="0" role="button" aria-pressed="false" aria-label="画布中的文字，可选中后拖动移动">
+                  <div class="artboard-text" id="artboard-text" aria-live="polite">MAKE IT<br />DIFFERENT</div>
+                </div>
+                <div class="selection-box" id="selection-box" hidden>
+                  <button class="rotate-handle" id="rotate-handle" type="button" aria-label="拖动旋转文字" title="拖动旋转">↻</button>
+                </div>
+                <span class="artboard-number">01<span>—</span>03</span>
+                <span class="artboard-cross" aria-hidden="true">✳</span>
+              </div>
+              <div class="canvas-caption"><span>预览画布</span><span>点击文字选中，拖动移动；拖动上方手柄旋转 <span aria-hidden="true">→</span></span></div>
+            </div>
+            <aside class="editor-panel" aria-label="排版编辑工具">
+              <div class="panel-heading"><h2>编辑作品</h2><span class="panel-step">01 — 04</span></div>
+              <label class="control-label" for="text-input">你的文字 <span>最多 60 个字符</span></label>
+              <textarea id="text-input" maxlength="60" rows="3" spellcheck="false">MAKE IT
+DIFFERENT</textarea>
+              <div class="control-section">
+                <div class="control-title"><span>排版预设</span><span>选择一种感觉</span></div>
+                <div class="preset-list" role="group" aria-label="排版预设">
+                  <button class="preset-button selected" type="button" data-preset="brutalist"><span class="preset-swatch swatch-brutalist">Aa</span><span><b>Brutalist</b><small>粗粝 · 大胆</small></span><span class="preset-check">✓</span></button>
+                  <button class="preset-button" type="button" data-preset="editorial"><span class="preset-swatch swatch-editorial">Ag</span><span><b>Editorial</b><small>优雅 · 留白</small></span><span class="preset-check">✓</span></button>
+                  <button class="preset-button" type="button" data-preset="playful"><span class="preset-swatch swatch-playful">Hi!</span><span><b>Playful</b><small>明快 · 有趣</small></span><span class="preset-check">✓</span></button>
+                  <button class="preset-button" type="button" data-preset="mono"><span class="preset-swatch swatch-mono">01</span><span><b>Mono Grid</b><small>理性 · 精准</small></span><span class="preset-check">✓</span></button>
+                </div>
+              </div>
+              <div class="control-section font-section">
+                <label class="control-title" for="font-input"><span>字体</span><span>选择字形气质</span></label>
+                <select id="font-input" class="font-select">
+                  <option value="sans">无衬线 Sans</option>
+                  <option value="serif">衬线 Serif</option>
+                  <option value="mono">等宽 Mono</option>
+                  <option value="display">粗体 Display</option>
+                </select>
+              </div>
+              <div class="control-section size-section">
+                <label class="control-title" for="size-input"><span>字号</span><span><output id="size-value">96</output> px</span></label>
+                <input id="size-input" class="range-input" type="range" min="36" max="144" value="96" />
+                <div class="range-ends"><span>小一点</span><span>大一点</span></div>
+              </div>
+              <div class="control-section spacing-section">
+                <label class="control-title" for="letter-spacing-input"><span>字间距</span><span><output id="letter-spacing-value">-0.09</output> em</span></label>
+                <input id="letter-spacing-input" class="range-input" type="range" min="-15" max="15" value="-9" />
+              </div>
+              <div class="control-section spacing-section">
+                <label class="control-title" for="line-height-input"><span>行间距</span><span><output id="line-height-value">83</output>%</span></label>
+                <input id="line-height-input" class="range-input" type="range" min="70" max="150" value="83" />
+              </div>
+              <div class="control-section spacing-section">
+                <label class="control-title" for="tilt-input"><span>字形倾斜度</span><span><output id="tilt-value">0</output>°</span></label>
+                <input id="tilt-input" class="range-input" type="range" min="0" max="20" value="0" />
+              </div>
+              <div class="control-section alignment-section">
+                <span class="control-title">对齐方式</span>
+                <div class="alignment-options" role="group" aria-label="对齐方式">
+                  <button class="align-button selected" type="button" data-align="left" aria-label="左对齐">☰</button>
+                  <button class="align-button" type="button" data-align="center" aria-label="居中对齐">≡</button>
+                  <button class="align-button" type="button" data-align="right" aria-label="右对齐">☷</button>
+                </div>
+              </div>
+              <div class="control-section color-section">
+                <span class="control-title">颜色</span>
+                <label class="color-control"><span class="color-dot text-color-dot" id="text-color-dot"></span><span>文字颜色</span><input type="color" id="text-color-input" value="#10110e" aria-label="文字颜色" /></label>
+                <label class="color-control"><span class="color-dot bg-color-dot" id="bg-color-dot"></span><span>背景颜色</span><input type="color" id="bg-color-input" value="#245bff" aria-label="背景颜色" /></label>
+              </div>
+            </aside>
+          </div>
+          <footer class="page-footer"><span>YOUR WORK, YOUR RULES.</span><span>CHANGES SAVE IN THIS SESSION <span class="footer-star">✳</span></span></footer>
+        </section>
+
+        <section class="page gallery-page" id="gallery" aria-labelledby="gallery-title" hidden>
+          <div class="gallery-heading">
+            <div><p class="eyebrow"><span class="live-dot"></span> THE STYLE LIBRARY</p><h1 id="gallery-title">Find your <span>form.</span></h1></div>
+            <p>风格是起点，不是规则。<br />选一个方向，再把它变成自己的。</p>
+          </div>
+          <div class="gallery-tools"><span><b>04</b> 个起始风格</span><span>选一张卡片，即刻开始创作 <span aria-hidden="true">↗</span></span></div>
+          <div class="gallery-grid">
+            <button class="gallery-card gallery-brutalist" type="button" data-open-preset="brutalist" data-sample="NO\nSOFT\nEDGES.">
+              <span class="gallery-card-top"><span>01 / POSTER</span><span>↗</span></span><span class="gallery-art brut-art">NO<br />SOFT<br /><i>EDGES.</i></span><span class="gallery-card-bottom"><span><b>BRUTALIST</b><small>冲击力 · 几何感 · 直给</small></span><span class="card-arrow">→</span></span>
+            </button>
+            <button class="gallery-card gallery-editorial" type="button" data-open-preset="editorial" data-sample="Words\nthat stay.">
+              <span class="gallery-card-top"><span>02 / EDITION</span><span>↗</span></span><span class="gallery-art edit-art">Words<br /><i>that stay.</i><small>ISSUE 08 — THE ART OF PAUSE</small></span><span class="gallery-card-bottom"><span><b>EDITORIAL</b><small>叙事感 · 对比 · 细节</small></span><span class="card-arrow">→</span></span>
+            </button>
+            <button class="gallery-card gallery-playful" type="button" data-open-preset="playful" data-sample="GOOD\nTHINGS\nTAKE PLAY.">
+              <span class="gallery-card-top"><span>03 / EXPERIMENT</span><span>↗</span></span><span class="gallery-art play-art"><span class="play-small">GOOD THINGS</span><b>TAKE<br />PLAY<span>!</span></b><i>✳</i></span><span class="gallery-card-bottom"><span><b>PLAYFUL</b><small>跳跃感 · 色彩 · 不设限</small></span><span class="card-arrow">→</span></span>
+            </button>
+            <button class="gallery-card gallery-mono" type="button" data-open-preset="mono" data-sample="FORM\nFOLLOWS\nFUNCTION.">
+              <span class="gallery-card-top"><span>04 / SYSTEM</span><span>↗</span></span><span class="gallery-art mono-art"><span class="mono-grid-label">GRID STUDY&nbsp;&nbsp; 005</span><b>FORM<br />FOLLOWS<br />FUNCTION<span>.</span></b><i>— ORDER IN EVERY LETTER</i></span><span class="gallery-card-bottom"><span><b>MONO GRID</b><small>网格 · 秩序 · 克制</small></span><span class="card-arrow">→</span></span>
+            </button>
+          </div>
+          <section class="saved-works-section custom-styles-section" aria-labelledby="custom-styles-title">
+            <div class="section-heading saved-works-heading">
+              <div><p class="eyebrow">YOUR STYLE LIBRARY</p><h2 id="custom-styles-title">我的风格。</h2></div>
+              <span class="saved-work-count" id="custom-style-count">0 STYLES</span>
+            </div>
+            <div class="saved-works-grid" id="custom-styles-grid"></div>
+            <p class="saved-works-empty" id="custom-styles-empty">在创作页点击「存为风格」，把自己的排版参数加入这里。</p>
+          </section>
+          <section class="saved-works-section" aria-labelledby="saved-works-title">
+            <div class="section-heading saved-works-heading">
+              <div><p class="eyebrow">YOUR SAVED WORKS</p><h2 id="saved-works-title">作品收藏。</h2></div>
+              <span class="saved-work-count" id="saved-work-count">0 SAVED</span>
+            </div>
+            <div class="saved-works-grid" id="saved-works-grid"></div>
+            <p class="saved-works-empty" id="saved-works-empty">保存的作品会出现在这里，你可以随时回来编辑或下载。</p>
+          </section>
+          <footer class="page-footer"><span>COLLECT IDEAS. BREAK PATTERNS.</span><span>MADE FOR THE CURIOUS <span class="footer-star">✳</span></span></footer>
+        </section>
+      </main>
+    </div>
+    <dialog class="style-dialog" id="style-dialog" aria-labelledby="style-dialog-title">
+      <form id="style-form">
+        <p class="eyebrow">SAVE A STYLE</p>
+        <h2 id="style-dialog-title">给你的风格起个名字。</h2>
+        <label for="style-name-input">风格名称</label>
+        <input id="style-name-input" name="styleName" type="text" maxlength="28" required />
+        <div class="style-dialog-actions">
+          <button class="work-button" id="cancel-style" type="button">取消</button>
+          <button class="work-button style-button" type="submit">添加到 Gallery <span aria-hidden="true">↗</span></button>
+        </div>
+      </form>
+    </dialog>
+    <script src="app.js?v=1"></script>
+  </body>
+</html>

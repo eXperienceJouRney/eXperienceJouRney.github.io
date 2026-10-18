@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Font Playground 鸿蒙版 · eXperience JouRney</title>
+<meta name="description" content="Font Playground 的 HarmonyOS 原生版：ArkTS / ArkUI 实现的排版实验台，四套预设、实时画布、HSV 取色、作品与风格库、PNG 导出。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="harmony.css?v=1">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html" aria-current="page">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pw-hero wrap-wide">
+    <div class="pw-hero-copy">
+      <p class="pw-eyebrow"><span class="pw-dot" aria-hidden="true"></span> HARMONYOS · ARKTS / ARKUI</p>
+      <h1>Font<br>Playground<span class="pw-period">.</span></h1>
+      <p class="pw-lede">把文字，玩出格。</p>
+      <p class="pw-desc">同一套排版实验，用 ArkTS / ArkUI 原生重写。四套预设、实时画布、HSV 取色、作品收藏与风格库，全部在端侧完成——没有 WebView。</p>
+      <div class="pw-actions">
+        <a class="pw-btn pw-btn-primary" href="https://github.com/eXperienceJouRney/FontPlayground" target="_blank" rel="noopener">GitHub 仓库 <span aria-hidden="true">↗</span></a>
+        <a class="pw-btn" href="web/">打开网页原型 <span aria-hidden="true">›</span></a>
+      </div>
+      <dl class="pw-meta">
+        <div><dt>平台</dt><dd>HarmonyOS</dd></div>
+        <div><dt>技术</dt><dd>ArkTS / ArkUI</dd></div>
+        <div><dt>目标 SDK</dt><dd>26.0.0</dd></div>
+        <div><dt>兼容</dt><dd>API 24+</dd></div>
+      </dl>
+    </div>
+
+    <div class="pw-art reveal">
+      <span class="pw-art-word" aria-hidden="true">TYPE</span>
+      <img class="pw-phone pw-phone-back" src="shots/create.webp" width="1280" height="2832" alt="Font Playground 鸿蒙版创作页：画布上的 MAKE IT DIFFERENT 与底部排版工具栏">
+      <img class="pw-phone pw-phone-front" src="shots/explore.webp" width="1280" height="2832" alt="Font Playground 鸿蒙版灵感页：FONT PLAYGROUND 标题与蓝色 MAKE ROOM FOR TYPE 海报" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="pw-section wrap-wide" aria-labelledby="screens-title">
+    <div class="pw-section-head reveal">
+      <p class="pw-eyebrow">SCREENS</p>
+      <h2 id="screens-title">四个界面，一条完整闭环。</h2>
+      <p>截图来自本机 HarmonyOS 模拟器里的实际运行：从灵感页挑一个起点，在创作页调排版，最后把作品和风格收进 Gallery。点按截图可以查看原图。</p>
+    </div>
+    <div class="pw-shots">
+      <figure class="pw-shot reveal">
+        <a class="pw-shot-link" href="shots/explore.webp" target="_blank" rel="noopener" aria-label="查看灵感页大图">
+          <img src="shots/explore.webp" width="1280" height="2832" alt="灵感页：FONT PLAYGROUND 品牌、把文字玩出格标题、蓝色海报与风格卡片" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span class="pw-shot-n">01 / 灵感</span><b>从一张海报开始</b><p>三段式导航、留白 Hero 与风格入口。点按海报或卡片就能进入创作。</p></figcaption>
+      </figure>
+      <figure class="pw-shot reveal">
+        <a class="pw-shot-link" href="shots/create.webp" target="_blank" rel="noopener" aria-label="查看创作页大图">
+          <img src="shots/create.webp" width="1280" height="2832" alt="创作页：实时画布、文案输入与文字、样式、字体、排版、颜色工具栏" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span class="pw-shot-n">02 / 创作</span><b>所有参数都在手边</b><p>实时画布配底部工具栏，文字、样式、字体、排版、颜色分区，改哪一项都立刻反馈。</p></figcaption>
+      </figure>
+      <figure class="pw-shot reveal">
+        <a class="pw-shot-link" href="shots/gallery.webp?v=2" target="_blank" rel="noopener" aria-label="查看作品页大图">
+          <img src="shots/gallery.webp?v=2" width="1280" height="2832" alt="作品页：A GOOD STORY 与 MAKE ROOM FOR TYPE 两张已保存作品" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span class="pw-shot-n">03 / 作品</span><b>存下来，再回来改</b><p>保存过的作品在这里继续编辑、导出 PNG，或二次确认后删除。</p></figcaption>
+      </figure>
+      <figure class="pw-shot reveal">
+        <a class="pw-shot-link" href="shots/style-library.webp" target="_blank" rel="noopener" aria-label="查看风格库大图">
+          <img src="shots/style-library.webp" width="1280" height="2832" alt="风格库：我的风格卡片与 Brutalist、Editorial 等预设风格" loading="lazy" decoding="async">
+        </a>
+        <figcaption><span class="pw-shot-n">04 / 风格库</span><b>把配方收进口袋</b><p>自定义风格与四款预设并排；点卡片直接套用，也可以改名字和标签。</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pw-section wrap-wide" aria-labelledby="features-title">
+    <div class="pw-section-head reveal">
+      <p class="pw-eyebrow">WHAT'S INSIDE</p>
+      <h2 id="features-title">不是套壳网页。</h2>
+      <p>界面全部由 ArkUI 声明式构建，手势、存储和导出都走系统能力。</p>
+    </div>
+    <div class="pw-features">
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">01</span>
+        <h3>实时画布</h3>
+        <p>点选文字后拖动、绕中心旋转；选中框按背景亮度自动切换白色或蓝色，深色底上也看得清。</p>
+      </article>
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">02</span>
+        <h3>四套排版预设</h3>
+        <p>Brutalist、Editorial、Playful、Mono Grid。一键换掉整套字体、间距、颜色与版式。</p>
+      </article>
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">03</span>
+        <h3>细到字距</h3>
+        <p>字体、字号、字距、行距、字形倾斜与对齐逐项可调，输入文案时画布整体缩放而不是重排。</p>
+      </article>
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">04</span>
+        <h3>端侧取色</h3>
+        <p>配对色板、HSV 调色盘、HEX 输入和最近颜色都在同一个面板里，文字与背景目标随时切换。</p>
+      </article>
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">05</span>
+        <h3>作品与风格库</h3>
+        <p>作品写进应用沙箱；风格只记排版配方，命名加标签后可以反复套用，旧数据也能兼容读取。</p>
+      </article>
+      <article class="pw-feature reveal">
+        <span class="pw-feature-n">06</span>
+        <h3>导出 PNG</h3>
+        <p>用 componentSnapshot 截取画布，ImagePacker 编码后写入系统相册，保存前走系统确认框。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="pw-section wrap-wide" aria-labelledby="inside-title">
+    <div class="pw-section-head reveal">
+      <p class="pw-eyebrow">UNDER THE HOOD</p>
+      <h2 id="inside-title">原生实现，数据留在端侧。</h2>
+      <p>单 entry 模块、Stage 模型。作品和风格分别序列化到应用沙箱里的 JSON 文件，读取时逐字段校验，坏数据回退到预设值。</p>
+    </div>
+    <div class="pw-details">
+      <div class="pw-detail-card reveal">
+        <h3>几个关键点</h3>
+        <ul class="pw-list">
+          <li><b>页面状态</b><span>PageKind 枚举 + @State，在单个 Component 里切换灵感、创作与作品。</span></li>
+          <li><b>文字变换</b><span>translate 控制拖动位置，rotate 控制旋转，matrix4.skew 做字形倾斜。</span></li>
+          <li><b>键盘适配</b><span>画布逻辑尺寸只按舞台宽度计算；键盘弹出时整体等比缩放，换行与角标不跑位。</span></li>
+          <li><b>数据兜底</b><span>作品与风格 JSON 读取时校验颜色、对齐、数值范围，损坏数据回退到预设值。</span></li>
+        </ul>
+      </div>
+      <div class="pw-code reveal" aria-label="Font Playground 工程目录">
+        <div class="pw-code-top"><span></span><span></span><span></span><b>entry/src/main/ets</b></div>
+        <pre><code>entryability/EntryAbility.ets
+model/Typography.ets
+pages/Index.ets
+services/
+├── GalleryStore.ets
+├── StyleStore.ets
+├── ArtworkExporter.ets
+└── ColorUtils.ets</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="pw-repo wrap" aria-labelledby="repo-title">
+    <div class="pw-repo-card reveal">
+      <p class="pw-eyebrow">SOURCE</p>
+      <h2 id="repo-title">工程、README 和构建说明都在 GitHub。</h2>
+      <p>用 DevEco Studio 打开即可运行；命令行构建产出未签名 HAP，模拟器可以直接安装。</p>
+      <a class="pw-repo-link" href="https://github.com/eXperienceJouRney/FontPlayground" target="_blank" rel="noopener">
+        <span>github.com/eXperienceJouRney/FontPlayground</span>
+        <span class="pw-repo-arrow" aria-hidden="true">↗</span>
+      </a>
+      <p class="pw-repo-alt">也可以先看 <a href="web/">网页原型</a>，或回到 <a href="../../works.html">全部作品</a>。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-inner">
+    <p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p>
+  </div>
+</footer>
+
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+</body>
+</html>
