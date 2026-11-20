@@ -1,0 +1,71 @@
+/* ClassFlow 项目详情页：沿用站点主题与卡片样式。 */
+.cf-wrap{width:min(1040px,100% - 40px);margin-inline:auto}
+.cf-main{padding-bottom:20px}
+.cf-breadcrumb{padding-top:30px;color:var(--muted);font-size:14px}
+.cf-breadcrumb a{color:var(--muted)}
+.cf-hero{display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:56px;padding:62px 0 80px}
+.cf-eyebrow{color:var(--accent-ink);font-size:13px;letter-spacing:.04em}
+.cf-hero h1{margin-top:16px;font-size:clamp(44px,7vw,76px);line-height:1;letter-spacing:-.04em}
+.cf-lede{max-width:430px;margin-top:22px!important;color:var(--muted);font-size:clamp(19px,2.4vw,25px);line-height:1.5}
+.cf-meta{display:flex;flex-wrap:wrap;gap:20px 30px;margin:32px 0 0;color:var(--muted);font-size:13px}
+.cf-meta div{min-width:130px}
+.cf-meta dt{color:var(--fg);font-weight:500}
+.cf-meta dd{margin:4px 0 0}
+.cf-screen{min-width:0;margin:0;background:var(--panel);border-radius:var(--r);overflow:hidden}
+.cf-screen img{display:block;width:auto;max-width:100%;max-height:660px;margin-inline:auto;object-fit:contain}
+.cf-screen figcaption{display:flex;flex-direction:column;gap:3px;padding:14px 18px 16px;color:var(--muted);font-size:13px}
+.cf-screen figcaption strong{color:var(--fg);font-size:15px;font-weight:500}
+.cf-hero-screen{justify-self:center;width:min(100%,340px);padding:20px 20px 0;box-shadow:var(--shadow-lg)}
+.cf-hero-screen img{max-height:700px;border-radius:14px}
+.cf-intro{max-width:760px;padding:38px 0 82px}
+.cf-intro h2,.cf-section h2{margin-top:12px;font-size:clamp(28px,4vw,42px);line-height:1.16;letter-spacing:-.03em}
+.cf-intro>p:last-child{max-width:700px;margin-top:16px;color:var(--muted);font-size:18px;line-height:1.75}
+.cf-section{padding:64px 0;border-top:1px solid var(--line)}
+.cf-section-head{max-width:730px;margin-bottom:30px}
+.cf-section-head>p:last-child{margin-top:12px;color:var(--muted);font-size:16px;line-height:1.7}
+.cf-gallery{display:grid;align-items:start;gap:14px}
+.cf-gallery-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cf-gallery-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cf-gallery .cf-screen{display:flex;flex-direction:column;justify-content:flex-start;padding:22px 18px 0}
+.cf-gallery .cf-screen img{max-height:620px;border-radius:13px}
+.cf-feature-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.cf-feature-copy{max-width:470px}
+.cf-feature-copy>p:last-child{margin-top:14px;color:var(--muted);font-size:17px;line-height:1.7}
+.cf-feature-screen{justify-self:center;width:min(100%,410px);padding:22px 22px 0}
+.cf-feature-screen img{max-height:600px;border-radius:13px}
+.cf-tech{padding-bottom:46px}
+.cf-tech-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.cf-tech-list>div{display:flex;flex-direction:column;gap:7px;padding-top:14px;border-top:1px solid var(--line)}
+.cf-tech-list strong{font-size:17px;font-weight:500}
+.cf-tech-list span{color:var(--muted);font-size:14px}
+.cf-back{padding:10px 0 52px;font-size:16px}
+@media(max-width:860px){
+  .cf-hero{gap:32px;padding:48px 0 62px}
+  .cf-gallery-three{grid-template-columns:1fr}
+  .cf-gallery-three .cf-screen{display:grid;grid-template-columns:minmax(180px, .8fr) 1fr;align-items:center;gap:20px;padding:20px}
+  .cf-gallery-three .cf-screen img{max-height:500px}
+  .cf-gallery-three .cf-screen figcaption{padding:10px}
+}
+@media(max-width:700px){
+  .cf-wrap{width:min(1040px,100% - 32px)}
+  .cf-hero{grid-template-columns:1fr;gap:30px;padding:42px 0 58px}
+  .cf-hero-copy{text-align:center}
+  .cf-lede{margin-inline:auto}
+  .cf-meta{justify-content:center}
+  .cf-hero-screen{width:min(100%,310px)}
+  .cf-intro{padding:22px 0 58px}
+  .cf-section{padding:48px 0}
+  .cf-gallery-two{grid-template-columns:1fr}
+  .cf-gallery-two .cf-screen{max-width:440px;width:100%;justify-self:center}
+  .cf-feature-row{grid-template-columns:1fr;gap:24px}
+  .cf-feature-reverse .cf-feature-copy{order:0}
+  .cf-feature-reverse .cf-feature-screen{order:1}
+  .cf-feature-screen{max-width:340px;width:100%}
+  .cf-tech-list{grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:420px){
+  .cf-gallery-three .cf-screen{grid-template-columns:1fr;gap:12px}
+  .cf-gallery-three .cf-screen img{max-height:560px}
+  .cf-gallery-three .cf-screen figcaption{padding:8px 4px}
+  .cf-meta{gap:14px}
+}

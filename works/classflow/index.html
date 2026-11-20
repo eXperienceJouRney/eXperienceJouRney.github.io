@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClassFlow · 课程与学习安排 · eXperience JouRney</title>
+<meta name="description" content="ClassFlow 是一款面向学生的 iOS 课程与学习安排应用，整合课表、课程待办、笔记和主屏幕小组件。">
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../assets/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/theme.css?v=5">
+<link rel="stylesheet" href="../../assets/site.css?v=4">
+<link rel="stylesheet" href="classflow.css?v=1">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('site-theme');if(t==='light'||t==='dark')d.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <div class="wrap-wide bar">
+    <a class="brand" href="../../index.html">eXperience JouRney</a>
+    <nav class="nav" aria-label="站点导航">
+      <a href="../../works.html" aria-current="page">作品</a>
+      <a href="../../notes.html">笔记</a>
+      <a href="../../study.html">学习</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" type="button" title="主题：跟随系统（点击切换）" aria-label="主题：跟随系统（点击切换）"><span id="themeIcon" aria-hidden="true">◐</span></button>
+  </div>
+</header>
+<main id="main" class="cf-main">
+  <div class="cf-wrap">
+    <p class="cf-breadcrumb"><a href="../../works.html">作品</a><span aria-hidden="true"> / </span>ClassFlow</p>
+    <section class="cf-hero">
+      <div class="cf-hero-copy reveal">
+        <p class="cf-eyebrow">iOS 应用 · SwiftUI</p>
+        <h1>ClassFlow</h1>
+        <p class="cf-lede">把课程、任务与笔记，放进清晰的学期日常。</p>
+        <dl class="cf-meta">
+          <div><dt>项目方向</dt><dd>课程与学习安排</dd></div>
+          <div><dt>工作内容</dt><dd>产品规划 · 交互设计 · iOS 开发</dd></div>
+        </dl>
+      </div>
+      <figure class="cf-screen cf-hero-screen reveal">
+        <img src="../../assets/portfolio/classflow/01-schedule-day.png" alt="ClassFlow 日视图课表，显示当天课程、节次与地点" fetchpriority="high">
+        <figcaption>日视图 · 当天课程、节次与地点</figcaption>
+      </figure>
+    </section>
+
+    <section class="cf-intro reveal" aria-labelledby="cf-concept">
+      <p class="cf-eyebrow">产品理念</p>
+      <h2 id="cf-concept">以课程为入口，连接学期里的日常安排</h2>
+      <p>学生的学期生活不止是一张每周重复的课表，还包括每天的课程、即将到期的任务，以及每门课对应的学习记录。ClassFlow 将这些信息放在一起，让课程成为规划日程和整理学习内容的共同入口。</p>
+    </section>
+
+    <section class="cf-section" aria-labelledby="cf-schedule-title">
+      <div class="cf-section-head reveal">
+        <p class="cf-eyebrow">01 / 课表视图</p>
+        <h2 id="cf-schedule-title">从一周计划，到每天的课程节奏</h2>
+        <p>日、周、月视图支持从当天安排到整月课程分布的不同浏览方式。</p>
+      </div>
+      <div class="cf-gallery cf-gallery-two">
+        <figure class="cf-screen reveal">
+          <img src="../../assets/portfolio/classflow/02-schedule-week.png" alt="ClassFlow 周视图，按星期和节次展示课程" loading="lazy" decoding="async">
+          <figcaption>周视图 · 按星期与节次规划一周</figcaption>
+        </figure>
+        <figure class="cf-screen reveal">
+          <img src="../../assets/portfolio/classflow/03-schedule-month.png" alt="ClassFlow 月视图课表" loading="lazy" decoding="async">
+          <figcaption>月视图 · 浏览整月课程安排</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="cf-section" aria-labelledby="cf-learning-title">
+      <div class="cf-section-head reveal">
+        <p class="cf-eyebrow">02 / 课程与学习</p>
+        <h2 id="cf-learning-title">课程串联待办与学习记录</h2>
+        <p>课程详情提供共同上下文，也支持单独管理与课程无关的待办。</p>
+      </div>
+      <div class="cf-gallery cf-gallery-three">
+        <figure class="cf-screen reveal">
+          <img src="../../assets/portfolio/classflow/04-course-detail.png" alt="课程详情页面，展示课程安排及关联信息" loading="lazy" decoding="async">
+          <figcaption><strong>课程详情</strong><span>查看课程安排与关联内容</span></figcaption>
+        </figure>
+        <figure class="cf-screen reveal">
+          <img src="../../assets/portfolio/classflow/05-tasks.png" alt="ClassFlow 待办列表，包含课程任务与独立待办" loading="lazy" decoding="async">
+          <figcaption><strong>待办管理</strong><span>跟踪任务截止时间与完成状态</span></figcaption>
+        </figure>
+        <figure class="cf-screen reveal">
+          <img src="../../assets/portfolio/classflow/06-course-notes.png" alt="按课程整理的笔记列表" loading="lazy" decoding="async">
+          <figcaption><strong>课程笔记</strong><span>按课程整理学习记录</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="cf-section cf-feature-row" aria-labelledby="cf-period-title">
+      <div class="cf-feature-copy reveal">
+        <p class="cf-eyebrow">03 / 贴合个人作息</p>
+        <h2 id="cf-period-title">让课表对应真实的课节时间</h2>
+        <p>编辑每节课的起止时间，让课程安排贴合学校作息。</p>
+      </div>
+      <figure class="cf-screen cf-feature-screen reveal">
+        <img src="../../assets/portfolio/classflow/07-period-times.png" alt="课节与作息设置页面" loading="lazy" decoding="async">
+        <figcaption>课节与作息设置</figcaption>
+      </figure>
+    </section>
+
+    <section class="cf-section cf-feature-row cf-feature-reverse" aria-labelledby="cf-widget-title">
+      <div class="cf-feature-copy reveal">
+        <p class="cf-eyebrow">04 / 延伸到主屏幕</p>
+        <h2 id="cf-widget-title">不打开应用，也能快速查看安排</h2>
+        <p>主屏幕小组件呈现周课表、近期课程、待办和课程笔记，让常用信息触手可及。</p>
+      </div>
+      <figure class="cf-screen cf-feature-screen reveal">
+        <img src="../../assets/portfolio/classflow/08-home-widgets-week.png" alt="iOS 主屏幕上的 ClassFlow 课程、待办和笔记小组件" loading="lazy" decoding="async">
+        <figcaption>主屏幕小组件 · 真实模拟器截图</figcaption>
+      </figure>
+    </section>
+
+    <section class="cf-section cf-tech reveal" aria-labelledby="cf-tech-title">
+      <div class="cf-section-head">
+        <p class="cf-eyebrow">技术实现</p>
+        <h2 id="cf-tech-title">围绕日常使用构建 iOS 体验</h2>
+      </div>
+      <div class="cf-tech-list">
+        <div><strong>SwiftUI</strong><span>构建 iOS 应用界面与交互</span></div>
+        <div><strong>本地 JSON</strong><span>保存课程与学习数据</span></div>
+        <div><strong>App Group</strong><span>在主应用与小组件间共享信息</span></div>
+      </div>
+    </section>
+    <p class="cf-back"><a href="../../works.html">← 返回全部作品</a></p>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap foot-inner"><p>© <span id="year">2026</span> eXperience JouRney. 保留所有权利。</p></div>
+</footer>
+<button class="backtop" id="backtop" type="button" aria-label="回到顶部" hidden>↑</button>
+<script src="../../assets/site.js?v=1"></script>
+</body>
+</html>
